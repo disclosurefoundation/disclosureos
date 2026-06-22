@@ -1,6 +1,9 @@
 # DisclosureOS
 
 [![Packages Quality](https://github.com/disclosurefoundation/disclosureos/actions/workflows/packages-quality.yml/badge.svg)](https://github.com/disclosurefoundation/disclosureos/actions/workflows/packages-quality.yml)
+[![NPM](https://img.shields.io/npm/v/@disclosureos/schema?label=npm)](https://www.npmjs.com/package/@disclosureos/schema)
+[![GitHub Release](https://img.shields.io/github/v/release/disclosurefoundation/disclosureos?label=release)](https://github.com/disclosurefoundation/disclosureos/releases)
+[![License](https://img.shields.io/github/license/disclosurefoundation/disclosureos)](LICENSE)
 
 DisclosureOS is an open standard for documenting, classifying, and evaluating UAP
 observations from the public record. It provides a shared vocabulary, portable
@@ -77,6 +80,12 @@ pnpm release
 
 Every published package is gated by build, type-check, unit/schema drift tests,
 `publint`, `attw`, and `npm pack --dry-run` through the package quality workflow.
+
+DisclosureOS packages version independently under Semantic Versioning. Routine
+patches can ship as package-level releases and tags (for example,
+`@disclosureos/cli@1.0.1`) without a new aggregate GitHub Release. Repository
+releases such as `v1.0.0`, `v1.1.0`, or `v2.0.0` mark standard-level milestones
+across the framework.
 
 ## License
 
