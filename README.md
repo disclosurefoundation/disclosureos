@@ -14,12 +14,12 @@ documentation and schema host live at [os.disclosure.org](https://os.disclosure.
 
 | Package | Role |
 |---|---|
-| `@disclosureos/records` | The shared observation vocabulary: what was observed, when, where, and with what supporting record. |
-| `@disclosureos/observables` | Technology and biologics observable assessments: what anomalous characteristics were reported or confirmed. |
-| `@disclosureos/origins` | Origin Classification System taxonomy and reference mappings. |
-| `@disclosureos/schema` | The portable enriched Observation contract for TypeScript and JSON Schema. |
-| `@disclosureos/scoring` | Reference completeness and compellingness scoring. |
-| `@disclosureos/cli` | Developer tools for scaffolding, validating, scoring, and inspecting observations. |
+| [`@disclosureos/records`](https://www.npmjs.com/package/@disclosureos/records) | The shared observation vocabulary: what was observed, when, where, and with what supporting record. |
+| [`@disclosureos/observables`](https://www.npmjs.com/package/@disclosureos/observables) | Technology and biologics observable assessments: what anomalous characteristics were reported or confirmed. |
+| [`@disclosureos/origins`](https://www.npmjs.com/package/@disclosureos/origins) | Origin Classification System taxonomy and reference mappings. |
+| [`@disclosureos/schema`](https://www.npmjs.com/package/@disclosureos/schema) | The portable enriched Observation contract for TypeScript and JSON Schema. |
+| [`@disclosureos/scoring`](https://www.npmjs.com/package/@disclosureos/scoring) | Reference completeness and compellingness scoring. |
+| [`@disclosureos/cli`](https://www.npmjs.com/package/@disclosureos/cli) | Developer tools for scaffolding, validating, scoring, and inspecting observations. |
 
 Supporting workspaces:
 
@@ -46,16 +46,17 @@ The canonical end-to-end example is [examples/golden-path.ts](examples/golden-pa
 
 ## Package Usage
 
-The packages are prepared for publication under the `@disclosureos` npm scope.
-After the initial npm release, consumers will be able to install only the surfaces
-they need, for example:
+Install only the surfaces you need:
 
 ```bash
 pnpm add @disclosureos/records @disclosureos/schema
 ```
 
-Until that release is live, use this repository directly for local development and
-validation.
+Run the CLI without installing it globally:
+
+```bash
+pnpm dlx @disclosureos/cli --help
+```
 
 ## Schema Host
 

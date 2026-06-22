@@ -90,6 +90,27 @@ package quality workflow uses `pnpm install --frozen-lockfile`.
 2. Run `pnpm changeset version` (from repo root). Review updated version fields and CHANGELOGs; commit.
 3. Publish: `pnpm release` (`changeset publish`) or `pnpm -r publish --no-git-tag` for each package you ship. Tag in the repo as needed.
 4. Before **first** publish of a package: run `npm pack` in that package, then `npm install <path-to-tarball>` in a temp dir and confirm install + type resolution (dry-run). Do a quick NPM metadata pass (`description`, `keywords`, `repository`, `bugs`, `license`, `files`, `exports`).
+5. After publish, verify each package through both package metadata and access status:
+
+   ```bash
+   for pkg in records observables origins schema scoring cli; do
+     npm access get status "@disclosureos/$pkg"
+     npm view "@disclosureos/$pkg" version repository.url homepage bugs.url
+   done
+   ```
+
+   If the CLI package is present in access controls but not retrievable from the
+   public registry during the first release, do **not** rerun the full workspace
+   release. Publish only the CLI package after the full preflight has passed:
+
+   ```bash
+   pnpm --filter @disclosureos/cli publish --access public --no-git-checks --ignore-scripts --otp <code>
+   ```
+
+   The `--ignore-scripts` flag is only for this scoped fallback after `build`,
+   `lint:publish`, and `npm pack --dry-run` have already passed; it avoids a
+   `pnpm publish --dry-run` lifecycle interaction with the nested `attw` pack
+   check.
 
 ## Checklist before a release
 
