@@ -21,8 +21,14 @@ catalogs:
 
 overrides:
   esbuild: 0.28.1
+  human-id: 3.0.1
   js-yaml: 4.2.0
   vitest: 4.1.0
+
+patchedDependencies:
+  read-yaml-file@1.1.0:
+    hash: a3wnqeb6flu4dzarktw34jtk6m
+    path: patches/read-yaml-file@1.1.0.patch
 
 importers:
 
@@ -1033,9 +1039,8 @@ packages:
   highlight.js@10.7.3:
     resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
 
-  human-id@4.2.0:
-    resolution: {integrity: sha512-K3GbkIWqyvvlpfhBPlbEvD97TtqBpAYA4kt+cn2lD2x2HuohzZCibcA2nOlnJT6exqvJLggoB5nv2dNf192nEA==}
-    hasBin: true
+  human-id@3.0.1:
+    resolution: {integrity: sha512-ybmpj4dxA6492SkdUk0CE2Dg/O5KpByoai7UuTeUEtQK2YuR0OYlC9iUzEfj3ralha4ip8TV1ALq7mRJ2LadxA==}
 
   iconv-lite@0.7.2:
     resolution: {integrity: sha512-im9DjEDQ55s9fL4EYzOAv0yMqmMBSZp6G0VvFyTMPKWxiSBHUj9NW/qqLmXUwXrrM7AvqSlTCfvqRb0cM8yYqw==}
@@ -1744,7 +1749,7 @@ snapshots:
     dependencies:
       '@changesets/types': 6.1.0
       fs-extra: 7.0.1
-      human-id: 4.2.0
+      human-id: 3.0.1
       prettier: 2.8.8
 
   '@colors/colors@1.5.0':
@@ -1867,7 +1872,7 @@ snapshots:
       '@manypkg/find-root': 1.1.0
       fs-extra: 8.1.0
       globby: 11.1.0
-      read-yaml-file: 1.1.0
+      read-yaml-file: 1.1.0(patch_hash=a3wnqeb6flu4dzarktw34jtk6m)
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -2272,7 +2277,7 @@ snapshots:
 
   highlight.js@10.7.3: {}
 
-  human-id@4.2.0: {}
+  human-id@3.0.1: {}
 
   iconv-lite@0.7.2:
     dependencies:
@@ -2458,7 +2463,7 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  read-yaml-file@1.1.0:
+  read-yaml-file@1.1.0(patch_hash=a3wnqeb6flu4dzarktw34jtk6m):
     dependencies:
       graceful-fs: 4.2.11
       js-yaml: 4.2.0
