@@ -1,0 +1,10 @@
+packages:
+  - 'packages/disclosureos-*'
+  - 'packages/typescript-config'
+  - 'examples'
+
+catalog:
+  zod: "^4.4.3"
+  typescript: "^5.7.2"
+  publint: "^0.3.21"
+  "@arethetypeswrong/cli": "^0.18.3"

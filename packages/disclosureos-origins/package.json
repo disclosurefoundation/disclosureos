@@ -1,0 +1,137 @@
+{
+  "name": "@disclosureos/origins",
+  "version": "1.0.0",
+  "description": "Classification taxonomy for the DisclosureOS ecosystem — origin hypotheses, OCS taxonomy, and reference systems",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/disclosurefoundation/disclosureos"
+  },
+  "homepage": "https://github.com/disclosurefoundation/disclosureos#readme",
+  "bugs": {
+    "url": "https://github.com/disclosurefoundation/disclosureos/issues"
+  },
+  "keywords": [
+    "disclosureos",
+    "UAP",
+    "origins",
+    "taxonomy",
+    "classification",
+    "OCS",
+    "Hynek",
+    "Vallee",
+    "AARO",
+    "GEIPAN",
+    "typescript"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./taxonomy": {
+      "types": "./dist/taxonomy/index.d.ts",
+      "import": "./dist/taxonomy/index.js"
+    },
+    "./taxonomy/physical": {
+      "types": "./dist/taxonomy/physical/index.d.ts",
+      "import": "./dist/taxonomy/physical/index.js"
+    },
+    "./taxonomy/psychosocial": {
+      "types": "./dist/taxonomy/psychosocial/index.d.ts",
+      "import": "./dist/taxonomy/psychosocial/index.js"
+    },
+    "./taxonomy/metaphysical": {
+      "types": "./dist/taxonomy/metaphysical/index.d.ts",
+      "import": "./dist/taxonomy/metaphysical/index.js"
+    },
+    "./classification": {
+      "types": "./dist/classification/index.d.ts",
+      "import": "./dist/classification/index.js"
+    },
+    "./reference": {
+      "types": "./dist/reference/index.d.ts",
+      "import": "./dist/reference/index.js"
+    },
+    "./reference/hynek": {
+      "types": "./dist/reference/hynek/index.d.ts",
+      "import": "./dist/reference/hynek/index.js"
+    },
+    "./reference/vallee": {
+      "types": "./dist/reference/vallee/index.d.ts",
+      "import": "./dist/reference/vallee/index.js"
+    },
+    "./reference/aaro": {
+      "types": "./dist/reference/aaro/index.d.ts",
+      "import": "./dist/reference/aaro/index.js"
+    },
+    "./reference/geipan": {
+      "types": "./dist/reference/geipan/index.d.ts",
+      "import": "./dist/reference/geipan/index.js"
+    },
+    "./labels": {
+      "types": "./dist/labels/index.d.ts",
+      "import": "./dist/labels/index.js"
+    },
+    "./constants": {
+      "types": "./dist/constants/index.d.ts",
+      "import": "./dist/constants/index.js"
+    },
+    "./guards": {
+      "types": "./dist/guards/index.d.ts",
+      "import": "./dist/guards/index.js"
+    },
+    "./factories": {
+      "types": "./dist/factories/index.d.ts",
+      "import": "./dist/factories/index.js"
+    },
+    "./formatters": {
+      "types": "./dist/formatters/index.d.ts",
+      "import": "./dist/formatters/index.js"
+    },
+    "./schema": "./schema/origins.schema.json",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "schema",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "emit:schema": "tsx scripts/emit-schema.ts",
+    "clean": "rm -rf dist",
+    "test": "vitest",
+    "prepublishOnly": "pnpm build && pnpm lint:publish",
+    "lint:publish": "publint --strict && attw --pack . --profile esm-only"
+  },
+  "dependencies": {
+    "@disclosureos/records": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "tsup": "^8.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "catalog:",
+    "vitest": "^4.0.18",
+    "@arethetypeswrong/cli": "catalog:",
+    "publint": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

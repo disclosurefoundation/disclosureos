@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://os.disclosure.org/schema/observables/2.0.0/observable-assessments.json",
+  "x-schema-version": "2.0.0",
+  "description": "Per-observable claim lists (Technology + Biologics) for an observation.",
+  "$ref": "#/$defs/ObservableAssessmentMap",
+  "$defs": {
+    "ObservableClaim": {
+      "type": "object",
+      "properties": {
+        "evaluatedAt": {
+          "description": "When this judgement was made (ISO 8601 datetime).",
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+        },
+        "evaluatedBy": {
+          "description": "Who made this judgement — a person, agency, or agent identifier.",
+          "type": "string"
+        },
+        "rationale": {
+          "description": "Why this judgement was reached — the evaluator's stated reasoning.",
+          "type": "string"
+        },
+        "evidenceRefs": {
+          "description": "Refs to in-record evidence justifying this claim, e.g. \"media:<id>\", \"sensor:<id>\".",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "not_indicated",
+            "reported",
+            "documented",
+            "measured",
+            "confirmed"
+          ],
+          "description": "Evidentiary tier of an observable assessment — how strongly the signal is established."
+        },
+        "confidence": {
+          "description": "Confidence in the assessment, in [0,1]. 0 = none, 1 = absolute.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "level"
+      ],
+      "additionalProperties": false
+    },
+    "ObservableAssessmentMap": {
+      "type": "object",
+      "properties": {
+        "technology": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "enum": [
+              "antigravity_lift",
+              "instantaneous_acceleration",
+              "hypersonic_no_signatures",
+              "low_observability",
+              "transmedium_travel",
+              "biological_effects"
+            ],
+            "description": "Identifier of a Technology observable (the six AATIP-derived characteristics)."
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "description": "An attributed observable claim, keyed by its map position (no observableId).",
+              "$ref": "#/$defs/ObservableClaim"
+            }
+          }
+        },
+        "biologics": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "enum": [
+              "molecular_complexity",
+              "isotopic_provenance",
+              "non_standard_biochemistry",
+              "non_phylogenetic_genetics",
+              "anomalous_morphology",
+              "anomalous_bio_interaction"
+            ],
+            "description": "Identifier of a Biologics observable."
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "description": "An attributed observable claim, keyed by its map position (no observableId).",
+              "$ref": "#/$defs/ObservableClaim"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

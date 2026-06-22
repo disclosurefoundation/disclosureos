@@ -1,0 +1,105 @@
+{
+  "name": "@disclosureos/observables",
+  "version": "1.0.0",
+  "description": "Anomaly detection criteria for the DisclosureOS ecosystem — Technology and Biologics observable frameworks",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/disclosurefoundation/disclosureos"
+  },
+  "homepage": "https://github.com/disclosurefoundation/disclosureos#readme",
+  "bugs": {
+    "url": "https://github.com/disclosurefoundation/disclosureos/issues"
+  },
+  "keywords": [
+    "disclosureos",
+    "UAP",
+    "observables",
+    "AATIP",
+    "biologics",
+    "anomaly-detection",
+    "typescript"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./technology": {
+      "types": "./dist/technology/index.d.ts",
+      "import": "./dist/technology/index.js"
+    },
+    "./biologics": {
+      "types": "./dist/biologics/index.d.ts",
+      "import": "./dist/biologics/index.js"
+    },
+    "./assessment": {
+      "types": "./dist/assessment/index.d.ts",
+      "import": "./dist/assessment/index.js"
+    },
+    "./labels": {
+      "types": "./dist/labels/index.d.ts",
+      "import": "./dist/labels/index.js"
+    },
+    "./constants": {
+      "types": "./dist/constants/index.d.ts",
+      "import": "./dist/constants/index.js"
+    },
+    "./guards": {
+      "types": "./dist/guards/index.d.ts",
+      "import": "./dist/guards/index.js"
+    },
+    "./factories": {
+      "types": "./dist/factories/index.d.ts",
+      "import": "./dist/factories/index.js"
+    },
+    "./formatters": {
+      "types": "./dist/formatters/index.d.ts",
+      "import": "./dist/formatters/index.js"
+    },
+    "./schema": "./schema/observables.schema.json",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "schema",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "emit:schema": "tsx scripts/emit-schema.ts",
+    "clean": "rm -rf dist",
+    "test": "vitest",
+    "prepublishOnly": "pnpm build && pnpm lint:publish",
+    "lint:publish": "publint --strict && attw --pack . --profile esm-only"
+  },
+  "dependencies": {
+    "@disclosureos/records": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "tsup": "^8.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "catalog:",
+    "vitest": "^4.0.18",
+    "@arethetypeswrong/cli": "catalog:",
+    "publint": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

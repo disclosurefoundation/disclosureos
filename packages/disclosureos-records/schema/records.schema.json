@@ -1,0 +1,2538 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://os.disclosure.org/schema/records/1.0.0/observation.json",
+  "x-schema-version": "1.0.0",
+  "description": "A single UAP observation record — the core unit of the DisclosureOS lexicon.",
+  "$ref": "#/$defs/Observation",
+  "$defs": {
+    "FuzzyDate": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "Machine-comparable anchor (ISO-like, as precise as known, e.g. `1947`, `1947-07`)."
+        },
+        "granularity": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "month",
+            "quarter",
+            "year",
+            "decade",
+            "century",
+            "unknown"
+          ],
+          "description": "Precision of a date value, from calendar-day (`exact`) to `century`."
+        },
+        "certainty": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "approximate",
+            "estimated",
+            "unknown"
+          ],
+          "description": "Confidence in a date or time value — the single certainty scale for all temporal values."
+        },
+        "quarter": {
+          "description": "Calendar quarter (1–4) when granularity is `quarter`.",
+          "anyOf": [
+            {
+              "type": "number",
+              "const": 1
+            },
+            {
+              "type": "number",
+              "const": 2
+            },
+            {
+              "type": "number",
+              "const": 3
+            },
+            {
+              "type": "number",
+              "const": 4
+            }
+          ]
+        },
+        "display": {
+          "description": "Human display override, e.g. \"Summer 1947\".",
+          "type": "string"
+        },
+        "notes": {
+          "description": "Free-text caveats about how this date was determined.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "granularity",
+        "certainty"
+      ],
+      "additionalProperties": false
+    },
+    "DateRange": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "description": "A date whose precision is coarser than a calendar day (e.g. \"summer 1947\").",
+          "$ref": "#/$defs/FuzzyDate"
+        },
+        "end": {
+          "description": "A date whose precision is coarser than a calendar day (e.g. \"summer 1947\").",
+          "$ref": "#/$defs/FuzzyDate"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "span",
+            "uncertainty",
+            "active_period",
+            "investigation_period",
+            "observation_window"
+          ],
+          "description": "What a DateRange represents (a true span vs. an uncertainty window, etc.)."
+        },
+        "display": {
+          "description": "Human display override, e.g. \"July–August 1952\".",
+          "type": "string"
+        },
+        "inclusive": {
+          "description": "Whether the end date is included in the range. Defaults to true.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "RelativeDate": {
+      "type": "object",
+      "properties": {
+        "referenceEvent": {
+          "type": "string",
+          "description": "The event this date is anchored to (e.g. \"the crash\")."
+        },
+        "referenceDate": {
+          "description": "A date whose precision is coarser than a calendar day (e.g. \"summer 1947\").",
+          "$ref": "#/$defs/FuzzyDate"
+        },
+        "relation": {
+          "type": "string",
+          "enum": [
+            "before",
+            "after",
+            "during",
+            "around"
+          ],
+          "description": "How this date relates to the reference event."
+        },
+        "offset": {
+          "description": "Distance from the reference event (e.g. value 3, unit \"days\").",
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unit": {
+              "type": "string",
+              "enum": [
+                "minutes",
+                "hours",
+                "days",
+                "weeks",
+                "months",
+                "years"
+              ]
+            },
+            "approximate": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "value",
+            "unit"
+          ],
+          "additionalProperties": false
+        },
+        "display": {
+          "description": "Human display override, e.g. \"three days after the crash\".",
+          "type": "string"
+        }
+      },
+      "required": [
+        "referenceEvent",
+        "relation"
+      ],
+      "additionalProperties": false
+    },
+    "TemporalData": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Canonical, machine-sortable date anchor in ISO YYYY-MM-DD form. ALWAYS present, even when the true date is fuzzy or a range — set it to the best single representative. Express nuance via dateGranularity, dateRange, or relativeDate."
+        },
+        "dateCertainty": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "approximate",
+            "estimated",
+            "unknown"
+          ],
+          "description": "Confidence in a date or time value — the single certainty scale for all temporal values."
+        },
+        "dateGranularity": {
+          "description": "Precision of `date`. Defaults to day-level when omitted (e.g. \"July 1947\" → date \"1947-07-01\", dateGranularity \"month\").",
+          "type": "string",
+          "enum": [
+            "exact",
+            "month",
+            "quarter",
+            "year",
+            "decade",
+            "century",
+            "unknown"
+          ]
+        },
+        "time": {
+          "description": "Local clock time of the observation (HH:MM or HH:MM:SS, 24-hour).",
+          "type": "string"
+        },
+        "timezone": {
+          "description": "IANA timezone of the local time (e.g. \"America/Los_Angeles\").",
+          "type": "string"
+        },
+        "utcTime": {
+          "description": "Observation time converted to UTC, when known.",
+          "type": "string"
+        },
+        "timeCertainty": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "approximate",
+            "estimated",
+            "unknown"
+          ],
+          "description": "Confidence in a date or time value — the single certainty scale for all temporal values."
+        },
+        "durationSeconds": {
+          "description": "How long the observation lasted, in seconds.",
+          "type": "number"
+        },
+        "durationDescription": {
+          "description": "Duration as reported when not precisely known (e.g. \"several minutes\").",
+          "type": "string"
+        },
+        "timeOfDay": {
+          "type": "string",
+          "enum": [
+            "astronomical_dawn",
+            "nautical_dawn",
+            "civil_dawn",
+            "sunrise",
+            "morning",
+            "noon",
+            "afternoon",
+            "sunset",
+            "civil_dusk",
+            "nautical_dusk",
+            "astronomical_dusk",
+            "night",
+            "unknown"
+          ],
+          "description": "Twilight-aware time-of-day bucket for an observation."
+        },
+        "isDaylightSaving": {
+          "description": "Whether daylight saving time was in effect at the local time.",
+          "type": "boolean"
+        },
+        "moonPhase": {
+          "description": "Moon phase at the time of observation (0 = new moon, 0.5 = full, 1 = new).",
+          "type": "number"
+        },
+        "moonIllumination": {
+          "description": "Fraction of the moon illuminated at the time of observation (0–1).",
+          "type": "number"
+        },
+        "dateRange": {
+          "description": "For events spanning a period or with a genuine uncertainty window. `date` should still anchor within/at the range.",
+          "$ref": "#/$defs/DateRange"
+        },
+        "relativeDate": {
+          "description": "For dates known only relative to another event (e.g. \"3 days after the crash\").",
+          "$ref": "#/$defs/RelativeDate"
+        }
+      },
+      "required": [
+        "date",
+        "dateCertainty"
+      ],
+      "additionalProperties": false
+    },
+    "ProximitySite": {
+      "type": "object",
+      "properties": {
+        "siteType": {
+          "type": "string",
+          "enum": [
+            "military_air_base",
+            "military_naval_base",
+            "military_army_base",
+            "military_missile_site",
+            "military_radar_station",
+            "military_research_facility",
+            "military_training_area",
+            "military_other",
+            "nuclear_power_plant",
+            "nuclear_weapons_storage",
+            "nuclear_research_facility",
+            "nuclear_waste_storage",
+            "nuclear_other",
+            "civilian_airport",
+            "private_airfield",
+            "heliport",
+            "seaport",
+            "offshore_platform",
+            "naval_vessel",
+            "government_facility",
+            "embassy",
+            "intelligence_facility",
+            "power_plant",
+            "dam",
+            "telecommunications",
+            "water_treatment",
+            "research_facility",
+            "test_range",
+            "space_station",
+            "archaeological_site",
+            "volcano",
+            "command_center",
+            "residential",
+            "commercial",
+            "industrial",
+            "agricultural",
+            "wilderness",
+            "ocean",
+            "lake",
+            "mountain",
+            "desert",
+            "forest",
+            "urban",
+            "suburban",
+            "rural",
+            "other",
+            "unknown"
+          ],
+          "description": "Category of site at or near the observation location (military, nuclear, civilian, natural, etc.)."
+        },
+        "siteName": {
+          "description": "Name of the nearby site (e.g. \"Naval Air Station Oceana\").",
+          "type": "string"
+        },
+        "distanceKm": {
+          "type": "number",
+          "description": "Distance from the observation location, in kilometers."
+        },
+        "bearing": {
+          "description": "Compass bearing from the observation location to the site, in degrees (0–360).",
+          "type": "number"
+        }
+      },
+      "required": [
+        "siteType",
+        "distanceKm"
+      ],
+      "additionalProperties": false
+    },
+    "LocationData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable unique identifier for this location."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable place name (e.g. \"Off the coast of San Diego\")."
+        },
+        "country": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Country where the observation occurred."
+        },
+        "countryCode": {
+          "description": "ISO 3166-1 alpha-2 country code (e.g. \"US\").",
+          "type": "string"
+        },
+        "region": {
+          "description": "State, province, or administrative region.",
+          "type": "string"
+        },
+        "city": {
+          "description": "Nearest city or town.",
+          "type": "string"
+        },
+        "address": {
+          "description": "Street address, when the location is that precise.",
+          "type": "string"
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180,
+          "description": "Longitude in decimal degrees (WGS 84)."
+        },
+        "latitude": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "Latitude in decimal degrees (WGS 84)."
+        },
+        "coordinatePrecision": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "address",
+            "locality",
+            "region",
+            "approximate",
+            "unknown"
+          ],
+          "description": "How precisely a coordinate is known."
+        },
+        "coordinatePrecisionMeters": {
+          "description": "Numeric uncertainty radius of the coordinates, in meters.",
+          "type": "number"
+        },
+        "coordinatesApproximate": {
+          "description": "Whether the coordinates are an approximation rather than a measured fix.",
+          "type": "boolean"
+        },
+        "elevationMeters": {
+          "description": "Ground elevation at the location, in meters above sea level.",
+          "type": "number"
+        },
+        "elevationSource": {
+          "description": "How the elevation value was obtained.",
+          "type": "string",
+          "enum": [
+            "gps",
+            "map",
+            "estimated",
+            "unknown"
+          ]
+        },
+        "siteType": {
+          "type": "string",
+          "enum": [
+            "military_air_base",
+            "military_naval_base",
+            "military_army_base",
+            "military_missile_site",
+            "military_radar_station",
+            "military_research_facility",
+            "military_training_area",
+            "military_other",
+            "nuclear_power_plant",
+            "nuclear_weapons_storage",
+            "nuclear_research_facility",
+            "nuclear_waste_storage",
+            "nuclear_other",
+            "civilian_airport",
+            "private_airfield",
+            "heliport",
+            "seaport",
+            "offshore_platform",
+            "naval_vessel",
+            "government_facility",
+            "embassy",
+            "intelligence_facility",
+            "power_plant",
+            "dam",
+            "telecommunications",
+            "water_treatment",
+            "research_facility",
+            "test_range",
+            "space_station",
+            "archaeological_site",
+            "volcano",
+            "command_center",
+            "residential",
+            "commercial",
+            "industrial",
+            "agricultural",
+            "wilderness",
+            "ocean",
+            "lake",
+            "mountain",
+            "desert",
+            "forest",
+            "urban",
+            "suburban",
+            "rural",
+            "other",
+            "unknown"
+          ],
+          "description": "Category of site at or near the observation location (military, nuclear, civilian, natural, etc.)."
+        },
+        "secondarySiteTypes": {
+          "description": "Additional site categories that also apply to the location.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "military_air_base",
+              "military_naval_base",
+              "military_army_base",
+              "military_missile_site",
+              "military_radar_station",
+              "military_research_facility",
+              "military_training_area",
+              "military_other",
+              "nuclear_power_plant",
+              "nuclear_weapons_storage",
+              "nuclear_research_facility",
+              "nuclear_waste_storage",
+              "nuclear_other",
+              "civilian_airport",
+              "private_airfield",
+              "heliport",
+              "seaport",
+              "offshore_platform",
+              "naval_vessel",
+              "government_facility",
+              "embassy",
+              "intelligence_facility",
+              "power_plant",
+              "dam",
+              "telecommunications",
+              "water_treatment",
+              "research_facility",
+              "test_range",
+              "space_station",
+              "archaeological_site",
+              "volcano",
+              "command_center",
+              "residential",
+              "commercial",
+              "industrial",
+              "agricultural",
+              "wilderness",
+              "ocean",
+              "lake",
+              "mountain",
+              "desert",
+              "forest",
+              "urban",
+              "suburban",
+              "rural",
+              "other",
+              "unknown"
+            ],
+            "description": "Category of site at or near the observation location (military, nuclear, civilian, natural, etc.)."
+          }
+        },
+        "terrain": {
+          "type": "string",
+          "enum": [
+            "ocean",
+            "coastal",
+            "lake",
+            "river",
+            "wetland",
+            "plains",
+            "hills",
+            "mountains",
+            "desert",
+            "forest",
+            "jungle",
+            "tundra",
+            "arctic",
+            "urban",
+            "suburban",
+            "rural",
+            "underground",
+            "underwater",
+            "airborne",
+            "space",
+            "unknown"
+          ],
+          "description": "Physical terrain at the observation location."
+        },
+        "airspaceClass": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "G",
+            "restricted",
+            "prohibited",
+            "warning",
+            "moa",
+            "alert",
+            "cfa",
+            "national_security",
+            "tfr",
+            "international",
+            "unknown"
+          ],
+          "description": "Airspace classification over the location (ICAO classes plus special-use airspace)."
+        },
+        "locationSensitivity": {
+          "type": "string",
+          "enum": [
+            "critical",
+            "high",
+            "moderate",
+            "standard",
+            "none"
+          ],
+          "description": "How sensitive the location is (e.g. proximity to critical infrastructure)."
+        },
+        "proximitySites": {
+          "description": "Named sites of interest near the observation, with distance and bearing.",
+          "type": "array",
+          "items": {
+            "description": "A site of interest near the observation and its distance/bearing.",
+            "$ref": "#/$defs/ProximitySite"
+          }
+        },
+        "nearestMilitaryKm": {
+          "description": "Distance to the nearest military installation, in kilometers.",
+          "type": "number"
+        },
+        "nearestNuclearKm": {
+          "description": "Distance to the nearest nuclear facility, in kilometers.",
+          "type": "number"
+        },
+        "nearestAirportKm": {
+          "description": "Distance to the nearest airport, in kilometers.",
+          "type": "number"
+        },
+        "waterDepthMeters": {
+          "description": "Water depth at the location for maritime observations, in meters.",
+          "type": "number"
+        },
+        "vesselName": {
+          "description": "Name of the vessel the observer was aboard, if any.",
+          "type": "string"
+        },
+        "vesselType": {
+          "description": "Type of vessel (e.g. \"aircraft carrier\", \"fishing trawler\").",
+          "type": "string"
+        },
+        "aircraftType": {
+          "description": "Type of aircraft the observer was aboard, if any.",
+          "type": "string"
+        },
+        "aircraftCallsign": {
+          "description": "Callsign of the observer’s aircraft.",
+          "type": "string"
+        },
+        "flightNumber": {
+          "description": "Commercial flight number, for airline observations.",
+          "type": "string"
+        },
+        "observerAltitudeMeters": {
+          "description": "Altitude of an airborne observer at the time of observation, in meters.",
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "country",
+        "longitude",
+        "latitude",
+        "siteType"
+      ],
+      "additionalProperties": false
+    },
+    "ObjectCharacteristics": {
+      "type": "object",
+      "properties": {
+        "shape": {
+          "type": "string",
+          "enum": [
+            "sphere",
+            "orb",
+            "disc",
+            "saucer",
+            "oval",
+            "egg",
+            "cylinder",
+            "cigar",
+            "tic_tac",
+            "triangle",
+            "delta",
+            "boomerang",
+            "chevron",
+            "diamond",
+            "rectangle",
+            "square",
+            "cube",
+            "cross",
+            "star",
+            "amorphous",
+            "changing",
+            "light_only",
+            "other",
+            "unknown"
+          ],
+          "description": "Reported shape of the observed object."
+        },
+        "size": {
+          "description": "Apparent size as reported (e.g. \"size of a commercial airliner\").",
+          "type": "string"
+        },
+        "sizeMeters": {
+          "description": "Estimated size of the object, in meters.",
+          "type": "number"
+        },
+        "color": {
+          "description": "Primary color of the object as reported.",
+          "type": "string"
+        },
+        "secondaryColors": {
+          "description": "Additional colors observed on the object.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "luminosity": {
+          "description": "Light emission as reported (e.g. \"glowing white\", \"self-luminous\", \"no lights\").",
+          "type": "string"
+        },
+        "sound": {
+          "description": "Whether and what sound the object produced (e.g. \"silent\", \"humming\").",
+          "type": "string"
+        },
+        "soundDescription": {
+          "description": "Fuller free-text description of any sound.",
+          "type": "string"
+        },
+        "surfaceDetails": {
+          "description": "Visible surface features (e.g. \"metallic, seamless, no rivets or seams\").",
+          "type": "string"
+        },
+        "numberObserved": {
+          "description": "How many objects were observed.",
+          "type": "number"
+        },
+        "formation": {
+          "description": "Geometric arrangement when multiple objects were observed (e.g. \"triangular formation\").",
+          "type": "string"
+        },
+        "structuralFeatures": {
+          "description": "Distinct structural elements reported (e.g. \"dome\", \"portholes\", \"appendages\").",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "SourceReference": {
+      "type": "object",
+      "properties": {
+        "sourceId": {
+          "type": "string",
+          "description": "Stable unique identifier for this source."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "foia",
+            "official_report",
+            "official_statement",
+            "congressional_testimony",
+            "congressional_report",
+            "military_document",
+            "intelligence_document",
+            "whistleblower",
+            "firsthand_witness",
+            "secondhand_account",
+            "news_article",
+            "documentary",
+            "interview",
+            "book",
+            "academic_paper",
+            "investigation_report",
+            "database_entry",
+            "social_media",
+            "website",
+            "other"
+          ],
+          "description": "Kind of source backing an observation (document, testimony, media, etc.)."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the source document, article, or material."
+        },
+        "author": {
+          "description": "Author of the source material.",
+          "type": "string"
+        },
+        "organization": {
+          "description": "Organization that produced or published the source.",
+          "type": "string"
+        },
+        "date": {
+          "description": "Publication or creation date of the source (ISO date).",
+          "type": "string"
+        },
+        "url": {
+          "description": "Link to the source material.",
+          "type": "string"
+        },
+        "archiveUrl": {
+          "description": "Archived copy of the source (e.g. Wayback Machine), in case the original disappears.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Citation locator within the source (e.g. page number, document section).",
+          "type": "string"
+        },
+        "credibility": {
+          "type": "string",
+          "enum": [
+            "official",
+            "verified",
+            "credible",
+            "unverified",
+            "questionable",
+            "disputed",
+            "unknown"
+          ],
+          "description": "Trust tier of a source — an orthogonal axis to confidence and temporal certainty."
+        },
+        "isPrimarySource": {
+          "description": "Whether this is a primary source (original document/recording) rather than secondary reporting.",
+          "type": "boolean"
+        },
+        "classificationLevel": {
+          "description": "Government classification of the source, if it was ever classified.",
+          "type": "string"
+        },
+        "notes": {
+          "description": "Free-text context about the source.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sourceId",
+        "type",
+        "title",
+        "credibility"
+      ],
+      "additionalProperties": false
+    },
+    "SourceData": {
+      "type": "object",
+      "properties": {
+        "primarySource": {
+          "description": "A citation/source backing an observation, with its credibility tier.",
+          "$ref": "#/$defs/SourceReference"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "description": "A citation/source backing an observation, with its credibility tier.",
+            "$ref": "#/$defs/SourceReference"
+          }
+        },
+        "originalClassification": {
+          "description": "Original government classification of the source material (e.g. \"SECRET\").",
+          "type": "string"
+        },
+        "declassificationDate": {
+          "description": "When the source material was declassified (ISO date).",
+          "type": "string"
+        },
+        "foiaRequestId": {
+          "description": "FOIA request number that produced the source material.",
+          "type": "string"
+        },
+        "archiveLocation": {
+          "description": "Physical or digital archive where the source material resides.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Investigation": {
+      "type": "object",
+      "properties": {
+        "investigatingBody": {
+          "description": "Primary organization that investigated (e.g. \"AARO\", \"Project Blue Book\").",
+          "type": "string"
+        },
+        "investigatingBodies": {
+          "description": "All organizations that investigated, when more than one.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "caseNumber": {
+          "description": "Case or file number assigned by the investigating body.",
+          "type": "string"
+        },
+        "investigationDate": {
+          "description": "When the investigation was conducted (ISO date).",
+          "type": "string"
+        },
+        "conclusion": {
+          "description": "Official conclusion reached (e.g. \"unidentified\", \"weather balloon\").",
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "very_high",
+            "high",
+            "moderate",
+            "low",
+            "very_low",
+            "unassessed"
+          ],
+          "description": "Qualitative confidence magnitude."
+        },
+        "methodologies": {
+          "description": "Methods used (e.g. \"witness interviews\", \"radar data analysis\").",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "findings": {
+          "description": "Summary of what the investigation found.",
+          "type": "string"
+        },
+        "recommendations": {
+          "description": "Recommendations issued by the investigation.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Movement": {
+      "type": "object",
+      "properties": {
+        "speed": {
+          "description": "Speed as reported (e.g. \"faster than any known aircraft\").",
+          "type": "string"
+        },
+        "speedKmh": {
+          "description": "Estimated speed, in kilometers per hour.",
+          "type": "number"
+        },
+        "altitude": {
+          "description": "Altitude as reported (e.g. \"treetop level\", \"very high\").",
+          "type": "string"
+        },
+        "altitudeMeters": {
+          "description": "Estimated altitude of the object, in meters.",
+          "type": "number"
+        },
+        "heading": {
+          "description": "Direction of travel, in compass degrees (0–360).",
+          "type": "number"
+        },
+        "flightPath": {
+          "description": "Narrative of the object’s path through the encounter (e.g. \"descended from 80,000 ft to sea level\").",
+          "type": "string"
+        },
+        "maneuvers": {
+          "description": "Distinctive maneuvers exhibited, from the typed vocabulary.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "hover",
+              "instant_acceleration",
+              "instant_stop",
+              "right_angle_turn",
+              "zigzag",
+              "pendulum",
+              "split",
+              "merge",
+              "disappear",
+              "appear",
+              "transmedium_entry",
+              "transmedium_exit",
+              "vertical_ascent",
+              "vertical_descent",
+              "rotation",
+              "wobble",
+              "other"
+            ],
+            "description": "A distinctive movement/maneuver exhibited by the object."
+          }
+        },
+        "maneuverDescriptions": {
+          "description": "Free-text descriptions elaborating on the typed maneuvers.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "radarData": {
+          "description": "Whether the movement was tracked on radar.",
+          "type": "boolean"
+        },
+        "infraredSignature": {
+          "description": "Whether the object showed an infrared signature.",
+          "type": "boolean"
+        },
+        "trajectory": {
+          "description": "Overall trajectory summary (e.g. \"erratic\", \"straight and level\").",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Witnesses": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "description": "Total number of witnesses.",
+          "type": "number"
+        },
+        "categories": {
+          "description": "Kinds of witnesses present (e.g. \"military pilots\", \"radar operators\", \"civilians\").",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "militaryWitnesses": {
+          "description": "Whether any witnesses were military personnel.",
+          "type": "boolean"
+        },
+        "aviationWitnesses": {
+          "description": "Whether any witnesses were pilots or aviation professionals.",
+          "type": "boolean"
+        },
+        "multipleIndependent": {
+          "description": "Whether independent witnesses observed from separate vantage points.",
+          "type": "boolean"
+        },
+        "professionalObservers": {
+          "description": "Whether any witnesses were trained observers (pilots, astronomers, military).",
+          "type": "boolean"
+        },
+        "descriptions": {
+          "description": "Brief summaries of individual witness accounts.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "SensorReading": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable id, addressable by a claim `evidenceRef` (\"sensor:<id>\")."
+        },
+        "sensorType": {
+          "type": "string",
+          "enum": [
+            "military_radar",
+            "civilian_radar",
+            "airborne_radar",
+            "shipborne_radar",
+            "ground_radar",
+            "flir",
+            "eo_sensor",
+            "satellite",
+            "sonar",
+            "electromagnetic_sensor",
+            "radiation_sensor",
+            "civilian_camera",
+            "security_camera",
+            "dashcam",
+            "phone_camera",
+            "other"
+          ],
+          "description": "Class of sensor that produced a reading."
+        },
+        "detectionMethod": {
+          "type": "string",
+          "enum": [
+            "radar_primary",
+            "radar_secondary",
+            "radar_doppler",
+            "radar_phased_array",
+            "infrared_flir",
+            "infrared_other",
+            "electro_optical",
+            "visual_camera",
+            "satellite_imagery",
+            "sonar_active",
+            "sonar_passive",
+            "electromagnetic",
+            "radiation_detector",
+            "magnetometer",
+            "gravimeter",
+            "acoustic",
+            "seismic",
+            "lidar",
+            "spectroscopic",
+            "radio_frequency",
+            "multiple",
+            "other",
+            "unknown"
+          ],
+          "description": "How a sensor detected the object."
+        },
+        "platform": {
+          "description": "Platform carrying the sensor (e.g. \"USS Princeton\", \"F/A-18F\").",
+          "type": "string"
+        },
+        "operator": {
+          "description": "Person or unit operating the sensor.",
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "When the reading was recorded (ISO timestamp).",
+          "type": "string"
+        },
+        "duration": {
+          "description": "How long the sensor held contact, in seconds.",
+          "type": "number"
+        },
+        "rawDataAvailable": {
+          "description": "Whether the raw sensor data still exists and is obtainable.",
+          "type": "boolean"
+        },
+        "calibrated": {
+          "description": "Whether the sensor was calibrated at the time of the reading.",
+          "type": "boolean"
+        },
+        "readings": {
+          "description": "Sensor-specific measured values, keyed by measurement name.",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        },
+        "notes": {
+          "description": "Free-text context about the reading.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "sensorType",
+        "detectionMethod"
+      ],
+      "additionalProperties": false
+    },
+    "SensorEvidenceData": {
+      "type": "object",
+      "properties": {
+        "sensors": {
+          "type": "array",
+          "items": {
+            "description": "A single sensor reading and its provenance.",
+            "$ref": "#/$defs/SensorReading"
+          }
+        },
+        "multiSensorCorrelation": {
+          "description": "Whether independent sensors corroborated the same object.",
+          "type": "boolean"
+        },
+        "dataRetentionStatus": {
+          "description": "Current status of the underlying sensor data.",
+          "type": "string",
+          "enum": [
+            "available",
+            "archived",
+            "destroyed",
+            "classified",
+            "unknown"
+          ]
+        },
+        "anomalies": {
+          "description": "Anomalies in the sensor data itself (e.g. \"jamming indications\", \"signal dropout\").",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "sensors"
+      ],
+      "additionalProperties": false
+    },
+    "ResponseImpact": {
+      "type": "object",
+      "properties": {
+        "officialResponse": {
+          "description": "How officials responded (statements, denials, acknowledgments).",
+          "type": "string"
+        },
+        "mediaAttention": {
+          "description": "Whether the observation received media coverage.",
+          "type": "boolean"
+        },
+        "publicImpact": {
+          "description": "Effect on public awareness or discourse.",
+          "type": "string"
+        },
+        "policyImpact": {
+          "description": "Policy consequences (e.g. hearings, legislation, reporting-process changes).",
+          "type": "string"
+        },
+        "militaryResponse": {
+          "description": "Military actions taken (e.g. intercept scrambled, alert status changed).",
+          "type": "string"
+        },
+        "coverUpAlleged": {
+          "description": "Whether suppression or concealment of the event has been alleged.",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Environment": {
+      "type": "object",
+      "properties": {
+        "weather": {
+          "description": "General weather conditions (e.g. \"clear\", \"overcast\").",
+          "type": "string"
+        },
+        "visibility": {
+          "description": "Visibility conditions (e.g. \"unlimited\", \"10 miles\", \"hazy\").",
+          "type": "string"
+        },
+        "cloudCover": {
+          "description": "Cloud cover description (e.g. \"scattered at 5,000 ft\").",
+          "type": "string"
+        },
+        "windSpeed": {
+          "description": "Wind conditions as reported.",
+          "type": "string"
+        },
+        "temperature": {
+          "description": "Air temperature, in degrees Celsius.",
+          "type": "number"
+        },
+        "humidity": {
+          "description": "Relative humidity, as a percentage (0–100).",
+          "type": "number"
+        },
+        "celestialConditions": {
+          "description": "Sky conditions relevant to identification (e.g. visible planets, meteor showers, satellites).",
+          "type": "string"
+        },
+        "moonPhase": {
+          "description": "Moon phase description at the time of observation.",
+          "type": "string"
+        },
+        "precipitation": {
+          "description": "Precipitation at the time of observation, if any.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RelationEdge": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "corroborates",
+            "contradicts",
+            "duplicate_of",
+            "same_object",
+            "supersedes",
+            "superseded_by",
+            "re_analysis_of",
+            "part_of"
+          ],
+          "description": "How one observation relates to another (typed edge vocabulary)."
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The `Observation.id` this edge points at."
+        },
+        "note": {
+          "description": "Free-text context for why the link exists.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "targetId"
+      ],
+      "additionalProperties": false
+    },
+    "Relations": {
+      "type": "object",
+      "properties": {
+        "edges": {
+          "description": "Typed edges to other observations — the standardized way to link records.",
+          "type": "array",
+          "items": {
+            "description": "A typed link from this observation to another.",
+            "$ref": "#/$defs/RelationEdge"
+          }
+        },
+        "flap": {
+          "description": "Named grouping into a flap (a localized cluster of sightings).",
+          "type": "string"
+        },
+        "wave": {
+          "description": "Named grouping into a wave (a broad temporal surge of sightings).",
+          "type": "string"
+        },
+        "cluster": {
+          "description": "Named grouping into an ad-hoc cluster.",
+          "type": "string"
+        },
+        "relatedObservationIds": {
+          "description": "Deprecated — use typed `edges` with `kind: \"corroborates\" | \"same_object\" | …`.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "precedingEvents": {
+          "description": "Deprecated — use typed `edges` with `kind: \"supersedes\" | \"re_analysis_of\" | …`.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "followingEvents": {
+          "description": "Deprecated — use typed `edges`.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "Aviation": {
+      "type": "object",
+      "properties": {
+        "aircraftType": {
+          "description": "Type of aircraft involved (e.g. \"F/A-18F Super Hornet\").",
+          "type": "string"
+        },
+        "aircraftDesignation": {
+          "description": "Military designation or tail number of the aircraft.",
+          "type": "string"
+        },
+        "squadron": {
+          "description": "Squadron or unit the aircraft belonged to.",
+          "type": "string"
+        },
+        "flightMission": {
+          "description": "Mission being flown at the time (e.g. \"training exercise\", \"combat air patrol\").",
+          "type": "string"
+        },
+        "altitude": {
+          "description": "Aircraft altitude during the encounter, in meters.",
+          "type": "number"
+        },
+        "speed": {
+          "description": "Aircraft speed during the encounter, in kilometers per hour.",
+          "type": "number"
+        },
+        "heading": {
+          "description": "Aircraft heading during the encounter, in compass degrees (0–360).",
+          "type": "number"
+        },
+        "radarContact": {
+          "description": "Whether the aircraft’s radar held contact with the object.",
+          "type": "boolean"
+        },
+        "weaponsSystemEngaged": {
+          "description": "Whether a weapons system locked onto or tracked the object.",
+          "type": "boolean"
+        },
+        "interceptAttempted": {
+          "description": "Whether an intercept of the object was attempted.",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "MediaAttachment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable id, addressable by a claim `evidenceRef` (\"media:<id>\")."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "image",
+            "video",
+            "document",
+            "audio"
+          ],
+          "description": "Kind of media attachment."
+        },
+        "url": {
+          "type": "string",
+          "description": "Where the media file is hosted."
+        },
+        "thumbnailUrl": {
+          "description": "Preview/thumbnail image for the media.",
+          "type": "string"
+        },
+        "caption": {
+          "description": "Human-readable caption describing what the media shows.",
+          "type": "string"
+        },
+        "credit": {
+          "description": "Attribution for who captured or owns the media.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "MIME type of the file (e.g. \"video/mp4\").",
+          "type": "string"
+        },
+        "fileSize": {
+          "description": "File size, in bytes.",
+          "type": "number"
+        },
+        "duration": {
+          "description": "Playback duration for video/audio, in seconds.",
+          "type": "number"
+        },
+        "width": {
+          "description": "Pixel width for images and video.",
+          "type": "number"
+        },
+        "height": {
+          "description": "Pixel height for images and video.",
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "CustodyEntry": {
+      "type": "object",
+      "properties": {
+        "entryId": {
+          "type": "string",
+          "description": "Stable unique identifier for this custody entry."
+        },
+        "date": {
+          "type": "string",
+          "description": "When the custody event occurred (ISO date)."
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "creation",
+            "collection",
+            "transfer",
+            "storage",
+            "analysis",
+            "release",
+            "classification",
+            "destruction",
+            "loss",
+            "recovery",
+            "other"
+          ],
+          "description": "An action recorded in a chain-of-custody entry."
+        },
+        "from": {
+          "description": "Party that held the evidence before this event.",
+          "type": "string"
+        },
+        "to": {
+          "description": "Party that held the evidence after this event.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Where the custody event took place.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Document or record substantiating the event (e.g. transfer receipt, log entry).",
+          "type": "string"
+        },
+        "notes": {
+          "description": "Free-text context about the event.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "entryId",
+        "date",
+        "action"
+      ],
+      "additionalProperties": false
+    },
+    "ChainOfCustodyRecord": {
+      "type": "object",
+      "properties": {
+        "evidenceId": {
+          "type": "string",
+          "description": "Identifier of the evidence item this custody history belongs to."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "partial",
+            "unverified",
+            "government_held",
+            "private_held",
+            "lost",
+            "destroyed",
+            "classified",
+            "unknown"
+          ],
+          "description": "Custody status of an evidence item."
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "description": "A single custody event for an evidence item.",
+            "$ref": "#/$defs/CustodyEntry"
+          }
+        }
+      },
+      "required": [
+        "evidenceId",
+        "status",
+        "entries"
+      ],
+      "additionalProperties": false
+    },
+    "FileHash": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": [
+            "sha256",
+            "sha512",
+            "sha1",
+            "md5"
+          ],
+          "description": "Cryptographic hash algorithm used to fingerprint a file."
+        },
+        "value": {
+          "type": "string",
+          "description": "Hex-encoded hash digest of the file contents."
+        }
+      },
+      "required": [
+        "algorithm",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "CaptureMetadata": {
+      "type": "object",
+      "properties": {
+        "device": {
+          "description": "Capture device as recorded in metadata (e.g. \"iPhone 14 Pro\").",
+          "type": "string"
+        },
+        "manufacturer": {
+          "description": "Device manufacturer from metadata.",
+          "type": "string"
+        },
+        "model": {
+          "description": "Device model from metadata.",
+          "type": "string"
+        },
+        "software": {
+          "description": "Software that produced or processed the file.",
+          "type": "string"
+        },
+        "originalFilename": {
+          "description": "Filename as originally captured, before any renaming.",
+          "type": "string"
+        },
+        "originalCreationDate": {
+          "description": "Creation timestamp embedded in the file metadata.",
+          "type": "string"
+        },
+        "gpsCoordinates": {
+          "description": "GPS position embedded in the file metadata.",
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            },
+            "altitude": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "latitude",
+            "longitude"
+          ],
+          "additionalProperties": false
+        },
+        "metadataPreserved": {
+          "description": "Whether the original metadata survives intact.",
+          "type": "boolean"
+        },
+        "metadataStripped": {
+          "description": "Whether metadata was removed at some point.",
+          "type": "boolean"
+        },
+        "strippedReason": {
+          "description": "Why metadata was stripped (e.g. \"platform re-encoding\", \"privacy redaction\").",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ThirdPartyVerification": {
+      "type": "object",
+      "properties": {
+        "verifier": {
+          "type": "string",
+          "description": "Name of the person who performed the verification."
+        },
+        "organization": {
+          "description": "Organization the verifier represents.",
+          "type": "string"
+        },
+        "credentials": {
+          "description": "Verifier’s relevant qualifications (e.g. \"certified forensic video analyst\").",
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "description": "When the verification was performed (ISO date)."
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "metadata_analysis",
+            "forensic_analysis",
+            "hash_verification",
+            "chain_of_custody",
+            "source_confirmation",
+            "expert_review",
+            "ai_analysis",
+            "other"
+          ],
+          "description": "Method used to verify media authenticity."
+        },
+        "methodDescription": {
+          "description": "Fuller description of how the verification was performed.",
+          "type": "string"
+        },
+        "result": {
+          "type": "string",
+          "enum": [
+            "authentic",
+            "likely_authentic",
+            "inconclusive",
+            "likely_manipulated",
+            "manipulated",
+            "ai_generated",
+            "deepfake",
+            "composite",
+            "unknown"
+          ],
+          "description": "Outcome of an authenticity verification."
+        },
+        "confidence": {
+          "description": "Verifier’s confidence in their own result.",
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "findings": {
+          "description": "Summary of what the verification found.",
+          "type": "string"
+        },
+        "reportUrl": {
+          "description": "Link to the full verification report.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "verifier",
+        "date",
+        "method",
+        "result"
+      ],
+      "additionalProperties": false
+    },
+    "DigitalProvenance": {
+      "type": "object",
+      "properties": {
+        "hash": {
+          "description": "A content hash of a file.",
+          "$ref": "#/$defs/FileHash"
+        },
+        "additionalHashes": {
+          "type": "array",
+          "items": {
+            "description": "A content hash of a file.",
+            "$ref": "#/$defs/FileHash"
+          }
+        },
+        "captureMetadata": {
+          "description": "Capture/EXIF-style metadata extracted from a media file.",
+          "$ref": "#/$defs/CaptureMetadata"
+        },
+        "verifications": {
+          "type": "array",
+          "items": {
+            "description": "An independent authenticity assessment of media or a document.",
+            "$ref": "#/$defs/ThirdPartyVerification"
+          }
+        },
+        "provenanceChain": {
+          "description": "Ordered hops the file took from capture to here (e.g. \"witness phone → NYT → public release\").",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "manipulationDetected": {
+          "description": "Whether any analysis found evidence of manipulation.",
+          "type": "boolean"
+        },
+        "manipulationDescription": {
+          "description": "What manipulation was found, if any.",
+          "type": "string"
+        },
+        "authenticityAssessment": {
+          "type": "string",
+          "enum": [
+            "authentic",
+            "likely_authentic",
+            "inconclusive",
+            "likely_manipulated",
+            "manipulated",
+            "ai_generated",
+            "deepfake",
+            "composite",
+            "unknown"
+          ],
+          "description": "Outcome of an authenticity verification."
+        },
+        "authenticityConfidence": {
+          "description": "Overall confidence in the authenticity assessment.",
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unassessed"
+          ]
+        },
+        "lastUpdated": {
+          "description": "When this provenance record was last updated (ISO timestamp).",
+          "type": "string"
+        },
+        "notes": {
+          "description": "Free-text context about the provenance trail.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Provenance": {
+      "type": "object",
+      "properties": {
+        "custodyStatus": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "partial",
+            "unverified",
+            "government_held",
+            "private_held",
+            "lost",
+            "destroyed",
+            "classified",
+            "unknown"
+          ],
+          "description": "Custody status of an evidence item."
+        },
+        "custody": {
+          "description": "The full custody history for a piece of evidence.",
+          "$ref": "#/$defs/ChainOfCustodyRecord"
+        },
+        "digital": {
+          "description": "Digital authenticity trail for media: hashes, capture metadata, and verifications.",
+          "$ref": "#/$defs/DigitalProvenance"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ExternalIdentifier": {
+      "type": "object",
+      "properties": {
+        "system": {
+          "type": "string",
+          "enum": [
+            "nuforc",
+            "mufon",
+            "geipan",
+            "cufos",
+            "nicap",
+            "bluebook",
+            "nara",
+            "foia",
+            "aaro",
+            "congress",
+            "doi",
+            "arxiv",
+            "orcid",
+            "pubmed",
+            "isbn",
+            "issn",
+            "youtube",
+            "vimeo",
+            "internet_archive",
+            "wayback",
+            "url",
+            "uri",
+            "custom"
+          ],
+          "description": "External identifier namespace (reporting centers, archives, academic registries, media hosts)."
+        },
+        "systemName": {
+          "description": "Display name of the system, required when `system` is \"custom\".",
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "description": "The identifier value within the external system (e.g. a case number)."
+        },
+        "url": {
+          "description": "Direct link to the record in the external system.",
+          "type": "string"
+        },
+        "verified": {
+          "description": "Whether the identifier has been confirmed to point at this observation.",
+          "type": "boolean"
+        },
+        "verifiedDate": {
+          "description": "When the identifier was last verified (ISO date).",
+          "type": "string"
+        },
+        "accessible": {
+          "description": "Whether the external record is currently reachable.",
+          "type": "boolean"
+        },
+        "accessCheckedDate": {
+          "description": "When accessibility was last checked (ISO date).",
+          "type": "string"
+        },
+        "notes": {
+          "description": "Free-text context about the cross-reference.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "system",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "CrossReferences": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "description": "A reference to this observation in an external system or archive.",
+          "$ref": "#/$defs/ExternalIdentifier"
+        },
+        "identifiers": {
+          "type": "array",
+          "items": {
+            "description": "A reference to this observation in an external system or archive.",
+            "$ref": "#/$defs/ExternalIdentifier"
+          }
+        }
+      },
+      "required": [
+        "identifiers"
+      ],
+      "additionalProperties": false
+    },
+    "WitnessCredibility": {
+      "type": "object",
+      "properties": {
+        "rating": {
+          "type": "string",
+          "enum": [
+            "very_high",
+            "high",
+            "moderate",
+            "low",
+            "very_low",
+            "unassessed"
+          ],
+          "description": "Qualitative confidence magnitude."
+        },
+        "factors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "professional_training",
+              "official_capacity",
+              "sworn_statement",
+              "contemporaneous_record",
+              "corroborating_witnesses",
+              "corroborating_evidence",
+              "consistent_account",
+              "no_apparent_motive",
+              "reputation_risk",
+              "security_clearance"
+            ],
+            "description": "A factor strengthening witness credibility."
+          }
+        },
+        "detractors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "anonymous",
+              "inconsistent_account",
+              "delayed_report",
+              "known_fabricator",
+              "financial_motive",
+              "single_witness",
+              "impaired_state",
+              "recovered_memory"
+            ],
+            "description": "A factor weakening witness credibility."
+          }
+        },
+        "isProfessionalObserver": {
+          "description": "Whether the witness is a trained observer (pilot, astronomer, military).",
+          "type": "boolean"
+        },
+        "hasAviationExperience": {
+          "description": "Whether the witness has aviation experience.",
+          "type": "boolean"
+        },
+        "hasMilitaryExperience": {
+          "description": "Whether the witness has military experience.",
+          "type": "boolean"
+        },
+        "hasScientificBackground": {
+          "description": "Whether the witness has a scientific background.",
+          "type": "boolean"
+        },
+        "hasPriorUAPKnowledge": {
+          "description": "Whether the witness had prior knowledge of or interest in UAP before the observation.",
+          "type": "boolean"
+        },
+        "wasSkepticPrior": {
+          "description": "Whether the witness was a skeptic before the observation.",
+          "type": "boolean"
+        },
+        "underOathTestimony": {
+          "description": "Whether the testimony was given under oath.",
+          "type": "boolean"
+        },
+        "polygraphAdministered": {
+          "description": "Whether a polygraph was administered.",
+          "type": "boolean"
+        },
+        "polygraphPassed": {
+          "description": "Whether the witness passed the polygraph.",
+          "type": "boolean"
+        },
+        "consistentTestimony": {
+          "description": "Whether the account has remained consistent across retellings.",
+          "type": "boolean"
+        },
+        "willingToBeIdentified": {
+          "description": "Whether the witness is willing to be publicly identified.",
+          "type": "boolean"
+        },
+        "notes": {
+          "description": "Free-text context about the credibility assessment.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Witness": {
+      "type": "object",
+      "properties": {
+        "witnessId": {
+          "type": "string",
+          "description": "Stable unique identifier for this witness."
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "military_pilot",
+            "military_aircrew",
+            "military_ground",
+            "military_naval",
+            "military_radar_operator",
+            "military_other",
+            "commercial_pilot",
+            "commercial_aircrew",
+            "private_pilot",
+            "air_traffic_controller",
+            "aviation_other",
+            "government_official",
+            "elected_official",
+            "intelligence_officer",
+            "law_enforcement",
+            "scientist",
+            "astronomer",
+            "meteorologist",
+            "engineer",
+            "medical_professional",
+            "maritime",
+            "civilian",
+            "civilian_group",
+            "anonymous",
+            "unknown"
+          ],
+          "description": "Professional/role category of a witness."
+        },
+        "anonymous": {
+          "type": "boolean",
+          "description": "Whether the witness’s identity is withheld."
+        },
+        "publicName": {
+          "description": "Witness’s name as publicly known, when not anonymous.",
+          "type": "string"
+        },
+        "pseudonym": {
+          "description": "Pseudonym used when the witness is anonymous.",
+          "type": "string"
+        },
+        "role": {
+          "description": "Witness’s role at the time (e.g. \"F/A-18F pilot\", \"radar operator\").",
+          "type": "string"
+        },
+        "organization": {
+          "description": "Organization the witness belonged to at the time.",
+          "type": "string"
+        },
+        "experienceYears": {
+          "description": "Years of relevant professional experience.",
+          "type": "number"
+        },
+        "securityClearance": {
+          "type": "string",
+          "enum": [
+            "none",
+            "confidential",
+            "secret",
+            "top_secret",
+            "sci",
+            "unknown"
+          ],
+          "description": "Security clearance level held by a witness."
+        },
+        "credibility": {
+          "description": "Structured assessment of a witness's credibility (rating, factors, detractors).",
+          "$ref": "#/$defs/WitnessCredibility"
+        },
+        "statementSummary": {
+          "description": "Brief summary of what the witness reported.",
+          "type": "string"
+        },
+        "interviewAvailable": {
+          "description": "Whether a recorded interview with the witness exists.",
+          "type": "boolean"
+        },
+        "writtenReportAvailable": {
+          "description": "Whether a written report from the witness exists.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "witnessId",
+        "category",
+        "anonymous"
+      ],
+      "additionalProperties": false
+    },
+    "TestimonyDate": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "description": "When the testimony was given (ISO date)."
+        },
+        "certainty": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "approximate",
+            "estimated",
+            "unknown"
+          ],
+          "description": "Confidence in a date or time value — the single certainty scale for all temporal values."
+        }
+      },
+      "required": [
+        "date",
+        "certainty"
+      ],
+      "additionalProperties": false
+    },
+    "TestimonyStatement": {
+      "type": "object",
+      "properties": {
+        "statementId": {
+          "type": "string",
+          "description": "Stable id, addressable by a claim `evidenceRef` (\"testimony:<statementId>\")."
+        },
+        "witness": {
+          "description": "A person who reported or corroborated an observation.",
+          "$ref": "#/$defs/Witness"
+        },
+        "context": {
+          "type": "string",
+          "enum": [
+            "sworn_affidavit",
+            "congressional_testimony",
+            "deposition",
+            "official_interview",
+            "written_statement",
+            "recorded_interview",
+            "informal_account",
+            "anonymous_tip",
+            "whistleblower_disclosure"
+          ],
+          "description": "The setting in which testimony was given."
+        },
+        "date": {
+          "description": "When testimony was given, with its certainty.",
+          "$ref": "#/$defs/TestimonyDate"
+        },
+        "content": {
+          "description": "Full text of the statement, when available.",
+          "type": "string"
+        },
+        "summary": {
+          "description": "Brief summary of what the statement asserts.",
+          "type": "string"
+        },
+        "sourceDocument": {
+          "description": "A citation/source backing an observation, with its credibility tier.",
+          "$ref": "#/$defs/SourceReference"
+        },
+        "chainOfCustody": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "partial",
+            "unverified",
+            "government_held",
+            "private_held",
+            "lost",
+            "destroyed",
+            "classified",
+            "unknown"
+          ],
+          "description": "Custody status of an evidence item."
+        },
+        "additionalEvidenceIds": {
+          "description": "Ids of other evidence items the statement references or supports.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "statementId",
+        "witness",
+        "context",
+        "date"
+      ],
+      "additionalProperties": false
+    },
+    "PhysicalEvidenceItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable id, addressable by a claim `evidenceRef` (\"physical:<id>\")."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "material_sample",
+            "ground_trace",
+            "radiation_reading",
+            "electromagnetic_recording",
+            "photographic",
+            "video",
+            "audio_recording",
+            "biological_sample",
+            "implant",
+            "debris",
+            "soil_sample",
+            "water_sample",
+            "vegetation_sample",
+            "impression",
+            "burn_mark",
+            "other"
+          ],
+          "description": "Kind of physical evidence collected."
+        },
+        "quality": {
+          "type": "string",
+          "enum": [
+            "laboratory_grade",
+            "field_collected",
+            "uncontrolled",
+            "degraded",
+            "contaminated",
+            "unknown"
+          ],
+          "description": "Collection/handling quality of a physical evidence item."
+        },
+        "description": {
+          "description": "What the evidence item is and what makes it notable.",
+          "type": "string"
+        },
+        "collectionDate": {
+          "description": "When the evidence was collected (ISO date).",
+          "type": "string"
+        },
+        "collectionMethod": {
+          "description": "How the evidence was collected (e.g. \"sterile swab\", \"soil core sample\").",
+          "type": "string"
+        },
+        "collectorName": {
+          "description": "Person who collected the evidence.",
+          "type": "string"
+        },
+        "collectorOrganization": {
+          "description": "Organization the collector represents.",
+          "type": "string"
+        },
+        "storageLocation": {
+          "description": "Where the evidence is currently stored.",
+          "type": "string"
+        },
+        "chainOfCustody": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "partial",
+            "unverified",
+            "government_held",
+            "private_held",
+            "lost",
+            "destroyed",
+            "classified",
+            "unknown"
+          ],
+          "description": "Custody status of an evidence item."
+        },
+        "analysisPerformed": {
+          "description": "Analyses run on the evidence (e.g. \"isotopic analysis\", \"spectroscopy\").",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "analysisResults": {
+          "description": "Summary of what the analyses found.",
+          "type": "string"
+        },
+        "photographed": {
+          "description": "Whether the evidence was photographed in situ or in the lab.",
+          "type": "boolean"
+        },
+        "labReport": {
+          "description": "Whether a formal laboratory report exists.",
+          "type": "boolean"
+        },
+        "notes": {
+          "description": "Free-text context about the evidence item.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "quality"
+      ],
+      "additionalProperties": false
+    },
+    "DocumentMetadata": {
+      "type": "object",
+      "properties": {
+        "documentType": {
+          "type": "string",
+          "enum": [
+            "foia_release",
+            "official_report",
+            "congressional_record",
+            "military_memo",
+            "intelligence_assessment",
+            "inspector_general",
+            "presidential_directive",
+            "executive_order",
+            "declassified_cable",
+            "investigation_file",
+            "other"
+          ],
+          "description": "Kind of government/official document."
+        },
+        "classificationLevel": {
+          "description": "Current classification of the document (e.g. \"UNCLASSIFIED\", \"SECRET//NOFORN\").",
+          "type": "string"
+        },
+        "originatingAgency": {
+          "description": "Agency that produced the document.",
+          "type": "string"
+        },
+        "controlNumbers": {
+          "description": "Agency control or tracking numbers stamped on the document.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "foiaRequestNumber": {
+          "description": "FOIA request number that produced the document.",
+          "type": "string"
+        },
+        "declassificationDate": {
+          "description": "When the document was declassified (ISO date).",
+          "type": "string"
+        },
+        "originalClassification": {
+          "description": "Classification the document carried when created.",
+          "type": "string"
+        },
+        "pageCount": {
+          "description": "Number of pages in the document.",
+          "type": "number"
+        },
+        "redactionLevel": {
+          "description": "How much of the document is redacted.",
+          "type": "string",
+          "enum": [
+            "none",
+            "partial",
+            "heavy",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "documentType"
+      ],
+      "additionalProperties": false
+    },
+    "Observation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable unique identifier for this observation."
+        },
+        "temporal": {
+          "description": "When an observation occurred — a sortable anchor date plus optional fuzzy/range/relative nuance.",
+          "$ref": "#/$defs/TemporalData"
+        },
+        "location": {
+          "description": "Where an observation occurred — identity, coordinates, site classification, and proximity context.",
+          "$ref": "#/$defs/LocationData"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "review",
+            "published",
+            "archived",
+            "retracted"
+          ],
+          "description": "Lifecycle/publication state of an observation record."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp when the record was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp when the record was last updated."
+        },
+        "summary": {
+          "description": "One-or-two sentence summary of the observation.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Full narrative account of the observation.",
+          "type": "string"
+        },
+        "objectCharacteristics": {
+          "description": "Physical description of the observed object(s).",
+          "$ref": "#/$defs/ObjectCharacteristics"
+        },
+        "eventType": {
+          "description": "Local event-type tag (e.g. \"multi-sensor military encounter\"). The word \"classification\" is reserved for the origin taxonomy in @disclosureos/origins; this is just a free-text descriptor.",
+          "type": "string"
+        },
+        "sourceData": {
+          "description": "Where the observation data came from. Forensic custody/authenticity now lives in the optional `Observation.provenance` slot (@disclosureos/records/extensions/provenance).",
+          "$ref": "#/$defs/SourceData"
+        },
+        "investigation": {
+          "description": "Official/independent investigation of the observation.",
+          "$ref": "#/$defs/Investigation"
+        },
+        "movement": {
+          "description": "How the object moved — kinematics and notable maneuvers.",
+          "$ref": "#/$defs/Movement"
+        },
+        "witnesses": {
+          "description": "Aggregate summary of who witnessed the observation.",
+          "$ref": "#/$defs/Witnesses"
+        },
+        "sensorEvidence": {
+          "description": "Instrument-recorded evidence for an observation (radar, FLIR, EO, etc.).",
+          "$ref": "#/$defs/SensorEvidenceData"
+        },
+        "responseImpact": {
+          "description": "Official, media, and public response to the observation.",
+          "$ref": "#/$defs/ResponseImpact"
+        },
+        "environment": {
+          "description": "Environmental and weather conditions at the time of observation.",
+          "$ref": "#/$defs/Environment"
+        },
+        "relations": {
+          "description": "Typed links to related observations, plus flap/wave/cluster groupings.",
+          "$ref": "#/$defs/Relations"
+        },
+        "aviation": {
+          "description": "Aviation context when the observation involved aircraft.",
+          "$ref": "#/$defs/Aviation"
+        },
+        "media": {
+          "type": "array",
+          "items": {
+            "description": "A media file associated with an observation (image, video, document, or audio).",
+            "$ref": "#/$defs/MediaAttachment"
+          }
+        },
+        "featuredMedia": {
+          "description": "A media file associated with an observation (image, video, document, or audio).",
+          "$ref": "#/$defs/MediaAttachment"
+        },
+        "provenance": {
+          "description": "Forensic provenance for an observation: custody status/chain and digital authenticity.",
+          "$ref": "#/$defs/Provenance"
+        },
+        "identifiers": {
+          "description": "External identifiers cross-referencing this observation, with an optional primary.",
+          "$ref": "#/$defs/CrossReferences"
+        },
+        "testimony": {
+          "type": "array",
+          "items": {
+            "description": "A single witness statement, its context, and supporting documentation.",
+            "$ref": "#/$defs/TestimonyStatement"
+          }
+        },
+        "physicalEvidence": {
+          "type": "array",
+          "items": {
+            "description": "A physical artifact associated with an observation and its handling record.",
+            "$ref": "#/$defs/PhysicalEvidenceItem"
+          }
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "description": "Provenance metadata for a source document (classification, agency, redaction).",
+            "$ref": "#/$defs/DocumentMetadata"
+          }
+        },
+        "dataSourceId": {
+          "description": "Identifier of the dataset or pipeline this record came from.",
+          "type": "string"
+        },
+        "schemaVersion": {
+          "description": "Version of the records schema this record was authored against.",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "Third-party extension bag for slots not owned by a first-party package.",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        },
+        "internalNotes": {
+          "description": "Private working notes for maintainers — not part of the public record.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "temporal",
+        "location",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ],
+      "additionalProperties": true
+    }
+  }
+}

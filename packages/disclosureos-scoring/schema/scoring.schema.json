@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://os.disclosure.org/schema/scoring/2.0.0/scoring.json",
+  "x-schema-version": "2.0.0",
+  "type": "object",
+  "properties": {
+    "completeness": {
+      "description": "How fully an observation populates the records schema.",
+      "$ref": "#/$defs/CompletenessResult"
+    },
+    "compellingness": {
+      "description": "A reference compellingness score for an observation, with a contestedness range.",
+      "$ref": "#/$defs/ScoreResult"
+    },
+    "weights": {
+      "description": "Relative weights for the compellingness components. Need not sum to 1 — normalized internally.",
+      "$ref": "#/$defs/CompellingnessWeights"
+    }
+  },
+  "required": [
+    "completeness",
+    "compellingness",
+    "weights"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "CompletenessResult": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991,
+          "description": "Total leaf field paths defined by the records schema."
+        },
+        "present": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991,
+          "description": "How many of those paths carry a value."
+        },
+        "percentage": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991,
+          "description": "present / total, as a 0–100 integer."
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Paths that are absent or empty."
+        },
+        "requiredTotal": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991,
+          "description": "Count of schema-required leaf paths."
+        },
+        "requiredPresent": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991,
+          "description": "How many required paths carry a value."
+        },
+        "requiredPercentage": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991,
+          "description": "requiredPresent / requiredTotal, as a 0–100 integer."
+        }
+      },
+      "required": [
+        "total",
+        "present",
+        "percentage",
+        "missing",
+        "requiredTotal",
+        "requiredPresent",
+        "requiredPercentage"
+      ],
+      "additionalProperties": false
+    },
+    "CompellingnessWeights": {
+      "type": "object",
+      "properties": {
+        "technology": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Weight of the technology-anomaly signal."
+        },
+        "biologics": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Weight of the biologics-anomaly signal."
+        },
+        "origin": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Weight of the (non-prosaic) origin-confidence signal."
+        }
+      },
+      "required": [
+        "technology",
+        "biologics",
+        "origin"
+      ],
+      "additionalProperties": false
+    },
+    "ScoreResult": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Overall compellingness (consensus point estimate), 0–1."
+        },
+        "range": {
+          "type": "object",
+          "properties": {
+            "low": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Most-skeptical reading of the strongest-anomaly signal across competing claims."
+            },
+            "high": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Most-anomalous reading of the strongest-anomaly signal across competing claims."
+            }
+          },
+          "required": [
+            "low",
+            "high"
+          ],
+          "additionalProperties": false,
+          "description": "Spread of the score across competing claims — wide range signals disagreement. Bounds are computed per-signal under the same strongest-anomaly (max) reduction as the point estimate, not a global min/max over every claim."
+        },
+        "contested": {
+          "type": "boolean",
+          "description": "True when claims disagree on *direction* (some assert anomaly, some assert none)."
+        },
+        "components": {
+          "type": "object",
+          "properties": {
+            "technology": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "biologics": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "origin": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "technology",
+            "biologics",
+            "origin"
+          ],
+          "additionalProperties": false,
+          "description": "Per-signal consensus contributions before weighting."
+        },
+        "weights": {
+          "description": "Relative weights for the compellingness components. Need not sum to 1 — normalized internally.",
+          "$ref": "#/$defs/CompellingnessWeights"
+        },
+        "scoringVersion": {
+          "type": "string",
+          "description": "Methodology version that produced this score."
+        }
+      },
+      "required": [
+        "score",
+        "range",
+        "contested",
+        "components",
+        "weights",
+        "scoringVersion"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

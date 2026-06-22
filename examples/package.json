@@ -1,0 +1,28 @@
+{
+  "name": "@disclosureos/examples",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Runnable, type-checked DisclosureOS examples — the canonical golden path through every foundation layer.",
+  "type": "module",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "golden-path": "tsx golden-path.ts",
+    "migration-path": "tsx migration-path.ts",
+    "migration-csv-path": "tsx migration-csv-path.ts"
+  },
+  "dependencies": {
+    "@disclosureos/observables": "workspace:*",
+    "@disclosureos/origins": "workspace:*",
+    "@disclosureos/records": "workspace:*",
+    "@disclosureos/schema": "workspace:*",
+    "@disclosureos/scoring": "workspace:*",
+    "csv-parse": "^7.0.0",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "tsx": "^4.19.0",
+    "typescript": "catalog:"
+  }
+}

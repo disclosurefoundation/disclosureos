@@ -1,0 +1,147 @@
+{
+  "name": "@disclosureos/records",
+  "version": "1.0.0",
+  "description": "Structured vocabulary for describing UAP observations — the data dictionary of the DisclosureOS ecosystem",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/disclosurefoundation/disclosureos"
+  },
+  "homepage": "https://github.com/disclosurefoundation/disclosureos#readme",
+  "bugs": {
+    "url": "https://github.com/disclosurefoundation/disclosureos/issues"
+  },
+  "keywords": [
+    "disclosureos",
+    "UAP",
+    "records",
+    "observations",
+    "types",
+    "typescript",
+    "geospatial",
+    "temporal",
+    "research"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./observation": {
+      "types": "./dist/observation/index.d.ts",
+      "import": "./dist/observation/index.js"
+    },
+    "./source": {
+      "types": "./dist/source/index.d.ts",
+      "import": "./dist/source/index.js"
+    },
+    "./source/sensor": {
+      "types": "./dist/source/sensor/index.d.ts",
+      "import": "./dist/source/sensor/index.js"
+    },
+    "./extensions/provenance": {
+      "types": "./dist/extensions/provenance/index.d.ts",
+      "import": "./dist/extensions/provenance/index.js"
+    },
+    "./extensions/identifiers": {
+      "types": "./dist/extensions/identifiers/index.d.ts",
+      "import": "./dist/extensions/identifiers/index.js"
+    },
+    "./extensions/testimony": {
+      "types": "./dist/extensions/testimony/index.d.ts",
+      "import": "./dist/extensions/testimony/index.js"
+    },
+    "./extensions/physical": {
+      "types": "./dist/extensions/physical/index.d.ts",
+      "import": "./dist/extensions/physical/index.js"
+    },
+    "./extensions/document": {
+      "types": "./dist/extensions/document/index.d.ts",
+      "import": "./dist/extensions/document/index.js"
+    },
+    "./temporal": {
+      "types": "./dist/temporal/index.d.ts",
+      "import": "./dist/temporal/index.js"
+    },
+    "./geo": {
+      "types": "./dist/geo/index.d.ts",
+      "import": "./dist/geo/index.js"
+    },
+    "./media": {
+      "types": "./dist/media/index.d.ts",
+      "import": "./dist/media/index.js"
+    },
+    "./labels": {
+      "types": "./dist/labels/index.d.ts",
+      "import": "./dist/labels/index.js"
+    },
+    "./constants": {
+      "types": "./dist/constants/index.d.ts",
+      "import": "./dist/constants/index.js"
+    },
+    "./guards": {
+      "types": "./dist/guards/index.d.ts",
+      "import": "./dist/guards/index.js"
+    },
+    "./factories": {
+      "types": "./dist/factories/index.d.ts",
+      "import": "./dist/factories/index.js"
+    },
+    "./formatters": {
+      "types": "./dist/formatters/index.d.ts",
+      "import": "./dist/formatters/index.js"
+    },
+    "./validators": {
+      "types": "./dist/validators/index.d.ts",
+      "import": "./dist/validators/index.js"
+    },
+    "./shared": {
+      "types": "./dist/shared/index.d.ts",
+      "import": "./dist/shared/index.js"
+    },
+    "./schema": "./schema/records.schema.json",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "schema",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "emit:schema": "tsx scripts/emit-schema.ts",
+    "clean": "rm -rf dist",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "pnpm build && pnpm lint:publish",
+    "lint:publish": "publint --strict && attw --pack . --profile esm-only"
+  },
+  "dependencies": {
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "tsup": "^8.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "catalog:",
+    "vitest": "^4.0.18",
+    "@arethetypeswrong/cli": "catalog:",
+    "publint": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

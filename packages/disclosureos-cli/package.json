@@ -1,0 +1,71 @@
+{
+  "name": "@disclosureos/cli",
+  "version": "1.0.0",
+  "description": "Developer tools for the DisclosureOS ecosystem — scaffold, validate, and inspect observations",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/disclosurefoundation/disclosureos"
+  },
+  "homepage": "https://github.com/disclosurefoundation/disclosureos#readme",
+  "bugs": {
+    "url": "https://github.com/disclosurefoundation/disclosureos/issues"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "bin": {
+    "disclosureos": "./dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "lint:publish": "publint --strict && attw --pack . --profile esm-only",
+    "prepublishOnly": "pnpm build && pnpm lint:publish"
+  },
+  "keywords": [
+    "disclosureos",
+    "cli",
+    "uap",
+    "observation",
+    "validation",
+    "scaffold"
+  ],
+  "dependencies": {
+    "@disclosureos/records": "workspace:*",
+    "@disclosureos/observables": "workspace:*",
+    "@disclosureos/origins": "workspace:*",
+    "@disclosureos/scoring": "workspace:*",
+    "@disclosureos/schema": "workspace:*",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^4.0.18",
+    "@arethetypeswrong/cli": "catalog:",
+    "publint": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,101 @@
+name: Packages Quality
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "packages/**"
+      - "examples/**"
+      - "turbo.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "package.json"
+  push:
+    branches: [main]
+    paths:
+      - "packages/**"
+      - "examples/**"
+      - "turbo.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "package.json"
+
+concurrency:
+  group: packages-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  foundation:
+    name: Foundation (${{ matrix.package }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - "@disclosureos/records"
+          - "@disclosureos/observables"
+          - "@disclosureos/origins"
+          - "@disclosureos/scoring"
+          - "@disclosureos/schema"
+          - "@disclosureos/cli"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build package (+ workspace deps)
+        run: pnpm --filter "${{ matrix.package }}..." build
+
+      - name: Type check
+        run: pnpm --filter ${{ matrix.package }} --if-present run type-check
+
+      - name: Unit + schema-drift tests
+        run: pnpm --filter ${{ matrix.package }} --if-present run test run
+
+      - name: Publish-correctness gate (publint + attw)
+        run: pnpm --filter ${{ matrix.package }} run lint:publish
+
+      - name: npm pack dry-run
+        run: pnpm --filter ${{ matrix.package }} exec npm pack --dry-run
+
+  examples:
+    name: Examples golden path
+    runs-on: ubuntu-latest
+    needs: foundation
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build foundation packages
+        run: pnpm --filter "@disclosureos/examples..." build
+
+      - name: Type check examples
+        run: pnpm --filter @disclosureos/examples type-check
+
+      - name: Run golden path
+        run: pnpm --filter @disclosureos/examples golden-path

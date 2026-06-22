@@ -1,0 +1,4 @@
+case_id,date_reported,city,state,country,lat,lng,shape,duration_minutes,summary,witness_count
+NUFORC-20040115-001,2004-01-15,Phoenix,AZ,US,33.4484,-112.074,triangle,5,"Three bright lights in triangle formation, silent, moving slowly north",3
+NUFORC-20031210-042,2003-12,Houston,TX,US,29.7604,-95.3698,,12,"Bright orange sphere hovered then departed at extreme speed",1
+NUFORC-20050700-099,2005,,,US,,,disk,,"Round metallic disk observed near airport runway during daylight",

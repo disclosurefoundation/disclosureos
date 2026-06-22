@@ -1,0 +1,32 @@
+{
+  "name": "disclosureos",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Open standard and TypeScript packages for UAP observation records, observables, origins, schema, scoring, and CLI tooling.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/disclosurefoundation/disclosureos"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "type-check": "turbo run type-check",
+    "test": "turbo run test",
+    "test:run": "turbo run test",
+    "lint:publish": "pnpm --filter \"@disclosureos/*\" run lint:publish",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.31.0",
+    "turbo": "^2.5.4",
+    "tsx": "^4.19.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "pnpm": {
+    "overrides": {
+      "vitest": "4.0.18"
+    }
+  }
+}

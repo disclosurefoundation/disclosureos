@@ -1,0 +1,13 @@
+node_modules
+coverage
+dist
+.turbo
+.DS_Store
+*.pem
+*.tgz
+*.tsbuildinfo
+npm-debug.log*
+.pnpm-debug.log*
+.env*
+!.env.example
+tmp-scaffold-smoke/

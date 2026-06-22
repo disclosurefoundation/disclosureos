@@ -1,0 +1,74 @@
+{
+  "name": "@disclosureos/schema",
+  "version": "1.0.0",
+  "description": "The DisclosureOS portable contract — composes the records core, observable assessments, and origin classification into one enriched Observation schema (TypeScript + JSON Schema), with a non-stripping parse",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/disclosurefoundation/disclosureos"
+  },
+  "homepage": "https://github.com/disclosurefoundation/disclosureos#readme",
+  "bugs": {
+    "url": "https://github.com/disclosurefoundation/disclosureos/issues"
+  },
+  "keywords": [
+    "disclosureos",
+    "UAP",
+    "schema",
+    "json-schema",
+    "observation",
+    "typescript"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schema": "./schema/enriched-observation.schema.json",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "schema",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "emit:schema": "tsx scripts/emit-schema.ts",
+    "clean": "rm -rf dist",
+    "test": "vitest",
+    "prepublishOnly": "pnpm build && pnpm lint:publish",
+    "lint:publish": "publint --strict && attw --pack . --profile esm-only"
+  },
+  "dependencies": {
+    "@disclosureos/records": "workspace:*",
+    "@disclosureos/observables": "workspace:*",
+    "@disclosureos/origins": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "tsup": "^8.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "catalog:",
+    "vitest": "^4.0.18",
+    "@arethetypeswrong/cli": "catalog:",
+    "publint": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

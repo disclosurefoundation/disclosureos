@@ -1,0 +1,82 @@
+{
+  "name": "@disclosureos/scoring",
+  "version": "1.0.0",
+  "description": "Reference scoring for the DisclosureOS ecosystem — record completeness and case compellingness across the Observables and Origin layers",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/disclosurefoundation/disclosureos"
+  },
+  "homepage": "https://github.com/disclosurefoundation/disclosureos#readme",
+  "bugs": {
+    "url": "https://github.com/disclosurefoundation/disclosureos/issues"
+  },
+  "keywords": [
+    "disclosureos",
+    "UAP",
+    "scoring",
+    "completeness",
+    "compellingness",
+    "typescript"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./completeness": {
+      "types": "./dist/completeness/index.d.ts",
+      "import": "./dist/completeness/index.js"
+    },
+    "./compellingness": {
+      "types": "./dist/compellingness/index.d.ts",
+      "import": "./dist/compellingness/index.js"
+    },
+    "./schema": "./schema/scoring.schema.json",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "schema",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "emit:schema": "tsx scripts/emit-schema.ts",
+    "clean": "rm -rf dist",
+    "test": "vitest",
+    "prepublishOnly": "pnpm build && pnpm lint:publish",
+    "lint:publish": "publint --strict && attw --pack . --profile esm-only"
+  },
+  "dependencies": {
+    "@disclosureos/records": "workspace:*",
+    "@disclosureos/observables": "workspace:*",
+    "@disclosureos/origins": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "tsup": "^8.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "catalog:",
+    "vitest": "^4.0.18",
+    "@arethetypeswrong/cli": "catalog:",
+    "publint": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

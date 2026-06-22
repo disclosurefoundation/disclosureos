@@ -1,0 +1,35 @@
+[
+  {
+    "case_id": "NUFORC-20040301-SAN",
+    "date": "2004-03-01",
+    "city": "Phoenix",
+    "state": "AZ",
+    "lat": 33.4484,
+    "lng": -112.074,
+    "shape": "triangle",
+    "duration_min": 5,
+    "summary": "Large triangular formation of lights observed moving silently over suburban neighborhood at low altitude. Three steady white lights at each apex, no blinking navigation lights.",
+    "witness_count": 3,
+    "source_disposition": "unknown"
+  },
+  {
+    "case_id": "NUFORC-19970115-CHI",
+    "date": "1997-01",
+    "city": "Chicago",
+    "state": "IL",
+    "shape": "disc",
+    "summary": "Metallic disc hovered above Lake Michigan for approximately two minutes before departing at high speed.",
+    "witness_count": 1,
+    "source_disposition": "probable aircraft"
+  },
+  {
+    "case_id": "NUFORC-19520700-DC",
+    "date": "1952",
+    "city": "Washington",
+    "state": "DC",
+    "shape": "orb_cluster",
+    "summary": "Multiple luminous objects tracked on radar over restricted airspace.",
+    "witness_count": 12,
+    "source_disposition": "temperature inversion"
+  }
+]
