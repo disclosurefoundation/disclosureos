@@ -20,6 +20,9 @@ on:
       - "pnpm-workspace.yaml"
       - "package.json"
 
+permissions:
+  contents: read
+
 concurrency:
   group: packages-quality-${{ github.ref }}
   cancel-in-progress: true
