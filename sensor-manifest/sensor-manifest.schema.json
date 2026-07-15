@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://os.disclosure.org/eldaeon/sensor-manifest.schema.json",
+  "title": "UAP Sensor Manifest",
+  "description": "Machine-readable per-sensor specification standard for UAP detection hardware. Organizes sensors by modality and captures, per sensor, the structured spec + provenance metadata DisclosureOS's SensorReading lacks (sensor type, timing precision, measurement units + uncertainty, raw-data format, calibration). Any operator — vendor, research group, or institution — publishes its own manifest instance against this schema so datasets from different sensor arrays can be compared directly. Extends disclosurefoundation/disclosureos.",
+  "type": "object",
+  "required": ["schemaVersion", "org", "sensors"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "string", "description": "SemVer of this manifest schema." },
+    "org": { "type": "string", "description": "Publishing organization (the manifest author)." },
+    "orgUrl": { "type": "string", "description": "Optional URL for the publishing organization." },
+    "generatedAt": { "type": "string", "description": "ISO date the manifest was generated." },
+    "sensors": { "type": "array", "items": { "$ref": "#/$defs/SensorEntry" }, "minItems": 1 },
+    "futureUpgrades": {
+      "type": "array",
+      "description": "Planned hardware additions declared ahead of deployment, so data consumers can anticipate new streams. Entries here are NOT part of the live sensor array.",
+      "items": { "$ref": "#/$defs/FutureUpgrade" }
+    }
+  },
+  "$defs": {
+    "Modality": {
+      "type": "string",
+      "description": "Top-level sensing modality (6 domains).",
+      "enum": ["audio", "electro_optical", "radio_frequency", "quantum", "environmental", "biometric"]
+    },
+    "FutureUpgrade": {
+      "type": "object",
+      "required": ["name", "modality"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "modality": { "$ref": "#/$defs/Modality" },
+        "status": { "type": "string", "enum": ["planned", "evaluating", "ordered", "acquired"], "default": "planned" },
+        "specs": { "type": "object", "additionalProperties": true },
+        "link": { "type": ["string", "null"], "description": "Public product or reference page, where the operator chooses to share one." },
+        "notes": { "type": ["string", "null"] }
+      }
+    },
+    "SensorEntry": {
+      "type": "object",
+      "required": ["id", "name", "modality"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "description": "Stable kebab-case id, e.g. 'dionysus-ultrasonic-mic'." },
+        "name": { "type": "string" },
+        "modality": { "$ref": "#/$defs/Modality" },
+        "manufacturerModel": { "type": "string", "description": "Hardware class descriptor. Operators MAY withhold specific make/model identities and publish spec-level class descriptors instead (e.g. 'Dual GM-tube counter' rather than a product name); the specs object carries the comparable technical detail either way." },
+        "inHouse": { "type": "boolean", "description": "True if operator-built rather than OEM." },
+        "compute": { "type": "string", "description": "The compute unit this sensor is attached to. A platform is not one monolithic node — it is several compute units, and each sensor is tied to one. The ELDÆON Dionysus platform has four (PC, Jetson, Pi, Pi 5); this field names whichever the sensor is wired to. Also appears as the leading '{compute-id}' segment of rawData.locatorPattern." },
+        "disclosureosMapping": {
+          "type": "object",
+          "description": "P1 — how this sensor maps to DisclosureOS SensorReading. proposedSensorType flags values not yet in their closed enum.",
+          "additionalProperties": false,
+          "properties": {
+            "sensorType": { "type": "string" },
+            "detectionMethod": { "type": "string" },
+            "proposedSensorType": { "type": "boolean", "description": "True = this value does not exist in DisclosureOS's current enum and is proposed by ELDÆON (P1)." }
+          }
+        },
+        "timing": {
+          "type": "object",
+          "description": "P2 — timing provenance, absent from DisclosureOS (bare timestamp string).",
+          "additionalProperties": false,
+          "properties": {
+            "timeSource": { "type": "string", "enum": ["atomic-clock", "gps-disciplined", "ntp", "system", "unknown"] },
+            "timeUncertaintyNs": { "type": ["number", "null"] }
+          }
+        },
+        "rawData": {
+          "type": "object",
+          "description": "P4 — raw-data format + locator, vs DisclosureOS's rawDataAvailable boolean.",
+          "additionalProperties": false,
+          "properties": {
+            "format": { "type": "string", "description": "e.g. NDJSON.gz, WAV, MJPEG, H264, FITS, CSV." },
+            "locatorPattern": { "type": "string", "description": "S3 key pattern or path convention. Leading '{compute-id}' segment is the compute unit the sensor is tied to (see the sensor-level 'compute' field)." },
+            "sampleRateHz": { "type": ["number", "null"] },
+            "bitDepth": { "type": ["number", "null"] }
+          }
+        },
+        "measurements": {
+          "type": "array",
+          "description": "P3 — measured quantities with units + GUM uncertainty. Uncertainty fields nullable until a budget exists.",
+          "items": {
+            "type": "object",
+            "required": ["name", "unit"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string" },
+              "unit": { "type": "string", "description": "UCUM-style unit string, e.g. dB[mW], uT, ppm, /min." },
+              "uncertainty": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "u_c": { "type": ["number", "null"], "description": "Combined standard uncertainty." },
+                  "U": { "type": ["number", "null"], "description": "Expanded uncertainty = k*u_c." },
+                  "k": { "type": ["number", "null"], "description": "Coverage factor (default 2 ≈ 95% CL)." },
+                  "type": { "type": ["string", "null"], "enum": ["A", "B", null], "description": "GUM Type A (statistical) or B (other)." }
+                }
+              }
+            }
+          }
+        },
+        "calibration": {
+          "type": "object",
+          "description": "P6 — calibration provenance. Replaces DisclosureOS's calibrated:boolean. Deliberately separates what an operator ACTUALLY does today (currentMethod) from the traceable reference it has identified (traceableReference + referenceInUse). Honest nulls are first-class: declaring 'no calibration' is itself information a data consumer needs, and makes calibration gaps visible and comparable across operators.",
+          "additionalProperties": false,
+          "properties": {
+            "calibrated": { "type": ["boolean", "null"] },
+            "currentMethod": { "type": ["string", "null"], "description": "What the operator actually does today (e.g. 'factory calibration file on onboard SD card', 'oriented to true north at install', '395 nm UV source response check'). Null = no calibration currently performed." },
+            "traceableReference": { "type": ["string", "null"], "description": "Traceable reference — in use or identified as a candidate. e.g. ADS-B Exchange, USGS/INTERMAGNET, GPS/UTC, NIST SP 800-22." },
+            "referenceInUse": { "type": ["boolean", "null"], "description": "True = traceableReference is part of current practice. False = identified candidate only, not yet used. Null = undetermined." },
+            "cadence": { "type": ["string", "null"] },
+            "uncertaintyBudget": { "type": ["string", "null"] },
+            "status": { "type": "string", "enum": ["none", "candidate-identified", "in-practice", "documented"], "description": "none = no calibration; candidate-identified = a reference is named but not used; in-practice = a real method is performed but not fully budgeted; documented = method + uncertainty budget published." },
+            "notes": { "type": ["string", "null"], "description": "Open questions or method caveats (e.g. 'field-deployable thermal reference under evaluation')." }
+          }
+        },
+        "specs": {
+          "type": "object",
+          "description": "Free-form hardware specifications from the operator's spec sheet (resolution, frame rate, FOV, range, sensitivity, dynamic range, power, interface, etc.). Open object — keys vary by modality.",
+          "additionalProperties": true
+        },
+        "specSource": { "type": "string", "description": "Provenance of the spec values." }
+      }
+    }
+  }
+}
