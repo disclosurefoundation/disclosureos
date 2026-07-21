@@ -1519,7 +1519,7 @@
       "modality": "biometric",
       "manufacturerModel": "Dual-channel shielded hardware noise TRNG",
       "disclosureosMapping": {
-        "sensorType": "quantum_rng",
+        "sensorType": "biometric_rng",
         "detectionMethod": "other",
         "proposedSensorType": true
       },
