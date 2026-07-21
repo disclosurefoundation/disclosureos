@@ -648,7 +648,8 @@
       "disclosureosMapping": {
         "sensorType": "cosmic_ray_muon",
         "detectionMethod": "particle_scintillator",
-        "proposedSensorType": true
+        "proposedSensorType": true,
+        "proposedDetectionMethod": true
       },
       "timing": {
         "timeSource": "gps-disciplined",
@@ -709,7 +710,8 @@
       "disclosureosMapping": {
         "sensorType": "atomic_clock",
         "detectionMethod": "time_reference",
-        "proposedSensorType": true
+        "proposedSensorType": true,
+        "proposedDetectionMethod": true
       },
       "timing": {
         "timeSource": "atomic-clock",
@@ -759,7 +761,8 @@
       "disclosureosMapping": {
         "sensorType": "gnss_receiver",
         "detectionMethod": "gnss",
-        "proposedSensorType": true
+        "proposedSensorType": true,
+        "proposedDetectionMethod": true
       },
       "timing": {
         "timeSource": "gps-disciplined",
