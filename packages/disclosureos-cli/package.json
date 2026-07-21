@@ -1,7 +1,7 @@
 {
   "name": "@disclosureos/cli",
   "version": "1.0.0",
-  "description": "Developer tools for the DisclosureOS ecosystem — scaffold, validate, and inspect observations",
+  "description": "Developer tools for the DisclosureOS ecosystem \u2014 scaffold, validate, and inspect observations",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -50,6 +50,7 @@
   ],
   "dependencies": {
     "@disclosureos/records": "workspace:*",
+    "@disclosureos/instruments": "workspace:*",
     "@disclosureos/observables": "workspace:*",
     "@disclosureos/origins": "workspace:*",
     "@disclosureos/scoring": "workspace:*",

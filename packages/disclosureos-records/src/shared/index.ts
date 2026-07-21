@@ -24,6 +24,8 @@ export {
 } from './claim';
 export type { Claim, EvidenceRefKind } from './claim';
 
+export { sensorRef, isSensorRef, parseSensorRef } from './sensor-ref';
+
 export { issuesFrom, validateWith } from './validation';
 export type { ValidationIssue } from './validation';
 

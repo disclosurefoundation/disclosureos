@@ -40,6 +40,7 @@ jobs:
           - "@disclosureos/records"
           - "@disclosureos/observables"
           - "@disclosureos/origins"
+          - "@disclosureos/instruments"
           - "@disclosureos/scoring"
           - "@disclosureos/schema"
           - "@disclosureos/cli"

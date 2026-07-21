@@ -23,6 +23,7 @@ composes the full shape into one portable contract (TS type + JSON Schema + non-
 - [@disclosureos/records](packages/disclosureos-records/README.md): The data dictionary — the `Observation` core and shared primitives (confidence, attribution, claims, validation, JSON-Schema helpers).
 - [@disclosureos/observables](packages/disclosureos-observables/README.md): Anomaly-detection criteria (Technology + Biologics); adds the `observableAssessments` slot.
 - [@disclosureos/origins](packages/disclosureos-origins/README.md): The Origin Classification System (OCS) taxonomy; adds the `origin` slot.
+- [@disclosureos/instruments](packages/disclosureos-instruments/README.md): The UAP Sensor Manifest — a standalone document type cataloging an organization's detection hardware (specs, timing, calibration provenance); referenced from records via `SensorReading.sensorRef`, adds no slot.
 - [@disclosureos/scoring](packages/disclosureos-scoring/README.md): Reference completeness and compellingness scoring; consumes the foundation, adds no slot.
 - [@disclosureos/schema](packages/disclosureos-schema/README.md): The portable contract — `composeObservationSchema()`, `ExtensionRegistry`, and the non-stripping `parseEnrichedObservation` + `EnrichedObservation` type.
 - [@disclosureos/cli](packages/disclosureos-cli/README.md): Dev tooling — scaffold, validate, and inspect observations from the command line (`validate` uses `@disclosureos/schema`).
@@ -32,11 +33,12 @@ composes the full shape into one portable contract (TS type + JSON Schema + non-
 
 Committed, versioned JSON Schema (draft 2020-12), `$id`-hosted at `os.disclosure.org`:
 
-- [Observation (records)](https://os.disclosure.org/schema/records/1.0.0/observation.json): The open core record.
+- [Observation (records)](https://os.disclosure.org/schema/records/1.1.0/observation.json): The open core record.
 - [Observable assessments (observables)](https://os.disclosure.org/schema/observables/2.0.0/observable-assessments.json): The `observableAssessments` slot.
 - [Origin classification (origins)](https://os.disclosure.org/schema/origins/2.0.0/origin-classification.json): The `origin` slot.
+- [Sensor manifest (instruments)](https://os.disclosure.org/schema/instruments/1.0.0/sensor-manifest.json): The standalone sensor-manifest document.
 - [Scoring](https://os.disclosure.org/schema/scoring/2.0.0/scoring.json): Score and completeness results.
-- [Enriched observation (composed)](https://os.disclosure.org/schema/schema/1.0.0/enriched-observation.json): Records core + every registered slot, root tightened to reject unknown top-level keys.
+- [Enriched observation (composed)](https://os.disclosure.org/schema/schema/1.1.0/enriched-observation.json): Records core + every registered slot, root tightened to reject unknown top-level keys.
 
 ## Concepts
 

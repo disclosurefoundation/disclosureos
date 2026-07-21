@@ -11,6 +11,7 @@
     "migration-csv-path": "tsx migration-csv-path.ts"
   },
   "dependencies": {
+    "@disclosureos/instruments": "workspace:*",
     "@disclosureos/observables": "workspace:*",
     "@disclosureos/origins": "workspace:*",
     "@disclosureos/records": "workspace:*",

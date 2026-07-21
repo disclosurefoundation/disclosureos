@@ -22,6 +22,13 @@ export const DetectionMethodSchema = z
     'lidar',
     'spectroscopic',
     'radio_frequency',
+    'particle',
+    'gnss',
+    'time_reference',
+    'chemical',
+    'inertial',
+    'physiological',
+    'pressure',
     'multiple',
     'other',
     'unknown',
@@ -47,6 +54,24 @@ export const SensorTypeSchema = z
     'security_camera',
     'dashcam',
     'phone_camera',
+    'infrasonic_sensor',
+    'ultrasonic_sensor',
+    'adsb_receiver',
+    'rf_spectrum_analyzer',
+    'passive_radar',
+    'particle_detector',
+    'atomic_clock',
+    'gnss_receiver',
+    'fluxgate_magnetometer',
+    'air_quality_sensor',
+    'barometer',
+    'lightning_detector',
+    'imu',
+    'eeg',
+    'gsr',
+    'pulse_oximeter',
+    'pupillometer',
+    'hardware_rng',
     'other',
   ])
   .describe('Class of sensor that produced a reading.');
@@ -58,6 +83,12 @@ export const SensorReadingSchema = z
     id: z.string().min(1).describe('Stable id, addressable by a claim `evidenceRef` ("sensor:<id>").'),
     sensorType: SensorTypeSchema,
     detectionMethod: DetectionMethodSchema,
+    sensorRef: z
+      .string()
+      .optional()
+      .describe(
+        'Reference to a published sensor-manifest entry ("<org-slug>:<sensor-id>", e.g. "eldaeon:dionysus-passive-radar") carrying the instrument\u2019s full spec, timing, and calibration provenance.',
+      ),
     platform: z
       .string()
       .optional()

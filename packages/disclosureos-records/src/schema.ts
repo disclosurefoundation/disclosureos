@@ -7,7 +7,7 @@ import { ObservationSchema } from './observation/types';
  * the records schema shape; the committed `schema/records.schema.json` and the
  * drift test (`src/__tests__/schema.test.ts`) keep this honest.
  */
-export const RECORDS_SCHEMA_VERSION = '1.0.0';
+export const RECORDS_SCHEMA_VERSION = '1.1.0';
 
 export const RECORDS_SCHEMA_ID = schemaId('records', 'observation', RECORDS_SCHEMA_VERSION);
 
