@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://os.disclosure.org/eldaeon/sensor-manifest.schema.json",
+  "$id": "https://os.disclosure.org/schema/instruments/0.1.0/sensor-manifest.json",
   "title": "UAP Sensor Manifest",
   "description": "Machine-readable per-sensor specification standard for UAP detection hardware. Organizes sensors by modality and captures, per sensor, the structured spec + provenance metadata DisclosureOS's SensorReading lacks (sensor type, timing precision, measurement units + uncertainty, raw-data format, calibration). Any operator — vendor, research group, or institution — publishes its own manifest instance against this schema so datasets from different sensor arrays can be compared directly. Extends disclosurefoundation/disclosureos.",
   "type": "object",
@@ -50,17 +50,18 @@
         "compute": { "type": "string", "description": "The compute unit this sensor is attached to. A platform is not one monolithic node — it is several compute units, and each sensor is tied to one. The ELDÆON Dionysus platform has four (PC, Jetson, Pi, Pi 5); this field names whichever the sensor is wired to. Also appears as the leading '{compute-id}' segment of rawData.locatorPattern." },
         "disclosureosMapping": {
           "type": "object",
-          "description": "P1 — how this sensor maps to DisclosureOS SensorReading. proposedSensorType flags values not yet in their closed enum.",
+          "description": "How this sensor maps to DisclosureOS SensorReading. proposedSensorType / proposedDetectionMethod flag values not yet in their closed enums.",
           "additionalProperties": false,
           "properties": {
             "sensorType": { "type": "string" },
             "detectionMethod": { "type": "string" },
-            "proposedSensorType": { "type": "boolean", "description": "True = this value does not exist in DisclosureOS's current enum and is proposed by ELDÆON (P1)." }
+            "proposedSensorType": { "type": "boolean", "description": "True = this sensorType is not in DisclosureOS's current enum and is proposed by ELDÆON." },
+            "proposedDetectionMethod": { "type": "boolean", "description": "True = this detectionMethod is not in DisclosureOS's current enum and is proposed by ELDÆON." }
           }
         },
         "timing": {
           "type": "object",
-          "description": "P2 — timing provenance, absent from DisclosureOS (bare timestamp string).",
+          "description": "Timing provenance, absent from DisclosureOS (bare timestamp string).",
           "additionalProperties": false,
           "properties": {
             "timeSource": { "type": "string", "enum": ["atomic-clock", "gps-disciplined", "ntp", "system", "unknown"] },
@@ -69,7 +70,7 @@
         },
         "rawData": {
           "type": "object",
-          "description": "P4 — raw-data format + locator, vs DisclosureOS's rawDataAvailable boolean.",
+          "description": "Raw-data format + locator, vs DisclosureOS's rawDataAvailable boolean.",
           "additionalProperties": false,
           "properties": {
             "format": { "type": "string", "description": "e.g. NDJSON.gz, WAV, MJPEG, H264, FITS, CSV." },
@@ -80,7 +81,7 @@
         },
         "measurements": {
           "type": "array",
-          "description": "P3 — measured quantities with units + GUM uncertainty. Uncertainty fields nullable until a budget exists.",
+          "description": "Measured quantities with units + GUM uncertainty. Uncertainty fields nullable until a budget exists.",
           "items": {
             "type": "object",
             "required": ["name", "unit"],
@@ -103,7 +104,7 @@
         },
         "calibration": {
           "type": "object",
-          "description": "P6 — calibration provenance. Replaces DisclosureOS's calibrated:boolean. Deliberately separates what an operator ACTUALLY does today (currentMethod) from the traceable reference it has identified (traceableReference + referenceInUse). Honest nulls are first-class: declaring 'no calibration' is itself information a data consumer needs, and makes calibration gaps visible and comparable across operators.",
+          "description": "Calibration provenance. Replaces DisclosureOS's calibrated:boolean. Deliberately separates what an operator ACTUALLY does today (currentMethod) from the traceable reference it has identified (traceableReference + referenceInUse). Honest nulls are first-class: declaring 'no calibration' is itself information a data consumer needs, and makes calibration gaps visible and comparable across operators.",
           "additionalProperties": false,
           "properties": {
             "calibrated": { "type": ["boolean", "null"] },

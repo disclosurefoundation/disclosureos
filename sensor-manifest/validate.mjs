@@ -8,6 +8,7 @@ const here = new URL('.', import.meta.url);
 const schema = JSON.parse(readFileSync(new URL('./sensor-manifest.schema.json', here)));
 const MODALITIES = schema.$defs.Modality.enum;
 const CAL_STATUSES = schema.$defs.SensorEntry.properties.calibration.properties.status.enum;
+const FU_STATUSES = schema.$defs.FutureUpgrade.properties.status.enum;
 
 const manifests = readdirSync(here).filter((f) => f.endsWith('-sensors.json'));
 if (!manifests.length) { console.error('no *-sensors.json manifests found'); process.exit(1); }
@@ -35,12 +36,14 @@ for (const file of manifests) {
     if (s.calibration?.status && !CAL_STATUSES.includes(s.calibration.status)) {
       errors.push(`${where}: bad calibration.status "${s.calibration.status}"`);
     }
+    if (!s.timing?.timeSource) errors.push(`${where}: missing timing.timeSource`);
   }
 
   for (const [i, u] of (data.futureUpgrades ?? []).entries()) {
     const where = `futureUpgrades[${i}] (${u.name ?? '?'})`;
     if (!u.name) errors.push(`${where}: missing "name"`);
     if (!u.modality || !MODALITIES.includes(u.modality)) errors.push(`${where}: bad modality "${u.modality}"`);
+    if (!u.status || !FU_STATUSES.includes(u.status)) errors.push(`${where}: bad or missing status "${u.status}"`);
   }
 
   if (errors.length) {
@@ -51,12 +54,15 @@ for (const file of manifests) {
 
   const byModality = {};
   const proposed = [];
+  const proposedMethods = new Set();
   for (const s of data.sensors) {
     byModality[s.modality] = (byModality[s.modality] ?? 0) + 1;
     if (s.disclosureosMapping?.proposedSensorType) proposed.push(s.disclosureosMapping.sensorType);
+    if (s.disclosureosMapping?.proposedDetectionMethod) proposedMethods.add(s.disclosureosMapping.detectionMethod);
   }
   console.log(`✅ ${file} (${data.org}) — ${data.sensors.length} sensors across ${Object.keys(byModality).length} modalities, ${(data.futureUpgrades ?? []).length} future upgrades`);
   console.log('   by modality:', JSON.stringify(byModality));
-  console.log(`   P1 proposed new sensorTypes (${proposed.length}):`, proposed.join(', '));
+  console.log(`   proposed sensorTypes (${proposed.length}):`, proposed.join(', '));
+  console.log(`   proposed detectionMethods (${proposedMethods.size}):`, [...proposedMethods].join(', '));
 }
 process.exit(failed ? 1 : 0);

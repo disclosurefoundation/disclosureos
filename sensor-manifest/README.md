@@ -38,11 +38,11 @@ Two design choices make that practical:
 
 Each entry carries the fields DisclosureOS's `SensorReading` lacks — the functional hardware context an operator needs to replicate an experiment:
 
-- **P1 — sensor type:** `disclosureosMapping` maps each sensor to a `sensorType`/`detectionMethod`; `proposedSensorType: true` flags the 20 values proposed for DisclosureOS's enum (infrasonic, ultrasonic, passive radar, muon, TRNG, fluxgate, air-quality, …).
-- **P2 — timing:** `timing.timeSource` + `timeUncertaintyNs`. Timestamp error of even a few seconds confounds multi-station triangulation; GPS-disciplined or atomic time must be declared, not assumed.
-- **P3 — uncertainty:** `measurements[].unit` + GUM uncertainty (`u_c`/`U`/`k`/type), so confidence in derived results can be quantified from error analysis.
-- **P4 — raw data:** `rawData.format` + `locatorPattern`. This supports the metadata-first architecture the community converged on: circulate metadata widely, pull raw data on demand.
-- **P6 — calibration:** current method, traceable reference, whether the reference is in use, cadence, and uncertainty budget (see above).
+- **Sensor type:** `disclosureosMapping` maps each sensor to a `sensorType`/`detectionMethod`; `proposedSensorType` / `proposedDetectionMethod` flag the values proposed for DisclosureOS's enums (20 sensor types + 3 detection methods) (infrasonic, ultrasonic, passive radar, muon, TRNG, fluxgate, air-quality, …).
+- **Timing:** `timing.timeSource` + `timeUncertaintyNs`. Timestamp error of even a few seconds confounds multi-station triangulation; GPS-disciplined or atomic time must be declared, not assumed.
+- **Uncertainty:** `measurements[].unit` + GUM uncertainty (`u_c`/`U`/`k`/type), so confidence in derived results can be quantified from error analysis.
+- **Raw data:** `rawData.format` + `locatorPattern`. This supports the metadata-first architecture the community converged on: circulate metadata widely, pull raw data on demand.
+- **Calibration:** current method, traceable reference, whether the reference is in use, cadence, and uncertainty budget (see above).
 - **`futureUpgrades`** — planned hardware declared ahead of deployment, so data consumers can anticipate new streams.
 
 ## Passive radar
