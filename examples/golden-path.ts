@@ -2,6 +2,7 @@
  * DisclosureOS golden path — one observation through every layer.
  *
  *   Records      → "what was observed"        (createObservation, createSensorReading)
+ *   Instruments  → "what hardware produced it" (createSensorManifest → sensorRef)
  *   Observables  → "what anomalies it showed" (createObservableClaim → observableAssessments)
  *   Origins      → "what might explain it"    (createOriginClaim → origin)
  *   Schema       → "is the enriched whole valid, slots intact?" (parseEnrichedObservation)
@@ -13,19 +14,37 @@
  * `observableAssessments` and `origin` fields below are typed on `Observation`.
  */
 import { createObservation, createSensorReading } from '@disclosureos/records/factories';
-import { evidenceRef } from '@disclosureos/records/shared';
+import { evidenceRef, sensorRef } from '@disclosureos/records/shared';
+import { createSensorEntry, createSensorManifest, validateSensorManifest, formatSensorManifest } from '@disclosureos/instruments';
 import { createObservableClaim } from '@disclosureos/observables';
 import { createOriginClaim } from '@disclosureos/origins';
 import { parseEnrichedObservation, type EnrichedObservation } from '@disclosureos/schema';
 import { getCompleteness, score } from '@disclosureos/scoring';
 
+// 0. Instruments — a published sensor manifest describing the hardware. The
+// manifest is a standalone document (published by the operating organization,
+// not embedded in a record); readings point at its entries via `sensorRef`.
+const spy1Entry = createSensorEntry('princeton-spy1', 'AN/SPY-1B Passive Phased Array Radar', 'radio_frequency', {
+  recordsMapping: { sensorType: 'shipborne_radar', detectionMethod: 'radar_phased_array' },
+  timing: { timeSource: 'gps_disciplined' },
+  calibration: { status: 'documented', currentMethod: 'Navy maintenance and alignment program', referenceInUse: true },
+});
+const navyManifest = createSensorManifest('US Navy', 'us-navy', [spy1Entry]);
+const manifestIssues = validateSensorManifest(navyManifest);
+if (manifestIssues.length > 0) {
+  console.error('❌ invalid manifest:', manifestIssues);
+  process.exit(1);
+}
+
 // The in-record sensor reading the claims below cite. `evidenceRef` builds the
 // "sensor:<id>" pointer; because this reading is attached to the observation, the
 // ref resolves (no dangling-evidence warning from `disclosureos validate`).
+// `sensorRef` points the reading at the manifest entry above ("<org-slug>:<sensor-id>").
 const radar = createSensorReading('shipborne_radar', 'radar_phased_array', {
   id: 'princeton-spy1-radar',
   platform: 'USS Princeton (CG-59), AN/SPY-1 phased array',
   operator: 'US Navy',
+  sensorRef: sensorRef(navyManifest.orgSlug, spy1Entry.id),
 });
 const RADAR = evidenceRef('sensor', radar.id);
 
@@ -77,5 +96,6 @@ const completeness = getCompleteness(observation);
 const compellingness = score(observation);
 
 console.log(`✅ ${observation.id} is valid (slots intact).`);
+console.log(`   instruments   : ${formatSensorManifest(navyManifest)} — cited via ${radar.sensorRef}`);
 console.log(`   completeness  : ${completeness.percentage}% (${completeness.requiredPercentage}% of required fields)`);
 console.log(`   compellingness: ${compellingness.score.toFixed(2)} (range ${compellingness.range.low.toFixed(2)}–${compellingness.range.high.toFixed(2)}, contested: ${compellingness.contested})`);

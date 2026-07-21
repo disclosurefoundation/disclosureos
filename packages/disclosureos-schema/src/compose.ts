@@ -37,7 +37,7 @@ import { defaultRegistry, ExtensionRegistry } from './registry';
  * to the enriched shape — note that bumping a *layer* schema can also change this
  * artifact, so the drift test guards both.
  */
-export const ENRICHED_OBSERVATION_SCHEMA_VERSION = '1.0.0';
+export const ENRICHED_OBSERVATION_SCHEMA_VERSION = '1.1.0';
 
 export const ENRICHED_OBSERVATION_SCHEMA_ID = schemaId(
   'schema',

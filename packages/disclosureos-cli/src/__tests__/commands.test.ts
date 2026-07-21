@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { completeness } from '../commands/completeness';
 import { info } from '../commands/info';
+import { manifest } from '../commands/manifest';
 import { registry } from '../commands/registry';
 import { validate } from '../commands/validate';
 import { getTemplate } from '../output/templates';
@@ -187,6 +188,69 @@ describe('validate command', () => {
     expect(parsed.emptyTargets).toContain('/nonexistent/path');
     expect(parsed.totals.emptyTargets).toBe(1);
     expect(exit).toHaveBeenCalledWith(1);
+  });
+});
+
+describe('manifest command', () => {
+  const validManifest = {
+    schemaVersion: '1.0.0',
+    org: 'ELDÆON',
+    orgSlug: 'eldaeon',
+    sensors: [
+      {
+        id: 'dionysus-passive-radar',
+        name: 'Passive Bistatic Radar',
+        modality: 'radio_frequency',
+        recordsMapping: { sensorType: 'passive_radar', detectionMethod: 'radio_frequency' },
+        timing: { timeSource: 'gps_disciplined', timeUncertaintyNs: null },
+        calibration: { status: 'in_practice', traceableReference: 'ADS-B Exchange', referenceInUse: true },
+      },
+    ],
+    futureUpgrades: [{ name: 'Microbarometer', modality: 'audio', status: 'planned' }],
+  };
+
+  it('validates a valid sensor manifest', () => {
+    const dir = createTempDir();
+    const file = join(dir, 'eldaeon-sensors.json');
+    writeFileSync(file, JSON.stringify(validManifest, null, 2));
+
+    const output = captureLog(() => manifest(commandArgs('manifest', 'validate', [file])));
+
+    expect(output).toContain('All 1 manifest(s) valid');
+    expect(output).toContain('ELDÆON (eldaeon) — 1 sensors, 1 future upgrades');
+  });
+
+  it('rejects an unflagged mapping value outside the records enums', () => {
+    const dir = createTempDir();
+    const file = join(dir, 'bad-sensors.json');
+    const bad = structuredClone(validManifest);
+    bad.sensors[0]!.recordsMapping = { sensorType: 'crystal_ball', detectionMethod: 'radio_frequency' };
+    writeFileSync(file, JSON.stringify(bad, null, 2));
+
+    const exit = vi.spyOn(process, 'exit').mockImplementation(() => undefined as never);
+    const output = captureLog(() => manifest(commandArgs('manifest', 'validate', [file])));
+
+    expect(output).toContain('not a records SensorType');
+    expect(exit).toHaveBeenCalledWith(1);
+  });
+
+  it('reports proposed values in --json mode', () => {
+    const dir = createTempDir();
+    const file = join(dir, 'proposed-sensors.json');
+    const proposed = structuredClone(validManifest);
+    proposed.sensors[0]!.recordsMapping = {
+      sensorType: 'tachyon_array',
+      detectionMethod: 'radio_frequency',
+      proposedSensorType: true,
+    } as never;
+    writeFileSync(file, JSON.stringify(proposed, null, 2));
+
+    const output = captureLog(() => manifest(commandArgs('manifest', 'validate', [file], { json: true })));
+    const parsed = JSON.parse(output);
+
+    expect(parsed.valid).toBe(true);
+    expect(parsed.files[0].summary.proposedSensorTypes).toEqual(['tachyon_array']);
+    expect(parsed.files[0].summary.byModality).toEqual({ radio_frequency: 1 });
   });
 });
 

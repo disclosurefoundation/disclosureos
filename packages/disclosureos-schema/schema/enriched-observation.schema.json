@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://os.disclosure.org/schema/schema/1.0.0/enriched-observation.json",
-  "x-schema-version": "1.0.0",
+  "$id": "https://os.disclosure.org/schema/schema/1.1.0/enriched-observation.json",
+  "x-schema-version": "1.1.0",
   "description": "A complete DisclosureOS observation: the records core enriched with observable assessments and origin classification. The portable contract across TypeScript, JSON Schema, and other languages.",
   "$ref": "#/$defs/Observation",
   "$defs": {
@@ -1073,6 +1073,24 @@
             "security_camera",
             "dashcam",
             "phone_camera",
+            "infrasonic_sensor",
+            "ultrasonic_sensor",
+            "adsb_receiver",
+            "rf_spectrum_analyzer",
+            "passive_radar",
+            "particle_detector",
+            "atomic_clock",
+            "gnss_receiver",
+            "fluxgate_magnetometer",
+            "air_quality_sensor",
+            "barometer",
+            "lightning_detector",
+            "imu",
+            "eeg",
+            "gsr",
+            "pulse_oximeter",
+            "pupillometer",
+            "hardware_rng",
             "other"
           ],
           "description": "Class of sensor that produced a reading."
@@ -1100,11 +1118,22 @@
             "lidar",
             "spectroscopic",
             "radio_frequency",
+            "particle",
+            "gnss",
+            "time_reference",
+            "chemical",
+            "inertial",
+            "physiological",
+            "pressure",
             "multiple",
             "other",
             "unknown"
           ],
           "description": "How a sensor detected the object."
+        },
+        "sensorRef": {
+          "description": "Reference to a published sensor-manifest entry (\"<org-slug>:<sensor-id>\", e.g. \"eldaeon:dionysus-passive-radar\") carrying the instrument’s full spec, timing, and calibration provenance.",
+          "type": "string"
         },
         "platform": {
           "description": "Platform carrying the sensor (e.g. \"USS Princeton\", \"F/A-18F\").",

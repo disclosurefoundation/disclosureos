@@ -4,7 +4,7 @@ Short playbook for versioning and releasing DisclosureOS foundation packages.
 
 ## Release track
 
-**Foundation `@disclosureos/*` (v1, stable):** `records`, `observables`, `origins`, `scoring`, `schema`, and `cli` are published at **`1.0.0`+** under strict [Semantic Versioning](https://semver.org/) — breaking changes ship only in a major bump. These are ESM-only, gated by `publint` + `attw` (`pnpm --filter <pkg> lint:publish`) on every publish, and require Node `>=20`.
+**Foundation `@disclosureos/*` (v1, stable):** `records`, `observables`, `origins`, `instruments`, `scoring`, `schema`, and `cli` are published at **`1.0.0`+** under strict [Semantic Versioning](https://semver.org/) — breaking changes ship only in a major bump. These are ESM-only, gated by `publint` + `attw` (`pnpm --filter <pkg> lint:publish`) on every publish, and require Node `>=20`.
 
 ## Versioning and changelog
 
@@ -33,11 +33,12 @@ The foundation packages emit JSON Schema whose `$id` URLs are **resolvable** at 
 
 | Committed file | Hosted URL (`$id`) |
 |---|---|
-| `packages/disclosureos-records/schema/records.schema.json` | `https://os.disclosure.org/schema/records/1.0.0/observation.json` |
+| `packages/disclosureos-records/schema/records.schema.json` | `https://os.disclosure.org/schema/records/1.1.0/observation.json` |
 | `packages/disclosureos-observables/schema/observables.schema.json` | `https://os.disclosure.org/schema/observables/2.0.0/observable-assessments.json` |
 | `packages/disclosureos-origins/schema/origins.schema.json` | `https://os.disclosure.org/schema/origins/2.0.0/origin-classification.json` |
+| `packages/disclosureos-instruments/schema/sensor-manifest.schema.json` | `https://os.disclosure.org/schema/instruments/1.0.0/sensor-manifest.json` |
 | `packages/disclosureos-scoring/schema/scoring.schema.json` | `https://os.disclosure.org/schema/scoring/2.0.0/scoring.json` |
-| `packages/disclosureos-schema/schema/enriched-observation.schema.json` | `https://os.disclosure.org/schema/schema/1.0.0/enriched-observation.json` |
+| `packages/disclosureos-schema/schema/enriched-observation.schema.json` | `https://os.disclosure.org/schema/schema/1.1.0/enriched-observation.json` |
 | `llms.txt` (repo root) | `https://os.disclosure.org/llms.txt` |
 
 Hosting rules:

@@ -1,0 +1,473 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://os.disclosure.org/schema/instruments/1.0.0/sensor-manifest.json",
+  "x-schema-version": "1.0.0",
+  "description": "A published catalog of one organization’s detection hardware. Any operator — vendor, research group, or institution — publishes its own manifest against this schema so datasets from different sensor arrays can be compared directly.",
+  "$ref": "#/$defs/SensorManifest",
+  "$defs": {
+    "RecordsMapping": {
+      "type": "object",
+      "properties": {
+        "sensorType": {
+          "description": "The `@disclosureos/records` SensorType this sensor maps to.",
+          "type": "string"
+        },
+        "detectionMethod": {
+          "description": "The `@disclosureos/records` DetectionMethod this sensor maps to.",
+          "type": "string"
+        },
+        "proposedSensorType": {
+          "description": "True = sensorType is not in the records enum yet and is proposed by the publisher.",
+          "type": "boolean"
+        },
+        "proposedDetectionMethod": {
+          "description": "True = detectionMethod is not in the records enum yet and is proposed by the publisher.",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SensorTiming": {
+      "type": "object",
+      "properties": {
+        "timeSource": {
+          "type": "string",
+          "enum": [
+            "atomic_clock",
+            "gps_disciplined",
+            "ntp",
+            "system",
+            "unknown"
+          ],
+          "description": "Clock source that timestamps the sensor’s data."
+        },
+        "timeUncertaintyNs": {
+          "description": "Timestamp uncertainty in nanoseconds. Null = not yet characterized.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "timeSource"
+      ],
+      "additionalProperties": false
+    },
+    "RawDataSpec": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "description": "Raw-data file format, e.g. \"NDJSON.gz\", \"WAV\", \"MJPEG\", \"FITS\", \"CSV\".",
+          "type": "string"
+        },
+        "locatorPattern": {
+          "description": "Storage key pattern or path convention for locating the raw files.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sampleRateHz": {
+          "description": "Sample rate in Hz, where applicable.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "bitDepth": {
+          "description": "Sample bit depth, where applicable.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "MeasurementUncertainty": {
+      "type": "object",
+      "properties": {
+        "u_c": {
+          "description": "Combined standard uncertainty.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "U": {
+          "description": "Expanded uncertainty (= k × u_c).",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "k": {
+          "description": "Coverage factor (2 ≈ 95% confidence level).",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "A",
+                "B"
+              ],
+              "description": "GUM uncertainty evaluation type: A (statistical) or B (other means)."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "Measurement": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Measured quantity, e.g. \"differential_pressure\"."
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1,
+          "description": "UCUM-style unit string, e.g. \"Pa\", \"dB\", \"uT\", \"ppm\", \"/min\"."
+        },
+        "uncertainty": {
+          "description": "GUM-style measurement uncertainty. Fields are nullable until an uncertainty budget exists — declaring \"unknown\" honestly is itself information.",
+          "$ref": "#/$defs/MeasurementUncertainty"
+        }
+      },
+      "required": [
+        "name",
+        "unit"
+      ],
+      "additionalProperties": false
+    },
+    "SensorCalibration": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "none",
+            "candidate_identified",
+            "in_practice",
+            "documented"
+          ],
+          "description": "Calibration maturity gradient: none = no calibration; candidate_identified = a reference is named but not used; in_practice = a real method is performed but not fully budgeted; documented = method + uncertainty budget published."
+        },
+        "calibrated": {
+          "description": "Coarse calibrated flag, mirroring `SensorReading.calibrated`. Null = undetermined.",
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currentMethod": {
+          "description": "What the operator actually does today. Null = no calibration currently performed.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "traceableReference": {
+          "description": "Traceable reference, in use or identified as a candidate (e.g. \"GPS/UTC\", \"USGS/INTERMAGNET\").",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "referenceInUse": {
+          "description": "True = the traceable reference is part of current practice. False = identified candidate only. Null = undetermined.",
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cadence": {
+          "description": "How often calibration is performed.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uncertaintyBudget": {
+          "description": "Published uncertainty budget, if any.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "description": "Open questions or method caveats.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "SensorEntry": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$",
+          "description": "Stable kebab-case id, unique within the manifest; addressable from a record via `SensorReading.sensorRef` (\"<org-slug>:<sensor-id>\")."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable sensor name."
+        },
+        "modality": {
+          "type": "string",
+          "enum": [
+            "audio",
+            "electro_optical",
+            "radio_frequency",
+            "quantum",
+            "environmental",
+            "biometric"
+          ],
+          "description": "Top-level sensing modality the sensor belongs to."
+        },
+        "manufacturerModel": {
+          "description": "Hardware class descriptor. Publishers MAY withhold specific make/model identities and publish spec-level class descriptors instead (e.g. \"dual GM-tube counter\" rather than a product name).",
+          "type": "string"
+        },
+        "inHouse": {
+          "description": "True if operator-built rather than off-the-shelf.",
+          "type": "boolean"
+        },
+        "compute": {
+          "description": "The compute unit this sensor is attached to, for platforms with several compute nodes.",
+          "type": "string"
+        },
+        "recordsMapping": {
+          "description": "How this sensor maps to the `SensorReading` vocabulary in `@disclosureos/records`. Values outside the records enums must carry the matching proposed* flag.",
+          "$ref": "#/$defs/RecordsMapping"
+        },
+        "timing": {
+          "description": "Timing provenance. Timestamp error of even a few seconds confounds multi-station correlation, so the clock source must be declared, not assumed.",
+          "$ref": "#/$defs/SensorTiming"
+        },
+        "rawData": {
+          "description": "Raw-data format and locator. Supports a metadata-first architecture: circulate manifests widely, pull raw data on demand.",
+          "$ref": "#/$defs/RawDataSpec"
+        },
+        "measurements": {
+          "type": "array",
+          "items": {
+            "description": "One measured quantity with its unit and uncertainty.",
+            "$ref": "#/$defs/Measurement"
+          }
+        },
+        "calibration": {
+          "description": "Calibration provenance. Deliberately separates what an operator actually does today from the reference it has identified; honest nulls are first-class, so calibration gaps stay visible and comparable across operators.",
+          "$ref": "#/$defs/SensorCalibration"
+        },
+        "specs": {
+          "description": "Free-form hardware specifications from the operator’s spec sheet (resolution, range, sensitivity, interface, …). Keys vary by modality.",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        },
+        "specSource": {
+          "description": "Provenance of the spec values.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "modality"
+      ],
+      "additionalProperties": false
+    },
+    "FutureUpgrade": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "modality": {
+          "type": "string",
+          "enum": [
+            "audio",
+            "electro_optical",
+            "radio_frequency",
+            "quantum",
+            "environmental",
+            "biometric"
+          ],
+          "description": "Top-level sensing modality the sensor belongs to."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "planned",
+            "evaluating",
+            "ordered",
+            "acquired"
+          ],
+          "description": "Acquisition status of a declared future hardware upgrade."
+        },
+        "specs": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        },
+        "link": {
+          "description": "Public product or reference page, where the publisher chooses to share one.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "modality"
+      ],
+      "additionalProperties": false
+    },
+    "SensorManifest": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Version of the sensor-manifest schema this instance targets (SemVer)."
+        },
+        "org": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Publishing organization, display form (e.g. \"ELDÆON\")."
+        },
+        "orgSlug": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$",
+          "description": "Stable lowercase slug for the publisher (e.g. \"eldaeon\"); the org half of a `sensorRef`."
+        },
+        "orgUrl": {
+          "description": "URL for the publishing organization.",
+          "type": "string"
+        },
+        "generatedAt": {
+          "description": "ISO date the manifest was generated.",
+          "type": "string"
+        },
+        "sensors": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "description": "One sensor: its class, spec, timing, raw-data locator, measurements, and calibration provenance.",
+            "$ref": "#/$defs/SensorEntry"
+          }
+        },
+        "futureUpgrades": {
+          "type": "array",
+          "items": {
+            "description": "Planned hardware declared ahead of deployment so data consumers can anticipate new streams. Not part of the live sensor array.",
+            "$ref": "#/$defs/FutureUpgrade"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "org",
+        "orgSlug",
+        "sensors"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

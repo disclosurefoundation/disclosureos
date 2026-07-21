@@ -20,6 +20,7 @@ documentation and schema host live at [os.disclosure.org](https://os.disclosure.
 | [`@disclosureos/records`](https://www.npmjs.com/package/@disclosureos/records) | The shared observation vocabulary: what was observed, when, where, and with what supporting record. |
 | [`@disclosureos/observables`](https://www.npmjs.com/package/@disclosureos/observables) | Technology and biologics observable assessments: what anomalous characteristics were reported or confirmed. |
 | [`@disclosureos/origins`](https://www.npmjs.com/package/@disclosureos/origins) | Origin Classification System taxonomy and reference mappings. |
+| [`@disclosureos/instruments`](https://www.npmjs.com/package/@disclosureos/instruments) | The UAP Sensor Manifest: per-sensor hardware specs, timing, and calibration provenance published by operating organizations. |
 | [`@disclosureos/schema`](https://www.npmjs.com/package/@disclosureos/schema) | The portable enriched Observation contract for TypeScript and JSON Schema. |
 | [`@disclosureos/scoring`](https://www.npmjs.com/package/@disclosureos/scoring) | Reference completeness and compellingness scoring. |
 | [`@disclosureos/cli`](https://www.npmjs.com/package/@disclosureos/cli) | Developer tools for scaffolding, validating, scoring, and inspecting observations. |
