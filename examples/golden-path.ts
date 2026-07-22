@@ -19,7 +19,7 @@ import { createSensorEntry, createSensorManifest, validateSensorManifest, format
 import { createObservableClaim } from '@disclosureos/observables';
 import { createOriginClaim } from '@disclosureos/origins';
 import { parseEnrichedObservation, type EnrichedObservation } from '@disclosureos/schema';
-import { getCompleteness, score } from '@disclosureos/scoring';
+import { getCompleteness, score, calibrationTrust } from '@disclosureos/scoring';
 
 // 0. Instruments — a published sensor manifest describing the hardware. The
 // manifest is a standalone document (published by the operating organization,
@@ -92,10 +92,19 @@ if (!parsed.success) {
 }
 
 // 5. Scoring — how complete is the record, and how compelling is the case?
+// `calibrationTrust` closes the instruments loop: claims backed by sensor
+// readings that resolve to manifest entries with real calibration provenance
+// earn extra weight in the consensus point (the SPY-1 is `documented`).
+// With a single evaluator per observable the consensus is unchanged — the
+// credit matters when instrument-backed and unbacked claims compete.
 const completeness = getCompleteness(observation);
 const compellingness = score(observation);
+const instrumentAware = score(observation, {
+  evaluatorWeight: calibrationTrust(observation, [navyManifest]),
+});
 
 console.log(`✅ ${observation.id} is valid (slots intact).`);
 console.log(`   instruments   : ${formatSensorManifest(navyManifest)} — cited via ${radar.sensorRef}`);
 console.log(`   completeness  : ${completeness.percentage}% (${completeness.requiredPercentage}% of required fields)`);
 console.log(`   compellingness: ${compellingness.score.toFixed(2)} (range ${compellingness.range.low.toFixed(2)}–${compellingness.range.high.toFixed(2)}, contested: ${compellingness.contested})`);
+console.log(`   with instrument trust: ${instrumentAware.score.toFixed(2)} (radar claims resolve to documented calibration; credit applies when claims compete)`);

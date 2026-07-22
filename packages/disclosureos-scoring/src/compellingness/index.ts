@@ -7,6 +7,9 @@ import type { OriginClaim } from '@disclosureos/origins';
 import '@disclosureos/observables';
 import '@disclosureos/origins';
 
+export { calibrationTrust, CALIBRATION_TRUST_WEIGHTS } from './calibration';
+export type { CalibrationTrustWeights, CalibrationTrustOptions } from './calibration';
+
 /** Methodology version stamped on every {@link ScoreResult}. Bump on weight/formula changes. */
 export const SCORING_VERSION = '2.0.0' as const;
 

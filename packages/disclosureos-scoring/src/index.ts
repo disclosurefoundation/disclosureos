@@ -25,5 +25,9 @@ export type {
   RankedObservation,
 } from './compellingness';
 
+// === Instrument trust (calibration provenance as a scoring input) ===
+export { calibrationTrust, CALIBRATION_TRUST_WEIGHTS } from './compellingness';
+export type { CalibrationTrustWeights, CalibrationTrustOptions } from './compellingness';
+
 // === JSON Schema artifact ===
 export { scoringJsonSchema, SCORING_SCHEMA_VERSION, SCORING_SCHEMA_ID } from './schema';

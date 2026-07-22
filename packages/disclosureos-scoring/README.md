@@ -33,8 +33,9 @@ package-owned pieces), **`@disclosureos/cli`** (tooling), and **`@disclosureos/e
 
 Unlike `observables` and `origins`, scoring **only consumes** the foundation — it
 reads `observableAssessments` and `origin` but adds no slot to `Observation`. It
-depends on `@disclosureos/records`, `@disclosureos/observables`, and
-`@disclosureos/origins`, so importing it gives you those slots typed automatically.
+depends on `@disclosureos/records`, `@disclosureos/observables`,
+`@disclosureos/origins`, and `@disclosureos/instruments`, so importing it gives
+you those slots typed automatically.
 
 > **See it end to end.** [`examples/golden-path.ts`](../../examples/golden-path.ts)
 > takes one observation through every layer — records → observables → origins → scoring,
@@ -67,6 +68,28 @@ const ranked = rankByCompellingness([obsA, obsB, obsC]); // most-compelling firs
 Because evaluative slots hold **arrays of competing claims**, `score()` reports a
 `range` (the spread across claims) and a `contested` flag when evaluators disagree —
 not just a single point estimate.
+
+## Instrument trust (calibration provenance)
+
+`calibrationTrust` turns published sensor manifests
+([`@disclosureos/instruments`](../disclosureos-instruments)) into a scoring
+input. It builds an `evaluatorWeight` policy that credits claims whose sensor
+evidence resolves — via `SensorReading.sensorRef` — to a manifest entry with
+real calibration provenance (`in_practice` / `documented` earn the most; see
+`CALIBRATION_TRUST_WEIGHTS`).
+
+```typescript
+import { score, calibrationTrust } from '@disclosureos/scoring';
+
+const result = score(observation, {
+  evaluatorWeight: calibrationTrust(observation, [navyManifest]),
+});
+```
+
+The default gradient is deliberately conservative: unresolved sensors keep the
+1.0 baseline (records that predate manifests are never penalized), and like
+every `evaluatorWeight` policy it shifts only the consensus point — `range` and
+`contested` still report the honest spread of what evaluators asserted.
 
 ## Subpath exports
 
