@@ -305,6 +305,9 @@ importers:
 
   packages/disclosureos-scoring:
     dependencies:
+      '@disclosureos/instruments':
+        specifier: workspace:*
+        version: link:../disclosureos-instruments
       '@disclosureos/observables':
         specifier: workspace:*
         version: link:../disclosureos-observables

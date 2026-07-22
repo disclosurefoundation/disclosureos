@@ -61,9 +61,10 @@
     "lint:publish": "publint --strict && attw --pack . --profile esm-only"
   },
   "dependencies": {
-    "@disclosureos/records": "workspace:*",
+    "@disclosureos/instruments": "workspace:*",
     "@disclosureos/observables": "workspace:*",
     "@disclosureos/origins": "workspace:*",
+    "@disclosureos/records": "workspace:*",
     "zod": "catalog:"
   },
   "devDependencies": {
