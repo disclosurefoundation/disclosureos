@@ -10,7 +10,6 @@ on:
       - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"
       - "package.json"
-      - "sensor-manifest/**"
   push:
     branches: [main]
     paths:
@@ -20,7 +19,6 @@ on:
       - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"
       - "package.json"
-      - "sensor-manifest/**"
 
 permissions:
   contents: read
@@ -106,17 +104,8 @@ jobs:
       - name: Run golden path
         run: pnpm --filter @disclosureos/examples golden-path
 
-  sensor-manifest:
-    name: Sensor manifest validation
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Build CLI
+        run: pnpm --filter "@disclosureos/cli..." build
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Validate manifests
-        run: node sensor-manifest/validate.mjs
+      - name: Validate sensor manifests
+        run: node packages/disclosureos-cli/dist/index.js manifest validate examples/manifests/eldaeon-sensors.json

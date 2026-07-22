@@ -1,0 +1,11 @@
+{
+  "$comment": "Community index of published sensor manifests (@disclosureos/instruments). Organizations host their own manifest and add an entry here via pull request. Validate with: disclosureos manifest validate <url-or-path>",
+  "schemaVersion": "1.0.0",
+  "organizations": [
+    {
+      "orgSlug": "eldaeon",
+      "org": "ELDÆON",
+      "manifestUrl": "https://raw.githubusercontent.com/disclosurefoundation/disclosureos/main/examples/manifests/eldaeon-sensors.json"
+    }
+  ]
+}

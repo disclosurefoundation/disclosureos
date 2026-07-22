@@ -1,6 +1,7 @@
 {
-  "schemaVersion": "0.1.0",
+  "schemaVersion": "1.0.0",
   "org": "ELDÆON",
+  "orgSlug": "eldaeon",
   "generatedAt": "2026-06-24",
   "sensors": [
     {
@@ -8,13 +9,8 @@
       "name": "Infrasonic Microphone",
       "modality": "audio",
       "manufacturerModel": "Barometric differential-pressure sensor",
-      "disclosureosMapping": {
-        "sensorType": "infrasonic_sensor",
-        "detectionMethod": "acoustic",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -42,7 +38,7 @@
         "referenceInUse": false,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": null
       },
       "specs": {
@@ -53,20 +49,19 @@
         "accuracy": "±0.25-1.5% of reading"
       },
       "specSource": "ELDÆON Dionysus spec sheet p2",
-      "compute": "platform-pi-5"
+      "compute": "platform-pi-5",
+      "recordsMapping": {
+        "sensorType": "infrasonic_sensor",
+        "detectionMethod": "acoustic"
+      }
     },
     {
       "id": "dionysus-ultrasonic-mic",
       "name": "Ultrasonic Microphone",
       "modality": "audio",
       "manufacturerModel": "AudioMoth (MEMS)",
-      "disclosureosMapping": {
-        "sensorType": "ultrasonic_sensor",
-        "detectionMethod": "acoustic",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -104,7 +99,7 @@
         "referenceInUse": null,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": "reference method needs fuller definition (source, level, frequency points)"
       },
       "specs": {
@@ -116,20 +111,19 @@
         "supports_external_mic": true
       },
       "specSource": "ELDÆON Dionysus spec sheet p2",
-      "compute": "platform-pi-5"
+      "compute": "platform-pi-5",
+      "recordsMapping": {
+        "sensorType": "ultrasonic_sensor",
+        "detectionMethod": "acoustic"
+      }
     },
     {
       "id": "dionysus-uv-camera",
       "name": "UV (Ultraviolet) Camera",
       "modality": "electro_optical",
       "manufacturerModel": "UVC CMOS module",
-      "disclosureosMapping": {
-        "sensorType": "eo_sensor",
-        "detectionMethod": "electro_optical",
-        "proposedSensorType": false
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -157,7 +151,7 @@
         "referenceInUse": true,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "in-practice",
+        "status": "in_practice",
         "notes": null
       },
       "specs": {
@@ -173,20 +167,19 @@
         "interface": "USB 2.0 UVC"
       },
       "specSource": "ELDÆON Dionysus spec sheet p2",
-      "compute": "platform-pi"
+      "compute": "platform-pi",
+      "recordsMapping": {
+        "sensorType": "eo_sensor",
+        "detectionMethod": "electro_optical"
+      }
     },
     {
       "id": "dionysus-ptz-camera",
       "name": "PTZ (Pan-Tilt-Zoom) Camera",
       "modality": "electro_optical",
       "manufacturerModel": "1/2.8\" STARVIS CMOS, 32x optical zoom",
-      "disclosureosMapping": {
-        "sensorType": "eo_sensor",
-        "detectionMethod": "electro_optical",
-        "proposedSensorType": false
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -214,7 +207,7 @@
         "referenceInUse": null,
         "cadence": "once (at install)",
         "uncertaintyBudget": null,
-        "status": "in-practice",
+        "status": "in_practice",
         "notes": "EO/IR radiometric/geometric reference still to be determined"
       },
       "specs": {
@@ -228,20 +221,19 @@
         "power": "PoE+"
       },
       "specSource": "ELDÆON Dionysus spec sheet p2",
-      "compute": "platform-pc"
+      "compute": "platform-pc",
+      "recordsMapping": {
+        "sensorType": "eo_sensor",
+        "detectionMethod": "electro_optical"
+      }
     },
     {
       "id": "dionysus-all-sky-camera",
       "name": "All Sky Camera",
       "modality": "electro_optical",
       "manufacturerModel": "1/1.7\" CMOS fisheye",
-      "disclosureosMapping": {
-        "sensorType": "eo_sensor",
-        "detectionMethod": "electro_optical",
-        "proposedSensorType": false
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -269,7 +261,7 @@
         "referenceInUse": null,
         "cadence": "once (at install)",
         "uncertaintyBudget": null,
-        "status": "in-practice",
+        "status": "in_practice",
         "notes": null
       },
       "specs": {
@@ -279,20 +271,19 @@
         "low_light_lux": "0.01 color / 0.001 b/w"
       },
       "specSource": "ELDÆON Dionysus spec sheet p2",
-      "compute": "platform-pc"
+      "compute": "platform-pc",
+      "recordsMapping": {
+        "sensorType": "eo_sensor",
+        "detectionMethod": "electro_optical"
+      }
     },
     {
       "id": "dionysus-thermal-a",
       "name": "Thermal Camera A",
       "modality": "electro_optical",
       "manufacturerModel": "Uncooled VOx microbolometer",
-      "disclosureosMapping": {
-        "sensorType": "flir",
-        "detectionMethod": "infrared_flir",
-        "proposedSensorType": false
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -320,7 +311,7 @@
         "referenceInUse": false,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": "a practical field reference for thermal cameras is an open question; blackbody source identified as candidate"
       },
       "specs": {
@@ -333,20 +324,19 @@
         "spectral_band_um": "7.5-14"
       },
       "specSource": "ELDÆON Dionysus spec sheet p2",
-      "compute": "platform-pi"
+      "compute": "platform-pi",
+      "recordsMapping": {
+        "sensorType": "flir",
+        "detectionMethod": "infrared_flir"
+      }
     },
     {
       "id": "dionysus-thermal-b",
       "name": "Thermal Camera B (high-res companion)",
       "modality": "electro_optical",
       "manufacturerModel": "Uncooled VOx microbolometer",
-      "disclosureosMapping": {
-        "sensorType": "flir",
-        "detectionMethod": "infrared_flir",
-        "proposedSensorType": false
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -374,7 +364,7 @@
         "referenceInUse": false,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": "a practical field reference for thermal cameras is an open question; blackbody source identified as candidate"
       },
       "specs": {
@@ -386,20 +376,19 @@
         "deployment_status": null
       },
       "specSource": "ELDÆON Dionysus spec sheet p2",
-      "compute": "platform-pi"
+      "compute": "platform-pi",
+      "recordsMapping": {
+        "sensorType": "flir",
+        "detectionMethod": "infrared_flir"
+      }
     },
     {
       "id": "dionysus-digital-nv-camera",
       "name": "Digital Night Vision Camera",
       "modality": "electro_optical",
       "manufacturerModel": "Full-color starlight sensor",
-      "disclosureosMapping": {
-        "sensorType": "eo_sensor",
-        "detectionMethod": "electro_optical",
-        "proposedSensorType": false
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -435,20 +424,19 @@
         "mode": "full-color digital starlight",
         "deployment_status": null
       },
-      "specSource": "ELDÆON Dionysus spec sheet p2"
+      "specSource": "ELDÆON Dionysus spec sheet p2",
+      "recordsMapping": {
+        "sensorType": "eo_sensor",
+        "detectionMethod": "electro_optical"
+      }
     },
     {
       "id": "dionysus-sdr-adsb",
       "name": "SDR — ADS-B Receiver",
       "modality": "radio_frequency",
       "manufacturerModel": "1-channel SDR (1090 MHz)",
-      "disclosureosMapping": {
-        "sensorType": "adsb_receiver",
-        "detectionMethod": "radio_frequency",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -486,7 +474,7 @@
         "referenceInUse": null,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": null
       },
       "specs": {
@@ -498,20 +486,19 @@
         "power_w": 0.5
       },
       "specSource": "ELDÆON Dionysus spec sheet p2",
-      "compute": "platform-jetson"
+      "compute": "platform-jetson",
+      "recordsMapping": {
+        "sensorType": "adsb_receiver",
+        "detectionMethod": "radio_frequency"
+      }
     },
     {
       "id": "dionysus-sdr-spectrum",
       "name": "SDR — Spectrum Analyzer",
       "modality": "radio_frequency",
       "manufacturerModel": "Wideband SDR (1 MHz - 6 GHz)",
-      "disclosureosMapping": {
-        "sensorType": "rf_spectrum_analyzer",
-        "detectionMethod": "radio_frequency",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -549,7 +536,7 @@
         "referenceInUse": false,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": null
       },
       "specs": {
@@ -563,20 +550,19 @@
         "units_note": "stored spectrum fields are absolute dBm"
       },
       "specSource": "ELDÆON Dionysus spec sheet p2 + live S3 rf_spectrum",
-      "compute": "platform-pi"
+      "compute": "platform-pi",
+      "recordsMapping": {
+        "sensorType": "rf_spectrum_analyzer",
+        "detectionMethod": "radio_frequency"
+      }
     },
     {
       "id": "dionysus-passive-radar",
       "name": "Passive Radar (bistatic SDR)",
       "modality": "radio_frequency",
       "manufacturerModel": "2-channel coherent SDR receiver (reference + surveillance antennas)",
-      "disclosureosMapping": {
-        "sensorType": "passive_radar",
-        "detectionMethod": "radio_frequency",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -624,7 +610,7 @@
         "referenceInUse": true,
         "cadence": "continuous",
         "uncertaintyBudget": null,
-        "status": "in-practice",
+        "status": "in_practice",
         "notes": null
       },
       "specs": {
@@ -638,21 +624,19 @@
         "data_release": "instrument description, delay-Doppler maps, and detections are publishable; raw signal data excluded from public data drops pending export-control review"
       },
       "specSource": "ELDÆON passive radar deployment (public eldaeonuap/blah2 + eldaeonuap/adsb2dd forks)",
-      "compute": "platform-jetson"
+      "compute": "platform-jetson",
+      "recordsMapping": {
+        "sensorType": "passive_radar",
+        "detectionMethod": "radio_frequency"
+      }
     },
     {
       "id": "dionysus-muon-detector",
       "name": "Cosmic-Ray Muon Detector",
       "modality": "quantum",
       "manufacturerModel": "2-channel scintillator + coincidence",
-      "disclosureosMapping": {
-        "sensorType": "cosmic_ray_muon",
-        "detectionMethod": "particle_scintillator",
-        "proposedSensorType": true,
-        "proposedDetectionMethod": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -690,7 +674,7 @@
         "referenceInUse": false,
         "cadence": "factory (once)",
         "uncertaintyBudget": null,
-        "status": "in-practice",
+        "status": "in_practice",
         "notes": "sea-level flux comparison identified as a candidate ongoing check"
       },
       "specs": {
@@ -700,21 +684,19 @@
         "telemetry": "temperature_c, pressure_hpa"
       },
       "specSource": "ELDÆON Dionysus spec sheet p2 + live S3 muon",
-      "compute": "platform-pi-5"
+      "compute": "platform-pi-5",
+      "recordsMapping": {
+        "sensorType": "particle_detector",
+        "detectionMethod": "particle"
+      }
     },
     {
       "id": "dionysus-atomic-clocks",
       "name": "Paired Rubidium Atomic Clocks",
       "modality": "quantum",
       "manufacturerModel": "GPS-disciplined Rubidium oscillator (pair)",
-      "disclosureosMapping": {
-        "sensorType": "atomic_clock",
-        "detectionMethod": "time_reference",
-        "proposedSensorType": true,
-        "proposedDetectionMethod": true
-      },
       "timing": {
-        "timeSource": "atomic-clock",
+        "timeSource": "atomic_clock",
         "timeUncertaintyNs": 1
       },
       "rawData": {
@@ -742,7 +724,7 @@
         "referenceInUse": true,
         "cadence": "continuous",
         "uncertaintyBudget": null,
-        "status": "in-practice",
+        "status": "in_practice",
         "notes": null
       },
       "specs": {
@@ -751,21 +733,19 @@
         "discipline": "GPS",
         "deployment_status": null
       },
-      "specSource": "ELDÆON Dionysus spec sheet p2"
+      "specSource": "ELDÆON Dionysus spec sheet p2",
+      "recordsMapping": {
+        "sensorType": "atomic_clock",
+        "detectionMethod": "time_reference"
+      }
     },
     {
       "id": "dionysus-gps",
       "name": "GPS / GNSS Receiver",
       "modality": "environmental",
       "manufacturerModel": "Multi-constellation GNSS module",
-      "disclosureosMapping": {
-        "sensorType": "gnss_receiver",
-        "detectionMethod": "gnss",
-        "proposedSensorType": true,
-        "proposedDetectionMethod": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": 30
       },
       "rawData": {
@@ -827,20 +807,19 @@
         "interface": "UART/I2C/USB"
       },
       "specSource": "ELDÆON Dionysus spec sheet p3 + live S3 gps",
-      "compute": "platform-pi"
+      "compute": "platform-pi",
+      "recordsMapping": {
+        "sensorType": "gnss_receiver",
+        "detectionMethod": "gnss"
+      }
     },
     {
       "id": "dionysus-fluxgate-magnetometer",
       "name": "Fluxgate Magnetometer (3-axis)",
       "modality": "environmental",
       "manufacturerModel": "3-axis fluxgate magnetometer",
-      "disclosureosMapping": {
-        "sensorType": "fluxgate_magnetometer",
-        "detectionMethod": "magnetometer",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -868,7 +847,7 @@
         "referenceInUse": false,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": "comparison dataset must match deployment location"
       },
       "specs": {
@@ -878,20 +857,19 @@
         "output_rate_hz": 1
       },
       "specSource": "ELDÆON Dionysus spec sheet p3",
-      "compute": "platform-pi-5"
+      "compute": "platform-pi-5",
+      "recordsMapping": {
+        "sensorType": "fluxgate_magnetometer",
+        "detectionMethod": "magnetometer"
+      }
     },
     {
       "id": "dionysus-emf-meter",
       "name": "EMF (Electro-Magnetic Field) Meter",
       "modality": "environmental",
       "manufacturerModel": "Broadband EMF/RF meter",
-      "disclosureosMapping": {
-        "sensorType": "electromagnetic_sensor",
-        "detectionMethod": "electromagnetic",
-        "proposedSensorType": false
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -929,27 +907,26 @@
         "referenceInUse": false,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": "no known-emitter check currently available; approach to be explored"
       },
       "specs": {
         "outputs": "magnetic field (uT), RF power density (uW/cm2)"
       },
       "specSource": "ELDÆON Dionysus spec sheet p3",
-      "compute": "platform-pi"
+      "compute": "platform-pi",
+      "recordsMapping": {
+        "sensorType": "electromagnetic_sensor",
+        "detectionMethod": "electromagnetic"
+      }
     },
     {
       "id": "dionysus-geiger",
       "name": "Geiger Counter",
       "modality": "environmental",
       "manufacturerModel": "Dual GM-tube counter (high-sensitivity + low-sensitivity tubes)",
-      "disclosureosMapping": {
-        "sensorType": "radiation_sensor",
-        "detectionMethod": "radiation_detector",
-        "proposedSensorType": false
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -987,7 +964,7 @@
         "referenceInUse": false,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "in-practice",
+        "status": "in_practice",
         "notes": null
       },
       "specs": {
@@ -995,20 +972,19 @@
         "channels": "high-sensitivity / low-sensitivity tubes (cpm_h / cpm_l)"
       },
       "specSource": "ELDÆON Dionysus spec sheet p3",
-      "compute": "platform-pi"
+      "compute": "platform-pi",
+      "recordsMapping": {
+        "sensorType": "radiation_sensor",
+        "detectionMethod": "radiation_detector"
+      }
     },
     {
       "id": "dionysus-gas-meter",
       "name": "Gas Meter (VOC / eCO₂)",
       "modality": "environmental",
       "manufacturerModel": "MOX gas sensor",
-      "disclosureosMapping": {
-        "sensorType": "air_quality_gas",
-        "detectionMethod": "other",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -1054,20 +1030,19 @@
         "outputs": "eCO2, TVOC"
       },
       "specSource": "ELDÆON Dionysus spec sheet p3",
-      "compute": "platform-pi-5"
+      "compute": "platform-pi-5",
+      "recordsMapping": {
+        "sensorType": "air_quality_sensor",
+        "detectionMethod": "other"
+      }
     },
     {
       "id": "dionysus-co2-temp",
       "name": "CO₂ / Temperature Meter",
       "modality": "environmental",
       "manufacturerModel": "Photoacoustic NDIR CO2 sensor",
-      "disclosureosMapping": {
-        "sensorType": "air_quality_co2",
-        "detectionMethod": "other",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -1115,7 +1090,7 @@
         "referenceInUse": false,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": null
       },
       "specs": {
@@ -1124,20 +1099,19 @@
         "co2_accuracy": "±(50 ppm + 5%)"
       },
       "specSource": "ELDÆON Dionysus spec sheet p3",
-      "compute": "platform-pi-5"
+      "compute": "platform-pi-5",
+      "recordsMapping": {
+        "sensorType": "air_quality_sensor",
+        "detectionMethod": "other"
+      }
     },
     {
       "id": "dionysus-particulate",
       "name": "Particulate Meter (PM)",
       "modality": "environmental",
       "manufacturerModel": "Laser-scattering particulate sensor",
-      "disclosureosMapping": {
-        "sensorType": "air_quality_particulate",
-        "detectionMethod": "other",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -1165,7 +1139,7 @@
         "referenceInUse": false,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": null
       },
       "specs": {
@@ -1173,20 +1147,19 @@
         "channels": "PM1.0 / PM2.5 / PM10"
       },
       "specSource": "ELDÆON Dionysus spec sheet p3",
-      "compute": "platform-pi-5"
+      "compute": "platform-pi-5",
+      "recordsMapping": {
+        "sensorType": "air_quality_sensor",
+        "detectionMethod": "other"
+      }
     },
     {
       "id": "dionysus-humidity-baro",
       "name": "Humidity / Barometric Pressure Meter",
       "modality": "environmental",
       "manufacturerModel": "MEMS environmental sensor (pressure/humidity/temperature)",
-      "disclosureosMapping": {
-        "sensorType": "environmental_baro",
-        "detectionMethod": "other",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -1224,7 +1197,7 @@
         "referenceInUse": false,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": null
       },
       "specs": {
@@ -1233,20 +1206,19 @@
         "temp_range_c": "-40 to 85"
       },
       "specSource": "ELDÆON Dionysus spec sheet p3",
-      "compute": "platform-pi-5"
+      "compute": "platform-pi-5",
+      "recordsMapping": {
+        "sensorType": "barometer",
+        "detectionMethod": "other"
+      }
     },
     {
       "id": "dionysus-lightning",
       "name": "Lightning Detector",
       "modality": "environmental",
       "manufacturerModel": "Lightning transient detector IC",
-      "disclosureosMapping": {
-        "sensorType": "lightning_detector",
-        "detectionMethod": "other",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -1274,7 +1246,7 @@
         "referenceInUse": false,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": null
       },
       "specs": {
@@ -1282,20 +1254,19 @@
         "range_error": "±20% typical"
       },
       "specSource": "ELDÆON Dionysus spec sheet p3",
-      "compute": "platform-pi-5"
+      "compute": "platform-pi-5",
+      "recordsMapping": {
+        "sensorType": "lightning_detector",
+        "detectionMethod": "other"
+      }
     },
     {
       "id": "dionysus-gyro-accel",
       "name": "Gyroscope / Accelerometer (IMU)",
       "modality": "environmental",
       "manufacturerModel": "9-axis MEMS IMU (gyroscope + accelerometer + magnetometer)",
-      "disclosureosMapping": {
-        "sensorType": "imu",
-        "detectionMethod": "other",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -1333,7 +1304,7 @@
         "referenceInUse": false,
         "cadence": "once (at install)",
         "uncertaintyBudget": null,
-        "status": "in-practice",
+        "status": "in_practice",
         "notes": null
       },
       "specs": {
@@ -1344,20 +1315,19 @@
         "interface": "I2C/SPI"
       },
       "specSource": "ELDÆON Dionysus spec sheet p3",
-      "compute": "platform-pi-5"
+      "compute": "platform-pi-5",
+      "recordsMapping": {
+        "sensorType": "imu",
+        "detectionMethod": "other"
+      }
     },
     {
       "id": "dionysus-eeg",
       "name": "EEG (Electroencephalogram)",
       "modality": "biometric",
       "manufacturerModel": "32-channel EEG ADC (24-bit)",
-      "disclosureosMapping": {
-        "sensorType": "eeg",
-        "detectionMethod": "other",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -1385,7 +1355,7 @@
         "referenceInUse": null,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "candidate-identified",
+        "status": "candidate_identified",
         "notes": null
       },
       "specs": {
@@ -1398,20 +1368,19 @@
         "deployment_status": "not yet integrated"
       },
       "specSource": "ELDÆON Dionysus spec sheet p4",
-      "compute": "platform-pc"
+      "compute": "platform-pc",
+      "recordsMapping": {
+        "sensorType": "eeg",
+        "detectionMethod": "other"
+      }
     },
     {
       "id": "dionysus-gsr",
       "name": "GSR (Galvanic Skin Response)",
       "modality": "biometric",
       "manufacturerModel": "Skin-resistance sensor",
-      "disclosureosMapping": {
-        "sensorType": "gsr",
-        "detectionMethod": "other",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -1449,20 +1418,19 @@
         "deployment_status": "not yet integrated"
       },
       "specSource": "ELDÆON Dionysus spec sheet p4",
-      "compute": "platform-pc"
+      "compute": "platform-pc",
+      "recordsMapping": {
+        "sensorType": "gsr",
+        "detectionMethod": "other"
+      }
     },
     {
       "id": "dionysus-pulse-ox",
       "name": "Pulse Oximeter / Heart Rate Meter",
       "modality": "biometric",
       "manufacturerModel": "Reflective optical SpO₂/HR (Red 660 / IR 880 nm)",
-      "disclosureosMapping": {
-        "sensorType": "pulse_oximeter",
-        "detectionMethod": "other",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -1511,20 +1479,19 @@
         "deployment_status": "not yet integrated"
       },
       "specSource": "ELDÆON Dionysus spec sheet p4",
-      "compute": "platform-pc"
+      "compute": "platform-pc",
+      "recordsMapping": {
+        "sensorType": "pulse_oximeter",
+        "detectionMethod": "other"
+      }
     },
     {
       "id": "dionysus-trng",
       "name": "TRNG (True Random Number Generator)",
       "modality": "biometric",
       "manufacturerModel": "Dual-channel shielded hardware noise TRNG",
-      "disclosureosMapping": {
-        "sensorType": "biometric_rng",
-        "detectionMethod": "other",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -1562,7 +1529,7 @@
         "referenceInUse": true,
         "cadence": null,
         "uncertaintyBudget": null,
-        "status": "in-practice",
+        "status": "in_practice",
         "notes": null
       },
       "specs": {
@@ -1574,20 +1541,19 @@
         "tests": "Dieharder, ENT, NIST"
       },
       "specSource": "ELDÆON Dionysus spec sheet p4 + live S3 biometric",
-      "compute": "platform-pc"
+      "compute": "platform-pc",
+      "recordsMapping": {
+        "sensorType": "hardware_rng",
+        "detectionMethod": "other"
+      }
     },
     {
       "id": "dionysus-pupillometer",
       "name": "Pupillometer",
       "modality": "biometric",
       "manufacturerModel": "IR camera w/ 850 nm emitters (dual-eye)",
-      "disclosureosMapping": {
-        "sensorType": "pupillometer",
-        "detectionMethod": "electro_optical",
-        "proposedSensorType": true
-      },
       "timing": {
-        "timeSource": "gps-disciplined",
+        "timeSource": "gps_disciplined",
         "timeUncertaintyNs": null
       },
       "rawData": {
@@ -1627,7 +1593,11 @@
         "deployment_status": "not yet integrated"
       },
       "specSource": "ELDÆON Dionysus spec sheet p4",
-      "compute": "platform-pc"
+      "compute": "platform-pc",
+      "recordsMapping": {
+        "sensorType": "pupillometer",
+        "detectionMethod": "electro_optical"
+      }
     }
   ],
   "futureUpgrades": [
