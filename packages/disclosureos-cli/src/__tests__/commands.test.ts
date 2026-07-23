@@ -118,6 +118,48 @@ describe('validate command', () => {
     expect(output).toContain('All 1 file(s) valid (1 warning)');
   });
 
+  it('warns when a sensor reading carries a malformed sensorRef', () => {
+    const dir = createTempDir();
+    const file = join(dir, 'malformed-sensor-ref.json');
+    const observation = JSON.parse(getTemplate('observation')) as Record<string, unknown>;
+    observation['sensorEvidence'] = {
+      sensors: [
+        {
+          id: 'radar-01',
+          sensorType: 'ground_radar',
+          detectionMethod: 'radar_primary',
+          sensorRef: 'Not A Valid Ref',
+        },
+      ],
+    };
+    writeFileSync(file, JSON.stringify(observation, null, 2));
+
+    const output = captureLog(() => validate(validateArgs(file)));
+    expect(output).toContain('malformed sensor ref "Not A Valid Ref"');
+    expect(output).toContain('All 1 file(s) valid (1 warning)');
+  });
+
+  it('accepts a well-formed sensorRef without warning', () => {
+    const dir = createTempDir();
+    const file = join(dir, 'valid-sensor-ref.json');
+    const observation = JSON.parse(getTemplate('observation')) as Record<string, unknown>;
+    observation['sensorEvidence'] = {
+      sensors: [
+        {
+          id: 'radar-01',
+          sensorType: 'ground_radar',
+          detectionMethod: 'radar_primary',
+          sensorRef: 'eldaeon:dionysus-passive-radar',
+        },
+      ],
+    };
+    writeFileSync(file, JSON.stringify(observation, null, 2));
+
+    const output = captureLog(() => validate(validateArgs(file)));
+    expect(output).toContain('All 1 file(s) valid');
+    expect(output).not.toContain('malformed sensor ref');
+  });
+
   it('outputs structured JSON with --json flag for a valid file', () => {
     const dir = createTempDir();
     const file = join(dir, 'observation.json');
