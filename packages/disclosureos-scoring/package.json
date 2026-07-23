@@ -1,6 +1,6 @@
 {
   "name": "@disclosureos/scoring",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Reference scoring for the DisclosureOS ecosystem — record completeness and case compellingness across the Observables and Origin layers",
   "license": "MIT",
   "repository": {

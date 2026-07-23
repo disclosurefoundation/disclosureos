@@ -1,6 +1,6 @@
 {
   "name": "@disclosureos/instruments",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "UAP Sensor Manifest — per-sensor specification standard for detection hardware in the DisclosureOS ecosystem",
   "license": "MIT",
   "repository": {

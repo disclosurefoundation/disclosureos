@@ -1,6 +1,6 @@
 {
   "name": "@disclosureos/observables",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Anomaly detection criteria for the DisclosureOS ecosystem — Technology and Biologics observable frameworks",
   "license": "MIT",
   "repository": {
