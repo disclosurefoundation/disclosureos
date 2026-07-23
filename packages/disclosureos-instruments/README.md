@@ -11,6 +11,23 @@ different organizations are comparable, replicable, and verifiable.
 Proposed by [ELDÆON](https://github.com/disclosurefoundation/disclosureos/pull/5)
 and promoted into the framework as a foundation package.
 
+DisclosureOS is a **six-part standard**. Each part answers one question about an
+observation; `@disclosureos/schema` binds the package-owned pieces into one portable
+contract (a single TS type + JSON Schema + non-stripping parse).
+
+| Part | Package surface | Question it answers |
+|---|---|---|
+| **Records** | `@disclosureos/records` | *What was observed?* |
+| **Observables** | `@disclosureos/observables` | *What anomalous characteristics did it show?* |
+| **Origins** | `@disclosureos/origins` | *What might explain it?* |
+| **Claims** | `@disclosureos/records/shared` | *Who assessed it, why, and on what evidence?* |
+| **Scoring** | `@disclosureos/scoring` | *How complete / compelling is the case?* |
+| **Instruments** | `@disclosureos/instruments` | *What hardware produced the data?* |
+
+Supporting packages: **`@disclosureos/schema`** (the portable contract that composes the
+package-owned pieces), **`@disclosureos/cli`** (tooling), and
+**`@disclosureos/examples`** (the runnable golden path). *(You are here: **Instruments**.)*
+
 > **See it end to end.** [`examples/golden-path.ts`](../../examples/golden-path.ts)
 > takes one observation through every part — including a sensor manifest cited via
 > `SensorReading.sensorRef` — in a single type-checked file. Run it with

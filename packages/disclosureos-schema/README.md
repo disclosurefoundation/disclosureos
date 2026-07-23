@@ -9,7 +9,7 @@ The **portable contract** for DisclosureOS. It composes the slot-bearing package
 (the `origin` slot) — into one **enriched `Observation`** that means the same thing
 in TypeScript, JSON Schema, and any other language.
 
-DisclosureOS is a **five-part standard** (records → observables → origins → claims → scoring).
+DisclosureOS is a **six-part standard** (records → observables → origins → claims → scoring → instruments).
 `schema` is the contract that *binds* records and the package-owned slots into one
 portable artifact. It is a supporting package, not another part of the standard. (Scoring
 consumes the enriched record, so it is not part of the composed schema.)

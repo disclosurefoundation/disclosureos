@@ -6,7 +6,7 @@ Structured vocabulary for describing UAP observations — the **data dictionary*
 the [DisclosureOS](https://github.com/disclosurefoundation) ecosystem. Its primary
 type, `Observation`, is the core unit every other package builds on.
 
-DisclosureOS is a **five-part standard**. Each part answers one question about an
+DisclosureOS is a **six-part standard**. Each part answers one question about an
 observation; `@disclosureos/schema` binds the package-owned pieces into one portable
 contract (a single TS type + JSON Schema + non-stripping parse).
 
@@ -17,6 +17,7 @@ contract (a single TS type + JSON Schema + non-stripping parse).
 | **Origins** | `@disclosureos/origins` | *What might explain it?* |
 | **Claims** | `@disclosureos/records/shared` | *Who assessed it, why, and on what evidence?* |
 | **Scoring** | `@disclosureos/scoring` | *How complete / compelling is the case?* |
+| **Instruments** | `@disclosureos/instruments` | *What hardware produced the data?* |
 
 Supporting packages: **`@disclosureos/schema`** (the portable contract that composes the
 package-owned pieces), **`@disclosureos/cli`** (tooling), and

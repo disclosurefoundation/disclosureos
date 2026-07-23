@@ -2,7 +2,7 @@ import type { ParsedArgs } from '../utils/args';
 import { readJSON, findJSONFiles } from '../utils/fs';
 import { heading, success, error, warn, dim, label, BRAND } from '../output/format';
 import type { ValidationIssue } from '@disclosureos/records';
-import { parseEvidenceRef } from '@disclosureos/records/shared';
+import { parseEvidenceRef, isSensorRef } from '@disclosureos/records/shared';
 import { parseEnrichedObservation } from '@disclosureos/schema';
 
 /** Structured result for a single file, emitted in --json mode. */
@@ -151,7 +151,7 @@ function validateFileStructured(filePath: string, strict: boolean): FileResult {
   const obs = data as Record<string, unknown>;
   const structuralErrors = parseEnrichedObservation(obs).issues;
   const semanticErrors = validateSemantics(obs);
-  const warnings = [...validateEvidenceRefs(obs), ...(strict ? validateStrict(obs) : [])];
+  const warnings = [...validateEvidenceRefs(obs), ...validateSensorRefs(obs), ...(strict ? validateStrict(obs) : [])];
   const allErrors = [...structuralErrors, ...semanticErrors];
 
   return {
@@ -179,7 +179,7 @@ function validateFile(filePath: string, strict: boolean): { errors: number; warn
   const obs = data as Record<string, unknown>;
   const structuralErrors = parseEnrichedObservation(obs).issues;
   const semanticErrors = validateSemantics(obs);
-  const warnings = [...validateEvidenceRefs(obs), ...(strict ? validateStrict(obs) : [])];
+  const warnings = [...validateEvidenceRefs(obs), ...validateSensorRefs(obs), ...(strict ? validateStrict(obs) : [])];
 
   const allErrors = [...structuralErrors, ...semanticErrors];
 
@@ -299,6 +299,35 @@ function validateEvidenceRefs(obs: Record<string, unknown>): ValidationIssue[] {
   return warnings;
 }
 
+/**
+ * Warn on `sensorRef` values that do not match the `<org-slug>:<sensor-id>`
+ * convention. Refs point at externally published sensor manifests
+ * (`@disclosureos/instruments`), so resolution is out of scope here — but a
+ * malformed ref can never resolve anywhere, which is worth surfacing.
+ */
+function validateSensorRefs(obs: Record<string, unknown>): ValidationIssue[] {
+  const warnings: ValidationIssue[] = [];
+  const sensorEvidence = obs['sensorEvidence'];
+  if (!sensorEvidence || typeof sensorEvidence !== 'object') return warnings;
+
+  const sensors = (sensorEvidence as Record<string, unknown>)['sensors'];
+  if (!Array.isArray(sensors)) return warnings;
+
+  sensors.forEach((sensor, i) => {
+    if (!sensor || typeof sensor !== 'object') return;
+    const ref = (sensor as Record<string, unknown>)['sensorRef'];
+    if (ref === undefined) return;
+    if (typeof ref !== 'string' || !isSensorRef(ref)) {
+      warnings.push({
+        path: `sensorEvidence.sensors[${i}].sensorRef`,
+        message: `malformed sensor ref ${JSON.stringify(ref)} (expected "<org-slug>:<sensor-id>", e.g. "eldaeon:dionysus-passive-radar")`,
+      });
+    }
+  });
+
+  return warnings;
+}
+
 function validateStrict(obs: Record<string, unknown>): ValidationIssue[] {
   const warnings: ValidationIssue[] = [];
   const recommended = ['summary', 'description', 'objectCharacteristics', 'sourceData', 'witnesses'];
@@ -357,6 +386,7 @@ function printUsage(): void {
   console.log(`  • OCS node IDs in origin classifications (if present)`);
   console.log(`  • Unknown top-level keys rejected (third-party data belongs under "extensions")`);
   console.log(`  • Evidence refs on claims resolve to in-record evidence (warns on dangling)`);
+  console.log(`  • Sensor refs follow the "<org-slug>:<sensor-id>" manifest convention (warns on malformed)`);
   console.log(`  • Semantic sanity (non-negative duration, speed, counts)\n`);
   console.log(`${dim('Examples:')}`);
   console.log(`  disclosureos validate ./data/nimitz.json`);
