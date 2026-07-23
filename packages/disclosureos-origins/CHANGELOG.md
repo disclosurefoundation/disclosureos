@@ -4,11 +4,19 @@ All notable changes to `@disclosureos/origins` are documented here. The format i
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [e6ff99c]
+  - @disclosureos/records@1.1.0
+
 ## 1.0.0
 
 Initial public release — the Origins layer.
 
 ### Added
+
 - The Origin Classification System (OCS) taxonomy across the Physical, Psychosocial,
   and Metaphysical domains, with traversal utilities (`getNode`, …).
 - `OriginClaim` + `createOriginClaim`; the `origin` slot is an array of competing
