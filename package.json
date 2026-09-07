@@ -25,7 +25,9 @@
     "test:v2-primitives": "node --test conformance/v2-primitives.test.mjs",
     "emit:v2-primitives": "node conformance/emit-v2-primitives.mjs",
     "emit:v2-observation": "node conformance/emit-observation.mjs",
-    "test:v2-observation": "node --test conformance/observation-contract.test.mjs"
+    "test:v2-observation": "node --test conformance/observation-contract.test.mjs",
+    "emit:v2-claims": "node conformance/emit-claim-history.mjs",
+    "test:v2-claims": "node --test conformance/claim-history.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

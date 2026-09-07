@@ -21,3 +21,13 @@ export type {
 } from './observation-schema';
 export { parseExperimentalObservation } from './observation';
 export type { ObservationIssueCode, ObservationIssue, ObservationChecks, ObservationParseResult } from './observation';
+export {
+  ClaimSubjectSchema, SourceStatementSchema, UnassessedClaimSchema, AssessedClaimSchema, HistoricalClaimSchema,
+  ExperimentalClaimHistorySchema, EXPERIMENTAL_CLAIM_HISTORY_SCHEMA_ID, CLAIM_HISTORY_RULESET_VERSION,
+  experimentalClaimHistoryJsonSchema,
+} from './claim-history-schema';
+export type {
+  ClaimSubject, SourceStatement, UnassessedClaim, AssessedClaim, HistoricalClaim, ExperimentalClaimHistory,
+} from './claim-history-schema';
+export { parseExperimentalClaimHistory } from './claim-history';
+export type { ClaimHistoryIssueCode, ClaimHistoryIssue, ClaimHistoryValidation, ClaimHistoryParseResult } from './claim-history';

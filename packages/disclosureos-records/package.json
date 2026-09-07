@@ -114,7 +114,9 @@
     "./experimental/v2/schema/0.1.0": "./schema/experimental/v2-primitives.schema.json",
     "./experimental/v2/schema/0.2.0": "./schema/experimental/v2-primitives-0.2.0.schema.json",
     "./experimental/v2/observation/schema": "./schema/experimental/observation-0.1.0.schema.json",
-    "./experimental/v2/observation/schema/0.1.0": "./schema/experimental/observation-0.1.0.schema.json"
+    "./experimental/v2/observation/schema/0.1.0": "./schema/experimental/observation-0.1.0.schema.json",
+    "./experimental/v2/claims/schema": "./schema/experimental/claim-history-0.1.0.schema.json",
+    "./experimental/v2/claims/schema/0.1.0": "./schema/experimental/claim-history-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

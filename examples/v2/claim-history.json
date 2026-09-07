@@ -1,0 +1,419 @@
+{
+  "kind": "claim_history",
+  "schemaVersion": "0.1.0",
+  "id": "synthetic-history",
+  "observation": {
+    "kind": "observation",
+    "schemaVersion": "0.1.0",
+    "id": "synthetic",
+    "status": "draft",
+    "createdAt": "2026-09-07T12:00:00Z",
+    "updatedAt": "2026-09-07T12:00:00Z",
+    "eventTime": {
+      "state": "approximate",
+      "value": {
+        "kind": "interval",
+        "start": {
+          "kind": "instant",
+          "value": "2026-01-01T00:00:00.000001Z",
+          "timeScale": "UTC"
+        },
+        "end": {
+          "kind": "instant",
+          "value": "2026-01-01T00:02:00.000001Z",
+          "timeScale": "UTC"
+        }
+      },
+      "precision": "Bounded source estimate; exact fractional strings retained",
+      "sourceRefs": [
+        "assertion:time-a"
+      ],
+      "uncertainty": {
+        "kind": "standard",
+        "magnitude": 1,
+        "unit": "us",
+        "sourceRefs": [
+          "source:s1"
+        ]
+      },
+      "selection": {
+        "assertionRef": "assertion:time-a",
+        "consideredAssertionRefs": [
+          "assertion:time-a"
+        ],
+        "methodRef": "method:curation",
+        "methodVersion": "1.0.0",
+        "evaluatedBy": "person:synthetic-curator",
+        "evaluatedAt": "2026-09-07T12:00:00Z",
+        "rationale": "Synthetic example of an explicitly declared source-value choice."
+      }
+    },
+    "position": {
+      "state": "known",
+      "value": {
+        "kind": "geodetic",
+        "latitude": 0,
+        "longitude": 0,
+        "frameRef": "frame:geo",
+        "altitude": {
+          "value": -2,
+          "unit": "m",
+          "uncertainty": {
+            "kind": "unknown",
+            "reason": "not_characterized"
+          }
+        },
+        "uncertainty": {
+          "latitude": {
+            "kind": "standard",
+            "magnitude": 0.1,
+            "unit": "deg",
+            "sourceRefs": [
+              "source:s1"
+            ]
+          },
+          "longitude": {
+            "kind": "standard",
+            "magnitude": 0.1,
+            "unit": "deg",
+            "sourceRefs": [
+              "source:s1"
+            ]
+          }
+        }
+      },
+      "sourceRefs": [
+        "assertion:position-a"
+      ],
+      "selection": {
+        "assertionRef": "assertion:position-a",
+        "consideredAssertionRefs": [
+          "assertion:position-a",
+          "assertion:position-b"
+        ],
+        "methodRef": "method:curation",
+        "methodVersion": "1.0.0",
+        "evaluatedBy": "person:synthetic-curator",
+        "evaluatedAt": "2026-09-07T12:00:00Z",
+        "rationale": "Synthetic example of an explicitly declared source-value choice."
+      }
+    },
+    "sources": [
+      {
+        "id": "s1",
+        "kind": "instrument_data",
+        "access": "unknown",
+        "title": "Synthetic acquisition source"
+      },
+      {
+        "id": "s2",
+        "kind": "document",
+        "access": "unknown",
+        "title": "Synthetic alternative source"
+      }
+    ],
+    "products": [
+      {
+        "id": "raw",
+        "kind": "raw",
+        "format": "NDJSON",
+        "access": "unknown",
+        "sourceRefs": [
+          "source:s1"
+        ]
+      },
+      {
+        "id": "summary",
+        "kind": "derived",
+        "format": "JSON",
+        "access": "unknown",
+        "generatedBy": "process:reduce"
+      }
+    ],
+    "methods": [
+      {
+        "id": "curation",
+        "version": "1.0.0",
+        "description": "Synthetic source-priority rule"
+      },
+      {
+        "id": "reduction",
+        "version": "1.0.0",
+        "description": "Synthetic reduction declaration; not executed by this example"
+      },
+      {
+        "id": "assessment-review",
+        "version": "0.1.0",
+        "description": "Synthetic documentary review; no scientific eligibility criteria implemented."
+      }
+    ],
+    "frames": [
+      {
+        "id": "geo",
+        "kind": "geodetic",
+        "definition": {
+          "state": "identified",
+          "authority": "EPSG",
+          "code": "4326"
+        },
+        "angularUnit": "deg",
+        "vertical": {
+          "definition": {
+            "state": "described",
+            "description": "Synthetic local vertical reference"
+          },
+          "unit": "m"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "time-a",
+        "field": "eventTime",
+        "value": {
+          "kind": "interval",
+          "start": {
+            "kind": "instant",
+            "value": "2026-01-01T00:00:00.000001Z",
+            "timeScale": "UTC"
+          },
+          "end": {
+            "kind": "instant",
+            "value": "2026-01-01T00:02:00.000001Z",
+            "timeScale": "UTC"
+          }
+        },
+        "provenance": {
+          "sourceRef": "source:s1",
+          "extractedBy": "agent:synthetic-extractor"
+        }
+      },
+      {
+        "id": "position-a",
+        "field": "position",
+        "value": {
+          "kind": "geodetic",
+          "latitude": 0,
+          "longitude": 0,
+          "frameRef": "frame:geo",
+          "altitude": {
+            "value": -2,
+            "unit": "m",
+            "uncertainty": {
+              "kind": "unknown",
+              "reason": "not_characterized"
+            }
+          },
+          "uncertainty": {
+            "latitude": {
+              "kind": "standard",
+              "magnitude": 0.1,
+              "unit": "deg",
+              "sourceRefs": [
+                "source:s1"
+              ]
+            },
+            "longitude": {
+              "kind": "standard",
+              "magnitude": 0.1,
+              "unit": "deg",
+              "sourceRefs": [
+                "source:s1"
+              ]
+            }
+          }
+        },
+        "provenance": {
+          "sourceRef": "source:s1"
+        }
+      },
+      {
+        "id": "position-b",
+        "field": "position",
+        "value": {
+          "kind": "geodetic",
+          "latitude": 1,
+          "longitude": 0,
+          "frameRef": "frame:geo",
+          "altitude": {
+            "value": -2,
+            "unit": "m",
+            "uncertainty": {
+              "kind": "unknown",
+              "reason": "not_characterized"
+            }
+          },
+          "uncertainty": {
+            "latitude": {
+              "kind": "standard",
+              "magnitude": 0.1,
+              "unit": "deg",
+              "sourceRefs": [
+                "source:s1"
+              ]
+            },
+            "longitude": {
+              "kind": "standard",
+              "magnitude": 0.1,
+              "unit": "deg",
+              "sourceRefs": [
+                "source:s1"
+              ]
+            }
+          }
+        },
+        "provenance": {
+          "sourceRef": "source:s2"
+        }
+      },
+      {
+        "id": "velocity-a",
+        "field": "measurement",
+        "measurementId": "velocity",
+        "value": {
+          "value": -28,
+          "unit": "m/s",
+          "uncertainty": {
+            "kind": "expanded",
+            "magnitude": 0.1,
+            "unit": "m/s",
+            "sourceRefs": [
+              "source:s1"
+            ],
+            "coverageFactor": 2
+          }
+        },
+        "provenance": {
+          "sourceRef": "product:summary",
+          "locator": {
+            "kind": "json_pointer",
+            "pointer": "/velocity"
+          }
+        }
+      }
+    ],
+    "measurements": [
+      {
+        "id": "velocity",
+        "quantity": "signed radial velocity",
+        "value": {
+          "value": -28,
+          "unit": "m/s",
+          "uncertainty": {
+            "kind": "expanded",
+            "magnitude": 0.1,
+            "unit": "m/s",
+            "sourceRefs": [
+              "source:s1"
+            ],
+            "coverageFactor": 2
+          }
+        },
+        "sourceRefs": [
+          "assertion:velocity-a"
+        ],
+        "selection": {
+          "assertionRef": "assertion:velocity-a",
+          "consideredAssertionRefs": [
+            "assertion:velocity-a"
+          ],
+          "methodRef": "method:curation",
+          "methodVersion": "1.0.0",
+          "evaluatedBy": "person:synthetic-curator",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic example of an explicitly declared source-value choice."
+        }
+      }
+    ],
+    "processing": [
+      {
+        "id": "reduce",
+        "methodRef": "method:reduction",
+        "methodVersion": "1.0.0",
+        "performedBy": "agent:synthetic-processor",
+        "performedAt": "2026-01-01T00:05:00Z",
+        "inputRefs": [
+          "product:raw"
+        ],
+        "outputRefs": [
+          "product:summary"
+        ]
+      }
+    ],
+    "summary": "Synthetic control fixture. All values and processing declarations are illustrative, not real observations.",
+    "extensions": {
+      "org.example.fixture": {
+        "synthetic": true,
+        "optional": null,
+        "zero": 0
+      }
+    }
+  },
+  "claims": [
+    {
+      "recordedAt": "2026-09-07T00:00:00Z",
+      "topic": "synthetic radial motion",
+      "subject": {
+        "kind": "measurement",
+        "measurementId": "velocity"
+      },
+      "id": "statement-1",
+      "kind": "source_assertion",
+      "text": "Synthetic source describes the motion as confirmed.",
+      "reportedLevel": "confirmed",
+      "provenance": {
+        "sourceRef": "source:s2",
+        "extractedBy": "agent:synthetic-extractor",
+        "locator": {
+          "kind": "page",
+          "page": 1
+        }
+      }
+    },
+    {
+      "recordedAt": "2026-09-07T00:00:00Z",
+      "topic": "synthetic radial motion",
+      "subject": {
+        "kind": "measurement",
+        "measurementId": "velocity"
+      },
+      "id": "review-1",
+      "kind": "assessment",
+      "status": "unassessed",
+      "inputRefs": [
+        "claim:statement-1"
+      ],
+      "rationale": "Preserve source wording while awaiting review."
+    },
+    {
+      "recordedAt": "2026-09-07T00:00:00Z",
+      "topic": "synthetic radial motion",
+      "subject": {
+        "kind": "measurement",
+        "measurementId": "velocity"
+      },
+      "id": "review-2",
+      "kind": "assessment",
+      "status": "assessed",
+      "outcome": "inconclusive",
+      "inputRefs": [
+        "claim:statement-1",
+        "measurement:velocity"
+      ],
+      "rationale": "Synthetic measurement uncertainty does not establish anomalous motion.",
+      "supersedes": [
+        "claim:review-1"
+      ],
+      "evaluatedBy": "person:synthetic-reviewer",
+      "evaluatedAt": "2026-09-07T00:00:00Z",
+      "methodRef": "method:assessment-review",
+      "methodVersion": "0.1.0"
+    }
+  ],
+  "extensions": {
+    "org.example": {
+      "synthetic": true,
+      "unknown": null
+    }
+  }
+}

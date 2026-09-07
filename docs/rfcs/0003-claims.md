@@ -39,3 +39,7 @@ Unassessed is distinct from assessed absence. Testimony may support a reported o
 The archive profile can preserve incomplete assertions with explicit gaps. The supported-assessment profile fails missing attribution, absent methods, dangling references, or insufficient product support. An external reference unavailable offline is not checked and cannot satisfy a required input. A passing automated profile establishes documentary eligibility only. Scientific adequacy and exclusion criteria require separate qualified review.
 
 Legacy claims with insufficient provenance migrate into source assertions with preserved original fields and unresolved mappings. They must not be silently upgraded to current assessments or discarded to make a dataset pass.
+
+## Experimental implementation
+
+The first records-owned implementation is the [experimental claim history](../experimental/claim-history.md): a separate envelope around an Observation snapshot with source text, attributed assessments, and revision semantics. Profile eligibility remains unimplemented and explicitly not checked. Domain-specific scientific rules, shared orchestration, and migration remain follow-up work.
