@@ -38,3 +38,7 @@ The executable matrix measures legacy runtime, emitted JSON Schema, and CLI beha
 ## Compatibility
 
 Keep existing v1 APIs and artifacts unchanged during contract development. Add v2 interfaces only once their document boundaries and examples are agreed. Original target rejections for unsupported claims remain rejections for the supported-assessment use case, while the source assertion remains preservable under RFC 0003.
+
+## Experimental profile orchestration
+
+The schema-owned [assessment documentation profile](../experimental/assessment-documentation.md) delegates structural and semantic checks to the records parser, then reports documentary requirements and local byte integrity separately. A documentary pass is explicitly narrower than a scientific research profile; scientific and other external checks remain not checked. Shared CLI/browser orchestration remains pending.

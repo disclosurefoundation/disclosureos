@@ -27,7 +27,8 @@
     "emit:v2-observation": "node conformance/emit-observation.mjs",
     "test:v2-observation": "node --test conformance/observation-contract.test.mjs",
     "emit:v2-claims": "node conformance/emit-claim-history.mjs",
-    "test:v2-claims": "node --test conformance/claim-history.test.mjs"
+    "test:v2-claims": "node --test conformance/claim-history.test.mjs",
+    "test:v2-documentation": "node --test conformance/assessment-documentation.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
