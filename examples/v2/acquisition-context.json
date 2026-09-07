@@ -1,0 +1,188 @@
+{
+  "kind": "acquisition_context",
+  "schemaVersion": "0.1.0",
+  "id": "synthetic-context",
+  "instruments": [
+    {
+      "id": "station",
+      "identity": {
+        "state": "known",
+        "manufacturer": "Synthetic Instruments",
+        "model": "Control station",
+        "serialNumber": "SYNTHETIC-001"
+      }
+    }
+  ],
+  "manifests": [
+    {
+      "id": "r1",
+      "instrumentRef": "instrument:station",
+      "version": "1",
+      "publishedAt": "2026-07-01T00:00:00Z",
+      "artifact": {
+        "mediaType": "application/json",
+        "byteLength": 100,
+        "digest": {
+          "algorithm": "sha256",
+          "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "configuration": {
+        "hardware": {
+          "state": "known",
+          "value": "synthetic-rev-1"
+        },
+        "firmware": {
+          "state": "known",
+          "value": "synthetic-1.0"
+        }
+      },
+      "channels": [
+        {
+          "id": "radar",
+          "quantity": "radial velocity",
+          "unit": "m/s",
+          "sampling": {
+            "state": "known",
+            "rateHz": 10
+          }
+        }
+      ]
+    }
+  ],
+  "deployments": [
+    {
+      "id": "d1",
+      "instrumentRef": "instrument:station",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:r1"
+      },
+      "period": {
+        "state": "known",
+        "start": "2026-07-28T12:00:00Z",
+        "end": "2026-07-28T13:00:00Z",
+        "timeScale": "UTC"
+      },
+      "site": {
+        "state": "known",
+        "value": "Synthetic test location"
+      }
+    }
+  ],
+  "calibrations": [
+    {
+      "id": "c1",
+      "instrumentRef": "instrument:station",
+      "manifestRef": "manifest:r1",
+      "channelId": "radar",
+      "performedAt": {
+        "state": "known",
+        "value": "2026-07-01T00:00:00Z"
+      },
+      "validity": {
+        "state": "known",
+        "start": "2026-07-01T00:00:00Z",
+        "end": "2026-08-01T00:00:00Z",
+        "timeScale": "UTC"
+      },
+      "method": {
+        "state": "known",
+        "id": "synthetic-method",
+        "version": "1",
+        "description": "Synthetic calibration declaration, not executed."
+      },
+      "report": {
+        "state": "known",
+        "artifact": {
+          "mediaType": "application/json",
+          "byteLength": 100,
+          "digest": {
+            "algorithm": "sha256",
+            "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        }
+      },
+      "uncertainty": {
+        "kind": "expanded",
+        "magnitude": 0.1,
+        "unit": "m/s",
+        "coverageFactor": 2
+      },
+      "review": {
+        "state": "unreviewed"
+      }
+    }
+  ],
+  "acquisitions": [
+    {
+      "id": "a1",
+      "instrumentRef": "instrument:station",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:r1"
+      },
+      "deployment": {
+        "state": "pinned",
+        "ref": "deployment:d1"
+      },
+      "time": {
+        "state": "known",
+        "start": "2026-07-28T12:10:00Z",
+        "end": "2026-07-28T12:11:00Z",
+        "timeScale": "UTC",
+        "kind": "interval"
+      },
+      "classification": "background",
+      "clock": {
+        "source": {
+          "state": "known",
+          "value": "Synthetic oscillator"
+        },
+        "synchronization": {
+          "state": "known",
+          "value": "Synthetic synchronization declaration"
+        },
+        "resolution": {
+          "state": "known",
+          "magnitude": 1,
+          "unit": "ns"
+        },
+        "uncertainty": {
+          "state": "known",
+          "magnitude": 0,
+          "unit": "ns"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "radar",
+          "calibration": {
+            "state": "pinned",
+            "ref": "calibration:c1"
+          }
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "raw",
+      "acquisitionRef": "acquisition:a1",
+      "kind": "raw",
+      "artifact": {
+        "mediaType": "application/json",
+        "byteLength": 100,
+        "digest": {
+          "algorithm": "sha256",
+          "value": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      }
+    }
+  ],
+  "extensions": {
+    "org.example": {
+      "synthetic": true
+    }
+  }
+}

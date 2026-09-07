@@ -61,7 +61,13 @@
       "import": "./dist/validators/index.js"
     },
     "./schema": "./schema/sensor-manifest.schema.json",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./experimental/v2": {
+      "types": "./dist/experimental/v2/index.d.ts",
+      "import": "./dist/experimental/v2/index.js"
+    },
+    "./experimental/v2/acquisition/schema": "./schema/experimental/acquisition-context-0.1.0.schema.json",
+    "./experimental/v2/acquisition/schema/0.1.0": "./schema/experimental/acquisition-context-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

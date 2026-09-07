@@ -137,4 +137,5 @@ jobs:
       - run: pnpm test:v2-observation
       - run: pnpm test:v2-claims
       - run: pnpm test:v2-documentation
+      - run: pnpm test:v2-acquisition
       - run: pnpm test:partner-audit

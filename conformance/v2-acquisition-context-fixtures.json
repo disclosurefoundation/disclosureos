@@ -1,0 +1,2215 @@
+{
+  "base": {
+    "kind": "acquisition_context",
+    "schemaVersion": "0.1.0",
+    "id": "synthetic-context",
+    "instruments": [
+      {
+        "id": "station",
+        "identity": {
+          "state": "known",
+          "manufacturer": "Synthetic Instruments",
+          "model": "Control station",
+          "serialNumber": "SYNTHETIC-001"
+        }
+      }
+    ],
+    "manifests": [
+      {
+        "id": "r1",
+        "instrumentRef": "instrument:station",
+        "version": "1",
+        "publishedAt": "2026-07-01T00:00:00Z",
+        "artifact": {
+          "mediaType": "application/json",
+          "byteLength": 100,
+          "digest": {
+            "algorithm": "sha256",
+            "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        "configuration": {
+          "hardware": {
+            "state": "known",
+            "value": "synthetic-rev-1"
+          },
+          "firmware": {
+            "state": "known",
+            "value": "synthetic-1.0"
+          }
+        },
+        "channels": [
+          {
+            "id": "radar",
+            "quantity": "radial velocity",
+            "unit": "m/s",
+            "sampling": {
+              "state": "known",
+              "rateHz": 10
+            }
+          }
+        ]
+      }
+    ],
+    "deployments": [
+      {
+        "id": "d1",
+        "instrumentRef": "instrument:station",
+        "manifest": {
+          "state": "pinned",
+          "ref": "manifest:r1"
+        },
+        "period": {
+          "state": "known",
+          "start": "2026-07-28T12:00:00Z",
+          "end": "2026-07-28T13:00:00Z",
+          "timeScale": "UTC"
+        },
+        "site": {
+          "state": "known",
+          "value": "Synthetic test location"
+        }
+      }
+    ],
+    "calibrations": [
+      {
+        "id": "c1",
+        "instrumentRef": "instrument:station",
+        "manifestRef": "manifest:r1",
+        "channelId": "radar",
+        "performedAt": {
+          "state": "known",
+          "value": "2026-07-01T00:00:00Z"
+        },
+        "validity": {
+          "state": "known",
+          "start": "2026-07-01T00:00:00Z",
+          "end": "2026-08-01T00:00:00Z",
+          "timeScale": "UTC"
+        },
+        "method": {
+          "state": "known",
+          "id": "synthetic-method",
+          "version": "1",
+          "description": "Synthetic calibration declaration, not executed."
+        },
+        "report": {
+          "state": "known",
+          "artifact": {
+            "mediaType": "application/json",
+            "byteLength": 100,
+            "digest": {
+              "algorithm": "sha256",
+              "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+            }
+          }
+        },
+        "uncertainty": {
+          "kind": "expanded",
+          "magnitude": 0.1,
+          "unit": "m/s",
+          "coverageFactor": 2
+        },
+        "review": {
+          "state": "unreviewed"
+        }
+      }
+    ],
+    "acquisitions": [
+      {
+        "id": "a1",
+        "instrumentRef": "instrument:station",
+        "manifest": {
+          "state": "pinned",
+          "ref": "manifest:r1"
+        },
+        "deployment": {
+          "state": "pinned",
+          "ref": "deployment:d1"
+        },
+        "time": {
+          "state": "known",
+          "start": "2026-07-28T12:10:00Z",
+          "end": "2026-07-28T12:11:00Z",
+          "timeScale": "UTC",
+          "kind": "interval"
+        },
+        "classification": "background",
+        "clock": {
+          "source": {
+            "state": "known",
+            "value": "Synthetic oscillator"
+          },
+          "synchronization": {
+            "state": "known",
+            "value": "Synthetic synchronization declaration"
+          },
+          "resolution": {
+            "state": "known",
+            "magnitude": 1,
+            "unit": "ns"
+          },
+          "uncertainty": {
+            "state": "known",
+            "magnitude": 0,
+            "unit": "ns"
+          }
+        },
+        "channels": [
+          {
+            "channelId": "radar",
+            "calibration": {
+              "state": "pinned",
+              "ref": "calibration:c1"
+            }
+          }
+        ]
+      }
+    ],
+    "products": [
+      {
+        "id": "raw",
+        "acquisitionRef": "acquisition:a1",
+        "kind": "raw",
+        "artifact": {
+          "mediaType": "application/json",
+          "byteLength": 100,
+          "digest": {
+            "algorithm": "sha256",
+            "value": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          }
+        }
+      }
+    ],
+    "extensions": {
+      "org.example": {
+        "synthetic": true
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "pinned-acquisition-history",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    },
+    {
+      "id": "known-control",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "classification"
+          ],
+          "value": "known_control"
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    },
+    {
+      "id": "instant-sample",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "time"
+          ],
+          "value": {
+            "state": "known",
+            "kind": "instant",
+            "value": "2026-07-28T12:10:00Z",
+            "timeScale": "UTC"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    },
+    {
+      "id": "zero-clock-uncertainty",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    },
+    {
+      "id": "coverage-factor-does-not-imply-probability",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    },
+    {
+      "id": "unknown-time",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "time"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unknown-identity",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "instruments",
+            0,
+            "identity"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unknown-firmware",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "manifests",
+            0,
+            "configuration",
+            "firmware"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unknown-clock",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "clock",
+            "uncertainty"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unknown-deployment-period",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "deployments",
+            0,
+            "period"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unknown-calibration-performance",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "performedAt"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unknown-calibration-validity",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "validity"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unknown-calibration-method",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "method"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unknown-calibration-report",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "report"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unknown-sampling",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "manifests",
+            0,
+            "channels",
+            0,
+            "sampling"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unknown-site",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "deployments",
+            0,
+            "site"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unknown-review",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "review"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unknown-calibration-uncertainty",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "uncertainty"
+          ],
+          "value": {
+            "kind": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNKNOWN"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unresolved-manifest",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "manifest"
+          ],
+          "value": {
+            "state": "unresolved",
+            "legacyRef": "station:radar",
+            "reason": "No revision provenance"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNRESOLVED"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unresolved-deployment",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "deployment"
+          ],
+          "value": {
+            "state": "unresolved",
+            "legacyRef": "station:radar",
+            "reason": "No revision provenance"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNRESOLVED"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unresolved-calibration",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "channels",
+            0,
+            "calibration"
+          ],
+          "value": {
+            "state": "unresolved",
+            "legacyRef": "station:radar",
+            "reason": "No revision provenance"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNRESOLVED"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "unresolved-deployment-manifest",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "deployments",
+            0,
+            "manifest"
+          ],
+          "value": {
+            "state": "unresolved",
+            "legacyRef": "station:radar",
+            "reason": "No revision provenance"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [
+        "CONTEXT.UNRESOLVED"
+      ],
+      "status": "incomplete"
+    },
+    {
+      "id": "dangling-manifest",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "manifest",
+            "ref"
+          ],
+          "value": "manifest:missing"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "status": null
+    },
+    {
+      "id": "dangling-product-acquisition",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "products",
+            0,
+            "acquisitionRef"
+          ],
+          "value": "acquisition:missing"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "status": null
+    },
+    {
+      "id": "dangling-calibration",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "channels",
+            0,
+            "calibration",
+            "ref"
+          ],
+          "value": "calibration:missing"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "status": null
+    },
+    {
+      "id": "duplicate-acquisition",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions"
+          ],
+          "value": [
+            {
+              "id": "a1",
+              "instrumentRef": "instrument:station",
+              "manifest": {
+                "state": "pinned",
+                "ref": "manifest:r1"
+              },
+              "deployment": {
+                "state": "pinned",
+                "ref": "deployment:d1"
+              },
+              "time": {
+                "state": "known",
+                "start": "2026-07-28T12:10:00Z",
+                "end": "2026-07-28T12:11:00Z",
+                "timeScale": "UTC",
+                "kind": "interval"
+              },
+              "classification": "background",
+              "clock": {
+                "source": {
+                  "state": "known",
+                  "value": "Synthetic oscillator"
+                },
+                "synchronization": {
+                  "state": "known",
+                  "value": "Synthetic synchronization declaration"
+                },
+                "resolution": {
+                  "state": "known",
+                  "magnitude": 1,
+                  "unit": "ns"
+                },
+                "uncertainty": {
+                  "state": "known",
+                  "magnitude": 0,
+                  "unit": "ns"
+                }
+              },
+              "channels": [
+                {
+                  "channelId": "radar",
+                  "calibration": {
+                    "state": "pinned",
+                    "ref": "calibration:c1"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "a1",
+              "instrumentRef": "instrument:station",
+              "manifest": {
+                "state": "pinned",
+                "ref": "manifest:r1"
+              },
+              "deployment": {
+                "state": "pinned",
+                "ref": "deployment:d1"
+              },
+              "time": {
+                "state": "known",
+                "start": "2026-07-28T12:10:00Z",
+                "end": "2026-07-28T12:11:00Z",
+                "timeScale": "UTC",
+                "kind": "interval"
+              },
+              "classification": "background",
+              "clock": {
+                "source": {
+                  "state": "known",
+                  "value": "Synthetic oscillator"
+                },
+                "synchronization": {
+                  "state": "known",
+                  "value": "Synthetic synchronization declaration"
+                },
+                "resolution": {
+                  "state": "known",
+                  "magnitude": 1,
+                  "unit": "ns"
+                },
+                "uncertainty": {
+                  "state": "known",
+                  "magnitude": 0,
+                  "unit": "ns"
+                }
+              },
+              "channels": [
+                {
+                  "channelId": "radar",
+                  "calibration": {
+                    "state": "pinned",
+                    "ref": "calibration:c1"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.UNIQUE_ID"
+      ],
+      "status": null
+    },
+    {
+      "id": "duplicate-channel-binding",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "channels"
+          ],
+          "value": [
+            {
+              "channelId": "radar",
+              "calibration": {
+                "state": "pinned",
+                "ref": "calibration:c1"
+              }
+            },
+            {
+              "channelId": "radar",
+              "calibration": {
+                "state": "pinned",
+                "ref": "calibration:c1"
+              }
+            }
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.UNIQUE_ID"
+      ],
+      "status": null
+    },
+    {
+      "id": "duplicate-manifest-channel",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "manifests",
+            0,
+            "channels"
+          ],
+          "value": [
+            {
+              "id": "radar",
+              "quantity": "radial velocity",
+              "unit": "m/s",
+              "sampling": {
+                "state": "known",
+                "rateHz": 10
+              }
+            },
+            {
+              "id": "radar",
+              "quantity": "radial velocity",
+              "unit": "m/s",
+              "sampling": {
+                "state": "known",
+                "rateHz": 10
+              }
+            }
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.UNIQUE_ID"
+      ],
+      "status": null
+    },
+    {
+      "id": "ambiguous-manifest-version",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "manifests"
+          ],
+          "value": [
+            {
+              "id": "r1",
+              "instrumentRef": "instrument:station",
+              "version": "1",
+              "publishedAt": "2026-07-01T00:00:00Z",
+              "artifact": {
+                "mediaType": "application/json",
+                "byteLength": 100,
+                "digest": {
+                  "algorithm": "sha256",
+                  "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              },
+              "configuration": {
+                "hardware": {
+                  "state": "known",
+                  "value": "synthetic-rev-1"
+                },
+                "firmware": {
+                  "state": "known",
+                  "value": "synthetic-1.0"
+                }
+              },
+              "channels": [
+                {
+                  "id": "radar",
+                  "quantity": "radial velocity",
+                  "unit": "m/s",
+                  "sampling": {
+                    "state": "known",
+                    "rateHz": 10
+                  }
+                }
+              ]
+            },
+            {
+              "id": "r2",
+              "instrumentRef": "instrument:station",
+              "version": "1",
+              "publishedAt": "2026-07-01T00:00:00Z",
+              "artifact": {
+                "mediaType": "application/json",
+                "byteLength": 100,
+                "digest": {
+                  "algorithm": "sha256",
+                  "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              },
+              "configuration": {
+                "hardware": {
+                  "state": "known",
+                  "value": "synthetic-rev-1"
+                },
+                "firmware": {
+                  "state": "known",
+                  "value": "synthetic-1.0"
+                }
+              },
+              "channels": [
+                {
+                  "id": "radar",
+                  "quantity": "radial velocity",
+                  "unit": "m/s",
+                  "sampling": {
+                    "state": "known",
+                    "rateHz": 10
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "MANIFEST.AMBIGUOUS_VERSION"
+      ],
+      "status": null
+    },
+    {
+      "id": "later-manifest-does-not-rebind-acquisition",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "manifests"
+          ],
+          "value": [
+            {
+              "id": "r1",
+              "instrumentRef": "instrument:station",
+              "version": "1",
+              "publishedAt": "2026-07-01T00:00:00Z",
+              "artifact": {
+                "mediaType": "application/json",
+                "byteLength": 100,
+                "digest": {
+                  "algorithm": "sha256",
+                  "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              },
+              "configuration": {
+                "hardware": {
+                  "state": "known",
+                  "value": "synthetic-rev-1"
+                },
+                "firmware": {
+                  "state": "known",
+                  "value": "synthetic-1.0"
+                }
+              },
+              "channels": [
+                {
+                  "id": "radar",
+                  "quantity": "radial velocity",
+                  "unit": "m/s",
+                  "sampling": {
+                    "state": "known",
+                    "rateHz": 10
+                  }
+                }
+              ]
+            },
+            {
+              "id": "r2",
+              "instrumentRef": "instrument:station",
+              "version": "2",
+              "publishedAt": "2026-07-01T00:00:00Z",
+              "artifact": {
+                "mediaType": "application/json",
+                "byteLength": 100,
+                "digest": {
+                  "algorithm": "sha256",
+                  "value": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                }
+              },
+              "configuration": {
+                "hardware": {
+                  "state": "known",
+                  "value": "synthetic-rev-1"
+                },
+                "firmware": {
+                  "state": "known",
+                  "value": "synthetic-1.0"
+                }
+              },
+              "channels": [
+                {
+                  "id": "radar",
+                  "quantity": "radial velocity",
+                  "unit": "m/s",
+                  "sampling": {
+                    "state": "known",
+                    "rateHz": 10
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    },
+    {
+      "id": "acquisition-deployment-manifest-mismatch",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "manifests"
+          ],
+          "value": [
+            {
+              "id": "r1",
+              "instrumentRef": "instrument:station",
+              "version": "1",
+              "publishedAt": "2026-07-01T00:00:00Z",
+              "artifact": {
+                "mediaType": "application/json",
+                "byteLength": 100,
+                "digest": {
+                  "algorithm": "sha256",
+                  "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              },
+              "configuration": {
+                "hardware": {
+                  "state": "known",
+                  "value": "synthetic-rev-1"
+                },
+                "firmware": {
+                  "state": "known",
+                  "value": "synthetic-1.0"
+                }
+              },
+              "channels": [
+                {
+                  "id": "radar",
+                  "quantity": "radial velocity",
+                  "unit": "m/s",
+                  "sampling": {
+                    "state": "known",
+                    "rateHz": 10
+                  }
+                }
+              ]
+            },
+            {
+              "id": "r2",
+              "instrumentRef": "instrument:station",
+              "version": "2",
+              "publishedAt": "2026-07-01T00:00:00Z",
+              "artifact": {
+                "mediaType": "application/json",
+                "byteLength": 100,
+                "digest": {
+                  "algorithm": "sha256",
+                  "value": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                }
+              },
+              "configuration": {
+                "hardware": {
+                  "state": "known",
+                  "value": "synthetic-rev-1"
+                },
+                "firmware": {
+                  "state": "known",
+                  "value": "synthetic-1.0"
+                }
+              },
+              "channels": [
+                {
+                  "id": "radar",
+                  "quantity": "radial velocity",
+                  "unit": "m/s",
+                  "sampling": {
+                    "state": "known",
+                    "rateHz": 10
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "manifest"
+          ],
+          "value": {
+            "state": "pinned",
+            "ref": "manifest:r2"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "MANIFEST.MISMATCH"
+      ],
+      "status": null
+    },
+    {
+      "id": "calibration-config-mismatch",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "manifests"
+          ],
+          "value": [
+            {
+              "id": "r1",
+              "instrumentRef": "instrument:station",
+              "version": "1",
+              "publishedAt": "2026-07-01T00:00:00Z",
+              "artifact": {
+                "mediaType": "application/json",
+                "byteLength": 100,
+                "digest": {
+                  "algorithm": "sha256",
+                  "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              },
+              "configuration": {
+                "hardware": {
+                  "state": "known",
+                  "value": "synthetic-rev-1"
+                },
+                "firmware": {
+                  "state": "known",
+                  "value": "synthetic-1.0"
+                }
+              },
+              "channels": [
+                {
+                  "id": "radar",
+                  "quantity": "radial velocity",
+                  "unit": "m/s",
+                  "sampling": {
+                    "state": "known",
+                    "rateHz": 10
+                  }
+                }
+              ]
+            },
+            {
+              "id": "r2",
+              "instrumentRef": "instrument:station",
+              "version": "2",
+              "publishedAt": "2026-07-01T00:00:00Z",
+              "artifact": {
+                "mediaType": "application/json",
+                "byteLength": 100,
+                "digest": {
+                  "algorithm": "sha256",
+                  "value": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                }
+              },
+              "configuration": {
+                "hardware": {
+                  "state": "known",
+                  "value": "synthetic-rev-1"
+                },
+                "firmware": {
+                  "state": "known",
+                  "value": "synthetic-1.0"
+                }
+              },
+              "channels": [
+                {
+                  "id": "radar",
+                  "quantity": "radial velocity",
+                  "unit": "m/s",
+                  "sampling": {
+                    "state": "known",
+                    "rateHz": 10
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "manifestRef"
+          ],
+          "value": "manifest:r2"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "MANIFEST.MISMATCH"
+      ],
+      "status": null
+    },
+    {
+      "id": "wrong-instrument",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "instruments"
+          ],
+          "value": [
+            {
+              "id": "station",
+              "identity": {
+                "state": "known",
+                "manufacturer": "Synthetic Instruments",
+                "model": "Control station",
+                "serialNumber": "SYNTHETIC-001"
+              }
+            },
+            {
+              "id": "other",
+              "identity": {
+                "state": "known",
+                "manufacturer": "Synthetic Instruments",
+                "model": "Control station",
+                "serialNumber": "SYNTHETIC-001"
+              }
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "instrumentRef"
+          ],
+          "value": "instrument:other"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.INSTRUMENT_MISMATCH"
+      ],
+      "status": null
+    },
+    {
+      "id": "unknown-channel",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "channels",
+            0,
+            "channelId"
+          ],
+          "value": "missing"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CHANNEL.UNKNOWN",
+        "CALIBRATION.CHANNEL_MISMATCH"
+      ],
+      "status": null
+    },
+    {
+      "id": "wrong-calibration-channel",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "manifests",
+            0,
+            "channels"
+          ],
+          "value": [
+            {
+              "id": "radar",
+              "quantity": "radial velocity",
+              "unit": "m/s",
+              "sampling": {
+                "state": "known",
+                "rateHz": 10
+              }
+            },
+            {
+              "id": "other",
+              "quantity": "radial velocity",
+              "unit": "m/s",
+              "sampling": {
+                "state": "known",
+                "rateHz": 10
+              }
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "channelId"
+          ],
+          "value": "other"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CALIBRATION.CHANNEL_MISMATCH"
+      ],
+      "status": null
+    },
+    {
+      "id": "unit-mismatch",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "uncertainty",
+            "unit"
+          ],
+          "value": "km/s"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "UNIT.MISMATCH"
+      ],
+      "status": null
+    },
+    {
+      "id": "later-calibration-cannot-backfill",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "performedAt",
+            "value"
+          ],
+          "value": "2026-07-28T12:10:00.000000001Z"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CALIBRATION.AFTER_ACQUISITION"
+      ],
+      "status": null
+    },
+    {
+      "id": "expired-calibration",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "validity",
+            "end"
+          ],
+          "value": "2026-07-28T12:10:00Z"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CALIBRATION.OUTSIDE_VALIDITY"
+      ],
+      "status": null
+    },
+    {
+      "id": "calibration-start-too-late",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "validity",
+            "start"
+          ],
+          "value": "2026-07-28T12:10:00.000000001Z"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CALIBRATION.OUTSIDE_VALIDITY"
+      ],
+      "status": null
+    },
+    {
+      "id": "interval-end-at-validity-end",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "validity",
+            "end"
+          ],
+          "value": "2026-07-28T12:11:00Z"
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    },
+    {
+      "id": "instant-at-expiry-fails",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "time"
+          ],
+          "value": {
+            "state": "known",
+            "kind": "instant",
+            "value": "2026-07-28T12:11:00Z",
+            "timeScale": "UTC"
+          }
+        },
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "validity",
+            "end"
+          ],
+          "value": "2026-07-28T12:11:00Z"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CALIBRATION.OUTSIDE_VALIDITY"
+      ],
+      "status": null
+    },
+    {
+      "id": "acquisition-outside-deployment",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "time",
+            "start"
+          ],
+          "value": "2026-07-28T11:59:59.999999999Z"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "TIME.OUTSIDE_DEPLOYMENT"
+      ],
+      "status": null
+    },
+    {
+      "id": "interval-end-at-deployment-end",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "time",
+            "end"
+          ],
+          "value": "2026-07-28T13:00:00Z"
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    },
+    {
+      "id": "instant-at-deployment-end-fails",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "time"
+          ],
+          "value": {
+            "state": "known",
+            "kind": "instant",
+            "value": "2026-07-28T13:00:00Z",
+            "timeScale": "UTC"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "TIME.OUTSIDE_DEPLOYMENT"
+      ],
+      "status": null
+    },
+    {
+      "id": "offset-equivalent-acquisition",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "time",
+            "start"
+          ],
+          "value": "2026-07-28T05:10:00-07:00"
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    },
+    {
+      "id": "empty-interval",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "time",
+            "end"
+          ],
+          "value": "2026-07-28T12:10:00Z"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "TIME.INTERVAL"
+      ],
+      "status": null
+    },
+    {
+      "id": "reversed-deployment",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "deployments",
+            0,
+            "period",
+            "end"
+          ],
+          "value": "2026-07-01T00:00:00Z"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "TIME.INTERVAL"
+      ],
+      "status": null
+    },
+    {
+      "id": "invalid-date",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "time",
+            "start"
+          ],
+          "value": "2026-02-30T12:00:00Z"
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "missing-seconds",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "time",
+            "start"
+          ],
+          "value": "2026-07-28T12:00Z"
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "negative-uncertainty",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "uncertainty",
+            "magnitude"
+          ],
+          "value": -1
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "zero-sampling",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "manifests",
+            0,
+            "channels",
+            0,
+            "sampling",
+            "rateHz"
+          ],
+          "value": 0
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "zero-clock-resolution",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "clock",
+            "resolution",
+            "magnitude"
+          ],
+          "value": 0
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "zero-coverage-factor",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "uncertainty",
+            "coverageFactor"
+          ],
+          "value": 0
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "probability-over-one",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "uncertainty",
+            "coverageProbability"
+          ],
+          "value": 1.1
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "negative-byte-count",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "products",
+            0,
+            "artifact",
+            "byteLength"
+          ],
+          "value": -1
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "unsafe-byte-count",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "products",
+            0,
+            "artifact",
+            "byteLength"
+          ],
+          "value": 9007199254740992
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "invalid-digest",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "products",
+            0,
+            "artifact",
+            "digest",
+            "value"
+          ],
+          "value": "bad"
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "newline-reference",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "manifest",
+            "ref"
+          ],
+          "value": "manifest:r1\n"
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "unknown-key",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "acquisitions",
+            0,
+            "in_window"
+          ],
+          "value": true
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "unnamespaced-extension",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "extensions"
+          ],
+          "value": {
+            "private": {}
+          }
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "status": null
+    },
+    {
+      "id": "review-is-a-declaration",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "review"
+          ],
+          "value": {
+            "state": "reviewed",
+            "reviewedBy": "person:synthetic-reviewer",
+            "reviewedAt": "2026-07-02T00:00:00Z",
+            "outcome": "accepted",
+            "report": {
+              "mediaType": "application/json",
+              "byteLength": 100,
+              "digest": {
+                "algorithm": "sha256",
+                "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+              }
+            }
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    },
+    {
+      "id": "rejected-review-is-preserved-not-erased",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "review"
+          ],
+          "value": {
+            "state": "reviewed",
+            "reviewedBy": "person:synthetic-reviewer",
+            "reviewedAt": "2026-07-02T00:00:00Z",
+            "outcome": "rejected",
+            "report": {
+              "mediaType": "application/json",
+              "byteLength": 100,
+              "digest": {
+                "algorithm": "sha256",
+                "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+              }
+            }
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    },
+    {
+      "id": "review-before-calibration",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations",
+            0,
+            "review"
+          ],
+          "value": {
+            "state": "reviewed",
+            "reviewedBy": "person:synthetic-reviewer",
+            "reviewedAt": "2026-06-30T00:00:00Z",
+            "outcome": "rejected",
+            "report": {
+              "mediaType": "application/json",
+              "byteLength": 100,
+              "digest": {
+                "algorithm": "sha256",
+                "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+              }
+            }
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CALIBRATION.REVIEW_ORDER"
+      ],
+      "status": null
+    },
+    {
+      "id": "later-calibration-does-not-replace-pinned-history",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations"
+          ],
+          "value": [
+            {
+              "id": "c1",
+              "instrumentRef": "instrument:station",
+              "manifestRef": "manifest:r1",
+              "channelId": "radar",
+              "performedAt": {
+                "state": "known",
+                "value": "2026-07-01T00:00:00Z"
+              },
+              "validity": {
+                "state": "known",
+                "start": "2026-07-01T00:00:00Z",
+                "end": "2026-08-01T00:00:00Z",
+                "timeScale": "UTC"
+              },
+              "method": {
+                "state": "known",
+                "id": "synthetic-method",
+                "version": "1",
+                "description": "Synthetic calibration declaration, not executed."
+              },
+              "report": {
+                "state": "known",
+                "artifact": {
+                  "mediaType": "application/json",
+                  "byteLength": 100,
+                  "digest": {
+                    "algorithm": "sha256",
+                    "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                  }
+                }
+              },
+              "uncertainty": {
+                "kind": "expanded",
+                "magnitude": 0.1,
+                "unit": "m/s",
+                "coverageFactor": 2
+              },
+              "review": {
+                "state": "unreviewed"
+              }
+            },
+            {
+              "id": "c2",
+              "instrumentRef": "instrument:station",
+              "manifestRef": "manifest:r1",
+              "channelId": "radar",
+              "performedAt": {
+                "state": "known",
+                "value": "2026-09-01T00:00:00Z"
+              },
+              "validity": {
+                "state": "known",
+                "start": "2026-09-01T00:00:00Z",
+                "end": "2026-10-01T00:00:00Z",
+                "timeScale": "UTC"
+              },
+              "method": {
+                "state": "known",
+                "id": "synthetic-method",
+                "version": "1",
+                "description": "Synthetic calibration declaration, not executed."
+              },
+              "report": {
+                "state": "known",
+                "artifact": {
+                  "mediaType": "application/json",
+                  "byteLength": 100,
+                  "digest": {
+                    "algorithm": "sha256",
+                    "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                  }
+                }
+              },
+              "uncertainty": {
+                "kind": "expanded",
+                "magnitude": 0.1,
+                "unit": "m/s",
+                "coverageFactor": 2
+              },
+              "review": {
+                "state": "unreviewed"
+              }
+            }
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    },
+    {
+      "id": "overlapping-calibrations-require-no-implicit-choice",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "calibrations"
+          ],
+          "value": [
+            {
+              "id": "c1",
+              "instrumentRef": "instrument:station",
+              "manifestRef": "manifest:r1",
+              "channelId": "radar",
+              "performedAt": {
+                "state": "known",
+                "value": "2026-07-01T00:00:00Z"
+              },
+              "validity": {
+                "state": "known",
+                "start": "2026-07-01T00:00:00Z",
+                "end": "2026-08-01T00:00:00Z",
+                "timeScale": "UTC"
+              },
+              "method": {
+                "state": "known",
+                "id": "synthetic-method",
+                "version": "1",
+                "description": "Synthetic calibration declaration, not executed."
+              },
+              "report": {
+                "state": "known",
+                "artifact": {
+                  "mediaType": "application/json",
+                  "byteLength": 100,
+                  "digest": {
+                    "algorithm": "sha256",
+                    "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                  }
+                }
+              },
+              "uncertainty": {
+                "kind": "expanded",
+                "magnitude": 0.1,
+                "unit": "m/s",
+                "coverageFactor": 2
+              },
+              "review": {
+                "state": "unreviewed"
+              }
+            },
+            {
+              "id": "alternative",
+              "instrumentRef": "instrument:station",
+              "manifestRef": "manifest:r1",
+              "channelId": "radar",
+              "performedAt": {
+                "state": "known",
+                "value": "2026-07-01T00:00:00Z"
+              },
+              "validity": {
+                "state": "known",
+                "start": "2026-07-01T00:00:00Z",
+                "end": "2026-08-01T00:00:00Z",
+                "timeScale": "UTC"
+              },
+              "method": {
+                "state": "known",
+                "id": "synthetic-method",
+                "version": "1",
+                "description": "Synthetic calibration declaration, not executed."
+              },
+              "report": {
+                "state": "known",
+                "artifact": {
+                  "mediaType": "application/json",
+                  "byteLength": 100,
+                  "digest": {
+                    "algorithm": "sha256",
+                    "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                  }
+                }
+              },
+              "uncertainty": {
+                "kind": "expanded",
+                "magnitude": 0.1,
+                "unit": "m/s",
+                "coverageFactor": 2
+              },
+              "review": {
+                "state": "unreviewed"
+              }
+            }
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "status": "resolved"
+    }
+  ]
+}

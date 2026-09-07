@@ -13,3 +13,7 @@ Calibration declarations and independently reviewed calibration records are dist
 References MUST resolve unambiguously to a pinned revision. Old `org:sensor` references migrate as unresolved history unless source provenance establishes a revision. Offline resolution uses a supplied inventory; missing inputs are reported as not checked, hash mismatches fail, and ambiguous matches are errors. No implicit network retrieval or credential transfer is allowed during core validation.
 
 The public ELDÆON July sample is useful adapter input but its same-session and simultaneous-data claims require reconciliation. A frozen partner pilot additionally needs file inventories, clock meanings, configuration/calibration history, processing details, and authorized access conditions. No external review, permission, or reproducibility result is assumed by this proposal.
+
+## Experimental acquisition-history implementation
+
+The [acquisition context contract](../experimental/acquisition-context.md) now implements explicit instrument/manifest/deployment/calibration bindings, raw-product capture references, and nominal temporal applicability checks. Dataset release/session composition, verified byte binding to observations, uncertainty-aware clock checks, and research-profile integration remain follow-up work.

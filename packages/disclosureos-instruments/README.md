@@ -129,3 +129,7 @@ Non-TS toolchains validate manifests against that `$id` directly.
 ## License
 
 MIT © Disclosure Foundation
+
+## Experimental acquisition context
+
+`@disclosureos/instruments/experimental/v2` adds pinned manifest, deployment, and channel-calibration history with explicit unresolved states. See the [contract and synthetic example](../../docs/experimental/acquisition-context.md). This additive metadata contract does not change the v1 manifest or certify scientific validity.
