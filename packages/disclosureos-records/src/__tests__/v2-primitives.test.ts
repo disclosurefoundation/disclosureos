@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { EventTimeSchema, PositionSchema, parsePrimitiveRecord } from '../experimental/v2';
+import { EventTimeSchema, PositionSchema, SourceProvenanceSchema, parsePrimitiveRecord } from '../experimental/v2';
 
 const knownPosition = { state: 'known', value: { latitude: 0, longitude: 0, datum: 'WGS84' }, sourceRefs: ['source:original'] };
 const base = () => ({ id: 'synthetic', eventTime: { state: 'unknown', reason: 'not_recorded' }, position: knownPosition });
@@ -68,5 +68,27 @@ describe('experimental v2 values', () => {
     const before = structuredClone(input);
     expect(parsePrimitiveRecord(input).success).toBe(false);
     expect(input).toEqual(before);
+  });
+});
+
+
+describe('JSON Pointer locator safety', () => {
+  const accepts = (pointer: string) => SourceProvenanceSchema.safeParse({
+    sourceRef: 'source:original', locator: { kind: 'json_pointer', pointer },
+  }).success;
+
+  it.each(['', '/', '/a~0b/~1/', '//nested///', '/line\nbreak'])('accepts valid pointer %j', pointer => {
+    expect(accepts(pointer)).toBe(true);
+  });
+
+  it.each(['a', '~', '/~', '/~2', '\n', '/a~\n'])('rejects invalid pointer %j', pointer => {
+    expect(accepts(pointer)).toBe(false);
+  });
+
+  it('handles long slash-heavy input without ambiguous backtracking', () => {
+    const slashes = '/'.repeat(100_000);
+    expect(accepts(slashes)).toBe(true);
+    expect(accepts(`${slashes}~`)).toBe(false);
+    expect(accepts(`${slashes}~2`)).toBe(false);
   });
 });

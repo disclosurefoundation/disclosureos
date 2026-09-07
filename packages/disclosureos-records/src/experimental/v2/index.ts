@@ -32,13 +32,16 @@ function envelope<T extends z.ZodType>(value: T) {
 export const EventTimeSchema = envelope(EventTimeValueSchema);
 export const PositionSchema = envelope(PositionValueSchema);
 
+// A pointer is empty or begins with '/', followed by characters or valid tilde escapes.
+// Slash is ordinary content after the first separator: do not repeat token groups.
+// The final lookahead enforces absolute end, including a trailing newline.
 export const SourceProvenanceSchema = z.strictObject({
   sourceRef,
   sourceDigest: z.strictObject({ algorithm: z.literal('sha256'), value: z.string().regex(/^[a-f0-9]{64}$/) }).optional(),
   locator: z.discriminatedUnion('kind', [
     z.strictObject({ kind: z.literal('page'), page: z.number().int().min(1) }),
     z.strictObject({ kind: z.literal('time_range'), startSeconds: z.number().min(0), endSeconds: z.number().min(0) }),
-    z.strictObject({ kind: z.literal('json_pointer'), pointer: z.string().regex(/^(\/(?:[^~]|~[01])*)*$/) }),
+    z.strictObject({ kind: z.literal('json_pointer'), pointer: z.string().regex(/^(?:\/(?:[^~]|~[01])*)?(?![\s\S])/) }),
   ]).optional(),
   attributedTo: text.optional(),
   extractedBy: text.optional(),

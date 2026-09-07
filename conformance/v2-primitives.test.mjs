@@ -31,3 +31,19 @@ for (const fixture of fixtures) {
     }
   });
 }
+
+
+test('JSON Pointer escapes and hostile-length inputs agree across runtime and schema', () => {
+  const cases = [
+    ['', true], ['/', true], ['/a~0b/~1/', true], ['/line\nbreak', true],
+    ['\n', false], ['/~', false], ['/~2', false],
+    ['/'.repeat(100_000), true], [`${'/'.repeat(100_000)}~`, false],
+  ];
+  for (const [pointer, expected] of cases) {
+    const input = structuredClone(fixtures[0].input);
+    input.assertions = [{ id: 'pointer-test', field: 'position', value: input.position.value,
+      provenance: { sourceRef: 'source:original', locator: { kind: 'json_pointer', pointer } } }];
+    assert.equal(validate(input), expected);
+    assert.equal(parsePrimitiveRecord(input).success, expected);
+  }
+});
