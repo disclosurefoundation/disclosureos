@@ -101,3 +101,10 @@ MIT © [Disclosure Foundation](https://disclosure.org)
 `@disclosureos/schema/experimental/v2` exports `evaluateAssessmentDocumentation` for records-owned claim histories. See the [profile contract and runnable synthetic example](../../docs/experimental/assessment-documentation.md). It checks declared support and supplied byte hashes, not scientific adequacy; existing v1 APIs and artifacts remain unchanged.
 
 `evaluateAcquisitionBindings` additionally checks explicit raw-product/source mappings to instrument acquisition context and verifies supplied artifact hashes and lengths. See the [binding contract and local example](../../docs/experimental/acquisition-bindings.md). This is independent of assessment-documentation eligibility and does not authenticate physical instruments.
+
+The experimental v2 entry point also exports `evaluateMeasurementBindings` and
+`MeasurementBindingsSchema`. The single-channel profile links measurements to
+acquisition-bound raw products, captured channels, and explicit nominal capture
+times, then runs local acquisition artifact checks. It does not verify clock
+uncertainty, artifact contents, or scientific eligibility. See the
+[measurement bindings guide](../../docs/experimental/measurement-bindings.md).

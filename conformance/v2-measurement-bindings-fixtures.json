@@ -1,0 +1,1108 @@
+{
+  "base": {
+    "history": {
+      "kind": "claim_history",
+      "schemaVersion": "0.1.0",
+      "id": "profile-example",
+      "observation": {
+        "kind": "observation",
+        "schemaVersion": "0.1.0",
+        "id": "synthetic",
+        "status": "draft",
+        "createdAt": "2026-09-07T00:00:00Z",
+        "updatedAt": "2026-09-07T00:00:00Z",
+        "eventTime": {
+          "state": "known",
+          "value": {
+            "kind": "instant",
+            "value": "2026-07-28T12:10:00Z",
+            "timeScale": "UTC"
+          },
+          "sourceRefs": [
+            "source:station"
+          ]
+        },
+        "position": {
+          "state": "unknown",
+          "reason": "not_collected"
+        },
+        "sources": [
+          {
+            "id": "station",
+            "kind": "instrument_data",
+            "access": "unknown"
+          },
+          {
+            "id": "report",
+            "kind": "document",
+            "access": "public",
+            "digest": {
+              "algorithm": "sha256",
+              "value": "9ec816b8cbd1f5f541f28d17e91f5c6b47b7f5eef635fe23f1f9f4b4b2d0a72b"
+            }
+          }
+        ],
+        "products": [
+          {
+            "id": "raw",
+            "kind": "raw",
+            "format": "application/json",
+            "access": "public",
+            "sourceRefs": [
+              "source:station"
+            ],
+            "digest": {
+              "algorithm": "sha256",
+              "value": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121"
+            }
+          },
+          {
+            "id": "summary",
+            "kind": "derived",
+            "format": "application/json",
+            "access": "public",
+            "generatedBy": "process:reduction",
+            "digest": {
+              "algorithm": "sha256",
+              "value": "547aa2ac3c7bb2adb031a3aa078a966ae16b20a83d47aa118b1d8eba0a6a2714"
+            }
+          }
+        ],
+        "methods": [
+          {
+            "id": "review",
+            "version": "0.1.0",
+            "description": "Synthetic review declaration; not a validated scientific method."
+          },
+          {
+            "id": "reduction",
+            "version": "0.1.0",
+            "description": "Synthetic reduction declaration; output not reproduced."
+          }
+        ],
+        "frames": [],
+        "assertions": [
+          {
+            "id": "velocity",
+            "field": "measurement",
+            "measurementId": "velocity",
+            "value": {
+              "value": -3,
+              "unit": "m/s",
+              "uncertainty": {
+                "kind": "standard",
+                "magnitude": 1,
+                "unit": "m/s",
+                "sourceRefs": [
+                  "product:raw"
+                ]
+              }
+            },
+            "provenance": {
+              "sourceRef": "product:summary",
+              "locator": {
+                "kind": "json_pointer",
+                "pointer": "/velocity"
+              }
+            }
+          }
+        ],
+        "measurements": [
+          {
+            "id": "velocity",
+            "quantity": "radial velocity",
+            "value": {
+              "value": -3,
+              "unit": "m/s",
+              "uncertainty": {
+                "kind": "standard",
+                "magnitude": 1,
+                "unit": "m/s",
+                "sourceRefs": [
+                  "product:raw"
+                ]
+              }
+            },
+            "sourceRefs": [
+              "assertion:velocity"
+            ],
+            "selection": {
+              "assertionRef": "assertion:velocity",
+              "consideredAssertionRefs": [
+                "assertion:velocity"
+              ],
+              "evaluatedBy": "person:synthetic",
+              "evaluatedAt": "2026-09-07T00:00:00Z",
+              "methodRef": "method:review",
+              "methodVersion": "0.1.0",
+              "rationale": "Copy the synthetic value."
+            }
+          }
+        ],
+        "processing": [
+          {
+            "id": "reduction",
+            "methodRef": "method:reduction",
+            "methodVersion": "0.1.0",
+            "performedBy": "person:synthetic",
+            "performedAt": "2026-09-07T00:00:00Z",
+            "inputRefs": [
+              "product:raw"
+            ],
+            "outputRefs": [
+              "product:summary"
+            ]
+          }
+        ]
+      },
+      "claims": [
+        {
+          "id": "statement",
+          "kind": "source_assertion",
+          "recordedAt": "2026-09-07T00:00:00Z",
+          "topic": "synthetic motion",
+          "subject": {
+            "kind": "observation"
+          },
+          "text": "Synthetic source calls this confirmed.",
+          "reportedLevel": "confirmed",
+          "provenance": {
+            "sourceRef": "source:report",
+            "locator": {
+              "kind": "page",
+              "page": 1
+            },
+            "extractedBy": "agent:synthetic"
+          }
+        },
+        {
+          "id": "review",
+          "kind": "assessment",
+          "recordedAt": "2026-09-07T00:00:00Z",
+          "topic": "synthetic motion",
+          "subject": {
+            "kind": "measurement",
+            "measurementId": "velocity"
+          },
+          "status": "assessed",
+          "outcome": "confirmed",
+          "evaluatedBy": "person:synthetic",
+          "evaluatedAt": "2026-09-07T00:00:00Z",
+          "methodRef": "method:review",
+          "methodVersion": "0.1.0",
+          "inputRefs": [
+            "claim:statement",
+            "measurement:velocity"
+          ],
+          "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+        }
+      ]
+    },
+    "context": {
+      "kind": "acquisition_context",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic-context",
+      "instruments": [
+        {
+          "id": "station",
+          "identity": {
+            "state": "known",
+            "manufacturer": "Synthetic Instruments",
+            "model": "Control station",
+            "serialNumber": "SYNTHETIC-001"
+          }
+        }
+      ],
+      "manifests": [
+        {
+          "id": "r1",
+          "instrumentRef": "instrument:station",
+          "version": "1",
+          "publishedAt": "2026-07-01T00:00:00Z",
+          "artifact": {
+            "mediaType": "application/json",
+            "byteLength": 367,
+            "digest": {
+              "algorithm": "sha256",
+              "value": "e753c4cb8d4cb63e44820a4bc64202efa9d8d13b6a6e02abc3709e7237923c95"
+            }
+          },
+          "configuration": {
+            "hardware": {
+              "state": "known",
+              "value": "synthetic-rev-1"
+            },
+            "firmware": {
+              "state": "known",
+              "value": "synthetic-1.0"
+            }
+          },
+          "channels": [
+            {
+              "id": "radar",
+              "quantity": "radial velocity",
+              "unit": "m/s",
+              "sampling": {
+                "state": "known",
+                "rateHz": 10
+              }
+            }
+          ]
+        }
+      ],
+      "deployments": [
+        {
+          "id": "d1",
+          "instrumentRef": "instrument:station",
+          "manifest": {
+            "state": "pinned",
+            "ref": "manifest:r1"
+          },
+          "period": {
+            "state": "known",
+            "start": "2026-07-28T12:00:00Z",
+            "end": "2026-07-28T13:00:00Z",
+            "timeScale": "UTC"
+          },
+          "site": {
+            "state": "known",
+            "value": "Synthetic test location"
+          }
+        }
+      ],
+      "calibrations": [
+        {
+          "id": "c1",
+          "instrumentRef": "instrument:station",
+          "manifestRef": "manifest:r1",
+          "channelId": "radar",
+          "performedAt": {
+            "state": "known",
+            "value": "2026-07-01T00:00:00Z"
+          },
+          "validity": {
+            "state": "known",
+            "start": "2026-07-01T00:00:00Z",
+            "end": "2026-08-01T00:00:00Z",
+            "timeScale": "UTC"
+          },
+          "method": {
+            "state": "known",
+            "id": "synthetic-method",
+            "version": "1",
+            "description": "Synthetic calibration declaration, not executed."
+          },
+          "report": {
+            "state": "known",
+            "artifact": {
+              "mediaType": "text/plain",
+              "byteLength": 94,
+              "digest": {
+                "algorithm": "sha256",
+                "value": "2a89ae47a0e0994215daaf343f90381b594fcef5a9eeffcee2514d1cfebb1bc2"
+              }
+            }
+          },
+          "uncertainty": {
+            "kind": "expanded",
+            "magnitude": 0.1,
+            "unit": "m/s",
+            "coverageFactor": 2
+          },
+          "review": {
+            "state": "unreviewed"
+          }
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "a1",
+          "instrumentRef": "instrument:station",
+          "manifest": {
+            "state": "pinned",
+            "ref": "manifest:r1"
+          },
+          "deployment": {
+            "state": "pinned",
+            "ref": "deployment:d1"
+          },
+          "time": {
+            "state": "known",
+            "start": "2026-07-28T12:10:00Z",
+            "end": "2026-07-28T12:11:00Z",
+            "timeScale": "UTC",
+            "kind": "interval"
+          },
+          "classification": "background",
+          "clock": {
+            "source": {
+              "state": "known",
+              "value": "Synthetic oscillator"
+            },
+            "synchronization": {
+              "state": "known",
+              "value": "Synthetic synchronization declaration"
+            },
+            "resolution": {
+              "state": "known",
+              "magnitude": 1,
+              "unit": "ns"
+            },
+            "uncertainty": {
+              "state": "known",
+              "magnitude": 0,
+              "unit": "ns"
+            }
+          },
+          "channels": [
+            {
+              "channelId": "radar",
+              "calibration": {
+                "state": "pinned",
+                "ref": "calibration:c1"
+              }
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "id": "captured-raw",
+          "acquisitionRef": "acquisition:a1",
+          "kind": "raw",
+          "artifact": {
+            "mediaType": "application/json",
+            "byteLength": 23,
+            "digest": {
+              "algorithm": "sha256",
+              "value": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121"
+            }
+          }
+        }
+      ],
+      "extensions": {
+        "org.example": {
+          "synthetic": true
+        }
+      }
+    },
+    "bindings": {
+      "kind": "acquisition_bindings",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic-binding",
+      "historyId": "profile-example",
+      "observationId": "synthetic",
+      "contextId": "synthetic-context",
+      "sources": [
+        {
+          "sourceRef": "source:station",
+          "instrumentRef": "instrument:station"
+        }
+      ],
+      "products": [
+        {
+          "observationProductRef": "product:raw",
+          "contextProductRef": "product:captured-raw"
+        }
+      ],
+      "extensions": {
+        "org.example": {
+          "synthetic": true
+        }
+      }
+    },
+    "mapping": {
+      "kind": "measurement_bindings",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic-measurements",
+      "historyId": "profile-example",
+      "observationId": "synthetic",
+      "contextId": "synthetic-context",
+      "acquisitionBindingsId": "synthetic-binding",
+      "measurements": [
+        {
+          "measurementRef": "measurement:velocity",
+          "observationProductRef": "product:raw",
+          "channelId": "radar",
+          "time": {
+            "state": "known",
+            "kind": "instant",
+            "value": "2026-07-28T12:10:00Z",
+            "timeScale": "UTC"
+          }
+        }
+      ]
+    }
+  },
+  "assets": {
+    "product:captured-raw": "{\"samples\":[-2,-3,-4]}\n",
+    "manifest:r1": "{\"channels\": [{\"id\": \"radar\", \"quantity\": \"radial velocity\", \"sampling\": {\"rateHz\": 10, \"state\": \"known\"}, \"unit\": \"m/s\"}], \"configuration\": {\"firmware\": {\"state\": \"known\", \"value\": \"synthetic-1.0\"}, \"hardware\": {\"state\": \"known\", \"value\": \"synthetic-rev-1\"}}, \"id\": \"r1\", \"instrumentRef\": \"instrument:station\", \"publishedAt\": \"2026-07-01T00:00:00Z\", \"version\": \"1\"}\n",
+    "calibration:c1/report": "Synthetic calibration report for channel radar and manifest r1. No calibration was performed.\n"
+  },
+  "cases": [
+    {
+      "id": "complete",
+      "changes": [],
+      "profile": "passed",
+      "codes": []
+    },
+    {
+      "id": "unbound measurement",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": []
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.REQUIRED"
+      ]
+    },
+    {
+      "id": "duplicate measurement",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "instant",
+                "value": "2026-07-28T12:10:00Z",
+                "timeScale": "UTC"
+              }
+            },
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "instant",
+                "value": "2026-07-28T12:10:00Z",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.DUPLICATE"
+      ]
+    },
+    {
+      "id": "wrong history",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "historyId"
+          ],
+          "value": "other"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.DOCUMENT_ID"
+      ]
+    },
+    {
+      "id": "wrong context",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "contextId"
+          ],
+          "value": "other"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.DOCUMENT_ID"
+      ]
+    },
+    {
+      "id": "wrong observation",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "observationId"
+          ],
+          "value": "other"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.DOCUMENT_ID"
+      ]
+    },
+    {
+      "id": "wrong binding document",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "acquisitionBindingsId"
+          ],
+          "value": "other"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.DOCUMENT_ID"
+      ]
+    },
+    {
+      "id": "missing measurement",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:missing",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "instant",
+                "value": "2026-07-28T12:10:00Z",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.REFERENCE"
+      ]
+    },
+    {
+      "id": "missing product",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:missing",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "instant",
+                "value": "2026-07-28T12:10:00Z",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.PRODUCT"
+      ]
+    },
+    {
+      "id": "derived product",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:summary",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "instant",
+                "value": "2026-07-28T12:10:00Z",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.PRODUCT"
+      ]
+    },
+    {
+      "id": "wrong channel",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "other",
+              "time": {
+                "state": "known",
+                "kind": "instant",
+                "value": "2026-07-28T12:10:00Z",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.CHANNEL"
+      ]
+    },
+    {
+      "id": "quantity mismatch",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "history",
+            "observation",
+            "measurements"
+          ],
+          "value": [
+            {
+              "id": "velocity",
+              "quantity": "speed",
+              "value": {
+                "value": -3,
+                "unit": "m/s",
+                "uncertainty": {
+                  "kind": "standard",
+                  "magnitude": 1,
+                  "unit": "m/s",
+                  "sourceRefs": [
+                    "product:raw"
+                  ]
+                }
+              },
+              "sourceRefs": [
+                "assertion:velocity"
+              ],
+              "selection": {
+                "assertionRef": "assertion:velocity",
+                "consideredAssertionRefs": [
+                  "assertion:velocity"
+                ],
+                "evaluatedBy": "person:synthetic",
+                "evaluatedAt": "2026-09-07T00:00:00Z",
+                "methodRef": "method:review",
+                "methodVersion": "0.1.0",
+                "rationale": "Copy the synthetic value."
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.QUANTITY"
+      ]
+    },
+    {
+      "id": "unknown measurement time",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "unknown",
+                "reason": "not_collected"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.TIME_UNKNOWN"
+      ]
+    },
+    {
+      "id": "before capture",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "instant",
+                "value": "2026-07-28T12:09:59.999999999Z",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.OUTSIDE_CAPTURE"
+      ]
+    },
+    {
+      "id": "exclusive capture end",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "instant",
+                "value": "2026-07-28T12:11:00Z",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.OUTSIDE_CAPTURE"
+      ]
+    },
+    {
+      "id": "fraction before end",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "instant",
+                "value": "2026-07-28T12:10:59.999999999999Z",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "passed",
+      "codes": []
+    },
+    {
+      "id": "offset equality",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "instant",
+                "value": "2026-07-28T05:10:00-07:00",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "passed",
+      "codes": []
+    },
+    {
+      "id": "calendar invalid",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "instant",
+                "value": "2026-02-30T12:10:00Z",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.TIME_INVALID"
+      ]
+    },
+    {
+      "id": "local time invalid",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "instant",
+                "value": "2026-07-28T12:10:00",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.TIME_INVALID"
+      ]
+    },
+    {
+      "id": "equal capture interval",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "interval",
+                "start": "2026-07-28T12:10:00Z",
+                "end": "2026-07-28T12:11:00Z",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "passed",
+      "codes": []
+    },
+    {
+      "id": "empty interval",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "interval",
+                "start": "2026-07-28T12:10:00Z",
+                "end": "2026-07-28T12:10:00Z",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.TIME_ORDER"
+      ]
+    },
+    {
+      "id": "overrun interval",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "mapping",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "observationProductRef": "product:raw",
+              "channelId": "radar",
+              "time": {
+                "state": "known",
+                "kind": "interval",
+                "start": "2026-07-28T12:10:00Z",
+                "end": "2026-07-28T12:11:00.000000000001Z",
+                "timeScale": "UTC"
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.OUTSIDE_CAPTURE"
+      ]
+    },
+    {
+      "id": "uncertainty does not establish lineage",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "history",
+            "observation",
+            "measurements"
+          ],
+          "value": [
+            {
+              "id": "velocity",
+              "quantity": "radial velocity",
+              "value": {
+                "value": -3,
+                "unit": "m/s",
+                "uncertainty": {
+                  "kind": "standard",
+                  "magnitude": 1,
+                  "unit": "m/s",
+                  "sourceRefs": [
+                    "product:raw"
+                  ]
+                }
+              },
+              "sourceRefs": [
+                "source:report"
+              ]
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "MEASUREMENT.LINEAGE"
+      ]
+    },
+    {
+      "id": "unknown event time is not capture time",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "history",
+            "observation",
+            "eventTime",
+            "state"
+          ],
+          "value": "unknown"
+        },
+        {
+          "op": "remove",
+          "path": [
+            "history",
+            "observation",
+            "eventTime",
+            "value"
+          ]
+        },
+        {
+          "op": "remove",
+          "path": [
+            "history",
+            "observation",
+            "eventTime",
+            "sourceRefs"
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "history",
+            "observation",
+            "eventTime",
+            "reason"
+          ],
+          "value": "not_collected"
+        }
+      ],
+      "profile": "passed",
+      "codes": []
+    }
+  ]
+}

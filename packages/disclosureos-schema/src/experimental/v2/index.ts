@@ -4,3 +4,5 @@ export { AcquisitionBindingsSchema, ACQUISITION_BINDINGS_SCHEMA_ID, acquisitionB
 export type { AcquisitionBindings } from './acquisition-bindings-schema';
 export { evaluateAcquisitionBindings, ACQUISITION_BINDINGS_PROFILE } from './acquisition-bindings';
 export type { BindingIssueCode, BindingIssue, BindingAssetCheck, ProductBindingCheck, AcquisitionBindingOptions, AcquisitionBindingResult } from './acquisition-bindings';
+export { MeasurementBindingsSchema, MEASUREMENT_BINDINGS_SCHEMA_ID, MEASUREMENT_BINDINGS_PROFILE, measurementBindingsJsonSchema, evaluateMeasurementBindings } from './measurement-bindings';
+export type { MeasurementBindings, MeasurementBindingIssue, MeasurementBindingResult } from './measurement-bindings';

@@ -4,6 +4,10 @@ All notable changes to `@disclosureos/schema` are documented here. The format is
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased experimental work
+
+- Add the opt-in v2 measurement bindings contract and single-channel capture profile, with local acquisition artifact verification. Existing contracts and package versions remain unchanged; scientific eligibility is not established by this profile.
+
 ## 1.1.0
 
 ### Minor Changes

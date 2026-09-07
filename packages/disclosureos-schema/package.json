@@ -36,7 +36,9 @@
       "import": "./dist/experimental/v2/index.js"
     },
     "./experimental/v2/bindings/schema": "./schema/experimental/acquisition-bindings-0.1.0.schema.json",
-    "./experimental/v2/bindings/schema/0.1.0": "./schema/experimental/acquisition-bindings-0.1.0.schema.json"
+    "./experimental/v2/bindings/schema/0.1.0": "./schema/experimental/acquisition-bindings-0.1.0.schema.json",
+    "./experimental/v2/measurements/schema": "./schema/experimental/measurement-bindings-0.1.0.schema.json",
+    "./experimental/v2/measurements/schema/0.1.0": "./schema/experimental/measurement-bindings-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
