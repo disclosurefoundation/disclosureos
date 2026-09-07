@@ -34,7 +34,9 @@
     "./experimental/v2": {
       "types": "./dist/experimental/v2/index.d.ts",
       "import": "./dist/experimental/v2/index.js"
-    }
+    },
+    "./experimental/v2/bindings/schema": "./schema/experimental/acquisition-bindings-0.1.0.schema.json",
+    "./experimental/v2/bindings/schema/0.1.0": "./schema/experimental/acquisition-bindings-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -60,7 +62,8 @@
     "@disclosureos/records": "workspace:*",
     "@disclosureos/observables": "workspace:*",
     "@disclosureos/origins": "workspace:*",
-    "zod": "catalog:"
+    "zod": "catalog:",
+    "@disclosureos/instruments": "workspace:*"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
