@@ -135,4 +135,5 @@ jobs:
       - run: pnpm test:conformance
       - run: pnpm test:v2-primitives
       - run: pnpm test:v2-observation
+      - run: pnpm test:v2-claims
       - run: pnpm test:partner-audit

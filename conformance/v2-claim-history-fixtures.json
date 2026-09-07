@@ -1,0 +1,1585 @@
+{
+  "bases": {
+    "integrated": {
+      "kind": "claim_history",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic-history",
+      "observation": {
+        "kind": "observation",
+        "schemaVersion": "0.1.0",
+        "id": "synthetic",
+        "status": "draft",
+        "createdAt": "2026-09-07T12:00:00Z",
+        "updatedAt": "2026-09-07T12:00:00Z",
+        "eventTime": {
+          "state": "approximate",
+          "value": {
+            "kind": "interval",
+            "start": {
+              "kind": "instant",
+              "value": "2026-01-01T00:00:00.000001Z",
+              "timeScale": "UTC"
+            },
+            "end": {
+              "kind": "instant",
+              "value": "2026-01-01T00:02:00.000001Z",
+              "timeScale": "UTC"
+            }
+          },
+          "precision": "Bounded source estimate; exact fractional strings retained",
+          "sourceRefs": [
+            "assertion:time-a"
+          ],
+          "uncertainty": {
+            "kind": "standard",
+            "magnitude": 1,
+            "unit": "us",
+            "sourceRefs": [
+              "source:s1"
+            ]
+          },
+          "selection": {
+            "assertionRef": "assertion:time-a",
+            "consideredAssertionRefs": [
+              "assertion:time-a"
+            ],
+            "methodRef": "method:curation",
+            "methodVersion": "1.0.0",
+            "evaluatedBy": "person:synthetic-curator",
+            "evaluatedAt": "2026-09-07T12:00:00Z",
+            "rationale": "Synthetic example of an explicitly declared source-value choice."
+          }
+        },
+        "position": {
+          "state": "known",
+          "value": {
+            "kind": "geodetic",
+            "latitude": 0,
+            "longitude": 0,
+            "frameRef": "frame:geo",
+            "altitude": {
+              "value": -2,
+              "unit": "m",
+              "uncertainty": {
+                "kind": "unknown",
+                "reason": "not_characterized"
+              }
+            },
+            "uncertainty": {
+              "latitude": {
+                "kind": "standard",
+                "magnitude": 0.1,
+                "unit": "deg",
+                "sourceRefs": [
+                  "source:s1"
+                ]
+              },
+              "longitude": {
+                "kind": "standard",
+                "magnitude": 0.1,
+                "unit": "deg",
+                "sourceRefs": [
+                  "source:s1"
+                ]
+              }
+            }
+          },
+          "sourceRefs": [
+            "assertion:position-a"
+          ],
+          "selection": {
+            "assertionRef": "assertion:position-a",
+            "consideredAssertionRefs": [
+              "assertion:position-a",
+              "assertion:position-b"
+            ],
+            "methodRef": "method:curation",
+            "methodVersion": "1.0.0",
+            "evaluatedBy": "person:synthetic-curator",
+            "evaluatedAt": "2026-09-07T12:00:00Z",
+            "rationale": "Synthetic example of an explicitly declared source-value choice."
+          }
+        },
+        "sources": [
+          {
+            "id": "s1",
+            "kind": "instrument_data",
+            "access": "unknown",
+            "title": "Synthetic acquisition source"
+          },
+          {
+            "id": "s2",
+            "kind": "document",
+            "access": "unknown",
+            "title": "Synthetic alternative source"
+          }
+        ],
+        "products": [
+          {
+            "id": "raw",
+            "kind": "raw",
+            "format": "NDJSON",
+            "access": "unknown",
+            "sourceRefs": [
+              "source:s1"
+            ]
+          },
+          {
+            "id": "summary",
+            "kind": "derived",
+            "format": "JSON",
+            "access": "unknown",
+            "generatedBy": "process:reduce"
+          }
+        ],
+        "methods": [
+          {
+            "id": "curation",
+            "version": "1.0.0",
+            "description": "Synthetic source-priority rule"
+          },
+          {
+            "id": "reduction",
+            "version": "1.0.0",
+            "description": "Synthetic reduction declaration; not executed by this example"
+          },
+          {
+            "id": "assessment-review",
+            "version": "0.1.0",
+            "description": "Synthetic documentary review; no scientific eligibility criteria implemented."
+          }
+        ],
+        "frames": [
+          {
+            "id": "geo",
+            "kind": "geodetic",
+            "definition": {
+              "state": "identified",
+              "authority": "EPSG",
+              "code": "4326"
+            },
+            "angularUnit": "deg",
+            "vertical": {
+              "definition": {
+                "state": "described",
+                "description": "Synthetic local vertical reference"
+              },
+              "unit": "m"
+            }
+          }
+        ],
+        "assertions": [
+          {
+            "id": "time-a",
+            "field": "eventTime",
+            "value": {
+              "kind": "interval",
+              "start": {
+                "kind": "instant",
+                "value": "2026-01-01T00:00:00.000001Z",
+                "timeScale": "UTC"
+              },
+              "end": {
+                "kind": "instant",
+                "value": "2026-01-01T00:02:00.000001Z",
+                "timeScale": "UTC"
+              }
+            },
+            "provenance": {
+              "sourceRef": "source:s1",
+              "extractedBy": "agent:synthetic-extractor"
+            }
+          },
+          {
+            "id": "position-a",
+            "field": "position",
+            "value": {
+              "kind": "geodetic",
+              "latitude": 0,
+              "longitude": 0,
+              "frameRef": "frame:geo",
+              "altitude": {
+                "value": -2,
+                "unit": "m",
+                "uncertainty": {
+                  "kind": "unknown",
+                  "reason": "not_characterized"
+                }
+              },
+              "uncertainty": {
+                "latitude": {
+                  "kind": "standard",
+                  "magnitude": 0.1,
+                  "unit": "deg",
+                  "sourceRefs": [
+                    "source:s1"
+                  ]
+                },
+                "longitude": {
+                  "kind": "standard",
+                  "magnitude": 0.1,
+                  "unit": "deg",
+                  "sourceRefs": [
+                    "source:s1"
+                  ]
+                }
+              }
+            },
+            "provenance": {
+              "sourceRef": "source:s1"
+            }
+          },
+          {
+            "id": "position-b",
+            "field": "position",
+            "value": {
+              "kind": "geodetic",
+              "latitude": 1,
+              "longitude": 0,
+              "frameRef": "frame:geo",
+              "altitude": {
+                "value": -2,
+                "unit": "m",
+                "uncertainty": {
+                  "kind": "unknown",
+                  "reason": "not_characterized"
+                }
+              },
+              "uncertainty": {
+                "latitude": {
+                  "kind": "standard",
+                  "magnitude": 0.1,
+                  "unit": "deg",
+                  "sourceRefs": [
+                    "source:s1"
+                  ]
+                },
+                "longitude": {
+                  "kind": "standard",
+                  "magnitude": 0.1,
+                  "unit": "deg",
+                  "sourceRefs": [
+                    "source:s1"
+                  ]
+                }
+              }
+            },
+            "provenance": {
+              "sourceRef": "source:s2"
+            }
+          },
+          {
+            "id": "velocity-a",
+            "field": "measurement",
+            "measurementId": "velocity",
+            "value": {
+              "value": -28,
+              "unit": "m/s",
+              "uncertainty": {
+                "kind": "expanded",
+                "magnitude": 0.1,
+                "unit": "m/s",
+                "sourceRefs": [
+                  "source:s1"
+                ],
+                "coverageFactor": 2
+              }
+            },
+            "provenance": {
+              "sourceRef": "product:summary",
+              "locator": {
+                "kind": "json_pointer",
+                "pointer": "/velocity"
+              }
+            }
+          }
+        ],
+        "measurements": [
+          {
+            "id": "velocity",
+            "quantity": "signed radial velocity",
+            "value": {
+              "value": -28,
+              "unit": "m/s",
+              "uncertainty": {
+                "kind": "expanded",
+                "magnitude": 0.1,
+                "unit": "m/s",
+                "sourceRefs": [
+                  "source:s1"
+                ],
+                "coverageFactor": 2
+              }
+            },
+            "sourceRefs": [
+              "assertion:velocity-a"
+            ],
+            "selection": {
+              "assertionRef": "assertion:velocity-a",
+              "consideredAssertionRefs": [
+                "assertion:velocity-a"
+              ],
+              "methodRef": "method:curation",
+              "methodVersion": "1.0.0",
+              "evaluatedBy": "person:synthetic-curator",
+              "evaluatedAt": "2026-09-07T12:00:00Z",
+              "rationale": "Synthetic example of an explicitly declared source-value choice."
+            }
+          }
+        ],
+        "processing": [
+          {
+            "id": "reduce",
+            "methodRef": "method:reduction",
+            "methodVersion": "1.0.0",
+            "performedBy": "agent:synthetic-processor",
+            "performedAt": "2026-01-01T00:05:00Z",
+            "inputRefs": [
+              "product:raw"
+            ],
+            "outputRefs": [
+              "product:summary"
+            ]
+          }
+        ],
+        "summary": "Synthetic control fixture. All values and processing declarations are illustrative, not real observations.",
+        "extensions": {
+          "org.example.fixture": {
+            "synthetic": true,
+            "optional": null,
+            "zero": 0
+          }
+        }
+      },
+      "claims": [
+        {
+          "recordedAt": "2026-09-07T00:00:00Z",
+          "topic": "synthetic radial motion",
+          "subject": {
+            "kind": "measurement",
+            "measurementId": "velocity"
+          },
+          "id": "statement-1",
+          "kind": "source_assertion",
+          "text": "Synthetic source describes the motion as confirmed.",
+          "reportedLevel": "confirmed",
+          "provenance": {
+            "sourceRef": "source:s2",
+            "extractedBy": "agent:synthetic-extractor",
+            "locator": {
+              "kind": "page",
+              "page": 1
+            }
+          }
+        },
+        {
+          "recordedAt": "2026-09-07T00:00:00Z",
+          "topic": "synthetic radial motion",
+          "subject": {
+            "kind": "measurement",
+            "measurementId": "velocity"
+          },
+          "id": "review-1",
+          "kind": "assessment",
+          "status": "unassessed",
+          "inputRefs": [
+            "claim:statement-1"
+          ],
+          "rationale": "Preserve source wording while awaiting review."
+        },
+        {
+          "recordedAt": "2026-09-07T00:00:00Z",
+          "topic": "synthetic radial motion",
+          "subject": {
+            "kind": "measurement",
+            "measurementId": "velocity"
+          },
+          "id": "review-2",
+          "kind": "assessment",
+          "status": "assessed",
+          "outcome": "inconclusive",
+          "inputRefs": [
+            "claim:statement-1",
+            "measurement:velocity"
+          ],
+          "rationale": "Synthetic measurement uncertainty does not establish anomalous motion.",
+          "supersedes": [
+            "claim:review-1"
+          ],
+          "evaluatedBy": "person:synthetic-reviewer",
+          "evaluatedAt": "2026-09-07T00:00:00Z",
+          "methodRef": "method:assessment-review",
+          "methodVersion": "0.1.0"
+        }
+      ],
+      "extensions": {
+        "org.example": {
+          "synthetic": true,
+          "unknown": null
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "integrated-history",
+      "base": "integrated",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "current": [
+        "claim:statement-1",
+        "claim:review-2"
+      ]
+    },
+    {
+      "id": "archive-only",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims"
+          ],
+          "value": [
+            {
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic radial motion",
+              "subject": {
+                "kind": "measurement",
+                "measurementId": "velocity"
+              },
+              "id": "statement-1",
+              "kind": "source_assertion",
+              "text": "Synthetic source describes the motion as confirmed.",
+              "reportedLevel": "confirmed",
+              "provenance": {
+                "sourceRef": "source:s2",
+                "extractedBy": "agent:synthetic-extractor",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "current": [
+        "claim:statement-1"
+      ]
+    },
+    {
+      "id": "empty-history",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims"
+          ],
+          "value": []
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "current": []
+    },
+    {
+      "id": "unknown-confidence",
+      "base": "integrated",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "codes": []
+    },
+    {
+      "id": "zero-confidence",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "confidence"
+          ],
+          "value": 0
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": []
+    },
+    {
+      "id": "explicit-confidence",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "confidence"
+          ],
+          "value": 0.5
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": []
+    },
+    {
+      "id": "assessed-absence",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "outcome"
+          ],
+          "value": "absent"
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": []
+    },
+    {
+      "id": "unsupported-confirmed-is-only-a-declaration",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "outcome"
+          ],
+          "value": "confirmed"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "inputRefs"
+          ],
+          "value": []
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": []
+    },
+    {
+      "id": "reported-level-preserves-unrecognized-source-wording",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            0,
+            "reportedLevel"
+          ],
+          "value": "absolutely certain per source"
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": []
+    },
+    {
+      "id": "unknown-author-and-extractor",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "claims",
+            0,
+            "provenance",
+            "extractedBy"
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": []
+    },
+    {
+      "id": "missing-evaluator",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "claims",
+            2,
+            "evaluatedBy"
+          ]
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "missing-method",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "claims",
+            2,
+            "methodRef"
+          ]
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "missing-recording-time",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "claims",
+            0,
+            "recordedAt"
+          ]
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "unknown-confidence-is-omitted-not-null",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "confidence"
+          ],
+          "value": null
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "negative-confidence",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "confidence"
+          ],
+          "value": -0.1
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "excess-confidence",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "confidence"
+          ],
+          "value": 1.01
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "unassessed-cannot-carry-outcome",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "outcome"
+          ],
+          "value": "absent"
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "source-cannot-carry-evaluator",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            0,
+            "evaluatedBy"
+          ],
+          "value": "agent:extractor"
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "root-private-notes-rejected",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "privateNotes"
+          ],
+          "value": "private"
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "nested-unknown-key",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "subject",
+            "other"
+          ],
+          "value": "private"
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "non-namespaced-extension",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "extensions"
+          ],
+          "value": {
+            "invalid": {}
+          }
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "invalid-reference-namespace",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "inputRefs"
+          ],
+          "value": [
+            "sensor:r"
+          ]
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "trailing-newline-id",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            0,
+            "id"
+          ],
+          "value": "statement-1\n"
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "invalid-locator-pointer",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            0,
+            "provenance",
+            "locator"
+          ],
+          "value": {
+            "kind": "json_pointer",
+            "pointer": "/bad~2"
+          }
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "invalid-calendar",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            0,
+            "recordedAt"
+          ],
+          "value": "2026-02-30T00:00:00Z"
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "dangling-source",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            0,
+            "provenance",
+            "sourceRef"
+          ],
+          "value": "source:missing"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ]
+    },
+    {
+      "id": "dangling-input",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "inputRefs"
+          ],
+          "value": [
+            "claim:missing"
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ]
+    },
+    {
+      "id": "dangling-subject",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            0,
+            "subject",
+            "measurementId"
+          ],
+          "value": "missing"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ]
+    },
+    {
+      "id": "dangling-method",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "methodRef"
+          ],
+          "value": "method:missing"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ]
+    },
+    {
+      "id": "method-version",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "methodVersion"
+          ],
+          "value": "999"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "METHOD.VERSION_MISMATCH"
+      ]
+    },
+    {
+      "id": "missing-revision-target",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "supersedes"
+          ],
+          "value": [
+            "claim:missing"
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ]
+    },
+    {
+      "id": "duplicate-input",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "inputRefs"
+          ],
+          "value": [
+            "claim:statement-1",
+            "claim:statement-1"
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.UNIQUE_ID"
+      ]
+    },
+    {
+      "id": "duplicate-supersession",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "supersedes"
+          ],
+          "value": [
+            "claim:review-1",
+            "claim:review-1"
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.UNIQUE_ID"
+      ]
+    },
+    {
+      "id": "duplicate-claim-id",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "append",
+          "path": [
+            "claims"
+          ],
+          "value": {
+            "recordedAt": "2026-09-07T00:00:00Z",
+            "topic": "synthetic radial motion",
+            "subject": {
+              "kind": "measurement",
+              "measurementId": "velocity"
+            },
+            "id": "statement-1",
+            "kind": "source_assertion",
+            "text": "Synthetic source describes the motion as confirmed.",
+            "reportedLevel": "confirmed",
+            "provenance": {
+              "sourceRef": "source:s2",
+              "extractedBy": "agent:synthetic-extractor",
+              "locator": {
+                "kind": "page",
+                "page": 1
+              }
+            }
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.UNIQUE_ID"
+      ]
+    },
+    {
+      "id": "supersession-kind",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "supersedes"
+          ],
+          "value": [
+            "claim:statement-1"
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CLAIM.SUPERSESSION_SCOPE"
+      ]
+    },
+    {
+      "id": "supersession-topic",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "topic"
+          ],
+          "value": "another topic"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CLAIM.SUPERSESSION_SCOPE"
+      ]
+    },
+    {
+      "id": "supersession-subject",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "subject"
+          ],
+          "value": {
+            "kind": "observation"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CLAIM.SUPERSESSION_SCOPE"
+      ]
+    },
+    {
+      "id": "self-supersession",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "supersedes"
+          ],
+          "value": [
+            "claim:review-2"
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CLAIM.DEPENDENCY_CYCLE"
+      ]
+    },
+    {
+      "id": "self-input",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "inputRefs"
+          ],
+          "value": [
+            "claim:review-2"
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CLAIM.DEPENDENCY_CYCLE"
+      ]
+    },
+    {
+      "id": "mixed-input-and-supersession-cycle",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "inputRefs"
+          ],
+          "value": [
+            "claim:review-2"
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CLAIM.DEPENDENCY_CYCLE"
+      ]
+    },
+    {
+      "id": "revision-precedes-prior",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "recordedAt"
+          ],
+          "value": "2026-09-07T00:00:00.000001Z"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CLAIM.REVISION_ORDER"
+      ]
+    },
+    {
+      "id": "evaluation-after-recording",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "evaluatedAt"
+          ],
+          "value": "2026-09-07T00:00:00.000001Z"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CLAIM.EVALUATION_ORDER"
+      ]
+    },
+    {
+      "id": "equivalent-offset-instant",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            2,
+            "evaluatedAt"
+          ],
+          "value": "2026-09-06T17:00:00-07:00"
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": []
+    },
+    {
+      "id": "reversed-locator",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            0,
+            "provenance",
+            "locator"
+          ],
+          "value": {
+            "kind": "time_range",
+            "startSeconds": 4,
+            "endSeconds": 2
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "TIME.INTERVAL"
+      ]
+    },
+    {
+      "id": "declared-digest-mismatch",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "observation",
+            "sources",
+            1,
+            "digest"
+          ],
+          "value": {
+            "algorithm": "sha256",
+            "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            0,
+            "provenance",
+            "sourceDigest"
+          ],
+          "value": {
+            "algorithm": "sha256",
+            "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "SOURCE.DIGEST_MISMATCH"
+      ]
+    },
+    {
+      "id": "embedded-observation-semantic-failure",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "observation",
+            "updatedAt"
+          ],
+          "value": "2000-01-01T00:00:00Z"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "TIME.RECORD_ORDER"
+      ]
+    },
+    {
+      "id": "embedded-observation-structural-failure",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "observation",
+            "sources"
+          ]
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "competing-revision-heads",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "append",
+          "path": [
+            "claims"
+          ],
+          "value": {
+            "recordedAt": "2026-09-07T00:00:00Z",
+            "topic": "synthetic radial motion",
+            "subject": {
+              "kind": "measurement",
+              "measurementId": "velocity"
+            },
+            "id": "review-3",
+            "kind": "assessment",
+            "status": "assessed",
+            "outcome": "reported",
+            "inputRefs": [
+              "claim:statement-1",
+              "measurement:velocity"
+            ],
+            "rationale": "Synthetic measurement uncertainty does not establish anomalous motion.",
+            "supersedes": [
+              "claim:review-1"
+            ],
+            "evaluatedBy": "person:synthetic-reviewer",
+            "evaluatedAt": "2026-09-07T00:00:00Z",
+            "methodRef": "method:assessment-review",
+            "methodVersion": "0.1.0"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "current": [
+        "claim:statement-1",
+        "claim:review-2",
+        "claim:review-3"
+      ]
+    },
+    {
+      "id": "cannot-supersede-another-evaluator",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "append",
+          "path": [
+            "claims"
+          ],
+          "value": {
+            "recordedAt": "2026-09-07T00:00:00Z",
+            "topic": "synthetic radial motion",
+            "subject": {
+              "kind": "measurement",
+              "measurementId": "velocity"
+            },
+            "id": "review-3",
+            "kind": "assessment",
+            "status": "assessed",
+            "outcome": "reported",
+            "inputRefs": [
+              "claim:statement-1",
+              "measurement:velocity"
+            ],
+            "rationale": "Synthetic measurement uncertainty does not establish anomalous motion.",
+            "supersedes": [
+              "claim:review-2"
+            ],
+            "evaluatedBy": "person:another-reviewer",
+            "evaluatedAt": "2026-09-07T00:00:00Z",
+            "methodRef": "method:assessment-review",
+            "methodVersion": "0.1.0"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CLAIM.REVISION_ATTRIBUTION"
+      ]
+    },
+    {
+      "id": "cannot-reset-assessed-to-unassessed",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "append",
+          "path": [
+            "claims"
+          ],
+          "value": {
+            "recordedAt": "2026-09-07T00:00:00Z",
+            "topic": "synthetic radial motion",
+            "subject": {
+              "kind": "measurement",
+              "measurementId": "velocity"
+            },
+            "id": "review-3",
+            "kind": "assessment",
+            "status": "unassessed",
+            "inputRefs": [
+              "claim:statement-1"
+            ],
+            "rationale": "Preserve source wording while awaiting review.",
+            "supersedes": [
+              "claim:review-2"
+            ]
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "CLAIM.REVISION_ATTRIBUTION"
+      ]
+    },
+    {
+      "id": "array-order-does-not-select-winner",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims"
+          ],
+          "value": [
+            {
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic radial motion",
+              "subject": {
+                "kind": "measurement",
+                "measurementId": "velocity"
+              },
+              "id": "review-2",
+              "kind": "assessment",
+              "status": "assessed",
+              "outcome": "inconclusive",
+              "inputRefs": [
+                "claim:statement-1",
+                "measurement:velocity"
+              ],
+              "rationale": "Synthetic measurement uncertainty does not establish anomalous motion.",
+              "supersedes": [
+                "claim:review-1"
+              ],
+              "evaluatedBy": "person:synthetic-reviewer",
+              "evaluatedAt": "2026-09-07T00:00:00Z",
+              "methodRef": "method:assessment-review",
+              "methodVersion": "0.1.0"
+            },
+            {
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic radial motion",
+              "subject": {
+                "kind": "measurement",
+                "measurementId": "velocity"
+              },
+              "id": "review-1",
+              "kind": "assessment",
+              "status": "unassessed",
+              "inputRefs": [
+                "claim:statement-1"
+              ],
+              "rationale": "Preserve source wording while awaiting review."
+            },
+            {
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic radial motion",
+              "subject": {
+                "kind": "measurement",
+                "measurementId": "velocity"
+              },
+              "id": "statement-1",
+              "kind": "source_assertion",
+              "text": "Synthetic source describes the motion as confirmed.",
+              "reportedLevel": "confirmed",
+              "provenance": {
+                "sourceRef": "source:s2",
+                "extractedBy": "agent:synthetic-extractor",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "current": [
+        "claim:review-2",
+        "claim:statement-1"
+      ]
+    }
+  ]
+}
