@@ -4,4 +4,4 @@ import { primitivesJsonSchema } from '../packages/disclosureos-records/dist/expe
 
 const directory = new URL('../packages/disclosureos-records/schema/experimental/', import.meta.url);
 mkdirSync(directory, { recursive: true });
-writeFileSync(new URL('v2-primitives.schema.json', directory), `${JSON.stringify(primitivesJsonSchema(), null, 2)}\n`);
+writeFileSync(new URL('v2-primitives-0.2.0.schema.json', directory), `${JSON.stringify(primitivesJsonSchema(), null, 2)}\n`);

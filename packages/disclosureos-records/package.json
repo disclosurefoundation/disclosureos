@@ -110,7 +110,9 @@
       "types": "./dist/experimental/v2/index.d.ts",
       "import": "./dist/experimental/v2/index.js"
     },
-    "./experimental/v2/schema": "./schema/experimental/v2-primitives.schema.json"
+    "./experimental/v2/schema": "./schema/experimental/v2-primitives-0.2.0.schema.json",
+    "./experimental/v2/schema/0.1.0": "./schema/experimental/v2-primitives.schema.json",
+    "./experimental/v2/schema/0.2.0": "./schema/experimental/v2-primitives-0.2.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
