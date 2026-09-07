@@ -1,0 +1,186 @@
+[
+  {
+    "id": "minimal-v1-record",
+    "targetAccepts": true,
+    "v1Accepts": true,
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z"
+    }
+  },
+  {
+    "id": "unknown-nested-property",
+    "targetAccepts": false,
+    "v1Accepts": true,
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown",
+        "latitdue": 40
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z"
+    }
+  },
+  {
+    "id": "invalid-calendar-date",
+    "targetAccepts": false,
+    "v1Accepts": true,
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-99-99",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z"
+    }
+  },
+  {
+    "id": "invalid-timestamp",
+    "targetAccepts": false,
+    "v1Accepts": true,
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "yesterday",
+      "updatedAt": "2026-09-07T00:00:00Z"
+    }
+  },
+  {
+    "id": "negative-duration",
+    "targetAccepts": false,
+    "v1Accepts": true,
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact",
+        "durationSeconds": -1
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z"
+    }
+  },
+  {
+    "id": "confirmed-without-support",
+    "targetAccepts": false,
+    "v1Accepts": true,
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z",
+      "observableAssessments": {
+        "technology": {
+          "antigravity_lift": [
+            {
+              "level": "confirmed"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "dangling-reference",
+    "targetAccepts": false,
+    "v1Accepts": true,
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z",
+      "observableAssessments": {
+        "technology": {
+          "antigravity_lift": [
+            {
+              "level": "confirmed",
+              "evidenceRefs": [
+                "sensor:missing"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+]
