@@ -19,10 +19,14 @@
     "release": "changeset publish",
     "conformance:baseline": "node conformance/run.mjs",
     "conformance:target": "node conformance/run.mjs --target",
-    "test:partner-audit": "node --test scripts/audit-partner-window.test.mjs"
+    "test:partner-audit": "node --test scripts/audit-partner-window.test.mjs",
+    "conformance:matrix": "node conformance/matrix.mjs",
+    "test:conformance": "node --test conformance/validate-surfaces.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
+    "ajv": "8.17.1",
+    "ajv-formats": "3.0.1",
     "tsx": "^4.19.0",
     "turbo": "^2.5.4"
   },

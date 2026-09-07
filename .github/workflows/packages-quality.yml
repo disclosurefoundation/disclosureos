@@ -4,6 +4,7 @@ on:
   pull_request:
     branches: [main]
     paths:
+      - "docs/rfcs/**"
       - "conformance/**"
       - "scripts/**"
       - ".github/workflows/packages-quality.yml"
@@ -16,6 +17,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "docs/rfcs/**"
       - "conformance/**"
       - "scripts/**"
       - ".github/workflows/packages-quality.yml"
@@ -127,6 +129,8 @@ jobs:
           node-version: "22"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter "@disclosureos/schema..." build
+      - run: pnpm --filter "@disclosureos/cli..." build
       - run: pnpm conformance:baseline
+      - run: pnpm conformance:matrix
+      - run: pnpm test:conformance
       - run: pnpm test:partner-audit
