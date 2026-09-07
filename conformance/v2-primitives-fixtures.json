@@ -1,0 +1,701 @@
+[
+  {
+    "id": "unknown-time-real-zero-position",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "redacted-position",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "redacted",
+        "reason": "publication_policy"
+      }
+    }
+  },
+  {
+    "id": "not-collected",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_collected"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "unknown-value-smuggling",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded",
+        "value": "1900-01-01"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "redacted-anchor-smuggling",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "redacted",
+        "reason": "policy",
+        "sortingAnchor": 0
+      }
+    }
+  },
+  {
+    "id": "not-applicable-without-rule",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "not_applicable",
+        "reason": "missing"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "year-preserved",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "known",
+        "value": {
+          "kind": "year",
+          "value": "1947"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "month-preserved",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "known",
+        "value": {
+          "kind": "month",
+          "value": "1947-07"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "real-historical-date-preserved",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "known",
+        "value": {
+          "kind": "date",
+          "value": "1900-01-01"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "valid-leap-day",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "known",
+        "value": {
+          "kind": "date",
+          "value": "2024-02-29"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "invalid-leap-day",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "known",
+        "value": {
+          "kind": "date",
+          "value": "2025-02-29"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "offset-fraction-preserved",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "known",
+        "value": {
+          "kind": "instant",
+          "value": "2026-07-01T15:03:20.249770-07:00",
+          "timeScale": "UTC"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "timestamp-without-offset",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "known",
+        "value": {
+          "kind": "instant",
+          "value": "2026-07-01T15:03:20",
+          "timeScale": "UTC"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "empty-source-refs",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": []
+      }
+    }
+  },
+  {
+    "id": "invalid-coordinate",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 91,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "negative-coordinate",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": -32.5,
+          "longitude": -117.1,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "approximate-without-precision",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "approximate",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      }
+    }
+  },
+  {
+    "id": "approximate-with-precision",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "approximate",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ],
+        "precision": "Coordinates rounded to two decimal places"
+      }
+    }
+  },
+  {
+    "id": "local-source-assertion",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "assertion:a"
+        ]
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:original",
+            "locator": {
+              "kind": "page",
+              "page": 1
+            },
+            "extractedBy": "agent:extractor"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "dangling-local-reference",
+    "structural": true,
+    "semantic": false,
+    "codes": [
+      "REF.LOCAL_RESOLUTION"
+    ],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "assertion:missing"
+        ]
+      }
+    }
+  },
+  {
+    "id": "duplicate-assertion-id",
+    "structural": true,
+    "semantic": false,
+    "codes": [
+      "REF.UNIQUE_ID"
+    ],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:original",
+            "locator": {
+              "kind": "page",
+              "page": 1
+            },
+            "extractedBy": "agent:extractor"
+          }
+        },
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:original",
+            "locator": {
+              "kind": "page",
+              "page": 1
+            },
+            "extractedBy": "agent:extractor"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "reversed-locator",
+    "structural": true,
+    "semantic": false,
+    "codes": [
+      "TIME.INTERVAL"
+    ],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:original",
+            "locator": {
+              "kind": "time_range",
+              "startSeconds": 10,
+              "endSeconds": 1
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "conflicting-source-positions",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:original",
+            "locator": {
+              "kind": "page",
+              "page": 1
+            },
+            "extractedBy": "agent:extractor"
+          }
+        },
+        {
+          "id": "b",
+          "field": "position",
+          "value": {
+            "latitude": 10,
+            "longitude": 20,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:original",
+            "locator": {
+              "kind": "page",
+              "page": 1
+            },
+            "extractedBy": "agent:extractor"
+          }
+        }
+      ]
+    }
+  }
+]

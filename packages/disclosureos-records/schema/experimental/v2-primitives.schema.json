@@ -1,0 +1,828 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "eventTime": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "const": "known"
+            },
+            "value": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "year"
+                    },
+                    "value": {
+                      "type": "string",
+                      "pattern": "^(?!0000)[0-9]{4}$"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "value"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "month"
+                    },
+                    "value": {
+                      "type": "string",
+                      "pattern": "^(?!0000)[0-9]{4}-(0[1-9]|1[0-2])$"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "value"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "date"
+                    },
+                    "value": {
+                      "type": "string",
+                      "allOf": [
+                        {
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                        },
+                        {
+                          "pattern": "^(?!0000)"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "value"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "instant"
+                    },
+                    "value": {
+                      "type": "string",
+                      "allOf": [
+                        {
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+                        },
+                        {
+                          "pattern": "^(?!0000)"
+                        }
+                      ]
+                    },
+                    "timeScale": {
+                      "type": "string",
+                      "const": "UTC"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "value",
+                    "timeScale"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "sourceRefs": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^(source|product|assertion):[^\\s:]+$"
+              }
+            }
+          },
+          "required": [
+            "state",
+            "value",
+            "sourceRefs"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "const": "approximate"
+            },
+            "value": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "year"
+                    },
+                    "value": {
+                      "type": "string",
+                      "pattern": "^(?!0000)[0-9]{4}$"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "value"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "month"
+                    },
+                    "value": {
+                      "type": "string",
+                      "pattern": "^(?!0000)[0-9]{4}-(0[1-9]|1[0-2])$"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "value"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "date"
+                    },
+                    "value": {
+                      "type": "string",
+                      "allOf": [
+                        {
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                        },
+                        {
+                          "pattern": "^(?!0000)"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "value"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "instant"
+                    },
+                    "value": {
+                      "type": "string",
+                      "allOf": [
+                        {
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+                        },
+                        {
+                          "pattern": "^(?!0000)"
+                        }
+                      ]
+                    },
+                    "timeScale": {
+                      "type": "string",
+                      "const": "UTC"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "value",
+                    "timeScale"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "sourceRefs": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^(source|product|assertion):[^\\s:]+$"
+              }
+            },
+            "precision": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          },
+          "required": [
+            "state",
+            "value",
+            "sourceRefs",
+            "precision"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "const": "unknown"
+            },
+            "reason": {
+              "type": "string",
+              "enum": [
+                "not_recorded",
+                "not_collected",
+                "unavailable"
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "const": "redacted"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          },
+          "required": [
+            "state",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "position": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "const": "known"
+            },
+            "value": {
+              "type": "object",
+              "properties": {
+                "latitude": {
+                  "type": "number",
+                  "minimum": -90,
+                  "maximum": 90
+                },
+                "longitude": {
+                  "type": "number",
+                  "minimum": -180,
+                  "maximum": 180
+                },
+                "datum": {
+                  "type": "string",
+                  "const": "WGS84"
+                }
+              },
+              "required": [
+                "latitude",
+                "longitude",
+                "datum"
+              ],
+              "additionalProperties": false
+            },
+            "sourceRefs": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^(source|product|assertion):[^\\s:]+$"
+              }
+            }
+          },
+          "required": [
+            "state",
+            "value",
+            "sourceRefs"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "const": "approximate"
+            },
+            "value": {
+              "type": "object",
+              "properties": {
+                "latitude": {
+                  "type": "number",
+                  "minimum": -90,
+                  "maximum": 90
+                },
+                "longitude": {
+                  "type": "number",
+                  "minimum": -180,
+                  "maximum": 180
+                },
+                "datum": {
+                  "type": "string",
+                  "const": "WGS84"
+                }
+              },
+              "required": [
+                "latitude",
+                "longitude",
+                "datum"
+              ],
+              "additionalProperties": false
+            },
+            "sourceRefs": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^(source|product|assertion):[^\\s:]+$"
+              }
+            },
+            "precision": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          },
+          "required": [
+            "state",
+            "value",
+            "sourceRefs",
+            "precision"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "const": "unknown"
+            },
+            "reason": {
+              "type": "string",
+              "enum": [
+                "not_recorded",
+                "not_collected",
+                "unavailable"
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "const": "redacted"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          },
+          "required": [
+            "state",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+              },
+              "field": {
+                "type": "string",
+                "const": "eventTime"
+              },
+              "value": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "const": "year"
+                      },
+                      "value": {
+                        "type": "string",
+                        "pattern": "^(?!0000)[0-9]{4}$"
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "const": "month"
+                      },
+                      "value": {
+                        "type": "string",
+                        "pattern": "^(?!0000)[0-9]{4}-(0[1-9]|1[0-2])$"
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "const": "date"
+                      },
+                      "value": {
+                        "type": "string",
+                        "allOf": [
+                          {
+                            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                          },
+                          {
+                            "pattern": "^(?!0000)"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "const": "instant"
+                      },
+                      "value": {
+                        "type": "string",
+                        "allOf": [
+                          {
+                            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+                          },
+                          {
+                            "pattern": "^(?!0000)"
+                          }
+                        ]
+                      },
+                      "timeScale": {
+                        "type": "string",
+                        "const": "UTC"
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "value",
+                      "timeScale"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "provenance": {
+                "type": "object",
+                "properties": {
+                  "sourceRef": {
+                    "type": "string",
+                    "pattern": "^(source|product):[^\\s:]+$"
+                  },
+                  "sourceDigest": {
+                    "type": "object",
+                    "properties": {
+                      "algorithm": {
+                        "type": "string",
+                        "const": "sha256"
+                      },
+                      "value": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      }
+                    },
+                    "required": [
+                      "algorithm",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "locator": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "const": "page"
+                          },
+                          "page": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 9007199254740991
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "page"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "const": "time_range"
+                          },
+                          "startSeconds": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "endSeconds": {
+                            "type": "number",
+                            "minimum": 0
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "startSeconds",
+                          "endSeconds"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "const": "json_pointer"
+                          },
+                          "pointer": {
+                            "type": "string",
+                            "pattern": "^(\\/(?:[^~]|~[01])*)*$"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "pointer"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "attributedTo": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "extractedBy": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  }
+                },
+                "required": [
+                  "sourceRef"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "field",
+              "value",
+              "provenance"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+              },
+              "field": {
+                "type": "string",
+                "const": "position"
+              },
+              "value": {
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "datum": {
+                    "type": "string",
+                    "const": "WGS84"
+                  }
+                },
+                "required": [
+                  "latitude",
+                  "longitude",
+                  "datum"
+                ],
+                "additionalProperties": false
+              },
+              "provenance": {
+                "type": "object",
+                "properties": {
+                  "sourceRef": {
+                    "type": "string",
+                    "pattern": "^(source|product):[^\\s:]+$"
+                  },
+                  "sourceDigest": {
+                    "type": "object",
+                    "properties": {
+                      "algorithm": {
+                        "type": "string",
+                        "const": "sha256"
+                      },
+                      "value": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      }
+                    },
+                    "required": [
+                      "algorithm",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "locator": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "const": "page"
+                          },
+                          "page": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 9007199254740991
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "page"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "const": "time_range"
+                          },
+                          "startSeconds": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "endSeconds": {
+                            "type": "number",
+                            "minimum": 0
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "startSeconds",
+                          "endSeconds"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "const": "json_pointer"
+                          },
+                          "pointer": {
+                            "type": "string",
+                            "pattern": "^(\\/(?:[^~]|~[01])*)*$"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "pointer"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "attributedTo": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "extractedBy": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  }
+                },
+                "required": [
+                  "sourceRef"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "field",
+              "value",
+              "provenance"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "id",
+    "eventTime",
+    "position"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:disclosureos:experimental:records-v2-primitives:0.1.0"
+}

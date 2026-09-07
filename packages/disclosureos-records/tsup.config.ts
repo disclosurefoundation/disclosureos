@@ -3,6 +3,7 @@ import { defineConfig } from 'tsup';
 export default defineConfig({
   entry: {
     index: 'src/index.ts',
+    'experimental/v2/index': 'src/experimental/v2/index.ts',
     'observation/index': 'src/observation/index.ts',
     'source/index': 'src/source/index.ts',
     'source/sensor/index': 'src/source/sensor/index.ts',
