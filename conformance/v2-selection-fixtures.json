@@ -1,0 +1,886 @@
+[
+  {
+    "id": "interval-calendar-years",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "approximate",
+        "value": {
+          "kind": "interval",
+          "start": {
+            "kind": "year",
+            "value": "1947"
+          },
+          "end": {
+            "kind": "year",
+            "value": "1948"
+          }
+        },
+        "precision": "Source bounded estimate",
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      }
+    }
+  },
+  {
+    "id": "interval-mixed-calendar-precision",
+    "structural": true,
+    "semantic": false,
+    "codes": [
+      "TIME.PRECISION_MISMATCH"
+    ],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "approximate",
+        "value": {
+          "kind": "interval",
+          "start": {
+            "kind": "year",
+            "value": "1947"
+          },
+          "end": {
+            "kind": "date",
+            "value": "1947-07-08"
+          }
+        },
+        "precision": "Source bounded estimate",
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      }
+    }
+  },
+  {
+    "id": "interval-reversed-date",
+    "structural": true,
+    "semantic": false,
+    "codes": [
+      "TIME.INTERVAL"
+    ],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "approximate",
+        "value": {
+          "kind": "interval",
+          "start": {
+            "kind": "date",
+            "value": "1947-07-09"
+          },
+          "end": {
+            "kind": "date",
+            "value": "1947-07-08"
+          }
+        },
+        "precision": "Source bounded estimate",
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      }
+    }
+  },
+  {
+    "id": "interval-impossible-calendar-date",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "approximate",
+        "value": {
+          "kind": "interval",
+          "start": {
+            "kind": "date",
+            "value": "2025-02-29"
+          },
+          "end": {
+            "kind": "date",
+            "value": "2025-03-01"
+          }
+        },
+        "precision": "Source bounded estimate",
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      }
+    }
+  },
+  {
+    "id": "interval-offset-equivalence",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "approximate",
+        "value": {
+          "kind": "interval",
+          "start": {
+            "kind": "instant",
+            "value": "2026-07-01T15:00:00-07:00",
+            "timeScale": "UTC"
+          },
+          "end": {
+            "kind": "instant",
+            "value": "2026-07-01T22:00:00Z",
+            "timeScale": "UTC"
+          }
+        },
+        "precision": "Source bounded estimate",
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      }
+    }
+  },
+  {
+    "id": "interval-reversed-microseconds",
+    "structural": true,
+    "semantic": false,
+    "codes": [
+      "TIME.INTERVAL"
+    ],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "approximate",
+        "value": {
+          "kind": "interval",
+          "start": {
+            "kind": "instant",
+            "value": "2026-07-01T22:00:00.000002Z",
+            "timeScale": "UTC"
+          },
+          "end": {
+            "kind": "instant",
+            "value": "2026-07-01T22:00:00.000001Z",
+            "timeScale": "UTC"
+          }
+        },
+        "precision": "Source bounded estimate",
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      }
+    }
+  },
+  {
+    "id": "interval-equivalent-fraction-lengths",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "approximate",
+        "value": {
+          "kind": "interval",
+          "start": {
+            "kind": "instant",
+            "value": "2026-07-01T22:00:00.1000Z",
+            "timeScale": "UTC"
+          },
+          "end": {
+            "kind": "instant",
+            "value": "2026-07-01T22:00:00.1Z",
+            "timeScale": "UTC"
+          }
+        },
+        "precision": "Source bounded estimate",
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      }
+    }
+  },
+  {
+    "id": "selection-preserves-competing-inputs",
+    "structural": true,
+    "semantic": true,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "assertion:a"
+        ],
+        "selection": {
+          "assertionRef": "assertion:a",
+          "consideredAssertionRefs": [
+            "assertion:a",
+            "assertion:b"
+          ],
+          "methodRef": "method:priority",
+          "methodVersion": "1.0.0",
+          "evaluatedBy": "person:curator",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic rationale"
+        }
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:first"
+          }
+        },
+        {
+          "id": "b",
+          "field": "position",
+          "value": {
+            "latitude": 1,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:second"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "selection-value-mismatch",
+    "structural": true,
+    "semantic": false,
+    "codes": [
+      "SELECTION.VALUE_MISMATCH"
+    ],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 3,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "assertion:a"
+        ],
+        "selection": {
+          "assertionRef": "assertion:a",
+          "consideredAssertionRefs": [
+            "assertion:a",
+            "assertion:b"
+          ],
+          "methodRef": "method:priority",
+          "methodVersion": "1.0.0",
+          "evaluatedBy": "person:curator",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic rationale"
+        }
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:first"
+          }
+        },
+        {
+          "id": "b",
+          "field": "position",
+          "value": {
+            "latitude": 1,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:second"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "selection-missing-method-version",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "assertion:a"
+        ],
+        "selection": {
+          "assertionRef": "assertion:a",
+          "consideredAssertionRefs": [
+            "assertion:a",
+            "assertion:b"
+          ],
+          "methodRef": "method:priority",
+          "evaluatedBy": "person:curator",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic rationale"
+        }
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:first"
+          }
+        },
+        {
+          "id": "b",
+          "field": "position",
+          "value": {
+            "latitude": 1,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:second"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "selection-blank-evaluator",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "assertion:a"
+        ],
+        "selection": {
+          "assertionRef": "assertion:a",
+          "consideredAssertionRefs": [
+            "assertion:a",
+            "assertion:b"
+          ],
+          "methodRef": "method:priority",
+          "methodVersion": "1.0.0",
+          "evaluatedBy": "   ",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic rationale"
+        }
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:first"
+          }
+        },
+        {
+          "id": "b",
+          "field": "position",
+          "value": {
+            "latitude": 1,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:second"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "selection-dangling-input",
+    "structural": true,
+    "semantic": false,
+    "codes": [
+      "REF.LOCAL_RESOLUTION"
+    ],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "assertion:a"
+        ],
+        "selection": {
+          "assertionRef": "assertion:a",
+          "consideredAssertionRefs": [
+            "assertion:a",
+            "assertion:missing"
+          ],
+          "methodRef": "method:priority",
+          "methodVersion": "1.0.0",
+          "evaluatedBy": "person:curator",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic rationale"
+        }
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:first"
+          }
+        },
+        {
+          "id": "b",
+          "field": "position",
+          "value": {
+            "latitude": 1,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:second"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "selection-duplicate-input",
+    "structural": true,
+    "semantic": false,
+    "codes": [
+      "REF.UNIQUE_ID"
+    ],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "assertion:a"
+        ],
+        "selection": {
+          "assertionRef": "assertion:a",
+          "consideredAssertionRefs": [
+            "assertion:a",
+            "assertion:a"
+          ],
+          "methodRef": "method:priority",
+          "methodVersion": "1.0.0",
+          "evaluatedBy": "person:curator",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic rationale"
+        }
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:first"
+          }
+        },
+        {
+          "id": "b",
+          "field": "position",
+          "value": {
+            "latitude": 1,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:second"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "selection-excluded-input",
+    "structural": true,
+    "semantic": false,
+    "codes": [
+      "SELECTION.INPUTS"
+    ],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "assertion:a"
+        ],
+        "selection": {
+          "assertionRef": "assertion:a",
+          "consideredAssertionRefs": [
+            "assertion:b"
+          ],
+          "methodRef": "method:priority",
+          "methodVersion": "1.0.0",
+          "evaluatedBy": "person:curator",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic rationale"
+        }
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:first"
+          }
+        },
+        {
+          "id": "b",
+          "field": "position",
+          "value": {
+            "latitude": 1,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:second"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "selection-uncited-input",
+    "structural": true,
+    "semantic": false,
+    "codes": [
+      "SELECTION.SOURCE_REF"
+    ],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "source:first"
+        ],
+        "selection": {
+          "assertionRef": "assertion:a",
+          "consideredAssertionRefs": [
+            "assertion:a",
+            "assertion:b"
+          ],
+          "methodRef": "method:priority",
+          "methodVersion": "1.0.0",
+          "evaluatedBy": "person:curator",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic rationale"
+        }
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:first"
+          }
+        },
+        {
+          "id": "b",
+          "field": "position",
+          "value": {
+            "latitude": 1,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:second"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "selection-on-redacted-value",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "redacted",
+        "reason": "policy",
+        "selection": {
+          "assertionRef": "assertion:a",
+          "consideredAssertionRefs": [
+            "assertion:a",
+            "assertion:b"
+          ],
+          "methodRef": "method:priority",
+          "methodVersion": "1.0.0",
+          "evaluatedBy": "person:curator",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic rationale"
+        }
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:first"
+          }
+        },
+        {
+          "id": "b",
+          "field": "position",
+          "value": {
+            "latitude": 1,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:second"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "selection-wrong-field-input",
+    "structural": true,
+    "semantic": false,
+    "codes": [
+      "REF.FIELD_MISMATCH"
+    ],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "latitude": 0,
+          "longitude": 0,
+          "datum": "WGS84"
+        },
+        "sourceRefs": [
+          "assertion:a"
+        ],
+        "selection": {
+          "assertionRef": "assertion:a",
+          "consideredAssertionRefs": [
+            "assertion:a",
+            "assertion:b"
+          ],
+          "methodRef": "method:priority",
+          "methodVersion": "1.0.0",
+          "evaluatedBy": "person:curator",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic rationale"
+        }
+      },
+      "assertions": [
+        {
+          "id": "a",
+          "field": "position",
+          "value": {
+            "latitude": 0,
+            "longitude": 0,
+            "datum": "WGS84"
+          },
+          "provenance": {
+            "sourceRef": "source:first"
+          }
+        },
+        {
+          "id": "b",
+          "field": "eventTime",
+          "value": {
+            "kind": "year",
+            "value": "1947"
+          },
+          "provenance": {
+            "sourceRef": "source:second"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "interval-instant-without-seconds",
+    "structural": false,
+    "semantic": null,
+    "codes": [],
+    "input": {
+      "id": "synthetic",
+      "eventTime": {
+        "state": "approximate",
+        "value": {
+          "kind": "interval",
+          "start": {
+            "kind": "instant",
+            "value": "2026-07-01T22:00Z",
+            "timeScale": "UTC"
+          },
+          "end": {
+            "kind": "instant",
+            "value": "2026-07-01T22:00:00Z",
+            "timeScale": "UTC"
+          }
+        },
+        "precision": "Source bounded estimate",
+        "sourceRefs": [
+          "source:original"
+        ]
+      },
+      "position": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      }
+    }
+  }
+]

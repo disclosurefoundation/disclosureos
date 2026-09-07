@@ -1,12 +1,16 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import { parsePrimitiveRecord, primitivesJsonSchema } from '../packages/disclosureos-records/dist/experimental/v2/index.js';
 
-const artifact = JSON.parse(readFileSync(new URL('../packages/disclosureos-records/schema/experimental/v2-primitives.schema.json', import.meta.url)));
-const fixtures = JSON.parse(readFileSync(new URL('./v2-primitives-fixtures.json', import.meta.url)));
+const artifact = JSON.parse(readFileSync(new URL('../packages/disclosureos-records/schema/experimental/v2-primitives-0.2.0.schema.json', import.meta.url)));
+const fixtures = [
+  ...JSON.parse(readFileSync(new URL('./v2-primitives-fixtures.json', import.meta.url))),
+  ...JSON.parse(readFileSync(new URL('./v2-selection-fixtures.json', import.meta.url))),
+];
 const ajv = new Ajv2020({ strict: false, allErrors: true });
 addFormats(ajv);
 const validate = ajv.compile(artifact);
@@ -46,4 +50,10 @@ test('JSON Pointer escapes and hostile-length inputs agree across runtime and sc
     assert.equal(validate(input), expected);
     assert.equal(parsePrimitiveRecord(input).success, expected);
   }
+});
+
+
+test('historical experimental 0.1 artifact remains byte-identical', () => {
+  const bytes = readFileSync(new URL('../packages/disclosureos-records/schema/experimental/v2-primitives.schema.json', import.meta.url));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), 'ac8495258b7d8f9e394b40d5819a1b59b8a4d5544402d674de86e81bf19f2ee3');
 });
