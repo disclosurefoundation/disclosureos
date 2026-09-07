@@ -4,6 +4,9 @@ on:
   pull_request:
     branches: [main]
     paths:
+      - "conformance/**"
+      - "scripts/**"
+      - ".github/workflows/packages-quality.yml"
       - "packages/**"
       - "examples/**"
       - "turbo.json"
@@ -13,6 +16,9 @@ on:
   push:
     branches: [main]
     paths:
+      - "conformance/**"
+      - "scripts/**"
+      - ".github/workflows/packages-quality.yml"
       - "packages/**"
       - "examples/**"
       - "turbo.json"
@@ -109,3 +115,18 @@ jobs:
 
       - name: Validate sensor manifests
         run: node packages/disclosureos-cli/dist/index.js manifest validate examples/manifests/eldaeon-sensors.json
+
+  conformance-baseline:
+    name: V1 baseline and partner audit (not v2 certification)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter "@disclosureos/schema..." build
+      - run: pnpm conformance:baseline
+      - run: pnpm test:partner-audit

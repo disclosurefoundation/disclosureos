@@ -16,7 +16,10 @@
     "lint:publish": "pnpm --filter \"@disclosureos/*\" run lint:publish",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "conformance:baseline": "node conformance/run.mjs",
+    "conformance:target": "node conformance/run.mjs --target",
+    "test:partner-audit": "node --test scripts/audit-partner-window.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
