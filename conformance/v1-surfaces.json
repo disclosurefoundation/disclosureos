@@ -1,0 +1,266 @@
+{
+  "minimal-v1-record": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 5
+    }
+  },
+  "unknown-nested-property": {
+    "runtime": true,
+    "jsonSchema": false,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 5
+    }
+  },
+  "invalid-calendar-date": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 5
+    }
+  },
+  "invalid-timestamp": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 5
+    }
+  },
+  "negative-duration": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": false,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": false,
+      "warnings": 5
+    }
+  },
+  "confirmed-without-support": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 5
+    }
+  },
+  "dangling-reference": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 1
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 6
+    }
+  },
+  "valid-leap-day": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 5
+    }
+  },
+  "invalid-leap-day": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 5
+    }
+  },
+  "valid-signed-coordinate": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 5
+    }
+  },
+  "unknown-origin-id": {
+    "runtime": false,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": false,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": false,
+      "warnings": 5
+    }
+  },
+  "unknown-confidence": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 5
+    }
+  },
+  "out-of-range-confidence": {
+    "runtime": false,
+    "jsonSchema": false,
+    "cli": {
+      "accepts": false,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": false,
+      "warnings": 5
+    }
+  },
+  "namespaced-extension-preserved": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 5
+    }
+  },
+  "unknown-top-level-key": {
+    "runtime": false,
+    "jsonSchema": false,
+    "cli": {
+      "accepts": false,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": false,
+      "warnings": 5
+    }
+  },
+  "malformed-evidence-reference": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 1
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 6
+    }
+  },
+  "external-sensor-offline": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 5
+    }
+  },
+  "minimal-manifest": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 0
+    }
+  },
+  "duplicate-sensor-id": {
+    "runtime": false,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": false,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": false,
+      "warnings": 0
+    }
+  },
+  "negative-timing-uncertainty": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 0
+    }
+  },
+  "negative-measurement-uncertainty": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 0
+    }
+  },
+  "zero-timing-uncertainty": {
+    "runtime": true,
+    "jsonSchema": true,
+    "cli": {
+      "accepts": true,
+      "warnings": 0
+    },
+    "cliStrict": {
+      "accepts": true,
+      "warnings": 0
+    }
+  }
+}

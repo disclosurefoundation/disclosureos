@@ -20,7 +20,11 @@
       "status": "draft",
       "createdAt": "2026-09-07T00:00:00Z",
       "updatedAt": "2026-09-07T00:00:00Z"
-    }
+    },
+    "kind": "observation",
+    "rules": [
+      "CORE.VALID"
+    ]
   },
   {
     "id": "unknown-nested-property",
@@ -44,7 +48,11 @@
       "status": "draft",
       "createdAt": "2026-09-07T00:00:00Z",
       "updatedAt": "2026-09-07T00:00:00Z"
-    }
+    },
+    "kind": "observation",
+    "rules": [
+      "STRUCT.UNKNOWN_KEY"
+    ]
   },
   {
     "id": "invalid-calendar-date",
@@ -67,7 +75,11 @@
       "status": "draft",
       "createdAt": "2026-09-07T00:00:00Z",
       "updatedAt": "2026-09-07T00:00:00Z"
-    }
+    },
+    "kind": "observation",
+    "rules": [
+      "TIME.CALENDAR"
+    ]
   },
   {
     "id": "invalid-timestamp",
@@ -90,7 +102,11 @@
       "status": "draft",
       "createdAt": "yesterday",
       "updatedAt": "2026-09-07T00:00:00Z"
-    }
+    },
+    "kind": "observation",
+    "rules": [
+      "TIME.TIMESTAMP"
+    ]
   },
   {
     "id": "negative-duration",
@@ -114,7 +130,11 @@
       "status": "draft",
       "createdAt": "2026-09-07T00:00:00Z",
       "updatedAt": "2026-09-07T00:00:00Z"
-    }
+    },
+    "kind": "observation",
+    "rules": [
+      "NUM.NONNEGATIVE"
+    ]
   },
   {
     "id": "confirmed-without-support",
@@ -146,7 +166,11 @@
           ]
         }
       }
-    }
+    },
+    "kind": "observation",
+    "rules": [
+      "PROFILE.CLAIM_SUPPORT"
+    ]
   },
   {
     "id": "dangling-reference",
@@ -181,6 +205,452 @@
           ]
         }
       }
+    },
+    "kind": "observation",
+    "rules": [
+      "REF.LOCAL_RESOLUTION"
+    ]
+  },
+  {
+    "id": "valid-leap-day",
+    "kind": "observation",
+    "targetAccepts": true,
+    "rules": [
+      "TIME.CALENDAR"
+    ],
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2024-02-29",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z"
+    }
+  },
+  {
+    "id": "invalid-leap-day",
+    "kind": "observation",
+    "targetAccepts": false,
+    "rules": [
+      "TIME.CALENDAR"
+    ],
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2025-02-29",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z"
+    }
+  },
+  {
+    "id": "valid-signed-coordinate",
+    "kind": "observation",
+    "targetAccepts": true,
+    "rules": [
+      "CORE.VALID"
+    ],
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": -32.2,
+        "longitude": -117.1,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z"
+    }
+  },
+  {
+    "id": "unknown-origin-id",
+    "kind": "observation",
+    "targetAccepts": false,
+    "rules": [
+      "VOCAB.ORIGIN_ID"
+    ],
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z",
+      "origin": [
+        {
+          "primaryHypothesis": "99.99.99",
+          "confidence": 0.5
+        }
+      ]
+    }
+  },
+  {
+    "id": "unknown-confidence",
+    "kind": "observation",
+    "targetAccepts": true,
+    "rules": [
+      "CLAIM.UNKNOWN_CONFIDENCE"
+    ],
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z",
+      "observableAssessments": {
+        "technology": {
+          "antigravity_lift": [
+            {
+              "level": "reported",
+              "evaluatedBy": "synthetic-curator",
+              "rationale": "Synthetic source report; no sensor support asserted."
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "out-of-range-confidence",
+    "kind": "observation",
+    "targetAccepts": false,
+    "rules": [
+      "NUM.CONFIDENCE_RANGE"
+    ],
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z",
+      "observableAssessments": {
+        "technology": {
+          "antigravity_lift": [
+            {
+              "level": "reported",
+              "confidence": 1.1
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "namespaced-extension-preserved",
+    "kind": "observation",
+    "targetAccepts": true,
+    "rules": [
+      "STRUCT.EXTENSION_PRESERVATION"
+    ],
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z",
+      "extensions": {
+        "org.example.fixture": {
+          "values": [
+            null,
+            0,
+            false
+          ],
+          "note": "Keep exactly"
+        }
+      }
+    }
+  },
+  {
+    "id": "unknown-top-level-key",
+    "kind": "observation",
+    "targetAccepts": false,
+    "rules": [
+      "STRUCT.UNKNOWN_KEY"
+    ],
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z",
+      "unrecognized": true
+    }
+  },
+  {
+    "id": "malformed-evidence-reference",
+    "kind": "observation",
+    "targetAccepts": false,
+    "rules": [
+      "REF.SYNTAX"
+    ],
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z",
+      "observableAssessments": {
+        "technology": {
+          "antigravity_lift": [
+            {
+              "level": "reported",
+              "evidenceRefs": [
+                "no-prefix"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "external-sensor-offline",
+    "kind": "observation",
+    "targetAccepts": true,
+    "rules": [
+      "REF.EXTERNAL_UNCHECKED"
+    ],
+    "input": {
+      "id": "synthetic-conformance",
+      "temporal": {
+        "date": "2026-09-07",
+        "dateCertainty": "exact"
+      },
+      "location": {
+        "id": "synthetic",
+        "name": "Synthetic fixture",
+        "country": "US",
+        "latitude": 0,
+        "longitude": 0,
+        "siteType": "unknown"
+      },
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z",
+      "sensorEvidence": {
+        "sensors": [
+          {
+            "id": "r",
+            "sensorType": "passive_radar",
+            "detectionMethod": "radio_frequency",
+            "sensorRef": "synthetic:radar"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "minimal-manifest",
+    "kind": "manifest",
+    "targetAccepts": true,
+    "rules": [
+      "CORE.VALID"
+    ],
+    "input": {
+      "schemaVersion": "1.0.0",
+      "org": "Synthetic fixture",
+      "orgSlug": "synthetic",
+      "sensors": [
+        {
+          "id": "radar",
+          "name": "Synthetic radar",
+          "modality": "radio_frequency"
+        }
+      ]
+    }
+  },
+  {
+    "id": "duplicate-sensor-id",
+    "kind": "manifest",
+    "targetAccepts": false,
+    "rules": [
+      "REF.UNIQUE_ID"
+    ],
+    "input": {
+      "schemaVersion": "1.0.0",
+      "org": "Synthetic fixture",
+      "orgSlug": "synthetic",
+      "sensors": [
+        {
+          "id": "radar",
+          "name": "Synthetic radar",
+          "modality": "radio_frequency"
+        },
+        {
+          "id": "radar",
+          "name": "Synthetic radar",
+          "modality": "radio_frequency"
+        }
+      ]
+    }
+  },
+  {
+    "id": "negative-timing-uncertainty",
+    "kind": "manifest",
+    "targetAccepts": false,
+    "rules": [
+      "NUM.NONNEGATIVE"
+    ],
+    "input": {
+      "schemaVersion": "1.0.0",
+      "org": "Synthetic fixture",
+      "orgSlug": "synthetic",
+      "sensors": [
+        {
+          "id": "radar",
+          "name": "Synthetic radar",
+          "modality": "radio_frequency",
+          "timing": {
+            "timeSource": "gps_disciplined",
+            "timeUncertaintyNs": -1
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "negative-measurement-uncertainty",
+    "kind": "manifest",
+    "targetAccepts": false,
+    "rules": [
+      "NUM.NONNEGATIVE"
+    ],
+    "input": {
+      "schemaVersion": "1.0.0",
+      "org": "Synthetic fixture",
+      "orgSlug": "synthetic",
+      "sensors": [
+        {
+          "id": "radar",
+          "name": "Synthetic radar",
+          "modality": "radio_frequency",
+          "measurements": [
+            {
+              "name": "range",
+              "unit": "m",
+              "uncertainty": {
+                "u_c": -1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "zero-timing-uncertainty",
+    "kind": "manifest",
+    "targetAccepts": true,
+    "rules": [
+      "NUM.NONNEGATIVE"
+    ],
+    "input": {
+      "schemaVersion": "1.0.0",
+      "org": "Synthetic fixture",
+      "orgSlug": "synthetic",
+      "sensors": [
+        {
+          "id": "radar",
+          "name": "Synthetic radar",
+          "modality": "radio_frequency",
+          "timing": {
+            "timeSource": "gps_disciplined",
+            "timeUncertaintyNs": 0
+          }
+        }
+      ]
     }
   }
 ]
