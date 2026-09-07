@@ -44,3 +44,6 @@ Migration MUST write a new artifact, retain a source digest, and account for eac
 ## Implementation checkpoint
 
 The [experimental records primitives](../experimental/records-v2-primitives.md) implement known/approximate/unknown/redacted values, partial calendar precision, WGS84 coordinates, and local assertion provenance checks. Experimental schema revision 0.2.0 adds same-precision interval estimates and explicit source-value selections with curator/method/input provenance. The original 0.1.0 artifact is preserved. Profile-controlled not-applicable fields, arithmetic derivation lineage, and the migrator remain outstanding. The separate experimental schema URN does not freeze the final v2 Observation contract.
+
+
+The [integrated experimental Observation](../experimental/observation-contract.md) adds quantitative uncertainty, geodetic/cartesian frame declarations, and record-level source/product/processing inventories. It requires explicit selection for curated values that cite local assertions. This provides the factual target for migration/projection development; it does not implement that migration or public projection.

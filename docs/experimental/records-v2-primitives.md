@@ -69,3 +69,8 @@ After building records, `pnpm emit:v2-primitives` explicitly regenerates the exp
 `pnpm test:v2-primitives` validates synthetic fixtures with independent Ajv and the runtime, checks expected semantic results, checks emitter drift, and round-trips successful records. Records unit tests cover preservation and local-reference diagnostics. The legacy matrix remains unchanged.
 
 These fixtures exercise important migration outcomes such as preserving `0,0` and `1900-01-01`; there is no v1-to-v2 migrator yet. Derived-value processing provenance, profile-controlled not-applicable fields, full claims/supersession, versioned source inventories, migration/quarantine reporting, and policy-aware public projection remain future work. Do not equate this primitive parser with completed WP03 or full v2 conformance.
+
+
+## Integrated Observation
+
+The [experimental Observation contract](observation-contract.md) now assembles these values with uncertainty, reference frames, local inventories, selected source assertions, measurements, and processing history. It is a separate document schema and parser. This primitive container and its historical schema artifacts remain available; migration and public projection are still separate work.
