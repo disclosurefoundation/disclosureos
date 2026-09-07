@@ -30,7 +30,9 @@
     "test:v2-claims": "node --test conformance/claim-history.test.mjs",
     "test:v2-documentation": "node --test conformance/assessment-documentation.test.mjs",
     "emit:v2-acquisition": "node conformance/emit-acquisition-context.mjs",
-    "test:v2-acquisition": "node --test conformance/acquisition-context.test.mjs"
+    "test:v2-acquisition": "node --test conformance/acquisition-context.test.mjs",
+    "emit:v2-bindings": "node conformance/emit-acquisition-bindings.mjs",
+    "test:v2-bindings": "node --test conformance/acquisition-bindings.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

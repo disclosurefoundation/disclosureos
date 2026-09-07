@@ -1,0 +1,1545 @@
+{
+  "base": {
+    "history": {
+      "kind": "claim_history",
+      "schemaVersion": "0.1.0",
+      "id": "profile-example",
+      "observation": {
+        "kind": "observation",
+        "schemaVersion": "0.1.0",
+        "id": "synthetic",
+        "status": "draft",
+        "createdAt": "2026-09-07T00:00:00Z",
+        "updatedAt": "2026-09-07T00:00:00Z",
+        "eventTime": {
+          "state": "known",
+          "value": {
+            "kind": "instant",
+            "value": "2026-07-28T12:10:00Z",
+            "timeScale": "UTC"
+          },
+          "sourceRefs": [
+            "source:station"
+          ]
+        },
+        "position": {
+          "state": "unknown",
+          "reason": "not_collected"
+        },
+        "sources": [
+          {
+            "id": "station",
+            "kind": "instrument_data",
+            "access": "unknown"
+          },
+          {
+            "id": "report",
+            "kind": "document",
+            "access": "public",
+            "digest": {
+              "algorithm": "sha256",
+              "value": "9ec816b8cbd1f5f541f28d17e91f5c6b47b7f5eef635fe23f1f9f4b4b2d0a72b"
+            }
+          }
+        ],
+        "products": [
+          {
+            "id": "raw",
+            "kind": "raw",
+            "format": "application/json",
+            "access": "public",
+            "sourceRefs": [
+              "source:station"
+            ],
+            "digest": {
+              "algorithm": "sha256",
+              "value": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121"
+            }
+          },
+          {
+            "id": "summary",
+            "kind": "derived",
+            "format": "application/json",
+            "access": "public",
+            "generatedBy": "process:reduction",
+            "digest": {
+              "algorithm": "sha256",
+              "value": "547aa2ac3c7bb2adb031a3aa078a966ae16b20a83d47aa118b1d8eba0a6a2714"
+            }
+          }
+        ],
+        "methods": [
+          {
+            "id": "review",
+            "version": "0.1.0",
+            "description": "Synthetic review declaration; not a validated scientific method."
+          },
+          {
+            "id": "reduction",
+            "version": "0.1.0",
+            "description": "Synthetic reduction declaration; output not reproduced."
+          }
+        ],
+        "frames": [],
+        "assertions": [
+          {
+            "id": "velocity",
+            "field": "measurement",
+            "measurementId": "velocity",
+            "value": {
+              "value": -3,
+              "unit": "m/s",
+              "uncertainty": {
+                "kind": "standard",
+                "magnitude": 1,
+                "unit": "m/s",
+                "sourceRefs": [
+                  "product:raw"
+                ]
+              }
+            },
+            "provenance": {
+              "sourceRef": "product:summary",
+              "locator": {
+                "kind": "json_pointer",
+                "pointer": "/velocity"
+              }
+            }
+          }
+        ],
+        "measurements": [
+          {
+            "id": "velocity",
+            "quantity": "radial velocity",
+            "value": {
+              "value": -3,
+              "unit": "m/s",
+              "uncertainty": {
+                "kind": "standard",
+                "magnitude": 1,
+                "unit": "m/s",
+                "sourceRefs": [
+                  "product:raw"
+                ]
+              }
+            },
+            "sourceRefs": [
+              "assertion:velocity"
+            ],
+            "selection": {
+              "assertionRef": "assertion:velocity",
+              "consideredAssertionRefs": [
+                "assertion:velocity"
+              ],
+              "evaluatedBy": "person:synthetic",
+              "evaluatedAt": "2026-09-07T00:00:00Z",
+              "methodRef": "method:review",
+              "methodVersion": "0.1.0",
+              "rationale": "Copy the synthetic value."
+            }
+          }
+        ],
+        "processing": [
+          {
+            "id": "reduction",
+            "methodRef": "method:reduction",
+            "methodVersion": "0.1.0",
+            "performedBy": "person:synthetic",
+            "performedAt": "2026-09-07T00:00:00Z",
+            "inputRefs": [
+              "product:raw"
+            ],
+            "outputRefs": [
+              "product:summary"
+            ]
+          }
+        ]
+      },
+      "claims": [
+        {
+          "id": "statement",
+          "kind": "source_assertion",
+          "recordedAt": "2026-09-07T00:00:00Z",
+          "topic": "synthetic motion",
+          "subject": {
+            "kind": "observation"
+          },
+          "text": "Synthetic source calls this confirmed.",
+          "reportedLevel": "confirmed",
+          "provenance": {
+            "sourceRef": "source:report",
+            "locator": {
+              "kind": "page",
+              "page": 1
+            },
+            "extractedBy": "agent:synthetic"
+          }
+        },
+        {
+          "id": "review",
+          "kind": "assessment",
+          "recordedAt": "2026-09-07T00:00:00Z",
+          "topic": "synthetic motion",
+          "subject": {
+            "kind": "measurement",
+            "measurementId": "velocity"
+          },
+          "status": "assessed",
+          "outcome": "confirmed",
+          "evaluatedBy": "person:synthetic",
+          "evaluatedAt": "2026-09-07T00:00:00Z",
+          "methodRef": "method:review",
+          "methodVersion": "0.1.0",
+          "inputRefs": [
+            "claim:statement",
+            "measurement:velocity"
+          ],
+          "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+        }
+      ]
+    },
+    "context": {
+      "kind": "acquisition_context",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic-context",
+      "instruments": [
+        {
+          "id": "station",
+          "identity": {
+            "state": "known",
+            "manufacturer": "Synthetic Instruments",
+            "model": "Control station",
+            "serialNumber": "SYNTHETIC-001"
+          }
+        }
+      ],
+      "manifests": [
+        {
+          "id": "r1",
+          "instrumentRef": "instrument:station",
+          "version": "1",
+          "publishedAt": "2026-07-01T00:00:00Z",
+          "artifact": {
+            "mediaType": "application/json",
+            "byteLength": 367,
+            "digest": {
+              "algorithm": "sha256",
+              "value": "e753c4cb8d4cb63e44820a4bc64202efa9d8d13b6a6e02abc3709e7237923c95"
+            }
+          },
+          "configuration": {
+            "hardware": {
+              "state": "known",
+              "value": "synthetic-rev-1"
+            },
+            "firmware": {
+              "state": "known",
+              "value": "synthetic-1.0"
+            }
+          },
+          "channels": [
+            {
+              "id": "radar",
+              "quantity": "radial velocity",
+              "unit": "m/s",
+              "sampling": {
+                "state": "known",
+                "rateHz": 10
+              }
+            }
+          ]
+        }
+      ],
+      "deployments": [
+        {
+          "id": "d1",
+          "instrumentRef": "instrument:station",
+          "manifest": {
+            "state": "pinned",
+            "ref": "manifest:r1"
+          },
+          "period": {
+            "state": "known",
+            "start": "2026-07-28T12:00:00Z",
+            "end": "2026-07-28T13:00:00Z",
+            "timeScale": "UTC"
+          },
+          "site": {
+            "state": "known",
+            "value": "Synthetic test location"
+          }
+        }
+      ],
+      "calibrations": [
+        {
+          "id": "c1",
+          "instrumentRef": "instrument:station",
+          "manifestRef": "manifest:r1",
+          "channelId": "radar",
+          "performedAt": {
+            "state": "known",
+            "value": "2026-07-01T00:00:00Z"
+          },
+          "validity": {
+            "state": "known",
+            "start": "2026-07-01T00:00:00Z",
+            "end": "2026-08-01T00:00:00Z",
+            "timeScale": "UTC"
+          },
+          "method": {
+            "state": "known",
+            "id": "synthetic-method",
+            "version": "1",
+            "description": "Synthetic calibration declaration, not executed."
+          },
+          "report": {
+            "state": "known",
+            "artifact": {
+              "mediaType": "text/plain",
+              "byteLength": 94,
+              "digest": {
+                "algorithm": "sha256",
+                "value": "2a89ae47a0e0994215daaf343f90381b594fcef5a9eeffcee2514d1cfebb1bc2"
+              }
+            }
+          },
+          "uncertainty": {
+            "kind": "expanded",
+            "magnitude": 0.1,
+            "unit": "m/s",
+            "coverageFactor": 2
+          },
+          "review": {
+            "state": "unreviewed"
+          }
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "a1",
+          "instrumentRef": "instrument:station",
+          "manifest": {
+            "state": "pinned",
+            "ref": "manifest:r1"
+          },
+          "deployment": {
+            "state": "pinned",
+            "ref": "deployment:d1"
+          },
+          "time": {
+            "state": "known",
+            "start": "2026-07-28T12:10:00Z",
+            "end": "2026-07-28T12:11:00Z",
+            "timeScale": "UTC",
+            "kind": "interval"
+          },
+          "classification": "background",
+          "clock": {
+            "source": {
+              "state": "known",
+              "value": "Synthetic oscillator"
+            },
+            "synchronization": {
+              "state": "known",
+              "value": "Synthetic synchronization declaration"
+            },
+            "resolution": {
+              "state": "known",
+              "magnitude": 1,
+              "unit": "ns"
+            },
+            "uncertainty": {
+              "state": "known",
+              "magnitude": 0,
+              "unit": "ns"
+            }
+          },
+          "channels": [
+            {
+              "channelId": "radar",
+              "calibration": {
+                "state": "pinned",
+                "ref": "calibration:c1"
+              }
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "id": "captured-raw",
+          "acquisitionRef": "acquisition:a1",
+          "kind": "raw",
+          "artifact": {
+            "mediaType": "application/json",
+            "byteLength": 23,
+            "digest": {
+              "algorithm": "sha256",
+              "value": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121"
+            }
+          }
+        }
+      ],
+      "extensions": {
+        "org.example": {
+          "synthetic": true
+        }
+      }
+    },
+    "bindings": {
+      "kind": "acquisition_bindings",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic-binding",
+      "historyId": "profile-example",
+      "observationId": "synthetic",
+      "contextId": "synthetic-context",
+      "sources": [
+        {
+          "sourceRef": "source:station",
+          "instrumentRef": "instrument:station"
+        }
+      ],
+      "products": [
+        {
+          "observationProductRef": "product:raw",
+          "contextProductRef": "product:captured-raw"
+        }
+      ],
+      "extensions": {
+        "org.example": {
+          "synthetic": true
+        }
+      }
+    }
+  },
+  "assets": {
+    "product:captured-raw": "{\"samples\":[-2,-3,-4]}\n",
+    "manifest:r1": "{\"channels\": [{\"id\": \"radar\", \"quantity\": \"radial velocity\", \"sampling\": {\"rateHz\": 10, \"state\": \"known\"}, \"unit\": \"m/s\"}], \"configuration\": {\"firmware\": {\"state\": \"known\", \"value\": \"synthetic-1.0\"}, \"hardware\": {\"state\": \"known\", \"value\": \"synthetic-rev-1\"}}, \"id\": \"r1\", \"instrumentRef\": \"instrument:station\", \"publishedAt\": \"2026-07-01T00:00:00Z\", \"version\": \"1\"}\n",
+    "calibration:c1/report": "Synthetic calibration report for channel radar and manifest r1. No calibration was performed.\n"
+  },
+  "cases": [
+    {
+      "id": "different-names-explicitly-bound",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "profile": "passed",
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "matching-names-without-link-is-insufficient",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "products",
+            0,
+            "id"
+          ],
+          "value": "raw"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "products"
+          ],
+          "value": []
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "profile": "failed",
+      "codes": [
+        "BINDING.PRODUCT_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "missing-product-binding",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "products"
+          ],
+          "value": []
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "profile": "failed",
+      "codes": [
+        "BINDING.PRODUCT_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "missing-source-binding",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "sources"
+          ],
+          "value": []
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "profile": "failed",
+      "codes": [
+        "BINDING.SOURCE_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "unknown-acquisition-context",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "acquisitions",
+            0,
+            "manifest"
+          ],
+          "value": {
+            "state": "unresolved",
+            "reason": "Missing history"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "profile": "failed",
+      "codes": [
+        "BINDING.CONTEXT_INCOMPLETE"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "unknown-clock-context",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "acquisitions",
+            0,
+            "clock",
+            "uncertainty"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "Not supplied"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "profile": "failed",
+      "codes": [
+        "BINDING.CONTEXT_INCOMPLETE"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "wrong-historyId",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "historyId"
+          ],
+          "value": "other"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "BINDING.DOCUMENT_ID"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "wrong-observationId",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "observationId"
+          ],
+          "value": "other"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "BINDING.DOCUMENT_ID"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "wrong-contextId",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "contextId"
+          ],
+          "value": "other"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "BINDING.DOCUMENT_ID"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "dangling-observation-product",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "products",
+            0,
+            "observationProductRef"
+          ],
+          "value": "product:missing"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "dangling-context-product",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "products",
+            0,
+            "contextProductRef"
+          ],
+          "value": "product:missing"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "dangling-source",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "sources",
+            0,
+            "sourceRef"
+          ],
+          "value": "source:missing"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "dangling-instrument",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "sources",
+            0,
+            "instrumentRef"
+          ],
+          "value": "instrument:missing"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "different-producing-instrument",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "instruments"
+          ],
+          "value": [
+            {
+              "id": "station",
+              "identity": {
+                "state": "known",
+                "manufacturer": "Synthetic Instruments",
+                "model": "Control station",
+                "serialNumber": "SYNTHETIC-001"
+              }
+            },
+            {
+              "id": "other",
+              "identity": {
+                "state": "known",
+                "manufacturer": "Synthetic Instruments",
+                "model": "Control station",
+                "serialNumber": "SYNTHETIC-001"
+              }
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "sources",
+            0,
+            "instrumentRef"
+          ],
+          "value": "instrument:other"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "BINDING.SOURCE_IDENTITY"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "document-source-is-not-instrument",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "sources",
+            0,
+            "sourceRef"
+          ],
+          "value": "source:report"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "BINDING.SOURCE_KIND"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "derived-product-not-raw",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "products",
+            0,
+            "observationProductRef"
+          ],
+          "value": "product:summary"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "BINDING.RAW_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "duplicate-source-binding",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "sources"
+          ],
+          "value": [
+            {
+              "sourceRef": "source:station",
+              "instrumentRef": "instrument:station"
+            },
+            {
+              "sourceRef": "source:station",
+              "instrumentRef": "instrument:station"
+            }
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "REF.UNIQUE_ID"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "duplicate-product-binding",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "products"
+          ],
+          "value": [
+            {
+              "observationProductRef": "product:raw",
+              "contextProductRef": "product:captured-raw"
+            },
+            {
+              "observationProductRef": "product:raw",
+              "contextProductRef": "product:captured-raw"
+            }
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "REF.UNIQUE_ID"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "declaration-digest-mismatch",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "products",
+            0,
+            "artifact",
+            "digest",
+            "value"
+          ],
+          "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "BINDING.DIGEST_MISMATCH"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "declaration-format-mismatch",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "products",
+            0,
+            "artifact",
+            "mediaType"
+          ],
+          "value": "application/octet-stream"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "BINDING.FORMAT_MISMATCH"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "missing-observation-digest",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "history",
+            "observation",
+            "products",
+            0,
+            "digest"
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "profile": "failed",
+      "codes": [
+        "BINDING.DIGEST_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "unavailable-product-captured-raw",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "profile": "not_checked",
+      "codes": [
+        "EXTERNAL.ASSET_UNAVAILABLE"
+      ],
+      "omitAssets": [
+        "product:captured-raw"
+      ],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "unavailable-manifest-r1",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "profile": "not_checked",
+      "codes": [
+        "EXTERNAL.ASSET_UNAVAILABLE"
+      ],
+      "omitAssets": [
+        "manifest:r1"
+      ],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "unavailable-calibration-c1-report",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "profile": "not_checked",
+      "codes": [
+        "EXTERNAL.ASSET_UNAVAILABLE"
+      ],
+      "omitAssets": [
+        "calibration:c1/report"
+      ],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "no-local-bytes",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "profile": "not_checked",
+      "codes": [
+        "EXTERNAL.ASSET_UNAVAILABLE"
+      ],
+      "omitAssets": [
+        "product:captured-raw",
+        "manifest:r1",
+        "calibration:c1/report"
+      ],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "uri-does-not-fetch",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "products",
+            0,
+            "artifact",
+            "uri"
+          ],
+          "value": "https://example.invalid/raw.json"
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "profile": "not_checked",
+      "codes": [
+        "EXTERNAL.ASSET_UNAVAILABLE"
+      ],
+      "omitAssets": [
+        "product:captured-raw"
+      ],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "same-length-corruption",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "profile": "failed",
+      "codes": [
+        "EXTERNAL.DIGEST_MISMATCH"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {
+        "product:captured-raw": "xxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "external": "failed"
+    },
+    {
+      "id": "size-mismatch",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "profile": "failed",
+      "codes": [
+        "EXTERNAL.SIZE_MISMATCH"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {
+        "product:captured-raw": "short"
+      },
+      "external": "failed"
+    },
+    {
+      "id": "empty-file",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "profile": "failed",
+      "codes": [
+        "EXTERNAL.EMPTY_ASSET"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {
+        "product:captured-raw": ""
+      },
+      "external": "failed"
+    },
+    {
+      "id": "wrong-declared-byte-length",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "products",
+            0,
+            "artifact",
+            "byteLength"
+          ],
+          "value": 999
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "profile": "failed",
+      "codes": [
+        "EXTERNAL.SIZE_MISMATCH"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "failed"
+    },
+    {
+      "id": "wrong-manifest-bytes",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "profile": "failed",
+      "codes": [
+        "EXTERNAL.DIGEST_MISMATCH"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {
+        "manifest:r1": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "external": "failed"
+    },
+    {
+      "id": "wrong-calibration-bytes",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "profile": "failed",
+      "codes": [
+        "EXTERNAL.DIGEST_MISMATCH"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {
+        "calibration:c1/report": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "external": "failed"
+    },
+    {
+      "id": "utf8-byte-length",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "manifests",
+            0,
+            "artifact"
+          ],
+          "value": {
+            "mediaType": "application/json",
+            "byteLength": 22,
+            "digest": {
+              "algorithm": "sha256",
+              "value": "38e35ce54a0c4ed354fcfad3a6db5e6dd5979ab15a7f62d69943fbf045db4f87"
+            }
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "profile": "passed",
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {
+        "manifest:r1": "Synthetic \u03bc manifest\n"
+      },
+      "external": "not_checked"
+    },
+    {
+      "id": "unused-bytes-do-not-matter",
+      "changes": [],
+      "structural": true,
+      "semantic": true,
+      "profile": "passed",
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {
+        "product:unused": "unused"
+      },
+      "external": "not_checked"
+    },
+    {
+      "id": "invalid-binding-namespace",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "products",
+            0,
+            "contextProductRef"
+          ],
+          "value": "sensor:raw"
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "binding-unknown-key",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "autoResolve"
+          ],
+          "value": true
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "nested-binding-unknown-key",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "sources",
+            0,
+            "verified"
+          ],
+          "value": true
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "malformed-context",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "context",
+            "calibrations"
+          ]
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "malformed-history",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "history",
+            "claims"
+          ]
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "history-semantic-failure",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "history",
+            "claims",
+            1,
+            "methodVersion"
+          ],
+          "value": "99"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "METHOD.VERSION_MISMATCH"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "context-semantic-failure",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "calibrations",
+            0,
+            "performedAt",
+            "value"
+          ],
+          "value": "2026-09-01T00:00:00Z"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "CALIBRATION.AFTER_ACQUISITION"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "review-report-needs-bytes",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "calibrations",
+            0,
+            "review"
+          ],
+          "value": {
+            "state": "reviewed",
+            "reviewedBy": "person:synthetic-reviewer",
+            "reviewedAt": "2026-07-02T00:00:00Z",
+            "outcome": "accepted",
+            "report": {
+              "mediaType": "application/json",
+              "byteLength": 17,
+              "digest": {
+                "algorithm": "sha256",
+                "value": "a2492c71f487da05d97a005824ce3d2a6f7da2c0a3e54e9e8ece0704846883b7"
+              }
+            }
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "profile": "not_checked",
+      "codes": [
+        "EXTERNAL.ASSET_UNAVAILABLE"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    },
+    {
+      "id": "review-report-pinned-bytes",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "calibrations",
+            0,
+            "review"
+          ],
+          "value": {
+            "state": "reviewed",
+            "reviewedBy": "person:synthetic-reviewer",
+            "reviewedAt": "2026-07-02T00:00:00Z",
+            "outcome": "accepted",
+            "report": {
+              "mediaType": "application/json",
+              "byteLength": 17,
+              "digest": {
+                "algorithm": "sha256",
+                "value": "a2492c71f487da05d97a005824ce3d2a6f7da2c0a3e54e9e8ece0704846883b7"
+              }
+            }
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "profile": "passed",
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {
+        "calibration:c1/review": "Synthetic review\n"
+      },
+      "external": "not_checked"
+    },
+    {
+      "id": "rejected-review-not-scientific-approval",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "context",
+            "calibrations",
+            0,
+            "review"
+          ],
+          "value": {
+            "state": "reviewed",
+            "reviewedBy": "person:synthetic-reviewer",
+            "reviewedAt": "2026-07-02T00:00:00Z",
+            "outcome": "rejected",
+            "report": {
+              "mediaType": "application/json",
+              "byteLength": 17,
+              "digest": {
+                "algorithm": "sha256",
+                "value": "a2492c71f487da05d97a005824ce3d2a6f7da2c0a3e54e9e8ece0704846883b7"
+              }
+            }
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "profile": "passed",
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {
+        "calibration:c1/review": "Synthetic review\n"
+      },
+      "external": "not_checked"
+    },
+    {
+      "id": "two-observation-products-one-context-product",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "history",
+            "observation",
+            "products"
+          ],
+          "value": [
+            {
+              "id": "raw",
+              "kind": "raw",
+              "format": "application/json",
+              "access": "public",
+              "sourceRefs": [
+                "source:station"
+              ],
+              "digest": {
+                "algorithm": "sha256",
+                "value": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121"
+              }
+            },
+            {
+              "id": "summary",
+              "kind": "derived",
+              "format": "application/json",
+              "access": "public",
+              "generatedBy": "process:reduction",
+              "digest": {
+                "algorithm": "sha256",
+                "value": "547aa2ac3c7bb2adb031a3aa078a966ae16b20a83d47aa118b1d8eba0a6a2714"
+              }
+            },
+            {
+              "id": "raw-alias",
+              "kind": "raw",
+              "format": "application/json",
+              "access": "public",
+              "sourceRefs": [
+                "source:station"
+              ],
+              "digest": {
+                "algorithm": "sha256",
+                "value": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121"
+              }
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "bindings",
+            "products"
+          ],
+          "value": [
+            {
+              "observationProductRef": "product:raw",
+              "contextProductRef": "product:captured-raw"
+            },
+            {
+              "observationProductRef": "product:raw-alias",
+              "contextProductRef": "product:captured-raw"
+            }
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "profile": "not_checked",
+      "codes": [
+        "REF.UNIQUE_ID"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {},
+      "external": "not_checked"
+    }
+  ]
+}

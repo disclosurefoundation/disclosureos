@@ -77,3 +77,5 @@ Bytes are caller-provided, copied before asynchronous work, and hashed with Web 
 This is a WP04/WP06 bridge, not completion of the supported research profile. The next work is method-specific eligibility and instrument/session/calibration context, followed by shared CLI/browser presentation and scientific review. Future profile behavior must use a new version. Publishing packages, deploying the Index, importing partner data, and certifying research conclusions are outside this increment.
 
 The [experimental acquisition context](acquisition-context.md) now supplies a separate instrument-history inventory. This profile does not yet consume it or upgrade its declared source-kind check to verified instrument/calibration eligibility.
+
+The independent [acquisition binding profile](acquisition-bindings.md) now checks product-to-context mappings and supplied artifact bytes. It does not change this profile or imply that passing documentation alone passes acquisition binding.

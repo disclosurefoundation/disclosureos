@@ -69,3 +69,5 @@ The schema ID is `urn:disclosureos:experimental:acquisition-context:0.1.0`, expo
 This document declares frozen revisions but is not a storage system: it cannot detect edits to a revision in a different submission or prove that artifact contents match the manifest metadata. Storage and release tooling must enforce immutable revision IDs and pinned bytes across updates.
 
 Next work connects this inventory to Observation raw products using verified identities/digests, then incorporates method-specific instrument requirements into the documentation/research profiles. Dataset releases, session inventories, native file adapters, byte verification, uncertainty-aware clock comparisons, calibration report review, CLI/browser integration, and independent reproduction remain outstanding. No package publication, partner import, migration, or scientific certification is included.
+
+The [experimental acquisition bindings](acquisition-bindings.md) now connect this inventory to Observation raw products through explicit source/product mappings and supplied byte checks. Measurement/channel mapping and scientific eligibility remain subsequent work.
