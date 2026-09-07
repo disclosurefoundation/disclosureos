@@ -1,0 +1,1527 @@
+{
+  "base": {
+    "kind": "claim_history",
+    "schemaVersion": "0.1.0",
+    "id": "profile-example",
+    "observation": {
+      "kind": "observation",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic",
+      "status": "draft",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z",
+      "eventTime": {
+        "state": "known",
+        "value": {
+          "kind": "instant",
+          "value": "2026-09-07T00:00:00Z",
+          "timeScale": "UTC"
+        },
+        "sourceRefs": [
+          "source:station"
+        ]
+      },
+      "position": {
+        "state": "unknown",
+        "reason": "not_collected"
+      },
+      "sources": [
+        {
+          "id": "station",
+          "kind": "instrument_data",
+          "access": "unknown"
+        },
+        {
+          "id": "report",
+          "kind": "document",
+          "access": "public",
+          "digest": {
+            "algorithm": "sha256",
+            "value": "9ec816b8cbd1f5f541f28d17e91f5c6b47b7f5eef635fe23f1f9f4b4b2d0a72b"
+          }
+        }
+      ],
+      "products": [
+        {
+          "id": "raw",
+          "kind": "raw",
+          "format": "application/json",
+          "access": "public",
+          "sourceRefs": [
+            "source:station"
+          ],
+          "digest": {
+            "algorithm": "sha256",
+            "value": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121"
+          }
+        },
+        {
+          "id": "summary",
+          "kind": "derived",
+          "format": "application/json",
+          "access": "public",
+          "generatedBy": "process:reduction",
+          "digest": {
+            "algorithm": "sha256",
+            "value": "547aa2ac3c7bb2adb031a3aa078a966ae16b20a83d47aa118b1d8eba0a6a2714"
+          }
+        }
+      ],
+      "methods": [
+        {
+          "id": "review",
+          "version": "0.1.0",
+          "description": "Synthetic review declaration; not a validated scientific method."
+        },
+        {
+          "id": "reduction",
+          "version": "0.1.0",
+          "description": "Synthetic reduction declaration; output not reproduced."
+        }
+      ],
+      "frames": [],
+      "assertions": [
+        {
+          "id": "velocity",
+          "field": "measurement",
+          "measurementId": "velocity",
+          "value": {
+            "value": -3,
+            "unit": "m/s",
+            "uncertainty": {
+              "kind": "standard",
+              "magnitude": 1,
+              "unit": "m/s",
+              "sourceRefs": [
+                "product:raw"
+              ]
+            }
+          },
+          "provenance": {
+            "sourceRef": "product:summary",
+            "locator": {
+              "kind": "json_pointer",
+              "pointer": "/velocity"
+            }
+          }
+        }
+      ],
+      "measurements": [
+        {
+          "id": "velocity",
+          "quantity": "radial velocity",
+          "value": {
+            "value": -3,
+            "unit": "m/s",
+            "uncertainty": {
+              "kind": "standard",
+              "magnitude": 1,
+              "unit": "m/s",
+              "sourceRefs": [
+                "product:raw"
+              ]
+            }
+          },
+          "sourceRefs": [
+            "assertion:velocity"
+          ],
+          "selection": {
+            "assertionRef": "assertion:velocity",
+            "consideredAssertionRefs": [
+              "assertion:velocity"
+            ],
+            "evaluatedBy": "person:synthetic",
+            "evaluatedAt": "2026-09-07T00:00:00Z",
+            "methodRef": "method:review",
+            "methodVersion": "0.1.0",
+            "rationale": "Copy the synthetic value."
+          }
+        }
+      ],
+      "processing": [
+        {
+          "id": "reduction",
+          "methodRef": "method:reduction",
+          "methodVersion": "0.1.0",
+          "performedBy": "person:synthetic",
+          "performedAt": "2026-09-07T00:00:00Z",
+          "inputRefs": [
+            "product:raw"
+          ],
+          "outputRefs": [
+            "product:summary"
+          ]
+        }
+      ]
+    },
+    "claims": [
+      {
+        "id": "statement",
+        "kind": "source_assertion",
+        "recordedAt": "2026-09-07T00:00:00Z",
+        "topic": "synthetic motion",
+        "subject": {
+          "kind": "observation"
+        },
+        "text": "Synthetic source calls this confirmed.",
+        "reportedLevel": "confirmed",
+        "provenance": {
+          "sourceRef": "source:report",
+          "locator": {
+            "kind": "page",
+            "page": 1
+          },
+          "extractedBy": "agent:synthetic"
+        }
+      },
+      {
+        "id": "review",
+        "kind": "assessment",
+        "recordedAt": "2026-09-07T00:00:00Z",
+        "topic": "synthetic motion",
+        "subject": {
+          "kind": "measurement",
+          "measurementId": "velocity"
+        },
+        "status": "assessed",
+        "outcome": "confirmed",
+        "evaluatedBy": "person:synthetic",
+        "evaluatedAt": "2026-09-07T00:00:00Z",
+        "methodRef": "method:review",
+        "methodVersion": "0.1.0",
+        "inputRefs": [
+          "claim:statement",
+          "measurement:velocity"
+        ],
+        "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+      }
+    ]
+  },
+  "assets": {
+    "source:report": "Synthetic source statement.\n",
+    "product:raw": "{\"samples\":[-2,-3,-4]}\n",
+    "product:summary": "{\"velocity\":-3}\n"
+  },
+  "cases": [
+    {
+      "id": "confirmed-documentation-with-local-bytes",
+      "changes": [],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "passed"
+      },
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "reported-with-source-passage",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "outcome"
+          ],
+          "value": "reported"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "inputRefs"
+          ],
+          "value": [
+            "claim:statement"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "passed"
+      },
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "inconclusive-with-source-passage",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "outcome"
+          ],
+          "value": "inconclusive"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "inputRefs"
+          ],
+          "value": [
+            "claim:statement"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "passed"
+      },
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "assessed-absence-is-not-unassessed",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "outcome"
+          ],
+          "value": "absent"
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "passed"
+      },
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "unknown-confidence-remains-omitted",
+      "changes": [],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "passed"
+      },
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "zero-confidence-does-not-change-documentary-status",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "confidence"
+          ],
+          "value": 0
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "passed"
+      },
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "missing-one-asset",
+      "changes": [],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "not_checked"
+      },
+      "codes": [
+        "EXTERNAL.ASSET_UNAVAILABLE"
+      ],
+      "omitAssets": [
+        "product:raw"
+      ],
+      "assetOverrides": {}
+    },
+    {
+      "id": "no-bytes",
+      "changes": [],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "not_checked"
+      },
+      "codes": [
+        "EXTERNAL.ASSET_UNAVAILABLE"
+      ],
+      "omitAssets": [
+        "source:report",
+        "product:raw",
+        "product:summary"
+      ],
+      "assetOverrides": {}
+    },
+    {
+      "id": "uri-does-not-verify",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "observation",
+            "products",
+            0,
+            "uri"
+          ],
+          "value": "https://example.invalid/raw.json"
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "not_checked"
+      },
+      "codes": [
+        "EXTERNAL.ASSET_UNAVAILABLE"
+      ],
+      "omitAssets": [
+        "product:raw"
+      ],
+      "assetOverrides": {}
+    },
+    {
+      "id": "wrong-bytes",
+      "changes": [],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "EXTERNAL.DIGEST_MISMATCH"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {
+        "product:raw": "wrong"
+      }
+    },
+    {
+      "id": "empty-bytes",
+      "changes": [],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "EXTERNAL.EMPTY_ASSET"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {
+        "source:report": ""
+      }
+    },
+    {
+      "id": "unpinned-product",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "observation",
+            "products",
+            0,
+            "digest"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.DIGEST_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "unpinned-source",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "observation",
+            "sources",
+            1,
+            "digest"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.DIGEST_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "no-inputs",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "inputRefs"
+          ],
+          "value": []
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.INPUTS_REQUIRED",
+        "PROFILE.MEASUREMENT_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "source-descriptor-alone",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "inputRefs"
+          ],
+          "value": [
+            "source:station"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.INPUTS_REQUIRED",
+        "PROFILE.MEASUREMENT_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "source-says-confirmed-without-measurement",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "inputRefs"
+          ],
+          "value": [
+            "claim:statement"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.MEASUREMENT_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "product-alone-does-not-supply-measurement-context",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "inputRefs"
+          ],
+          "value": [
+            "product:summary"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.MEASUREMENT_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "missing-main-method-description",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "observation",
+            "methods",
+            0,
+            "description"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.METHOD_CONTEXT"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "missing-processing-method-description",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "observation",
+            "methods",
+            1,
+            "description"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.METHOD_CONTEXT"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "no-source-locator",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "claims",
+            0,
+            "provenance",
+            "locator"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.LOCATOR_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "no-product-value-locator",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "observation",
+            "assertions",
+            0,
+            "provenance",
+            "locator"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.LOCATOR_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "direct-document-source-needs-passage",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "outcome"
+          ],
+          "value": "reported"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "inputRefs"
+          ],
+          "value": [
+            "source:report"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.LOCATOR_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "unknown-time",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "observation",
+            "eventTime"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "not_collected"
+          }
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.EVENT_TIME"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "unknown-uncertainty",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "observation",
+            "measurements",
+            0,
+            "value",
+            "uncertainty"
+          ],
+          "value": {
+            "kind": "unknown",
+            "reason": "not_characterized"
+          }
+        },
+        {
+          "op": "replace",
+          "path": [
+            "observation",
+            "assertions",
+            0,
+            "value",
+            "uncertainty"
+          ],
+          "value": {
+            "kind": "unknown",
+            "reason": "not_characterized"
+          }
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.MEASUREMENT_UNCERTAINTY"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "non-instrument-source",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "observation",
+            "sources",
+            0,
+            "kind"
+          ],
+          "value": "document"
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.INSTRUMENT_PRODUCT_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "uncertainty-cannot-launder-primary-lineage",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "observation",
+            "assertions",
+            0,
+            "provenance",
+            "sourceRef"
+          ],
+          "value": "source:report"
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.INSTRUMENT_PRODUCT_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "unknown-declared-frame",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "observation",
+            "frames"
+          ],
+          "value": [
+            {
+              "id": "f",
+              "kind": "cartesian",
+              "definition": {
+                "state": "unknown",
+                "reason": "unavailable"
+              },
+              "unit": "m"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "observation",
+            "measurements",
+            0,
+            "frameRef"
+          ],
+          "value": "frame:f"
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.FRAME_CONTEXT"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "dangling-input",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "inputRefs"
+          ],
+          "value": [
+            "product:missing"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "failed",
+        "profile": "not_checked"
+      },
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "wrong-method-version",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "methodVersion"
+          ],
+          "value": "99"
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "failed",
+        "profile": "not_checked"
+      },
+      "codes": [
+        "METHOD.VERSION_MISMATCH"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "missing-evaluator",
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "claims",
+            1,
+            "evaluatedBy"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "failed",
+        "semantic": "not_checked",
+        "profile": "not_checked"
+      },
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "sensor-ref-namespace-not-a-product",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "inputRefs"
+          ],
+          "value": [
+            "sensor:station"
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "failed",
+        "semantic": "not_checked",
+        "profile": "not_checked"
+      },
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "negative-confidence",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "confidence"
+          ],
+          "value": -1
+        }
+      ],
+      "expected": {
+        "structural": "failed",
+        "semantic": "not_checked",
+        "profile": "not_checked"
+      },
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "empty-history",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims"
+          ],
+          "value": []
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "not_checked"
+      },
+      "codes": [
+        "PROFILE.NO_ASSESSMENTS"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "archive-statements-only",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims"
+          ],
+          "value": [
+            {
+              "id": "statement",
+              "kind": "source_assertion",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "observation"
+              },
+              "text": "Synthetic source calls this confirmed.",
+              "reportedLevel": "confirmed",
+              "provenance": {
+                "sourceRef": "source:report",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "extractedBy": "agent:synthetic"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "not_checked"
+      },
+      "codes": [
+        "PROFILE.NO_ASSESSMENTS"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "unassessed",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1
+          ],
+          "value": {
+            "id": "review",
+            "kind": "assessment",
+            "recordedAt": "2026-09-07T00:00:00Z",
+            "topic": "synthetic motion",
+            "subject": {
+              "kind": "measurement",
+              "measurementId": "velocity"
+            },
+            "status": "unassessed",
+            "inputRefs": [
+              "claim:statement",
+              "measurement:velocity"
+            ],
+            "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+          }
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "not_checked"
+      },
+      "codes": [
+        "PROFILE.UNASSESSED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "superseded-unsupported-review-not-counted",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims"
+          ],
+          "value": [
+            {
+              "id": "statement",
+              "kind": "source_assertion",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "observation"
+              },
+              "text": "Synthetic source calls this confirmed.",
+              "reportedLevel": "confirmed",
+              "provenance": {
+                "sourceRef": "source:report",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "extractedBy": "agent:synthetic"
+              }
+            },
+            {
+              "id": "old",
+              "kind": "assessment",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "measurement",
+                "measurementId": "velocity"
+              },
+              "status": "assessed",
+              "outcome": "confirmed",
+              "evaluatedBy": "person:synthetic",
+              "evaluatedAt": "2026-09-07T00:00:00Z",
+              "methodRef": "method:review",
+              "methodVersion": "0.1.0",
+              "inputRefs": [],
+              "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+            },
+            {
+              "id": "review",
+              "kind": "assessment",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "measurement",
+                "measurementId": "velocity"
+              },
+              "status": "assessed",
+              "outcome": "confirmed",
+              "evaluatedBy": "person:synthetic",
+              "evaluatedAt": "2026-09-07T00:00:00Z",
+              "methodRef": "method:review",
+              "methodVersion": "0.1.0",
+              "inputRefs": [
+                "claim:statement",
+                "measurement:velocity"
+              ],
+              "rationale": "Synthetic documentary profile exercise; no scientific conclusion.",
+              "supersedes": [
+                "claim:old"
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "passed"
+      },
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "shared-inputs-retain-independent-reviews",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims"
+          ],
+          "value": [
+            {
+              "id": "statement",
+              "kind": "source_assertion",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "observation"
+              },
+              "text": "Synthetic source calls this confirmed.",
+              "reportedLevel": "confirmed",
+              "provenance": {
+                "sourceRef": "source:report",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "extractedBy": "agent:synthetic"
+              }
+            },
+            {
+              "id": "review",
+              "kind": "assessment",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "measurement",
+                "measurementId": "velocity"
+              },
+              "status": "assessed",
+              "outcome": "confirmed",
+              "evaluatedBy": "person:synthetic",
+              "evaluatedAt": "2026-09-07T00:00:00Z",
+              "methodRef": "method:review",
+              "methodVersion": "0.1.0",
+              "inputRefs": [
+                "claim:statement",
+                "measurement:velocity"
+              ],
+              "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+            },
+            {
+              "id": "other",
+              "kind": "assessment",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "measurement",
+                "measurementId": "velocity"
+              },
+              "status": "assessed",
+              "outcome": "confirmed",
+              "evaluatedBy": "person:other",
+              "evaluatedAt": "2026-09-07T00:00:00Z",
+              "methodRef": "method:review",
+              "methodVersion": "0.1.0",
+              "inputRefs": [
+                "claim:statement",
+                "measurement:velocity"
+              ],
+              "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "passed"
+      },
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "unrelated-measurement-cannot-satisfy-subject",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "observation",
+            "measurements"
+          ],
+          "value": [
+            {
+              "id": "velocity",
+              "quantity": "radial velocity",
+              "value": {
+                "value": -3,
+                "unit": "m/s",
+                "uncertainty": {
+                  "kind": "standard",
+                  "magnitude": 1,
+                  "unit": "m/s",
+                  "sourceRefs": [
+                    "product:raw"
+                  ]
+                }
+              },
+              "sourceRefs": [
+                "assertion:velocity"
+              ],
+              "selection": {
+                "assertionRef": "assertion:velocity",
+                "consideredAssertionRefs": [
+                  "assertion:velocity"
+                ],
+                "evaluatedBy": "person:synthetic",
+                "evaluatedAt": "2026-09-07T00:00:00Z",
+                "methodRef": "method:review",
+                "methodVersion": "0.1.0",
+                "rationale": "Copy the synthetic value."
+              }
+            },
+            {
+              "id": "other",
+              "quantity": "radial velocity",
+              "value": {
+                "value": -3,
+                "unit": "m/s",
+                "uncertainty": {
+                  "kind": "standard",
+                  "magnitude": 1,
+                  "unit": "m/s",
+                  "sourceRefs": [
+                    "product:raw"
+                  ]
+                }
+              },
+              "sourceRefs": [
+                "product:raw"
+              ]
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "claims",
+            1,
+            "subject",
+            "measurementId"
+          ],
+          "value": "other"
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.MEASUREMENT_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "mixed-unassessed-keeps-aggregate-unchecked",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims"
+          ],
+          "value": [
+            {
+              "id": "statement",
+              "kind": "source_assertion",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "observation"
+              },
+              "text": "Synthetic source calls this confirmed.",
+              "reportedLevel": "confirmed",
+              "provenance": {
+                "sourceRef": "source:report",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "extractedBy": "agent:synthetic"
+              }
+            },
+            {
+              "id": "review",
+              "kind": "assessment",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "measurement",
+                "measurementId": "velocity"
+              },
+              "status": "assessed",
+              "outcome": "confirmed",
+              "evaluatedBy": "person:synthetic",
+              "evaluatedAt": "2026-09-07T00:00:00Z",
+              "methodRef": "method:review",
+              "methodVersion": "0.1.0",
+              "inputRefs": [
+                "claim:statement",
+                "measurement:velocity"
+              ],
+              "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+            },
+            {
+              "id": "pending",
+              "kind": "assessment",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "measurement",
+                "measurementId": "velocity"
+              },
+              "status": "unassessed",
+              "inputRefs": [
+                "claim:statement",
+                "measurement:velocity"
+              ],
+              "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "not_checked"
+      },
+      "codes": [
+        "PROFILE.UNASSESSED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "one-failed-assessment-fails-aggregate",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "claims"
+          ],
+          "value": [
+            {
+              "id": "statement",
+              "kind": "source_assertion",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "observation"
+              },
+              "text": "Synthetic source calls this confirmed.",
+              "reportedLevel": "confirmed",
+              "provenance": {
+                "sourceRef": "source:report",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "extractedBy": "agent:synthetic"
+              }
+            },
+            {
+              "id": "review",
+              "kind": "assessment",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "measurement",
+                "measurementId": "velocity"
+              },
+              "status": "assessed",
+              "outcome": "confirmed",
+              "evaluatedBy": "person:synthetic",
+              "evaluatedAt": "2026-09-07T00:00:00Z",
+              "methodRef": "method:review",
+              "methodVersion": "0.1.0",
+              "inputRefs": [
+                "claim:statement",
+                "measurement:velocity"
+              ],
+              "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+            },
+            {
+              "id": "unsupported",
+              "kind": "assessment",
+              "recordedAt": "2026-09-07T00:00:00Z",
+              "topic": "synthetic motion",
+              "subject": {
+                "kind": "measurement",
+                "measurementId": "velocity"
+              },
+              "status": "assessed",
+              "outcome": "confirmed",
+              "evaluatedBy": "person:synthetic",
+              "evaluatedAt": "2026-09-07T00:00:00Z",
+              "methodRef": "method:review",
+              "methodVersion": "0.1.0",
+              "inputRefs": [],
+              "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "failed"
+      },
+      "codes": [
+        "PROFILE.INPUTS_REQUIRED"
+      ],
+      "omitAssets": [],
+      "assetOverrides": {}
+    },
+    {
+      "id": "unused-assets-do-not-change-result",
+      "changes": [],
+      "expected": {
+        "structural": "passed",
+        "semantic": "passed",
+        "profile": "passed"
+      },
+      "codes": [],
+      "omitAssets": [],
+      "assetOverrides": {
+        "product:unused": "ignored"
+      }
+    }
+  ]
+}

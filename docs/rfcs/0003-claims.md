@@ -43,3 +43,5 @@ Legacy claims with insufficient provenance migrate into source assertions with p
 ## Experimental implementation
 
 The first records-owned implementation is the [experimental claim history](../experimental/claim-history.md): a separate envelope around an Observation snapshot with source text, attributed assessments, and revision semantics. Profile eligibility remains unimplemented and explicitly not checked. Domain-specific scientific rules, shared orchestration, and migration remain follow-up work.
+
+The [assessment documentation profile](../experimental/assessment-documentation.md) now provides an experimental documentary preflight and local byte-integrity checks. It does not implement method-specific scientific eligibility or external verification of locator contents, calibration, or processing.

@@ -1,7 +1,7 @@
 {
   "name": "@disclosureos/schema",
   "version": "1.1.0",
-  "description": "The DisclosureOS portable contract — composes the records core, observable assessments, and origin classification into one enriched Observation schema (TypeScript + JSON Schema), with a non-stripping parse",
+  "description": "The DisclosureOS portable contract \u2014 composes the records core, observable assessments, and origin classification into one enriched Observation schema (TypeScript + JSON Schema), with a non-stripping parse",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -30,7 +30,11 @@
       "import": "./dist/index.js"
     },
     "./schema": "./schema/enriched-observation.schema.json",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./experimental/v2": {
+      "types": "./dist/experimental/v2/index.d.ts",
+      "import": "./dist/experimental/v2/index.js"
+    }
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

@@ -95,3 +95,7 @@ DisclosureOS-specific adapter.
 ## License
 
 MIT © [Disclosure Foundation](https://disclosure.org)
+
+## Experimental v2 documentary support
+
+`@disclosureos/schema/experimental/v2` exports `evaluateAssessmentDocumentation` for records-owned claim histories. See the [profile contract and runnable synthetic example](../../docs/experimental/assessment-documentation.md). It checks declared support and supplied byte hashes, not scientific adequacy; existing v1 APIs and artifacts remain unchanged.
