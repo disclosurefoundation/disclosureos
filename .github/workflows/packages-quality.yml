@@ -133,4 +133,5 @@ jobs:
       - run: pnpm conformance:baseline
       - run: pnpm conformance:matrix
       - run: pnpm test:conformance
+      - run: pnpm test:v2-primitives
       - run: pnpm test:partner-audit

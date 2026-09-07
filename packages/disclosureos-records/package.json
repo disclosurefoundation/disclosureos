@@ -1,7 +1,7 @@
 {
   "name": "@disclosureos/records",
   "version": "1.1.0",
-  "description": "Structured vocabulary for describing UAP observations — the data dictionary of the DisclosureOS ecosystem",
+  "description": "Structured vocabulary for describing UAP observations \u2014 the data dictionary of the DisclosureOS ecosystem",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -105,7 +105,12 @@
       "import": "./dist/shared/index.js"
     },
     "./schema": "./schema/records.schema.json",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./experimental/v2": {
+      "types": "./dist/experimental/v2/index.d.ts",
+      "import": "./dist/experimental/v2/index.js"
+    },
+    "./experimental/v2/schema": "./schema/experimental/v2-primitives.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

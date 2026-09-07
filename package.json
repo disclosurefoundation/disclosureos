@@ -21,7 +21,9 @@
     "conformance:target": "node conformance/run.mjs --target",
     "test:partner-audit": "node --test scripts/audit-partner-window.test.mjs",
     "conformance:matrix": "node conformance/matrix.mjs",
-    "test:conformance": "node --test conformance/validate-surfaces.test.mjs"
+    "test:conformance": "node --test conformance/validate-surfaces.test.mjs",
+    "test:v2-primitives": "node --test conformance/v2-primitives.test.mjs",
+    "emit:v2-primitives": "node conformance/emit-v2-primitives.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

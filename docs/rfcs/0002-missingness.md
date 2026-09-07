@@ -40,3 +40,7 @@ Competing estimates are separate attributed assertions. A curator may select a d
 | Contradictory source estimates | Preserve each assertion and source locator. |
 
 Migration MUST write a new artifact, retain a source digest, and account for each input as migrated or quarantined. Missingness never authorizes invention of dates, evaluators, units, uncertainty, or coordinates. Public projection excludes restricted payloads and private notes by allowlist, not by merely hiding their interface elements.
+
+## Implementation checkpoint
+
+The [experimental records primitives](../experimental/records-v2-primitives.md) implement known/approximate/unknown/redacted values, partial calendar precision, WGS84 coordinates, and local assertion provenance checks. They do not yet implement interval-valued estimates, profile-controlled not-applicable fields, curated selection methods, or the migrator. The separate experimental schema URN does not freeze the final v2 Observation contract.
