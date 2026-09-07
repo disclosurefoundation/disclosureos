@@ -31,3 +31,4 @@ export type {
 } from './claim-history-schema';
 export { parseExperimentalClaimHistory } from './claim-history';
 export type { ClaimHistoryIssueCode, ClaimHistoryIssue, ClaimHistoryValidation, ClaimHistoryParseResult } from './claim-history';
+export { compareUtcInstants } from './utc';

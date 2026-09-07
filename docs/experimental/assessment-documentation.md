@@ -75,3 +75,5 @@ Bytes are caller-provided, copied before asynchronous work, and hashed with Web 
 `pnpm test:v2-documentation` executes the portable fixture corpus, reproduces the synthetic files, verifies input and byte snapshot isolation, checks hashes independently with Node crypto, tests shared-content hashing, prevents implicit network retrieval, and exercises long processing histories. The existing records corpus remains the independent structural-conformance authority; this profile adds no new input JSON Schema.
 
 This is a WP04/WP06 bridge, not completion of the supported research profile. The next work is method-specific eligibility and instrument/session/calibration context, followed by shared CLI/browser presentation and scientific review. Future profile behavior must use a new version. Publishing packages, deploying the Index, importing partner data, and certifying research conclusions are outside this increment.
+
+The [experimental acquisition context](acquisition-context.md) now supplies a separate instrument-history inventory. This profile does not yet consume it or upgrade its declared source-kind check to verified instrument/calibration eligibility.
