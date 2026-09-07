@@ -124,3 +124,6 @@ MIT © [Disclosure Foundation](https://disclosure.org)
 ## Experimental v2 value primitives
 
 The source tree includes an isolated `@disclosureos/records/experimental/v2` entry point for explicit missingness, typed time/position values, and source-value provenance. It is under development for v2 and is not available in the published package yet. Existing v1 entry points and schemas remain unchanged. See the [scope, examples, and limitations](https://github.com/disclosurefoundation/disclosureos/blob/main/docs/experimental/records-v2-primitives.md).
+
+
+The same experimental entry point now exposes `ExperimentalObservationSchema` and `parseExperimentalObservation` for the integrated factual record, including uncertainty, frames, source selections, and processing lineage. See the [Observation contract and synthetic example](https://github.com/disclosurefoundation/disclosureos/blob/main/docs/experimental/observation-contract.md). External verification and research profiles remain explicitly unchecked.

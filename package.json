@@ -23,7 +23,9 @@
     "conformance:matrix": "node conformance/matrix.mjs",
     "test:conformance": "node --test conformance/validate-surfaces.test.mjs",
     "test:v2-primitives": "node --test conformance/v2-primitives.test.mjs",
-    "emit:v2-primitives": "node conformance/emit-v2-primitives.mjs"
+    "emit:v2-primitives": "node conformance/emit-v2-primitives.mjs",
+    "emit:v2-observation": "node conformance/emit-observation.mjs",
+    "test:v2-observation": "node --test conformance/observation-contract.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

@@ -1,0 +1,1265 @@
+{
+  "bases": {
+    "minimal": {
+      "kind": "observation",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic",
+      "status": "draft",
+      "createdAt": "2026-09-07T12:00:00Z",
+      "updatedAt": "2026-09-07T12:00:00Z",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "unknown",
+        "reason": "not_collected"
+      },
+      "sources": [],
+      "products": [],
+      "methods": [],
+      "frames": [],
+      "assertions": [],
+      "measurements": [],
+      "processing": []
+    },
+    "integrated": {
+      "kind": "observation",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic",
+      "status": "draft",
+      "createdAt": "2026-09-07T12:00:00Z",
+      "updatedAt": "2026-09-07T12:00:00Z",
+      "eventTime": {
+        "state": "approximate",
+        "value": {
+          "kind": "interval",
+          "start": {
+            "kind": "instant",
+            "value": "2026-01-01T00:00:00.000001Z",
+            "timeScale": "UTC"
+          },
+          "end": {
+            "kind": "instant",
+            "value": "2026-01-01T00:02:00.000001Z",
+            "timeScale": "UTC"
+          }
+        },
+        "precision": "Bounded source estimate; exact fractional strings retained",
+        "sourceRefs": [
+          "assertion:time-a"
+        ],
+        "uncertainty": {
+          "kind": "standard",
+          "magnitude": 1,
+          "unit": "us",
+          "sourceRefs": [
+            "source:s1"
+          ]
+        },
+        "selection": {
+          "assertionRef": "assertion:time-a",
+          "consideredAssertionRefs": [
+            "assertion:time-a"
+          ],
+          "methodRef": "method:curation",
+          "methodVersion": "1.0.0",
+          "evaluatedBy": "person:synthetic-curator",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic example of an explicitly declared source-value choice."
+        }
+      },
+      "position": {
+        "state": "known",
+        "value": {
+          "kind": "geodetic",
+          "latitude": 0,
+          "longitude": 0,
+          "frameRef": "frame:geo",
+          "altitude": {
+            "value": -2,
+            "unit": "m",
+            "uncertainty": {
+              "kind": "unknown",
+              "reason": "not_characterized"
+            }
+          },
+          "uncertainty": {
+            "latitude": {
+              "kind": "standard",
+              "magnitude": 0.1,
+              "unit": "deg",
+              "sourceRefs": [
+                "source:s1"
+              ]
+            },
+            "longitude": {
+              "kind": "standard",
+              "magnitude": 0.1,
+              "unit": "deg",
+              "sourceRefs": [
+                "source:s1"
+              ]
+            }
+          }
+        },
+        "sourceRefs": [
+          "assertion:position-a"
+        ],
+        "selection": {
+          "assertionRef": "assertion:position-a",
+          "consideredAssertionRefs": [
+            "assertion:position-a",
+            "assertion:position-b"
+          ],
+          "methodRef": "method:curation",
+          "methodVersion": "1.0.0",
+          "evaluatedBy": "person:synthetic-curator",
+          "evaluatedAt": "2026-09-07T12:00:00Z",
+          "rationale": "Synthetic example of an explicitly declared source-value choice."
+        }
+      },
+      "sources": [
+        {
+          "id": "s1",
+          "kind": "instrument_data",
+          "access": "unknown",
+          "title": "Synthetic acquisition source"
+        },
+        {
+          "id": "s2",
+          "kind": "document",
+          "access": "unknown",
+          "title": "Synthetic alternative source"
+        }
+      ],
+      "products": [
+        {
+          "id": "raw",
+          "kind": "raw",
+          "format": "NDJSON",
+          "access": "unknown",
+          "sourceRefs": [
+            "source:s1"
+          ]
+        },
+        {
+          "id": "summary",
+          "kind": "derived",
+          "format": "JSON",
+          "access": "unknown",
+          "generatedBy": "process:reduce"
+        }
+      ],
+      "methods": [
+        {
+          "id": "curation",
+          "version": "1.0.0",
+          "description": "Synthetic source-priority rule"
+        },
+        {
+          "id": "reduction",
+          "version": "1.0.0",
+          "description": "Synthetic reduction declaration; not executed by this example"
+        }
+      ],
+      "frames": [
+        {
+          "id": "geo",
+          "kind": "geodetic",
+          "definition": {
+            "state": "identified",
+            "authority": "EPSG",
+            "code": "4326"
+          },
+          "angularUnit": "deg",
+          "vertical": {
+            "definition": {
+              "state": "described",
+              "description": "Synthetic local vertical reference"
+            },
+            "unit": "m"
+          }
+        }
+      ],
+      "assertions": [
+        {
+          "id": "time-a",
+          "field": "eventTime",
+          "value": {
+            "kind": "interval",
+            "start": {
+              "kind": "instant",
+              "value": "2026-01-01T00:00:00.000001Z",
+              "timeScale": "UTC"
+            },
+            "end": {
+              "kind": "instant",
+              "value": "2026-01-01T00:02:00.000001Z",
+              "timeScale": "UTC"
+            }
+          },
+          "provenance": {
+            "sourceRef": "source:s1",
+            "extractedBy": "agent:synthetic-extractor"
+          }
+        },
+        {
+          "id": "position-a",
+          "field": "position",
+          "value": {
+            "kind": "geodetic",
+            "latitude": 0,
+            "longitude": 0,
+            "frameRef": "frame:geo",
+            "altitude": {
+              "value": -2,
+              "unit": "m",
+              "uncertainty": {
+                "kind": "unknown",
+                "reason": "not_characterized"
+              }
+            },
+            "uncertainty": {
+              "latitude": {
+                "kind": "standard",
+                "magnitude": 0.1,
+                "unit": "deg",
+                "sourceRefs": [
+                  "source:s1"
+                ]
+              },
+              "longitude": {
+                "kind": "standard",
+                "magnitude": 0.1,
+                "unit": "deg",
+                "sourceRefs": [
+                  "source:s1"
+                ]
+              }
+            }
+          },
+          "provenance": {
+            "sourceRef": "source:s1"
+          }
+        },
+        {
+          "id": "position-b",
+          "field": "position",
+          "value": {
+            "kind": "geodetic",
+            "latitude": 1,
+            "longitude": 0,
+            "frameRef": "frame:geo",
+            "altitude": {
+              "value": -2,
+              "unit": "m",
+              "uncertainty": {
+                "kind": "unknown",
+                "reason": "not_characterized"
+              }
+            },
+            "uncertainty": {
+              "latitude": {
+                "kind": "standard",
+                "magnitude": 0.1,
+                "unit": "deg",
+                "sourceRefs": [
+                  "source:s1"
+                ]
+              },
+              "longitude": {
+                "kind": "standard",
+                "magnitude": 0.1,
+                "unit": "deg",
+                "sourceRefs": [
+                  "source:s1"
+                ]
+              }
+            }
+          },
+          "provenance": {
+            "sourceRef": "source:s2"
+          }
+        },
+        {
+          "id": "velocity-a",
+          "field": "measurement",
+          "measurementId": "velocity",
+          "value": {
+            "value": -28,
+            "unit": "m/s",
+            "uncertainty": {
+              "kind": "expanded",
+              "magnitude": 0.1,
+              "unit": "m/s",
+              "sourceRefs": [
+                "source:s1"
+              ],
+              "coverageFactor": 2
+            }
+          },
+          "provenance": {
+            "sourceRef": "product:summary",
+            "locator": {
+              "kind": "json_pointer",
+              "pointer": "/velocity"
+            }
+          }
+        }
+      ],
+      "measurements": [
+        {
+          "id": "velocity",
+          "quantity": "signed radial velocity",
+          "value": {
+            "value": -28,
+            "unit": "m/s",
+            "uncertainty": {
+              "kind": "expanded",
+              "magnitude": 0.1,
+              "unit": "m/s",
+              "sourceRefs": [
+                "source:s1"
+              ],
+              "coverageFactor": 2
+            }
+          },
+          "sourceRefs": [
+            "assertion:velocity-a"
+          ],
+          "selection": {
+            "assertionRef": "assertion:velocity-a",
+            "consideredAssertionRefs": [
+              "assertion:velocity-a"
+            ],
+            "methodRef": "method:curation",
+            "methodVersion": "1.0.0",
+            "evaluatedBy": "person:synthetic-curator",
+            "evaluatedAt": "2026-09-07T12:00:00Z",
+            "rationale": "Synthetic example of an explicitly declared source-value choice."
+          }
+        }
+      ],
+      "processing": [
+        {
+          "id": "reduce",
+          "methodRef": "method:reduction",
+          "methodVersion": "1.0.0",
+          "performedBy": "agent:synthetic-processor",
+          "performedAt": "2026-01-01T00:05:00Z",
+          "inputRefs": [
+            "product:raw"
+          ],
+          "outputRefs": [
+            "product:summary"
+          ]
+        }
+      ],
+      "summary": "Synthetic control fixture. All values and processing declarations are illustrative, not real observations.",
+      "extensions": {
+        "org.example.fixture": {
+          "synthetic": true,
+          "optional": null,
+          "zero": 0
+        }
+      }
+    },
+    "cartesian": {
+      "kind": "observation",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic",
+      "status": "draft",
+      "createdAt": "2026-09-07T12:00:00Z",
+      "updatedAt": "2026-09-07T12:00:00Z",
+      "eventTime": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "position": {
+        "state": "known",
+        "sourceRefs": [
+          "source:s1"
+        ],
+        "value": {
+          "kind": "cartesian",
+          "frameRef": "frame:local",
+          "x": {
+            "value": -1,
+            "unit": "m",
+            "uncertainty": {
+              "kind": "unknown",
+              "reason": "not_characterized"
+            }
+          },
+          "y": {
+            "value": 0,
+            "unit": "m",
+            "uncertainty": {
+              "kind": "unknown",
+              "reason": "not_characterized"
+            }
+          },
+          "z": {
+            "value": 10,
+            "unit": "m",
+            "uncertainty": {
+              "kind": "unknown",
+              "reason": "not_characterized"
+            }
+          }
+        }
+      },
+      "sources": [
+        {
+          "id": "s1",
+          "kind": "instrument_data",
+          "access": "unknown"
+        }
+      ],
+      "products": [],
+      "methods": [],
+      "frames": [
+        {
+          "id": "local",
+          "kind": "cartesian",
+          "definition": {
+            "state": "described",
+            "description": "Synthetic local xyz axes, metres from a declared origin"
+          },
+          "unit": "m"
+        }
+      ],
+      "assertions": [],
+      "measurements": [],
+      "processing": []
+    }
+  },
+  "cases": [
+    {
+      "id": "minimal-unknown-record",
+      "base": "minimal",
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "changes": []
+    },
+    {
+      "id": "integrated-provenance-path",
+      "base": "integrated",
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "changes": []
+    },
+    {
+      "id": "signed-cartesian-values",
+      "base": "cartesian",
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "changes": []
+    },
+    {
+      "id": "negative-uncertainty",
+      "base": "integrated",
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "measurements",
+            "0",
+            "value",
+            "uncertainty",
+            "magnitude"
+          ],
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "zero-uncertainty",
+      "base": "integrated",
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "measurements",
+            "0",
+            "value",
+            "uncertainty",
+            "magnitude"
+          ],
+          "value": 0
+        },
+        {
+          "op": "replace",
+          "path": [
+            "assertions",
+            "3",
+            "value",
+            "uncertainty",
+            "magnitude"
+          ],
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "coverage-factor-zero",
+      "base": "integrated",
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "measurements",
+            "0",
+            "value",
+            "uncertainty",
+            "coverageFactor"
+          ],
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "coverage-probability-outside-range",
+      "base": "integrated",
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "measurements",
+            "0",
+            "value",
+            "uncertainty",
+            "coverageProbability"
+          ],
+          "value": 1.1
+        }
+      ]
+    },
+    {
+      "id": "uncertainty-unit-mismatch",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "UNIT.MISMATCH"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "measurements",
+            "0",
+            "value",
+            "uncertainty",
+            "unit"
+          ],
+          "value": "s"
+        }
+      ]
+    },
+    {
+      "id": "unknown-uncertainty-with-hidden-value",
+      "base": "integrated",
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "measurements",
+            "0",
+            "value",
+            "uncertainty"
+          ],
+          "value": {
+            "kind": "unknown",
+            "reason": "not_characterized",
+            "magnitude": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "unavailable-time-uncertainty",
+      "base": "integrated",
+      "structural": true,
+      "semantic": true,
+      "codes": [],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "eventTime",
+            "uncertainty"
+          ],
+          "value": {
+            "kind": "unknown",
+            "reason": "unavailable"
+          }
+        }
+      ]
+    },
+    {
+      "id": "invalid-time-uncertainty-unit",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "UNIT.MISMATCH"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "eventTime",
+            "uncertainty",
+            "unit"
+          ],
+          "value": "m"
+        }
+      ]
+    },
+    {
+      "id": "undeclared-frame",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "position",
+            "value",
+            "frameRef"
+          ],
+          "value": "frame:missing"
+        }
+      ]
+    },
+    {
+      "id": "frame-coordinate-kind-mismatch",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "FRAME.KIND_MISMATCH"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "frames",
+            "0"
+          ],
+          "value": {
+            "id": "geo",
+            "kind": "cartesian",
+            "definition": {
+              "state": "unknown",
+              "reason": "not supplied"
+            },
+            "unit": "m"
+          }
+        }
+      ]
+    },
+    {
+      "id": "altitude-without-vertical-reference",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "FRAME.VERTICAL_REFERENCE"
+      ],
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "frames",
+            "0",
+            "vertical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vertical-unit-mismatch",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "UNIT.MISMATCH"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "frames",
+            "0",
+            "vertical",
+            "unit"
+          ],
+          "value": "ft"
+        }
+      ]
+    },
+    {
+      "id": "cartesian-unit-mismatch",
+      "base": "cartesian",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "UNIT.MISMATCH"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "position",
+            "value",
+            "x",
+            "unit"
+          ],
+          "value": "km"
+        }
+      ]
+    },
+    {
+      "id": "out-of-range-latitude",
+      "base": "integrated",
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "position",
+            "value",
+            "latitude"
+          ],
+          "value": 91
+        }
+      ]
+    },
+    {
+      "id": "selection-method-version-mismatch",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "METHOD.VERSION_MISMATCH"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "position",
+            "selection",
+            "methodVersion"
+          ],
+          "value": "2.0.0"
+        }
+      ]
+    },
+    {
+      "id": "selection-missing-method",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "position",
+            "selection",
+            "methodRef"
+          ],
+          "value": "method:missing"
+        }
+      ]
+    },
+    {
+      "id": "selection-value-not-copied",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "SELECTION.VALUE_MISMATCH"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "position",
+            "value",
+            "longitude"
+          ],
+          "value": 2
+        }
+      ]
+    },
+    {
+      "id": "selection-wrong-field",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.FIELD_MISMATCH"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "position",
+            "selection",
+            "assertionRef"
+          ],
+          "value": "assertion:time-a"
+        }
+      ]
+    },
+    {
+      "id": "missing-source-inventory",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "sources"
+          ],
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "duplicate-source-id",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.UNIQUE_ID"
+      ],
+      "changes": [
+        {
+          "op": "append",
+          "path": [
+            "sources"
+          ],
+          "value": {
+            "id": "s1",
+            "kind": "instrument_data",
+            "access": "unknown",
+            "title": "Synthetic acquisition source"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dangling-measurement-subject",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "assertions",
+            "3",
+            "measurementId"
+          ],
+          "value": "missing"
+        }
+      ]
+    },
+    {
+      "id": "source-digest-declarations-disagree",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "SOURCE.DIGEST_MISMATCH"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "sources",
+            "0",
+            "digest"
+          ],
+          "value": {
+            "algorithm": "sha256",
+            "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        {
+          "op": "replace",
+          "path": [
+            "assertions",
+            "0",
+            "provenance",
+            "sourceDigest"
+          ],
+          "value": {
+            "algorithm": "sha256",
+            "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        }
+      ]
+    },
+    {
+      "id": "processing-missing-method",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            "0",
+            "methodRef"
+          ],
+          "value": "method:missing"
+        }
+      ]
+    },
+    {
+      "id": "processing-version-mismatch",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "METHOD.VERSION_MISMATCH"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            "0",
+            "methodVersion"
+          ],
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "id": "derived-product-missing-producer",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "products",
+            "1",
+            "generatedBy"
+          ],
+          "value": "process:missing"
+        }
+      ]
+    },
+    {
+      "id": "producer-output-mismatch",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "PROCESS.OUTPUT_MISMATCH"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            "0",
+            "outputRefs"
+          ],
+          "value": [
+            "product:raw"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "processing-duplicate-input",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.UNIQUE_ID"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            "0",
+            "inputRefs"
+          ],
+          "value": [
+            "product:raw",
+            "product:raw"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "processing-direct-cycle",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "PROCESS.CYCLE"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            "0",
+            "inputRefs"
+          ],
+          "value": [
+            "product:summary"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "processing-cycle-through-assertion",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "PROCESS.CYCLE"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            "0",
+            "inputRefs"
+          ],
+          "value": [
+            "assertion:velocity-a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "updated-before-created-at-submillisecond-resolution",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "TIME.RECORD_ORDER"
+      ],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "createdAt"
+          ],
+          "value": "2026-09-07T12:00:00.000002Z"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "updatedAt"
+          ],
+          "value": "2026-09-07T12:00:00.000001Z"
+        }
+      ]
+    },
+    {
+      "id": "unknown-envelope-hidden-value",
+      "base": "integrated",
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "eventTime"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "not_recorded",
+            "value": {
+              "kind": "interval",
+              "start": {
+                "kind": "instant",
+                "value": "2026-01-01T00:00:00.000001Z",
+                "timeScale": "UTC"
+              },
+              "end": {
+                "kind": "instant",
+                "value": "2026-01-01T00:02:00.000001Z",
+                "timeScale": "UTC"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "redacted-envelope-hidden-selection",
+      "base": "integrated",
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "position"
+          ],
+          "value": {
+            "state": "redacted",
+            "reason": "policy",
+            "selection": {
+              "assertionRef": "assertion:position-a",
+              "consideredAssertionRefs": [
+                "assertion:position-a",
+                "assertion:position-b"
+              ],
+              "methodRef": "method:curation",
+              "methodVersion": "1.0.0",
+              "evaluatedBy": "person:synthetic-curator",
+              "evaluatedAt": "2026-09-07T12:00:00Z",
+              "rationale": "Synthetic example of an explicitly declared source-value choice."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "unregistered-top-level-private-field",
+      "base": "integrated",
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "privateNotes"
+          ],
+          "value": "must not be silently carried forward"
+        }
+      ]
+    },
+    {
+      "id": "extension-without-namespace",
+      "base": "integrated",
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "extensions"
+          ],
+          "value": {
+            "partner": {
+              "value": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "missing-created-at",
+      "base": "integrated",
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "createdAt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "timestamp-without-seconds",
+      "base": "integrated",
+      "structural": false,
+      "semantic": null,
+      "codes": [],
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "createdAt"
+          ],
+          "value": "2026-09-07T12:00Z"
+        }
+      ]
+    },
+    {
+      "id": "curated-value-without-selection",
+      "base": "integrated",
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "SELECTION.REQUIRED"
+      ],
+      "changes": [
+        {
+          "op": "remove",
+          "path": [
+            "eventTime",
+            "selection"
+          ]
+        }
+      ]
+    }
+  ]
+}
