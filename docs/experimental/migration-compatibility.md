@@ -1,5 +1,10 @@
 # WP09 closeout checkpoint 1: field dispositions and sensor revisions
 
+For the current adoption sequence and compatibility limits, start with the
+[developer migration guide](migration-guide.md). This page documents the individual
+checkpoint contract; its historical next-step notes are not the current roadmap.
+
+
 This read-only inventory makes the supported migration boundary explicit. It builds
 on the original dry-run planner without changing its output, old review contracts,
 export receipts, or completed stores.

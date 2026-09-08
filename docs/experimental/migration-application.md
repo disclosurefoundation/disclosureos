@@ -1,5 +1,10 @@
 # WP09 checkpoint 6: resumable local application
 
+For the current adoption sequence and compatibility limits, start with the
+[developer migration guide](migration-guide.md). This page documents the individual
+checkpoint contract; its historical next-step notes are not the current roadmap.
+
+
 Local application materializes selected v2 claim histories in a private store, retains
 the entire historical ledger and publishes a completion receipt. It does not write
 to the Disclosure Index database, activate a read path, publish data or establish

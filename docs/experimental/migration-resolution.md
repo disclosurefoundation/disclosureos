@@ -1,5 +1,10 @@
 # WP09 checkpoint 5: explicit revision resolution
 
+For the current adoption sequence and compatibility limits, start with the
+[developer migration guide](migration-guide.md). This page documents the individual
+checkpoint contract; its historical next-step notes are not the current roadmap.
+
+
 `migrate resolve <ledger> <decisions.json> [--json]` produces an application planning
 report from a verified ledger and explicit select/defer decisions. It does not write
 files, change the ledger, merge candidate contents, authenticate a reviewer or import

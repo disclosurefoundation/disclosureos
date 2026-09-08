@@ -1,5 +1,10 @@
 # WP09 checkpoint 7: local read-path activation and rollback
 
+For the current adoption sequence and compatibility limits, start with the
+[developer migration guide](migration-guide.md). This page documents the individual
+checkpoint contract; its historical next-step notes are not the current roadmap.
+
+
 A private local selector chooses between a legacy fallback and a completed migration
 store. `read-path --json` returns the current selection and verified candidate content
 for local consumers. This does not switch the Disclosure Index database or website.

@@ -1,5 +1,10 @@
 # WP09 checkpoint 3: private candidate bundles
 
+For the current adoption sequence and compatibility limits, start with the
+[developer migration guide](migration-guide.md). This page documents the individual
+checkpoint contract; its historical next-step notes are not the current roadmap.
+
+
 Export turns a pinned review into local files that another tool can inspect. It does
 not import records or decide that unresolved mappings are ready for publication.
 

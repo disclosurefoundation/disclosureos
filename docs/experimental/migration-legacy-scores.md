@@ -1,5 +1,10 @@
 # WP09 checkpoint 8: standalone historical score preservation
 
+For the current adoption sequence and compatibility limits, start with the
+[developer migration guide](migration-guide.md). This page documents the individual
+checkpoint contract; its historical next-step notes are not the current roadmap.
+
+
 `migrate legacy-scores` handles historical score files stored separately from observation
 records. It preserves exact source bytes, original values, declared methodology versions
 and observation associations. It does not recalculate scores, turn them into v2 claims
