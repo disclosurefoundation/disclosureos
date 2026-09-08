@@ -1,0 +1,38 @@
+{
+  "kind": "physical_sample_selection",
+  "schemaVersion": "0.1.0",
+  "id": "synthetic-sample-selection",
+  "historyId": "physical-sample-history",
+  "observationId": "sample-demo",
+  "samples": [
+    {
+      "id": "specimen-1",
+      "lineage": "collected_specimen",
+      "label": {
+        "state": "known",
+        "value": "DEMO-1 (synthetic)"
+      },
+      "collection": {
+        "state": "known",
+        "collectedBy": "Collector A (synthetic)",
+        "recordRef": "source:report"
+      },
+      "custody": {
+        "state": "documented",
+        "transfers": [
+          {
+            "id": "handoff-1",
+            "from": "Collector A (synthetic)",
+            "to": "Store B (synthetic)",
+            "recordRef": "source:report"
+          }
+        ]
+      },
+      "currentCustodian": {
+        "state": "known",
+        "holder": "Store B (synthetic)",
+        "recordRef": "source:report"
+      }
+    }
+  ]
+}

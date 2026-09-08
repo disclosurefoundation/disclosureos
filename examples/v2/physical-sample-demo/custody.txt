@@ -1,0 +1,1 @@
+Synthetic custody record only. Specimen DEMO-1 is declared collected by Collector A, transferred to Store B, and currently held by Store B. No actual specimen, collection date, laboratory result or origin claim is supplied.

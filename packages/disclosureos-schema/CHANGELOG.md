@@ -6,6 +6,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased experimental work
 
+- Add experimental collected-specimen provenance checks, explicit custody gaps, versioned selection schema and synthetic record fixture. Record hashes do not authenticate specimens, custody, composition or origin.
+
 - Add experimental historical-testimony provenance checks, versioned selection schema, speaker/extractor traceability and non-blocking citation recommendations. Speaker identity, account accuracy and witness independence remain unchecked.
 
 - Add selected released-document provenance with explicit release gaps, required byte/extraction checks and non-blocking citation recommendations. Assessment support and scientific eligibility remain unchecked.

@@ -1,0 +1,41 @@
+{
+  "kind": "claim_history",
+  "schemaVersion": "0.1.0",
+  "id": "physical-sample-history",
+  "observation": {
+    "kind": "observation",
+    "schemaVersion": "0.1.0",
+    "id": "sample-demo",
+    "status": "draft",
+    "createdAt": "2026-09-07T00:00:00Z",
+    "updatedAt": "2026-09-07T00:00:00Z",
+    "eventTime": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "position": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "sources": [
+      {
+        "id": "report",
+        "kind": "document",
+        "access": "restricted",
+        "title": "Synthetic specimen custody record",
+        "uri": "https://example.org/synthetic/sample-demo",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "f82d975b0d13684a74d8f3f218e628a2c9cba22857c1b4540488264b3d7c0847"
+        }
+      }
+    ],
+    "products": [],
+    "methods": [],
+    "frames": [],
+    "assertions": [],
+    "measurements": [],
+    "processing": []
+  },
+  "claims": []
+}

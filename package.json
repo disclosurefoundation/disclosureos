@@ -64,7 +64,9 @@
     "test:v2-completion": "node --test conformance/documentation-completion.test.mjs",
     "test:v2-research-completion": "node --test conformance/research-completion.test.mjs",
     "emit:v2-testimony": "node conformance/emit-historical-testimony-selection.mjs",
-    "test:v2-testimony": "node --test conformance/historical-testimony.test.mjs"
+    "test:v2-testimony": "node --test conformance/historical-testimony.test.mjs",
+    "emit:v2-physical-samples": "node conformance/emit-physical-sample-selection.mjs",
+    "test:v2-physical-samples": "node --test conformance/physical-samples.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

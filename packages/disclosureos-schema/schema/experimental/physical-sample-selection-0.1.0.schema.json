@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "physical_sample_selection"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "historyId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "observationId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "samples": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+          },
+          "lineage": {
+            "type": "string",
+            "enum": [
+              "collected_specimen",
+              "derived_sample",
+              "mixture",
+              "unknown"
+            ]
+          },
+          "label": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "const": "known"
+                  },
+                  "value": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  }
+                },
+                "required": [
+                  "state",
+                  "value"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "const": "unknown"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  }
+                },
+                "required": [
+                  "state",
+                  "reason"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "collection": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "const": "known"
+                  },
+                  "collectedBy": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "recordRef": {
+                    "type": "string",
+                    "pattern": "^source:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+                  }
+                },
+                "required": [
+                  "state",
+                  "collectedBy",
+                  "recordRef"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "const": "unknown"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  }
+                },
+                "required": [
+                  "state",
+                  "reason"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "custody": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "const": "documented"
+                  },
+                  "transfers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+                        },
+                        "from": {
+                          "type": "string",
+                          "minLength": 1,
+                          "pattern": "\\S"
+                        },
+                        "to": {
+                          "type": "string",
+                          "minLength": 1,
+                          "pattern": "\\S"
+                        },
+                        "recordRef": {
+                          "type": "string",
+                          "pattern": "^source:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "from",
+                        "to",
+                        "recordRef"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "state",
+                  "transfers"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "const": "unknown"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  }
+                },
+                "required": [
+                  "state",
+                  "reason"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "currentCustodian": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "const": "known"
+                  },
+                  "holder": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "recordRef": {
+                    "type": "string",
+                    "pattern": "^source:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+                  }
+                },
+                "required": [
+                  "state",
+                  "holder",
+                  "recordRef"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "const": "unknown"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  }
+                },
+                "required": [
+                  "state",
+                  "reason"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "catalogIdentifier": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "id",
+          "lineage",
+          "label",
+          "collection",
+          "custody",
+          "currentCustodian"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "id",
+    "historyId",
+    "observationId",
+    "samples"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:disclosureos:experimental:physical-sample-selection:0.1.0"
+}
