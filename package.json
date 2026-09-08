@@ -80,7 +80,8 @@
     "test:v2-migration-ledger": "node --test conformance/migration-ledger.test.mjs",
     "emit:v2-migration-resolution": "node conformance/emit-migration-resolution.mjs",
     "test:v2-migration-resolution": "node --test conformance/migration-resolution.test.mjs",
-    "test:v2-migration-apply": "node --test conformance/migration-apply.test.mjs"
+    "test:v2-migration-apply": "node --test conformance/migration-apply.test.mjs",
+    "test:v2-migration-read-path": "node --test conformance/migration-read-path.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

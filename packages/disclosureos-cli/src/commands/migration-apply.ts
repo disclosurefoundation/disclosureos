@@ -216,6 +216,15 @@ function publish(root: string, path: string, bytes: Uint8Array) {
     if (stat(temporary)) unlinkSync(temporary);
   }
 }
+export function verifiedMigrationApplication(root: string) {
+  directory(root);
+  const plan = prepare(
+    join(root, "ledger"),
+    readLocal(join(root, "resolution.json"), 2 * 1024 * 1024)
+  );
+  inspect(root, plan, true);
+  return plan;
+}
 export function applyMigration(args: ParsedArgs) {
   if (args.flags["help"]) {
     console.log(

@@ -96,7 +96,7 @@ requires a complete store and does not repair one.
 
 ## Next WP09 work
 
-Add explicit local read-path activation and rollback that retains completed stores and
-all imported candidate/history bytes. The Index adapter, deployment and public projection
+The [local read-path selector](migration-read-path.md) adds explicit activation and
+rollback while retaining completed stores and all imported candidate/history bytes. The Index adapter, deployment and public projection
 remain separate consumer work. Remaining field-family/sensor mappings, legacy evaluation
 adapters and full application compatibility remain open WP09 gates.
