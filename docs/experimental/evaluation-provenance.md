@@ -142,7 +142,7 @@ Tests exercise exact validator parity, schema/runtime agreement, stable receipts
 version/source changes, rejected reviews, malformed/missing/corrupt bytes, snapshot
 isolation, offline behavior and hash failures. Legacy schemas and validators are
 unchanged. Reviewed recommendation policies, additional domain profiles, assessment
-summary provenance and CLI/Index integration remain
+summary/research consumer integration and CLI/Index presentation remain
 separate increments; this contract does not mark all of WP08 complete.
 
 The [independent integrity checker and local replay tools](receipt-replay.md) verify saved receipt bytes and compare them with the current fixed evaluator.
