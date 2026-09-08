@@ -138,3 +138,5 @@ The opt-in `evaluateInstrumentResearchCompletion` adds six required phase status
 The experimental `evaluateResearchEvaluation` pins local packet/dependency bytes and hashes its computed research results. See [evaluation provenance](../../docs/experimental/evaluation-provenance.md) for unsigned receipt semantics and execution limits.
 
 The experimental [released-document provenance profile](../../docs/experimental/released-documents.md) checks selected documentary sources and direct extractions with required and recommended groups, without imposing sensor requirements.
+
+Experimental [historical-testimony provenance](../../docs/experimental/historical-testimony.md) checks selected account bytes, recording citations and direct extraction attribution without assigning credibility or requiring sensor data.

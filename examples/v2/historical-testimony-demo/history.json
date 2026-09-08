@@ -1,0 +1,61 @@
+{
+  "kind": "claim_history",
+  "schemaVersion": "0.1.0",
+  "id": "historical-testimony-history",
+  "observation": {
+    "kind": "observation",
+    "schemaVersion": "0.1.0",
+    "id": "testimony-demo",
+    "status": "draft",
+    "createdAt": "2026-09-07T00:00:00Z",
+    "updatedAt": "2026-09-07T00:00:00Z",
+    "eventTime": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "position": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "sources": [
+      {
+        "id": "report",
+        "kind": "testimony",
+        "access": "restricted",
+        "title": "Synthetic testimony transcript",
+        "uri": "https://example.org/synthetic/testimony-demo",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "dfd43370856c457ced832a1caa5a44cd92af75484edaaaf579047472ba5bb6f4"
+        }
+      }
+    ],
+    "products": [],
+    "methods": [],
+    "frames": [],
+    "assertions": [],
+    "measurements": [],
+    "processing": []
+  },
+  "claims": [
+    {
+      "id": "statement",
+      "kind": "source_assertion",
+      "recordedAt": "2026-09-07T00:00:00Z",
+      "topic": "synthetic testimony",
+      "subject": {
+        "kind": "observation"
+      },
+      "text": "Witness A says the event time and location are not recalled.",
+      "provenance": {
+        "sourceRef": "source:report",
+        "locator": {
+          "kind": "page",
+          "page": 1
+        },
+        "extractedBy": "person:synthetic-extractor",
+        "attributedTo": "Witness A (synthetic pseudonym)"
+      }
+    }
+  ]
+}
