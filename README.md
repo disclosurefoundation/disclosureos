@@ -103,3 +103,5 @@ MIT © Disclosure Foundation
 The [instrument research completion guide](docs/experimental/research-completion.md) covers calibration, timing and report prerequisites for the selected research profile.
 
 [Population coverage](docs/experimental/population-coverage.md) names the legacy field counter explicitly and preserves the existing completeness API and CLI results.
+
+The experimental [research evaluation receipt](docs/experimental/evaluation-provenance.md) binds computed prerequisite results to local input bytes and versioned rules.

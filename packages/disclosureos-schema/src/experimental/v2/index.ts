@@ -18,3 +18,5 @@ export { DOCUMENTATION_COMPLETION_POLICY, DOCUMENTATION_REQUIREMENTS, evaluateDo
 export type { DocumentationRequirementId, CompletionStatus, DocumentationAction, DocumentationRequirement, AssessmentDocumentationCompletion, DocumentationCompletionResult } from './documentation-completion';
 export { INSTRUMENT_RESEARCH_COMPLETION_POLICY, INSTRUMENT_RESEARCH_REQUIREMENTS, evaluateInstrumentResearchCompletion } from './research-completion';
 export type { ResearchRequirementId, ResearchCompletionStatus, ResearchCompletionAction, ResearchCompletionRequirement, InstrumentResearchCompletionResult } from './research-completion';
+export { ResearchEvaluationSchema, RESEARCH_EVALUATION_SCHEMA_ID, RESEARCH_EVALUATION_POLICY, researchEvaluationJsonSchema, evaluateResearchEvaluation } from './evaluation-provenance';
+export type { ResearchEvaluation, ResearchEvaluationOptions, ResearchEvaluationOutput, ResearchEvaluationReceipt, ResearchEvaluationResult } from './evaluation-provenance';

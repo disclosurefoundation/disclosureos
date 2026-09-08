@@ -6,6 +6,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased experimental work
 
+- Add a fixed research-evaluation workflow with versioned input schema, exact-byte dependency pins and digest-bound computed-result receipts; failures remain failures and supplied implementation/environment execution remains unattested.
+
 - Add opt-in research-completion guidance with required phase statuses, preserved early exits, and distinct missing versus rejected reviews and corrupt report bytes.
 
 - Add opt-in documentation-completion checklists with explicit applicability, blocked prerequisites and actionable diagnostics, delegating to the unchanged documentary profile.
