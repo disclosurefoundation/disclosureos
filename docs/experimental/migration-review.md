@@ -1,5 +1,10 @@
 # WP09 checkpoint 2: explicit time and position review
 
+For the current adoption sequence and compatibility limits, start with the
+[developer migration guide](migration-guide.md). This page documents the individual
+checkpoint contract; its historical next-step notes are not the current roadmap.
+
+
 `migrate review` applies a supplied review plan to the same candidates produced by
 `migrate dry-run`. It emits a report, not imported records. Legacy fields, scores,
 assessments and exact input bytes remain separate from the revised v2 drafts.

@@ -121,3 +121,10 @@ Experimental [provenance-profile receipts and replay](docs/experimental/profile-
 The experimental [profile CLI](docs/experimental/profile-cli.md) lists domain paths and inspects or checks explicitly selected provenance workflows with readable requirements and next actions.
 
 Experimental [profile preparation](docs/experimental/profile-preparation.md) assembles exact existing inputs into a new private evaluation bundle, calculates byte pins and preserves failing or unchecked profile outcomes.
+
+## Experimental v2 migration and compatibility
+
+Start with the [developer compatibility guide](docs/experimental/migration-guide.md)
+for breaking changes, parser/version boundaries, supported migration workflows,
+exit handling, profile differences and non-destructive local rollback. This is an
+experimental checkout workflow; merging package changes does not deploy the Index.

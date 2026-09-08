@@ -1,5 +1,10 @@
 # WP09 checkpoint 4: cross-batch staging ledger
 
+For the current adoption sequence and compatibility limits, start with the
+[developer migration guide](migration-guide.md). This page documents the individual
+checkpoint contract; its historical next-step notes are not the current roadmap.
+
+
 The ledger receives verified migration export bundles into an immutable private
 snapshot. It records which exact candidates were received, their batch membership,
 and conflicts between reviewed revisions. These are staging receipts, not receipts

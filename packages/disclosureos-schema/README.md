@@ -180,3 +180,10 @@ calibration or converting measurements. The review plan is exposed as
 `MigrationCompatibilitySchema`, `MigrationCompatibility` and
 `migrationCompatibilityJsonSchema` from `@disclosureos/schema/experimental/v2`.
 See the [compatibility inventory contract](../../docs/experimental/migration-compatibility.md).
+
+## Experimental v2 migration and compatibility
+
+Start with the [developer compatibility guide](../../docs/experimental/migration-guide.md)
+for breaking changes, parser/version boundaries, supported migration workflows,
+exit handling, profile differences and non-destructive local rollback. This is an
+experimental checkout workflow; merging package changes does not deploy the Index.

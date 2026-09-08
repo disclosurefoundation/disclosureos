@@ -1,5 +1,10 @@
 # WP09 checkpoint 1: legacy migration dry run
 
+For the current adoption sequence and compatibility limits, start with the
+[developer migration guide](migration-guide.md). This page documents the individual
+checkpoint contract; its historical next-step notes are not the current roadmap.
+
+
 The experimental CLI prepares review candidates from one v1 observation or an array
 of v1 observations. It does not import, publish, modify inputs or write output files.
 Run the built CLI from this checkout; this command is not yet a published release.
