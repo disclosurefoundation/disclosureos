@@ -43,7 +43,9 @@
     "reproduce:synthetic:python": "python3 scripts/reproduce-synthetic-control.py",
     "test:v2-packet-cli": "node --test conformance/packet-cli.test.mjs",
     "emit:v2-dataset": "node conformance/emit-dataset-release.mjs",
-    "test:v2-dataset": "node --test conformance/dataset-release.test.mjs conformance/dataset-cli.test.mjs"
+    "test:v2-dataset": "node --test conformance/dataset-release.test.mjs conformance/dataset-cli.test.mjs",
+    "emit:v2-intake": "node conformance/emit-source-intake.mjs",
+    "test:v2-intake": "node --test conformance/source-intake.test.mjs conformance/intake-cli.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

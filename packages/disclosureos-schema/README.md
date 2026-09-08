@@ -123,3 +123,7 @@ fixed TypeScript/Python synthetic control and the independent consumer's limits.
 checking membership, context identity, and nominal temporal containment. This first
 profile requires member packet prerequisites and does not authorize publication.
 See the [dataset release guide](../../docs/experimental/dataset-release.md).
+
+`evaluateSourceIntake` and `SourceIntakeSchema` accept unassessed source-file
+receipts with explicit unknown context. Identity validation does not establish
+research eligibility. See the [source intake guide](../../docs/experimental/source-intake.md).

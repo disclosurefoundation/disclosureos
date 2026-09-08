@@ -12,3 +12,5 @@ export { ReproductionPacketSchema, REPRODUCTION_PACKET_SCHEMA_ID, REPRODUCTION_P
 export type { ReproductionPacket, ReproductionPacketResult, ReproductionFileCheck } from './reproduction-packet';
 export { DatasetReleaseSchema, DATASET_RELEASE_SCHEMA_ID, DATASET_RELEASE_PROFILE, datasetReleaseJsonSchema, evaluateDatasetRelease } from './dataset-release';
 export type { DatasetRelease, DatasetPacketInput, DatasetReleaseResult, DatasetIssue } from './dataset-release';
+export { SourceIntakeSchema, SOURCE_INTAKE_SCHEMA_ID, SOURCE_INTAKE_PROFILE, sourceIntakeJsonSchema, evaluateSourceIntake } from './source-intake';
+export type { SourceIntake, SourceIntakeResult } from './source-intake';
