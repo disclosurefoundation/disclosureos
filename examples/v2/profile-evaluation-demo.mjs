@@ -102,6 +102,11 @@ if (
     if (!result.receipt) throw Error("No receipt produced");
     const root = resolve(process.argv[3]);
     mkdirSync(root);
+    writeFileSync(
+      join(root, "evaluation.json"),
+      JSON.stringify(manifest, null, 2) + "\n",
+      { flag: "wx" }
+    );
     mkdirSync(join(root, "dependencies"));
     mkdirSync(join(root, "assets"));
     writeFileSync(join(root, "selection.json"), options.selectionBytes, {

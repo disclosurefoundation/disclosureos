@@ -117,3 +117,5 @@ Experimental [historical-testimony provenance](docs/experimental/historical-test
 Experimental [physical-sample provenance](docs/experimental/physical-samples.md) checks collected-specimen declarations, custody continuity and cited record bytes without certifying material identity, composition or origin.
 
 Experimental [provenance-profile receipts and replay](docs/experimental/profile-evaluation.md) pin inputs and reproduce the full released-document, testimony or collected-specimen result, including failed and unchecked outcomes.
+
+The experimental [profile CLI](docs/experimental/profile-cli.md) lists domain paths and inspects or checks explicitly selected provenance workflows with readable requirements and next actions.

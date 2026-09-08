@@ -76,3 +76,14 @@ multiple pinned packets. See the [two-session walkthrough](../../docs/experiment
 source files with explicit unknown context. See the [source intake guide](../../docs/experimental/source-intake.md) for byte preservation, missingness, and limits.
 
 The new population-coverage command is unreleased. It counts field presence, not analytical readiness. Its JSON and exit behavior match the legacy completeness command. See the [coverage guide](../../docs/experimental/population-coverage.md).
+
+## Experimental profile selection
+
+Use `disclosureos profile list` to compare the four domain paths,
+`profile inspect <evaluation.json>` to inspect explicit selection without reading input
+files, and `profile check <evaluation.json>` to run a pinned provenance profile.
+Human output separates input integrity, profile outcome, receipt status and next actions;
+`--json` preserves the full evaluator result. Instrument research retains `packet validate`.
+See [profile CLI documentation](../../docs/experimental/profile-cli.md) for input layout,
+exit codes and synthetic examples. This command does not choose profiles automatically
+or publish results.
