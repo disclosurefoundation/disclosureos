@@ -69,7 +69,8 @@
     "test:v2-physical-samples": "node --test conformance/physical-samples.test.mjs",
     "emit:v2-profile-evaluation": "node conformance/emit-profile-evaluation.mjs",
     "test:v2-profile-evaluation": "node --test conformance/profile-evaluation.test.mjs",
-    "replay:profile-evaluation": "node scripts/replay-profile-evaluation.mjs"
+    "replay:profile-evaluation": "node scripts/replay-profile-evaluation.mjs",
+    "test:v2-profile-cli": "node --test conformance/profile-cli.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

@@ -18,6 +18,7 @@ constitute a stable v2 release or independently reviewed science.
 | Summary receipts | Exact claim-history/dependency pins and computed declaration summaries | Referenced source/product artifacts remain unverified |
 | Provenance-profile receipts and replay | Exact history, selection, source-file and dependency pins for three fixed profiles; preserved failed/unchecked results | Unsigned receipts and current-code replay do not authenticate sources or attest the original execution |
 | Independent integrity verification | Python checks exact saved payload strings and hashes for all three receipt formats | Does not independently implement evaluation semantics |
+| CLI profile selection | Four-domain catalog and explicit manifest inspection/checking for three provenance workflows, with required/recommended statuses and next actions | No automatic profile choice, guided manifest creation, web/Index UI or public projection |
 | Local replay | Fixed TypeScript evaluators reproduce saved request/output payloads | Matching a failed evaluation does not make it pass |
 
 ## Work still needed within WP08
@@ -28,8 +29,9 @@ constitute a stable v2 release or independently reviewed science.
   establish a reviewed profile or sufficient scientific prerequisites.
 - Explicit recommended inputs where a reviewed methodology can justify them. Existing
   required-input checks must not be padded with speculative recommendations.
-- Consumer presentation that keeps declarations, documentary gaps, measurement quality,
-  competing interpretations and disagreement distinct, including clear profile selection.
+- Extend the initial CLI profile selection/results into guided input preparation and
+  web/Index presentation, keeping declarations, documentary gaps, measurement quality,
+  competing interpretations and disagreement distinct. Public projection remains separate.
 - Review and potential refinement of the experimental rules against conventional
   controls and independently reviewed cases. No default aggregate ranking policy has
   replaced the old weights.
@@ -47,5 +49,5 @@ publication. Merging these PRs does not publish packages, schemas, applications 
 Native partner data, calibration/timing artifacts, permissions and qualified review
 remain external dependencies. The synthetic examples demonstrate software behavior;
 they are not substitutes for those materials. The next useful planning checkpoint is
-to review the four domain paths together and define explicit consumer profile
-selection while retaining the partner handoff path.
+to review the four domain paths and their CLI experience together, then bound guided
+input preparation and web/Index integration while retaining the partner handoff path.

@@ -8,6 +8,7 @@ import { manifest } from './commands/manifest';
 import { packet } from './commands/packet';
 import { dataset } from './commands/dataset';
 import { intake } from './commands/intake';
+import { profile } from './commands/profile';
 import { completeness } from './commands/completeness';
 import { registry } from './commands/registry';
 import { info } from './commands/info';
@@ -27,6 +28,9 @@ if (args.flags['version']) {
       break;
     case 'validate':
       validate(args);
+      break;
+    case 'profile':
+      await profile(args);
       break;
     case 'intake':
       await intake(args);
@@ -74,6 +78,7 @@ function printHelp(): void {
   console.log(`  packet         Inspect, validate, or reproduce an experimental v2 packet`);
   console.log(`  dataset        Inspect or validate an experimental dataset release`);
   console.log(`  intake         Receive and verify unassessed source files locally`);
+  console.log(`  profile        List, inspect, or run explicit experimental profile checks`);
   console.log(`  population-coverage  Count populated legacy observation fields`);
   console.log(`  completeness   Legacy name for population coverage`);
   console.log(`  registry       Introspect field, observable, and origin registries`);

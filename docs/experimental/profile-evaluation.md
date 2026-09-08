@@ -118,6 +118,7 @@ The implementation artifact is the local schema entry bundle; the environment de
 records Node/platform/architecture and lockfile text. These do not attest a complete
 executed dependency closure or reproduce the runtime itself.
 
+New demo bundles also contain `evaluation.json` for explicit [CLI profile selection](profile-cli.md).
 Bundles contain `receipt.json`, `history.json`, `selection.json`, `assets/<fileRef>`
 and `dependencies/<ref>`. Keep both directories present even if no assets are listed.
 The Python verifier retains its historical filename and now recognizes all three receipt
