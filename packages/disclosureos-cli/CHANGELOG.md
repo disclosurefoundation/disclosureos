@@ -10,6 +10,8 @@ All notable changes to `@disclosureos/cli` are documented here. The format is ba
 
 ## Unreleased experimental work
 
+- Add immutable cross-batch staging ledgers with pinned receipts, exact batch deduplication, conservative candidate revision conflicts and self-contained verification.
+
 - Add private reviewed-candidate export bundles, exact rerun reuse, destination conflict rejection and current-code verification with complete exported/pending/quarantine accounting.
 
 - Add pinned migration review plans for explicit time/position mappings, preserved reviewer declarations and shared v2 validation. Reviewed candidates remain separate from imports and legacy evaluations.

@@ -116,3 +116,11 @@ reruns reuse a verified destination; conflicting contents are never overwritten.
 `disclosureos migrate verify bundle [--json]` recomputes and checks every artifact.
 These operations do not import records. See the
 [bundle contract and walkthrough](../../docs/experimental/migration-export.md).
+
+### Cross-batch migration ledger
+
+`disclosureos migrate ledger bundle-a bundle-b --out ledger [--json]` records
+verified bundles in a private snapshot, deduplicates exact batches and marks differing
+revisions of a stable identity as conflicts. `migrate ledger-verify ledger [--json]`
+recomputes the snapshot from retained inputs. These are staging receipts, not imports.
+See the [ledger policy](../../docs/experimental/migration-ledger.md).
