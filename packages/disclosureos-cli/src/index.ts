@@ -5,6 +5,7 @@ import { parseArgs } from './utils/args';
 import { scaffold } from './commands/scaffold';
 import { validate } from './commands/validate';
 import { manifest } from './commands/manifest';
+import { packet } from './commands/packet';
 import { completeness } from './commands/completeness';
 import { registry } from './commands/registry';
 import { info } from './commands/info';
@@ -24,6 +25,9 @@ if (args.flags['version']) {
       break;
     case 'validate':
       validate(args);
+      break;
+    case 'packet':
+      await packet(args);
       break;
     case 'manifest':
       manifest(args);
@@ -58,6 +62,7 @@ function printHelp(): void {
   console.log(`  scaffold       Generate typed data structure templates`);
   console.log(`  validate       Validate observation JSON files`);
   console.log(`  manifest       Validate sensor-manifest JSON files`);
+  console.log(`  packet         Inspect, validate, or reproduce an experimental v2 packet`);
   console.log(`  completeness   Measure how fully observations populate the schema`);
   console.log(`  registry       Introspect field, observable, and origin registries`);
   console.log(`  info           Quick reference for types and definitions`);
