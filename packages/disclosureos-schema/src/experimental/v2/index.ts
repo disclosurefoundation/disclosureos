@@ -10,3 +10,5 @@ export { InstrumentResearchReviewSchema, INSTRUMENT_RESEARCH_REVIEW_SCHEMA_ID, I
 export type { InstrumentResearchReview, InstrumentResearchOptions, InstrumentResearchResult, ResearchReviewAssetCheck } from './research-prerequisites';
 export { ReproductionPacketSchema, REPRODUCTION_PACKET_SCHEMA_ID, REPRODUCTION_PACKET_PROFILE, reproductionPacketJsonSchema, evaluateReproductionPacket } from './reproduction-packet';
 export type { ReproductionPacket, ReproductionPacketResult, ReproductionFileCheck } from './reproduction-packet';
+export { DatasetReleaseSchema, DATASET_RELEASE_SCHEMA_ID, DATASET_RELEASE_PROFILE, datasetReleaseJsonSchema, evaluateDatasetRelease } from './dataset-release';
+export type { DatasetRelease, DatasetPacketInput, DatasetReleaseResult, DatasetIssue } from './dataset-release';

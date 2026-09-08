@@ -6,6 +6,8 @@ All notable changes to `@disclosureos/cli` are documented here. The format is ba
 
 ## Unreleased experimental work
 
+- Add experimental dataset/session composition for pinned reproduction packets, with explicit membership, context conflict checks, and local dataset inspection/validation.
+
 - Add `packet inspect`, `packet validate`, and `packet reproduce` for local v2 reproduction packets, with shared validator diagnostics and a fixed synthetic mean executor. Existing v1 commands and package versions remain unchanged.
 
 ## 1.1.0

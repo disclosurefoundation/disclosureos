@@ -1,0 +1,198 @@
+{
+  "kind": "claim_history",
+  "schemaVersion": "0.1.0",
+  "id": "profile-control",
+  "observation": {
+    "kind": "observation",
+    "schemaVersion": "0.1.0",
+    "id": "observation-control",
+    "status": "draft",
+    "createdAt": "2026-09-07T00:00:00Z",
+    "updatedAt": "2026-09-07T00:00:00Z",
+    "eventTime": {
+      "state": "known",
+      "value": {
+        "kind": "instant",
+        "value": "2026-07-28T12:20:00Z",
+        "timeScale": "UTC"
+      },
+      "sourceRefs": [
+        "source:station"
+      ]
+    },
+    "position": {
+      "state": "unknown",
+      "reason": "not_collected"
+    },
+    "sources": [
+      {
+        "id": "station",
+        "kind": "instrument_data",
+        "access": "unknown"
+      },
+      {
+        "id": "report",
+        "kind": "document",
+        "access": "public",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "9ec816b8cbd1f5f541f28d17e91f5c6b47b7f5eef635fe23f1f9f4b4b2d0a72b"
+        }
+      }
+    ],
+    "products": [
+      {
+        "id": "raw",
+        "kind": "raw",
+        "format": "application/json",
+        "access": "public",
+        "sourceRefs": [
+          "source:station"
+        ],
+        "digest": {
+          "algorithm": "sha256",
+          "value": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121"
+        }
+      },
+      {
+        "id": "summary",
+        "kind": "derived",
+        "format": "application/json",
+        "access": "public",
+        "generatedBy": "process:reduction",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "547aa2ac3c7bb2adb031a3aa078a966ae16b20a83d47aa118b1d8eba0a6a2714"
+        }
+      }
+    ],
+    "methods": [
+      {
+        "id": "review",
+        "version": "0.1.0",
+        "description": "Synthetic review declaration; not a validated scientific method."
+      },
+      {
+        "id": "reduction",
+        "version": "0.1.0",
+        "description": "Synthetic reduction declaration; output not reproduced."
+      }
+    ],
+    "frames": [],
+    "assertions": [
+      {
+        "id": "velocity",
+        "field": "measurement",
+        "measurementId": "velocity",
+        "value": {
+          "value": -3,
+          "unit": "m/s",
+          "uncertainty": {
+            "kind": "standard",
+            "magnitude": 1,
+            "unit": "m/s",
+            "sourceRefs": [
+              "product:raw"
+            ]
+          }
+        },
+        "provenance": {
+          "sourceRef": "product:summary",
+          "locator": {
+            "kind": "json_pointer",
+            "pointer": "/velocity"
+          }
+        }
+      }
+    ],
+    "measurements": [
+      {
+        "id": "velocity",
+        "quantity": "radial velocity",
+        "value": {
+          "value": -3,
+          "unit": "m/s",
+          "uncertainty": {
+            "kind": "standard",
+            "magnitude": 1,
+            "unit": "m/s",
+            "sourceRefs": [
+              "product:raw"
+            ]
+          }
+        },
+        "sourceRefs": [
+          "assertion:velocity"
+        ],
+        "selection": {
+          "assertionRef": "assertion:velocity",
+          "consideredAssertionRefs": [
+            "assertion:velocity"
+          ],
+          "evaluatedBy": "person:synthetic",
+          "evaluatedAt": "2026-09-07T00:00:00Z",
+          "methodRef": "method:review",
+          "methodVersion": "0.1.0",
+          "rationale": "Copy the synthetic value."
+        }
+      }
+    ],
+    "processing": [
+      {
+        "id": "reduction",
+        "methodRef": "method:reduction",
+        "methodVersion": "0.1.0",
+        "performedBy": "person:synthetic",
+        "performedAt": "2026-09-07T00:00:00Z",
+        "inputRefs": [
+          "product:raw"
+        ],
+        "outputRefs": [
+          "product:summary"
+        ]
+      }
+    ]
+  },
+  "claims": [
+    {
+      "id": "statement",
+      "kind": "source_assertion",
+      "recordedAt": "2026-09-07T00:00:00Z",
+      "topic": "synthetic motion",
+      "subject": {
+        "kind": "observation"
+      },
+      "text": "Synthetic source calls this confirmed.",
+      "reportedLevel": "confirmed",
+      "provenance": {
+        "sourceRef": "source:report",
+        "locator": {
+          "kind": "page",
+          "page": 1
+        },
+        "extractedBy": "agent:synthetic"
+      }
+    },
+    {
+      "id": "review",
+      "kind": "assessment",
+      "recordedAt": "2026-09-07T00:00:00Z",
+      "topic": "synthetic motion",
+      "subject": {
+        "kind": "measurement",
+        "measurementId": "velocity"
+      },
+      "status": "assessed",
+      "outcome": "confirmed",
+      "evaluatedBy": "person:synthetic",
+      "evaluatedAt": "2026-09-07T00:00:00Z",
+      "methodRef": "method:review",
+      "methodVersion": "0.1.0",
+      "inputRefs": [
+        "claim:statement",
+        "measurement:velocity"
+      ],
+      "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+    }
+  ]
+}

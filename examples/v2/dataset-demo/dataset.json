@@ -1,0 +1,62 @@
+{
+  "kind": "dataset_release",
+  "schemaVersion": "0.1.0",
+  "id": "synthetic-two-sessions",
+  "version": "1",
+  "title": "Synthetic background and control sessions",
+  "description": "Contract demonstration only; no ELD\u00c6ON data or physical instrument validation.",
+  "createdAt": "2026-09-08T00:00:00Z",
+  "access": "public",
+  "license": {
+    "state": "unknown",
+    "reason": "Synthetic demonstration; distribution terms not assessed."
+  },
+  "packets": [
+    {
+      "id": "background",
+      "packetId": "synthetic-background",
+      "sha256": "23a544c8342d541e6404bf940d4988c6300bc7ca91f53e0064c1f3cc1cc13232",
+      "byteLength": 4958
+    },
+    {
+      "id": "control",
+      "packetId": "synthetic-control",
+      "sha256": "654288a98b1f7e204272178e4b899d3658639255cf7cf43db88fa79d2b55eb9f",
+      "byteLength": 4955
+    }
+  ],
+  "sessions": [
+    {
+      "id": "background",
+      "title": "Synthetic background",
+      "time": {
+        "state": "known",
+        "start": "2026-07-28T12:10:00Z",
+        "end": "2026-07-28T12:11:00Z",
+        "timeScale": "UTC"
+      },
+      "members": [
+        {
+          "packetRef": "packet:background",
+          "acquisitionRef": "acquisition:a1"
+        }
+      ]
+    },
+    {
+      "id": "control",
+      "title": "Synthetic control",
+      "time": {
+        "state": "known",
+        "start": "2026-07-28T12:20:00Z",
+        "end": "2026-07-28T12:21:00Z",
+        "timeScale": "UTC"
+      },
+      "members": [
+        {
+          "packetRef": "packet:control",
+          "acquisitionRef": "acquisition:a1"
+        }
+      ]
+    }
+  ]
+}

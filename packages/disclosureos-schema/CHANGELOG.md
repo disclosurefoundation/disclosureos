@@ -6,6 +6,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased experimental work
 
+- Add experimental dataset/session composition for pinned reproduction packets, with explicit membership, context conflict checks, and local dataset inspection/validation.
+
 - Add exact-byte reproduction packets and independent TypeScript/Python synthetic control runners. Packet verification does not execute bundled code or certify scientific eligibility.
 
 - Add the opt-in instrument research prerequisites profile, with purpose-specific calibration-use reviews, explicitly interpreted timing intervals, local report verification, and composed documentary and acquisition checks. Scientific eligibility remains unchecked.

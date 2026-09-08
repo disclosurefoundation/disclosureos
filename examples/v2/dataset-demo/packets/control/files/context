@@ -1,0 +1,199 @@
+{
+  "kind": "acquisition_context",
+  "schemaVersion": "0.1.0",
+  "id": "context-control",
+  "instruments": [
+    {
+      "id": "station",
+      "identity": {
+        "state": "known",
+        "manufacturer": "Synthetic Instruments",
+        "model": "Control station",
+        "serialNumber": "SYNTHETIC-001"
+      }
+    }
+  ],
+  "manifests": [
+    {
+      "id": "r1",
+      "instrumentRef": "instrument:station",
+      "version": "1",
+      "publishedAt": "2026-07-01T00:00:00Z",
+      "artifact": {
+        "mediaType": "application/json",
+        "byteLength": 367,
+        "digest": {
+          "algorithm": "sha256",
+          "value": "e753c4cb8d4cb63e44820a4bc64202efa9d8d13b6a6e02abc3709e7237923c95"
+        }
+      },
+      "configuration": {
+        "hardware": {
+          "state": "known",
+          "value": "synthetic-rev-1"
+        },
+        "firmware": {
+          "state": "known",
+          "value": "synthetic-1.0"
+        }
+      },
+      "channels": [
+        {
+          "id": "radar",
+          "quantity": "radial velocity",
+          "unit": "m/s",
+          "sampling": {
+            "state": "known",
+            "rateHz": 10
+          }
+        }
+      ]
+    }
+  ],
+  "deployments": [
+    {
+      "id": "d1",
+      "instrumentRef": "instrument:station",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:r1"
+      },
+      "period": {
+        "state": "known",
+        "start": "2026-07-28T12:00:00Z",
+        "end": "2026-07-28T13:00:00Z",
+        "timeScale": "UTC"
+      },
+      "site": {
+        "state": "known",
+        "value": "Synthetic test location"
+      }
+    }
+  ],
+  "calibrations": [
+    {
+      "id": "c1",
+      "instrumentRef": "instrument:station",
+      "manifestRef": "manifest:r1",
+      "channelId": "radar",
+      "performedAt": {
+        "state": "known",
+        "value": "2026-07-01T00:00:00Z"
+      },
+      "validity": {
+        "state": "known",
+        "start": "2026-07-01T00:00:00Z",
+        "end": "2026-08-01T00:00:00Z",
+        "timeScale": "UTC"
+      },
+      "method": {
+        "state": "known",
+        "id": "synthetic-method",
+        "version": "1",
+        "description": "Synthetic calibration declaration, not executed."
+      },
+      "report": {
+        "state": "known",
+        "artifact": {
+          "mediaType": "text/plain",
+          "byteLength": 94,
+          "digest": {
+            "algorithm": "sha256",
+            "value": "2a89ae47a0e0994215daaf343f90381b594fcef5a9eeffcee2514d1cfebb1bc2"
+          }
+        }
+      },
+      "uncertainty": {
+        "kind": "expanded",
+        "magnitude": 0.1,
+        "unit": "m/s",
+        "coverageFactor": 2
+      },
+      "review": {
+        "state": "reviewed",
+        "reviewedBy": "person:synthetic",
+        "reviewedAt": "2026-09-07T00:00:00Z",
+        "outcome": "accepted",
+        "report": {
+          "mediaType": "text/plain",
+          "byteLength": 96,
+          "digest": {
+            "algorithm": "sha256",
+            "value": "ba420298f61777d12a69177185cad149c0cae8659a69e9ef337d5407e2075881"
+          }
+        }
+      }
+    }
+  ],
+  "acquisitions": [
+    {
+      "id": "a1",
+      "instrumentRef": "instrument:station",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:r1"
+      },
+      "deployment": {
+        "state": "pinned",
+        "ref": "deployment:d1"
+      },
+      "time": {
+        "state": "known",
+        "start": "2026-07-28T12:20:00Z",
+        "end": "2026-07-28T12:21:00Z",
+        "timeScale": "UTC",
+        "kind": "interval"
+      },
+      "classification": "known_control",
+      "clock": {
+        "source": {
+          "state": "known",
+          "value": "Synthetic oscillator"
+        },
+        "synchronization": {
+          "state": "known",
+          "value": "Synthetic synchronization declaration"
+        },
+        "resolution": {
+          "state": "known",
+          "magnitude": 1,
+          "unit": "ns"
+        },
+        "uncertainty": {
+          "state": "known",
+          "magnitude": 0,
+          "unit": "ns"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "radar",
+          "calibration": {
+            "state": "pinned",
+            "ref": "calibration:c1"
+          }
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "captured-raw",
+      "acquisitionRef": "acquisition:a1",
+      "kind": "raw",
+      "artifact": {
+        "mediaType": "application/json",
+        "byteLength": 23,
+        "digest": {
+          "algorithm": "sha256",
+          "value": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121"
+        }
+      }
+    }
+  ],
+  "extensions": {
+    "org.example": {
+      "synthetic": true
+    }
+  }
+}

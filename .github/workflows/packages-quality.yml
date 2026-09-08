@@ -146,4 +146,5 @@ jobs:
           python-version: "3.11"
       - run: pnpm test:v2-packet
       - run: pnpm test:v2-packet-cli
+      - run: pnpm test:v2-dataset
       - run: pnpm test:partner-audit

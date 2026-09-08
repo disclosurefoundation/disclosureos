@@ -19,3 +19,7 @@ The public ELDÆON July sample is useful adapter input but its same-session and 
 The [acquisition context contract](../experimental/acquisition-context.md) now implements explicit instrument/manifest/deployment/calibration bindings, raw-product capture references, and nominal temporal applicability checks. Dataset release/session composition, verified byte binding to observations, uncertainty-aware clock checks, and research-profile integration remain follow-up work.
 
 The [acquisition binding bridge](../experimental/acquisition-bindings.md) adds explicit Observation source/raw-product mappings and verifies supplied product, manifest, and calibration-report bytes. Physical identity, artifact-content interpretation, measurement/channel mapping, and scientific eligibility remain unverified.
+
+The experimental [dataset release profile](../experimental/dataset-release.md) now
+composes pinned reproduction packets into explicit sessions. This initial reviewed-
+packet collection does not yet cover direct raw/unassessed intake or native adapters.

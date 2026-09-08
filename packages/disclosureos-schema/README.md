@@ -118,3 +118,8 @@ eligibility. See the [research prerequisites guide](../../docs/experimental/rese
 research prerequisites. It never executes bundled methods. See the
 [reproduction packet guide](../../docs/experimental/reproduction-packet.md) for the
 fixed TypeScript/Python synthetic control and the independent consumer's limits.
+
+`evaluateDatasetRelease` groups pinned reproduction packets into explicit sessions,
+checking membership, context identity, and nominal temporal containment. This first
+profile requires member packet prerequisites and does not authorize publication.
+See the [dataset release guide](../../docs/experimental/dataset-release.md).
