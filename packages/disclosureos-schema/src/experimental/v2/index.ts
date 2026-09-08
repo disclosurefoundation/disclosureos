@@ -30,3 +30,6 @@ export { ProfileEvaluationSchema, PROFILE_EVALUATION_SCHEMA_ID, PROFILE_EVALUATI
 export type { ProfileEvaluation, ProfileEvaluationOptions, ProfileEvaluationReceipt, ProfileEvaluationResult } from './profile-evaluation';
 export { ProfilePreparationSchema, PROFILE_PREPARATION_SCHEMA_ID, profilePreparationJsonSchema } from './profile-preparation';
 export type { ProfilePreparation } from './profile-preparation';
+
+export { MigrationReviewSchema, MIGRATION_REVIEW_SCHEMA_ID, migrationReviewJsonSchema } from './migration-review';
+export type { MigrationReview } from './migration-review';

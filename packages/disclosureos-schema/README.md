@@ -146,3 +146,11 @@ Experimental [physical-sample provenance](../../docs/experimental/physical-sampl
 Experimental [provenance-profile receipts and replay](../../docs/experimental/profile-evaluation.md) pin inputs and reproduce the full released-document, testimony or collected-specimen result, including failed and unchecked outcomes.
 
 Experimental [profile preparation](../../docs/experimental/profile-preparation.md) assembles exact existing inputs into a new private evaluation bundle, calculates byte pins and preserves failing or unchecked profile outcomes.
+
+### Experimental migration review plans
+
+`MigrationReviewSchema`, `MigrationReview` and `migrationReviewJsonSchema` are available
+from `/experimental/v2`. The schema validates the review plan structure, source pin
+and attribution; the CLI additionally validates target values and references through
+the v2 claim-history parser. See the
+[review checkpoint](../../docs/experimental/migration-review.md).

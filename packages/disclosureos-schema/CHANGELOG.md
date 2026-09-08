@@ -6,6 +6,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased experimental work
 
+- Add pinned migration review plans for explicit time/position mappings, preserved reviewer declarations and shared v2 validation. Reviewed candidates remain separate from imports and legacy evaluations.
+
 - Add explicit profile-preparation plans and private bundle assembly from exact existing inputs, retaining profile failures and missingness without inventing source metadata.
 
 - Add fixed provenance-profile evaluation receipts over exact history, selection, asset and dependency pins, with bounded local replay and independent payload-integrity checks. Failed and unchecked profile outcomes remain distinct from replay success.
