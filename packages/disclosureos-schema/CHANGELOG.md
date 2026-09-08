@@ -6,6 +6,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased experimental work
 
+- Add opt-in documentation-completion checklists with explicit applicability, blocked prerequisites and actionable diagnostics, delegating to the unchanged documentary profile.
+
 - Add experimental source intake with exact-byte local receipts, explicit unknown context and actionable gaps; CLI create, inspect and validate require no fabricated measurements or reviews.
 
 - Add experimental dataset/session composition for pinned reproduction packets, with explicit membership, context conflict checks, and local dataset inspection/validation.

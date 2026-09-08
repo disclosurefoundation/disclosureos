@@ -127,3 +127,8 @@ See the [dataset release guide](../../docs/experimental/dataset-release.md).
 `evaluateSourceIntake` and `SourceIntakeSchema` accept unassessed source-file
 receipts with explicit unknown context. Identity validation does not establish
 research eligibility. See the [source intake guide](../../docs/experimental/source-intake.md).
+
+`evaluateDocumentationCompletion` explains the existing documentary profile with
+per-assessment applicability, requirement status, blocked prerequisites and next
+actions. It preserves validator diagnostics and computes no aggregate score.
+See the [documentation completion guide](../../docs/experimental/documentation-completion.md).
