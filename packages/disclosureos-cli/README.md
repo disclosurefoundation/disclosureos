@@ -140,3 +140,14 @@ ledger and publishes a completion receipt. Repeating the same operation resumes 
 files or reuses an exact completed store. `migrate apply-verify store [--json]` checks
 the completed store. No Index database or read path is changed. See the
 [local application contract](../../docs/experimental/migration-application.md).
+
+### Local read-path activation and rollback
+
+`migrate read-init --out selector --json` starts a private selector in legacy fallback
+mode. `migrate read-activate selector store --id CURRENT_HEAD --json` selects a verified
+completed store. `migrate read-path selector --json` returns the selected mode and
+verified candidates. `migrate read-rollback selector EARLIER_HEAD --id CURRENT_HEAD
+--json` restores an earlier selection without deleting stores or transition history.
+The expected current head prevents conflicting concurrent changes. This is local
+consumer plumbing; the Index website and database remain unchanged. See the
+[read-path contract](../../docs/experimental/migration-read-path.md) for recovery and limits.
