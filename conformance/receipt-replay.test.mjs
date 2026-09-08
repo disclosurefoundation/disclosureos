@@ -160,8 +160,14 @@ for (const [name, edit] of [
     }));
 test("duplicate outer JSON keys are rejected before replay", () =>
   bundle(async (root, r) => {
-    const text = JSON.stringify(r).replace("{", '{"format":"bad",');
-    assert.equal(verify(text).status, 1);
+    const serialized = JSON.stringify(r);
+    // Insert a duplicate key at the root; this constructs invalid test input,
+    // rather than escaping or sanitizing any content.
+    assert.equal(serialized[0], "{");
+    const text = '{"format":"bad",' + serialized.slice(1);
+    const verification = verify(text);
+    assert.equal(verification.status, 1);
+    assert.match(JSON.parse(verification.stdout).error, /Duplicate JSON key: format/);
     writeFileSync(join(root, "receipt.json"), text);
     assert.equal(
       (await replayResearchEvaluation(root)).checks.receiptIntegrity,
