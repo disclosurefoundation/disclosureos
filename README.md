@@ -22,7 +22,7 @@ documentation and schema host live at [os.disclosure.org](https://os.disclosure.
 | [`@disclosureos/origins`](https://www.npmjs.com/package/@disclosureos/origins) | Origin Classification System taxonomy and reference mappings. |
 | [`@disclosureos/instruments`](https://www.npmjs.com/package/@disclosureos/instruments) | The UAP Sensor Manifest: per-sensor hardware specs, timing, and calibration provenance published by operating organizations. |
 | [`@disclosureos/schema`](https://www.npmjs.com/package/@disclosureos/schema) | The portable enriched Observation contract for TypeScript and JSON Schema. |
-| [`@disclosureos/scoring`](https://www.npmjs.com/package/@disclosureos/scoring) | Reference completeness and compellingness scoring. |
+| [`@disclosureos/scoring`](https://www.npmjs.com/package/@disclosureos/scoring) | Legacy population coverage and compellingness; experimental assessment summaries. |
 | [`@disclosureos/cli`](https://www.npmjs.com/package/@disclosureos/cli) | Developer tools for scaffolding, validating, scoring, and inspecting observations. |
 
 Supporting workspaces:
@@ -101,3 +101,5 @@ across the framework.
 MIT © Disclosure Foundation
 
 The [instrument research completion guide](docs/experimental/research-completion.md) covers calibration, timing and report prerequisites for the selected research profile.
+
+[Population coverage](docs/experimental/population-coverage.md) names the legacy field counter explicitly and preserves the existing completeness API and CLI results.

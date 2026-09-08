@@ -3,11 +3,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Reference scoring for the [DisclosureOS](https://github.com/disclosurefoundation)
-ecosystem — the **Scoring** layer. It turns an enriched `Observation` into two
-orthogonal measures:
+ecosystem — the **Scoring** layer. Its legacy `Observation` APIs provide:
 
-- **Completeness** — *is it well-documented?* What fraction of the record's fields are
-  present.
+- **Population coverage** — the fraction of legacy schema field paths carrying a value.
+  Presence does not establish documentation quality or analytical readiness.
 - **Compellingness** — *is it anomalous / non-mundane?* Derived from the observable
   assessments and origin classification.
 
@@ -54,13 +53,16 @@ pnpm add @disclosureos/scoring @disclosureos/records @disclosureos/observables @
 
 ## Quick start
 
+The `getPopulationCoverage` name below requires this unreleased checkout or a future
+authorized release containing it. Published consumers can continue using `getCompleteness`.
+
 ```typescript
-import { score, getCompleteness, rankByCompellingness } from '@disclosureos/scoring';
+import { score, getPopulationCoverage, rankByCompellingness } from '@disclosureos/scoring';
 
 const result = score(observation);
 // { score, range: { low, high }, contested, ... }
 
-const completeness = getCompleteness(observation);
+const coverage = getPopulationCoverage(observation);
 // { percentage, requiredPercentage, missing, ... }
 
 const ranked = rankByCompellingness([obsA, obsB, obsC]); // most-compelling first
@@ -96,8 +98,9 @@ every `evaluatorWeight` policy it shifts only the consensus point — `range` an
 
 | Subpath | Contents |
 |---|---|
-| `@disclosureos/scoring` | `score`, `rankByCompellingness`, `getCompleteness`, `DEFAULT_WEIGHTS` |
-| `@disclosureos/scoring/completeness` | Completeness scoring + `deriveFieldPaths` |
+| `@disclosureos/scoring` | `score`, `rankByCompellingness`, `getPopulationCoverage`, legacy `getCompleteness`, `DEFAULT_WEIGHTS` |
+| `@disclosureos/scoring/population-coverage` | Field-presence counter and `deriveFieldPaths` |
+| `@disclosureos/scoring/completeness` | Legacy field-presence counter + `deriveFieldPaths` |
 | `@disclosureos/scoring/compellingness` | Compellingness scoring + weights |
 | `@disclosureos/scoring/schema` | The committed JSON Schema (`scoring.schema.json`) |
 
@@ -119,3 +122,5 @@ attributed declarations by topic and subject, collapses exact copies, and disclo
 shared inputs and differing outcome labels. It computes no aggregate score or
 confidence interval and does not certify scientific eligibility. See the
 [assessment summary guide](../../docs/experimental/assessment-summary.md).
+
+The additive population-coverage names are unreleased. See the [coverage guide](../../docs/experimental/population-coverage.md) for retained counting rules, denominator limits and compatibility. The existing compellingness methodology is separate from experimental v2 assessment summaries and profile completion.

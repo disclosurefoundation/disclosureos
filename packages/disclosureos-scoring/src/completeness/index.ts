@@ -57,9 +57,9 @@ function pct(present: number, total: number): number {
 }
 
 /**
- * Measure how fully an observation populates the records schema. This is the
- * "is it well-documented?" axis — deliberately kept separate from compellingness
- * ("is it anomalous?"), so a thin-but-anomalous case never masquerades as complete.
+ * Count populated legacy schema field paths. A present value is not necessarily
+ * valid, documented, applicable or independently analyzable. Prefer the public
+ * getPopulationCoverage name for new callers; legacy behavior remains unchanged.
  */
 export function getCompleteness(
   observation: Observation | Record<string, unknown>,

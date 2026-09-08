@@ -132,11 +132,10 @@ scientific limit on claim counts.
 zero confidence, topic/subject isolation, shared transitive support, digest aliases,
 unsupported declarations, parser parity, order invariance and long histories.
 
-Remaining WP08 work includes clearly labeled population coverage, applicable
-required/recommended profile completion and next actions, integration of documentary
-and instrument checks, and versioned evaluation provenance. Legacy score migration,
-CLI/Index presentation and scientific review remain separate increments. No
-aggregate replacement policy or package publication is included here.
+Remaining WP08 work includes reviewed recommended inputs, additional domain profiles,
+and combined versioned evaluation provenance. The [research checklist](research-completion.md)
+and [legacy population coverage](population-coverage.md) now have separate guidance.
+CLI/Index integration of v2 evaluations and scientific review remain separate work.
 
 The schema-owned [documentation completion checklist](documentation-completion.md)
 now supplies per-assessment required-input statuses and next actions by invoking
