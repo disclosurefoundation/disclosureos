@@ -66,7 +66,10 @@
     "emit:v2-testimony": "node conformance/emit-historical-testimony-selection.mjs",
     "test:v2-testimony": "node --test conformance/historical-testimony.test.mjs",
     "emit:v2-physical-samples": "node conformance/emit-physical-sample-selection.mjs",
-    "test:v2-physical-samples": "node --test conformance/physical-samples.test.mjs"
+    "test:v2-physical-samples": "node --test conformance/physical-samples.test.mjs",
+    "emit:v2-profile-evaluation": "node conformance/emit-profile-evaluation.mjs",
+    "test:v2-profile-evaluation": "node --test conformance/profile-evaluation.test.mjs",
+    "replay:profile-evaluation": "node scripts/replay-profile-evaluation.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

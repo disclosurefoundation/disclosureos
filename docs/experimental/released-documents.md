@@ -123,6 +123,9 @@ profile](assessment-documentation.md) or [research prerequisites](research-prere
 for those questions. This API does not relabel claims or relax those profiles.
 
 This increment introduces the released-document provenance path and its required /
-recommended distinction. Historical testimony, physical-sample profiles, qualified
-review, profile-specific receipts/replay, and CLI/Index presentation remain separate
-work. The [evaluation checkpoint](evaluation-checkpoint.md) tracks those boundaries.
+recommended distinction. Historical testimony and collected-specimen profiles now have separate
+experimental APIs. Qualified review and CLI/Index presentation remain separate work. The [evaluation checkpoint](evaluation-checkpoint.md) tracks those boundaries.
+
+Exact-input receipts and fixed local replay are available through the experimental
+[profile-evaluation workflow](profile-evaluation.md). Their results preserve this
+profile's applicability, failures, missingness and interpretation limits.

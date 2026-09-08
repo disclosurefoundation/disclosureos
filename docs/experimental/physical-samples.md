@@ -160,5 +160,9 @@ or conformance claim. Its required groups are experimental project conventions, 
 requirements attributed to either external standard.
 
 Qualified laboratory/collection review, conventional controls, derived-sample lineage,
-profile-specific receipts/replay and consumer presentation remain open. The
+consumer presentation remain open. The
 [evaluation checkpoint](evaluation-checkpoint.md) distinguishes these from implementation.
+
+Exact-input receipts and fixed local replay are available through the experimental
+[profile-evaluation workflow](profile-evaluation.md). Their results preserve this
+profile's applicability, failures, missingness and interpretation limits.

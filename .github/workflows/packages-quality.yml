@@ -158,5 +158,6 @@ jobs:
       - run: pnpm test:v2-released-documents
       - run: pnpm test:v2-testimony
       - run: pnpm test:v2-physical-samples
+      - run: pnpm test:v2-profile-evaluation
       - run: pnpm test:partner-audit
       - run: pnpm test:partner-mapping
