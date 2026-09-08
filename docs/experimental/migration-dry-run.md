@@ -64,8 +64,9 @@ The ordinary text view summarizes decisions; `--json` includes candidates and ma
 
 ## Remaining WP09 checkpoints
 
-1. Explicit reviewed field mappings, including time/frame/provenance decisions,
-   legacy evaluation envelopes and resolution of ambiguous source JSON.
+1. [Time and position review](migration-review.md) now supports explicit frame/precision
+   decisions, declared review provenance and ambiguity rejection. Other field families,
+   sensor revision resolution and separate legacy evaluation adapters remain open.
 2. Separate candidate emission/application, stable import receipts, cross-batch
    idempotence, resumability, conflict handling and migrated/quarantined reconciliation.
 3. Application read-path compatibility and rollback that retains imported v2 data.

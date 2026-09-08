@@ -99,3 +99,11 @@ No imports or file writes occur. Exit 0 means candidates prepared, 1 means quara
 rows, and 2 means an input/usage failure. See the
 [mapping and compatibility checkpoint](../../docs/experimental/migration-dry-run.md)
 for limits and remaining WP09 work.
+
+### Explicit migration review
+
+`disclosureos migrate review legacy.json review.json [--json]` checks a pinned review
+plan and applies explicit time/position decisions to draft candidates. Source bytes,
+review rationale and unresolved fields are retained; invalid rows are quarantined
+without partial mappings. No imports occur. See the
+[review contract and synthetic walkthrough](../../docs/experimental/migration-review.md).
