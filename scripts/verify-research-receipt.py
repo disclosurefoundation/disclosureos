@@ -38,6 +38,7 @@ def verify(data):
     formats = {
         "disclosureos-research-evaluation-receipt:0.1.0": ["packet", "completion"],
         "disclosureos-assessment-summary-receipt:0.1.0": ["summary"],
+        "disclosureos-profile-evaluation-receipt:0.1.0": ["profile"],
     }
     if type(receipt["format"]) is not str or receipt["format"] not in formats:
         raise ValueError("Unsupported receipt format")

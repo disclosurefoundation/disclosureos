@@ -120,6 +120,10 @@ No network request occurs. Library callers should bound untrusted input sizes be
 loading records or bytes. The output contains the full validated history and selection,
 so it is not a redaction mechanism.
 
-Physical-sample profiles, qualified review of these experimental rules, profile-specific
-receipts/replay and CLI/Index presentation remain separate work. See the
+A collected-specimen profile is available separately. Qualified review of these
+experimental rules and CLI/Index presentation remain separate work. See the
 [evaluation checkpoint](evaluation-checkpoint.md).
+
+Exact-input receipts and fixed local replay are available through the experimental
+[profile-evaluation workflow](profile-evaluation.md). Their results preserve this
+profile's applicability, failures, missingness and interpretation limits.

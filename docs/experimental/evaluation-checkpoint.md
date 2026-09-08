@@ -16,7 +16,8 @@ constitute a stable v2 release or independently reviewed science.
 | Research checklist | Calibration-use, timing, acquisition, documentation and local report prerequisites | Rejected and unperformed checks retain their status |
 | Research receipts | Exact packet/dependency pins and computed prerequisite results with rule identities | Supplied implementation/environment execution is unattested |
 | Summary receipts | Exact claim-history/dependency pins and computed declaration summaries | Referenced source/product artifacts remain unverified |
-| Independent integrity verification | Python checks exact saved payload strings and hashes for both formats | Does not independently implement research or summary semantics |
+| Provenance-profile receipts and replay | Exact history, selection, source-file and dependency pins for three fixed profiles; preserved failed/unchecked results | Unsigned receipts and current-code replay do not authenticate sources or attest the original execution |
+| Independent integrity verification | Python checks exact saved payload strings and hashes for all three receipt formats | Does not independently implement evaluation semantics |
 | Local replay | Fixed TypeScript evaluators reproduce saved request/output payloads | Matching a failed evaluation does not make it pass |
 
 ## Work still needed within WP08
@@ -27,9 +28,6 @@ constitute a stable v2 release or independently reviewed science.
   establish a reviewed profile or sufficient scientific prerequisites.
 - Explicit recommended inputs where a reviewed methodology can justify them. Existing
   required-input checks must not be padded with speculative recommendations.
-- Exact-input receipts and local replay for released-document, historical-testimony
-  and collected-specimen results. Existing research and summary receipts do not
-  reproduce these newer profile results.
 - Consumer presentation that keeps declarations, documentary gaps, measurement quality,
   competing interpretations and disagreement distinct, including clear profile selection.
 - Review and potential refinement of the experimental rules against conventional
@@ -49,5 +47,5 @@ publication. Merging these PRs does not publish packages, schemas, applications 
 Native partner data, calibration/timing artifacts, permissions and qualified review
 remain external dependencies. The synthetic examples demonstrate software behavior;
 they are not substitutes for those materials. The next useful planning checkpoint is
-to review the four domain paths together, close profile-result reproducibility gaps,
-and define explicit consumer profile selection while retaining the partner handoff path.
+to review the four domain paths together and define explicit consumer profile
+selection while retaining the partner handoff path.

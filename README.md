@@ -115,3 +115,5 @@ The experimental [released-document provenance profile](docs/experimental/releas
 Experimental [historical-testimony provenance](docs/experimental/historical-testimony.md) checks selected account bytes, recording citations and direct extraction attribution without assigning credibility or requiring sensor data.
 
 Experimental [physical-sample provenance](docs/experimental/physical-samples.md) checks collected-specimen declarations, custody continuity and cited record bytes without certifying material identity, composition or origin.
+
+Experimental [provenance-profile receipts and replay](docs/experimental/profile-evaluation.md) pin inputs and reproduce the full released-document, testimony or collected-specimen result, including failed and unchecked outcomes.

@@ -26,3 +26,5 @@ export { HistoricalTestimonySelectionSchema, HISTORICAL_TESTIMONY_SELECTION_SCHE
 export type { HistoricalTestimonySelection, HistoricalTestimonyResult, HistoricalTestimonyReport, HistoricalTestimonyRequirement, HistoricalTestimonyRequirementId, HistoricalTestimonyCompletionStatus, HistoricalTestimonyIssue } from './historical-testimony';
 export { PhysicalSampleSelectionSchema, PHYSICAL_SAMPLE_SELECTION_SCHEMA_ID, PHYSICAL_SAMPLE_PROFILE, PHYSICAL_SAMPLE_REQUIREMENTS, physicalSampleSelectionJsonSchema, evaluatePhysicalSamples } from './physical-samples';
 export type { PhysicalSampleSelection, PhysicalSampleResult, PhysicalSampleReport, PhysicalSampleRecordCheck, PhysicalSampleRequirement, PhysicalSampleRequirementId, PhysicalSampleIssue } from './physical-samples';
+export { ProfileEvaluationSchema, PROFILE_EVALUATION_SCHEMA_ID, PROFILE_EVALUATION_POLICY, profileEvaluationJsonSchema, evaluateProfileEvaluation } from './profile-evaluation';
+export type { ProfileEvaluation, ProfileEvaluationOptions, ProfileEvaluationReceipt, ProfileEvaluationResult } from './profile-evaluation';
