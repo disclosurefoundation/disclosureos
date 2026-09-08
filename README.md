@@ -62,6 +62,8 @@ Run the CLI without installing it globally:
 pnpm dlx @disclosureos/cli --help
 ```
 
+Unassessed local files can enter through the experimental [source intake workflow](docs/experimental/source-intake.md), preserving bytes and explicit metadata gaps before measurement or review.
+
 ## Schema Host
 
 DisclosureOS packages emit JSON Schema with stable `$id` URLs under

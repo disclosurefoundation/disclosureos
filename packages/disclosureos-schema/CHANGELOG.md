@@ -6,6 +6,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased experimental work
 
+- Add experimental source intake with exact-byte local receipts, explicit unknown context and actionable gaps; CLI create, inspect and validate require no fabricated measurements or reviews.
+
 - Add experimental dataset/session composition for pinned reproduction packets, with explicit membership, context conflict checks, and local dataset inspection/validation.
 
 - Add exact-byte reproduction packets and independent TypeScript/Python synthetic control runners. Packet verification does not execute bundled code or certify scientific eligibility.

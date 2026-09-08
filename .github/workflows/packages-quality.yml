@@ -147,4 +147,5 @@ jobs:
       - run: pnpm test:v2-packet
       - run: pnpm test:v2-packet-cli
       - run: pnpm test:v2-dataset
+      - run: pnpm test:v2-intake
       - run: pnpm test:partner-audit

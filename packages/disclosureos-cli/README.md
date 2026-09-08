@@ -70,3 +70,6 @@ for build commands, the supplied example, exit codes, and input-size limits.
 
 `dataset inspect` and `dataset validate` extend that local workflow to releases of
 multiple pinned packets. See the [two-session walkthrough](../../docs/experimental/dataset-release.md).
+
+`intake create`, `intake inspect`, and `intake validate` receive unassessed local
+source files with explicit unknown context. See the [source intake guide](../../docs/experimental/source-intake.md) for byte preservation, missingness, and limits.

@@ -81,4 +81,4 @@ The CLI rejects symlinked directories and files, caps the release and member man
 
 `pnpm test:v2-dataset` covers shared context, conflicting revisions, duplicate observations, complete membership, UTC boundaries, packet integrity, unknowns, snapshot isolation, offline evaluation, and CLI parity. `pnpm emit:v2-dataset` emits the versioned schema.
 
-Next: test this boundary against a representative ELDÆON native-file inventory, clarify session and clock semantics, and design raw/unassessed intake without forcing fabricated reviews. Full Python dataset conformance, physical identity reconciliation, general native format adapters, public projections, and scientific review remain open.
+Next: test this boundary against a representative ELDÆON native-file inventory, clarify session and clock semantics, and map documented source fields through the [raw/unassessed intake workflow](source-intake.md) without forcing fabricated reviews. Full Python dataset conformance, physical identity reconciliation, general native format adapters, public projections, and scientific review remain open.
