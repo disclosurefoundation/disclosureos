@@ -11,7 +11,7 @@ const object = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === "object" && !Array.isArray(value);
 const escape = (key: string) => key.replace(/~/g, "~0").replace(/\//g, "~1");
 
-interface Mapping {
+export interface Mapping {
   pointer: string;
   disposition: "mapped" | "unresolved";
   target?: string;

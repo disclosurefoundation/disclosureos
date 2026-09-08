@@ -197,74 +197,14 @@ export function reviewMigration(args: ParsedArgs): void {
       );
     }
     const reviewBytes = readLocal(args.positional[1]!, 2 * 1024 * 1024);
-    const parsed = MigrationReviewSchema.safeParse(reviewedJson(reviewBytes));
-    if (!parsed.success)
-      throw new Error(`Invalid review plan: ${parsed.error.message}`);
-    const plan = parsed.data;
     const source = readLocal(args.positional[0]!, 8 * 1024 * 1024);
-    if (
-      hash(source) !== plan.source.sha256 ||
-      source.byteLength !== plan.source.byteLength
-    )
-      throw new Error(
-        "Source byte pin mismatch; regenerate and review decisions for the exact input"
-      );
-    reviewedJson(source);
-    const base = buildMigrationReport(source, plan.namespace);
-    const seen = new Set<string>();
-    const sourceIds = new Set(base.records.map((row) => row.sourceId));
-    const byId = new Map<string, MigrationReview["decisions"]>();
-    for (const decision of plan.decisions) {
-      const key = JSON.stringify([decision.sourceId, decision.field]);
-      if (seen.has(key))
-        throw new Error("Duplicate decision for source ID and field");
-      seen.add(key);
-      const group = byId.get(decision.sourceId) ?? [];
-      group.push(decision);
-      byId.set(decision.sourceId, group);
-      if (!sourceIds.has(decision.sourceId))
-        throw new Error("Review decision names an unknown source ID");
-      if (
-        new Set(decision.sourcePointers).size !== decision.sourcePointers.length
-      )
-        throw new Error("Duplicate source pointer in review decision");
-    }
-    const digest = hash(reviewBytes);
-    const records = base.records.map((row) =>
-      applyDecisions(row, byId.get(row.sourceId ?? "") ?? [], plan, digest)
-    );
-    const candidates = records.filter(
-      (row) => row.decision === "candidate_requires_review"
-    ).length;
-    const report = {
-      ...base,
-      kind: "legacy_migration_review_result",
-      policy: "legacy-migration-review:0.1.0",
-      review: {
-        sha256: digest,
-        byteLength: reviewBytes.byteLength,
-        encoding: "base64",
-        bytes: Buffer.from(reviewBytes).toString("base64"),
-        reviewerIdentity: "not_authenticated",
-      },
-      records,
-      counts: {
-        input: records.length,
-        candidates,
-        quarantined: records.length - candidates,
-        migrated: 0,
-      },
-    };
+    const report = buildReviewedMigration(source, reviewBytes);
     if (args.flags["json"]) console.log(JSON.stringify(report, null, 2));
     else {
       console.log(
-        `Experimental migration review: ${
-          records.length
-        } inputs, ${candidates} candidates, ${
-          records.length - candidates
-        } quarantined, 0 migrated.`
+        `Experimental migration review: ${report.counts.input} inputs, ${report.counts.candidates} candidates, ${report.counts.quarantined} quarantined, 0 migrated.`
       );
-      for (const row of records)
+      for (const row of report.records)
         console.log(
           JSON.stringify({
             sourceId: row.sourceId,
@@ -294,4 +234,67 @@ export function reviewMigration(args: ParsedArgs): void {
     else console.error(message);
     process.exitCode = 2;
   }
+}
+
+export function buildReviewedMigration(
+  source: Uint8Array,
+  reviewBytes: Uint8Array
+) {
+  const parsed = MigrationReviewSchema.safeParse(reviewedJson(reviewBytes));
+  if (!parsed.success)
+    throw new Error(`Invalid review plan: ${parsed.error.message}`);
+  const plan = parsed.data;
+  if (
+    hash(source) !== plan.source.sha256 ||
+    source.byteLength !== plan.source.byteLength
+  )
+    throw new Error(
+      "Source byte pin mismatch; regenerate and review decisions for the exact input"
+    );
+  reviewedJson(source);
+  const base = buildMigrationReport(source, plan.namespace);
+  const seen = new Set<string>();
+  const sourceIds = new Set(base.records.map((row) => row.sourceId));
+  const byId = new Map<string, MigrationReview["decisions"]>();
+  for (const decision of plan.decisions) {
+    const key = JSON.stringify([decision.sourceId, decision.field]);
+    if (seen.has(key))
+      throw new Error("Duplicate decision for source ID and field");
+    seen.add(key);
+    const group = byId.get(decision.sourceId) ?? [];
+    group.push(decision);
+    byId.set(decision.sourceId, group);
+    if (!sourceIds.has(decision.sourceId))
+      throw new Error("Review decision names an unknown source ID");
+    if (
+      new Set(decision.sourcePointers).size !== decision.sourcePointers.length
+    )
+      throw new Error("Duplicate source pointer in review decision");
+  }
+  const digest = hash(reviewBytes);
+  const records = base.records.map((row) =>
+    applyDecisions(row, byId.get(row.sourceId ?? "") ?? [], plan, digest)
+  );
+  const candidates = records.filter(
+    (row) => row.decision === "candidate_requires_review"
+  ).length;
+  return {
+    ...base,
+    kind: "legacy_migration_review_result",
+    policy: "legacy-migration-review:0.1.0",
+    review: {
+      sha256: digest,
+      byteLength: reviewBytes.byteLength,
+      encoding: "base64",
+      bytes: Buffer.from(reviewBytes).toString("base64"),
+      reviewerIdentity: "not_authenticated",
+    },
+    records,
+    counts: {
+      input: records.length,
+      candidates,
+      quarantined: records.length - candidates,
+      migrated: 0,
+    },
+  };
 }

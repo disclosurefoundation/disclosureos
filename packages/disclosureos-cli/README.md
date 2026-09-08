@@ -107,3 +107,12 @@ plan and applies explicit time/position decisions to draft candidates. Source by
 review rationale and unresolved fields are retained; invalid rows are quarantined
 without partial mappings. No imports occur. See the
 [review contract and synthetic walkthrough](../../docs/experimental/migration-review.md).
+
+### Private migration bundles
+
+`disclosureos migrate export legacy.json review.json --out bundle [--json]` saves
+reviewed candidates separately with pinned inputs and complete row accounting. Exact
+reruns reuse a verified destination; conflicting contents are never overwritten.
+`disclosureos migrate verify bundle [--json]` recomputes and checks every artifact.
+These operations do not import records. See the
+[bundle contract and walkthrough](../../docs/experimental/migration-export.md).

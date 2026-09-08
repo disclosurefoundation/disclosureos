@@ -75,7 +75,8 @@
     "test:v2-profile-preparation": "node --test conformance/profile-preparation.test.mjs",
     "test:v2-migration-dry-run": "node --test conformance/migration-dry-run.test.mjs",
     "emit:v2-migration-review": "node conformance/emit-migration-review.mjs",
-    "test:v2-migration-review": "node --test conformance/migration-review.test.mjs"
+    "test:v2-migration-review": "node --test conformance/migration-review.test.mjs",
+    "test:v2-migration-export": "node --test conformance/migration-export.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
