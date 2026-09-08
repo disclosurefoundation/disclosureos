@@ -151,3 +151,12 @@ verified candidates. `migrate read-rollback selector EARLIER_HEAD --id CURRENT_H
 The expected current head prevents conflicting concurrent changes. This is local
 consumer plumbing; the Index website and database remain unchanged. See the
 [read-path contract](../../docs/experimental/migration-read-path.md) for recovery and limits.
+
+### Preserve standalone historical scores
+
+`migrate legacy-scores scores.json plan.json --json` preserves explicitly declared
+legacy completeness/compellingness outputs, their methodology versions and observation
+associations. Every input row is retained as historical, pending review or quarantined.
+The report preserves exact input bytes and excludes historical scores from v2 rankings;
+it neither recalculates scores nor imports v2 evaluations. See the
+[adapter contract](../../docs/experimental/migration-legacy-scores.md).

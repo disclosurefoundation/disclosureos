@@ -83,6 +83,8 @@ data and local paths.
 ## Remaining WP09 gates
 
 Local application and rollback plumbing are now available. Other field-family/sensor
-mappings, legacy evaluation adapters and application compatibility closeout remain.
+mappings and application compatibility closeout remain. The
+[standalone score adapter](migration-legacy-scores.md) now preserves declared legacy
+score outputs separately; additional historical output formats still require adapters.
 The actual Index reader adapter, deployment and public projection belong to consumer
 integration; this checkpoint does not certify those paths.
