@@ -137,3 +137,7 @@ required/recommended profile completion and next actions, integration of documen
 and instrument checks, and versioned evaluation provenance. Legacy score migration,
 CLI/Index presentation and scientific review remain separate increments. No
 aggregate replacement policy or package publication is included here.
+
+The schema-owned [documentation completion checklist](documentation-completion.md)
+now supplies per-assessment required-input statuses and next actions by invoking
+the existing documentary validator. It remains separate from declaration summaries.

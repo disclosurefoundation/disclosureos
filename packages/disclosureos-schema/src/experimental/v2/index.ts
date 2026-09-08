@@ -14,3 +14,5 @@ export { DatasetReleaseSchema, DATASET_RELEASE_SCHEMA_ID, DATASET_RELEASE_PROFIL
 export type { DatasetRelease, DatasetPacketInput, DatasetReleaseResult, DatasetIssue } from './dataset-release';
 export { SourceIntakeSchema, SOURCE_INTAKE_SCHEMA_ID, SOURCE_INTAKE_PROFILE, sourceIntakeJsonSchema, evaluateSourceIntake } from './source-intake';
 export type { SourceIntake, SourceIntakeResult } from './source-intake';
+export { DOCUMENTATION_COMPLETION_POLICY, DOCUMENTATION_REQUIREMENTS, evaluateDocumentationCompletion } from './documentation-completion';
+export type { DocumentationRequirementId, CompletionStatus, DocumentationAction, DocumentationRequirement, AssessmentDocumentationCompletion, DocumentationCompletionResult } from './documentation-completion';
