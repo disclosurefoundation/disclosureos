@@ -104,8 +104,8 @@ remain unchecked. The operation performs no network access or application writes
 
 ## Next WP09 work
 
-Implement resumable/idempotent application receipts that consume the pinned ledger and
-decisions, and preserve selected and unselected historical revisions. Then add explicit
-application read-path switching and rollback that retains imported v2 data. Remaining
+[Resumable local application](migration-application.md) now consumes the pinned ledger
+and decisions, preserving selected and unselected revisions with a completion receipt.
+Next: explicit read-path activation and rollback retaining completed stores. Remaining
 field-family/sensor mappings, legacy evaluation adapters and application compatibility
 continue to be WP09 gates. This checkpoint does not complete migration or close WP09.
