@@ -1,0 +1,5 @@
+{
+  "runtime": "node",
+  "major": 22,
+  "arithmetic": "binary64-ordered-sum"
+}

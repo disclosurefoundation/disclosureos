@@ -113,3 +113,8 @@ uncertainty, artifact contents, or scientific eligibility. See the
 and measurement profiles with declared calibration-use and timing reviews. Passing
 means reviewed input documentation is present and consistent, not scientific
 eligibility. See the [research prerequisites guide](../../docs/experimental/research-prerequisites.md).
+
+`evaluateReproductionPacket` verifies exact-byte input inventories before composing
+research prerequisites. It never executes bundled methods. See the
+[reproduction packet guide](../../docs/experimental/reproduction-packet.md) for the
+fixed TypeScript/Python synthetic control and the independent consumer's limits.

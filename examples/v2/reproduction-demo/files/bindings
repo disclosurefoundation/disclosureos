@@ -1,0 +1,25 @@
+{
+  "kind": "acquisition_bindings",
+  "schemaVersion": "0.1.0",
+  "id": "synthetic-binding",
+  "historyId": "profile-example",
+  "observationId": "synthetic",
+  "contextId": "synthetic-context",
+  "sources": [
+    {
+      "sourceRef": "source:station",
+      "instrumentRef": "instrument:station"
+    }
+  ],
+  "products": [
+    {
+      "observationProductRef": "product:raw",
+      "contextProductRef": "product:captured-raw"
+    }
+  ],
+  "extensions": {
+    "org.example": {
+      "synthetic": true
+    }
+  }
+}

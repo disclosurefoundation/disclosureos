@@ -1,0 +1,171 @@
+{
+  "kind": "reproduction_packet",
+  "schemaVersion": "0.1.0",
+  "id": "synthetic-reproduction",
+  "researchProfile": "urn:disclosureos:experimental:profile:instrument-research-prerequisites:0.1.0",
+  "files": [
+    {
+      "id": "history",
+      "sha256": "d884f1f70148eb6fe452bfca1d1686b2ada66fd6731f41502b06fd430638240d",
+      "byteLength": 4935
+    },
+    {
+      "id": "context",
+      "sha256": "2b38514f0def86759ef5aa2d7396eee45cb2967bafb90ba217d718a33500b59f",
+      "byteLength": 4718
+    },
+    {
+      "id": "bindings",
+      "sha256": "f5fdfe738e2c77b0134ce7591f83df6fc1794c8f35ae6a525042009a2374b2e8",
+      "byteLength": 512
+    },
+    {
+      "id": "mapping",
+      "sha256": "602e572587b40ff6d067055155bed6e70d0f4f95f0f4e320f6c41f56f9cb6fa6",
+      "byteLength": 553
+    },
+    {
+      "id": "review",
+      "sha256": "d05db147f7537bdad3c2ba0676ce7ed1986baf0bea779a0830643f9f5d71a0d0",
+      "byteLength": 2443
+    },
+    {
+      "id": "observation-source-report",
+      "sha256": "9ec816b8cbd1f5f541f28d17e91f5c6b47b7f5eef635fe23f1f9f4b4b2d0a72b",
+      "byteLength": 28
+    },
+    {
+      "id": "observation-product-raw",
+      "sha256": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121",
+      "byteLength": 23
+    },
+    {
+      "id": "observation-product-summary",
+      "sha256": "547aa2ac3c7bb2adb031a3aa078a966ae16b20a83d47aa118b1d8eba0a6a2714",
+      "byteLength": 16
+    },
+    {
+      "id": "context-product-captured-raw",
+      "sha256": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121",
+      "byteLength": 23
+    },
+    {
+      "id": "context-manifest-r1",
+      "sha256": "e753c4cb8d4cb63e44820a4bc64202efa9d8d13b6a6e02abc3709e7237923c95",
+      "byteLength": 367
+    },
+    {
+      "id": "context-calibration-c1-report",
+      "sha256": "2a89ae47a0e0994215daaf343f90381b594fcef5a9eeffcee2514d1cfebb1bc2",
+      "byteLength": 94
+    },
+    {
+      "id": "context-calibration-c1-review",
+      "sha256": "ba420298f61777d12a69177185cad149c0cae8659a69e9ef337d5407e2075881",
+      "byteLength": 96
+    },
+    {
+      "id": "review-measurement-velocity-calibration-use",
+      "sha256": "0ad42ba97e1a85e1daefcc0b42eda45ddb16688262910c3a6ff1a372e092ac83",
+      "byteLength": 106
+    },
+    {
+      "id": "review-measurement-velocity-timing",
+      "sha256": "4c483c2cd8b6ce582681d3dcbd29bbb043dd9db367e4189dd369ca0fe4c6db43",
+      "byteLength": 97
+    },
+    {
+      "id": "typescript-source",
+      "sha256": "f767e85e56e86cbc30cbfe75f410e31de05a2d3c36186d1938a6bbca0a35125b",
+      "byteLength": 4275
+    },
+    {
+      "id": "python-source",
+      "sha256": "cd0f032bfcca8f02dc91ecea4e477c48c066f64d0ed7db10ffd7c6a06222daac",
+      "byteLength": 3570
+    },
+    {
+      "id": "node-environment",
+      "sha256": "c6e233ea10d9fb3449c63695fae855f41733c6e90ab238117af7efd4bb931343",
+      "byteLength": 79
+    },
+    {
+      "id": "python-environment",
+      "sha256": "10a0442fa2f2526ee422f0781eeb384c7c33a70d1ead07a527f2e9ce461fe6f3",
+      "byteLength": 80
+    }
+  ],
+  "documents": {
+    "history": "history",
+    "context": "context",
+    "acquisitionBindings": "bindings",
+    "measurementBindings": "mapping",
+    "review": "review"
+  },
+  "assets": {
+    "observation": [
+      {
+        "ref": "source:report",
+        "fileRef": "observation-source-report"
+      },
+      {
+        "ref": "product:raw",
+        "fileRef": "observation-product-raw"
+      },
+      {
+        "ref": "product:summary",
+        "fileRef": "observation-product-summary"
+      }
+    ],
+    "context": [
+      {
+        "ref": "product:captured-raw",
+        "fileRef": "context-product-captured-raw"
+      },
+      {
+        "ref": "manifest:r1",
+        "fileRef": "context-manifest-r1"
+      },
+      {
+        "ref": "calibration:c1/report",
+        "fileRef": "context-calibration-c1-report"
+      },
+      {
+        "ref": "calibration:c1/review",
+        "fileRef": "context-calibration-c1-review"
+      }
+    ],
+    "review": [
+      {
+        "ref": "measurement:velocity/calibration-use",
+        "fileRef": "review-measurement-velocity-calibration-use"
+      },
+      {
+        "ref": "measurement:velocity/timing",
+        "fileRef": "review-measurement-velocity-timing"
+      }
+    ]
+  },
+  "method": {
+    "id": "synthetic-radial-velocity-mean",
+    "version": "1",
+    "description": "Ordered binary64 sum of synthetic samples divided by count; no instrument correction or uncertainty propagation.",
+    "inputRef": "context-product-captured-raw",
+    "expectedOutputRef": "observation-product-summary",
+    "measurementRef": "measurement:velocity",
+    "unit": "m/s",
+    "absoluteTolerance": 0,
+    "implementations": [
+      {
+        "id": "typescript",
+        "artifactRef": "typescript-source",
+        "environmentRef": "node-environment"
+      },
+      {
+        "id": "python",
+        "artifactRef": "python-source",
+        "environmentRef": "python-environment"
+      }
+    ]
+  }
+}

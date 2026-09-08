@@ -141,4 +141,8 @@ jobs:
       - run: pnpm test:v2-bindings
       - run: pnpm test:v2-measurements
       - run: pnpm test:v2-research
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pnpm test:v2-packet
       - run: pnpm test:partner-audit
