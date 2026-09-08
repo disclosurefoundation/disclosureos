@@ -140,4 +140,5 @@ jobs:
       - run: pnpm test:v2-acquisition
       - run: pnpm test:v2-bindings
       - run: pnpm test:v2-measurements
+      - run: pnpm test:v2-research
       - run: pnpm test:partner-audit

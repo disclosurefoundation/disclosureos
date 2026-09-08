@@ -6,3 +6,5 @@ export { evaluateAcquisitionBindings, ACQUISITION_BINDINGS_PROFILE } from './acq
 export type { BindingIssueCode, BindingIssue, BindingAssetCheck, ProductBindingCheck, AcquisitionBindingOptions, AcquisitionBindingResult } from './acquisition-bindings';
 export { MeasurementBindingsSchema, MEASUREMENT_BINDINGS_SCHEMA_ID, MEASUREMENT_BINDINGS_PROFILE, measurementBindingsJsonSchema, evaluateMeasurementBindings } from './measurement-bindings';
 export type { MeasurementBindings, MeasurementBindingIssue, MeasurementBindingResult } from './measurement-bindings';
+export { InstrumentResearchReviewSchema, INSTRUMENT_RESEARCH_REVIEW_SCHEMA_ID, INSTRUMENT_RESEARCH_PREREQUISITES_PROFILE, instrumentResearchReviewJsonSchema, evaluateInstrumentResearchPrerequisites } from './research-prerequisites';
+export type { InstrumentResearchReview, InstrumentResearchOptions, InstrumentResearchResult, ResearchReviewAssetCheck } from './research-prerequisites';

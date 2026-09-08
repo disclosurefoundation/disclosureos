@@ -108,3 +108,8 @@ acquisition-bound raw products, captured channels, and explicit nominal capture
 times, then runs local acquisition artifact checks. It does not verify clock
 uncertainty, artifact contents, or scientific eligibility. See the
 [measurement bindings guide](../../docs/experimental/measurement-bindings.md).
+
+`evaluateInstrumentResearchPrerequisites` composes the experimental documentary
+and measurement profiles with declared calibration-use and timing reviews. Passing
+means reviewed input documentation is present and consistent, not scientific
+eligibility. See the [research prerequisites guide](../../docs/experimental/research-prerequisites.md).

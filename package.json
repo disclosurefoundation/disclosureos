@@ -34,7 +34,9 @@
     "emit:v2-bindings": "node conformance/emit-acquisition-bindings.mjs",
     "test:v2-bindings": "node --test conformance/acquisition-bindings.test.mjs",
     "emit:v2-measurements": "node conformance/emit-measurement-bindings.mjs",
-    "test:v2-measurements": "node --test conformance/measurement-bindings.test.mjs"
+    "test:v2-measurements": "node --test conformance/measurement-bindings.test.mjs",
+    "emit:v2-research": "node conformance/emit-research-review.mjs",
+    "test:v2-research": "node --test conformance/research-prerequisites.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
