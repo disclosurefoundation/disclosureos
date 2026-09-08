@@ -119,3 +119,5 @@ Experimental [physical-sample provenance](docs/experimental/physical-samples.md)
 Experimental [provenance-profile receipts and replay](docs/experimental/profile-evaluation.md) pin inputs and reproduce the full released-document, testimony or collected-specimen result, including failed and unchecked outcomes.
 
 The experimental [profile CLI](docs/experimental/profile-cli.md) lists domain paths and inspects or checks explicitly selected provenance workflows with readable requirements and next actions.
+
+Experimental [profile preparation](docs/experimental/profile-preparation.md) assembles exact existing inputs into a new private evaluation bundle, calculates byte pins and preserves failing or unchecked profile outcomes.

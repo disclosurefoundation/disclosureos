@@ -102,6 +102,36 @@ if (
     if (!result.receipt) throw Error("No receipt produced");
     const root = resolve(process.argv[3]);
     mkdirSync(root);
+    const dependency = ({ ref, id, version }) => ({
+      ref,
+      id,
+      version,
+      path: "dependencies/" + ref,
+    });
+    const plan = {
+      kind: "profile_preparation",
+      schemaVersion: "0.1.0",
+      id: manifest.id,
+      workflow: manifest.workflow,
+      history: "history.json",
+      selection: "selection.json",
+      assets: manifest.assets.map(({ ref, fileRef }) => ({
+        ref,
+        fileRef,
+        path: "assets/" + fileRef,
+      })),
+      dependencies: {
+        vocabularies: manifest.dependencies.vocabularies.map(dependency),
+        implementation: dependency(manifest.dependencies.implementation),
+        environment: dependency(manifest.dependencies.environment),
+      },
+    };
+    writeFileSync(
+      join(root, "preparation.json"),
+      JSON.stringify(plan, null, 2) + "\n",
+      { flag: "wx" }
+    );
+
     writeFileSync(
       join(root, "evaluation.json"),
       JSON.stringify(manifest, null, 2) + "\n",

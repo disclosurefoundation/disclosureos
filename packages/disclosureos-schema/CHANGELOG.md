@@ -6,6 +6,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased experimental work
 
+- Add explicit profile-preparation plans and private bundle assembly from exact existing inputs, retaining profile failures and missingness without inventing source metadata.
+
 - Add fixed provenance-profile evaluation receipts over exact history, selection, asset and dependency pins, with bounded local replay and independent payload-integrity checks. Failed and unchecked profile outcomes remain distinct from replay success.
 
 - Add experimental collected-specimen provenance checks, explicit custody gaps, versioned selection schema and synthetic record fixture. Record hashes do not authenticate specimens, custody, composition or origin.

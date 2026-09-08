@@ -18,7 +18,8 @@ constitute a stable v2 release or independently reviewed science.
 | Summary receipts | Exact claim-history/dependency pins and computed declaration summaries | Referenced source/product artifacts remain unverified |
 | Provenance-profile receipts and replay | Exact history, selection, source-file and dependency pins for three fixed profiles; preserved failed/unchecked results | Unsigned receipts and current-code replay do not authenticate sources or attest the original execution |
 | Independent integrity verification | Python checks exact saved payload strings and hashes for all three receipt formats | Does not independently implement evaluation semantics |
-| CLI profile selection | Four-domain catalog and explicit manifest inspection/checking for three provenance workflows, with required/recommended statuses and next actions | No automatic profile choice, guided manifest creation, web/Index UI or public projection |
+| CLI profile selection | Four-domain catalog and explicit manifest inspection/checking for three provenance workflows, with required/recommended statuses and next actions | No automatic profile choice, guided selection authoring, web/Index UI or public projection |
+| CLI input preparation | Explicit file plans, calculated byte pins, private copies and preserved failed/unchecked receipts | Requires existing histories and selections; does not invent missing declarations or authenticate dependencies |
 | Local replay | Fixed TypeScript evaluators reproduce saved request/output payloads | Matching a failed evaluation does not make it pass |
 
 ## Work still needed within WP08
@@ -29,7 +30,7 @@ constitute a stable v2 release or independently reviewed science.
   establish a reviewed profile or sufficient scientific prerequisites.
 - Explicit recommended inputs where a reviewed methodology can justify them. Existing
   required-input checks must not be padded with speculative recommendations.
-- Extend the initial CLI profile selection/results into guided input preparation and
+- Extend the initial CLI profile selection/results into guided selection authoring and
   web/Index presentation, keeping declarations, documentary gaps, measurement quality,
   competing interpretations and disagreement distinct. Public projection remains separate.
 - Review and potential refinement of the experimental rules against conventional
@@ -50,4 +51,4 @@ Native partner data, calibration/timing artifacts, permissions and qualified rev
 remain external dependencies. The synthetic examples demonstrate software behavior;
 they are not substitutes for those materials. The next useful planning checkpoint is
 to review the four domain paths and their CLI experience together, then bound guided
-input preparation and web/Index integration while retaining the partner handoff path.
+selection authoring and web/Index integration while retaining the partner handoff path.
