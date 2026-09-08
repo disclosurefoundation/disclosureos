@@ -58,3 +58,12 @@ that don't point to any evidence (`media:`, `sensor:`, …) present in the recor
 ## License
 
 MIT © [Disclosure Foundation](https://disclosure.org)
+
+## Experimental v2 packets (unreleased)
+
+The source CLI adds `packet inspect`, `packet validate`, and `packet reproduce`.
+These commands operate on local reproduction packets, preserve shared validation
+diagnostics with `--json`, and never execute packet-supplied code. Reproduction is
+limited to the built-in synthetic mean control; scientific eligibility remains
+unchecked. Follow the [complete local workflow](../../docs/experimental/packet-cli.md)
+for build commands, the supplied example, exit codes, and input-size limits.

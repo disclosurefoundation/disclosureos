@@ -47,3 +47,7 @@ Packet verification means all declared files match their pins and the composed r
 Accepted reviews remain declarations. Pinning prevents silent file replacement under a frozen manifest, but it does not authenticate reviewers, retroactively prove which bytes they saw, establish calibration adequacy, or independently inspect their report content. Review-to-input signatures, hermetic execution, independent semantic conformance, native-file adapters, partner authorization, and qualified scientific review remain outstanding.
 
 `pnpm test:v2-packet` checks schema parity, every missing/corrupt file, same-ID changes, malformed document encodings, snapshot isolation, inert bundled code, and TypeScript/Python agreement. Existing experimental and legacy suites remain separate gates.
+
+For a single CLI path through the supplied example, see the
+[local packet workflow](packet-cli.md). The CLI preserves this verifier's result
+and adds an explicitly identified built-in synthetic executor.
