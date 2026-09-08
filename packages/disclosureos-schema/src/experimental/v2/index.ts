@@ -8,3 +8,5 @@ export { MeasurementBindingsSchema, MEASUREMENT_BINDINGS_SCHEMA_ID, MEASUREMENT_
 export type { MeasurementBindings, MeasurementBindingIssue, MeasurementBindingResult } from './measurement-bindings';
 export { InstrumentResearchReviewSchema, INSTRUMENT_RESEARCH_REVIEW_SCHEMA_ID, INSTRUMENT_RESEARCH_PREREQUISITES_PROFILE, instrumentResearchReviewJsonSchema, evaluateInstrumentResearchPrerequisites } from './research-prerequisites';
 export type { InstrumentResearchReview, InstrumentResearchOptions, InstrumentResearchResult, ResearchReviewAssetCheck } from './research-prerequisites';
+export { ReproductionPacketSchema, REPRODUCTION_PACKET_SCHEMA_ID, REPRODUCTION_PACKET_PROFILE, reproductionPacketJsonSchema, evaluateReproductionPacket } from './reproduction-packet';
+export type { ReproductionPacket, ReproductionPacketResult, ReproductionFileCheck } from './reproduction-packet';

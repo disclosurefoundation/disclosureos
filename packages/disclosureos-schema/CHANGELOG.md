@@ -6,6 +6,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased experimental work
 
+- Add exact-byte reproduction packets and independent TypeScript/Python synthetic control runners. Packet verification does not execute bundled code or certify scientific eligibility.
+
 - Add the opt-in instrument research prerequisites profile, with purpose-specific calibration-use reviews, explicitly interpreted timing intervals, local report verification, and composed documentary and acquisition checks. Scientific eligibility remains unchecked.
 
 - Add the opt-in v2 measurement bindings contract and single-channel capture profile, with local acquisition artifact verification. Existing contracts and package versions remain unchanged; scientific eligibility is not established by this profile.

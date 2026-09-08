@@ -71,3 +71,7 @@ There are no default tolerances, reviewer quorums, rankings, confidence scores, 
 Run `pnpm test:v2-research` for the portable corpus, schema agreement, temporal boundaries, no-fetch behavior, mutation snapshots, and missing/corrupt-file regressions. `pnpm emit:v2-research` emits the versioned artifact.
 
 Next, pin whole-packet input identity and method/environment metadata in a reproduction record, then exercise a reproducible synthetic calculation before native partner integration. Qualified review must settle purpose-specific tolerances, calibration applicability, timing propagation, reference-frame handling, and interpretation. This profile makes those required declarations inspectable without claiming that review has happened.
+
+The [reproduction packet experiment](reproduction-packet.md) now freezes exact input
+bytes and demonstrates a fixed synthetic calculation in TypeScript and Python.
+This does not replace independent scientific review or a full Python validator.
