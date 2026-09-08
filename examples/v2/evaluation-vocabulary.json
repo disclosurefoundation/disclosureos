@@ -1,0 +1,6 @@
+{
+  "id": "urn:disclosureos:synthetic:vocabulary:motion",
+  "version": "0.1.0",
+  "scope": "Synthetic reproduction fixture only; not a reviewed scientific vocabulary",
+  "topics": ["synthetic motion"]
+}

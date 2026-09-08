@@ -134,3 +134,5 @@ actions. It preserves validator diagnostics and computes no aggregate score.
 See the [documentation completion guide](../../docs/experimental/documentation-completion.md).
 
 The opt-in `evaluateInstrumentResearchCompletion` adds six required phase statuses and source-based next actions while preserving the research validator result. See the [research completion guide](../../docs/experimental/research-completion.md).
+
+The experimental `evaluateResearchEvaluation` pins local packet/dependency bytes and hashes its computed research results. See [evaluation provenance](../../docs/experimental/evaluation-provenance.md) for unsigned receipt semantics and execution limits.

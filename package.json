@@ -48,6 +48,8 @@
     "test:v2-intake": "node --test conformance/source-intake.test.mjs conformance/intake-cli.test.mjs",
     "map:eldaeon-intake": "node scripts/partner/map-eldaeon-intake.mjs",
     "test:partner-mapping": "node --test scripts/partner/map-eldaeon-intake.test.mjs",
+    "emit:v2-evaluation": "node conformance/emit-research-evaluation.mjs",
+    "test:v2-evaluation": "node --test conformance/research-evaluation.test.mjs",
     "test:population-coverage": "node --test conformance/population-coverage.test.mjs",
     "test:v2-summary": "node --test conformance/assessment-summary.test.mjs",
     "test:v2-completion": "node --test conformance/documentation-completion.test.mjs",
