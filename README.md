@@ -99,3 +99,5 @@ across the framework.
 ## License
 
 MIT © Disclosure Foundation
+
+The [instrument research completion guide](docs/experimental/research-completion.md) covers calibration, timing and report prerequisites for the selected research profile.

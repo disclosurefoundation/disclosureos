@@ -16,3 +16,5 @@ export { SourceIntakeSchema, SOURCE_INTAKE_SCHEMA_ID, SOURCE_INTAKE_PROFILE, sou
 export type { SourceIntake, SourceIntakeResult } from './source-intake';
 export { DOCUMENTATION_COMPLETION_POLICY, DOCUMENTATION_REQUIREMENTS, evaluateDocumentationCompletion } from './documentation-completion';
 export type { DocumentationRequirementId, CompletionStatus, DocumentationAction, DocumentationRequirement, AssessmentDocumentationCompletion, DocumentationCompletionResult } from './documentation-completion';
+export { INSTRUMENT_RESEARCH_COMPLETION_POLICY, INSTRUMENT_RESEARCH_REQUIREMENTS, evaluateInstrumentResearchCompletion } from './research-completion';
+export type { ResearchRequirementId, ResearchCompletionStatus, ResearchCompletionAction, ResearchCompletionRequirement, InstrumentResearchCompletionResult } from './research-completion';

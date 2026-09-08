@@ -136,3 +136,5 @@ Next WP08 work: completion guidance for the instrument-research prerequisites,
 explicit recommended inputs where a reviewed profile defines them, clearly labeled
 population coverage, and combined versioned evaluation provenance. CLI and Index
 presentation remain later consumer work.
+
+The [instrument research completion guide](research-completion.md) covers calibration, timing and report prerequisites for the selected research profile.

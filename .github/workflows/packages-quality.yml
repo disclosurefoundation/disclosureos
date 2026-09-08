@@ -150,5 +150,6 @@ jobs:
       - run: pnpm test:v2-intake
       - run: pnpm test:v2-summary
       - run: pnpm test:v2-completion
+      - run: pnpm test:v2-research-completion
       - run: pnpm test:partner-audit
       - run: pnpm test:partner-mapping
