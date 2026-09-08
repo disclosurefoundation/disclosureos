@@ -1,0 +1,1 @@
+{"channels": [{"id": "radar", "quantity": "radial velocity", "sampling": {"rateHz": 10, "state": "known"}, "unit": "m/s"}], "configuration": {"firmware": {"state": "known", "value": "synthetic-1.0"}, "hardware": {"state": "known", "value": "synthetic-rev-1"}}, "id": "r1", "instrumentRef": "instrument:station", "publishedAt": "2026-07-01T00:00:00Z", "version": "1"}

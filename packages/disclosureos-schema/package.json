@@ -42,7 +42,9 @@
     "./experimental/v2/research/schema": "./schema/experimental/instrument-research-review-0.1.0.schema.json",
     "./experimental/v2/research/schema/0.1.0": "./schema/experimental/instrument-research-review-0.1.0.schema.json",
     "./experimental/v2/packet/schema": "./schema/experimental/reproduction-packet-0.1.0.schema.json",
-    "./experimental/v2/packet/schema/0.1.0": "./schema/experimental/reproduction-packet-0.1.0.schema.json"
+    "./experimental/v2/packet/schema/0.1.0": "./schema/experimental/reproduction-packet-0.1.0.schema.json",
+    "./experimental/v2/dataset/schema": "./schema/experimental/dataset-release-0.1.0.schema.json",
+    "./experimental/v2/dataset/schema/0.1.0": "./schema/experimental/dataset-release-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

@@ -67,3 +67,6 @@ diagnostics with `--json`, and never execute packet-supplied code. Reproduction 
 limited to the built-in synthetic mean control; scientific eligibility remains
 unchecked. Follow the [complete local workflow](../../docs/experimental/packet-cli.md)
 for build commands, the supplied example, exit codes, and input-size limits.
+
+`dataset inspect` and `dataset validate` extend that local workflow to releases of
+multiple pinned packets. See the [two-session walkthrough](../../docs/experimental/dataset-release.md).

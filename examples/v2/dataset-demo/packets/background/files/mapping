@@ -1,0 +1,22 @@
+{
+  "kind": "measurement_bindings",
+  "schemaVersion": "0.1.0",
+  "id": "mapping-background",
+  "historyId": "profile-background",
+  "observationId": "observation-background",
+  "contextId": "context-background",
+  "acquisitionBindingsId": "binding-background",
+  "measurements": [
+    {
+      "measurementRef": "measurement:velocity",
+      "observationProductRef": "product:raw",
+      "channelId": "radar",
+      "time": {
+        "state": "known",
+        "kind": "instant",
+        "value": "2026-07-28T12:10:30Z",
+        "timeScale": "UTC"
+      }
+    }
+  ]
+}

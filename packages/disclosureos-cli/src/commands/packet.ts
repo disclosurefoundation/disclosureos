@@ -24,7 +24,7 @@ const MANIFEST_LIMIT = 8 * 1024 * 1024,
   FILE_LIMIT = 4096;
 const hash = (bytes: Uint8Array) =>
   createHash("sha256").update(bytes).digest("hex");
-function readLocal(path: string, limit: number): Uint8Array {
+export function readLocal(path: string, limit: number): Uint8Array {
   const fd = openSync(
     path,
     constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK

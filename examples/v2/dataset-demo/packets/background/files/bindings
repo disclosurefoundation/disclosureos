@@ -1,0 +1,25 @@
+{
+  "kind": "acquisition_bindings",
+  "schemaVersion": "0.1.0",
+  "id": "binding-background",
+  "historyId": "profile-background",
+  "observationId": "observation-background",
+  "contextId": "context-background",
+  "sources": [
+    {
+      "sourceRef": "source:station",
+      "instrumentRef": "instrument:station"
+    }
+  ],
+  "products": [
+    {
+      "observationProductRef": "product:raw",
+      "contextProductRef": "product:captured-raw"
+    }
+  ],
+  "extensions": {
+    "org.example": {
+      "synthetic": true
+    }
+  }
+}

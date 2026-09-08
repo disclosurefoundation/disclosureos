@@ -1,0 +1,5 @@
+{
+  "runtime": "python",
+  "major": 3,
+  "arithmetic": "binary64-ordered-sum"
+}
