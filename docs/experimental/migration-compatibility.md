@@ -98,7 +98,7 @@ Exit 2 rejects usage or the whole input/review. No application changes occur at 
 
 ## Closeout sequence
 
-This establishes the bounded mapping policy and explicit sensor-reference review.
-Next is the developer compatibility guide, followed by end-to-end closeout verification
-across review, export, application, reading and rollback. Additional field conversions
-and native-file adapters should be driven by actual consumer/partner inputs.
+The [developer compatibility guide](migration-guide.md) and
+[end-to-end acceptance record](migration-closeout.md) complete the agreed bounded
+WP09 closeout. Additional field conversions and native-file adapters should now be
+driven by actual consumer or partner inputs as integration proceeds.
