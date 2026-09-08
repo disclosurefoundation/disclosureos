@@ -20,7 +20,10 @@ const pin = (bytes: Uint8Array) => ({
   byteLength: bytes.byteLength,
 });
 
-function assemble(source: Uint8Array, review: Uint8Array) {
+export function assembleMigrationBundle(
+  source: Uint8Array,
+  review: Uint8Array
+) {
   const report = buildReviewedMigration(source, review);
   const files = new Map<string, Uint8Array>([
     ["source.json", source],
@@ -86,7 +89,10 @@ function privateDirectory(path: string) {
 }
 
 // Paths come only from the recomputed bundle, never from an untrusted manifest.
-function compare(destination: string, bundle: ReturnType<typeof assemble>) {
+function compare(
+  destination: string,
+  bundle: ReturnType<typeof assembleMigrationBundle>
+) {
   privateDirectory(destination);
   privateDirectory(join(destination, "candidates"));
   const rootNames = [
@@ -153,7 +159,7 @@ export function exportMigration(args: ParsedArgs): void {
       verify ? join(destination, "review.json") : args.positional[1]!,
       2 * 1024 * 1024
     );
-    const bundle = assemble(source, review);
+    const bundle = assembleMigrationBundle(source, review);
     let action = "verified";
     if (!verify) {
       try {
@@ -207,4 +213,15 @@ export function exportMigration(args: ParsedArgs): void {
     else console.error(message);
     process.exitCode = 2;
   }
+}
+
+/** Recompute from bounded inputs and check every artifact before a ledger can receive it. */
+export function verifiedMigrationBundle(destination: string) {
+  privateDirectory(destination);
+  const bundle = assembleMigrationBundle(
+    readLocal(join(destination, "source.json"), 8 * 1024 * 1024),
+    readLocal(join(destination, "review.json"), 2 * 1024 * 1024)
+  );
+  compare(destination, bundle);
+  return bundle;
 }

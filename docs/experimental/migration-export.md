@@ -87,7 +87,8 @@ Exit 2: invalid input, conflicting destination or failed integrity/write check.
 
 ## Next WP09 checkpoint
 
-Define persistent import receipts and cross-batch identity/revision conflicts, then
-add resumable/idempotent application. Rollback must restore the previous read path
+The [cross-batch staging ledger](migration-ledger.md) now records persistent local
+receipts and conservative identity/revision conflicts. Next, define explicit conflict
+resolution and resumable/idempotent application receipts. Rollback must restore the previous read path
 without deleting imported v2 data. Other field mappings, sensor revision resolution,
 legacy score adapters and full application compatibility remain open WP09 gates.
