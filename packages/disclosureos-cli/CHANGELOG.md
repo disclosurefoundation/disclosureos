@@ -10,6 +10,8 @@ All notable changes to `@disclosureos/cli` are documented here. The format is ba
 
 ## Unreleased experimental work
 
+- Add private local candidate application with pinned intents, atomic publication, interruption-safe resume, retained historical revisions and self-contained completion receipt verification.
+
 - Add exact-ledger-pinned revision resolution plans with explicit select/defer decisions, preserved competing revisions and complete non-destructive planning reports.
 
 - Add immutable cross-batch staging ledgers with pinned receipts, exact batch deduplication, conservative candidate revision conflicts and self-contained verification.

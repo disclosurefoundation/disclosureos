@@ -131,3 +131,12 @@ See the [ledger policy](../../docs/experimental/migration-ledger.md).
 select/defer plan and emits complete row dispositions and selected candidate pins.
 Unmentioned identities stay unresolved. No candidates are changed or imported. See
 the [resolution contract](../../docs/experimental/migration-resolution.md).
+
+### Resumable local application
+
+`disclosureos migrate apply ledger decisions.json --out store [--json]` materializes
+explicitly selected candidates in a private local store, retains the full historical
+ledger and publishes a completion receipt. Repeating the same operation resumes missing
+files or reuses an exact completed store. `migrate apply-verify store [--json]` checks
+the completed store. No Index database or read path is changed. See the
+[local application contract](../../docs/experimental/migration-application.md).
