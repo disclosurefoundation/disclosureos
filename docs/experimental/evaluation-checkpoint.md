@@ -10,6 +10,7 @@ constitute a stable v2 release or independently reviewed science.
 | Population coverage | Descriptive name for the compatible legacy field counter | Presence is not applicability or analytical readiness |
 | Assessment summary | Current declarations, revisions, exact copies, differing outcomes and shared support | No aggregate score, confidence default or independence assumption |
 | Documentation checklist | Required documentary inputs and source-based next actions per applicable assessment | Does not establish scientific adequacy |
+| Released-document provenance | Selected document citation, access declarations, local bytes and direct extractions; non-blocking citation recommendations | Release authenticity, extraction accuracy and assessment support remain unchecked |
 | Research checklist | Calibration-use, timing, acquisition, documentation and local report prerequisites | Rejected and unperformed checks retain their status |
 | Research receipts | Exact packet/dependency pins and computed prerequisite results with rule identities | Supplied implementation/environment execution is unattested |
 | Summary receipts | Exact claim-history/dependency pins and computed declaration summaries | Referenced source/product artifacts remain unverified |
@@ -18,8 +19,8 @@ constitute a stable v2 release or independently reviewed science.
 
 ## Work still needed within WP08
 
-- Additional applicability profiles for historical testimony, released documents and
-  physical samples. Current contracts can represent these records, but representation
+- Additional applicability profiles for historical testimony and physical samples,
+  plus qualified review of the experimental released-document profile. Current contracts can represent these records, but representation
   alone does not establish a reviewed profile or sufficient scientific prerequisites.
 - Explicit recommended inputs where a reviewed methodology can justify them. Existing
   required-input checks must not be padded with speculative recommendations.

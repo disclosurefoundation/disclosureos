@@ -109,3 +109,5 @@ The experimental [research evaluation receipt](docs/experimental/evaluation-prov
 The [independent integrity checker and local replay tools](docs/experimental/receipt-replay.md) verify saved receipt bytes and compare them with the current fixed evaluator.
 
 [Assessment-summary provenance and replay](docs/experimental/summary-provenance.md) now pin the declared history and computed summary without verifying referenced source artifacts.
+
+The experimental [released-document provenance profile](docs/experimental/released-documents.md) checks selected documentary sources and direct extractions with required and recommended groups, without imposing sensor requirements.

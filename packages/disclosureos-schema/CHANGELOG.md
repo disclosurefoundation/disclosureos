@@ -6,6 +6,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased experimental work
 
+- Add selected released-document provenance with explicit release gaps, required byte/extraction checks and non-blocking citation recommendations. Assessment support and scientific eligibility remain unchecked.
+
 - Add a fixed research-evaluation workflow with versioned input schema, exact-byte dependency pins and digest-bound computed-result receipts; failures remain failures and supplied implementation/environment execution remains unattested.
 
 - Add opt-in research-completion guidance with required phase statuses, preserved early exits, and distinct missing versus rejected reviews and corrupt report bytes.
