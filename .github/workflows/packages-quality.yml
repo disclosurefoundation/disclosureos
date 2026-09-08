@@ -149,3 +149,4 @@ jobs:
       - run: pnpm test:v2-dataset
       - run: pnpm test:v2-intake
       - run: pnpm test:partner-audit
+      - run: pnpm test:partner-mapping

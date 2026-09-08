@@ -64,6 +64,8 @@ pnpm dlx @disclosureos/cli --help
 
 Unassessed local files can enter through the experimental [source intake workflow](docs/experimental/source-intake.md), preserving bytes and explicit metadata gaps before measurement or review.
 
+The experimental [ELDÆON mapping workflow](docs/experimental/eldaeon-field-mapping.md) inventories verified source exports and prepares acquisition metadata requirements.
+
 ## Schema Host
 
 DisclosureOS packages emit JSON Schema with stable `$id` URLs under
