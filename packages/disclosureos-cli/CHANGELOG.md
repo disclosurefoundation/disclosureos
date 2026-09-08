@@ -10,6 +10,8 @@ All notable changes to `@disclosureos/cli` are documented here. The format is ba
 
 ## Unreleased experimental work
 
+- Add private reviewed-candidate export bundles, exact rerun reuse, destination conflict rejection and current-code verification with complete exported/pending/quarantine accounting.
+
 - Add pinned migration review plans for explicit time/position mappings, preserved reviewer declarations and shared v2 validation. Reviewed candidates remain separate from imports and legacy evaluations.
 
 - Add bounded v1 migration dry runs with exact input preservation, validated review drafts, per-field unresolved mappings and complete candidate/quarantine accounting.

@@ -98,6 +98,7 @@ with rejection of ambiguous JSON. Unversioned sensor resolution and other field
 families remain unresolved. Legacy evaluations remain in their original versioned
 input envelope; separate score-export adapters are still future work.
 
-Next: separate candidate emission with exact pins and conflict rules, then resumable
-and idempotent application with rollback preserving imported v2 data. A completed
+[Private candidate export](migration-export.md) now provides exact file pins,
+verified reruns and destination conflicts. Next: cross-batch import conflicts and
+resumable/idempotent application with rollback preserving imported v2 data. A completed
 compatibility/profile guide and end-to-end application fixtures remain WP09 gates.

@@ -1,15 +1,20 @@
+import { exportMigration } from "./migration-export";
 import type { ParsedArgs } from "../utils/args";
 import { readLocal } from "./packet";
 import { buildMigrationReport } from "./migration-plan";
 import { reviewMigration } from "./migration-review";
 export function migrate(args: ParsedArgs): void {
+  if (args.subcommand === "export" || args.subcommand === "verify") {
+    exportMigration(args);
+    return;
+  }
   if (args.subcommand === "review") {
     reviewMigration(args);
     return;
   }
   if (args.flags["help"]) {
     console.log(
-      "disclosureos migrate dry-run <legacy.json> --id <source-namespace> [--json]\nFor explicit mappings: disclosureos migrate review <legacy.json> <review.json> [--json]\nExperimental review candidates only; no files or database records are written."
+      "disclosureos migrate dry-run <legacy.json> --id <source-namespace> [--json]\nFor explicit mappings: disclosureos migrate review <legacy.json> <review.json> [--json]\nExport: disclosureos migrate export <legacy.json> <review.json> --out <bundle> [--json]\nVerify: disclosureos migrate verify <bundle> [--json]\nExperimental artifacts only; no database records are written."
     );
     return;
   }
