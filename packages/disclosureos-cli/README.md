@@ -33,7 +33,8 @@ pnpm dlx @disclosureos/cli --help
 ```text
 disclosureos scaffold       Generate typed data structure templates
 disclosureos validate       Validate observation JSON files
-disclosureos completeness   Measure how fully observations populate the schema
+disclosureos population-coverage   Count populated legacy observation fields
+disclosureos completeness          Legacy name for population coverage
 disclosureos registry       Introspect field, observable, and origin registries
 disclosureos info           Quick reference for types and definitions
 disclosureos help           Show help
@@ -46,8 +47,8 @@ disclosureos version        Print version
 disclosureos scaffold observation --full
 disclosureos validate ./data/ --recursive
 disclosureos validate ./data/ --recursive --json
-disclosureos completeness ./out/ --recursive
-disclosureos completeness ./out/ --recursive --json
+disclosureos population-coverage ./out/ --recursive
+disclosureos population-coverage ./out/ --recursive --json
 disclosureos registry origins --id 1.1.3
 disclosureos info observable TO-3
 ```
@@ -73,3 +74,5 @@ multiple pinned packets. See the [two-session walkthrough](../../docs/experiment
 
 `intake create`, `intake inspect`, and `intake validate` receive unassessed local
 source files with explicit unknown context. See the [source intake guide](../../docs/experimental/source-intake.md) for byte preservation, missingness, and limits.
+
+The new population-coverage command is unreleased. It counts field presence, not analytical readiness. Its JSON and exit behavior match the legacy completeness command. See the [coverage guide](../../docs/experimental/population-coverage.md).

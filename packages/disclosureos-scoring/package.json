@@ -29,6 +29,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./population-coverage": {
+      "types": "./dist/population-coverage/index.d.ts",
+      "import": "./dist/population-coverage/index.js"
+    },
     "./completeness": {
       "types": "./dist/completeness/index.d.ts",
       "import": "./dist/completeness/index.js"

@@ -40,6 +40,7 @@ if (args.flags['version']) {
     case 'manifest':
       manifest(args);
       break;
+    case 'population-coverage':
     case 'completeness':
       completeness(args);
       break;
@@ -73,7 +74,8 @@ function printHelp(): void {
   console.log(`  packet         Inspect, validate, or reproduce an experimental v2 packet`);
   console.log(`  dataset        Inspect or validate an experimental dataset release`);
   console.log(`  intake         Receive and verify unassessed source files locally`);
-  console.log(`  completeness   Measure how fully observations populate the schema`);
+  console.log(`  population-coverage  Count populated legacy observation fields`);
+  console.log(`  completeness   Legacy name for population coverage`);
   console.log(`  registry       Introspect field, observable, and origin registries`);
   console.log(`  info           Quick reference for types and definitions`);
   console.log(`  help           Show this help message`);
@@ -84,7 +86,7 @@ function printHelp(): void {
   console.log(`${dim('Examples:')}`);
   console.log(`  disclosureos scaffold observation --full`);
   console.log(`  disclosureos validate ./data/ --recursive`);
-  console.log(`  disclosureos completeness ./out/ --recursive`);
+  console.log(`  disclosureos population-coverage ./out/ --recursive`);
   console.log(`  disclosureos registry origins --id 1.1.3`);
   console.log(`  disclosureos info observable TO-3\n`);
 }

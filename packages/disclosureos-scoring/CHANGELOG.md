@@ -4,6 +4,10 @@ All notable changes to `@disclosureos/scoring` are documented here. The format i
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased compatibility additions
+
+- Add descriptive population-coverage naming while preserving legacy completeness results and schema identities.
+
 ## Unreleased experimental work
 
 - Add opt-in assessment summaries with current revision filtering, exact declaration deduplication, explicit shared lineage, and distinct outcome labels. Missing confidence stays omitted; existing scoring APIs and package versions are unchanged.

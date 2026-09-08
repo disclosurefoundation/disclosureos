@@ -1,4 +1,8 @@
-// === Completeness (is it well-documented?) ===
+// === Population coverage (legacy schema field presence) ===
+export { getPopulationCoverage } from './population-coverage';
+export type { PopulationCoverageResult, PopulationCoverageOptions } from './population-coverage';
+
+// Legacy names retained for compatibility.
 export {
   getCompleteness,
   deriveFieldPaths,

@@ -2,7 +2,7 @@ import type { ParsedArgs } from '../utils/args';
 import { readJSON, findJSONFiles } from '../utils/fs';
 import { heading, success, error, dim, BRAND } from '../output/format';
 import { parseEnrichedObservation } from '@disclosureos/schema';
-import { getCompleteness } from '@disclosureos/scoring';
+import { getPopulationCoverage } from '@disclosureos/scoring';
 
 export interface FileCompletenessResult {
   file: string;
@@ -28,14 +28,15 @@ export interface CompletenessJsonOutput {
 }
 
 export function completeness(args: ParsedArgs): void {
+  const population = args.command === 'population-coverage';
   if (args.flags['help']) {
-    printUsage();
+    printUsage(population);
     return;
   }
 
   const targets = [args.subcommand, ...args.positional].filter((t): t is string => !!t);
   if (targets.length === 0) {
-    printUsage();
+    printUsage(population);
     return;
   }
 
@@ -78,7 +79,7 @@ export function completeness(args: ParsedArgs): void {
   const reqPercentages: number[] = [];
 
   for (const file of files) {
-    const result = scoreFile(file);
+    const result = scoreFile(file, population);
     if (!result.valid) {
       hasErrors = true;
       continue;
@@ -97,7 +98,7 @@ export function completeness(args: ParsedArgs): void {
   const reqMean = avg(reqPercentages);
   console.log(
     success(
-      `${files.length} file(s) scored — mean completeness ${mean}%, required fields ${reqMean}%`,
+      `${files.length} file(s) scored — mean ${population ? 'population coverage' : 'completeness'} ${mean}%, required fields ${reqMean}%`,
     ),
   );
 }
@@ -108,6 +109,7 @@ function avg(values: number[]): number {
 
 function scoreFile(
   filePath: string,
+  population = false,
 ): FileCompletenessResult {
   let data: unknown;
   try {
@@ -131,10 +133,10 @@ function scoreFile(
     return emptyResult(filePath, 'Invalid observation');
   }
 
-  const comp = getCompleteness(data as Record<string, unknown>);
+  const comp = getPopulationCoverage(data as Record<string, unknown>);
 
   console.log(`\n${dim(filePath)}`);
-  console.log(`  Completeness: ${comp.percentage}%  (${comp.present}/${comp.total} fields)`);
+  console.log(`  ${population ? 'Population coverage' : 'Completeness'}: ${comp.percentage}%  (${comp.present}/${comp.total} fields)`);
   console.log(`  Required:     ${comp.requiredPercentage}%  (${comp.requiredPresent}/${comp.requiredTotal})`);
   if (comp.missing.length > 0) {
     const shown = comp.missing.slice(0, 10);
@@ -218,7 +220,7 @@ function scoreFileQuiet(filePath: string): FileCompletenessResult {
     return emptyResult(filePath, `Invalid observation (${parsed.issues.length} issue${parsed.issues.length !== 1 ? 's' : ''})`);
   }
 
-  const comp = getCompleteness(data as Record<string, unknown>);
+  const comp = getPopulationCoverage(data as Record<string, unknown>);
 
   return {
     file: filePath,
@@ -231,26 +233,28 @@ function scoreFileQuiet(filePath: string): FileCompletenessResult {
   };
 }
 
-function printUsage(): void {
-  console.log(heading(`${BRAND} completeness`));
+function printUsage(population = false): void {
+  const command = population ? 'population-coverage' : 'completeness';
+  console.log(heading(`${BRAND} ${command}`));
   console.log(`\nMeasure how fully observation JSON files populate the records schema.\n`);
   console.log(`${dim('Usage:')}`);
-  console.log(`  disclosureos completeness <path...> [options]\n`);
+  console.log(`  disclosureos ${command} <path...> [options]\n`);
   console.log(`${dim('Paths:')}`);
   console.log(`  Accepts one or more files, directories, or shell globs.\n`);
   console.log(`${dim('Options:')}`);
   console.log(`  --recursive, -r      Score all JSON files in directories recursively`);
   console.log(`  --json, -j           Output results as structured JSON (for CI and scripts)`);
   console.log(`  --help, -h           Show this help message\n`);
+  if (population) console.log('  Counts field presence in the legacy schema, not analytical readiness or scientific quality.\n');
   console.log(`${dim('Scoring:')}`);
-  console.log(`  Files must be structurally valid observations before completeness is measured.`);
+  console.log(`  Files must be structurally valid observations before ${population ? 'population coverage' : 'completeness'} is measured.`);
   console.log(`  Invalid JSON or invalid observations exit non-zero without a score.\n`);
   console.log(`${dim('Output:')}`);
-  console.log(`  • Completeness percentage (0–100) — how many schema fields are populated`);
+  console.log(`  • ${population ? 'Population coverage' : 'Completeness'} percentage (0–100) — how many schema fields are populated`);
   console.log(`  • Required field percentage — coverage of required fields only`);
-  console.log(`  • Top missing field paths — the next fields to target\n`);
+  console.log(`  • Top missing field paths — ${population ? 'absent paths, without applicability or priority judgments' : 'the next fields to target'}\n`);
   console.log(`${dim('Examples:')}`);
-  console.log(`  disclosureos completeness ./data/nimitz.json`);
-  console.log(`  disclosureos completeness ./data/ --recursive`);
-  console.log(`  disclosureos completeness ./out/*.json --json\n`);
+  console.log(`  disclosureos ${command} ./data/nimitz.json`);
+  console.log(`  disclosureos ${command} ./data/ --recursive`);
+  console.log(`  disclosureos ${command} ./out/*.json --json\n`);
 }

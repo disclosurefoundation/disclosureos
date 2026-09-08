@@ -4,6 +4,10 @@ All notable changes to `@disclosureos/cli` are documented here. The format is ba
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased compatibility additions
+
+- Add descriptive population-coverage naming while preserving legacy completeness results and schema identities.
+
 ## Unreleased experimental work
 
 - Add experimental source intake with exact-byte local receipts, explicit unknown context and actionable gaps; CLI create, inspect and validate require no fabricated measurements or reviews.

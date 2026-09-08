@@ -148,6 +148,7 @@ jobs:
       - run: pnpm test:v2-packet-cli
       - run: pnpm test:v2-dataset
       - run: pnpm test:v2-intake
+      - run: pnpm test:population-coverage
       - run: pnpm test:v2-summary
       - run: pnpm test:v2-completion
       - run: pnpm test:v2-research-completion

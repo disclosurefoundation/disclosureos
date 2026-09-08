@@ -132,9 +132,9 @@ APIs and tests applicability, source-only/unassessed states, blocked prerequisit
 unknown confidence, per-topic isolation, hash failures, snapshot isolation and
 non-mutation. The complete validator result must remain identical.
 
-Next WP08 work: completion guidance for the instrument-research prerequisites,
-explicit recommended inputs where a reviewed profile defines them, clearly labeled
-population coverage, and combined versioned evaluation provenance. CLI and Index
-presentation remain later consumer work.
+Remaining WP08 work includes reviewed recommended inputs, additional domain profiles,
+and combined versioned evaluation provenance. The [research checklist](research-completion.md)
+and [legacy population coverage](population-coverage.md) now have separate guidance.
+CLI/Index integration of v2 evaluations and scientific review remain separate work.
 
 The [instrument research completion guide](research-completion.md) covers calibration, timing and report prerequisites for the selected research profile.
