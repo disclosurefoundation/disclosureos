@@ -10,6 +10,8 @@ All notable changes to `@disclosureos/cli` are documented here. The format is ba
 
 ## Unreleased experimental work
 
+- Add bounded v1 migration dry runs with exact input preservation, validated review drafts, per-field unresolved mappings and complete candidate/quarantine accounting.
+
 - Add explicit profile-preparation plans and private bundle assembly from exact existing inputs, retaining profile failures and missingness without inventing source metadata.
 
 - Add explicit profile listing, manifest inspection and bounded local evaluation with readable required/recommended checks, preserved full JSON results and separate receipt/profile status.

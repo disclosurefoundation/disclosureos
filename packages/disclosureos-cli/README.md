@@ -89,3 +89,13 @@ exit codes and synthetic examples. This command does not choose profiles automat
 or publish results.
 
 Experimental [profile preparation](../../docs/experimental/profile-preparation.md) assembles exact existing inputs into a new private evaluation bundle, calculates byte pins and preserves failing or unchecked profile outcomes.
+
+## Experimental legacy migration dry run
+
+`disclosureos migrate dry-run legacy.json --id source-namespace [--json]` prepares
+review drafts and accounts for every input. Exact source bytes and historical fields
+are retained in JSON output; scores and assessments are not promoted into v2 claims.
+No imports or file writes occur. Exit 0 means candidates prepared, 1 means quarantined
+rows, and 2 means an input/usage failure. See the
+[mapping and compatibility checkpoint](../../docs/experimental/migration-dry-run.md)
+for limits and remaining WP09 work.

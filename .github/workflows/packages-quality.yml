@@ -161,5 +161,6 @@ jobs:
       - run: pnpm test:v2-profile-evaluation
       - run: pnpm test:v2-profile-cli
       - run: pnpm test:v2-profile-preparation
+      - run: pnpm test:v2-migration-dry-run
       - run: pnpm test:partner-audit
       - run: pnpm test:partner-mapping
