@@ -170,3 +170,13 @@ legacy observation associations. JSON Schema is available at
 `@disclosureos/schema/experimental/v2/migration-legacy-scores/schema` and its `/0.1.0`
 alias. Plan validation does not verify historical calculations or observation links.
 See the [historical score adapter](../../docs/experimental/migration-legacy-scores.md).
+
+### Migration field dispositions and sensor revision review
+
+`migrate compatibility legacy.json [sensor-review.json] --id namespace --json`
+inventories mapped, retained-without-conversion and unresolved fields. Optional explicit
+review pins an acquisition's manifest and supplied provenance without inferring
+calibration or converting measurements. The review plan is exposed as
+`MigrationCompatibilitySchema`, `MigrationCompatibility` and
+`migrationCompatibilityJsonSchema` from `@disclosureos/schema/experimental/v2`.
+See the [compatibility inventory contract](../../docs/experimental/migration-compatibility.md).

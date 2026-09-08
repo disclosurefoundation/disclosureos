@@ -169,5 +169,6 @@ jobs:
       - run: pnpm test:v2-migration-apply
       - run: pnpm test:v2-migration-read-path
       - run: pnpm test:v2-migration-legacy-scores
+      - run: pnpm test:v2-migration-compatibility
       - run: pnpm test:partner-audit
       - run: pnpm test:partner-mapping

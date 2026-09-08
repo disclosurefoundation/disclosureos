@@ -10,6 +10,8 @@ All notable changes to `@disclosureos/cli` are documented here. The format is ba
 
 ## Unreleased experimental work
 
+- Add a bounded compatibility inventory and explicit, artifact-pinned sensor revision review without automatic measurement conversion.
+
 - Add explicit standalone legacy score preservation plans and adapters, retaining historical versions and values separately from v2 evaluations.
 
 - Add pinned local read-path activation, verified candidate reads and append-only rollback with stale-head protection and retained stores.

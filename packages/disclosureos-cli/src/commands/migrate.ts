@@ -1,3 +1,4 @@
+import { migrationCompatibility } from "./migration-compatibility";
 import { legacyScores } from "./migration-legacy-scores";
 import { migrationReadPath } from "./migration-read-path";
 import { applyMigration } from "./migration-apply";
@@ -9,6 +10,10 @@ import { readLocal } from "./packet";
 import { buildMigrationReport } from "./migration-plan";
 import { reviewMigration } from "./migration-review";
 export function migrate(args: ParsedArgs): void {
+  if (args.subcommand === "compatibility") {
+    migrationCompatibility(args);
+    return;
+  }
   if (args.subcommand === "legacy-scores") {
     legacyScores(args);
     return;
@@ -43,7 +48,7 @@ export function migrate(args: ParsedArgs): void {
   }
   if (args.flags["help"]) {
     console.log(
-      "disclosureos migrate dry-run <legacy.json> --id <source-namespace> [--json]\nFor explicit mappings: disclosureos migrate review <legacy.json> <review.json> [--json]\nExport: disclosureos migrate export <legacy.json> <review.json> --out <bundle> [--json]\nVerify: disclosureos migrate verify <bundle> [--json]\nLedger: disclosureos migrate ledger <bundle>... --out <ledger> [--json]\nVerify ledger: disclosureos migrate ledger-verify <ledger> [--json]\nResolve: disclosureos migrate resolve <ledger> <decisions.json> [--json]\nApply locally: disclosureos migrate apply <ledger> <decisions.json> --out <store> [--json]\nVerify application: disclosureos migrate apply-verify <store> [--json]\nRead selector: disclosureos migrate read-path <selector> [--json]\nSee migrate read-init --help for activation and rollback.\nPreserve historical scores: disclosureos migrate legacy-scores <scores.json> <plan.json> [--json]\nExperimental local artifacts only; no Index database writes."
+      "disclosureos migrate dry-run <legacy.json> --id <source-namespace> [--json]\nFor explicit mappings: disclosureos migrate review <legacy.json> <review.json> [--json]\nExport: disclosureos migrate export <legacy.json> <review.json> --out <bundle> [--json]\nVerify: disclosureos migrate verify <bundle> [--json]\nLedger: disclosureos migrate ledger <bundle>... --out <ledger> [--json]\nVerify ledger: disclosureos migrate ledger-verify <ledger> [--json]\nResolve: disclosureos migrate resolve <ledger> <decisions.json> [--json]\nApply locally: disclosureos migrate apply <ledger> <decisions.json> --out <store> [--json]\nVerify application: disclosureos migrate apply-verify <store> [--json]\nRead selector: disclosureos migrate read-path <selector> [--json]\nSee migrate read-init --help for activation and rollback.\nPreserve historical scores: disclosureos migrate legacy-scores <scores.json> <plan.json> [--json]\nField inventory and sensor review: disclosureos migrate compatibility <legacy.json> [sensor-review.json] --id <namespace> [--json]\nExperimental local artifacts only; no Index database writes."
     );
     return;
   }
