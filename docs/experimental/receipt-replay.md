@@ -114,3 +114,5 @@ files, symlinks, invalid refs, size limits and exclusive example export. Existin
 package contracts and receipt serialization are unchanged. Broader profile coverage,
 independently implemented research semantics, reviewed partner reproduction and
 Index integration remain separate work.
+
+The same Python checker also supports the distinct [assessment-summary receipt](summary-provenance.md) format; its corresponding replay tool preserves summary-specific verification limits.

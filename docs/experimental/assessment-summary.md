@@ -140,3 +140,5 @@ CLI/Index integration of v2 evaluations and scientific review remain separate wo
 The schema-owned [documentation completion checklist](documentation-completion.md)
 now supplies per-assessment required-input statuses and next actions by invoking
 the existing documentary validator. It remains separate from declaration summaries.
+
+[Assessment-summary provenance and replay](summary-provenance.md) now pin the declared history and computed summary without verifying referenced source artifacts.

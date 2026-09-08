@@ -10,6 +10,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased experimental work
 
+- Add exact-byte assessment-summary provenance, versioned input schema, and unsigned computed-result receipts; existing declaration summary behavior and source-verification limits are preserved.
+
 - Add opt-in assessment summaries with current revision filtering, exact declaration deduplication, explicit shared lineage, and distinct outcome labels. Missing confidence stays omitted; existing scoring APIs and package versions are unchanged.
 
 ## 1.1.0

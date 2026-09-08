@@ -124,3 +124,5 @@ confidence interval and does not certify scientific eligibility. See the
 [assessment summary guide](../../docs/experimental/assessment-summary.md).
 
 The additive population-coverage names are unreleased. See the [coverage guide](../../docs/experimental/population-coverage.md) for retained counting rules, denominator limits and compatibility. The existing compellingness methodology is separate from experimental v2 assessment summaries and profile completion.
+
+[Assessment-summary provenance and replay](../../docs/experimental/summary-provenance.md) now pin the declared history and computed summary without verifying referenced source artifacts.

@@ -35,7 +35,11 @@ def verify(data):
         raise ValueError("Receipt exceeds 8 MiB limit")
     receipt = decode(data.decode("utf-8", errors="strict"))
     exact_keys(receipt, ["format", "serialization", "request", "output", "requestJson", "outputJson"], "receipt")
-    if receipt["format"] != "disclosureos-research-evaluation-receipt:0.1.0":
+    formats = {
+        "disclosureos-research-evaluation-receipt:0.1.0": ["packet", "completion"],
+        "disclosureos-assessment-summary-receipt:0.1.0": ["summary"],
+    }
+    if type(receipt["format"]) is not str or receipt["format"] not in formats:
         raise ValueError("Unsupported receipt format")
     if receipt["serialization"] != "sorted-json-utf8:0.1.0":
         raise ValueError("Unsupported serialization")
@@ -54,7 +58,7 @@ def verify(data):
         if len(raw) != pin["byteLength"] or hashlib.sha256(raw).hexdigest() != pin["sha256"]:
             raise ValueError(name + " payload differs from its exact-byte pin")
         payload = decode(text)
-        exact_keys(payload, ["manifest", "rules", "limits"] if name == "request" else ["packet", "completion"], name + " payload")
+        exact_keys(payload, ["manifest", "rules", "limits"] if name == "request" else formats[receipt["format"]], name + " payload")
         if any(type(v) is not dict for v in payload.values()):
             raise ValueError("Payload sections must be JSON objects")
         checks[name] = "passed"
