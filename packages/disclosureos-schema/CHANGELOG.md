@@ -6,6 +6,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased experimental work
 
+- Add explicit standalone legacy score preservation plans and adapters, retaining historical versions and values separately from v2 evaluations.
+
 - Add exact-ledger-pinned revision resolution plans with explicit select/defer decisions, preserved competing revisions and complete non-destructive planning reports.
 
 - Add pinned migration review plans for explicit time/position mappings, preserved reviewer declarations and shared v2 validation. Reviewed candidates remain separate from imports and legacy evaluations.

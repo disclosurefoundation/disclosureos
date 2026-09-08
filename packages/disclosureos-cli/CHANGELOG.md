@@ -10,6 +10,8 @@ All notable changes to `@disclosureos/cli` are documented here. The format is ba
 
 ## Unreleased experimental work
 
+- Add explicit standalone legacy score preservation plans and adapters, retaining historical versions and values separately from v2 evaluations.
+
 - Add pinned local read-path activation, verified candidate reads and append-only rollback with stale-head protection and retained stores.
 
 - Add private local candidate application with pinned intents, atomic publication, interruption-safe resume, retained historical revisions and self-contained completion receipt verification.

@@ -81,7 +81,9 @@
     "emit:v2-migration-resolution": "node conformance/emit-migration-resolution.mjs",
     "test:v2-migration-resolution": "node --test conformance/migration-resolution.test.mjs",
     "test:v2-migration-apply": "node --test conformance/migration-apply.test.mjs",
-    "test:v2-migration-read-path": "node --test conformance/migration-read-path.test.mjs"
+    "test:v2-migration-read-path": "node --test conformance/migration-read-path.test.mjs",
+    "emit:v2-migration-legacy-scores": "node conformance/emit-migration-legacy-scores.mjs",
+    "test:v2-migration-legacy-scores": "node --test conformance/migration-legacy-scores.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

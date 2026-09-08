@@ -161,3 +161,12 @@ the v2 claim-history parser. See the
 are available from `/experimental/v2`. The schema validates plan structure; the CLI
 checks exact ledger pins and identity/revision membership before reporting selections.
 See the [resolution contract](../../docs/experimental/migration-resolution.md).
+
+### Historical score preservation plans (experimental)
+
+`MigrationLegacyScoresSchema`, `MigrationLegacyScores` and
+`migrationLegacyScoresJsonSchema` describe pinned standalone score inputs and declared
+legacy observation associations. JSON Schema is available at
+`@disclosureos/schema/experimental/v2/migration-legacy-scores/schema` and its `/0.1.0`
+alias. Plan validation does not verify historical calculations or observation links.
+See the [historical score adapter](../../docs/experimental/migration-legacy-scores.md).

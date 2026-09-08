@@ -36,3 +36,6 @@ export type { MigrationReview } from './migration-review';
 
 export { MigrationResolutionSchema, MIGRATION_RESOLUTION_SCHEMA_ID, migrationResolutionJsonSchema } from './migration-resolution';
 export type { MigrationResolution } from './migration-resolution';
+
+export { MigrationLegacyScoresSchema, MIGRATION_LEGACY_SCORES_SCHEMA_ID, migrationLegacyScoresJsonSchema } from './migration-legacy-scores';
+export type { MigrationLegacyScores } from './migration-legacy-scores';
