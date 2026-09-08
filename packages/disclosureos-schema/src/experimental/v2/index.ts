@@ -33,3 +33,6 @@ export type { ProfilePreparation } from './profile-preparation';
 
 export { MigrationReviewSchema, MIGRATION_REVIEW_SCHEMA_ID, migrationReviewJsonSchema } from './migration-review';
 export type { MigrationReview } from './migration-review';
+
+export { MigrationResolutionSchema, MIGRATION_RESOLUTION_SCHEMA_ID, migrationResolutionJsonSchema } from './migration-resolution';
+export type { MigrationResolution } from './migration-resolution';

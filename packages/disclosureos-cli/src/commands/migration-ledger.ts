@@ -254,3 +254,29 @@ export function migrationLedger(args: ParsedArgs) {
     process.exitCode = 2;
   }
 }
+
+/** Verified snapshot for downstream planning; never trust ledger-supplied artifact paths. */
+export function verifiedMigrationLedger(root: string) {
+  privateDir(root);
+  privateDir(join(root, "inputs"));
+  const ids = readdirSync(join(root, "inputs")).sort();
+  if (
+    !ids.length ||
+    ids.length > 16 ||
+    ids.some((id) => !/^[a-f0-9]{64}$/.test(id))
+  )
+    throw new Error("Invalid ledger input inventory");
+  let bytes = 0,
+    entries = 0;
+  const bundles = ids.map((id) => {
+    const bundle = verifiedMigrationBundle(join(root, "inputs", id));
+    for (const data of bundle.files.values()) bytes += data.byteLength;
+    entries += bundle.files.size;
+    if (bytes > 256 * 1024 * 1024 || entries >= 20000)
+      throw new Error("Ledger input budget exceeded");
+    return bundle;
+  });
+  const plan = planLedger(bundles);
+  compareLedger(root, plan);
+  return plan;
+}

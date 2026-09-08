@@ -154,3 +154,10 @@ from `/experimental/v2`. The schema validates the review plan structure, source 
 and attribution; the CLI additionally validates target values and references through
 the v2 claim-history parser. See the
 [review checkpoint](../../docs/experimental/migration-review.md).
+
+### Experimental migration resolution plans
+
+`MigrationResolutionSchema`, `MigrationResolution` and `migrationResolutionJsonSchema`
+are available from `/experimental/v2`. The schema validates plan structure; the CLI
+checks exact ledger pins and identity/revision membership before reporting selections.
+See the [resolution contract](../../docs/experimental/migration-resolution.md).

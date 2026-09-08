@@ -77,7 +77,9 @@
     "emit:v2-migration-review": "node conformance/emit-migration-review.mjs",
     "test:v2-migration-review": "node --test conformance/migration-review.test.mjs",
     "test:v2-migration-export": "node --test conformance/migration-export.test.mjs",
-    "test:v2-migration-ledger": "node --test conformance/migration-ledger.test.mjs"
+    "test:v2-migration-ledger": "node --test conformance/migration-ledger.test.mjs",
+    "emit:v2-migration-resolution": "node conformance/emit-migration-resolution.mjs",
+    "test:v2-migration-resolution": "node --test conformance/migration-resolution.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
