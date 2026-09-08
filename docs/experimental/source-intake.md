@@ -118,3 +118,7 @@ The generated receipt retained nine unknown-context gaps. The sample and receipt
 were kept outside the repository. This proves receipt integrity for that fetched
 snapshot; it does not verify timing interpretation, calibration, or scientific
 eligibility. The remote sample may change. Native-file mapping remains open.
+
+The [ELDÆON mapping guide](eldaeon-field-mapping.md) now provides a local field
+inventory, conditional timing diagnostics and a partner handoff checklist for
+verified source exports. It does not automatically promote an intake.
