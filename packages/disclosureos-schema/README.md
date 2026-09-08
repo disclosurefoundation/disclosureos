@@ -132,3 +132,5 @@ research eligibility. See the [source intake guide](../../docs/experimental/sour
 per-assessment applicability, requirement status, blocked prerequisites and next
 actions. It preserves validator diagnostics and computes no aggregate score.
 See the [documentation completion guide](../../docs/experimental/documentation-completion.md).
+
+The opt-in `evaluateInstrumentResearchCompletion` adds six required phase statuses and source-based next actions while preserving the research validator result. See the [research completion guide](../../docs/experimental/research-completion.md).
