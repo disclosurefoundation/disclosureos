@@ -56,7 +56,9 @@
     "./experimental/v2/physical-samples/schema": "./schema/experimental/physical-sample-selection-0.1.0.schema.json",
     "./experimental/v2/physical-samples/schema/0.1.0": "./schema/experimental/physical-sample-selection-0.1.0.schema.json",
     "./experimental/v2/profile-evaluation/schema": "./schema/experimental/profile-evaluation-0.1.0.schema.json",
-    "./experimental/v2/profile-evaluation/schema/0.1.0": "./schema/experimental/profile-evaluation-0.1.0.schema.json"
+    "./experimental/v2/profile-evaluation/schema/0.1.0": "./schema/experimental/profile-evaluation-0.1.0.schema.json",
+    "./experimental/v2/profile-preparation/schema": "./schema/experimental/profile-preparation-0.1.0.schema.json",
+    "./experimental/v2/profile-preparation/schema/0.1.0": "./schema/experimental/profile-preparation-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

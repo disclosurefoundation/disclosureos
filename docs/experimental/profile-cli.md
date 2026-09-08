@@ -74,7 +74,7 @@ can coexist with a passing profile; required gaps and failed checks cannot.
 JSON output contains `selectedWorkflow`, the exact manifest hash, any local-read issues,
 and the complete unmodified `evaluation` result from the public API, including its full
 profile output and unsigned receipt. Local-read errors can prevent overall CLI success
-even when a partial evaluator result exists. The CLI performs no writes; it does not
+even when a partial evaluator result exists. The check command performs no writes; it does not
 save a receipt automatically. If needed, extract `evaluation.receipt` from the JSON
 result and preserve the corresponding original inputs for the existing replay tool.
 Do not treat the CLI's full JSON result envelope as a standalone receipt.
@@ -126,7 +126,8 @@ inputs. Older bundles can recover that same manifest from `receipt.requestJson`'
 `manifest` member. Their receipt identities and replay format are unchanged. No real
 partner record, witness account or specimen is used in these examples.
 
-This is the first CLI consumer path for these profiles. Guided manifest/selection
-creation, web/Index integration and access-aware public projection remain separate work.
+The [preparation command](profile-preparation.md) now assembles existing input files
+and calculates evaluation pins. Guided selection authoring, web/Index integration and
+access-aware public projection remain separate work.
 Qualified methodology review and independent scientific validation also remain open;
 see the [evaluation checkpoint](evaluation-checkpoint.md).

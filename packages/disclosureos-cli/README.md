@@ -87,3 +87,5 @@ Human output separates input integrity, profile outcome, receipt status and next
 See [profile CLI documentation](../../docs/experimental/profile-cli.md) for input layout,
 exit codes and synthetic examples. This command does not choose profiles automatically
 or publish results.
+
+Experimental [profile preparation](../../docs/experimental/profile-preparation.md) assembles exact existing inputs into a new private evaluation bundle, calculates byte pins and preserves failing or unchecked profile outcomes.

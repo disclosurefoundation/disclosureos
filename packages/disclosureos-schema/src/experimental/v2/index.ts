@@ -28,3 +28,5 @@ export { PhysicalSampleSelectionSchema, PHYSICAL_SAMPLE_SELECTION_SCHEMA_ID, PHY
 export type { PhysicalSampleSelection, PhysicalSampleResult, PhysicalSampleReport, PhysicalSampleRecordCheck, PhysicalSampleRequirement, PhysicalSampleRequirementId, PhysicalSampleIssue } from './physical-samples';
 export { ProfileEvaluationSchema, PROFILE_EVALUATION_SCHEMA_ID, PROFILE_EVALUATION_POLICY, profileEvaluationJsonSchema, evaluateProfileEvaluation } from './profile-evaluation';
 export type { ProfileEvaluation, ProfileEvaluationOptions, ProfileEvaluationReceipt, ProfileEvaluationResult } from './profile-evaluation';
+export { ProfilePreparationSchema, PROFILE_PREPARATION_SCHEMA_ID, profilePreparationJsonSchema } from './profile-preparation';
+export type { ProfilePreparation } from './profile-preparation';

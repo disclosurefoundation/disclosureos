@@ -70,7 +70,9 @@
     "emit:v2-profile-evaluation": "node conformance/emit-profile-evaluation.mjs",
     "test:v2-profile-evaluation": "node --test conformance/profile-evaluation.test.mjs",
     "replay:profile-evaluation": "node scripts/replay-profile-evaluation.mjs",
-    "test:v2-profile-cli": "node --test conformance/profile-cli.test.mjs"
+    "test:v2-profile-cli": "node --test conformance/profile-cli.test.mjs",
+    "emit:v2-profile-preparation": "node conformance/emit-profile-preparation.mjs",
+    "test:v2-profile-preparation": "node --test conformance/profile-preparation.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

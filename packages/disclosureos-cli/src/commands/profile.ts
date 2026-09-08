@@ -1,3 +1,4 @@
+import { prepareProfile } from "./profile-prepare";
 import { lstatSync } from "node:fs";
 import { resolve, dirname, join } from "node:path";
 import { createHash } from "node:crypto";
@@ -226,6 +227,7 @@ export async function profile(args: ParsedArgs): Promise<void> {
   if (args.flags["help"]) {
     console.log(`DisclosureOS experimental profile checks
 
+  disclosureos profile prepare <plan.json> --out <new-directory> [--json]
   disclosureos profile list [--json]
   disclosureos profile inspect <evaluation.json> [--json]
   disclosureos profile check <evaluation.json> [--json]
@@ -235,11 +237,14 @@ or physical-samples:0.1.0. Instrument research uses packet validate.
 Inspect reads only the manifest. Check reads history.json, selection.json,
 assets/<fileRef> and dependencies/<ref> beside it. No network access or supplied-code execution.
 Limits: 8 MiB metadata, 4096 input files, 256 MiB total bytes.
-Exit: 0 listed/inspected or profile passed with receipt, 1 failed/unchecked checks,
+Prepare writes a new private bundle from a profile_preparation plan; preparation
+success does not mean the profile passed. Other commands are read-only.
+Exit: 0 prepared/listed/inspected or profile passed with receipt, 1 failed/unchecked checks,
 2 usage or unreadable/malformed manifest. Full JSON may contain restricted metadata;
 apply access policy before sharing. No automatic profile selection or aggregate score.`);
     return;
   }
+  if (args.subcommand === "prepare") { await prepareProfile(args); return; }
   const output: Output = {
     command: args.subcommand,
     success: false,
