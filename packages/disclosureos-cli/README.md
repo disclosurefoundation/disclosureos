@@ -160,3 +160,13 @@ associations. Every input row is retained as historical, pending review or quara
 The report preserves exact input bytes and excludes historical scores from v2 rankings;
 it neither recalculates scores nor imports v2 evaluations. See the
 [adapter contract](../../docs/experimental/migration-legacy-scores.md).
+
+### Migration field dispositions and sensor revision review
+
+`migrate compatibility legacy.json [sensor-review.json] --id namespace --json`
+inventories mapped, retained-without-conversion and unresolved fields. Optional explicit
+review pins an acquisition's manifest and supplied provenance without inferring
+calibration or converting measurements. The review plan is exposed as
+`MigrationCompatibilitySchema`, `MigrationCompatibility` and
+`migrationCompatibilityJsonSchema` from `@disclosureos/schema/experimental/v2`.
+See the [compatibility inventory contract](../../docs/experimental/migration-compatibility.md).
