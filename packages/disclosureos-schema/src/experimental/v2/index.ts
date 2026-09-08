@@ -20,3 +20,5 @@ export { INSTRUMENT_RESEARCH_COMPLETION_POLICY, INSTRUMENT_RESEARCH_REQUIREMENTS
 export type { ResearchRequirementId, ResearchCompletionStatus, ResearchCompletionAction, ResearchCompletionRequirement, InstrumentResearchCompletionResult } from './research-completion';
 export { ResearchEvaluationSchema, RESEARCH_EVALUATION_SCHEMA_ID, RESEARCH_EVALUATION_POLICY, researchEvaluationJsonSchema, evaluateResearchEvaluation } from './evaluation-provenance';
 export type { ResearchEvaluation, ResearchEvaluationOptions, ResearchEvaluationOutput, ResearchEvaluationReceipt, ResearchEvaluationResult } from './evaluation-provenance';
+export { ReleasedDocumentSelectionSchema, RELEASED_DOCUMENT_SELECTION_SCHEMA_ID, RELEASED_DOCUMENT_PROFILE, RELEASED_DOCUMENT_REQUIREMENTS, releasedDocumentSelectionJsonSchema, evaluateReleasedDocuments } from './released-documents';
+export type { ReleasedDocumentSelection, ReleasedDocumentResult, ReleasedDocumentReport, ReleasedDocumentRequirement, ReleasedDocumentRequirementId, ReleasedDocumentCompletionStatus, ReleasedDocumentIssue } from './released-documents';

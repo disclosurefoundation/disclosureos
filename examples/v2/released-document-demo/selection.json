@@ -1,0 +1,17 @@
+{
+  "kind": "released_document_selection",
+  "schemaVersion": "0.1.0",
+  "id": "synthetic-release-selection",
+  "historyId": "released-document-history",
+  "observationId": "archive-demo",
+  "documents": [
+    {
+      "sourceRef": "source:report",
+      "release": {
+        "state": "known",
+        "releasedBy": "Synthetic archive (fixture only)",
+        "reference": "Synthetic catalog record DEMO-1; not a real release"
+      }
+    }
+  ]
+}

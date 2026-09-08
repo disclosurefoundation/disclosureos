@@ -1,0 +1,61 @@
+{
+  "kind": "claim_history",
+  "schemaVersion": "0.1.0",
+  "id": "released-document-history",
+  "observation": {
+    "kind": "observation",
+    "schemaVersion": "0.1.0",
+    "id": "archive-demo",
+    "status": "draft",
+    "createdAt": "2026-09-07T00:00:00Z",
+    "updatedAt": "2026-09-07T00:00:00Z",
+    "eventTime": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "position": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "sources": [
+      {
+        "id": "report",
+        "kind": "document",
+        "access": "public",
+        "title": "Synthetic archival document",
+        "uri": "https://example.org/synthetic/archive-demo",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "a05b5d7adf07f534eba6fb909e0bd7035f94f1ad883586f5c00835da6bf63fe7"
+        }
+      }
+    ],
+    "products": [],
+    "methods": [],
+    "frames": [],
+    "assertions": [],
+    "measurements": [],
+    "processing": []
+  },
+  "claims": [
+    {
+      "id": "statement",
+      "kind": "source_assertion",
+      "recordedAt": "2026-09-07T00:00:00Z",
+      "topic": "synthetic archival report",
+      "subject": {
+        "kind": "observation"
+      },
+      "text": "The source does not record an event time or location.",
+      "provenance": {
+        "sourceRef": "source:report",
+        "locator": {
+          "kind": "page",
+          "page": 1
+        },
+        "extractedBy": "person:synthetic-extractor",
+        "attributedTo": "Synthetic archive"
+      }
+    }
+  ]
+}
