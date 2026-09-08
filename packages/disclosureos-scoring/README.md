@@ -111,3 +111,11 @@ them directly, with no DisclosureOS-specific adapter.
 ## License
 
 MIT © [Disclosure Foundation](https://disclosure.org)
+
+## Experimental v2 assessment summaries (unreleased)
+
+`summarizeClaimHistory` from `@disclosureos/scoring/experimental/v2` groups current
+attributed declarations by topic and subject, collapses exact copies, and discloses
+shared inputs and differing outcome labels. It computes no aggregate score or
+confidence interval and does not certify scientific eligibility. See the
+[assessment summary guide](../../docs/experimental/assessment-summary.md).

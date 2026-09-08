@@ -55,3 +55,7 @@ New semantic rules are `CLAIM.SUPERSESSION_SCOPE`, `CLAIM.REVISION_ORDER`, `CLAI
 This completes the first claim-history increment, not WP04. Research profiles must still define documentary support and sensor-derived lineage requirements; qualified review must establish scientific adequacy. Vocabulary pinning, shared CLI/browser orchestration, score redesign, public projection, migration/quarantine, dataset/instrument history, and independent Python validation remain planned. The envelope is not a public projection: restricted source values, assertions, provenance, text, and extensions require a separate publication policy. No package release or application adoption is included.
 
 An optional schema-owned [assessment documentation profile](assessment-documentation.md) now checks declared support and caller-supplied byte integrity. The records parser itself remains unchanged and still reports profile and external checks as not checked.
+
+The scoring-owned [assessment summary](assessment-summary.md) now implements
+current-declaration deduplication and shared-support diagnostics. It does not
+upgrade the parser's scientific or profile checks.
