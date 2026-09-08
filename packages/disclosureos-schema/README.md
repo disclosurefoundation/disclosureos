@@ -140,3 +140,5 @@ The experimental `evaluateResearchEvaluation` pins local packet/dependency bytes
 The experimental [released-document provenance profile](../../docs/experimental/released-documents.md) checks selected documentary sources and direct extractions with required and recommended groups, without imposing sensor requirements.
 
 Experimental [historical-testimony provenance](../../docs/experimental/historical-testimony.md) checks selected account bytes, recording citations and direct extraction attribution without assigning credibility or requiring sensor data.
+
+Experimental [physical-sample provenance](../../docs/experimental/physical-samples.md) checks collected-specimen declarations, custody continuity and cited record bytes without certifying material identity, composition or origin.

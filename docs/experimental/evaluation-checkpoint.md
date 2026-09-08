@@ -12,6 +12,7 @@ constitute a stable v2 release or independently reviewed science.
 | Documentation checklist | Required documentary inputs and source-based next actions per applicable assessment | Does not establish scientific adequacy |
 | Released-document provenance | Selected document citation, access declarations, local bytes and direct extractions; non-blocking citation recommendations | Release authenticity, extraction accuracy and assessment support remain unchecked |
 | Historical-testimony provenance | Selected account citation, preserved access, local bytes and speaker/extractor attribution for direct extractions | Speaker identity, account accuracy, firsthand knowledge and witness independence remain unchecked |
+| Physical-sample provenance | Selected collected-specimen labels, cited collection/current-holder records, supplied handoff continuity and local record bytes | Physical identity, genuine/complete custody, chronology, contamination, composition and origin remain unchecked |
 | Research checklist | Calibration-use, timing, acquisition, documentation and local report prerequisites | Rejected and unperformed checks retain their status |
 | Research receipts | Exact packet/dependency pins and computed prerequisite results with rule identities | Supplied implementation/environment execution is unattested |
 | Summary receipts | Exact claim-history/dependency pins and computed declaration summaries | Referenced source/product artifacts remain unverified |
@@ -20,11 +21,15 @@ constitute a stable v2 release or independently reviewed science.
 
 ## Work still needed within WP08
 
-- A physical-sample applicability profile, plus qualified review of the experimental
-  released-document and historical-testimony profiles. Representation alone does not
+- Qualified review of the experimental released-document, historical-testimony and
+  collected-specimen profiles. Physical derivation, splitting and mixture lineage are
+  not yet modeled by the collected-specimen profile. Representation alone does not
   establish a reviewed profile or sufficient scientific prerequisites.
 - Explicit recommended inputs where a reviewed methodology can justify them. Existing
   required-input checks must not be padded with speculative recommendations.
+- Exact-input receipts and local replay for released-document, historical-testimony
+  and collected-specimen results. Existing research and summary receipts do not
+  reproduce these newer profile results.
 - Consumer presentation that keeps declarations, documentary gaps, measurement quality,
   competing interpretations and disagreement distinct, including clear profile selection.
 - Review and potential refinement of the experimental rules against conventional
@@ -44,5 +49,5 @@ publication. Merging these PRs does not publish packages, schemas, applications 
 Native partner data, calibration/timing artifacts, permissions and qualified review
 remain external dependencies. The synthetic examples demonstrate software behavior;
 they are not substitutes for those materials. The next useful planning checkpoint is
-to bound the physical-sample profile against an explicit provenance fixture,
-while retaining the partner handoff path for sensor-specific work.
+to review the four domain paths together, close profile-result reproducibility gaps,
+and define explicit consumer profile selection while retaining the partner handoff path.
