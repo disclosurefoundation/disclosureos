@@ -85,7 +85,9 @@
     "emit:v2-migration-legacy-scores": "node conformance/emit-migration-legacy-scores.mjs",
     "test:v2-migration-legacy-scores": "node --test conformance/migration-legacy-scores.test.mjs",
     "emit:v2-migration-compatibility": "node conformance/emit-migration-compatibility.mjs",
-    "test:v2-migration-compatibility": "node --test conformance/migration-compatibility.test.mjs"
+    "test:v2-migration-compatibility": "node --test conformance/migration-compatibility.test.mjs",
+    "test:v2-migration-closeout": "node --test conformance/migration-closeout.test.mjs",
+    "verify:wp09-closeout": "node conformance/migration-closeout.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

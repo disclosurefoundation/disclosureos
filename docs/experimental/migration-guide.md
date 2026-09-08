@@ -204,8 +204,8 @@ The broad remaining work is intentionally outside this migration boundary: addit
 native-file conversions, Index storage/reader integration, public projection, browser UX,
 partner mapping review, independent semantic reproduction and stable publication.
 
-This guide is WP09 closeout checkpoint 2. Checkpoint 3 will exercise representative
-records across the full supported migration/read/rollback workflow and record acceptance
-results and limitations. WP09 is not closed by this guide alone. After that verification,
-WP10 should demonstrate the contracts in the consumer experience, using a bounded partner
-slice when available and explicitly labeled fixtures before then.
+The [WP09 acceptance record](migration-closeout.md) now documents the completed bounded
+local migration scope, runnable end-to-end checks and retained limitations. The next
+milestone is WP10 consumer integration, using a bounded partner slice when available
+and explicitly labeled fixtures before then. Production migration, public projection
+and scientific validation remain separate gates.

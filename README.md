@@ -128,3 +128,5 @@ Start with the [developer compatibility guide](docs/experimental/migration-guide
 for breaking changes, parser/version boundaries, supported migration workflows,
 exit handling, profile differences and non-destructive local rollback. This is an
 experimental checkout workflow; merging package changes does not deploy the Index.
+
+The bounded local migration scope is covered by the [WP09 acceptance record](docs/experimental/migration-closeout.md). Run `pnpm verify:wp09-closeout` to exercise the synthetic migration, application, read and rollback workflow. This does not certify production integration or scientific validity.
