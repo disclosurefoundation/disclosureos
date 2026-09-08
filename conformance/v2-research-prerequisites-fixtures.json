@@ -1,0 +1,1542 @@
+{
+  "base": {
+    "history": {
+      "kind": "claim_history",
+      "schemaVersion": "0.1.0",
+      "id": "profile-example",
+      "observation": {
+        "kind": "observation",
+        "schemaVersion": "0.1.0",
+        "id": "synthetic",
+        "status": "draft",
+        "createdAt": "2026-09-07T00:00:00Z",
+        "updatedAt": "2026-09-07T00:00:00Z",
+        "eventTime": {
+          "state": "known",
+          "value": {
+            "kind": "instant",
+            "value": "2026-07-28T12:10:00Z",
+            "timeScale": "UTC"
+          },
+          "sourceRefs": [
+            "source:station"
+          ]
+        },
+        "position": {
+          "state": "unknown",
+          "reason": "not_collected"
+        },
+        "sources": [
+          {
+            "id": "station",
+            "kind": "instrument_data",
+            "access": "unknown"
+          },
+          {
+            "id": "report",
+            "kind": "document",
+            "access": "public",
+            "digest": {
+              "algorithm": "sha256",
+              "value": "9ec816b8cbd1f5f541f28d17e91f5c6b47b7f5eef635fe23f1f9f4b4b2d0a72b"
+            }
+          }
+        ],
+        "products": [
+          {
+            "id": "raw",
+            "kind": "raw",
+            "format": "application/json",
+            "access": "public",
+            "sourceRefs": [
+              "source:station"
+            ],
+            "digest": {
+              "algorithm": "sha256",
+              "value": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121"
+            }
+          },
+          {
+            "id": "summary",
+            "kind": "derived",
+            "format": "application/json",
+            "access": "public",
+            "generatedBy": "process:reduction",
+            "digest": {
+              "algorithm": "sha256",
+              "value": "547aa2ac3c7bb2adb031a3aa078a966ae16b20a83d47aa118b1d8eba0a6a2714"
+            }
+          }
+        ],
+        "methods": [
+          {
+            "id": "review",
+            "version": "0.1.0",
+            "description": "Synthetic review declaration; not a validated scientific method."
+          },
+          {
+            "id": "reduction",
+            "version": "0.1.0",
+            "description": "Synthetic reduction declaration; output not reproduced."
+          }
+        ],
+        "frames": [],
+        "assertions": [
+          {
+            "id": "velocity",
+            "field": "measurement",
+            "measurementId": "velocity",
+            "value": {
+              "value": -3,
+              "unit": "m/s",
+              "uncertainty": {
+                "kind": "standard",
+                "magnitude": 1,
+                "unit": "m/s",
+                "sourceRefs": [
+                  "product:raw"
+                ]
+              }
+            },
+            "provenance": {
+              "sourceRef": "product:summary",
+              "locator": {
+                "kind": "json_pointer",
+                "pointer": "/velocity"
+              }
+            }
+          }
+        ],
+        "measurements": [
+          {
+            "id": "velocity",
+            "quantity": "radial velocity",
+            "value": {
+              "value": -3,
+              "unit": "m/s",
+              "uncertainty": {
+                "kind": "standard",
+                "magnitude": 1,
+                "unit": "m/s",
+                "sourceRefs": [
+                  "product:raw"
+                ]
+              }
+            },
+            "sourceRefs": [
+              "assertion:velocity"
+            ],
+            "selection": {
+              "assertionRef": "assertion:velocity",
+              "consideredAssertionRefs": [
+                "assertion:velocity"
+              ],
+              "evaluatedBy": "person:synthetic",
+              "evaluatedAt": "2026-09-07T00:00:00Z",
+              "methodRef": "method:review",
+              "methodVersion": "0.1.0",
+              "rationale": "Copy the synthetic value."
+            }
+          }
+        ],
+        "processing": [
+          {
+            "id": "reduction",
+            "methodRef": "method:reduction",
+            "methodVersion": "0.1.0",
+            "performedBy": "person:synthetic",
+            "performedAt": "2026-09-07T00:00:00Z",
+            "inputRefs": [
+              "product:raw"
+            ],
+            "outputRefs": [
+              "product:summary"
+            ]
+          }
+        ]
+      },
+      "claims": [
+        {
+          "id": "statement",
+          "kind": "source_assertion",
+          "recordedAt": "2026-09-07T00:00:00Z",
+          "topic": "synthetic motion",
+          "subject": {
+            "kind": "observation"
+          },
+          "text": "Synthetic source calls this confirmed.",
+          "reportedLevel": "confirmed",
+          "provenance": {
+            "sourceRef": "source:report",
+            "locator": {
+              "kind": "page",
+              "page": 1
+            },
+            "extractedBy": "agent:synthetic"
+          }
+        },
+        {
+          "id": "review",
+          "kind": "assessment",
+          "recordedAt": "2026-09-07T00:00:00Z",
+          "topic": "synthetic motion",
+          "subject": {
+            "kind": "measurement",
+            "measurementId": "velocity"
+          },
+          "status": "assessed",
+          "outcome": "confirmed",
+          "evaluatedBy": "person:synthetic",
+          "evaluatedAt": "2026-09-07T00:00:00Z",
+          "methodRef": "method:review",
+          "methodVersion": "0.1.0",
+          "inputRefs": [
+            "claim:statement",
+            "measurement:velocity"
+          ],
+          "rationale": "Synthetic documentary profile exercise; no scientific conclusion."
+        }
+      ]
+    },
+    "context": {
+      "kind": "acquisition_context",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic-context",
+      "instruments": [
+        {
+          "id": "station",
+          "identity": {
+            "state": "known",
+            "manufacturer": "Synthetic Instruments",
+            "model": "Control station",
+            "serialNumber": "SYNTHETIC-001"
+          }
+        }
+      ],
+      "manifests": [
+        {
+          "id": "r1",
+          "instrumentRef": "instrument:station",
+          "version": "1",
+          "publishedAt": "2026-07-01T00:00:00Z",
+          "artifact": {
+            "mediaType": "application/json",
+            "byteLength": 367,
+            "digest": {
+              "algorithm": "sha256",
+              "value": "e753c4cb8d4cb63e44820a4bc64202efa9d8d13b6a6e02abc3709e7237923c95"
+            }
+          },
+          "configuration": {
+            "hardware": {
+              "state": "known",
+              "value": "synthetic-rev-1"
+            },
+            "firmware": {
+              "state": "known",
+              "value": "synthetic-1.0"
+            }
+          },
+          "channels": [
+            {
+              "id": "radar",
+              "quantity": "radial velocity",
+              "unit": "m/s",
+              "sampling": {
+                "state": "known",
+                "rateHz": 10
+              }
+            }
+          ]
+        }
+      ],
+      "deployments": [
+        {
+          "id": "d1",
+          "instrumentRef": "instrument:station",
+          "manifest": {
+            "state": "pinned",
+            "ref": "manifest:r1"
+          },
+          "period": {
+            "state": "known",
+            "start": "2026-07-28T12:00:00Z",
+            "end": "2026-07-28T13:00:00Z",
+            "timeScale": "UTC"
+          },
+          "site": {
+            "state": "known",
+            "value": "Synthetic test location"
+          }
+        }
+      ],
+      "calibrations": [
+        {
+          "id": "c1",
+          "instrumentRef": "instrument:station",
+          "manifestRef": "manifest:r1",
+          "channelId": "radar",
+          "performedAt": {
+            "state": "known",
+            "value": "2026-07-01T00:00:00Z"
+          },
+          "validity": {
+            "state": "known",
+            "start": "2026-07-01T00:00:00Z",
+            "end": "2026-08-01T00:00:00Z",
+            "timeScale": "UTC"
+          },
+          "method": {
+            "state": "known",
+            "id": "synthetic-method",
+            "version": "1",
+            "description": "Synthetic calibration declaration, not executed."
+          },
+          "report": {
+            "state": "known",
+            "artifact": {
+              "mediaType": "text/plain",
+              "byteLength": 94,
+              "digest": {
+                "algorithm": "sha256",
+                "value": "2a89ae47a0e0994215daaf343f90381b594fcef5a9eeffcee2514d1cfebb1bc2"
+              }
+            }
+          },
+          "uncertainty": {
+            "kind": "expanded",
+            "magnitude": 0.1,
+            "unit": "m/s",
+            "coverageFactor": 2
+          },
+          "review": {
+            "state": "reviewed",
+            "reviewedBy": "person:synthetic",
+            "reviewedAt": "2026-09-07T00:00:00Z",
+            "outcome": "accepted",
+            "report": {
+              "mediaType": "text/plain",
+              "byteLength": 96,
+              "digest": {
+                "algorithm": "sha256",
+                "value": "ba420298f61777d12a69177185cad149c0cae8659a69e9ef337d5407e2075881"
+              }
+            }
+          }
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "a1",
+          "instrumentRef": "instrument:station",
+          "manifest": {
+            "state": "pinned",
+            "ref": "manifest:r1"
+          },
+          "deployment": {
+            "state": "pinned",
+            "ref": "deployment:d1"
+          },
+          "time": {
+            "state": "known",
+            "start": "2026-07-28T12:10:00Z",
+            "end": "2026-07-28T12:11:00Z",
+            "timeScale": "UTC",
+            "kind": "interval"
+          },
+          "classification": "background",
+          "clock": {
+            "source": {
+              "state": "known",
+              "value": "Synthetic oscillator"
+            },
+            "synchronization": {
+              "state": "known",
+              "value": "Synthetic synchronization declaration"
+            },
+            "resolution": {
+              "state": "known",
+              "magnitude": 1,
+              "unit": "ns"
+            },
+            "uncertainty": {
+              "state": "known",
+              "magnitude": 0,
+              "unit": "ns"
+            }
+          },
+          "channels": [
+            {
+              "channelId": "radar",
+              "calibration": {
+                "state": "pinned",
+                "ref": "calibration:c1"
+              }
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "id": "captured-raw",
+          "acquisitionRef": "acquisition:a1",
+          "kind": "raw",
+          "artifact": {
+            "mediaType": "application/json",
+            "byteLength": 23,
+            "digest": {
+              "algorithm": "sha256",
+              "value": "421c6a30ead65bee74999f11bab233e70bf78eec3172055374b60ed2a9957121"
+            }
+          }
+        }
+      ],
+      "extensions": {
+        "org.example": {
+          "synthetic": true
+        }
+      }
+    },
+    "bindings": {
+      "kind": "acquisition_bindings",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic-binding",
+      "historyId": "profile-example",
+      "observationId": "synthetic",
+      "contextId": "synthetic-context",
+      "sources": [
+        {
+          "sourceRef": "source:station",
+          "instrumentRef": "instrument:station"
+        }
+      ],
+      "products": [
+        {
+          "observationProductRef": "product:raw",
+          "contextProductRef": "product:captured-raw"
+        }
+      ],
+      "extensions": {
+        "org.example": {
+          "synthetic": true
+        }
+      }
+    },
+    "mapping": {
+      "kind": "measurement_bindings",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic-measurements",
+      "historyId": "profile-example",
+      "observationId": "synthetic",
+      "contextId": "synthetic-context",
+      "acquisitionBindingsId": "synthetic-binding",
+      "measurements": [
+        {
+          "measurementRef": "measurement:velocity",
+          "observationProductRef": "product:raw",
+          "channelId": "radar",
+          "time": {
+            "state": "known",
+            "kind": "instant",
+            "value": "2026-07-28T12:10:30Z",
+            "timeScale": "UTC"
+          }
+        }
+      ]
+    },
+    "review": {
+      "kind": "instrument_research_review",
+      "schemaVersion": "0.1.0",
+      "id": "synthetic-research-review",
+      "historyId": "profile-example",
+      "observationId": "synthetic",
+      "contextId": "synthetic-context",
+      "acquisitionBindingsId": "synthetic-binding",
+      "measurementBindingsId": "synthetic-measurements",
+      "purpose": {
+        "id": "synthetic-control",
+        "version": "1",
+        "description": "Exercise documentary prerequisites, not a scientific analysis."
+      },
+      "measurements": [
+        {
+          "measurementRef": "measurement:velocity",
+          "calibrationRef": "calibration:c1",
+          "calibrationUse": {
+            "state": "reviewed",
+            "reviewedBy": "person:synthetic",
+            "reviewedAt": "2026-09-07T00:00:00Z",
+            "outcome": "accepted",
+            "rationale": "Synthetic demonstration only; intended use is a contract test.",
+            "method": {
+              "id": "synthetic-review",
+              "version": "1",
+              "description": "Declare acceptance for a synthetic test; no actual analysis performed."
+            },
+            "report": {
+              "mediaType": "text/plain",
+              "byteLength": 106,
+              "digest": {
+                "algorithm": "sha256",
+                "value": "0ad42ba97e1a85e1daefcc0b42eda45ddb16688262910c3a6ff1a372e092ac83"
+              }
+            }
+          },
+          "timing": {
+            "kind": "coverage_interval",
+            "coverageProbability": 0.95,
+            "lower": "2026-07-28T12:10:29.9Z",
+            "upper": "2026-07-28T12:10:30.1Z",
+            "timeScale": "UTC",
+            "assumptions": [
+              "Synthetic total timing interval includes declared clock synchronization and resolution effects; not computed from native samples."
+            ],
+            "review": {
+              "state": "reviewed",
+              "reviewedBy": "person:synthetic",
+              "reviewedAt": "2026-09-07T00:00:00Z",
+              "outcome": "accepted",
+              "rationale": "Synthetic demonstration only; intended use is a contract test.",
+              "method": {
+                "id": "synthetic-review",
+                "version": "1",
+                "description": "Declare acceptance for a synthetic test; no actual analysis performed."
+              },
+              "report": {
+                "mediaType": "text/plain",
+                "byteLength": 97,
+                "digest": {
+                  "algorithm": "sha256",
+                  "value": "4c483c2cd8b6ce582681d3dcbd29bbb043dd9db367e4189dd369ca0fe4c6db43"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "assets": {
+    "observationAssets": {
+      "source:report": "Synthetic source statement.\n",
+      "product:raw": "{\"samples\":[-2,-3,-4]}\n",
+      "product:summary": "{\"velocity\":-3}\n"
+    },
+    "contextAssets": {
+      "product:captured-raw": "{\"samples\":[-2,-3,-4]}\n",
+      "manifest:r1": "{\"channels\": [{\"id\": \"radar\", \"quantity\": \"radial velocity\", \"sampling\": {\"rateHz\": 10, \"state\": \"known\"}, \"unit\": \"m/s\"}], \"configuration\": {\"firmware\": {\"state\": \"known\", \"value\": \"synthetic-1.0\"}, \"hardware\": {\"state\": \"known\", \"value\": \"synthetic-rev-1\"}}, \"id\": \"r1\", \"instrumentRef\": \"instrument:station\", \"publishedAt\": \"2026-07-01T00:00:00Z\", \"version\": \"1\"}\n",
+      "calibration:c1/report": "Synthetic calibration report for channel radar and manifest r1. No calibration was performed.\n",
+      "calibration:c1/review": "Synthetic calibration acceptance report. No real instrument or competent review is represented.\n"
+    },
+    "reviewAssets": {
+      "measurement:velocity/calibration-use": "Synthetic calibration-use review for the synthetic radial velocity measurement. No scientific validation.\n",
+      "measurement:velocity/timing": "Synthetic timing review for the synthetic radial velocity measurement. No scientific validation.\n"
+    }
+  },
+  "cases": [
+    {
+      "id": "complete synthetic reviews",
+      "changes": [],
+      "profile": "passed",
+      "codes": [],
+      "structural": true
+    },
+    {
+      "id": "wrong historyId",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "historyId"
+          ],
+          "value": "wrong"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.DOCUMENT_ID"
+      ],
+      "structural": true
+    },
+    {
+      "id": "wrong observationId",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "observationId"
+          ],
+          "value": "wrong"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.DOCUMENT_ID"
+      ],
+      "structural": true
+    },
+    {
+      "id": "wrong contextId",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "contextId"
+          ],
+          "value": "wrong"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.DOCUMENT_ID"
+      ],
+      "structural": true
+    },
+    {
+      "id": "wrong acquisitionBindingsId",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "acquisitionBindingsId"
+          ],
+          "value": "wrong"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.DOCUMENT_ID"
+      ],
+      "structural": true
+    },
+    {
+      "id": "wrong measurementBindingsId",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurementBindingsId"
+          ],
+          "value": "wrong"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.DOCUMENT_ID"
+      ],
+      "structural": true
+    },
+    {
+      "id": "missing reviews",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements"
+          ],
+          "value": []
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.REVIEW_MISSING"
+      ],
+      "structural": true
+    },
+    {
+      "id": "duplicate reviews",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements"
+          ],
+          "value": [
+            {
+              "measurementRef": "measurement:velocity",
+              "calibrationRef": "calibration:c1",
+              "calibrationUse": {
+                "state": "reviewed",
+                "reviewedBy": "person:synthetic",
+                "reviewedAt": "2026-09-07T00:00:00Z",
+                "outcome": "accepted",
+                "rationale": "Synthetic demonstration only; intended use is a contract test.",
+                "method": {
+                  "id": "synthetic-review",
+                  "version": "1",
+                  "description": "Declare acceptance for a synthetic test; no actual analysis performed."
+                },
+                "report": {
+                  "mediaType": "text/plain",
+                  "byteLength": 106,
+                  "digest": {
+                    "algorithm": "sha256",
+                    "value": "0ad42ba97e1a85e1daefcc0b42eda45ddb16688262910c3a6ff1a372e092ac83"
+                  }
+                }
+              },
+              "timing": {
+                "kind": "coverage_interval",
+                "coverageProbability": 0.95,
+                "lower": "2026-07-28T12:10:29.9Z",
+                "upper": "2026-07-28T12:10:30.1Z",
+                "timeScale": "UTC",
+                "assumptions": [
+                  "Synthetic total timing interval includes declared clock synchronization and resolution effects; not computed from native samples."
+                ],
+                "review": {
+                  "state": "reviewed",
+                  "reviewedBy": "person:synthetic",
+                  "reviewedAt": "2026-09-07T00:00:00Z",
+                  "outcome": "accepted",
+                  "rationale": "Synthetic demonstration only; intended use is a contract test.",
+                  "method": {
+                    "id": "synthetic-review",
+                    "version": "1",
+                    "description": "Declare acceptance for a synthetic test; no actual analysis performed."
+                  },
+                  "report": {
+                    "mediaType": "text/plain",
+                    "byteLength": 97,
+                    "digest": {
+                      "algorithm": "sha256",
+                      "value": "4c483c2cd8b6ce582681d3dcbd29bbb043dd9db367e4189dd369ca0fe4c6db43"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "measurementRef": "measurement:velocity",
+              "calibrationRef": "calibration:c1",
+              "calibrationUse": {
+                "state": "reviewed",
+                "reviewedBy": "person:synthetic",
+                "reviewedAt": "2026-09-07T00:00:00Z",
+                "outcome": "accepted",
+                "rationale": "Synthetic demonstration only; intended use is a contract test.",
+                "method": {
+                  "id": "synthetic-review",
+                  "version": "1",
+                  "description": "Declare acceptance for a synthetic test; no actual analysis performed."
+                },
+                "report": {
+                  "mediaType": "text/plain",
+                  "byteLength": 106,
+                  "digest": {
+                    "algorithm": "sha256",
+                    "value": "0ad42ba97e1a85e1daefcc0b42eda45ddb16688262910c3a6ff1a372e092ac83"
+                  }
+                }
+              },
+              "timing": {
+                "kind": "coverage_interval",
+                "coverageProbability": 0.95,
+                "lower": "2026-07-28T12:10:29.9Z",
+                "upper": "2026-07-28T12:10:30.1Z",
+                "timeScale": "UTC",
+                "assumptions": [
+                  "Synthetic total timing interval includes declared clock synchronization and resolution effects; not computed from native samples."
+                ],
+                "review": {
+                  "state": "reviewed",
+                  "reviewedBy": "person:synthetic",
+                  "reviewedAt": "2026-09-07T00:00:00Z",
+                  "outcome": "accepted",
+                  "rationale": "Synthetic demonstration only; intended use is a contract test.",
+                  "method": {
+                    "id": "synthetic-review",
+                    "version": "1",
+                    "description": "Declare acceptance for a synthetic test; no actual analysis performed."
+                  },
+                  "report": {
+                    "mediaType": "text/plain",
+                    "byteLength": 97,
+                    "digest": {
+                      "algorithm": "sha256",
+                      "value": "4c483c2cd8b6ce582681d3dcbd29bbb043dd9db367e4189dd369ca0fe4c6db43"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.DUPLICATE"
+      ],
+      "structural": true
+    },
+    {
+      "id": "unknown measurement",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "measurementRef"
+          ],
+          "value": "measurement:missing"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.MEASUREMENT"
+      ],
+      "structural": true
+    },
+    {
+      "id": "wrong calibration",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "calibrationRef"
+          ],
+          "value": "calibration:other"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.CALIBRATION_PIN"
+      ],
+      "structural": true
+    },
+    {
+      "id": "calibration unreviewed",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "calibrations",
+            "0",
+            "review"
+          ],
+          "value": {
+            "state": "unreviewed"
+          }
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.CALIBRATION_REVIEW"
+      ],
+      "structural": true
+    },
+    {
+      "id": "calibration rejected",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "calibrations",
+            "0",
+            "review",
+            "outcome"
+          ],
+          "value": "rejected"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.CALIBRATION_REVIEW"
+      ],
+      "structural": true
+    },
+    {
+      "id": "calibrationUse rejected",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "calibrationUse",
+            "outcome"
+          ],
+          "value": "rejected"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.REVIEW_NOT_ACCEPTED"
+      ],
+      "structural": true
+    },
+    {
+      "id": "timing/review rejected",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "review",
+            "outcome"
+          ],
+          "value": "rejected"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.REVIEW_NOT_ACCEPTED"
+      ],
+      "structural": true
+    },
+    {
+      "id": "calibration inconclusive",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "calibrations",
+            "0",
+            "review",
+            "outcome"
+          ],
+          "value": "inconclusive"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.CALIBRATION_REVIEW"
+      ],
+      "structural": true
+    },
+    {
+      "id": "calibrationUse inconclusive",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "calibrationUse",
+            "outcome"
+          ],
+          "value": "inconclusive"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.REVIEW_NOT_ACCEPTED"
+      ],
+      "structural": true
+    },
+    {
+      "id": "timing/review inconclusive",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "review",
+            "outcome"
+          ],
+          "value": "inconclusive"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.REVIEW_NOT_ACCEPTED"
+      ],
+      "structural": true
+    },
+    {
+      "id": "calibrationUse unreviewed",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "calibrationUse"
+          ],
+          "value": {
+            "state": "unreviewed"
+          }
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.REVIEW_REQUIRED"
+      ],
+      "structural": true
+    },
+    {
+      "id": "calibrationUse malformed date",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "calibrationUse",
+            "reviewedAt"
+          ],
+          "value": "2026-02-30T00:00:00Z"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.REVIEW_TIME"
+      ],
+      "structural": true
+    },
+    {
+      "id": "calibrationUse before inputs",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "calibrationUse",
+            "reviewedAt"
+          ],
+          "value": "2026-07-01T00:00:00Z"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.REVIEW_ORDER"
+      ],
+      "structural": true
+    },
+    {
+      "id": "timing/review unreviewed",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "review"
+          ],
+          "value": {
+            "state": "unreviewed"
+          }
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.REVIEW_REQUIRED"
+      ],
+      "structural": true
+    },
+    {
+      "id": "timing/review malformed date",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "review",
+            "reviewedAt"
+          ],
+          "value": "2026-02-30T00:00:00Z"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.REVIEW_TIME"
+      ],
+      "structural": true
+    },
+    {
+      "id": "timing/review before inputs",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "review",
+            "reviewedAt"
+          ],
+          "value": "2026-07-01T00:00:00Z"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.REVIEW_ORDER"
+      ],
+      "structural": true
+    },
+    {
+      "id": "unknown timing",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing"
+          ],
+          "value": {
+            "kind": "unknown",
+            "reason": "clock uncertainty interpretation unavailable"
+          }
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.TIMING_REQUIRED"
+      ],
+      "structural": true
+    },
+    {
+      "id": "bad lower calendar",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "lower"
+          ],
+          "value": "2026-02-30T00:00:00Z"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.TIME_INVALID"
+      ],
+      "structural": true
+    },
+    {
+      "id": "reversed timing",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "lower"
+          ],
+          "value": "2026-07-28T12:10:31Z"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.TIME_ORDER"
+      ],
+      "structural": true
+    },
+    {
+      "id": "shifted interval",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "lower"
+          ],
+          "value": "2026-07-28T12:10:30.01Z"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.NOMINAL_ENCLOSURE"
+      ],
+      "structural": true
+    },
+    {
+      "id": "narrow interval",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "upper"
+          ],
+          "value": "2026-07-28T12:10:29.99Z"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.NOMINAL_ENCLOSURE"
+      ],
+      "structural": true
+    },
+    {
+      "id": "outside capture lower",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "lower"
+          ],
+          "value": "2026-07-28T12:09:59.999999999999Z"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.TIMING_OUTSIDE_WINDOW"
+      ],
+      "structural": true
+    },
+    {
+      "id": "closed upper touches exclusive end",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "upper"
+          ],
+          "value": "2026-07-28T12:11:00Z"
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.TIMING_OUTSIDE_WINDOW"
+      ],
+      "structural": true
+    },
+    {
+      "id": "fraction before end",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "upper"
+          ],
+          "value": "2026-07-28T12:10:59.999999999999Z"
+        }
+      ],
+      "profile": "passed",
+      "codes": [],
+      "structural": true
+    },
+    {
+      "id": "offset preserves same interval",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "lower"
+          ],
+          "value": "2026-07-28T05:10:29.9-07:00"
+        }
+      ],
+      "profile": "passed",
+      "codes": [],
+      "structural": true
+    },
+    {
+      "id": "explicit bound",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing"
+          ],
+          "value": {
+            "kind": "bound",
+            "lower": "2026-07-28T12:10:29.9Z",
+            "upper": "2026-07-28T12:10:30.1Z",
+            "timeScale": "UTC",
+            "assumptions": [
+              "Synthetic total timing interval includes declared clock synchronization and resolution effects; not computed from native samples."
+            ],
+            "review": {
+              "state": "reviewed",
+              "reviewedBy": "person:synthetic",
+              "reviewedAt": "2026-09-07T00:00:00Z",
+              "outcome": "accepted",
+              "rationale": "Synthetic demonstration only; intended use is a contract test.",
+              "method": {
+                "id": "synthetic-review",
+                "version": "1",
+                "description": "Declare acceptance for a synthetic test; no actual analysis performed."
+              },
+              "report": {
+                "mediaType": "text/plain",
+                "byteLength": 97,
+                "digest": {
+                  "algorithm": "sha256",
+                  "value": "4c483c2cd8b6ce582681d3dcbd29bbb043dd9db367e4189dd369ca0fe4c6db43"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "profile": "passed",
+      "codes": [],
+      "structural": true
+    },
+    {
+      "id": "invalid coverage 0",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "coverageProbability"
+          ],
+          "value": 0
+        }
+      ],
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "structural": false
+    },
+    {
+      "id": "invalid coverage 1",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "coverageProbability"
+          ],
+          "value": 1
+        }
+      ],
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "structural": false
+    },
+    {
+      "id": "invalid coverage -1",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "coverageProbability"
+          ],
+          "value": -1
+        }
+      ],
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "structural": false
+    },
+    {
+      "id": "invalid coverage 1.1",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "coverageProbability"
+          ],
+          "value": 1.1
+        }
+      ],
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "structural": false
+    },
+    {
+      "id": "missing assumptions",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "timing",
+            "assumptions"
+          ],
+          "value": []
+        }
+      ],
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "structural": false
+    },
+    {
+      "id": "unexpected field",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "success"
+          ],
+          "value": true
+        }
+      ],
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "structural": false
+    },
+    {
+      "id": "whitespace purpose",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "purpose",
+            "description"
+          ],
+          "value": "   "
+        }
+      ],
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "structural": false
+    },
+    {
+      "id": "empty report digest",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "calibrationUse",
+            "report",
+            "digest",
+            "value"
+          ],
+          "value": ""
+        }
+      ],
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "structural": false
+    },
+    {
+      "id": "zero byte report",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "measurements",
+            "0",
+            "calibrationUse",
+            "report",
+            "byteLength"
+          ],
+          "value": 0
+        }
+      ],
+      "profile": "not_checked",
+      "codes": [
+        "STRUCT.VALUE"
+      ],
+      "structural": false
+    },
+    {
+      "id": "upstream binding wrong id",
+      "changes": [
+        {
+          "path": [
+            "bindings",
+            "contextId"
+          ],
+          "value": "wrong"
+        }
+      ],
+      "profile": "not_checked",
+      "codes": [
+        "BINDING.DOCUMENT_ID"
+      ],
+      "structural": true
+    },
+    {
+      "id": "unknown clock magnitude",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "acquisitions",
+            "0",
+            "clock",
+            "uncertainty"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "not provided"
+          }
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "BINDING.CONTEXT_INCOMPLETE"
+      ],
+      "structural": true
+    },
+    {
+      "id": "nominal time unknown",
+      "changes": [
+        {
+          "path": [
+            "mapping",
+            "measurements",
+            "0",
+            "time"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "not provided"
+          }
+        }
+      ],
+      "profile": "failed",
+      "codes": [
+        "RESEARCH.NOMINAL_TIME"
+      ],
+      "structural": true
+    }
+  ]
+}

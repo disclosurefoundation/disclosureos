@@ -49,3 +49,7 @@ Next: define the instrument research eligibility criteria, including calibration
 ## Conformance
 
 `pnpm test:v2-measurements` runs the portable JSON fixture corpus plus boundary, lineage-bypass, byte-integrity, snapshot, and schema parity checks. Regenerate the experimental artifact with `pnpm emit:v2-measurements`; its checked-in identity is frozen for this contract version.
+
+The separate [research prerequisites profile](research-prerequisites.md) now checks
+purpose-specific calibration-use reviews and explicitly interpreted timing
+intervals. It does not compute clock uncertainty or certify scientific eligibility.

@@ -1,0 +1,71 @@
+{
+  "kind": "instrument_research_review",
+  "schemaVersion": "0.1.0",
+  "id": "synthetic-research-review",
+  "historyId": "profile-example",
+  "observationId": "synthetic",
+  "contextId": "synthetic-context",
+  "acquisitionBindingsId": "synthetic-binding",
+  "measurementBindingsId": "synthetic-measurements",
+  "purpose": {
+    "id": "synthetic-control",
+    "version": "1",
+    "description": "Exercise documentary prerequisites, not a scientific analysis."
+  },
+  "measurements": [
+    {
+      "measurementRef": "measurement:velocity",
+      "calibrationRef": "calibration:c1",
+      "calibrationUse": {
+        "state": "reviewed",
+        "reviewedBy": "person:synthetic",
+        "reviewedAt": "2026-09-07T00:00:00Z",
+        "outcome": "accepted",
+        "rationale": "Synthetic demonstration only; intended use is a contract test.",
+        "method": {
+          "id": "synthetic-review",
+          "version": "1",
+          "description": "Declare acceptance for a synthetic test; no actual analysis performed."
+        },
+        "report": {
+          "mediaType": "text/plain",
+          "byteLength": 106,
+          "digest": {
+            "algorithm": "sha256",
+            "value": "0ad42ba97e1a85e1daefcc0b42eda45ddb16688262910c3a6ff1a372e092ac83"
+          }
+        }
+      },
+      "timing": {
+        "kind": "coverage_interval",
+        "coverageProbability": 0.95,
+        "lower": "2026-07-28T12:10:29.9Z",
+        "upper": "2026-07-28T12:10:30.1Z",
+        "timeScale": "UTC",
+        "assumptions": [
+          "Synthetic total timing interval includes declared clock synchronization and resolution effects; not computed from native samples."
+        ],
+        "review": {
+          "state": "reviewed",
+          "reviewedBy": "person:synthetic",
+          "reviewedAt": "2026-09-07T00:00:00Z",
+          "outcome": "accepted",
+          "rationale": "Synthetic demonstration only; intended use is a contract test.",
+          "method": {
+            "id": "synthetic-review",
+            "version": "1",
+            "description": "Declare acceptance for a synthetic test; no actual analysis performed."
+          },
+          "report": {
+            "mediaType": "text/plain",
+            "byteLength": 97,
+            "digest": {
+              "algorithm": "sha256",
+              "value": "4c483c2cd8b6ce582681d3dcbd29bbb043dd9db367e4189dd369ca0fe4c6db43"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
