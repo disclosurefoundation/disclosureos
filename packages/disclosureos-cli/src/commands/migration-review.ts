@@ -28,7 +28,7 @@ function decimalKey(literal: string): string {
 }
 
 /** Audit valid JSON lexically before allowing reviewed mappings. No recursive walk. */
-function reviewedJson(bytes: Uint8Array): unknown {
+export function reviewedJson(bytes: Uint8Array): unknown {
   const text = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
   const value: unknown = JSON.parse(text);
   const stack: (Set<string> | null)[] = [];

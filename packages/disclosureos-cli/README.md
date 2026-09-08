@@ -124,3 +124,10 @@ verified bundles in a private snapshot, deduplicates exact batches and marks dif
 revisions of a stable identity as conflicts. `migrate ledger-verify ledger [--json]`
 recomputes the snapshot from retained inputs. These are staging receipts, not imports.
 See the [ledger policy](../../docs/experimental/migration-ledger.md).
+
+### Explicit revision resolution
+
+`disclosureos migrate resolve ledger decisions.json [--json]` checks a ledger-pinned
+select/defer plan and emits complete row dispositions and selected candidate pins.
+Unmentioned identities stay unresolved. No candidates are changed or imported. See
+the [resolution contract](../../docs/experimental/migration-resolution.md).

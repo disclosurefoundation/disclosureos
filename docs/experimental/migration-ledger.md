@@ -92,8 +92,9 @@ Exit 2: invalid input, failed verification, budget failure or destination confli
 
 ## Next WP09 work
 
-Use these recorded identities and revisions to define explicit conflict resolution
-and resumable/idempotent application receipts. Application read-path switching and
+[Explicit pinned resolution](migration-resolution.md) now records select/defer
+decisions without changing the snapshot. Next: resumable/idempotent application receipts
+that consume the verified ledger and resolution plan. Application read-path switching and
 rollback must retain imported v2 data. Other field families, unversioned sensor
 resolution, standalone legacy evaluation adapters and full application compatibility
 remain open; this checkpoint does not close WP09.

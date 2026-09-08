@@ -1,3 +1,4 @@
+import { resolveMigration } from "./migration-resolution";
 import { migrationLedger } from "./migration-ledger";
 import { exportMigration } from "./migration-export";
 import type { ParsedArgs } from "../utils/args";
@@ -5,6 +6,10 @@ import { readLocal } from "./packet";
 import { buildMigrationReport } from "./migration-plan";
 import { reviewMigration } from "./migration-review";
 export function migrate(args: ParsedArgs): void {
+  if (args.subcommand === "resolve") {
+    resolveMigration(args);
+    return;
+  }
   if (args.subcommand === "ledger" || args.subcommand === "ledger-verify") {
     migrationLedger(args);
     return;
@@ -19,7 +24,7 @@ export function migrate(args: ParsedArgs): void {
   }
   if (args.flags["help"]) {
     console.log(
-      "disclosureos migrate dry-run <legacy.json> --id <source-namespace> [--json]\nFor explicit mappings: disclosureos migrate review <legacy.json> <review.json> [--json]\nExport: disclosureos migrate export <legacy.json> <review.json> --out <bundle> [--json]\nVerify: disclosureos migrate verify <bundle> [--json]\nLedger: disclosureos migrate ledger <bundle>... --out <ledger> [--json]\nVerify ledger: disclosureos migrate ledger-verify <ledger> [--json]\nExperimental artifacts only; no database records are written."
+      "disclosureos migrate dry-run <legacy.json> --id <source-namespace> [--json]\nFor explicit mappings: disclosureos migrate review <legacy.json> <review.json> [--json]\nExport: disclosureos migrate export <legacy.json> <review.json> --out <bundle> [--json]\nVerify: disclosureos migrate verify <bundle> [--json]\nLedger: disclosureos migrate ledger <bundle>... --out <ledger> [--json]\nVerify ledger: disclosureos migrate ledger-verify <ledger> [--json]\nResolve: disclosureos migrate resolve <ledger> <decisions.json> [--json]\nExperimental artifacts only; no database records are written."
     );
     return;
   }
