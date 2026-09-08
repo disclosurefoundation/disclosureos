@@ -66,6 +66,8 @@ Unassessed local files can enter through the experimental [source intake workflo
 
 The experimental [ELDÆON mapping workflow](docs/experimental/eldaeon-field-mapping.md) inventories verified source exports and prepares acquisition metadata requirements.
 
+The opt-in [assessment summary](docs/experimental/assessment-summary.md) separates current declarations, duplicate copies, differing outcomes and shared support without an aggregate score.
+
 ## Schema Host
 
 DisclosureOS packages emit JSON Schema with stable `$id` URLs under

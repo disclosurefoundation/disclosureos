@@ -38,7 +38,11 @@
       "import": "./dist/compellingness/index.js"
     },
     "./schema": "./schema/scoring.schema.json",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./experimental/v2": {
+      "types": "./dist/experimental/v2/index.d.ts",
+      "import": "./dist/experimental/v2/index.js"
+    }
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
