@@ -1,0 +1,17 @@
+{
+  "kind": "historical_testimony_selection",
+  "schemaVersion": "0.1.0",
+  "id": "synthetic-testimony-selection",
+  "historyId": "historical-testimony-history",
+  "observationId": "testimony-demo",
+  "accounts": [
+    {
+      "sourceRef": "source:report",
+      "recording": {
+        "state": "known",
+        "recordedBy": "Synthetic interviewer (fixture only)",
+        "reference": "Synthetic transcript DEMO-1; not a real witness account"
+      }
+    }
+  ]
+}
