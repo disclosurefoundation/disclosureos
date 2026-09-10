@@ -42,3 +42,6 @@ export type { MigrationLegacyScores } from './migration-legacy-scores';
 
 export { MigrationCompatibilitySchema, MIGRATION_COMPATIBILITY_SCHEMA_ID, migrationCompatibilityJsonSchema } from './migration-compatibility';
 export type { MigrationCompatibility } from './migration-compatibility';
+
+export { evaluateContextClaimHistory, CONTEXT_MEASUREMENT_ROLES } from './context-review';
+export type { ContextReviewOptions, ContextReviewResult } from './context-review';

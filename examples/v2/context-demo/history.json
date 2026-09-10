@@ -1,0 +1,200 @@
+{
+  "kind": "claim_history",
+  "schemaVersion": "0.2.0",
+  "id": "history-A",
+  "observation": {
+    "kind": "observation",
+    "schemaVersion": "0.1.0",
+    "id": "capture-A",
+    "status": "draft",
+    "createdAt": "2026-07-28T02:10:00Z",
+    "updatedAt": "2026-07-28T02:10:00Z",
+    "summary": "Fictional C1 context control; not partner data.",
+    "eventTime": {
+      "state": "known",
+      "value": {
+        "kind": "instant",
+        "value": "2026-07-28T02:10:00Z",
+        "timeScale": "UTC"
+      },
+      "sourceRefs": [
+        "source:log"
+      ]
+    },
+    "position": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "sources": [
+      {
+        "id": "log",
+        "kind": "document",
+        "access": "public",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "5432fed855cc9f2082b43d03930c96d14db3ce0b4003b62697edb3a808138217"
+        }
+      },
+      {
+        "id": "account-a",
+        "kind": "testimony",
+        "access": "public",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "514f4b71026c9ec1df7bacaf735821dc00dfeda4f8177568c2315e9eee2dd679"
+        }
+      },
+      {
+        "id": "account-b",
+        "kind": "testimony",
+        "access": "public",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "668df58c9823f0803f33b8eb919247a99eca47756d1eb6d665354915c67bdc62"
+        }
+      },
+      {
+        "id": "optical",
+        "kind": "instrument_data",
+        "access": "public",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "60ed22f4395f1e7757286405e6b58fd22278c83c7d1c9782f2fabaec2505f21c"
+        }
+      },
+      {
+        "id": "radio",
+        "kind": "instrument_data",
+        "access": "public",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "32e8811214e432882063bf72c433522a6a94cd1fe49d68953da09e107ff57a2e"
+        }
+      }
+    ],
+    "products": [
+      {
+        "id": "optical",
+        "kind": "raw",
+        "format": "text/plain",
+        "access": "public",
+        "sourceRefs": [
+          "source:optical"
+        ],
+        "digest": {
+          "algorithm": "sha256",
+          "value": "60ed22f4395f1e7757286405e6b58fd22278c83c7d1c9782f2fabaec2505f21c"
+        }
+      },
+      {
+        "id": "radio",
+        "kind": "raw",
+        "format": "text/plain",
+        "access": "public",
+        "sourceRefs": [
+          "source:radio"
+        ],
+        "digest": {
+          "algorithm": "sha256",
+          "value": "32e8811214e432882063bf72c433522a6a94cd1fe49d68953da09e107ff57a2e"
+        }
+      }
+    ],
+    "methods": [
+      {
+        "id": "review",
+        "version": "1",
+        "description": "Synthetic comparison of source descriptions."
+      }
+    ],
+    "frames": [],
+    "assertions": [],
+    "measurements": [
+      {
+        "id": "ambient-A",
+        "quantity": "ambient_temperature",
+        "value": {
+          "value": 18.2,
+          "unit": "Cel",
+          "uncertainty": {
+            "kind": "unknown",
+            "reason": "not_reported"
+          }
+        },
+        "sourceRefs": [
+          "source:log"
+        ]
+      }
+    ],
+    "processing": []
+  },
+  "contextRefs": [
+    {
+      "documentId": "context-A",
+      "schemaId": "urn:disclosureos:experimental:observation-context:0.1.0",
+      "sha256": "507e581dfcbd44b10ec5ebe0a705fb076dc093799c1a3c1522e3b6e89b6489de"
+    }
+  ],
+  "claims": [
+    {
+      "id": "shape-review",
+      "recordedAt": "2026-07-28T02:10:00Z",
+      "kind": "assessment",
+      "status": "assessed",
+      "topic": "reported shape",
+      "subject": {
+        "kind": "context",
+        "reference": {
+          "document": {
+            "documentId": "context-A",
+            "schemaId": "urn:disclosureos:experimental:observation-context:0.1.0",
+            "sha256": "507e581dfcbd44b10ec5ebe0a705fb076dc093799c1a3c1522e3b6e89b6489de"
+          },
+          "target": {
+            "kind": "reported_object",
+            "id": "object-A",
+            "field": "shape"
+          }
+        }
+      },
+      "inputRefs": [
+        "source:account-a",
+        "source:account-b"
+      ],
+      "contextInputRefs": [
+        {
+          "document": {
+            "documentId": "context-A",
+            "schemaId": "urn:disclosureos:experimental:observation-context:0.1.0",
+            "sha256": "507e581dfcbd44b10ec5ebe0a705fb076dc093799c1a3c1522e3b6e89b6489de"
+          },
+          "target": {
+            "kind": "reported_object",
+            "id": "object-A",
+            "field": "shape"
+          },
+          "assertionId": "shape-1"
+        },
+        {
+          "document": {
+            "documentId": "context-A",
+            "schemaId": "urn:disclosureos:experimental:observation-context:0.1.0",
+            "sha256": "507e581dfcbd44b10ec5ebe0a705fb076dc093799c1a3c1522e3b6e89b6489de"
+          },
+          "target": {
+            "kind": "reported_object",
+            "id": "object-A",
+            "field": "shape"
+          },
+          "assertionId": "shape-2"
+        }
+      ],
+      "outcome": "inconclusive",
+      "evaluatedBy": "Synthetic reviewer",
+      "evaluatedAt": "2026-07-28T02:10:00Z",
+      "methodRef": "method:review",
+      "methodVersion": "1",
+      "rationale": "The fictional accounts disagree. No shape is selected."
+    }
+  ]
+}

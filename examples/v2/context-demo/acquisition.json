@@ -1,0 +1,202 @@
+{
+  "kind": "acquisition_context",
+  "schemaVersion": "0.1.0",
+  "id": "acquisition-A",
+  "instruments": [
+    {
+      "id": "station-A",
+      "identity": {
+        "state": "known",
+        "manufacturer": "Synthetic",
+        "model": "Control station"
+      }
+    }
+  ],
+  "manifests": [
+    {
+      "id": "manifest-A",
+      "instrumentRef": "instrument:station-A",
+      "version": "1",
+      "publishedAt": "2026-07-01T00:00:00Z",
+      "artifact": {
+        "mediaType": "application/json",
+        "byteLength": 393,
+        "digest": {
+          "algorithm": "sha256",
+          "value": "c7f32d88b4d8ca94635ae85deeab43e965e8491419b89ed71efc6188bdf3c625"
+        }
+      },
+      "configuration": {
+        "hardware": {
+          "state": "unknown",
+          "reason": "not_recorded"
+        },
+        "firmware": {
+          "state": "unknown",
+          "reason": "not_recorded"
+        }
+      },
+      "channels": [
+        {
+          "id": "optical",
+          "quantity": "radiance",
+          "unit": "W/sr/m2",
+          "sampling": {
+            "state": "unknown",
+            "reason": "not_recorded"
+          }
+        },
+        {
+          "id": "radio",
+          "quantity": "power",
+          "unit": "W",
+          "sampling": {
+            "state": "unknown",
+            "reason": "not_recorded"
+          }
+        }
+      ]
+    }
+  ],
+  "deployments": [
+    {
+      "id": "deployment-A",
+      "instrumentRef": "instrument:station-A",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:manifest-A"
+      },
+      "period": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      },
+      "site": {
+        "state": "known",
+        "value": "Synthetic station A"
+      }
+    }
+  ],
+  "calibrations": [],
+  "acquisitions": [
+    {
+      "id": "optical",
+      "instrumentRef": "instrument:station-A",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:manifest-A"
+      },
+      "deployment": {
+        "state": "pinned",
+        "ref": "deployment:deployment-A"
+      },
+      "time": {
+        "state": "known",
+        "kind": "instant",
+        "value": "2026-07-28T02:10:00Z",
+        "timeScale": "UTC"
+      },
+      "classification": "known_control",
+      "clock": {
+        "source": {
+          "state": "unknown",
+          "reason": "not_recorded"
+        },
+        "synchronization": {
+          "state": "unknown",
+          "reason": "not_recorded"
+        },
+        "resolution": {
+          "state": "unknown",
+          "reason": "not_recorded"
+        },
+        "uncertainty": {
+          "state": "unknown",
+          "reason": "not_recorded"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "optical",
+          "calibration": {
+            "state": "unresolved",
+            "reason": "not_recorded"
+          }
+        }
+      ]
+    },
+    {
+      "id": "radio",
+      "instrumentRef": "instrument:station-A",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:manifest-A"
+      },
+      "deployment": {
+        "state": "pinned",
+        "ref": "deployment:deployment-A"
+      },
+      "time": {
+        "state": "known",
+        "kind": "instant",
+        "value": "2026-07-28T02:10:00Z",
+        "timeScale": "UTC"
+      },
+      "classification": "known_control",
+      "clock": {
+        "source": {
+          "state": "unknown",
+          "reason": "not_recorded"
+        },
+        "synchronization": {
+          "state": "unknown",
+          "reason": "not_recorded"
+        },
+        "resolution": {
+          "state": "unknown",
+          "reason": "not_recorded"
+        },
+        "uncertainty": {
+          "state": "unknown",
+          "reason": "not_recorded"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "radio",
+          "calibration": {
+            "state": "unresolved",
+            "reason": "not_recorded"
+          }
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "optical",
+      "acquisitionRef": "acquisition:optical",
+      "kind": "raw",
+      "artifact": {
+        "mediaType": "text/plain",
+        "byteLength": 55,
+        "digest": {
+          "algorithm": "sha256",
+          "value": "60ed22f4395f1e7757286405e6b58fd22278c83c7d1c9782f2fabaec2505f21c"
+        }
+      }
+    },
+    {
+      "id": "radio",
+      "acquisitionRef": "acquisition:radio",
+      "kind": "raw",
+      "artifact": {
+        "mediaType": "text/plain",
+        "byteLength": 53,
+        "digest": {
+          "algorithm": "sha256",
+          "value": "32e8811214e432882063bf72c433522a6a94cd1fe49d68953da09e107ff57a2e"
+        }
+      }
+    }
+  ]
+}

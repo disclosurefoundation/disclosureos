@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "docs/rfcs/**"
+      - "docs/c1/**"
       - "docs/releases/**"
       - "docs/release-process.md"
       - ".changeset/**"
@@ -21,6 +22,7 @@ on:
     branches: [main]
     paths:
       - "docs/rfcs/**"
+      - "docs/c1/**"
       - "docs/releases/**"
       - "docs/release-process.md"
       - ".changeset/**"
@@ -202,3 +204,18 @@ jobs:
             ${{ runner.temp }}/disclosureos-beta/release-manifest.json
             ${{ runner.temp }}/disclosureos-beta/artifacts/*.tgz
           if-no-files-found: error
+
+  context:
+    name: C1 context and snapshot references
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter "@disclosureos/schema..." build
+      - run: pnpm test:v2-context
+      - run: python3 scripts/check-c1-mapping.py

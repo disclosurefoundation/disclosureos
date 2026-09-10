@@ -1,0 +1,274 @@
+{
+  "kind": "observation_context",
+  "schemaVersion": "0.1.0",
+  "id": "context-A",
+  "observationRef": {
+    "documentId": "capture-A",
+    "schemaId": "urn:disclosureos:experimental:observation:0.1.0",
+    "sha256": "e542a51b9a0493d9400caeb6e33a4dfaf757d194cdb4d1083f2c296b78dba7d3"
+  },
+  "acquisitionRef": {
+    "documentId": "acquisition-A",
+    "schemaId": "urn:disclosureos:experimental:acquisition-context:0.1.0",
+    "sha256": "45efdcdae2d7c840ee20a1a109aaf6ad783c2ccd26b0193c9b6f4b1b388d4ff2"
+  },
+  "recordedAt": "2026-07-28T02:10:00Z",
+  "recordedBy": "Synthetic curator",
+  "entities": [
+    {
+      "kind": "event",
+      "id": "event-A",
+      "fields": {
+        "eventType": [
+          {
+            "id": "type",
+            "content": {
+              "state": "known",
+              "value": "synthetic multi-sensor control",
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          }
+        ],
+        "placeIds": [
+          {
+            "id": "places",
+            "content": {
+              "state": "known",
+              "value": [
+                "place-A"
+              ],
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "place",
+      "id": "place-A",
+      "fields": {
+        "name": [
+          {
+            "id": "name",
+            "content": {
+              "state": "known",
+              "value": "Synthetic station A",
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "platform",
+      "id": "station-A",
+      "fields": {
+        "role": [
+          {
+            "id": "role",
+            "content": {
+              "state": "known",
+              "value": "station",
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          }
+        ],
+        "placeId": [
+          {
+            "id": "site",
+            "content": {
+              "state": "known",
+              "value": "place-A",
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "temporal",
+      "id": "time-A",
+      "fields": {
+        "eventTime": [
+          {
+            "id": "time",
+            "content": {
+              "state": "known",
+              "value": {
+                "kind": "instant",
+                "value": "2026-07-28T02:10:00Z",
+                "timeScale": "UTC"
+              },
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "environment",
+      "id": "weather-A",
+      "fields": {
+        "placeId": [
+          {
+            "id": "place",
+            "content": {
+              "state": "known",
+              "value": "place-A",
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          }
+        ],
+        "platformId": [
+          {
+            "id": "station",
+            "content": {
+              "state": "known",
+              "value": "station-A",
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          }
+        ],
+        "temporalId": [
+          {
+            "id": "time",
+            "content": {
+              "state": "known",
+              "value": "time-A",
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          }
+        ],
+        "weather": [
+          {
+            "id": "weather",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "ambient-link",
+          "role": "ambient_temperature",
+          "measurementId": "ambient-A"
+        }
+      ]
+    },
+    {
+      "kind": "reported_object",
+      "id": "object-A",
+      "fields": {
+        "shape": [
+          {
+            "id": "shape-1",
+            "content": {
+              "state": "known",
+              "value": "triangle",
+              "provenance": {
+                "sourceRef": "source:account-a",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          },
+          {
+            "id": "shape-2",
+            "content": {
+              "state": "known",
+              "value": "oval",
+              "provenance": {
+                "sourceRef": "source:account-b",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          }
+        ],
+        "sizeDescription": [
+          {
+            "id": "size",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "collection",
+      "id": "collection-A",
+      "fields": {
+        "productRefs": [
+          {
+            "id": "products",
+            "content": {
+              "state": "known",
+              "value": [
+                "product:optical",
+                "product:radio"
+              ],
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          }
+        ],
+        "acquisitionIds": [
+          {
+            "id": "acquisitions",
+            "content": {
+              "state": "known",
+              "value": [
+                "optical",
+                "radio"
+              ],
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Synthetic station recorder"
+              }
+            }
+          }
+        ],
+        "alignmentDescription": [
+          {
+            "id": "alignment",
+            "content": {
+              "state": "unknown",
+              "reason": "unavailable"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

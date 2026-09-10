@@ -1,0 +1,1 @@
+SYNTHETIC: ambient temperature 18.2 Cel; station A; no target temperature.
