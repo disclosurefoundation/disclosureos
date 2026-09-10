@@ -3,10 +3,8 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync, realpathSync } from 'node:fs';
 import { resolve, join } from 'node:path';
-import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
-const require = createRequire(import.meta.url);
 const root = realpathSync(fileURLToPath(new URL('.', import.meta.url)));
 const manifest = JSON.parse(readFileSync(new URL('candidate.json', import.meta.url)));
 const definitions = [];
@@ -28,7 +26,7 @@ for (const pkg of manifest.packages) {
   assert.equal(installed.version, manifest.version);
   for (const [key, entry] of Object.entries(pkg.exports)) {
     const specifier = pkg.name + (key === '.' ? '' : key.slice(1));
-    const path = realpathSync(require.resolve(specifier));
+    const path = realpathSync(fileURLToPath(import.meta.resolve(specifier)));
     assert.ok(path.startsWith(root + '/'), `Export escaped consumer: ${specifier}`);
     if (path.endsWith('.json')) { JSON.parse(readFileSync(path)); continue; }
     const module = await import(specifier);

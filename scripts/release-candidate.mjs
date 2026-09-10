@@ -64,6 +64,8 @@ async function main() {
   assert.equal(git('status', '--porcelain', '--untracked-files=normal'), '', 'Commit candidate changes before packing.');
   const output = process.argv[3] ? resolve(process.argv[3]) : mkdtempSync(join(tmpdir(), 'disclosureos-beta-'));
   if (process.argv[3]) mkdirSync(output); // Refuse to overwrite an existing candidate.
+  run('pnpm', ['--filter', '@disclosureos/*', 'build']);
+  assert.equal(git('status', '--porcelain', '--untracked-files=normal'), '', 'Build changed committed inputs');
   const artifacts = join(output, 'artifacts'); mkdirSync(artifacts);
   const manifest = { kind: 'disclosureos-beta-candidate', status: 'verification-in-progress', version: plan.version, tag: plan.tag,
     repository: 'https://github.com/disclosurefoundation/disclosureos', sourceCommit: git('rev-parse', 'HEAD'),

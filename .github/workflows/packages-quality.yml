@@ -194,7 +194,6 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm test:release
-      - run: pnpm --filter "@disclosureos/*" build
       - run: pnpm release:pack "${{ runner.temp }}/disclosureos-beta"
       - uses: actions/upload-artifact@v4
         with:
