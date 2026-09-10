@@ -90,7 +90,9 @@
     "verify:wp09-closeout": "node conformance/migration-closeout.mjs",
     "release:check": "node scripts/release-candidate.mjs --check",
     "release:pack": "node scripts/release-candidate.mjs --pack",
-    "test:release": "node --test scripts/release-candidate.test.mjs"
+    "test:release": "node --test scripts/release-candidate.test.mjs",
+    "emit:v2-context": "node conformance/emit-context.mjs",
+    "test:v2-context": "node --test conformance/context.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

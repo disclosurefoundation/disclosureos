@@ -1,0 +1,23 @@
+{
+  "synthetic": true,
+  "channels": [
+    {
+      "id": "optical",
+      "quantity": "radiance",
+      "unit": "W/sr/m2",
+      "sampling": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      }
+    },
+    {
+      "id": "radio",
+      "quantity": "power",
+      "unit": "W",
+      "sampling": {
+        "state": "unknown",
+        "reason": "not_recorded"
+      }
+    }
+  ]
+}
