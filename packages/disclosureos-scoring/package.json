@@ -1,7 +1,7 @@
 {
   "name": "@disclosureos/scoring",
-  "version": "1.1.0",
-  "description": "Reference scoring for the DisclosureOS ecosystem — record completeness and case compellingness across the Observables and Origin layers",
+  "version": "2.0.0-beta.0",
+  "description": "Reference scoring for the DisclosureOS ecosystem \u2014 record completeness and case compellingness across the Observables and Origin layers",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -88,6 +88,7 @@
     "publint": "catalog:"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "tag": "beta"
   }
 }
