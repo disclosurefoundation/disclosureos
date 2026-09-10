@@ -73,9 +73,56 @@ for (const [file, parse] of [['observation-fixtures.json', parseExperimentalObse
     cases++;
   }
 }
+// Exercise C1 through the independent install, including exact bytes and failure paths.
+const { parseObservationContext, parseContextClaimHistory } = await import('@disclosureos/records/experimental/v2');
+const { evaluateContextClaimHistory } = await import('@disclosureos/schema/experimental/v2');
+const contextFile = name => readFileSync(join(root, 'context-demo', name));
+const contextHistory = JSON.parse(contextFile('history.json'));
+const context = JSON.parse(contextFile('context.json'));
+const documents = new Map(['observation.json', 'context.json', 'acquisition.json'].map(name => {
+  const bytes = contextFile(name);
+  return [createHash('sha256').update(bytes).digest('hex'), bytes];
+}));
+assert.equal(parseObservationContext(context).success, true);
+assert.equal(parseContextClaimHistory(contextHistory).success, true);
+assert.equal(parseExperimentalClaimHistory(contextHistory).success, false, 'Do not dispatch C1 through claim history 0.1');
+assert.equal(parseObservationContext(context).checks.external, 'not_checked');
+const beforeContextHistory = structuredClone(contextHistory);
+const beforeDocuments = structuredClone(documents);
+const contextResult = await evaluateContextClaimHistory(contextHistory, { documents });
+assert.equal(contextResult.success, true, JSON.stringify(contextResult.issues));
+assert.deepEqual(contextResult.checks, { structural: 'passed', semantic: 'passed', profile: 'not_checked', external: 'passed' });
+for (const key of ['temporalNormalization', 'sourceArtifactIntegrity', 'scientificInterpretation', 'multiSensorFusion'])
+  assert.equal(contextResult[key], 'not_checked');
+assert.deepEqual(contextHistory, beforeContextHistory);
+assert.deepEqual(structuredClone(documents), beforeDocuments);
+assert.equal(context.entities.find(e => e.kind === 'reported_object').fields.shape.length, 2);
+assert.equal(context.entities.find(e => e.kind === 'collection').fields.alignmentDescription[0].content.state, 'unknown');
+const contextHash = contextHistory.contextRefs[0].sha256;
+const missingDocuments = new Map(documents);
+missingDocuments.delete(contextHash);
+const missing = await evaluateContextClaimHistory(contextHistory, { documents: missingDocuments });
+assert.equal(missing.success, false);
+assert.ok(missing.issues.some(i => i.code === 'SNAPSHOT.UNAVAILABLE'));
+assert.equal(missing.checks.external, 'not_checked');
+const alteredDocuments = new Map(documents);
+alteredDocuments.set(contextHash, Buffer.from('{}'));
+const altered = await evaluateContextClaimHistory(contextHistory, { documents: alteredDocuments });
+assert.equal(altered.success, false);
+assert.ok(altered.issues.some(i => i.code === 'SNAPSHOT.DIGEST'));
+assert.equal(altered.checks.external, 'failed');
+const exampleResult = JSON.parse(execFileSync(process.execPath, [join(root, 'context-demo/run.mjs')]).toString());
+assert.deepEqual(exampleResult, contextResult, 'Shipped example follows the independent consumer path');
+console.log('Fresh C1 consumer: context parsing, exact snapshots, missing/tampered bytes and runnable example passed.');
 const cli = resolve(root, 'node_modules/@disclosureos/cli/dist/index.js');
 assert.equal(execFileSync(process.execPath, [cli, '--version']).toString().trim(), manifest.version);
 writeFileSync(join(root, 'consumer.ts'), imports.join('\n') + '\n' + `
+import type { ContextReviewOptions, ContextReviewResult } from '@disclosureos/schema/experimental/v2';
+import { evaluateContextClaimHistory } from '@disclosureos/schema/experimental/v2';
+import { parseObservationContext, parseContextClaimHistory } from '@disclosureos/records/experimental/v2';
+const options: ContextReviewOptions = { documents: new Map<string, Uint8Array>() };
+const review: Promise<ContextReviewResult> = evaluateContextClaimHistory({}, options);
+void review; void parseObservationContext({}); void parseContextClaimHistory({});
 import type { ExperimentalObservation } from '@disclosureos/records/experimental/v2';
 import { parseExperimentalObservation } from '@disclosureos/records/experimental/v2';
 const result = parseExperimentalObservation({});

@@ -7,7 +7,7 @@ canonical standard source. Website/dashboard applications consume pinned release
 The reverse application exporter and subtree release workflow are retired.
 Never replace this repository with an application snapshot.
 
-The current source prepares the [2.0.0-beta.0 candidate](releases/2.0.0-beta.0.md).
+The current source prepares the [2.0.0-beta.1 candidate](releases/2.0.0-beta.1.md).
 Seven foundation packages are in Changesets prerelease mode with tag `beta`.
 Package `publishConfig.tag` also names `beta`. This is not stable publication;
 existing npm `latest` tags continue to identify v1 releases.
@@ -64,7 +64,7 @@ For each exact, verified tarball in dependency order (records; observables and
 origins; instruments; scoring and schema; CLI):
 
 ```sh
-npm publish /absolute/candidate/artifacts/disclosureos-records-2.0.0-beta.0.tgz --tag beta --access public --ignore-scripts
+npm publish /absolute/candidate/artifacts/disclosureos-records-2.0.0-beta.1.tgz --tag beta --access public --ignore-scripts
 ```
 
 Here `--ignore-scripts` applies to an already built, publish-checked and installed
@@ -97,9 +97,10 @@ to its path and SHA-256; URNs do not imply a hosted HTTP endpoint. Resolve them
 locally through the chosen package set and disclose unchecked external references.
 
 The portal team must pin exact published beta versions and align documentation,
-examples, validation, vocabulary and profile definitions with that set. Keep the
-v1 default and schema URLs until the versioned beta is checked. Hosted artifact
-verification must compare bytes and IDs, not just HTTP status. The public ELDÆON
+examples, validation, vocabulary and profile definitions with that set. The portal
+already defaults to the labeled v2 beta. Keep its pins on the currently published
+beta until registry verification passes; preserve v1 routes and immutable schema
+URLs. Hosted artifact verification must compare bytes and IDs, not just HTTP status. The public ELDÆON
 viewer remains a partner preview throughout this packaging handoff.
 
 ## Stable release decision
