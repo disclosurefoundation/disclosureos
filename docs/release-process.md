@@ -1,124 +1,112 @@
-# Release Process
+# Release process
 
-Short playbook for versioning and releasing DisclosureOS foundation packages.
+## Canonical ownership and current track
 
-## Release track
+This package-only repository, `disclosurefoundation/disclosureos`, is the
+canonical standard source. Website/dashboard applications consume pinned releases.
+The reverse application exporter and subtree release workflow are retired.
+Never replace this repository with an application snapshot.
 
-**Foundation `@disclosureos/*` (v1, stable):** `records`, `observables`, `origins`, `instruments`, `scoring`, `schema`, and `cli` are published at **`1.0.0`+** under strict [Semantic Versioning](https://semver.org/) — breaking changes ship only in a major bump. These are ESM-only, gated by `publint` + `attw` (`pnpm --filter <pkg> lint:publish`) on every publish, and require Node `>=20`.
+The current source prepares the [2.0.0-beta.0 candidate](releases/2.0.0-beta.0.md).
+Seven foundation packages are in Changesets prerelease mode with tag `beta`.
+Package `publishConfig.tag` also names `beta`. This is not stable publication;
+existing npm `latest` tags continue to identify v1 releases.
 
-## Versioning and changelog
+The ESM packages support Node 20+; the full candidate consumer/conformance workflow
+runs on Node 22, while the package matrix also checks Node 20. Keep the pnpm version
+pinned by the root `packageManager` field.
 
-### Package bump policy
+## Versioning
 
-Standard semver applies:
+Use a changeset for user-facing package behavior. Apply patch/minor/major changes
+according to Semantic Versioning; breaking experimental changes must be explicitly
+described. During prerelease mode, `pnpm version-packages` advances prerelease
+versions and updates changelogs and dependency metadata. Review the result, update
+`docs/releases/beta-plan.json`, refresh the lockfile, and commit it together.
+The current candidate has already been versioned: do not version it again merely
+to publish it.
 
-- **Patch:** Bug fixes, docs, non-breaking tweaks.
-- **Minor:** New backward-compatible features (including `@experimental`-tagged API changes).
-- **Major:** Breaking API/schema changes. Bumping a layer schema may also bump the composed `@disclosureos/schema` artifact — version and drift-test both.
+Do not run `changeset pre exit` as routine cleanup. Stable release requires its
+own reviewed transition, removal of beta-only publish tags/checks, and completion
+of scientific, governance and consumer acceptance gates. If v1 needs a maintenance
+release, prepare it from the relevant published package tags in a separate branch;
+current main already contains experimental work and is not the v1 release source.
 
-### Changesets
+## Candidate preflight
 
-- **Per PR:** Add a changeset when your PR changes user-facing behavior or fixes a bug that should appear in the changelog. Run `pnpm changeset` (from repo root) and choose the affected packages and bump type.
-- **Location:** Changesets live in the single, workspace-wide root **`.changeset/`**
-  directory and cover all published `@disclosureos/*` packages. Private packages —
-  the Next apps and `@disclosureos/examples` — are excluded automatically. The
-  source monorepo config may also list internal app packages in `ignore` so the
-  DisclosureOS release command cannot publish non-standard workspaces by accident.
-- **Release:** When cutting a release, run `pnpm version-packages` (`changeset version`) to consume changesets, bump versions, and update CHANGELOGs, then `pnpm release` (`changeset publish`).
+1. Use a clean canonical checkout at the reviewed candidate commit. Install with
+   `pnpm install --frozen-lockfile`.
+2. Build, type-check and test all seven packages. Run `lint:publish` for strict
+   publint/attw checks, the complete conformance corpus, the legacy matrix, example
+   checks and migration acceptance. See the commands in the beta notes and CI.
+3. Run `pnpm test:release` and `pnpm release:check`. Confirm all packages, internal
+   dependencies, changeset state and publication tags agree.
+4. Run `pnpm release:pack /absolute/new/output-directory` from a clean tree. It
+   packs with pnpm, checks actual export targets and dependencies, then installs
+   all seven tarballs into a separate npm consumer and verifies the supported
+   workflows. Never publish raw `npm pack` output containing `workspace:` or
+   `catalog:` dependencies.
+5. Review and archive `release-manifest.json` and its exact tarballs. A passing
+   result is software acceptance, not proof of data licensing or scientific truth.
 
-## Schema hosting (`os.disclosure.org`)
+## Authorized beta publication
 
-The foundation packages emit JSON Schema whose `$id` URLs are **resolvable** at the
-`os.disclosure.org` host. Each schema's committed file maps to a version-pinned URL:
+Publishing is a separate action after review and authorization. Merge does not
+publish packages. Prefer the verified tarballs so the bytes being published are
+exactly those identified in the candidate manifest.
 
-| Committed file | Hosted URL (`$id`) |
-|---|---|
-| `packages/disclosureos-records/schema/records.schema.json` | `https://os.disclosure.org/schema/records/1.1.0/observation.json` |
-| `packages/disclosureos-observables/schema/observables.schema.json` | `https://os.disclosure.org/schema/observables/2.0.0/observable-assessments.json` |
-| `packages/disclosureos-origins/schema/origins.schema.json` | `https://os.disclosure.org/schema/origins/2.0.0/origin-classification.json` |
-| `packages/disclosureos-instruments/schema/sensor-manifest.schema.json` | `https://os.disclosure.org/schema/instruments/1.0.0/sensor-manifest.json` |
-| `packages/disclosureos-scoring/schema/scoring.schema.json` | `https://os.disclosure.org/schema/scoring/2.0.0/scoring.json` |
-| `packages/disclosureos-schema/schema/enriched-observation.schema.json` | `https://os.disclosure.org/schema/schema/1.1.0/enriched-observation.json` |
-| `llms.txt` (repo root) | `https://os.disclosure.org/llms.txt` |
+Before publication, query every package's registry metadata. Confirm the intended
+version is unused and record the current `latest` tag. Check package access,
+repository metadata, license and two-factor/provenance requirements for the actual
+publisher. Do not print credentials or place tokens in release reports.
 
-Hosting rules:
+For each exact, verified tarball in dependency order (records; observables and
+origins; instruments; scoring and schema; CLI):
 
-- **Static + cache-friendly.** These are immutable static files. A given version path
-  (e.g. `…/records/1.0.0/observation.json`) never changes content; publish new content
-  only under a new version path. Serve with long-lived cache headers and
-  `Content-Type: application/schema+json` (or `application/json`).
-- **Publish on schema change.** When `SCHEMA_HOST`, a layer schema, or the composed
-  schema changes, re-emit (`pnpm --filter <pkg> emit:schema`), let the drift tests pass,
-  then copy each committed file to its hosted path above (note the filename differs from
-  the committed name — it follows the `$id`). Versioned paths mean old consumers keep
-  resolving the schema they pinned.
-
-## Public repository export
-
-The canonical public GitHub repo for the standard is
-`disclosurefoundation/disclosureos`. It is a package-only monorepo: foundation
-packages, examples, release docs, package CI, and support config. It intentionally
-does **not** include `apps/disclosureos` or any other website/dashboard app.
-
-Generate a clean local preview before creating or updating the public repo:
-
-```bash
-pnpm export:disclosureos ../disclosureos-public-preview --force
+```sh
+npm publish /absolute/candidate/artifacts/disclosureos-records-2.0.0-beta.0.tgz --tag beta --access public --ignore-scripts
 ```
 
-The export writes package-only root workspace files, copies the six
-`@disclosureos/*` packages plus the private `@repo/typescript-config` support
-package, and pins the validated Vitest version in the generated root
-`package.json` so installs do not drift to an unvalidated test toolchain.
+Here `--ignore-scripts` applies to an already built, publish-checked and installed
+tarball. It is not permission to skip the preflight. Repeat with each package's
+actual tarball name; do not run a blanket workspace publish after a partial
+failure. If a version already exists, verify its registry integrity against the
+candidate; do not overwrite it or assume the previous attempt failed.
 
-Validate the exported repo from its root:
+Changesets' `pnpm release` is an alternative that builds/publishes from source and
+uses the active prerelease tag. If used, verify the resulting registry artifact
+hashes against the reviewed candidate before accepting the handoff.
 
-```bash
-pnpm install
-pnpm --filter "@disclosureos/*" build
-pnpm --filter "@disclosureos/*" test run
-pnpm --filter "@disclosureos/*" run lint:publish
-pnpm --filter @disclosureos/examples type-check
-pnpm --filter @disclosureos/examples golden-path
-```
+After publication, verify all seven exact versions can be retrieved and installed
+without local tarballs. Confirm each `beta` tag and unchanged v1 `latest` tags.
+Compare registry tarball integrity/bytes with the candidate manifest. Record
+package tags and the source revision in the authorized release record. Package
+publication, Git tagging, a GitHub release announcement and website deployment
+are separate outcomes.
 
-Commit the generated `pnpm-lock.yaml` in the public repo after validation. The
-package quality workflow uses `pnpm install --frozen-lockfile`.
+## Schema and portal handoff
 
-## Cutting a release (manual)
+The stable schema artifacts retain their existing `https://os.disclosure.org/schema/...`
+IDs. Their individual version numbers need not match package versions. Existing
+versioned URLs are immutable. New content requires a new identity/path; do not
+replace historical files during a package version bump.
 
-1. Ensure all changesets for the release are merged and CI is green.
-2. Run `pnpm changeset version` (from repo root). Review updated version fields and CHANGELOGs; commit.
-3. Publish: `pnpm release` (`changeset publish`) or `pnpm -r publish --no-git-tag` for each package you ship. Tag in the repo as needed.
-4. Before **first** publish of a package: run `npm pack` in that package, then `npm install <path-to-tarball>` in a temp dir and confirm install + type resolution (dry-run). Do a quick NPM metadata pass (`description`, `keywords`, `repository`, `bugs`, `license`, `files`, `exports`).
-5. After publish, verify each package through both package metadata and access status:
+Experimental schemas currently use `urn:disclosureos:experimental:...` IDs. They
+ship through explicit package exports. The candidate manifest maps each identity
+to its path and SHA-256; URNs do not imply a hosted HTTP endpoint. Resolve them
+locally through the chosen package set and disclose unchecked external references.
 
-   ```bash
-   for pkg in records observables origins schema scoring cli; do
-     npm access get status "@disclosureos/$pkg"
-     npm view "@disclosureos/$pkg" version repository.url homepage bugs.url
-   done
-   ```
+The portal team must pin exact published beta versions and align documentation,
+examples, validation, vocabulary and profile definitions with that set. Keep the
+v1 default and schema URLs until the versioned beta is checked. Hosted artifact
+verification must compare bytes and IDs, not just HTTP status. The public ELDÆON
+viewer remains a partner preview throughout this packaging handoff.
 
-   If the CLI package is present in access controls but not retrievable from the
-   public registry during the first release, do **not** rerun the full workspace
-   release. Publish only the CLI package after the full preflight has passed:
+## Stable release decision
 
-   ```bash
-   pnpm --filter @disclosureos/cli publish --access public --no-git-checks --ignore-scripts --otp <code>
-   ```
-
-   The `--ignore-scripts` flag is only for this scoped fallback after `build`,
-   `lint:publish`, and `npm pack --dry-run` have already passed; it avoids a
-   `pnpm publish --dry-run` lifecycle interaction with the nested `attw` pack
-   check.
-
-## Checklist before a release
-
-- [ ] All changesets for the release are merged.
-- [ ] Version bumps and CHANGELOGs are applied.
-- [ ] CI is green (packages quality workflow, docs quality workflow).
-- [ ] If any foundation schema (`$id`/host/layer/composed) changed: re-emit, confirm drift tests pass, and publish the updated files (and `llms.txt`) to their `os.disclosure.org` paths (see [Schema hosting](#schema-hosting-osdisclosureorg)).
-- [ ] If creating or syncing the public GitHub repo: regenerate and validate the
-  package-only export (see [Public repository export](#public-repository-export)).
-- [ ] Package metadata and docs reflect current naming and versioning.
+Stable v2 requires the reviewed disposition of the original audit findings,
+independent conformance/exchange and reproduction, partner mapping review,
+qualified scientific review, real governance assignments and compatible consumer
+migration. Beta package quality alone does not satisfy these gates. Publish the
+coordinated stable artifacts and switch the matching portal default only after
+that decision is recorded.

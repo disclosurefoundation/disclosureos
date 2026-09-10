@@ -1,7 +1,7 @@
 {
   "name": "@disclosureos/cli",
-  "version": "1.1.0",
-  "description": "Developer tools for the DisclosureOS ecosystem — scaffold, validate, and inspect observations",
+  "version": "2.0.0-beta.0",
+  "description": "Developer tools for the DisclosureOS ecosystem \u2014 scaffold, validate, and inspect observations",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -67,6 +67,7 @@
     "publint": "catalog:"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "tag": "beta"
   }
 }

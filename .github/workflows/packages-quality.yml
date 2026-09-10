@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - "docs/rfcs/**"
+      - "docs/releases/**"
+      - "docs/release-process.md"
+      - ".changeset/**"
       - "conformance/**"
       - "scripts/**"
       - ".github/workflows/packages-quality.yml"
@@ -18,6 +21,9 @@ on:
     branches: [main]
     paths:
       - "docs/rfcs/**"
+      - "docs/releases/**"
+      - "docs/release-process.md"
+      - ".changeset/**"
       - "conformance/**"
       - "scripts/**"
       - ".github/workflows/packages-quality.yml"
@@ -173,3 +179,26 @@ jobs:
       - run: pnpm test:v2-migration-closeout
       - run: pnpm test:partner-audit
       - run: pnpm test:partner-mapping
+
+  beta-consumer:
+    name: Beta tarballs and isolated consumer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test:release
+      - run: pnpm release:pack "${{ runner.temp }}/disclosureos-beta"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: disclosureos-beta-candidate
+          path: |
+            ${{ runner.temp }}/disclosureos-beta/release-manifest.json
+            ${{ runner.temp }}/disclosureos-beta/artifacts/*.tgz
+          if-no-files-found: error

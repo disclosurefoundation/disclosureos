@@ -1,5 +1,11 @@
 # DisclosureOS
 
+> **V2 beta preparation:** this source branch prepares `2.0.0-beta.0` for the seven
+> foundation packages. It is not a publication announcement. Published npm
+> `latest` remains v1; new contracts use explicit `/experimental/v2` imports. See
+> the [beta notes](docs/releases/2.0.0-beta.0.md) and [release process](docs/release-process.md).
+
+
 [![Packages Quality](https://github.com/disclosurefoundation/disclosureos/actions/workflows/packages-quality.yml/badge.svg)](https://github.com/disclosurefoundation/disclosureos/actions/workflows/packages-quality.yml)
 [![NPM](https://img.shields.io/npm/v/@disclosureos/schema?label=npm)](https://www.npmjs.com/package/@disclosureos/schema)
 [![GitHub Release](https://img.shields.io/github/v/release/disclosurefoundation/disclosureos?label=release)](https://github.com/disclosurefoundation/disclosureos/releases)

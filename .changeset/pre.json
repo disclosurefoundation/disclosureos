@@ -1,0 +1,18 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@disclosureos/examples": "0.0.0",
+    "@disclosureos/cli": "1.1.0",
+    "@disclosureos/instruments": "1.0.0",
+    "@disclosureos/observables": "1.0.1",
+    "@disclosureos/origins": "1.0.1",
+    "@disclosureos/records": "1.1.0",
+    "@disclosureos/schema": "1.1.0",
+    "@disclosureos/scoring": "1.1.0",
+    "@repo/typescript-config": "0.0.0"
+  },
+  "changesets": [
+    "v2-first-beta"
+  ]
+}

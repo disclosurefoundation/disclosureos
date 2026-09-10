@@ -1,0 +1,8 @@
+{
+  "version": "2.0.0-beta.0",
+  "tag": "beta",
+  "implementationRevision": "ca6cc10854093966fd203228ee502907bb507e1a",
+  "packages": ["records", "observables", "origins", "instruments", "scoring", "schema", "cli"],
+  "zod": "4.4.3",
+  "status": "candidate-not-published"
+}
