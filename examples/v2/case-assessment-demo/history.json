@@ -1,0 +1,334 @@
+{
+  "kind": "case_claim_history",
+  "schemaVersion": "0.1.0",
+  "id": "case-review-control",
+  "caseRefs": [
+    {
+      "documentId": "connected-control",
+      "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+      "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+    }
+  ],
+  "claims": [
+    {
+      "id": "source-conclusion",
+      "kind": "source_assertion",
+      "recordedAt": "2026-09-11T01:00:00Z",
+      "topic": "investigation-conclusion",
+      "subject": {
+        "kind": "case_entity",
+        "reference": {
+          "document": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "target": {
+            "kind": "investigation",
+            "id": "review-a",
+            "field": "reportedConclusion"
+          }
+        }
+      },
+      "text": "The report describes the case as unresolved.",
+      "provenance": {
+        "case": {
+          "documentId": "connected-control",
+          "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+          "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+        },
+        "observationId": "capture-a",
+        "sourceRef": "source:log",
+        "attributedTo": "Fictional investigation group",
+        "extractedBy": "Fictional recorder",
+        "locator": {
+          "kind": "page",
+          "page": 1
+        }
+      }
+    },
+    {
+      "kind": "assessment",
+      "status": "assessed",
+      "recordedAt": "2026-09-11T01:00:00Z",
+      "evaluatedAt": "2026-09-11T01:00:00Z",
+      "evaluatedBy": "Fictional reviewer A",
+      "methodRef": {
+        "case": {
+          "documentId": "connected-control",
+          "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+          "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+        },
+        "observationId": "capture-a",
+        "methodId": "case-review"
+      },
+      "methodVersion": "1",
+      "inputRefs": [],
+      "outcome": "inconclusive",
+      "id": "same-object",
+      "topic": "identity",
+      "subject": {
+        "kind": "case_relation",
+        "relation": "same_object",
+        "from": {
+          "case": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "observationId": "capture-a"
+        },
+        "to": {
+          "case": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "observationId": "capture-b"
+        }
+      },
+      "caseInputRefs": [
+        {
+          "kind": "case_basis",
+          "document": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "target": {
+            "kind": "relationship",
+            "id": "later"
+          }
+        }
+      ],
+      "observationInputRefs": [
+        {
+          "case": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "observationId": "capture-a",
+          "ref": "source:log"
+        },
+        {
+          "case": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "observationId": "capture-b",
+          "ref": "source:log"
+        }
+      ],
+      "rationale": "Chronological sequence alone does not establish a shared object."
+    },
+    {
+      "kind": "assessment",
+      "status": "assessed",
+      "recordedAt": "2026-09-11T01:00:00Z",
+      "evaluatedAt": "2026-09-11T01:00:00Z",
+      "evaluatedBy": "Fictional reviewer A",
+      "methodRef": {
+        "case": {
+          "documentId": "connected-control",
+          "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+          "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+        },
+        "observationId": "capture-a",
+        "methodId": "case-review"
+      },
+      "methodVersion": "1",
+      "inputRefs": [],
+      "outcome": "inconclusive",
+      "id": "finding-original",
+      "topic": "investigation-conclusion",
+      "subject": {
+        "kind": "case_entity",
+        "reference": {
+          "document": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "target": {
+            "kind": "investigation",
+            "id": "review-a",
+            "field": "reportedConclusion"
+          }
+        }
+      },
+      "caseInputRefs": [
+        {
+          "kind": "case_assertion",
+          "document": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "target": {
+            "kind": "investigation",
+            "id": "review-a",
+            "field": "reportedConclusion"
+          },
+          "assertionId": "conclusion-a"
+        }
+      ],
+      "rationale": "Initial review of the unresolved conclusion."
+    },
+    {
+      "kind": "assessment",
+      "status": "assessed",
+      "recordedAt": "2026-09-11T02:00:00Z",
+      "evaluatedAt": "2026-09-11T02:00:00Z",
+      "evaluatedBy": "Fictional reviewer A",
+      "methodRef": {
+        "case": {
+          "documentId": "connected-control",
+          "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+          "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+        },
+        "observationId": "capture-a",
+        "methodId": "case-review"
+      },
+      "methodVersion": "1",
+      "inputRefs": [
+        "claim:finding-original"
+      ],
+      "outcome": "inconclusive",
+      "id": "finding-revised",
+      "topic": "investigation-conclusion",
+      "subject": {
+        "kind": "case_entity",
+        "reference": {
+          "document": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "target": {
+            "kind": "investigation",
+            "id": "review-a",
+            "field": "reportedConclusion"
+          }
+        }
+      },
+      "supersedes": [
+        "claim:finding-original"
+      ],
+      "caseInputRefs": [
+        {
+          "kind": "case_assertion",
+          "document": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "target": {
+            "kind": "investigation",
+            "id": "review-a",
+            "field": "reportedConclusion"
+          },
+          "assertionId": "conclusion-a"
+        },
+        {
+          "kind": "case_assertion",
+          "document": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "target": {
+            "kind": "investigation",
+            "id": "review-a",
+            "field": "reportedConclusion"
+          },
+          "assertionId": "conclusion-b"
+        }
+      ],
+      "rationale": "Both conflicting conclusions are now considered; neither is selected."
+    },
+    {
+      "kind": "assessment",
+      "status": "assessed",
+      "recordedAt": "2026-09-11T01:00:00Z",
+      "evaluatedAt": "2026-09-11T01:00:00Z",
+      "evaluatedBy": "Fictional reviewer B",
+      "methodRef": {
+        "case": {
+          "documentId": "connected-control",
+          "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+          "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+        },
+        "observationId": "capture-a",
+        "methodId": "case-review"
+      },
+      "methodVersion": "1",
+      "inputRefs": [],
+      "outcome": "inconclusive",
+      "id": "independent-review",
+      "topic": "investigation-conclusion",
+      "subject": {
+        "kind": "case_entity",
+        "reference": {
+          "document": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "target": {
+            "kind": "investigation",
+            "id": "review-a",
+            "field": "reportedConclusion"
+          }
+        }
+      },
+      "caseInputRefs": [
+        {
+          "kind": "case_assertion",
+          "document": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "target": {
+            "kind": "investigation",
+            "id": "review-a",
+            "field": "reportedConclusion"
+          },
+          "assertionId": "conclusion-b"
+        }
+      ],
+      "rationale": "Independent review remains alongside reviewer A's revised assessment."
+    },
+    {
+      "kind": "assessment",
+      "status": "unassessed",
+      "id": "corroboration-pending",
+      "recordedAt": "2026-09-11T01:00:00Z",
+      "topic": "independence",
+      "subject": {
+        "kind": "case_relation",
+        "relation": "corroborates",
+        "from": {
+          "case": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "observationId": "capture-a"
+        },
+        "to": {
+          "case": {
+            "documentId": "connected-control",
+            "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+            "sha256": "7fc0907432c853c96d08aa99dc1d855c26c69cf6901b000b81b122acb18449ca"
+          },
+          "observationId": "capture-b"
+        }
+      },
+      "inputRefs": [],
+      "rationale": "Source independence has not been reviewed."
+    }
+  ]
+}

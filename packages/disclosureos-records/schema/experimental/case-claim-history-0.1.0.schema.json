@@ -1,0 +1,826 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "case_claim_history"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "id": {
+      "$ref": "#/$defs/__schema0"
+    },
+    "caseRefs": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/__schema1"
+      },
+      "description": "Exact case snapshots. Different revisions may coexist; references never follow latest."
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "recordedAt": {
+                "$ref": "#/$defs/__schema3"
+              },
+              "topic": {
+                "$ref": "#/$defs/__schema4"
+              },
+              "subject": {
+                "$ref": "#/$defs/__schema5"
+              },
+              "supersedes": {
+                "$ref": "#/$defs/__schema16"
+              },
+              "kind": {
+                "type": "string",
+                "const": "source_assertion"
+              },
+              "text": {
+                "$ref": "#/$defs/__schema4"
+              },
+              "reportedLevel": {
+                "$ref": "#/$defs/__schema4"
+              },
+              "provenance": {
+                "type": "object",
+                "properties": {
+                  "sourceRef": {
+                    "type": "string",
+                    "pattern": "^(source|product):[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+                  },
+                  "sourceDigest": {
+                    "type": "object",
+                    "properties": {
+                      "algorithm": {
+                        "type": "string",
+                        "const": "sha256"
+                      },
+                      "value": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      }
+                    },
+                    "required": [
+                      "algorithm",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "locator": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "const": "page"
+                          },
+                          "page": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 9007199254740991
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "page"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "const": "time_range"
+                          },
+                          "startSeconds": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "endSeconds": {
+                            "type": "number",
+                            "minimum": 0
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "startSeconds",
+                          "endSeconds"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "const": "json_pointer"
+                          },
+                          "pointer": {
+                            "type": "string",
+                            "pattern": "^(?:\\/(?:[^~]|~[01])*)?(?![\\s\\S])"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "pointer"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "attributedTo": {
+                    "description": "Who made the declaration, using a public label when identity is withheld.",
+                    "$ref": "#/$defs/__schema18"
+                  },
+                  "extractedBy": {
+                    "description": "Who recorded the declaration in this case.",
+                    "$ref": "#/$defs/__schema18"
+                  },
+                  "observationId": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])",
+                    "description": "Selects an exact observation snapshot in this case's observationRefs, disambiguating source IDs across observations."
+                  },
+                  "case": {
+                    "$ref": "#/$defs/__schema1"
+                  }
+                },
+                "required": [
+                  "sourceRef",
+                  "attributedTo",
+                  "extractedBy",
+                  "observationId",
+                  "case"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "recordedAt",
+              "topic",
+              "subject",
+              "kind",
+              "text",
+              "provenance"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "recordedAt": {
+                "$ref": "#/$defs/__schema3"
+              },
+              "topic": {
+                "$ref": "#/$defs/__schema4"
+              },
+              "subject": {
+                "$ref": "#/$defs/__schema5"
+              },
+              "supersedes": {
+                "$ref": "#/$defs/__schema16"
+              },
+              "kind": {
+                "$ref": "#/$defs/__schema19"
+              },
+              "inputRefs": {
+                "$ref": "#/$defs/__schema20"
+              },
+              "rationale": {
+                "$ref": "#/$defs/__schema4"
+              },
+              "status": {
+                "type": "string",
+                "const": "unassessed"
+              },
+              "caseInputRefs": {
+                "$ref": "#/$defs/__schema21"
+              },
+              "observationInputRefs": {
+                "$ref": "#/$defs/__schema22"
+              }
+            },
+            "required": [
+              "id",
+              "recordedAt",
+              "topic",
+              "subject",
+              "kind",
+              "inputRefs",
+              "rationale",
+              "status"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "recordedAt": {
+                "$ref": "#/$defs/__schema3"
+              },
+              "topic": {
+                "$ref": "#/$defs/__schema4"
+              },
+              "subject": {
+                "$ref": "#/$defs/__schema5"
+              },
+              "supersedes": {
+                "$ref": "#/$defs/__schema16"
+              },
+              "kind": {
+                "$ref": "#/$defs/__schema19"
+              },
+              "inputRefs": {
+                "$ref": "#/$defs/__schema20"
+              },
+              "rationale": {
+                "$ref": "#/$defs/__schema4"
+              },
+              "status": {
+                "type": "string",
+                "const": "assessed"
+              },
+              "outcome": {
+                "type": "string",
+                "enum": [
+                  "reported",
+                  "confirmed",
+                  "absent",
+                  "inconclusive"
+                ]
+              },
+              "evaluatedBy": {
+                "$ref": "#/$defs/__schema4"
+              },
+              "evaluatedAt": {
+                "$ref": "#/$defs/__schema3"
+              },
+              "methodRef": {
+                "type": "object",
+                "properties": {
+                  "case": {
+                    "$ref": "#/$defs/__schema1"
+                  },
+                  "observationId": {
+                    "$ref": "#/$defs/__schema0"
+                  },
+                  "methodId": {
+                    "$ref": "#/$defs/__schema0"
+                  }
+                },
+                "required": [
+                  "case",
+                  "observationId",
+                  "methodId"
+                ],
+                "additionalProperties": false
+              },
+              "methodVersion": {
+                "$ref": "#/$defs/__schema4"
+              },
+              "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "caseInputRefs": {
+                "$ref": "#/$defs/__schema21"
+              },
+              "observationInputRefs": {
+                "$ref": "#/$defs/__schema22"
+              }
+            },
+            "required": [
+              "id",
+              "recordedAt",
+              "topic",
+              "subject",
+              "kind",
+              "inputRefs",
+              "rationale",
+              "status",
+              "outcome",
+              "evaluatedBy",
+              "evaluatedAt",
+              "methodRef",
+              "methodVersion"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "id",
+    "caseRefs",
+    "claims"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "__schema1": {
+      "type": "object",
+      "properties": {
+        "documentId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])",
+          "description": "ID inside the supplied document; not a URL."
+        },
+        "schemaId": {
+          "type": "string",
+          "const": "urn:disclosureos:experimental:case-record:0.1.0"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}(?![\\s\\S])",
+          "description": "SHA-256 of exact supplied document bytes."
+        }
+      },
+      "required": [
+        "documentId",
+        "schemaId",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "__schema2": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "__schema3": {
+      "type": "string",
+      "allOf": [
+        {
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+        },
+        {
+          "pattern": "^(?!0000)"
+        },
+        {
+          "pattern": "T[0-9]{2}:[0-9]{2}:[0-9]{2}"
+        },
+        {
+          "pattern": "(?:Z|[+-][0-9]{2}:[0-9]{2})(?![\\s\\S])"
+        }
+      ]
+    },
+    "__schema4": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "__schema5": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "case"
+            },
+            "document": {
+              "$ref": "#/$defs/__schema1"
+            }
+          },
+          "required": [
+            "kind",
+            "document"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "case_entity"
+            },
+            "reference": {
+              "type": "object",
+              "properties": {
+                "document": {
+                  "$ref": "#/$defs/__schema1"
+                },
+                "target": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "$ref": "#/$defs/__schema6"
+                        },
+                        "id": {
+                          "$ref": "#/$defs/__schema7"
+                        },
+                        "field": {
+                          "$ref": "#/$defs/__schema8"
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "id"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "$ref": "#/$defs/__schema9"
+                        },
+                        "id": {
+                          "$ref": "#/$defs/__schema7"
+                        },
+                        "field": {
+                          "$ref": "#/$defs/__schema10"
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "id"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "$ref": "#/$defs/__schema11"
+                        },
+                        "id": {
+                          "$ref": "#/$defs/__schema7"
+                        },
+                        "field": {
+                          "$ref": "#/$defs/__schema12"
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "id"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "$ref": "#/$defs/__schema13"
+                    },
+                    {
+                      "$ref": "#/$defs/__schema14"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "document",
+                "target"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "kind",
+            "reference"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "case_relation"
+            },
+            "from": {
+              "$ref": "#/$defs/__schema15"
+            },
+            "to": {
+              "$ref": "#/$defs/__schema15"
+            },
+            "relation": {
+              "type": "string",
+              "enum": [
+                "corroborates",
+                "contradicts",
+                "same_object",
+                "duplicate_of",
+                "re_analysis_of",
+                "supersedes",
+                "superseded_by"
+              ],
+              "description": "Attributed relationship under review. This never merges observations or changes their publication lifecycle."
+            }
+          },
+          "required": [
+            "kind",
+            "from",
+            "to",
+            "relation"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "__schema6": {
+      "type": "string",
+      "const": "event_group"
+    },
+    "__schema7": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "__schema8": {
+      "type": "string",
+      "enum": [
+        "label",
+        "groupType",
+        "description"
+      ]
+    },
+    "__schema9": {
+      "type": "string",
+      "const": "investigation"
+    },
+    "__schema10": {
+      "type": "string",
+      "enum": [
+        "investigatingBody",
+        "investigatingBodies",
+        "caseNumber",
+        "investigationTime",
+        "status",
+        "reportedMethods",
+        "methodReferences",
+        "reportedFindings",
+        "reportedConclusion",
+        "reportedConfidence",
+        "reportedRecommendations"
+      ]
+    },
+    "__schema11": {
+      "type": "string",
+      "const": "response_event"
+    },
+    "__schema12": {
+      "type": "string",
+      "enum": [
+        "occurredAt",
+        "respondingBody",
+        "officialResponse",
+        "mediaAttention",
+        "publicImpact",
+        "policyImpact",
+        "militaryResponse",
+        "reportedConcealmentAllegation"
+      ]
+    },
+    "__schema13": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "membership"
+        },
+        "id": {
+          "$ref": "#/$defs/__schema0"
+        }
+      },
+      "required": [
+        "kind",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "__schema14": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "relationship"
+        },
+        "id": {
+          "$ref": "#/$defs/__schema0"
+        }
+      },
+      "required": [
+        "kind",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "__schema15": {
+      "type": "object",
+      "properties": {
+        "case": {
+          "$ref": "#/$defs/__schema1"
+        },
+        "observationId": {
+          "$ref": "#/$defs/__schema0"
+        }
+      },
+      "required": [
+        "case",
+        "observationId"
+      ],
+      "additionalProperties": false
+    },
+    "__schema16": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/__schema17"
+      }
+    },
+    "__schema17": {
+      "type": "string",
+      "pattern": "^claim:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "__schema18": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "__schema19": {
+      "type": "string",
+      "const": "assessment"
+    },
+    "__schema20": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^claim:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+      }
+    },
+    "__schema21": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "case_assertion"
+              },
+              "document": {
+                "$ref": "#/$defs/__schema1"
+              },
+              "target": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "$ref": "#/$defs/__schema6"
+                      },
+                      "id": {
+                        "$ref": "#/$defs/__schema7"
+                      },
+                      "field": {
+                        "$ref": "#/$defs/__schema8"
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "id",
+                      "field"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "$ref": "#/$defs/__schema9"
+                      },
+                      "id": {
+                        "$ref": "#/$defs/__schema7"
+                      },
+                      "field": {
+                        "$ref": "#/$defs/__schema10"
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "id",
+                      "field"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "$ref": "#/$defs/__schema11"
+                      },
+                      "id": {
+                        "$ref": "#/$defs/__schema7"
+                      },
+                      "field": {
+                        "$ref": "#/$defs/__schema12"
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "id",
+                      "field"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "assertionId": {
+                "$ref": "#/$defs/__schema0"
+              }
+            },
+            "required": [
+              "kind",
+              "document",
+              "target",
+              "assertionId"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "case_basis"
+              },
+              "document": {
+                "$ref": "#/$defs/__schema1"
+              },
+              "target": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/__schema13"
+                  },
+                  {
+                    "$ref": "#/$defs/__schema14"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "document",
+              "target"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "__schema22": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "case": {
+            "$ref": "#/$defs/__schema1"
+          },
+          "observationId": {
+            "$ref": "#/$defs/__schema0"
+          },
+          "ref": {
+            "type": "string",
+            "pattern": "^(source|product|assertion|measurement):[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+          }
+        },
+        "required": [
+          "case",
+          "observationId",
+          "ref"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "$id": "urn:disclosureos:experimental:case-claim-history:0.1.0"
+}

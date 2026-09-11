@@ -21,10 +21,13 @@ Source checkpoints completed (unreleased):
   The viewer remains unlisted and blocked in production.
 - [C3a connected cases](../c3/README.md): sourced chronology, groups, investigations
   and responses with pinned observation scope and supplied-reference checks.
+- [C3b case assessments](../c3/assessments.md): exact case/entity/field and directed
+  relationship subjects, explicit inputs, independent reviewers and revisions,
+  and supplied case/observation snapshot resolution.
 
 Remaining implementation areas:
 
-- C3 case-level assessments, additional scoped references, presentation and application
+- C3 additional scoped references, presentation and application
   access/output enforcement, followed by integration acceptance across V2.
 
 At closeout, review the accumulated changesets, choose the coordinated package

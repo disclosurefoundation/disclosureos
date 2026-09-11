@@ -38,5 +38,5 @@ assert len(rows) == len(expected)
 assert {r['baseline_path']:r['schema_pointer'] for r in rows} == expected
 assert len({r['baseline_path'] for r in rows}) == len(rows)
 assert all(r['destination'] and r['meaning'] and r['disposition'] in {'existing','reorganized','revised','deferred'} for r in rows)
-assert all(r['owner'] in {'C3a connected cases','C3 later relationship assessments'} for r in rows)
-print(f'{len(rows)} case-domain field occurrences accounted for; deferred relationship assessments remain explicit.')
+assert all(r['owner'] in {'C3a connected cases','C3b case assessments'} for r in rows)
+print(f'{len(rows)} case-domain field occurrences accounted for; relationship assessments have explicit attributed destinations.')
