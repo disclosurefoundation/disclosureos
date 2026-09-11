@@ -1,9 +1,7 @@
 # C2b: document editions and digital custody
 
-This source-tree candidate adds exact document editions, digital artifacts and
-custody actions to the research entity model. It is **not included in published
-2.0.0-beta.2**. Package review precedes a coordinated beta and matching public
-reference pages. Material samples and laboratory analysis remain C2c; case
+Published in **2.0.0-beta.3**, this contract adds exact document editions, digital artifacts and
+custody actions to the research entity model. The public reference is at https://os.disclosure.org/v2/records/documents. Material samples and laboratory analysis remain C2c; case
 organization and application access controls remain C3.
 
 ## What researchers can describe

@@ -1,5 +1,12 @@
 # Release process
 
+## Current publication hold
+
+Further npm publication is paused until the remaining V2 implementation is complete.
+See [the consolidated release policy](releases/v2-completion.md). Accumulate reviewed
+source changes and changesets; do not version or publish each checkpoint. The last
+published set is 2.0.0-beta.3.
+
 ## Canonical ownership and current track
 
 This package-only repository, `disclosurefoundation/disclosureos`, is the
@@ -7,7 +14,8 @@ canonical standard source. Website/dashboard applications consume pinned release
 The reverse application exporter and subtree release workflow are retired.
 Never replace this repository with an application snapshot.
 
-The current source prepares the [2.0.0-beta.3 candidate](releases/2.0.0-beta.3.md).
+The last published set is described by the [2.0.0-beta.3 release notes](releases/2.0.0-beta.3.md).
+Source changes after its release commit are unreleased.
 Seven foundation packages are in Changesets prerelease mode with tag `beta`.
 Package `publishConfig.tag` also names `beta`. This is not stable publication;
 existing npm `latest` tags continue to identify v1 releases.

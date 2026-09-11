@@ -1,0 +1,30 @@
+{
+  "kind": "observation",
+  "schemaVersion": "0.1.0",
+  "id": "material-control",
+  "status": "draft",
+  "createdAt": "2026-09-11T00:00:00Z",
+  "updatedAt": "2026-09-11T00:00:00Z",
+  "eventTime": {
+    "state": "unknown",
+    "reason": "not_recorded"
+  },
+  "position": {
+    "state": "unknown",
+    "reason": "not_recorded"
+  },
+  "sources": [
+    {
+      "id": "handling-log",
+      "kind": "document",
+      "access": "public",
+      "title": "Fictional handling declarations"
+    }
+  ],
+  "products": [],
+  "methods": [],
+  "frames": [],
+  "assertions": [],
+  "measurements": [],
+  "processing": []
+}

@@ -191,9 +191,27 @@ const wrongPageResult = await evaluateArchivalClaimHistory(wrongPage, { document
 assert.equal(wrongPageResult.success, false);
 assert.ok(wrongPageResult.issues.some(i => i.code === 'ARCHIVE.PAGE_BOUNDS'));
 console.log('Fresh C2b consumer: exact editions, retained missingness, snapshot failures, citation scope, page bounds and runnable example passed.');
+const { parseMaterialEntities } = await import('@disclosureos/records/experimental/v2');
+const materials = JSON.parse(readFileSync(join(root, 'material-lineage-demo/entities.json')));
+const materialResult = parseMaterialEntities(materials);
+assert.equal(materialResult.success, true, JSON.stringify(materialResult.issues));
+assert.deepEqual(materialResult.checks, { structural: 'passed', semantic: 'passed', external: 'not_checked', profile: 'not_checked' });
+assert.equal(parseArchivalEntities(materials).success, false);
+const materialExample = JSON.parse(execFileSync(process.execPath, [join(root, 'material-lineage-demo/run.mjs')]).toString());
+assert.equal(materialExample.success, true);
+assert.deepEqual(materialExample.checks, materialResult.checks);
+const crossedCustody = structuredClone(materials);
+crossedCustody.entities.find(e => e.id === 'aliquot-receive').predecessor = { kind: 'action', id: 'store' };
+const crossedResult = parseMaterialEntities(crossedCustody);
+assert.equal(crossedResult.success, false);
+assert.ok(crossedResult.issues.some(i => i.code === 'MATERIAL.CUSTODY_SCOPE'));
+console.log('Fresh C2c consumer: material example, custody scope and explicit unchecked external references passed.');
 const cli = resolve(root, 'node_modules/@disclosureos/cli/dist/index.js');
 assert.equal(execFileSync(process.execPath, [cli, '--version']).toString().trim(), manifest.version);
 writeFileSync(join(root, 'consumer.ts'), imports.join('\n') + '\n' + `
+import { parseMaterialEntities, type MaterialEntities } from '@disclosureos/records/experimental/v2';
+const parsedMaterials = parseMaterialEntities({});
+if (parsedMaterials.success) { const materials: MaterialEntities = parsedMaterials.data; void materials; }
 import type { ArchivalReviewOptions, ArchivalReviewResult } from '@disclosureos/schema/experimental/v2';
 import { evaluateArchivalClaimHistory } from '@disclosureos/schema/experimental/v2';
 import { parseArchivalEntities, parseArchivalClaimHistory, type ArchivalEntities, type ArchivalClaimHistory } from '@disclosureos/records/experimental/v2';
