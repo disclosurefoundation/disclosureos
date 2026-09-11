@@ -1,0 +1,34 @@
+{
+  "kind": "observation_context",
+  "schemaVersion": "0.1.0",
+  "id": "case-context",
+  "recordedAt": "2026-09-11T00:00:00Z",
+  "recordedBy": "Fictional editor",
+  "observationRef": {
+    "documentId": "capture-a",
+    "schemaId": "urn:disclosureos:experimental:observation:0.1.0",
+    "sha256": "c8561edfe714990f9420d8f3f9fb0c06fdbb559262805a4e2c382a0798efa73d"
+  },
+  "entities": [
+    {
+      "kind": "event",
+      "id": "event",
+      "fields": {
+        "description": [
+          {
+            "id": "description",
+            "content": {
+              "state": "known",
+              "value": "A fictional station observation, without a proposed origin.",
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional editor"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

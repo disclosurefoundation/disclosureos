@@ -1,0 +1,52 @@
+{
+  "kind": "research_entities",
+  "schemaVersion": "0.4.0",
+  "id": "case-witnesses",
+  "recordedAt": "2026-09-11T00:00:00Z",
+  "recordedBy": "Fictional editor",
+  "observationRef": {
+    "documentId": "capture-a",
+    "schemaId": "urn:disclosureos:experimental:observation:0.1.0",
+    "sha256": "c8561edfe714990f9420d8f3f9fb0c06fdbb559262805a4e2c382a0798efa73d"
+  },
+  "contextRefs": [],
+  "entities": [
+    {
+      "kind": "witness",
+      "id": "witness-a",
+      "fields": {
+        "publicIdentity": [
+          {
+            "id": "identity",
+            "content": {
+              "state": "known",
+              "value": {
+                "kind": "pseudonym",
+                "display": "Witness A"
+              },
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional editor"
+              }
+            }
+          }
+        ],
+        "anonymous": [
+          {
+            "id": "anonymous",
+            "content": {
+              "state": "known",
+              "value": false,
+              "provenance": {
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional editor"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -148,7 +148,8 @@ regression tests and 92 records/schema unit tests. Both affected packages build,
 type-check and pass strict ESM package-export checks. The fixture runner and
 28-occurrence field-accounting check pass.
 
-Still pending are additional direct context/entity/intake associations, public
+The [C3c link contract](links.md) now supplies direct context/entity/intake
+associations with separately reported validation limits. Still pending are public
 presentation and application access/output enforcement, followed by the four-case
 integration acceptance and coordinated package/portal release. The current history
 accepts only the explicit input roles listed above; it must not silently accept

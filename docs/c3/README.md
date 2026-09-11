@@ -7,6 +7,8 @@ bump is part of this checkpoint.
 [C3b case assessments](assessments.md) adds the downstream review envelope for
 case, entity/field and directed relationship subjects. It preserves independent
 reviewers and explicit revisions without altering this case-record contract.
+[C3c supplemental links](links.md) associates context, entity and intake snapshots
+with a case while preserving separate research-validation and publication checks.
 
 A case connects observations without combining their underlying facts. The new
 case-record `0.1.0` contract names exact observation snapshots, sourced directed
@@ -89,9 +91,9 @@ Missing observation bytes prevent a complete reference check, including a fully
 checked declared chronology. An unresolved external target stays in the case
 scope for display; it cannot yield a successful evaluation.
 
-The dependency direction is Case to Observation in this contract. Case-to-case,
-Context and Entities snapshot links are not yet accepted, so no dependency cycle
-is representable. Later extensions must validate their expanded dependencies.
+The dependency direction is Case to Observation in this contract. The separate
+C3c link document points to a case and its supplements; none point back to it.
+Case-to-case dependencies are not accepted by this case-record contract.
 
 ## Evaluation boundaries
 
@@ -143,14 +145,11 @@ destinations previously deferred in that ledger.
 
 ## Remaining C3 checkpoints
 
-1. Connect additional pinned context/entity/intake references. Case-level
-   assessments and attributed relationship kinds are implemented in C3b;
-   observation withdrawal remains independent and must not cascade automatically.
-2. Add the public presentation contract and application integration for narrative,
+1. Add the public presentation contract and application integration for narrative,
    attachments, selected findings and publication notices. Enforce allowlists
    across rendering, exports, search, metadata and caches; keep private notes,
    identity mappings and storage URLs in the application envelope.
-3. Review the integrated viewer against all four design cases and finish the
+2. Review the integrated viewer against all four design cases and finish the
    baseline field ledger before the coordinated package/portal release.
 
 Strict rejection of an `internalNotes` property here is not an access-control
