@@ -1,0 +1,61 @@
+{
+  "kind": "observation",
+  "schemaVersion": "0.1.0",
+  "id": "archival-control",
+  "status": "draft",
+  "createdAt": "2026-09-11T12:00:00Z",
+  "updatedAt": "2026-09-11T12:00:00Z",
+  "summary": "SYNTHETIC: two editions with separate pagination, an unknown declassification date and a digital custody gap.",
+  "eventTime": {
+    "state": "unknown",
+    "reason": "not_recorded"
+  },
+  "position": {
+    "state": "unknown",
+    "reason": "not_recorded"
+  },
+  "sources": [
+    {
+      "id": "memo-a",
+      "kind": "document",
+      "access": "public",
+      "title": "Synthetic Memo A",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "5ab5d994e0e6ec734f782c77e8c2adfd2d55e0885c277336423e2a7423c929f5"
+      }
+    },
+    {
+      "id": "memo-b",
+      "kind": "document",
+      "access": "public",
+      "title": "Synthetic Memo A",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "b8e7982f84f790809cb6c4fe94f4114583dd39447fb535d4660229835bde1fe1"
+      }
+    },
+    {
+      "id": "archive-log",
+      "kind": "document",
+      "access": "public",
+      "title": "Synthetic archive log",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "14054792b62ba5d8be552d6aa38cf20a9120b727b634bf51913215d9c499e2f9"
+      }
+    }
+  ],
+  "products": [],
+  "methods": [
+    {
+      "id": "review",
+      "version": "1.0",
+      "description": "Compare supplied edition declarations without deciding authenticity."
+    }
+  ],
+  "frames": [],
+  "assertions": [],
+  "measurements": [],
+  "processing": []
+}

@@ -131,10 +131,24 @@ The same experimental entry point now exposes `ExperimentalObservationSchema` an
 Experimental source statements, attributed assessments, and revision history are documented in [Claim history](../../docs/experimental/claim-history.md). This additive contract remains separate from v1 and does not certify scientific support.
 
 
-## Witnesses and accounts: C2a candidate
+## Witnesses and accounts: C2a
 
 The source tree adds public witness/account/procedure declarations, entity-addressed
-claim history 0.3.0 and supplied-snapshot review. These additions are not included
-in the published 2.0.0-beta.1 packages. See the [contract, worked example and
+claim history 0.3.0 and supplied-snapshot review, published in 2.0.0-beta.2.
+See the [contract, worked example and
 verification boundaries](../../docs/c2/README.md). Qualifications and reviewer
 judgments remain separate; no credibility score is calculated.
+
+## Document editions and digital custody: C2b candidate
+
+The source tree adds research-entities 0.2.0 and claim-history 0.4.0 with exact
+edition citations, digital custody actions, scoped identifiers and attributable
+artifact reviews. These additions are not in published 2.0.0-beta.2. Existing
+contract schemas and versioned entry points remain unchanged.
+
+Use `parseArchivalEntities` / `parseArchivalClaimHistory` from records and
+`evaluateArchivalClaimHistory` from schema through their `/experimental/v2`
+entries. A successful supplied-document check does not authenticate source
+artifacts, complete custody or certify a scientific profile.
+See the [contract guide](../../docs/c2/archival.md) and
+[worked example](../../examples/v2/archival-editions-demo/README.md).

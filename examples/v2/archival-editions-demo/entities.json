@@ -1,0 +1,769 @@
+{
+  "kind": "research_entities",
+  "schemaVersion": "0.2.0",
+  "id": "archival-entities",
+  "observationRef": {
+    "documentId": "archival-control",
+    "schemaId": "urn:disclosureos:experimental:observation:0.1.0",
+    "sha256": "653368b0dcd2b9de4245d90f33349f2381297eedb510dc9e7fc6d4afa0536d8e"
+  },
+  "contextRefs": [],
+  "recordedAt": "2026-09-11T12:00:00Z",
+  "recordedBy": "Synthetic curator",
+  "entities": [
+    {
+      "kind": "source_edition",
+      "id": "edition-a",
+      "artifact": {
+        "sourceRef": "source:memo-a",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "5ab5d994e0e6ec734f782c77e8c2adfd2d55e0885c277336423e2a7423c929f5"
+        }
+      },
+      "fields": {
+        "title": [
+          {
+            "id": "title",
+            "content": {
+              "state": "known",
+              "value": "Memo A",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "documentType": [
+          {
+            "id": "type",
+            "content": {
+              "state": "known",
+              "value": "military_memo",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "originatingAgency": [
+          {
+            "id": "agency",
+            "content": {
+              "state": "known",
+              "value": "Fictional Agency A",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "controlNumbers": [
+          {
+            "id": "control",
+            "content": {
+              "state": "known",
+              "value": [
+                "SYN-17"
+              ],
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "originalClassification": [
+          {
+            "id": "original-marking",
+            "content": {
+              "state": "known",
+              "value": "SECRET",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "classificationLevel": [
+          {
+            "id": "current-marking",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "pageCount": [
+          {
+            "id": "pages",
+            "content": {
+              "state": "known",
+              "value": 3,
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "redactionLevel": [
+          {
+            "id": "redaction",
+            "content": {
+              "state": "known",
+              "value": "partial",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "redactionDescription": [
+          {
+            "id": "description",
+            "content": {
+              "state": "known",
+              "value": "Source describes redacted passages.",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "redactionPercent": [
+          {
+            "id": "extent",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "source_edition",
+      "id": "edition-b",
+      "artifact": {
+        "sourceRef": "source:memo-b",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "b8e7982f84f790809cb6c4fe94f4114583dd39447fb535d4660229835bde1fe1"
+        }
+      },
+      "fields": {
+        "title": [
+          {
+            "id": "title",
+            "content": {
+              "state": "known",
+              "value": "Memo A",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "pageCount": [
+          {
+            "id": "pages",
+            "content": {
+              "state": "known",
+              "value": 4,
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "document_event",
+      "id": "release-a",
+      "editionId": "edition-a",
+      "fields": {
+        "eventType": [
+          {
+            "id": "type",
+            "content": {
+              "state": "known",
+              "value": "release",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "occurredAt": [
+          {
+            "id": "date",
+            "content": {
+              "state": "known",
+              "value": {
+                "kind": "date",
+                "value": "2026-09-10"
+              },
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "authority": [
+          {
+            "id": "authority",
+            "content": {
+              "state": "known",
+              "value": "Fictional Archive A",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "reference": [
+          {
+            "id": "reference",
+            "content": {
+              "state": "known",
+              "value": "Synthetic release listing",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "document_event",
+      "id": "declassification-a",
+      "editionId": "edition-a",
+      "fields": {
+        "eventType": [
+          {
+            "id": "type",
+            "content": {
+              "state": "known",
+              "value": "declassification",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "occurredAt": [
+          {
+            "id": "date",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "digital_artifact",
+      "id": "file-a",
+      "artifact": {
+        "sourceRef": "source:memo-a",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "5ab5d994e0e6ec734f782c77e8c2adfd2d55e0885c277336423e2a7423c929f5"
+        }
+      },
+      "fields": {
+        "originalFilename": [
+          {
+            "id": "name",
+            "content": {
+              "state": "known",
+              "value": "memo-a.txt",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "custodyStatus": [
+          {
+            "id": "custody",
+            "content": {
+              "state": "known",
+              "value": "partial",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "declaredHashes": [
+          {
+            "id": "old-hash",
+            "content": {
+              "state": "known",
+              "value": [
+                {
+                  "hash": {
+                    "algorithm": "md5",
+                    "value": "00000000000000000000000000000000"
+                  },
+                  "appliesTo": {
+                    "kind": "unavailable_original",
+                    "description": "Original file named by the archive; bytes unavailable."
+                  }
+                }
+              ],
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "metadataStripped": [
+          {
+            "id": "stripped",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "metadataPreserved": [
+          {
+            "id": "preserved",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "digital_artifact",
+      "id": "file-b",
+      "artifact": {
+        "sourceRef": "source:memo-b",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "b8e7982f84f790809cb6c4fe94f4114583dd39447fb535d4660229835bde1fe1"
+        }
+      },
+      "fields": {
+        "originalFilename": [
+          {
+            "id": "name",
+            "content": {
+              "state": "known",
+              "value": "memo-b.txt",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "digital_custody_action",
+      "id": "receive-a",
+      "artifactId": "file-a",
+      "predecessor": {
+        "kind": "unknown",
+        "reason": "Earlier digital custody was not supplied."
+      },
+      "fields": {
+        "action": [
+          {
+            "id": "action",
+            "content": {
+              "state": "known",
+              "value": "collection",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "occurredAt": [
+          {
+            "id": "date",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "from": [
+          {
+            "id": "from",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "to": [
+          {
+            "id": "to",
+            "content": {
+              "state": "known",
+              "value": "Fictional Archive A",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "digital_custody_action",
+      "id": "store-a",
+      "artifactId": "file-a",
+      "predecessor": {
+        "kind": "action",
+        "id": "receive-a"
+      },
+      "fields": {
+        "action": [
+          {
+            "id": "action",
+            "content": {
+              "state": "known",
+              "value": "storage",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "occurredAt": [
+          {
+            "id": "date",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "from": [
+          {
+            "id": "from",
+            "content": {
+              "state": "known",
+              "value": "Fictional Archive A",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "to": [
+          {
+            "id": "to",
+            "content": {
+              "state": "known",
+              "value": "Fictional Repository A",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "external_identifier",
+      "id": "catalog-a",
+      "subject": {
+        "kind": "source_edition",
+        "editionId": "edition-a"
+      },
+      "fields": {
+        "value": [
+          {
+            "id": "identifier",
+            "content": {
+              "state": "known",
+              "value": {
+                "system": "custom",
+                "systemName": "Fictional Archive",
+                "value": "SYN-17",
+                "url": "https://archive.example/memo-a"
+              },
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "primaryDisplay": [
+          {
+            "id": "display",
+            "content": {
+              "state": "known",
+              "value": true,
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "identifier_check",
+      "id": "access-a",
+      "identifierId": "catalog-a",
+      "identifierAssertionId": "identifier",
+      "fields": {
+        "checkedAt": [
+          {
+            "id": "date",
+            "content": {
+              "state": "known",
+              "value": {
+                "kind": "date",
+                "value": "2026-09-10"
+              },
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "agent": [
+          {
+            "id": "agent",
+            "content": {
+              "state": "known",
+              "value": "Fictional catalog checker",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "method": [
+          {
+            "id": "method",
+            "content": {
+              "state": "known",
+              "value": "Recorded access check",
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "methodVersion": [
+          {
+            "id": "version",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "outcome": [
+          {
+            "id": "result",
+            "content": {
+              "state": "known",
+              "value": {
+                "kind": "access",
+                "result": "accessible"
+              },
+              "provenance": {
+                "sourceRef": "source:archive-log",
+                "attributedTo": "Synthetic archive",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
