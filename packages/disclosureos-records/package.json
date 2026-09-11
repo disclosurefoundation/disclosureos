@@ -1,7 +1,7 @@
 {
   "name": "@disclosureos/records",
-  "version": "2.0.0-beta.0",
-  "description": "Structured vocabulary for describing UAP observations \u2014 the data dictionary of the DisclosureOS ecosystem",
+  "version": "2.0.0-beta.1",
+  "description": "Structured vocabulary for describing UAP observations — the data dictionary of the DisclosureOS ecosystem",
   "license": "MIT",
   "repository": {
     "type": "git",

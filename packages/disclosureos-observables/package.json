@@ -1,7 +1,7 @@
 {
   "name": "@disclosureos/observables",
-  "version": "2.0.0-beta.0",
-  "description": "Anomaly detection criteria for the DisclosureOS ecosystem \u2014 Technology and Biologics observable frameworks",
+  "version": "2.0.0-beta.1",
+  "description": "Anomaly detection criteria for the DisclosureOS ecosystem — Technology and Biologics observable frameworks",
   "license": "MIT",
   "repository": {
     "type": "git",

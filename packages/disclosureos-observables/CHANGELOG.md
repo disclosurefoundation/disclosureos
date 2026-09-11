@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0-beta.1
+
+### Patch Changes
+
+- Updated dependencies [9e7c76a]
+  - @disclosureos/records@2.0.0-beta.1
+
 ## 2.0.0-beta.0
 
 ### Major Changes

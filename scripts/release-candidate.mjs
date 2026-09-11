@@ -101,6 +101,7 @@ async function main() {
   writeFileSync(join(consumer, 'candidate.json'), json(manifest));
   cpSync(join(root, 'conformance/v2-observation-fixtures.json'), join(consumer, 'observation-fixtures.json'));
   cpSync(join(root, 'conformance/v2-claim-history-fixtures.json'), join(consumer, 'claim-history-fixtures.json'));
+  cpSync(join(root, 'examples/v2/context-demo'), join(consumer, 'context-demo'), { recursive: true });
   run(process.execPath, ['verify.mjs'], consumer);
   manifest.definitions = read(join(consumer, 'definitions.json'));
   const tsc = realpathSync(join(root, 'packages/disclosureos-records/node_modules/typescript/bin/tsc'));
@@ -108,7 +109,7 @@ async function main() {
     '--moduleResolution', module === 'NodeNext' ? 'NodeNext' : 'Bundler', 'consumer.ts'], consumer);
   run(process.execPath, [join(root, 'conformance/migration-closeout.mjs'), '--cli', join(consumer, 'node_modules/@disclosureos/cli/dist/index.js')]);
   manifest.status = 'passed';
-  manifest.checks = { exportResolution: 'passed', types: ['NodeNext', 'Bundler'], observationAndClaimCorpus: 'passed', migrationCloseout: 'passed', scientificValidity: 'not_checked', partnerData: 'not_used' };
+  manifest.checks = { exportResolution: 'passed', types: ['NodeNext', 'Bundler'], observationAndClaimCorpus: 'passed', contextSnapshotConsumer: 'passed', migrationCloseout: 'passed', scientificValidity: 'not_checked', partnerData: 'not_used' };
   writeFileSync(join(output, 'release-manifest.json'), json(manifest));
   console.log(`Verified candidate artifacts and manifest: ${output}`);
 }
