@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-beta.3
+
+### Minor Changes
+
+- 4f80b20: Add research-entities 0.2.0 and claim-history 0.4.0 with exact document editions, digital artifact custody, scoped identifiers and attributable artifact reviews. Validate supplied snapshot references and edition-specific citations without inferring source authenticity or complete custody. Keep existing contract schemas and explicit entry points unchanged.
+
 ## 2.0.0-beta.2
 
 ### Minor Changes

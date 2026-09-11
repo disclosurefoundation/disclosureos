@@ -1,6 +1,6 @@
 {
   "name": "@disclosureos/schema",
-  "version": "2.0.0-beta.2",
+  "version": "2.0.0-beta.3",
   "description": "The DisclosureOS portable contract — composes the records core, observable assessments, and origin classification into one enriched Observation schema (TypeScript + JSON Schema), with a non-stripping parse",
   "license": "MIT",
   "repository": {
