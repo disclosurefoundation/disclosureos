@@ -1,0 +1,432 @@
+{
+  "kind": "research_entities",
+  "schemaVersion": "0.3.0",
+  "id": "material-control-entities",
+  "observationRef": {
+    "documentId": "material-control",
+    "schemaId": "urn:disclosureos:experimental:observation:0.1.0",
+    "sha256": "25474d190874da75779397772975e91ba9556daacd9cf4b5a118c1943fa7631e"
+  },
+  "contextRefs": [],
+  "recordedAt": "2026-09-11T00:00:00Z",
+  "recordedBy": "Fictional curator",
+  "entities": [
+    {
+      "kind": "material_trace",
+      "id": "trace",
+      "fields": {
+        "type": [
+          {
+            "id": "type",
+            "content": {
+              "state": "known",
+              "value": "impression",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "description": [
+          {
+            "id": "description",
+            "content": {
+              "state": "known",
+              "value": "SYNTHETIC surface impression; no specimen collected from the trace.",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "photographed": [
+          {
+            "id": "photo",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "material",
+      "id": "parent",
+      "lineage": {
+        "kind": "collected"
+      },
+      "fields": {
+        "type": [
+          {
+            "id": "type",
+            "content": {
+              "state": "known",
+              "value": "soil_sample",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "collectionTime": [
+          {
+            "id": "time",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "collectorName": [
+          {
+            "id": "collector",
+            "content": {
+              "state": "known",
+              "value": "Fictional collector",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "reportedQuality": [
+          {
+            "id": "quality",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "reportedAnalyses": [
+          {
+            "id": "analyses",
+            "content": {
+              "state": "known",
+              "value": [
+                "Spectroscopy reportedly performed; result not supplied."
+              ],
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "labReportAvailable": [
+          {
+            "id": "report",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "material",
+      "id": "aliquot-a",
+      "lineage": {
+        "kind": "derived",
+        "preparationId": "split"
+      },
+      "fields": {
+        "description": [
+          {
+            "id": "description",
+            "content": {
+              "state": "known",
+              "value": "Fictional aliquot A",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "reportedCustodyStatus": [
+          {
+            "id": "custody",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "material",
+      "id": "aliquot-b",
+      "lineage": {
+        "kind": "derived",
+        "preparationId": "split"
+      },
+      "fields": {
+        "description": [
+          {
+            "id": "description",
+            "content": {
+              "state": "known",
+              "value": "Fictional aliquot B",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "material_preparation",
+      "id": "split",
+      "operation": "split",
+      "inputMaterialIds": [
+        "parent"
+      ],
+      "outputMaterialIds": [
+        "aliquot-a",
+        "aliquot-b"
+      ],
+      "fields": {
+        "method": [
+          {
+            "id": "method",
+            "content": {
+              "state": "known",
+              "value": "SYNTHETIC division into two retained aliquots",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "performedAt": [
+          {
+            "id": "when",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "material_custody_action",
+      "id": "receive",
+      "materialId": "parent",
+      "predecessor": {
+        "kind": "unknown",
+        "reason": "Earlier physical handoffs were not recorded."
+      },
+      "fields": {
+        "action": [
+          {
+            "id": "action",
+            "content": {
+              "state": "known",
+              "value": "transfer",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "to": [
+          {
+            "id": "to",
+            "content": {
+              "state": "known",
+              "value": "Fictional repository",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "occurredAt": [
+          {
+            "id": "time",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "material_custody_action",
+      "id": "store",
+      "materialId": "parent",
+      "predecessor": {
+        "kind": "action",
+        "id": "receive"
+      },
+      "fields": {
+        "action": [
+          {
+            "id": "action",
+            "content": {
+              "state": "known",
+              "value": "storage",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "from": [
+          {
+            "id": "from",
+            "content": {
+              "state": "known",
+              "value": "Fictional repository",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "to": [
+          {
+            "id": "to",
+            "content": {
+              "state": "known",
+              "value": "Fictional repository",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "occurredAt": [
+          {
+            "id": "time",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "material_custody_action",
+      "id": "aliquot-receive",
+      "materialId": "aliquot-a",
+      "predecessor": {
+        "kind": "unknown",
+        "reason": "Custody after preparation was not supplied."
+      },
+      "fields": {
+        "action": [
+          {
+            "id": "action",
+            "content": {
+              "state": "known",
+              "value": "transfer",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "occurredAt": [
+          {
+            "id": "time",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

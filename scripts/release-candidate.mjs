@@ -104,6 +104,7 @@ async function main() {
   cpSync(join(root, 'examples/v2/context-demo'), join(consumer, 'context-demo'), { recursive: true });
   cpSync(join(root, 'examples/v2/witness-accounts-demo'), join(consumer, 'witness-accounts-demo'), { recursive: true });
   cpSync(join(root, 'examples/v2/archival-editions-demo'), join(consumer, 'archival-editions-demo'), { recursive: true });
+  cpSync(join(root, 'examples/v2/material-lineage-demo'), join(consumer, 'material-lineage-demo'), { recursive: true });
   run(process.execPath, ['verify.mjs'], consumer);
   manifest.definitions = read(join(consumer, 'definitions.json'));
   const tsc = realpathSync(join(root, 'packages/disclosureos-records/node_modules/typescript/bin/tsc'));

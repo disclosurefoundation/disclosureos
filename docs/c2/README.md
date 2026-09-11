@@ -1,15 +1,13 @@
 # C2a: witnesses and accounts
 
 The witness/account contracts below are published in **2.0.0-beta.2**.
-The next source-tree candidate is [C2b: document editions and digital custody](archival.md),
-which adds separately versioned archival contracts and is not in that published beta.
+[C2b: document editions and digital custody](archival.md) is published in beta.3.
+[C2c: material identity and lineage](materials.md) is the next unreleased source checkpoint.
 No stable v2 release, testimony authentication or scientific profile certification
 is declared here.
 
 The approved domain design separates witnesses, their accounts and reviewer
-interpretations. This checkpoint implements that separation. Document editions,
-action-level digital custody and material/analysis entities remain the next C2
-sections. Case records and public/private application enforcement remain C3.
+interpretations. This checkpoint implements that separation. Material/analysis entities remain the next C2 sections. Case records and public/private application enforcement remain C3.
 
 ## Contracts
 

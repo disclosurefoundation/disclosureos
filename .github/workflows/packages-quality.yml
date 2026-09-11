@@ -251,3 +251,18 @@ jobs:
       - run: pnpm --filter "@disclosureos/schema..." build
       - run: pnpm test:v2-archival
       - run: python3 scripts/check-c2-archival-mapping.py
+
+  material-foundation:
+    name: C2 physical material identity and lineage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter "@disclosureos/records" build
+      - run: pnpm test:v2-materials
+      - run: python3 scripts/check-c2-material-mapping.py
