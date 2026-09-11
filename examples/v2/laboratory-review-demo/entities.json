@@ -1,0 +1,757 @@
+{
+  "kind": "research_entities",
+  "schemaVersion": "0.4.0",
+  "id": "material-control-entities",
+  "observationRef": {
+    "documentId": "material-control",
+    "schemaId": "urn:disclosureos:experimental:observation:0.1.0",
+    "sha256": "8720c0477eb5e936f783a429953f65f5c1ef2ef0d8ea2c0a22a12bf91d6da7b7"
+  },
+  "contextRefs": [],
+  "recordedAt": "2026-09-11T00:00:00Z",
+  "recordedBy": "Fictional curator",
+  "entities": [
+    {
+      "kind": "material_trace",
+      "id": "trace",
+      "fields": {
+        "type": [
+          {
+            "id": "type",
+            "content": {
+              "state": "known",
+              "value": "impression",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "description": [
+          {
+            "id": "description",
+            "content": {
+              "state": "known",
+              "value": "SYNTHETIC surface impression; no specimen collected from the trace.",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "photographed": [
+          {
+            "id": "photo",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "material",
+      "id": "parent",
+      "lineage": {
+        "kind": "collected"
+      },
+      "fields": {
+        "type": [
+          {
+            "id": "type",
+            "content": {
+              "state": "known",
+              "value": "soil_sample",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "collectionTime": [
+          {
+            "id": "time",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "collectorName": [
+          {
+            "id": "collector",
+            "content": {
+              "state": "known",
+              "value": "Fictional collector",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "reportedQuality": [
+          {
+            "id": "quality",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "reportedAnalyses": [
+          {
+            "id": "analyses",
+            "content": {
+              "state": "known",
+              "value": [
+                "Spectroscopy reportedly performed; result not supplied."
+              ],
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "labReportAvailable": [
+          {
+            "id": "report",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      },
+      "selectionRef": {
+        "document": {
+          "documentId": "specimen-selection",
+          "schemaId": "urn:disclosureos:experimental:physical-sample-selection:0.1.0",
+          "sha256": "e79f22b860a25f153a0fce3b633d0d01c2e141d1a24d2733806ca7cee327c6cb"
+        },
+        "sampleId": "parent"
+      }
+    },
+    {
+      "kind": "material",
+      "id": "aliquot-a",
+      "lineage": {
+        "kind": "derived",
+        "preparationId": "split"
+      },
+      "fields": {
+        "description": [
+          {
+            "id": "description",
+            "content": {
+              "state": "known",
+              "value": "Fictional aliquot A",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "reportedCustodyStatus": [
+          {
+            "id": "custody",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "material",
+      "id": "aliquot-b",
+      "lineage": {
+        "kind": "derived",
+        "preparationId": "split"
+      },
+      "fields": {
+        "description": [
+          {
+            "id": "description",
+            "content": {
+              "state": "known",
+              "value": "Fictional aliquot B",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "material_preparation",
+      "id": "split",
+      "operation": "split",
+      "inputMaterialIds": [
+        "parent"
+      ],
+      "outputMaterialIds": [
+        "aliquot-a",
+        "aliquot-b"
+      ],
+      "fields": {
+        "method": [
+          {
+            "id": "method",
+            "content": {
+              "state": "known",
+              "value": "SYNTHETIC division into two retained aliquots",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "performedAt": [
+          {
+            "id": "when",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "material_custody_action",
+      "id": "receive",
+      "materialId": "parent",
+      "predecessor": {
+        "kind": "unknown",
+        "reason": "Earlier physical handoffs were not recorded."
+      },
+      "fields": {
+        "action": [
+          {
+            "id": "action",
+            "content": {
+              "state": "known",
+              "value": "transfer",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "to": [
+          {
+            "id": "to",
+            "content": {
+              "state": "known",
+              "value": "Fictional repository",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "occurredAt": [
+          {
+            "id": "time",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      },
+      "transferRef": {
+        "document": {
+          "documentId": "specimen-selection",
+          "schemaId": "urn:disclosureos:experimental:physical-sample-selection:0.1.0",
+          "sha256": "e79f22b860a25f153a0fce3b633d0d01c2e141d1a24d2733806ca7cee327c6cb"
+        },
+        "sampleId": "parent",
+        "transferId": "receive"
+      }
+    },
+    {
+      "kind": "material_custody_action",
+      "id": "store",
+      "materialId": "parent",
+      "predecessor": {
+        "kind": "action",
+        "id": "receive"
+      },
+      "fields": {
+        "action": [
+          {
+            "id": "action",
+            "content": {
+              "state": "known",
+              "value": "storage",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "from": [
+          {
+            "id": "from",
+            "content": {
+              "state": "known",
+              "value": "Fictional repository",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "to": [
+          {
+            "id": "to",
+            "content": {
+              "state": "known",
+              "value": "Fictional repository",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "occurredAt": [
+          {
+            "id": "time",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      },
+      "transferRef": {
+        "document": {
+          "documentId": "specimen-selection",
+          "schemaId": "urn:disclosureos:experimental:physical-sample-selection:0.1.0",
+          "sha256": "e79f22b860a25f153a0fce3b633d0d01c2e141d1a24d2733806ca7cee327c6cb"
+        },
+        "sampleId": "parent",
+        "transferId": "store"
+      }
+    },
+    {
+      "kind": "material_custody_action",
+      "id": "aliquot-receive",
+      "materialId": "aliquot-a",
+      "predecessor": {
+        "kind": "unknown",
+        "reason": "Custody after preparation was not supplied."
+      },
+      "fields": {
+        "action": [
+          {
+            "id": "action",
+            "content": {
+              "state": "known",
+              "value": "transfer",
+              "provenance": {
+                "sourceRef": "source:handling-log",
+                "attributedTo": "Fictional collection team",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "occurredAt": [
+          {
+            "id": "time",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "laboratory_analysis",
+      "id": "analysis-a",
+      "inputMaterialIds": [
+        "aliquot-a"
+      ],
+      "preparationIds": [
+        "split"
+      ],
+      "resultIds": [
+        "numeric",
+        "below-limit",
+        "qualitative"
+      ],
+      "fields": {
+        "method": [
+          {
+            "id": "method",
+            "content": {
+              "state": "known",
+              "value": {
+                "methodRef": "method:lab-method",
+                "methodVersion": "1"
+              },
+              "provenance": {
+                "sourceRef": "source:lab-report",
+                "attributedTo": "Fictional laboratory",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "sourceDigest": {
+                  "algorithm": "sha256",
+                  "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            }
+          }
+        ],
+        "laboratory": [
+          {
+            "id": "laboratory",
+            "content": {
+              "state": "known",
+              "value": "Fictional laboratory",
+              "provenance": {
+                "sourceRef": "source:lab-report",
+                "attributedTo": "Fictional laboratory",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "sourceDigest": {
+                  "algorithm": "sha256",
+                  "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            }
+          }
+        ],
+        "operator": [
+          {
+            "id": "operator",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "performedAt": [
+          {
+            "id": "time",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "reportArtifacts": [
+          {
+            "id": "report",
+            "content": {
+              "state": "known",
+              "value": [
+                {
+                  "sourceRef": "source:lab-report",
+                  "digest": {
+                    "algorithm": "sha256",
+                    "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                  }
+                }
+              ],
+              "provenance": {
+                "sourceRef": "source:lab-report",
+                "attributedTo": "Fictional laboratory",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "sourceDigest": {
+                  "algorithm": "sha256",
+                  "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "laboratory_result",
+      "id": "numeric",
+      "analysisId": "analysis-a",
+      "materialId": "aliquot-a",
+      "fields": {
+        "analyte": [
+          {
+            "id": "analyte",
+            "content": {
+              "state": "known",
+              "value": "Fictional constituent A",
+              "provenance": {
+                "sourceRef": "source:lab-report",
+                "attributedTo": "Fictional laboratory",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "sourceDigest": {
+                  "algorithm": "sha256",
+                  "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            }
+          }
+        ],
+        "result": [
+          {
+            "id": "result",
+            "content": {
+              "state": "known",
+              "value": {
+                "kind": "quantitative",
+                "measurementId": "concentration-a",
+                "limit": {
+                  "state": "reported",
+                  "value": {
+                    "kind": "detection",
+                    "magnitude": 0.1,
+                    "unit": "mg/kg",
+                    "basis": "Fictional report threshold; method performance has not been reviewed"
+                  }
+                }
+              },
+              "provenance": {
+                "sourceRef": "source:lab-report",
+                "attributedTo": "Fictional laboratory",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "sourceDigest": {
+                  "algorithm": "sha256",
+                  "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            }
+          }
+        ],
+        "reportArtifacts": [
+          {
+            "id": "report",
+            "content": {
+              "state": "known",
+              "value": [
+                {
+                  "sourceRef": "source:lab-report",
+                  "digest": {
+                    "algorithm": "sha256",
+                    "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                  }
+                }
+              ],
+              "provenance": {
+                "sourceRef": "source:lab-report",
+                "attributedTo": "Fictional laboratory",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "sourceDigest": {
+                  "algorithm": "sha256",
+                  "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "laboratory_result",
+      "id": "below-limit",
+      "analysisId": "analysis-a",
+      "materialId": "aliquot-a",
+      "fields": {
+        "analyte": [
+          {
+            "id": "analyte",
+            "content": {
+              "state": "known",
+              "value": "Fictional constituent B",
+              "provenance": {
+                "sourceRef": "source:lab-report",
+                "attributedTo": "Fictional laboratory",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "sourceDigest": {
+                  "algorithm": "sha256",
+                  "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            }
+          }
+        ],
+        "result": [
+          {
+            "id": "result",
+            "content": {
+              "state": "known",
+              "value": {
+                "kind": "below_limit",
+                "limit": {
+                  "kind": "detection",
+                  "magnitude": 0.1,
+                  "unit": "mg/kg",
+                  "basis": "Fictional report threshold; method performance has not been reviewed"
+                }
+              },
+              "provenance": {
+                "sourceRef": "source:lab-report",
+                "attributedTo": "Fictional laboratory",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "sourceDigest": {
+                  "algorithm": "sha256",
+                  "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "laboratory_result",
+      "id": "qualitative",
+      "analysisId": "analysis-a",
+      "materialId": "aliquot-a",
+      "fields": {
+        "result": [
+          {
+            "id": "result",
+            "content": {
+              "state": "known",
+              "value": {
+                "kind": "qualitative",
+                "text": "Fictional report: gray particulate matter observed."
+              },
+              "provenance": {
+                "sourceRef": "source:lab-report",
+                "attributedTo": "Fictional laboratory",
+                "extractedBy": "Fictional curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                },
+                "sourceDigest": {
+                  "algorithm": "sha256",
+                  "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

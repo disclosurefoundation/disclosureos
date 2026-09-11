@@ -10,12 +10,15 @@ Continue builds, conformance, artifact inspection and source-based previews. Kee
 public portal dependencies on the published beta until the coordinated release is
 verified. Never serve an unreleased contract as though it is in that beta.
 
-Remaining implementation areas:
+Source checkpoints completed (unreleased):
 
 - C2c material identity, collection, physical custody and sample lineage.
 - C2c laboratory/preparation detail, quantitative and qualitative results, explicit
   uncertainty/detection limits, attributable quality review and supplied-document
   resolution. The existing collected-specimen profile retains its separate scope.
+
+Remaining implementation areas:
+
 - C2c full material portal preview, field accounting and worked examples.
 - C3 case organization, typed relationships, presentation and application
   access/output enforcement, followed by integration acceptance across V2.

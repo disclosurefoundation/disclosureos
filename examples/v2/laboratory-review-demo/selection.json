@@ -1,0 +1,42 @@
+{
+  "kind": "physical_sample_selection",
+  "schemaVersion": "0.1.0",
+  "id": "specimen-selection",
+  "historyId": "laboratory-history",
+  "observationId": "material-control",
+  "samples": [
+    {
+      "id": "parent",
+      "lineage": "collected_specimen",
+      "label": {
+        "state": "known",
+        "value": "Fictional parent soil specimen"
+      },
+      "collection": {
+        "state": "unknown",
+        "reason": "Collection record unavailable"
+      },
+      "custody": {
+        "state": "documented",
+        "transfers": [
+          {
+            "id": "receive",
+            "from": "Fictional collector",
+            "to": "Fictional repository",
+            "recordRef": "source:handling-log"
+          },
+          {
+            "id": "store",
+            "from": "Fictional repository",
+            "to": "Fictional repository",
+            "recordRef": "source:handling-log"
+          }
+        ]
+      },
+      "currentCustodian": {
+        "state": "unknown",
+        "reason": "Not supplied"
+      }
+    }
+  ]
+}

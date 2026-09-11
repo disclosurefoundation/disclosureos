@@ -10,5 +10,5 @@ export async function evaluateArchivalClaimHistory(
   input: unknown,
   options: ArchivalReviewOptions,
 ): Promise<ArchivalReviewResult> {
-  return evaluateEntityHistory(input, options, true);
+  return evaluateEntityHistory(input, options, "archival");
 }

@@ -98,7 +98,9 @@
     "emit:v2-archival": "node conformance/emit-archival.mjs",
     "test:v2-archival": "node --test conformance/archival.test.mjs",
     "test:v2-materials": "node --test conformance/materials.test.mjs",
-    "emit:v2-materials": "node conformance/emit-materials.mjs"
+    "emit:v2-materials": "node conformance/emit-materials.mjs",
+    "test:v2-laboratory": "node --test conformance/laboratory.test.mjs",
+    "emit:v2-laboratory": "node conformance/emit-laboratory.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

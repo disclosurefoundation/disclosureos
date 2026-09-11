@@ -206,9 +206,24 @@ const crossedResult = parseMaterialEntities(crossedCustody);
 assert.equal(crossedResult.success, false);
 assert.ok(crossedResult.issues.some(i => i.code === 'MATERIAL.CUSTODY_SCOPE'));
 console.log('Fresh C2c consumer: material example, custody scope and explicit unchecked external references passed.');
+const laboratoryExample = JSON.parse(execFileSync(process.execPath, [join(root, 'laboratory-review-demo/run.mjs')]).toString());
+assert.equal(laboratoryExample.success, true, JSON.stringify(laboratoryExample.issues));
+assert.deepEqual(laboratoryExample.checks, { structural: 'passed', semantic: 'passed', external: 'passed', profile: 'not_checked' });
+assert.equal(laboratoryExample.sourceArtifactIntegrity, 'not_checked');
+assert.equal(laboratoryExample.scientificInterpretation, 'not_checked');
+assert.ok(laboratoryExample.snapshots.some(s => s.documentId === 'specimen-selection' && s.status === 'passed'));
+console.log('Fresh C2c laboratory consumer: analytical results, review and supplied specimen-selection snapshot checks passed.');
 const cli = resolve(root, 'node_modules/@disclosureos/cli/dist/index.js');
 assert.equal(execFileSync(process.execPath, [cli, '--version']).toString().trim(), manifest.version);
 writeFileSync(join(root, 'consumer.ts'), imports.join('\n') + '\n' + `
+import { parseLaboratoryEntities, parseLaboratoryClaimHistory, type LaboratoryEntities, type LaboratoryClaimHistory } from '@disclosureos/records/experimental/v2';
+import { evaluateLaboratoryClaimHistory, type LaboratoryReviewResult } from '@disclosureos/schema/experimental/v2';
+const laboratoryReview: Promise<LaboratoryReviewResult> = evaluateLaboratoryClaimHistory({}, { documents: new Map<string, Uint8Array>() });
+const parsedLaboratory = parseLaboratoryEntities({});
+if (parsedLaboratory.success) { const entities: LaboratoryEntities = parsedLaboratory.data; void entities; }
+const laboratoryHistory = parseLaboratoryClaimHistory({});
+if (laboratoryHistory.success) { const history: LaboratoryClaimHistory = laboratoryHistory.data; void history; }
+void laboratoryReview;
 import { parseMaterialEntities, type MaterialEntities } from '@disclosureos/records/experimental/v2';
 const parsedMaterials = parseMaterialEntities({});
 if (parsedMaterials.success) { const materials: MaterialEntities = parsedMaterials.data; void materials; }

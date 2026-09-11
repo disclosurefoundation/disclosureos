@@ -11,5 +11,5 @@ export async function evaluateResearchClaimHistory(
   input: unknown,
   options: ResearchReviewOptions,
 ): Promise<ResearchReviewResult> {
-  return evaluateEntityHistory(input, options, false);
+  return evaluateEntityHistory(input, options, "research");
 }
