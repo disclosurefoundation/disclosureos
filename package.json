@@ -100,7 +100,9 @@
     "test:v2-materials": "node --test conformance/materials.test.mjs",
     "emit:v2-materials": "node conformance/emit-materials.mjs",
     "test:v2-laboratory": "node --test conformance/laboratory.test.mjs",
-    "emit:v2-laboratory": "node conformance/emit-laboratory.mjs"
+    "emit:v2-laboratory": "node conformance/emit-laboratory.mjs",
+    "emit:v2-case": "node conformance/emit-case.mjs",
+    "test:v2-case": "node --test conformance/case.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

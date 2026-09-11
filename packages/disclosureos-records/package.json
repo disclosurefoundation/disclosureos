@@ -126,7 +126,8 @@
     "./experimental/v2/claims/schema/0.4.0": "./schema/experimental/claim-history-0.4.0.schema.json",
     "./experimental/v2/entities/schema/0.3.0": "./schema/experimental/research-entities-0.3.0.schema.json",
     "./experimental/v2/entities/schema/0.4.0": "./schema/experimental/research-entities-0.4.0.schema.json",
-    "./experimental/v2/claims/schema/0.5.0": "./schema/experimental/claim-history-0.5.0.schema.json"
+    "./experimental/v2/claims/schema/0.5.0": "./schema/experimental/claim-history-0.5.0.schema.json",
+    "./experimental/v2/case/schema/0.1.0": "./schema/experimental/case-record-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

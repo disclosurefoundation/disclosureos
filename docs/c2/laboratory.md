@@ -2,8 +2,10 @@
 
 This is an **unreleased source checkpoint**. The public npm set remains beta.3;
 publication stays on hold under the [consolidated V2 policy](../releases/v2-completion.md).
-It extends the [material foundation](materials.md). The full material portal view
-is the next C2c checkpoint; application access and case organization remain C3.
+It extends the [material foundation](materials.md). The full material portal
+preview merged in [dashboard #222](https://github.com/disclosurefoundation/dashboard/pull/222).
+It remains unlisted and blocked in production. [Connected cases](../c3/README.md)
+begin C3; application publication and access enforcement remain later checkpoints.
 
 ## Contracts and use
 

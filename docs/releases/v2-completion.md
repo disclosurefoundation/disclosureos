@@ -16,11 +16,15 @@ Source checkpoints completed (unreleased):
 - C2c laboratory/preparation detail, quantitative and qualitative results, explicit
   uncertainty/detection limits, attributable quality review and supplied-document
   resolution. The existing collected-specimen profile retains its separate scope.
+- C2c full material portal preview, field accounting and worked examples, merged
+  in [dashboard #222](https://github.com/disclosurefoundation/dashboard/pull/222).
+  The viewer remains unlisted and blocked in production.
+- [C3a connected cases](../c3/README.md): sourced chronology, groups, investigations
+  and responses with pinned observation scope and supplied-reference checks.
 
 Remaining implementation areas:
 
-- C2c full material portal preview, field accounting and worked examples.
-- C3 case organization, typed relationships, presentation and application
+- C3 case-level assessments, additional scoped references, presentation and application
   access/output enforcement, followed by integration acceptance across V2.
 
 At closeout, review the accumulated changesets, choose the coordinated package

@@ -282,3 +282,19 @@ jobs:
       - run: pnpm test:v2-laboratory
       - run: python3 scripts/check-c2-material-mapping.py
       - run: node examples/v2/laboratory-review-demo/run.mjs
+
+  connected-cases:
+    name: C3 connected cases and scoped references
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter "@disclosureos/schema..." build
+      - run: pnpm test:v2-case
+      - run: python3 scripts/check-c3-case-mapping.py
+      - run: node examples/v2/connected-case-demo/run.mjs

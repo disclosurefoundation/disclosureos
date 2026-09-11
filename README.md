@@ -36,6 +36,11 @@ Supporting workspaces:
 - `@disclosureos/examples` provides runnable examples for the full records to scoring path.
 - `@repo/typescript-config` is private workspace support for package builds.
 
+Unreleased V2 source checkpoints are documented in [C2 research entities](docs/c2/README.md)
+and [C3 connected cases](docs/c3/README.md). They accumulate under the
+[coordinated completion policy](docs/releases/v2-completion.md); published npm
+packages do not yet include these later source additions.
+
 ## Repository Scope
 
 This repo contains only the open standard packages, examples, release
