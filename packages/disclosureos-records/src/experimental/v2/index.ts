@@ -54,3 +54,5 @@ export * from './laboratory-entities-schema';
 export * from './laboratory-entities';
 export * from './laboratory-claim-history-schema';
 export * from './laboratory-claim-history';
+export * from './case-schema';
+export * from './case';

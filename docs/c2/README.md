@@ -9,8 +9,10 @@ is declared here.
 
 The approved domain design separates witnesses, their accounts and reviewer
 interpretations. This checkpoint implements that separation. C2c material and
-analysis contracts extend that structure; their portal preview remains next.
-Case records and public/private application enforcement remain C3.
+analysis contracts extend that structure; their unreleased portal preview is
+merged in [dashboard #222](https://github.com/disclosurefoundation/dashboard/pull/222).
+[C3 connected cases](../c3/README.md) follows, with public/private application
+enforcement still pending.
 
 ## Contracts
 

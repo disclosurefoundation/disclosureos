@@ -8,7 +8,8 @@ A collected specimen, an uncollected surface trace, a file describing either, an
 a laboratory interpretation are different records. This checkpoint provides the
 material foundation. The [laboratory checkpoint](laboratory.md) adds typed results,
 measurement links, review claims and supplied-snapshot resolution. The material
-portal follows separately.
+portal preview is merged in [dashboard #222](https://github.com/disclosurefoundation/dashboard/pull/222),
+with production access still blocked pending the coordinated release.
 
 ## What this checkpoint implements
 
