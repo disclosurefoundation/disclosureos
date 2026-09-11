@@ -298,3 +298,19 @@ jobs:
       - run: pnpm test:v2-case
       - run: python3 scripts/check-c3-case-mapping.py
       - run: node examples/v2/connected-case-demo/run.mjs
+
+  case-assessments:
+    name: C3 attributable case assessments
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter "@disclosureos/schema..." build
+      - run: pnpm test:v2-case-claims
+      - run: python3 scripts/check-c3-case-mapping.py
+      - run: node examples/v2/case-assessment-demo/run.mjs

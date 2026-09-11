@@ -1,0 +1,389 @@
+{
+  "kind": "case_record",
+  "schemaVersion": "0.1.0",
+  "id": "connected-control",
+  "recordedAt": "2026-09-11T00:00:00Z",
+  "recordedBy": "Fictional case assembler",
+  "observationRefs": [
+    {
+      "documentId": "capture-a",
+      "schemaId": "urn:disclosureos:experimental:observation:0.1.0",
+      "sha256": "92a8bfba23d86fa915b5c01675a968a09fd6f6d5cd7a50551aef7f0f822fe748"
+    },
+    {
+      "documentId": "capture-b",
+      "schemaId": "urn:disclosureos:experimental:observation:0.1.0",
+      "sha256": "5f7ee8274e79fbb0ea877687e3ef2f66922893a2b3169416625adc0d6eff62a1"
+    }
+  ],
+  "entities": [
+    {
+      "kind": "event_group",
+      "id": "local-cluster",
+      "fields": {
+        "label": [
+          {
+            "id": "name",
+            "content": {
+              "state": "known",
+              "value": "Fictional station cluster",
+              "provenance": {
+                "observationId": "capture-a",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "groupType": [
+          {
+            "id": "type",
+            "content": {
+              "state": "known",
+              "value": "cluster",
+              "provenance": {
+                "observationId": "capture-a",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "membership",
+      "id": "member-a",
+      "member": {
+        "kind": "observation",
+        "id": "capture-a"
+      },
+      "groupId": "local-cluster",
+      "basis": {
+        "text": "The source groups the first capture with this station's records.",
+        "provenance": {
+          "observationId": "capture-a",
+          "sourceRef": "source:log",
+          "attributedTo": "Fictional station recorder",
+          "extractedBy": "Fictional case assembler",
+          "locator": {
+            "kind": "page",
+            "page": 1
+          }
+        }
+      }
+    },
+    {
+      "kind": "membership",
+      "id": "member-b",
+      "member": {
+        "kind": "observation",
+        "id": "capture-b"
+      },
+      "groupId": "local-cluster",
+      "basis": {
+        "text": "The source groups the later capture with this station's records.",
+        "provenance": {
+          "observationId": "capture-a",
+          "sourceRef": "source:log",
+          "attributedTo": "Fictional station recorder",
+          "extractedBy": "Fictional case assembler",
+          "locator": {
+            "kind": "page",
+            "page": 1
+          }
+        }
+      }
+    },
+    {
+      "kind": "relationship",
+      "id": "later",
+      "fromObservationId": "capture-a",
+      "toObservationId": "capture-b",
+      "relation": "precedes",
+      "basis": {
+        "text": "The station log describes capture B as later; exact event times were not supplied.",
+        "provenance": {
+          "observationId": "capture-a",
+          "sourceRef": "source:log",
+          "attributedTo": "Fictional station recorder",
+          "extractedBy": "Fictional case assembler",
+          "locator": {
+            "kind": "page",
+            "page": 1
+          }
+        }
+      }
+    },
+    {
+      "kind": "investigation",
+      "id": "review-a",
+      "observationIds": [
+        "capture-a",
+        "capture-b"
+      ],
+      "fields": {
+        "investigatingBody": [
+          {
+            "id": "body",
+            "content": {
+              "state": "known",
+              "value": "Fictional investigation group",
+              "provenance": {
+                "observationId": "capture-a",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "caseNumber": [
+          {
+            "id": "number",
+            "content": {
+              "state": "known",
+              "value": "DEMO-1",
+              "provenance": {
+                "observationId": "capture-a",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "investigationTime": [
+          {
+            "id": "when",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "reportedMethods": [
+          {
+            "id": "methods",
+            "content": {
+              "state": "known",
+              "value": [
+                "Interviews reportedly performed"
+              ],
+              "provenance": {
+                "observationId": "capture-a",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "methodReferences": [
+          {
+            "id": "protocol",
+            "content": {
+              "state": "known",
+              "value": [
+                {
+                  "observationId": "capture-a",
+                  "methodId": "interviews"
+                }
+              ],
+              "provenance": {
+                "observationId": "capture-a",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "reportedFindings": [
+          {
+            "id": "finding",
+            "content": {
+              "state": "known",
+              "value": "The report does not establish a common object.",
+              "provenance": {
+                "observationId": "capture-a",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "reportedConclusion": [
+          {
+            "id": "conclusion-a",
+            "content": {
+              "state": "known",
+              "value": "Unresolved",
+              "provenance": {
+                "observationId": "capture-a",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          },
+          {
+            "id": "conclusion-b",
+            "content": {
+              "state": "known",
+              "value": "A second account offers a conventional explanation.",
+              "provenance": {
+                "observationId": "capture-b",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "reportedRecommendations": [
+          {
+            "id": "recommendation",
+            "content": {
+              "state": "known",
+              "value": "Seek underlying recordings.",
+              "provenance": {
+                "observationId": "capture-a",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "response_event",
+      "id": "public-response",
+      "observationIds": [
+        "capture-a"
+      ],
+      "fields": {
+        "occurredAt": [
+          {
+            "id": "time",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "officialResponse": [
+          {
+            "id": "response",
+            "content": {
+              "state": "known",
+              "value": "Fictional office acknowledged the report.",
+              "provenance": {
+                "observationId": "capture-a",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "mediaAttention": [
+          {
+            "id": "media",
+            "content": {
+              "state": "known",
+              "value": false,
+              "provenance": {
+                "observationId": "capture-a",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "policyImpact": [
+          {
+            "id": "policy",
+            "content": {
+              "state": "unknown",
+              "reason": "not_collected"
+            }
+          }
+        ],
+        "reportedConcealmentAllegation": [
+          {
+            "id": "allegation",
+            "content": {
+              "state": "known",
+              "value": "A fictional correspondent alleged that a log was withheld; the allegation has not been assessed.",
+              "provenance": {
+                "observationId": "capture-a",
+                "sourceRef": "source:log",
+                "attributedTo": "Fictional station recorder",
+                "extractedBy": "Fictional case assembler",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

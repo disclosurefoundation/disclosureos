@@ -4,6 +4,10 @@ This is an **unreleased source checkpoint**. npm remains at beta.3 under the
 [consolidated V2 policy](../releases/v2-completion.md). No publication or version
 bump is part of this checkpoint.
 
+[C3b case assessments](assessments.md) adds the downstream review envelope for
+case, entity/field and directed relationship subjects. It preserves independent
+reviewers and explicit revisions without altering this case-record contract.
+
 A case connects observations without combining their underlying facts. The new
 case-record `0.1.0` contract names exact observation snapshots, sourced directed
 relationships, event groups, investigation reports and response events. It does
@@ -66,8 +70,8 @@ independent sourced declarations. Known `false` requires provenance; unknown or
 omitted media attention does not become false. An allegation is attributed text,
 not an unqualified concealment boolean or a finding by DisclosureOS.
 
-Investigation findings and confidence are explicitly **reported**. Later case
-assessments must identify their subjects, inputs, evaluator and method separately.
+Investigation findings and confidence are explicitly **reported**. The downstream
+case assessments identify subjects, inputs, evaluator and method separately.
 Reported method wording does not manufacture an executed method or its results.
 
 ## Chronology and membership checks
@@ -134,15 +138,14 @@ is semantic accounting, not a claim that C3 or the full V2 standard is complete.
 Checkpoint verification: 31 case conformance tests, 297 C1/C2 regression tests
 and 92 records/schema package unit tests pass. Both affected packages build,
 type-check and pass their strict package-export checks. The ledger accounts for
-28 baseline property occurrences, with deferred assessment relationships marked.
+28 baseline property occurrences. C3b now supplies the attributed relationship
+destinations previously deferred in that ledger.
 
 ## Remaining C3 checkpoints
 
-1. Connect case-level assessments and additional pinned context/entity/intake
-   references. Preserve `corroborates`, `contradicts`, `same_object`, `duplicate_of`,
-   `re_analysis_of`, `supersedes` and `superseded_by` in their proper attributed
-   roles; do not coerce them into chronology. Observation withdrawal remains
-   independent and must not cascade automatically.
+1. Connect additional pinned context/entity/intake references. Case-level
+   assessments and attributed relationship kinds are implemented in C3b;
+   observation withdrawal remains independent and must not cascade automatically.
 2. Add the public presentation contract and application integration for narrative,
    attachments, selected findings and publication notices. Enforce allowlists
    across rendering, exports, search, metadata and caches; keep private notes,
