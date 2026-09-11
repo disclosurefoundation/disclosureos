@@ -7,7 +7,7 @@ canonical standard source. Website/dashboard applications consume pinned release
 The reverse application exporter and subtree release workflow are retired.
 Never replace this repository with an application snapshot.
 
-The current source prepares the [2.0.0-beta.2 candidate](releases/2.0.0-beta.2.md).
+The current source prepares the [2.0.0-beta.3 candidate](releases/2.0.0-beta.3.md).
 Seven foundation packages are in Changesets prerelease mode with tag `beta`.
 Package `publishConfig.tag` also names `beta`. This is not stable publication;
 existing npm `latest` tags continue to identify v1 releases.
@@ -64,7 +64,7 @@ For each exact, verified tarball in dependency order (records; observables and
 origins; instruments; scoring and schema; CLI):
 
 ```sh
-npm publish /absolute/candidate/artifacts/disclosureos-records-2.0.0-beta.2.tgz --tag beta --access public --ignore-scripts
+npm publish /absolute/candidate/artifacts/disclosureos-records-2.0.0-beta.3.tgz --tag beta --access public --ignore-scripts
 ```
 
 Here `--ignore-scripts` applies to an already built, publish-checked and installed

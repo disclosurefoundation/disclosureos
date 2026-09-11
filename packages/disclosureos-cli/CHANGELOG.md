@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.0-beta.3
+
+### Patch Changes
+
+- Updated dependencies [4f80b20]
+  - @disclosureos/records@2.0.0-beta.3
+  - @disclosureos/schema@2.0.0-beta.3
+  - @disclosureos/instruments@2.0.0-beta.3
+  - @disclosureos/observables@2.0.0-beta.3
+  - @disclosureos/origins@2.0.0-beta.3
+  - @disclosureos/scoring@2.0.0-beta.3
+
 ## 2.0.0-beta.2
 
 ### Patch Changes
