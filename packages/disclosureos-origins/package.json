@@ -1,6 +1,6 @@
 {
   "name": "@disclosureos/origins",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "Classification taxonomy for the DisclosureOS ecosystem — origin hypotheses, OCS taxonomy, and reference systems",
   "license": "MIT",
   "repository": {

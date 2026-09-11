@@ -1,6 +1,6 @@
 {
   "name": "@disclosureos/cli",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "Developer tools for the DisclosureOS ecosystem — scaffold, validate, and inspect observations",
   "license": "MIT",
   "repository": {

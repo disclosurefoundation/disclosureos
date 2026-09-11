@@ -1,5 +1,12 @@
 # @disclosureos/instruments
 
+## 2.0.0-beta.2
+
+### Patch Changes
+
+- Updated dependencies [25d01be]
+  - @disclosureos/records@2.0.0-beta.2
+
 ## 2.0.0-beta.1
 
 ### Patch Changes
