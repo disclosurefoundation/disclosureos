@@ -1,0 +1,568 @@
+{
+  "kind": "research_entities",
+  "schemaVersion": "0.1.0",
+  "id": "historical-entities",
+  "observationRef": {
+    "documentId": "historical-control",
+    "schemaId": "urn:disclosureos:experimental:observation:0.1.0",
+    "sha256": "194c50e33edfa92d7043852e4793a1b78afcd971a2b84675fb89b2c033bb50a4"
+  },
+  "contextRefs": [
+    {
+      "documentId": "historical-context",
+      "schemaId": "urn:disclosureos:experimental:observation-context:0.1.0",
+      "sha256": "342ac9a879f34109e26d6a7a007a6b5a6549d38185a6103c306f58cfae8f0821"
+    }
+  ],
+  "recordedAt": "2026-09-10T12:00:00Z",
+  "recordedBy": "Synthetic curator",
+  "entities": [
+    {
+      "kind": "witness",
+      "id": "A",
+      "fields": {
+        "publicIdentity": [
+          {
+            "id": "public-identity",
+            "content": {
+              "state": "known",
+              "value": {
+                "kind": "pseudonym",
+                "display": "Witness A"
+              },
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "anonymous": [
+          {
+            "id": "anonymous",
+            "content": {
+              "state": "known",
+              "value": true,
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "willingToBeIdentified": [
+          {
+            "id": "consent",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "category": [
+          {
+            "id": "category",
+            "content": {
+              "state": "known",
+              "value": {
+                "value": "private_pilot",
+                "relevantTime": {
+                  "kind": "context",
+                  "reference": {
+                    "document": {
+                      "documentId": "historical-context",
+                      "schemaId": "urn:disclosureos:experimental:observation-context:0.1.0",
+                      "sha256": "342ac9a879f34109e26d6a7a007a6b5a6549d38185a6103c306f58cfae8f0821"
+                    },
+                    "target": {
+                      "kind": "temporal",
+                      "id": "event-quarter"
+                    }
+                  }
+                }
+              },
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "experienceYears": [
+          {
+            "id": "experience",
+            "content": {
+              "state": "known",
+              "value": {
+                "value": 5,
+                "relevantTime": {
+                  "kind": "context",
+                  "reference": {
+                    "document": {
+                      "documentId": "historical-context",
+                      "schemaId": "urn:disclosureos:experimental:observation-context:0.1.0",
+                      "sha256": "342ac9a879f34109e26d6a7a007a6b5a6549d38185a6103c306f58cfae8f0821"
+                    },
+                    "target": {
+                      "kind": "temporal",
+                      "id": "event-quarter"
+                    }
+                  }
+                }
+              },
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "hasAviationExperience": [
+          {
+            "id": "aviation",
+            "content": {
+              "state": "known",
+              "value": {
+                "value": true,
+                "relevantTime": {
+                  "kind": "context",
+                  "reference": {
+                    "document": {
+                      "documentId": "historical-context",
+                      "schemaId": "urn:disclosureos:experimental:observation-context:0.1.0",
+                      "sha256": "342ac9a879f34109e26d6a7a007a6b5a6549d38185a6103c306f58cfae8f0821"
+                    },
+                    "target": {
+                      "kind": "temporal",
+                      "id": "event-quarter"
+                    }
+                  }
+                }
+              },
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "account",
+      "id": "A",
+      "fields": {
+        "speakerWitnessIds": [
+          {
+            "id": "speaker",
+            "content": {
+              "state": "known",
+              "value": [
+                "A"
+              ],
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "recorder": [
+          {
+            "id": "recorder",
+            "content": {
+              "state": "known",
+              "value": "Recorder A",
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "recordedTime": [
+          {
+            "id": "recorded",
+            "content": {
+              "state": "known",
+              "value": {
+                "kind": "year",
+                "value": "1981"
+              },
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "context": [
+          {
+            "id": "setting",
+            "content": {
+              "state": "known",
+              "value": "recorded_interview",
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "eventContext": [
+          {
+            "id": "event",
+            "content": {
+              "state": "known",
+              "value": {
+                "document": {
+                  "documentId": "historical-context",
+                  "schemaId": "urn:disclosureos:experimental:observation-context:0.1.0",
+                  "sha256": "342ac9a879f34109e26d6a7a007a6b5a6549d38185a6103c306f58cfae8f0821"
+                },
+                "target": {
+                  "kind": "temporal",
+                  "id": "event-quarter"
+                }
+              },
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "content": [
+          {
+            "id": "wording",
+            "content": {
+              "state": "known",
+              "value": "SYNTHETIC: I saw a light during the third quarter of 1952.",
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "summary": [
+          {
+            "id": "summary",
+            "content": {
+              "state": "known",
+              "value": {
+                "text": "Synthetic account of a light; no sensor measurements supplied.",
+                "summarizedBy": "Synthetic editor"
+              },
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "sourceDocument": [
+          {
+            "id": "source",
+            "content": {
+              "state": "known",
+              "value": "source:account-1981",
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "underOath": [
+          {
+            "id": "oath",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "interviewAvailable": [
+          {
+            "id": "recording",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "writtenReportAvailable": [
+          {
+            "id": "report",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "account",
+      "id": "retelling",
+      "fields": {
+        "speakerWitnessIds": [
+          {
+            "id": "speaker",
+            "content": {
+              "state": "known",
+              "value": [
+                "A"
+              ],
+              "provenance": {
+                "sourceRef": "source:retelling-1990",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "recorder": [
+          {
+            "id": "recorder",
+            "content": {
+              "state": "known",
+              "value": "Recorder B",
+              "provenance": {
+                "sourceRef": "source:retelling-1990",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "recordedTime": [
+          {
+            "id": "recorded",
+            "content": {
+              "state": "known",
+              "value": {
+                "kind": "year",
+                "value": "1990"
+              },
+              "provenance": {
+                "sourceRef": "source:retelling-1990",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "sourceDocument": [
+          {
+            "id": "source",
+            "content": {
+              "state": "known",
+              "value": "source:retelling-1990",
+              "provenance": {
+                "sourceRef": "source:retelling-1990",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "procedure",
+      "id": "polygraph",
+      "fields": {
+        "procedureType": [
+          {
+            "id": "type",
+            "content": {
+              "state": "known",
+              "value": "polygraph",
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "witnessId": [
+          {
+            "id": "witness",
+            "content": {
+              "state": "known",
+              "value": "A",
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "accountId": [
+          {
+            "id": "account",
+            "content": {
+              "state": "known",
+              "value": "A",
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "administered": [
+          {
+            "id": "administration",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ],
+        "passed": [
+          {
+            "id": "result",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "witness_group",
+      "id": "roster",
+      "fields": {
+        "witnessIds": [
+          {
+            "id": "members",
+            "content": {
+              "state": "known",
+              "value": [
+                "A"
+              ],
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "reportedCount": [
+          {
+            "id": "count",
+            "content": {
+              "state": "unknown",
+              "reason": "not_recorded"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
