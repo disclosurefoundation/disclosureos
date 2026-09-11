@@ -1,0 +1,203 @@
+{
+  "kind": "claim_history",
+  "schemaVersion": "0.4.0",
+  "id": "archival-review",
+  "observation": {
+    "kind": "observation",
+    "schemaVersion": "0.1.0",
+    "id": "archival-control",
+    "status": "draft",
+    "createdAt": "2026-09-11T12:00:00Z",
+    "updatedAt": "2026-09-11T12:00:00Z",
+    "summary": "SYNTHETIC: two editions with separate pagination, an unknown declassification date and a digital custody gap.",
+    "eventTime": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "position": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "sources": [
+      {
+        "id": "memo-a",
+        "kind": "document",
+        "access": "public",
+        "title": "Synthetic Memo A",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "5ab5d994e0e6ec734f782c77e8c2adfd2d55e0885c277336423e2a7423c929f5"
+        }
+      },
+      {
+        "id": "memo-b",
+        "kind": "document",
+        "access": "public",
+        "title": "Synthetic Memo A",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "b8e7982f84f790809cb6c4fe94f4114583dd39447fb535d4660229835bde1fe1"
+        }
+      },
+      {
+        "id": "archive-log",
+        "kind": "document",
+        "access": "public",
+        "title": "Synthetic archive log",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "14054792b62ba5d8be552d6aa38cf20a9120b727b634bf51913215d9c499e2f9"
+        }
+      }
+    ],
+    "products": [],
+    "methods": [
+      {
+        "id": "review",
+        "version": "1.0",
+        "description": "Compare supplied edition declarations without deciding authenticity."
+      }
+    ],
+    "frames": [],
+    "assertions": [],
+    "measurements": [],
+    "processing": []
+  },
+  "contextRefs": [],
+  "entityRefs": [
+    {
+      "documentId": "archival-entities",
+      "schemaId": "urn:disclosureos:experimental:research-entities:0.2.0",
+      "sha256": "8524676662db9dd2727c765d15b31f5435b4eed0e265322159f5252916c52b11"
+    }
+  ],
+  "claims": [
+    {
+      "id": "passage",
+      "kind": "source_assertion",
+      "recordedAt": "2026-09-11T12:00:00Z",
+      "topic": "recorded_passage",
+      "subject": {
+        "kind": "entity",
+        "reference": {
+          "document": {
+            "documentId": "archival-entities",
+            "schemaId": "urn:disclosureos:experimental:research-entities:0.2.0",
+            "sha256": "8524676662db9dd2727c765d15b31f5435b4eed0e265322159f5252916c52b11"
+          },
+          "target": {
+            "kind": "source_edition",
+            "id": "edition-a"
+          }
+        }
+      },
+      "text": "SYNTHETIC passage with redactions.",
+      "provenance": {
+        "sourceRef": "source:memo-a",
+        "sourceDigest": {
+          "algorithm": "sha256",
+          "value": "5ab5d994e0e6ec734f782c77e8c2adfd2d55e0885c277336423e2a7423c929f5"
+        },
+        "locator": {
+          "kind": "page",
+          "page": 2
+        },
+        "extractedBy": "Synthetic curator",
+        "attributedTo": "Synthetic memo"
+      },
+      "editionCitation": {
+        "document": {
+          "documentId": "archival-entities",
+          "schemaId": "urn:disclosureos:experimental:research-entities:0.2.0",
+          "sha256": "8524676662db9dd2727c765d15b31f5435b4eed0e265322159f5252916c52b11"
+        },
+        "editionId": "edition-a",
+        "artifact": {
+          "sourceRef": "source:memo-a",
+          "digest": {
+            "algorithm": "sha256",
+            "value": "5ab5d994e0e6ec734f782c77e8c2adfd2d55e0885c277336423e2a7423c929f5"
+          }
+        },
+        "locator": {
+          "kind": "page",
+          "page": 2
+        }
+      }
+    },
+    {
+      "id": "edition-review",
+      "kind": "assessment",
+      "recordedAt": "2026-09-11T12:00:00Z",
+      "topic": "edition_relationship",
+      "subject": {
+        "kind": "entity",
+        "reference": {
+          "document": {
+            "documentId": "archival-entities",
+            "schemaId": "urn:disclosureos:experimental:research-entities:0.2.0",
+            "sha256": "8524676662db9dd2727c765d15b31f5435b4eed0e265322159f5252916c52b11"
+          },
+          "target": {
+            "kind": "source_edition",
+            "id": "edition-a"
+          }
+        }
+      },
+      "inputRefs": [
+        "source:archive-log"
+      ],
+      "editionInputRefs": [
+        {
+          "document": {
+            "documentId": "archival-entities",
+            "schemaId": "urn:disclosureos:experimental:research-entities:0.2.0",
+            "sha256": "8524676662db9dd2727c765d15b31f5435b4eed0e265322159f5252916c52b11"
+          },
+          "editionId": "edition-a",
+          "artifact": {
+            "sourceRef": "source:memo-a",
+            "digest": {
+              "algorithm": "sha256",
+              "value": "5ab5d994e0e6ec734f782c77e8c2adfd2d55e0885c277336423e2a7423c929f5"
+            }
+          },
+          "locator": {
+            "kind": "page",
+            "page": 2
+          }
+        },
+        {
+          "document": {
+            "documentId": "archival-entities",
+            "schemaId": "urn:disclosureos:experimental:research-entities:0.2.0",
+            "sha256": "8524676662db9dd2727c765d15b31f5435b4eed0e265322159f5252916c52b11"
+          },
+          "editionId": "edition-b",
+          "artifact": {
+            "sourceRef": "source:memo-b",
+            "digest": {
+              "algorithm": "sha256",
+              "value": "b8e7982f84f790809cb6c4fe94f4114583dd39447fb535d4660229835bde1fe1"
+            }
+          },
+          "locator": {
+            "kind": "page",
+            "page": 3
+          }
+        }
+      ],
+      "rationale": "Different bytes and pagination are declared. This does not establish faithful reproduction or authenticity.",
+      "status": "assessed",
+      "outcome": "inconclusive",
+      "evaluatedBy": "Synthetic reviewer",
+      "evaluatedAt": "2026-09-11T12:00:00Z",
+      "methodRef": "method:review",
+      "methodVersion": "1.0",
+      "artifactReview": {
+        "result": "inconclusive",
+        "findings": "Original-file MD5 is retained as a declaration, not verified against either edition."
+      }
+    }
+  ]
+}

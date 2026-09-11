@@ -94,7 +94,9 @@
     "emit:v2-context": "node conformance/emit-context.mjs",
     "test:v2-context": "node --test conformance/context.test.mjs",
     "emit:v2-entities": "node conformance/emit-research-entities.mjs",
-    "test:v2-entities": "node --test conformance/research-entities.test.mjs"
+    "test:v2-entities": "node --test conformance/research-entities.test.mjs",
+    "emit:v2-archival": "node conformance/emit-archival.mjs",
+    "test:v2-archival": "node --test conformance/archival.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

@@ -48,3 +48,6 @@ export type { ContextReviewOptions, ContextReviewResult } from './context-review
 
 export { evaluateResearchClaimHistory } from './research-entities-review';
 export type { ResearchReviewOptions, ResearchReviewResult } from './research-entities-review';
+
+export { evaluateArchivalClaimHistory } from './archival-review';
+export type { ArchivalReviewOptions, ArchivalReviewResult } from './archival-review';

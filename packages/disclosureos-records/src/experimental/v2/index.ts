@@ -42,3 +42,8 @@ export * from './research-entities-schema';
 export * from './research-entities';
 export * from './research-claim-history-schema';
 export * from './research-claim-history';
+
+export * from './archival-entities-schema';
+export * from './archival-entities';
+export * from './archival-claim-history-schema';
+export * from './archival-claim-history';
