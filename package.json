@@ -92,7 +92,9 @@
     "release:pack": "node scripts/release-candidate.mjs --pack",
     "test:release": "node --test scripts/release-candidate.test.mjs",
     "emit:v2-context": "node conformance/emit-context.mjs",
-    "test:v2-context": "node --test conformance/context.test.mjs"
+    "test:v2-context": "node --test conformance/context.test.mjs",
+    "emit:v2-entities": "node conformance/emit-research-entities.mjs",
+    "test:v2-entities": "node --test conformance/research-entities.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

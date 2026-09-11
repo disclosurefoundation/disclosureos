@@ -1,0 +1,114 @@
+{
+  "kind": "claim_history",
+  "schemaVersion": "0.3.0",
+  "id": "historical-review",
+  "observation": {
+    "kind": "observation",
+    "schemaVersion": "0.1.0",
+    "id": "historical-control",
+    "status": "draft",
+    "createdAt": "2026-09-10T12:00:00Z",
+    "updatedAt": "2026-09-10T12:00:00Z",
+    "summary": "SYNTHETIC: one public pseudonym, two recorded accounts; event quarter has no invented UTC instant.",
+    "eventTime": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "position": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "sources": [
+      {
+        "id": "account-1981",
+        "kind": "testimony",
+        "access": "unknown",
+        "title": "Synthetic interview recorded in 1981"
+      },
+      {
+        "id": "retelling-1990",
+        "kind": "testimony",
+        "access": "unknown",
+        "title": "Synthetic later retelling"
+      }
+    ],
+    "products": [],
+    "methods": [
+      {
+        "id": "review",
+        "version": "1.0",
+        "description": "Manual review of supplied declarations; no credibility score."
+      }
+    ],
+    "frames": [],
+    "assertions": [],
+    "measurements": [],
+    "processing": []
+  },
+  "contextRefs": [
+    {
+      "documentId": "historical-context",
+      "schemaId": "urn:disclosureos:experimental:observation-context:0.1.0",
+      "sha256": "342ac9a879f34109e26d6a7a007a6b5a6549d38185a6103c306f58cfae8f0821"
+    }
+  ],
+  "entityRefs": [
+    {
+      "documentId": "historical-entities",
+      "schemaId": "urn:disclosureos:experimental:research-entities:0.1.0",
+      "sha256": "61154774b899a8ccab03335b49879fecf2f9b81977108abc2d51410e0ea881d4"
+    }
+  ],
+  "claims": [
+    {
+      "id": "qualification-review",
+      "kind": "assessment",
+      "recordedAt": "2026-09-10T12:00:00Z",
+      "topic": "reported_qualification",
+      "subject": {
+        "kind": "entity",
+        "reference": {
+          "document": {
+            "documentId": "historical-entities",
+            "schemaId": "urn:disclosureos:experimental:research-entities:0.1.0",
+            "sha256": "61154774b899a8ccab03335b49879fecf2f9b81977108abc2d51410e0ea881d4"
+          },
+          "target": {
+            "kind": "witness",
+            "id": "A",
+            "field": "experienceYears"
+          }
+        }
+      },
+      "inputRefs": [
+        "source:account-1981"
+      ],
+      "entityInputRefs": [
+        {
+          "document": {
+            "documentId": "historical-entities",
+            "schemaId": "urn:disclosureos:experimental:research-entities:0.1.0",
+            "sha256": "61154774b899a8ccab03335b49879fecf2f9b81977108abc2d51410e0ea881d4"
+          },
+          "target": {
+            "kind": "witness",
+            "id": "A",
+            "field": "experienceYears"
+          },
+          "assertionId": "experience"
+        }
+      ],
+      "rationale": "Five years is a source declaration relevant to the event quarter. It does not authenticate the witness or establish independence.",
+      "status": "assessed",
+      "outcome": "reported",
+      "evaluatedBy": "Synthetic reviewer",
+      "evaluatedAt": "2026-09-10T12:00:00Z",
+      "methodRef": "method:review",
+      "methodVersion": "1.0",
+      "witnessReview": {
+        "multipleIndependent": "unknown",
+        "notes": "Two accounts share one scoped witness. No credibility score is calculated."
+      }
+    }
+  ]
+}

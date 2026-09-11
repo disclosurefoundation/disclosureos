@@ -1,0 +1,60 @@
+{
+  "kind": "observation_context",
+  "schemaVersion": "0.1.0",
+  "id": "historical-context",
+  "observationRef": {
+    "documentId": "historical-control",
+    "schemaId": "urn:disclosureos:experimental:observation:0.1.0",
+    "sha256": "194c50e33edfa92d7043852e4793a1b78afcd971a2b84675fb89b2c033bb50a4"
+  },
+  "recordedAt": "2026-09-10T12:00:00Z",
+  "recordedBy": "Synthetic curator",
+  "entities": [
+    {
+      "kind": "temporal",
+      "id": "event-quarter",
+      "fields": {
+        "calendarPeriod": [
+          {
+            "id": "quarter",
+            "content": {
+              "state": "known",
+              "value": {
+                "kind": "quarter",
+                "year": 1952,
+                "quarter": 3
+              },
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ],
+        "display": [
+          {
+            "id": "display",
+            "content": {
+              "state": "known",
+              "value": "Third quarter of 1952",
+              "provenance": {
+                "sourceRef": "source:account-1981",
+                "attributedTo": "Synthetic source author",
+                "extractedBy": "Synthetic curator",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

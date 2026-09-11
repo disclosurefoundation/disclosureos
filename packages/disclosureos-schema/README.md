@@ -187,3 +187,12 @@ Start with the [developer compatibility guide](../../docs/experimental/migration
 for breaking changes, parser/version boundaries, supported migration workflows,
 exit handling, profile differences and non-destructive local rollback. This is an
 experimental checkout workflow; merging package changes does not deploy the Index.
+
+
+## Witnesses and accounts: C2a candidate
+
+The source tree adds public witness/account/procedure declarations, entity-addressed
+claim history 0.3.0 and supplied-snapshot review. These additions are not included
+in the published 2.0.0-beta.1 packages. See the [contract, worked example and
+verification boundaries](../../docs/c2/README.md). Qualifications and reviewer
+judgments remain separate; no credibility score is calculated.

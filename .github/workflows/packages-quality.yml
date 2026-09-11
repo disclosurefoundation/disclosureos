@@ -6,6 +6,7 @@ on:
     paths:
       - "docs/rfcs/**"
       - "docs/c1/**"
+      - "docs/c2/**"
       - "docs/releases/**"
       - "docs/release-process.md"
       - ".changeset/**"
@@ -23,6 +24,7 @@ on:
     paths:
       - "docs/rfcs/**"
       - "docs/c1/**"
+      - "docs/c2/**"
       - "docs/releases/**"
       - "docs/release-process.md"
       - ".changeset/**"
@@ -219,3 +221,18 @@ jobs:
       - run: pnpm --filter "@disclosureos/schema..." build
       - run: pnpm test:v2-context
       - run: python3 scripts/check-c1-mapping.py
+
+  research-entities:
+    name: C2 witnesses and accounts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter "@disclosureos/schema..." build
+      - run: pnpm test:v2-entities
+      - run: python3 scripts/check-c2-witness-mapping.py

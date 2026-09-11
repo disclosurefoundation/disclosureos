@@ -37,3 +37,8 @@ export * from './context-schema';
 export * from './context';
 export * from './context-claim-history-schema';
 export * from './context-claim-history';
+
+export * from './research-entities-schema';
+export * from './research-entities';
+export * from './research-claim-history-schema';
+export * from './research-claim-history';

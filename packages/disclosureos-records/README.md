@@ -129,3 +129,12 @@ The source tree includes an isolated `@disclosureos/records/experimental/v2` ent
 The same experimental entry point now exposes `ExperimentalObservationSchema` and `parseExperimentalObservation` for the integrated factual record, including uncertainty, frames, source selections, and processing lineage. See the [Observation contract and synthetic example](https://github.com/disclosurefoundation/disclosureos/blob/main/docs/experimental/observation-contract.md). External verification and research profiles remain explicitly unchecked.
 
 Experimental source statements, attributed assessments, and revision history are documented in [Claim history](../../docs/experimental/claim-history.md). This additive contract remains separate from v1 and does not certify scientific support.
+
+
+## Witnesses and accounts: C2a candidate
+
+The source tree adds public witness/account/procedure declarations, entity-addressed
+claim history 0.3.0 and supplied-snapshot review. These additions are not included
+in the published 2.0.0-beta.1 packages. See the [contract, worked example and
+verification boundaries](../../docs/c2/README.md). Qualifications and reviewer
+judgments remain separate; no credibility score is calculated.

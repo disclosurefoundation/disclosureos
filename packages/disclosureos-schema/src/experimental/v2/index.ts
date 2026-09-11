@@ -45,3 +45,6 @@ export type { MigrationCompatibility } from './migration-compatibility';
 
 export { evaluateContextClaimHistory, CONTEXT_MEASUREMENT_ROLES } from './context-review';
 export type { ContextReviewOptions, ContextReviewResult } from './context-review';
+
+export { evaluateResearchClaimHistory } from './research-entities-review';
+export type { ResearchReviewOptions, ResearchReviewResult } from './research-entities-review';
