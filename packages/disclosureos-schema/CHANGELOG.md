@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.0.0-beta.2
+
+### Minor Changes
+
+- 25d01be: Add versioned public witness/account/procedure declarations and entity-addressed claim history with supplied-snapshot review. Preserve sourced qualifications, historical precision, missingness and attributable credibility vocabulary without calculating credibility scores. Existing contracts and profile dispatch remain unchanged.
+
+### Patch Changes
+
+- Updated dependencies [25d01be]
+  - @disclosureos/records@2.0.0-beta.2
+  - @disclosureos/instruments@2.0.0-beta.2
+  - @disclosureos/observables@2.0.0-beta.2
+  - @disclosureos/origins@2.0.0-beta.2
+
 ## 2.0.0-beta.1
 
 ### Minor Changes
