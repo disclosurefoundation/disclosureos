@@ -6,8 +6,9 @@ publication is held until the remaining V2 implementation is complete under the
 
 A collected specimen, an uncollected surface trace, a file describing either, and
 a laboratory interpretation are different records. This checkpoint provides the
-material foundation. Typed laboratory runs/results, measurement links and review
-claims, external snapshot resolution and the material portal follow separately.
+material foundation. The [laboratory checkpoint](laboratory.md) adds typed results,
+measurement links, review claims and supplied-snapshot resolution. The material
+portal follows separately.
 
 ## What this checkpoint implements
 
@@ -41,8 +42,8 @@ When describing an existing physical-sample selection, `material.selectionRef`
 selects its exact document ID, schema ID, digest and specimen ID. Reuse that
 specimen ID. A custody action may identify its existing transfer through
 `transferRef`; it must reuse the transfer ID and the material's same selection
-snapshot. These links remain externally unchecked here. The next supplied-document
-resolver must verify actual selection contents and observation scope. Local
+snapshot. These links remain externally unchecked here. The laboratory checkpoint's
+supplied-document resolver verifies actual selection contents and observation scope. Local
 reference consistency does not establish that a selection or transfer exists.
 
 The existing `evaluatePhysicalSamples` selection/profile remains separate and
@@ -90,7 +91,8 @@ Even on success, `checks.external` and `checks.profile` remain `not_checked`.
 Observation, context, source and selection references are listed as unchecked;
 no URLs are fetched and no snapshot or source artifact bytes are verified. Current
 claim-history 0.4.0 does not accept material entities 0.3.0. A matching new claim
-history and supplied-document evaluator are still to be implemented.
+history and supplied-document evaluator are provided separately by the unreleased
+[laboratory checkpoint](laboratory.md), using entities 0.4.0 and history 0.5.0.
 
 Public fields are not a privacy sanitizer: names, storage locations, URLs and
 free text must already be approved for public exchange. Application access and
@@ -105,9 +107,9 @@ The control is not real ELDÆON material.
 
 The [30-row field ledger](material-baseline-mapping.csv) accounts for all frozen
 `physicalEvidence` occurrences and the generic physical-custody fields handed off
-by C2b. Original analysis and quality wording have a home now; richer analytical
-results and reviewer semantics remain assigned to the following C2c checkpoint.
-Accounting is not an assertion that all of C2c is complete.
+by C2b. Original analysis and quality wording have a home in the material
+foundation. Richer results and reviewer semantics are provided by the
+[laboratory checkpoint](laboratory.md). Accounting is not an assertion that all of C2c is complete.
 
 ```sh
 pnpm --filter @disclosureos/records build

@@ -1,6 +1,11 @@
 // Shared supplied-snapshot checks. Each public entry chooses its explicit version;
 // no history or entity document is projected through an older parser.
 import {
+  parseLaboratoryClaimHistory,
+  parseLaboratoryEntities,
+  type LaboratoryEntities,
+  type LaboratoryEntityReference,
+  type LaboratoryEditionCitation,
   parseResearchClaimHistory,
   parseArchivalClaimHistory,
   parseArchivalEntities,
@@ -22,6 +27,7 @@ import {
   type ObservationContext,
   type ExperimentalObservation,
 } from "@disclosureos/records/experimental/v2";
+import { checkLaboratoryDependencies } from "./laboratory-dependencies";
 import { parseAcquisitionContext } from "@disclosureos/instruments/experimental/v2";
 
 export interface ResearchReviewOptions {
@@ -71,11 +77,15 @@ function equal(a: unknown, b: unknown): boolean {
 export async function evaluateEntityHistory(
   input: unknown,
   options: ResearchReviewOptions,
-  archival: boolean,
+  mode: "research" | "archival" | "laboratory",
 ): Promise<ResearchReviewResult> {
-  const history = archival
-    ? parseArchivalClaimHistory(input)
-    : parseResearchClaimHistory(input);
+  const archival = mode !== "research";
+  const history =
+    mode === "laboratory"
+      ? parseLaboratoryClaimHistory(input)
+      : archival
+        ? parseArchivalClaimHistory(input)
+        : parseResearchClaimHistory(input);
   const issues: ContextIssue[] = history.issues.map((i) => ({
     code: i.code,
     stage: i.stage,
@@ -86,7 +96,7 @@ export async function evaluateEntityHistory(
   const contexts = new Map<string, ObservationContext>();
   const entityDocuments = new Map<
     string,
-    ResearchEntities | ArchivalEntities
+    ResearchEntities | ArchivalEntities | LaboratoryEntities
   >();
   const problem = (
     code: string,
@@ -405,9 +415,12 @@ export async function evaluateEntityHistory(
       const p = `/entityRefs/${i}`;
       const value = await load(ref, p);
       if (value === undefined) continue;
-      const parsed = archival
-        ? parseArchivalEntities(value)
-        : parseResearchEntities(value);
+      const parsed =
+        mode === "laboratory"
+          ? parseLaboratoryEntities(value)
+          : archival
+            ? parseArchivalEntities(value)
+            : parseResearchEntities(value);
       if (!parsed.success) {
         issues.push(
           ...parsed.issues.map((i) => ({ ...i, pointer: p + i.pointer })),
@@ -485,7 +498,7 @@ export async function evaluateEntityHistory(
               );
         }
         if (archival) {
-          for (const ref of archivalArtifactReferences(entity)) {
+          for (const ref of "artifact" in entity ? archivalArtifactReferences(entity) : []) {
             const source = sources.get(ref.sourceRef);
             if (!source?.digest || source.digest.value !== ref.digest.value)
               problem(
@@ -513,10 +526,22 @@ export async function evaluateEntityHistory(
         for (const reference of researchEntityContextReferences(entity))
           resolve(reference, ep);
       }
+      if (entities.schemaVersion === "0.4.0")
+        await checkLaboratoryDependencies(
+          entities,
+          observation.data,
+          history.data.id,
+          p,
+          load,
+          problem,
+        );
       entityDocuments.set(ref.sha256, entities);
     }
     function resolveEntity(
-      reference: ResearchEntityReference | ArchivalEntityReference,
+      reference:
+        | ResearchEntityReference
+        | ArchivalEntityReference
+        | LaboratoryEntityReference,
       pointer: string,
       assertionId?: string,
     ) {
@@ -601,7 +626,10 @@ export async function evaluateEntityHistory(
           "Assessment input must select an existing assertion on its named field.",
         );
     }
-    function resolveCitation(citation: EditionCitation, pointer: string) {
+    function resolveCitation(
+      citation: EditionCitation | LaboratoryEditionCitation,
+      pointer: string,
+    ) {
       const document = entityDocuments.get(citation.document.sha256);
       if (!document) return; // The unavailable or invalid snapshot was already reported.
       const edition = document.entities.find(

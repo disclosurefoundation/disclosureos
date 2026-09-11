@@ -1,3 +1,7 @@
+import type {
+  LaboratoryClaimHistory,
+  LaboratoryHistoricalClaim,
+} from "./laboratory-claim-history-schema";
 import type { z } from "zod";
 import type {
   ResearchClaimHistory,
@@ -25,7 +29,10 @@ const pointer = (path: readonly PropertyKey[]) =>
 
 /** Checks declared claim history only. Current means not superseded, never scientifically verified. */
 export function parseEntityClaimHistory<
-  T extends ResearchClaimHistory | ArchivalClaimHistory,
+  T extends
+    | ResearchClaimHistory
+    | ArchivalClaimHistory
+    | LaboratoryClaimHistory,
   C extends { kind: "claim_history"; schemaId: string; rulesetVersion: string },
 >(input: unknown, schema: z.ZodType<T>, contract: C) {
   const parsed = schema.safeParse(input);
@@ -67,7 +74,9 @@ export function parseEntityClaimHistory<
     });
   const claims = new Map<
     string,
-    ResearchHistoricalClaim | ArchivalHistoricalClaim
+    | ResearchHistoricalClaim
+    | ArchivalHistoricalClaim
+    | LaboratoryHistoricalClaim
   >();
   const graph = new Map<string, Set<string>>();
   const superseded = new Set<string>();

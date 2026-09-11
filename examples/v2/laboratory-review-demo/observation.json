@@ -1,0 +1,67 @@
+{
+  "kind": "observation",
+  "schemaVersion": "0.1.0",
+  "id": "material-control",
+  "status": "draft",
+  "createdAt": "2026-09-11T00:00:00Z",
+  "updatedAt": "2026-09-11T00:00:00Z",
+  "eventTime": {
+    "state": "unknown",
+    "reason": "not_recorded"
+  },
+  "position": {
+    "state": "unknown",
+    "reason": "not_recorded"
+  },
+  "sources": [
+    {
+      "id": "handling-log",
+      "kind": "document",
+      "access": "public",
+      "title": "Fictional handling declarations"
+    },
+    {
+      "id": "lab-report",
+      "kind": "document",
+      "access": "public",
+      "title": "Fictional laboratory report declaration; bytes not supplied",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    }
+  ],
+  "products": [],
+  "methods": [
+    {
+      "id": "lab-method",
+      "version": "1",
+      "description": "Fictional analytical protocol"
+    },
+    {
+      "id": "review",
+      "version": "1",
+      "description": "Fictional limitations review"
+    }
+  ],
+  "frames": [],
+  "assertions": [],
+  "measurements": [
+    {
+      "id": "concentration-a",
+      "quantity": "mass_fraction",
+      "value": {
+        "value": 1.25,
+        "unit": "mg/kg",
+        "uncertainty": {
+          "kind": "unknown",
+          "reason": "not_reported"
+        }
+      },
+      "sourceRefs": [
+        "source:lab-report"
+      ]
+    }
+  ],
+  "processing": []
+}

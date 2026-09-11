@@ -44,4 +44,4 @@ assert {r['baseline_path']:r['schema_pointer'] for r in rows} == expected
 assert len({r['baseline_path'] for r in rows}) == len(rows)
 assert all(r['destination'] and r['meaning'] and r['disposition'] in {'existing','reorganized','revised','deferred'} for r in rows)
 assert all(r['owner'] in {'C2c material foundation','C2c laboratory and review'} for r in rows)
-print(f'{len(rows)} physical material and shared custody occurrences accounted for; laboratory review remains explicitly separate.')
+print(f'{len(rows)} physical material and shared custody occurrences accounted for; laboratory results and attributable review have explicit destinations.')

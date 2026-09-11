@@ -49,3 +49,8 @@ export * from './archival-claim-history-schema';
 export * from './archival-claim-history';
 export * from './material-entities-schema';
 export * from './material-entities';
+
+export * from './laboratory-entities-schema';
+export * from './laboratory-entities';
+export * from './laboratory-claim-history-schema';
+export * from './laboratory-claim-history';

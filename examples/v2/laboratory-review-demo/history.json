@@ -1,0 +1,175 @@
+{
+  "kind": "claim_history",
+  "schemaVersion": "0.5.0",
+  "id": "laboratory-history",
+  "contextRefs": [],
+  "entityRefs": [
+    {
+      "documentId": "material-control-entities",
+      "schemaId": "urn:disclosureos:experimental:research-entities:0.4.0",
+      "sha256": "341ed90ef7032306b7731b6b38fe930b6549a1d18f728f00898a0931b6150502"
+    }
+  ],
+  "observation": {
+    "kind": "observation",
+    "schemaVersion": "0.1.0",
+    "id": "material-control",
+    "status": "draft",
+    "createdAt": "2026-09-11T00:00:00Z",
+    "updatedAt": "2026-09-11T00:00:00Z",
+    "eventTime": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "position": {
+      "state": "unknown",
+      "reason": "not_recorded"
+    },
+    "sources": [
+      {
+        "id": "handling-log",
+        "kind": "document",
+        "access": "public",
+        "title": "Fictional handling declarations"
+      },
+      {
+        "id": "lab-report",
+        "kind": "document",
+        "access": "public",
+        "title": "Fictional laboratory report declaration; bytes not supplied",
+        "digest": {
+          "algorithm": "sha256",
+          "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        }
+      }
+    ],
+    "products": [],
+    "methods": [
+      {
+        "id": "lab-method",
+        "version": "1",
+        "description": "Fictional analytical protocol"
+      },
+      {
+        "id": "review",
+        "version": "1",
+        "description": "Fictional limitations review"
+      }
+    ],
+    "frames": [],
+    "assertions": [],
+    "measurements": [
+      {
+        "id": "concentration-a",
+        "quantity": "mass_fraction",
+        "value": {
+          "value": 1.25,
+          "unit": "mg/kg",
+          "uncertainty": {
+            "kind": "unknown",
+            "reason": "not_reported"
+          }
+        },
+        "sourceRefs": [
+          "source:lab-report"
+        ]
+      }
+    ],
+    "processing": []
+  },
+  "claims": [
+    {
+      "id": "reported-quality",
+      "kind": "source_assertion",
+      "recordedAt": "2026-09-11T00:00:00Z",
+      "topic": "material_quality",
+      "subject": {
+        "kind": "entity",
+        "reference": {
+          "document": {
+            "documentId": "material-control-entities",
+            "schemaId": "urn:disclosureos:experimental:research-entities:0.4.0",
+            "sha256": "341ed90ef7032306b7731b6b38fe930b6549a1d18f728f00898a0931b6150502"
+          },
+          "target": {
+            "kind": "material",
+            "id": "aliquot-a"
+          }
+        }
+      },
+      "text": "Fictional report describes this aliquot as field collected.",
+      "provenance": {
+        "sourceRef": "source:lab-report",
+        "attributedTo": "Fictional laboratory",
+        "extractedBy": "Fictional curator",
+        "locator": {
+          "kind": "page",
+          "page": 1
+        },
+        "sourceDigest": {
+          "algorithm": "sha256",
+          "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        }
+      },
+      "reportedMaterialReview": {
+        "quality": "field_collected",
+        "findings": "Source wording retained without independent validation."
+      }
+    },
+    {
+      "id": "review-a",
+      "kind": "assessment",
+      "status": "assessed",
+      "recordedAt": "2026-09-11T00:00:00Z",
+      "evaluatedAt": "2026-09-11T00:00:00Z",
+      "topic": "analytical_limitations",
+      "subject": {
+        "kind": "entity",
+        "reference": {
+          "document": {
+            "documentId": "material-control-entities",
+            "schemaId": "urn:disclosureos:experimental:research-entities:0.4.0",
+            "sha256": "341ed90ef7032306b7731b6b38fe930b6549a1d18f728f00898a0931b6150502"
+          },
+          "target": {
+            "kind": "laboratory_result",
+            "id": "numeric",
+            "field": "result"
+          }
+        }
+      },
+      "inputRefs": [
+        "measurement:concentration-a"
+      ],
+      "entityInputRefs": [
+        {
+          "document": {
+            "documentId": "material-control-entities",
+            "schemaId": "urn:disclosureos:experimental:research-entities:0.4.0",
+            "sha256": "341ed90ef7032306b7731b6b38fe930b6549a1d18f728f00898a0931b6150502"
+          },
+          "target": {
+            "kind": "laboratory_result",
+            "id": "numeric",
+            "field": "result"
+          },
+          "assertionId": "result"
+        }
+      ],
+      "rationale": "The source does not supply uncertainty or independent custody for this aliquot.",
+      "outcome": "inconclusive",
+      "evaluatedBy": "Fictional reviewer A",
+      "methodRef": "method:review",
+      "methodVersion": "1",
+      "materialReview": {
+        "contamination": "unknown",
+        "representativeness": "unknown",
+        "limitations": [
+          "Uncertainty not reported",
+          "Aliquot custody has a gap"
+        ],
+        "findings": "Composition alone does not determine an unusual origin."
+      }
+    }
+  ]
+}

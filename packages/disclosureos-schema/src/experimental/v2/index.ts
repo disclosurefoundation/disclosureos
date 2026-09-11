@@ -51,3 +51,6 @@ export type { ResearchReviewOptions, ResearchReviewResult } from './research-ent
 
 export { evaluateArchivalClaimHistory } from './archival-review';
 export type { ArchivalReviewOptions, ArchivalReviewResult } from './archival-review';
+
+export { evaluateLaboratoryClaimHistory } from './laboratory-review';
+export type { LaboratoryReviewOptions, LaboratoryReviewResult } from './laboratory-review';
