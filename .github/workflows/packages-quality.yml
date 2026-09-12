@@ -348,3 +348,4 @@ jobs:
       - run: node examples/v2/case-presentation-demo/run.mjs
       - run: node examples/v2/context-case-demo/run.mjs
       - run: node examples/v2/testimony-case-demo/run.mjs
+      - run: node examples/v2/archival-case-demo/run.mjs
