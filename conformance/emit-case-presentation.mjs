@@ -12,3 +12,6 @@ writeFileSync(new URL('../packages/disclosureos-schema/schema/experimental/conte
 
 import { testimonyCasePresentationJsonSchema } from '../packages/disclosureos-schema/dist/experimental/v2/index.js';
 writeFileSync(new URL('../packages/disclosureos-schema/schema/experimental/testimony-case-presentation-0.1.0.schema.json', import.meta.url), JSON.stringify(testimonyCasePresentationJsonSchema(), null, 2) + '\n');
+
+import { archivalCasePresentationJsonSchema } from '../packages/disclosureos-schema/dist/experimental/v2/index.js';
+writeFileSync(new URL('../packages/disclosureos-schema/schema/experimental/archival-case-presentation-0.1.0.schema.json', import.meta.url), JSON.stringify(archivalCasePresentationJsonSchema(), null, 2) + '\n');

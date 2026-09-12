@@ -69,7 +69,8 @@
     "./experimental/v2/migration-compatibility/schema/0.1.0": "./schema/experimental/migration-compatibility-0.1.0.schema.json",
     "./experimental/v2/presentation/schema/0.1.0": "./schema/experimental/case-presentation-0.1.0.schema.json",
     "./experimental/v2/context-presentation/schema/0.1.0": "./schema/experimental/context-case-presentation-0.1.0.schema.json",
-    "./experimental/v2/testimony-presentation/schema/0.1.0": "./schema/experimental/testimony-case-presentation-0.1.0.schema.json"
+    "./experimental/v2/testimony-presentation/schema/0.1.0": "./schema/experimental/testimony-case-presentation-0.1.0.schema.json",
+    "./experimental/v2/archival-presentation/schema/0.1.0": "./schema/experimental/archival-case-presentation-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

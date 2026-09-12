@@ -108,7 +108,7 @@
     "emit:v2-case-links": "node conformance/emit-case-links.mjs",
     "test:v2-case-links": "node --test conformance/case-links.test.mjs",
     "emit:v2-case-presentation": "node conformance/emit-case-presentation.mjs",
-    "test:v2-case-presentation": "node --test conformance/case-presentation.test.mjs conformance/context-case-presentation.test.mjs conformance/testimony-case-presentation.test.mjs"
+    "test:v2-case-presentation": "node --test conformance/case-presentation.test.mjs conformance/context-case-presentation.test.mjs conformance/testimony-case-presentation.test.mjs conformance/archival-case-presentation.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

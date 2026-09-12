@@ -62,3 +62,5 @@ export * from './case-presentation';
 export * from './context-case-presentation';
 
 export * from './testimony-case-presentation';
+
+export * from './archival-case-presentation';

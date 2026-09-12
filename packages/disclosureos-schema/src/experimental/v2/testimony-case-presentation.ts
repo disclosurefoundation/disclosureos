@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { capturePresentationSnapshots } from "./presentation-snapshots";
 import {
   parseResearchEntities,
   parseResearchClaimHistory,
@@ -190,46 +191,14 @@ export async function buildPublicTestimonyCase(
     s = d.testimony;
   try {
     // Snapshot the declared graph before any await. Private extra map entries are never read.
-    const copies = new Map<string, Uint8Array>();
-    const pending: DocumentSnapshotRef[] = [
+    const copies = capturePresentationSnapshots(options.documents, [
       s.document,
       s.context,
       s.history,
       d.presentation.caseRef,
       ...d.presentation.findings.map((f) => f.historyRef),
       ...(d.presentation.linksRef ? [d.presentation.linksRef] : []),
-    ];
-    for (let i = 0; i < pending.length; i++) {
-      const r = pending[i]!;
-      if (copies.has(r.sha256)) continue;
-      const b = options.documents.get(r.sha256);
-      if (!b) return invalid();
-      const captured = Uint8Array.from(b);
-      copies.set(r.sha256, captured);
-      const v = decode(captured) as {
-        observationRef?: DocumentSnapshotRef;
-        acquisitionRef?: DocumentSnapshotRef;
-        contextRefs?: DocumentSnapshotRef[];
-        entityRefs?: DocumentSnapshotRef[];
-        observationRefs?: DocumentSnapshotRef[];
-        caseRefs?: DocumentSnapshotRef[];
-        links?: Array<{
-          kind: string;
-          document: DocumentSnapshotRef;
-          reference: { document: DocumentSnapshotRef };
-        }>;
-      };
-      pending.push(
-        ...(v.observationRef ? [v.observationRef] : []),
-        ...(v.acquisitionRef ? [v.acquisitionRef] : []),
-        ...(v.contextRefs ?? []),
-        ...(v.entityRefs ?? []),
-        ...(v.observationRefs ?? []),
-        ...(v.caseRefs ?? []),
-      );
-      for (const l of v.links ?? [])
-        pending.push(l.kind === "intake" ? l.document : l.reference.document);
-    }
+    ]);
     if ((await digest(inputBytes)) !== approval.data.presentationSha256)
       return { success: false as const, code: "APPROVAL_REQUIRED" as const };
     const baseBytes = bytes(d.presentation);
