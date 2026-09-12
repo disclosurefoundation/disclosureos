@@ -24,10 +24,13 @@ Source checkpoints completed (unreleased):
 - [C3b case assessments](../c3/assessments.md): exact case/entity/field and directed
   relationship subjects, explicit inputs, independent reviewers and revisions,
   and supplied case/observation snapshot resolution.
+- [C3c supplemental links](../c3/links.md): attributable associations to context,
+  entity and intake snapshots, exact observation scope and optional inventory
+  digest matching, with full research and raw-artifact validation kept separate.
 
 Remaining implementation areas:
 
-- C3 additional scoped references, presentation and application
+- C3 presentation and application
   access/output enforcement, followed by integration acceptance across V2.
 
 At closeout, review the accumulated changesets, choose the coordinated package

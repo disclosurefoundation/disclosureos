@@ -1,0 +1,40 @@
+{
+  "kind": "observation",
+  "schemaVersion": "0.1.0",
+  "id": "capture-a",
+  "status": "draft",
+  "createdAt": "2026-09-11T00:00:00Z",
+  "updatedAt": "2026-09-11T00:00:00Z",
+  "eventTime": {
+    "state": "unknown",
+    "reason": "not_recorded"
+  },
+  "position": {
+    "state": "unknown",
+    "reason": "not_recorded"
+  },
+  "sources": [
+    {
+      "id": "log",
+      "kind": "document",
+      "access": "public",
+      "title": "Fictional first station log; bytes not supplied",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "912eedc217798f2f18848fbec2aa417531bb0d8f3136fef5efec5c525a7ae53a"
+      }
+    }
+  ],
+  "products": [],
+  "methods": [
+    {
+      "id": "interviews",
+      "version": "1",
+      "description": "Fictional interview protocol"
+    }
+  ],
+  "frames": [],
+  "assertions": [],
+  "measurements": [],
+  "processing": []
+}

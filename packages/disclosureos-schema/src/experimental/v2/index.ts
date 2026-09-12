@@ -56,3 +56,4 @@ export { evaluateLaboratoryClaimHistory } from './laboratory-review';
 export type { LaboratoryReviewOptions, LaboratoryReviewResult } from './laboratory-review';
 export * from './case-review';
 export * from './case-history-review';
+export * from './case-links-review';

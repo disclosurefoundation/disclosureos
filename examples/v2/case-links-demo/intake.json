@@ -1,0 +1,49 @@
+{
+  "kind": "source_intake",
+  "schemaVersion": "0.1.0",
+  "id": "station-intake",
+  "receivedAt": "2026-09-11T00:00:00Z",
+  "source": {
+    "publisher": {
+      "state": "declared",
+      "value": "Fictional station"
+    },
+    "uri": "https://example.invalid/source-receipt"
+  },
+  "access": "restricted",
+  "license": {
+    "state": "unknown",
+    "reason": "Not supplied in this fictional example"
+  },
+  "artifacts": [
+    {
+      "id": "log-file",
+      "originalName": "fictional-log.txt",
+      "role": "documentation",
+      "format": {
+        "state": "declared",
+        "value": "text/plain"
+      },
+      "sha256": "912eedc217798f2f18848fbec2aa417531bb0d8f3136fef5efec5c525a7ae53a",
+      "byteLength": 40,
+      "context": {
+        "instrument": {
+          "state": "unknown",
+          "reason": "Not supplied in this fictional example"
+        },
+        "calibration": {
+          "state": "unknown",
+          "reason": "Not supplied in this fictional example"
+        },
+        "clock": {
+          "state": "unknown",
+          "reason": "Not supplied in this fictional example"
+        },
+        "acquisitionTime": {
+          "state": "unknown",
+          "reason": "Not supplied in this fictional example"
+        }
+      }
+    }
+  ]
+}

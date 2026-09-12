@@ -58,3 +58,5 @@ export * from './case-schema';
 export * from './case';
 export * from './case-claim-history-schema';
 export * from './case-claim-history';
+export * from './case-links-schema';
+export * from './case-links';

@@ -1,0 +1,103 @@
+{
+  "kind": "case_links",
+  "schemaVersion": "0.1.0",
+  "id": "case-link-control",
+  "recordedAt": "2026-09-11T00:00:00Z",
+  "recordedBy": "Fictional editor",
+  "caseRef": {
+    "documentId": "connected-control",
+    "schemaId": "urn:disclosureos:experimental:case-record:0.1.0",
+    "sha256": "785c578b2278c756fe576ed31808f0117bec246a2cd8d5747dc071b960cf4c6e"
+  },
+  "links": [
+    {
+      "id": "setting",
+      "kind": "context",
+      "observationId": "capture-a",
+      "reference": {
+        "document": {
+          "documentId": "case-context",
+          "schemaId": "urn:disclosureos:experimental:observation-context:0.1.0",
+          "sha256": "0e7ad3dcab21102f1496bac51b932605ecd9d3fd9d1df5376153a177feca25aa"
+        },
+        "target": {
+          "kind": "event",
+          "id": "event",
+          "field": "description"
+        }
+      },
+      "basis": {
+        "text": "The station log supplies this event description.",
+        "provenance": {
+          "observationId": "capture-a",
+          "sourceRef": "source:log",
+          "attributedTo": "Fictional station recorder",
+          "extractedBy": "Fictional case assembler",
+          "locator": {
+            "kind": "page",
+            "page": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "witness",
+      "kind": "entities",
+      "observationId": "capture-a",
+      "reference": {
+        "document": {
+          "documentId": "case-witnesses",
+          "schemaId": "urn:disclosureos:experimental:research-entities:0.4.0",
+          "sha256": "5286e27ccd0761bf6e61265b2e075f33d9ebfb1014472259883525740e7dcf73"
+        },
+        "target": {
+          "kind": "witness",
+          "id": "witness-a",
+          "field": "publicIdentity"
+        }
+      },
+      "basis": {
+        "text": "The supplied witness supplement describes this observation.",
+        "provenance": {
+          "observationId": "capture-a",
+          "sourceRef": "source:log",
+          "attributedTo": "Fictional station recorder",
+          "extractedBy": "Fictional case assembler",
+          "locator": {
+            "kind": "page",
+            "page": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "receipt",
+      "kind": "intake",
+      "observationId": "capture-a",
+      "document": {
+        "documentId": "station-intake",
+        "schemaId": "urn:disclosureos:experimental:source-intake:0.1.0",
+        "sha256": "8d3bcd1387a789cfad3b4faa97ece3337f39a400f52d0451e4c07839503c9a67"
+      },
+      "artifactLinks": [
+        {
+          "artifactId": "log-file",
+          "observationRef": "source:log"
+        }
+      ],
+      "basis": {
+        "text": "The receipt and observation inventory declare the same file digest; original bytes are not supplied.",
+        "provenance": {
+          "observationId": "capture-a",
+          "sourceRef": "source:log",
+          "attributedTo": "Fictional station recorder",
+          "extractedBy": "Fictional case assembler",
+          "locator": {
+            "kind": "page",
+            "page": 1
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+baseline_path,schema_pointer,disposition,destination,meaning,owner
+dataSourceId,#/$defs/Observation/properties/dataSourceId,revised,case_links intake document reference and sourced basis,"A supplied receipt has an exact identity; a dataset or pipeline identifier alone does not. Retain original source wording and do not invent a receipt or publication authority.",C3c supplemental links
