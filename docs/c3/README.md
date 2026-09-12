@@ -143,9 +143,13 @@ type-check and pass their strict package-export checks. The ledger accounts for
 28 baseline property occurrences. C3b now supplies the attributed relationship
 destinations previously deferred in that ledger.
 
+[C3d public presentation](presentation.md) now implements the shared editorial
+contract and approved public-output projection. It does not yet implement the
+portal routes, private review storage or asset authorization.
+
 ## Remaining C3 checkpoints
 
-1. Add the public presentation contract and application integration for narrative,
+1. Integrate the C3d public presentation contract into the application for narrative,
    attachments, selected findings and publication notices. Enforce allowlists
    across rendering, exports, search, metadata and caches; keep private notes,
    identity mappings and storage URLs in the application envelope.

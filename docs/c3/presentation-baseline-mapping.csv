@@ -1,0 +1,28 @@
+baseline_path,schema_pointer,disposition,destination,meaning
+description,#/$defs/Observation/properties/description,reorganized,blocks with citationIds,Editorial narrative is reviewed separately from the cited source assertions.
+status,#/$defs/Observation/properties/status,partial,presentation status and notices; application review state pending,Publication state does not change observation lifecycle. Private review workflow and revocation enforcement remain application work.
+internalNotes,#/$defs/Observation/properties/internalNotes,pending_application,private application envelope; excluded from projection,No canonical notes payload or storage is added. Application enforcement remains an acceptance requirement.
+media,#/$defs/Observation/properties/media,reorganized,attachments,Featured selection references an existing approved attachment; no embedded duplicate media object.
+media.id,#/$defs/MediaAttachment/properties/id,revised,attachments.id,Public attachment alias; research artifact reference is separate.
+media.type,#/$defs/MediaAttachment/properties/type,preserved,attachments.kind,"Explicit image, video, audio, document or data presentation kind; not content sniffing."
+media.url,#/$defs/MediaAttachment/properties/url,revised,attachments observationId/ref/sha256; generated case-assets route,Private locators never become public links. Actual route authorization and byte verification remain application work.
+media.thumbnailUrl,#/$defs/MediaAttachment/properties/thumbnailUrl,revised,thumbnailAttachmentId and separate thumbnail attachment,Thumbnail must itself be an explicitly selected image with an artifact reference and approval.
+media.caption,#/$defs/MediaAttachment/properties/caption,preserved,attachments.caption,"Reviewed public text, not copied from private source metadata."
+media.credit,#/$defs/MediaAttachment/properties/credit,preserved,attachments.credit,"Reviewed public attribution, not inferred ownership."
+media.mimeType,#/$defs/MediaAttachment/properties/mimeType,reorganized,attachments.mimeType,Declared display metadata; server must verify delivery content type independently.
+media.fileSize,#/$defs/MediaAttachment/properties/fileSize,revised,attachments.fileSizeBytes,Optional nonnegative integer declaration; actual file size remains a delivery check.
+media.duration,#/$defs/MediaAttachment/properties/duration,revised,attachments.durationSeconds,"Explicit seconds for audio/video only; supplied metadata, not measured here."
+media.width,#/$defs/MediaAttachment/properties/width,revised,attachments.dimensions.width,Positive integer pixels paired with height; omit unknown dimensions.
+media.height,#/$defs/MediaAttachment/properties/height,revised,attachments.dimensions.height,Positive integer pixels paired with width; omit unknown dimensions.
+featuredMedia,#/$defs/Observation/properties/featuredMedia,reorganized,featuredAttachmentId,Featured selection references an existing approved attachment; no embedded duplicate media object.
+featuredMedia.id,#/$defs/MediaAttachment/properties/id,revised,attachments.id,Public attachment alias; research artifact reference is separate.
+featuredMedia.type,#/$defs/MediaAttachment/properties/type,preserved,attachments.kind,"Explicit image, video, audio, document or data presentation kind; not content sniffing."
+featuredMedia.url,#/$defs/MediaAttachment/properties/url,revised,attachments observationId/ref/sha256; generated case-assets route,Private locators never become public links. Actual route authorization and byte verification remain application work.
+featuredMedia.thumbnailUrl,#/$defs/MediaAttachment/properties/thumbnailUrl,revised,thumbnailAttachmentId and separate thumbnail attachment,Thumbnail must itself be an explicitly selected image with an artifact reference and approval.
+featuredMedia.caption,#/$defs/MediaAttachment/properties/caption,preserved,attachments.caption,"Reviewed public text, not copied from private source metadata."
+featuredMedia.credit,#/$defs/MediaAttachment/properties/credit,preserved,attachments.credit,"Reviewed public attribution, not inferred ownership."
+featuredMedia.mimeType,#/$defs/MediaAttachment/properties/mimeType,reorganized,attachments.mimeType,Declared display metadata; server must verify delivery content type independently.
+featuredMedia.fileSize,#/$defs/MediaAttachment/properties/fileSize,revised,attachments.fileSizeBytes,Optional nonnegative integer declaration; actual file size remains a delivery check.
+featuredMedia.duration,#/$defs/MediaAttachment/properties/duration,revised,attachments.durationSeconds,"Explicit seconds for audio/video only; supplied metadata, not measured here."
+featuredMedia.width,#/$defs/MediaAttachment/properties/width,revised,attachments.dimensions.width,Positive integer pixels paired with height; omit unknown dimensions.
+featuredMedia.height,#/$defs/MediaAttachment/properties/height,revised,attachments.dimensions.height,Positive integer pixels paired with width; omit unknown dimensions.

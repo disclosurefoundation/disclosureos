@@ -1,0 +1,79 @@
+{
+  "kind": "public_case",
+  "schemaVersion": "0.1.0",
+  "publicId": "two-station-control",
+  "title": "Two station records",
+  "summary": "A fictional case showing separate observations and competing reviews.",
+  "updatedAt": "2026-09-12T12:00:00Z",
+  "status": "published",
+  "citations": [
+    {
+      "id": "case",
+      "label": "Fictional case record"
+    },
+    {
+      "id": "log",
+      "label": "Station A log",
+      "description": "Public citation to a fictional source."
+    }
+  ],
+  "blocks": [
+    {
+      "id": "overview",
+      "text": "Two observations are grouped for review. Their order does not establish a shared object.",
+      "citationIds": [
+        "case",
+        "log"
+      ],
+      "heading": "What the records describe"
+    }
+  ],
+  "findings": [
+    {
+      "id": "review-a",
+      "title": "Review remains inconclusive",
+      "summary": "The revised assessment considers both reported conclusions.",
+      "reviewerLabel": "Reviewer A",
+      "citationIds": [
+        "case"
+      ],
+      "status": "assessed",
+      "outcome": "inconclusive",
+      "revision": "current"
+    },
+    {
+      "id": "pending",
+      "title": "Independence has not been assessed",
+      "summary": "The case does not establish independent corroboration.",
+      "reviewerLabel": "Review pending",
+      "citationIds": [
+        "case"
+      ],
+      "status": "unassessed",
+      "revision": "current"
+    }
+  ],
+  "assessmentNotice": "These are attributed assessments. Reference checks do not independently verify their conclusions.",
+  "attachments": [
+    {
+      "id": "station-log",
+      "kind": "data",
+      "role": "supporting",
+      "href": "/case-assets/two-station-control/station-log",
+      "caption": "Fictional station log",
+      "credit": "DisclosureOS example",
+      "rights": "Fictional example for software testing.",
+      "citationIds": [
+        "log"
+      ]
+    }
+  ],
+  "featuredAttachmentId": "station-log",
+  "notices": [
+    {
+      "id": "scope",
+      "kind": "scope",
+      "text": "Synthetic demonstration. A supplied assessment outcome is not a scientific finding by DisclosureOS."
+    }
+  ]
+}

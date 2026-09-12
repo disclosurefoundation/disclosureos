@@ -99,7 +99,7 @@ is fetched. Extra, unrelated buffers are not inspected.
 
 ## Public presentation boundary
 
-The next presentation layer can use the links to organize a case's setting,
+The [C3d presentation layer](presentation.md) can use the links to organize a case's setting,
 witnesses, documents, materials and source receipts. The existing specialized
 claim histories remain available for their own domains; this checkpoint does not
 add arbitrary supplemental inputs to case-claim-history.
@@ -134,5 +134,6 @@ and pass strict ESM package-export checks. The fixture runner and baseline mappi
 check pass.
 
 With case organization, assessments and supplemental associations implemented,
-the remaining C3 implementation is public presentation and application access/output
-enforcement, followed by integrated acceptance and the coordinated V2 release.
+C3d now implements the public presentation contract and projection. The remaining
+C3 implementation is portal integration and server access/output enforcement,
+followed by integrated acceptance and the coordinated V2 release.
