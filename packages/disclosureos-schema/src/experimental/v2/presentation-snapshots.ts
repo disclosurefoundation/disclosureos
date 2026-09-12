@@ -4,7 +4,7 @@ const decode = (b: Uint8Array): unknown =>
 /** Capture declared graph edges before awaiting. Callers must validate every used schema and identity. */
 export function capturePresentationSnapshots(
   documents: ReadonlyMap<string, Uint8Array>,
-  roots: DocumentSnapshotRef[],
+  roots: DocumentSnapshotRef[]
 ) {
   const copies = new Map<string, Uint8Array>();
   const pending = [...roots];
@@ -16,6 +16,10 @@ export function capturePresentationSnapshots(
     const captured = Uint8Array.from(b);
     copies.set(r.sha256, captured);
     const v = decode(captured) as {
+      entities?: Array<{
+        selectionRef?: { document: DocumentSnapshotRef };
+        transferRef?: { document: DocumentSnapshotRef };
+      }>;
       observationRef?: DocumentSnapshotRef;
       acquisitionRef?: DocumentSnapshotRef;
       contextRefs?: DocumentSnapshotRef[];
@@ -34,8 +38,12 @@ export function capturePresentationSnapshots(
       ...(v.contextRefs ?? []),
       ...(v.entityRefs ?? []),
       ...(v.observationRefs ?? []),
-      ...(v.caseRefs ?? []),
+      ...(v.caseRefs ?? [])
     );
+    for (const e of v.entities ?? []) {
+      if (e.selectionRef) pending.push(e.selectionRef.document);
+      if (e.transferRef) pending.push(e.transferRef.document);
+    }
     for (const l of v.links ?? [])
       pending.push(l.kind === "intake" ? l.document : l.reference.document);
   }
