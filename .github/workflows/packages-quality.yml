@@ -346,3 +346,4 @@ jobs:
       - run: pnpm test:v2-case-presentation
       - run: python3 scripts/check-c3-presentation-mapping.py
       - run: node examples/v2/case-presentation-demo/run.mjs
+      - run: node examples/v2/context-case-demo/run.mjs

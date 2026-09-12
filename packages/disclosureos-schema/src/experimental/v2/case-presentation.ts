@@ -415,7 +415,13 @@ export async function buildPublicCaseOutputs(
 ) {
   const result = await buildPublicCase(presentationBytes, options);
   if (!result.success) return result;
-  const d = result.data;
+  return formatPublicCaseOutputs(result.data);
+}
+
+/** Text formatting over an already approved public allowlist; this function does not grant approval. */
+export function formatPublicCaseOutputs<T extends Omit<PublicCasePayload, 'schemaVersion'> & { schemaVersion: string }>(
+  d: T, additionalLines: string[] = [], additionalSearch: string[] = [],
+) {
   const escape = (s: string) => s.replace(/[!-/:-@\[-`{-~]/g, '\\$&');
   const lines = [`# ${escape(d.title)}`, '', escape(d.summary), ''];
   if (d.assessmentNotice) lines.push(escape(d.assessmentNotice), '');
@@ -444,6 +450,7 @@ export async function buildPublicCaseOutputs(
       `Sources: ${a.citationIds.map(escape).join(', ')}`,
       '',
     );
+  lines.push(...additionalLines);
   if (d.citations.length) lines.push('## Sources', '');
   for (const c of d.citations)
     lines.push(
@@ -464,6 +471,7 @@ export async function buildPublicCaseOutputs(
         ...d.blocks.map((b) => b.text),
         ...d.findings.map((f) => `${f.summary} ${f.status} ${f.outcome ?? ''} ${f.revision}`),
         ...d.notices.map((n) => n.text),
+        ...additionalSearch,
       ].join('\n'),
     },
     metadata: { title: d.title, description: d.summary },
