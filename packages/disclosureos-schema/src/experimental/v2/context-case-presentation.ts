@@ -408,7 +408,7 @@ export async function buildPublicContextCase(
             ? `Unknown (${u.reason.replace(/_/g, " ")})`
             : `${u.kind}: ${u.magnitude} ${u.unit}${u.kind === "expanded" ? `; coverage factor ${u.coverageFactor}${u.coverageProbability === undefined ? "" : `; coverage probability ${u.coverageProbability}`}` : ""}`,
         method:
-          "An acquisition method is not supplied by this measurement binding.",
+          "An acquisition method was not supplied for this reading.",
         citationIds: [...m.citationIds],
       });
     }
