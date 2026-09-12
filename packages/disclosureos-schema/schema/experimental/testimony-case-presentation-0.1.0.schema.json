@@ -1,0 +1,682 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "testimony_case_presentation"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "presentation": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "case_presentation"
+        },
+        "schemaVersion": {
+          "type": "string",
+          "const": "0.1.0"
+        },
+        "publicId": {
+          "$ref": "#/$defs/__schema0"
+        },
+        "caseRef": {
+          "type": "object",
+          "properties": {
+            "documentId": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "schemaId": {
+              "type": "string",
+              "const": "urn:disclosureos:experimental:case-record:0.1.0"
+            },
+            "sha256": {
+              "$ref": "#/$defs/__schema1"
+            }
+          },
+          "required": [
+            "documentId",
+            "schemaId",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "linksRef": {
+          "type": "object",
+          "properties": {
+            "documentId": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "schemaId": {
+              "type": "string",
+              "const": "urn:disclosureos:experimental:case-links:0.1.0"
+            },
+            "sha256": {
+              "$ref": "#/$defs/__schema1"
+            }
+          },
+          "required": [
+            "documentId",
+            "schemaId",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "title": {
+          "$ref": "#/$defs/__schema2"
+        },
+        "summary": {
+          "$ref": "#/$defs/__schema3"
+        },
+        "updatedAt": {
+          "type": "string",
+          "allOf": [
+            {
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+            },
+            {
+              "pattern": "^(?!0000)"
+            },
+            {
+              "pattern": "T[0-9]{2}:[0-9]{2}:[0-9]{2}"
+            }
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "published",
+            "archived",
+            "withdrawn"
+          ]
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/__schema0"
+              },
+              "label": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "description": {
+                "$ref": "#/$defs/__schema3"
+              },
+              "target": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "const": "case"
+                      }
+                    },
+                    "required": [
+                      "kind"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "const": "artifact"
+                      },
+                      "observationId": {
+                        "$ref": "#/$defs/__schema0"
+                      },
+                      "ref": {
+                        "$ref": "#/$defs/__schema4"
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "observationId",
+                      "ref"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "const": "supplement"
+                      },
+                      "linkId": {
+                        "$ref": "#/$defs/__schema0"
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "linkId"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "target"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/__schema0"
+              },
+              "heading": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "text": {
+                "$ref": "#/$defs/__schema3"
+              },
+              "citationIds": {
+                "$ref": "#/$defs/__schema5"
+              }
+            },
+            "required": [
+              "id",
+              "text",
+              "citationIds"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/__schema0"
+              },
+              "historyRef": {
+                "type": "object",
+                "properties": {
+                  "documentId": {
+                    "$ref": "#/$defs/__schema0"
+                  },
+                  "schemaId": {
+                    "type": "string",
+                    "const": "urn:disclosureos:experimental:case-claim-history:0.1.0"
+                  },
+                  "sha256": {
+                    "$ref": "#/$defs/__schema1"
+                  }
+                },
+                "required": [
+                  "documentId",
+                  "schemaId",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "claimId": {
+                "$ref": "#/$defs/__schema0"
+              },
+              "title": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "summary": {
+                "$ref": "#/$defs/__schema3"
+              },
+              "reviewerLabel": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "citationIds": {
+                "$ref": "#/$defs/__schema5"
+              }
+            },
+            "required": [
+              "id",
+              "historyRef",
+              "claimId",
+              "title",
+              "summary",
+              "reviewerLabel",
+              "citationIds"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/__schema0"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "image",
+                  "video",
+                  "audio",
+                  "document",
+                  "data"
+                ]
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting",
+                  "thumbnail"
+                ]
+              },
+              "observationId": {
+                "$ref": "#/$defs/__schema0"
+              },
+              "ref": {
+                "$ref": "#/$defs/__schema4"
+              },
+              "sha256": {
+                "$ref": "#/$defs/__schema1"
+              },
+              "caption": {
+                "$ref": "#/$defs/__schema3"
+              },
+              "credit": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "rights": {
+                "$ref": "#/$defs/__schema3"
+              },
+              "alt": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "dimensions": {
+                "type": "object",
+                "properties": {
+                  "width": {
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "height": {
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "width",
+                  "height"
+                ],
+                "additionalProperties": false
+              },
+              "durationSeconds": {
+                "type": "number",
+                "minimum": 0
+              },
+              "citationIds": {
+                "$ref": "#/$defs/__schema5"
+              },
+              "mimeType": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "fileSizeBytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "thumbnailAttachmentId": {
+                "$ref": "#/$defs/__schema0"
+              }
+            },
+            "required": [
+              "id",
+              "kind",
+              "role",
+              "observationId",
+              "ref",
+              "sha256",
+              "caption",
+              "credit",
+              "rights",
+              "citationIds"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "featuredAttachmentId": {
+          "$ref": "#/$defs/__schema0"
+        },
+        "notices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/__schema0"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "scope",
+                  "correction",
+                  "archive",
+                  "withdrawal",
+                  "rights"
+                ]
+              },
+              "text": {
+                "$ref": "#/$defs/__schema3"
+              }
+            },
+            "required": [
+              "id",
+              "kind",
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "kind",
+        "schemaVersion",
+        "publicId",
+        "caseRef",
+        "title",
+        "summary",
+        "updatedAt",
+        "status",
+        "citations",
+        "blocks",
+        "findings",
+        "attachments",
+        "notices"
+      ],
+      "additionalProperties": false
+    },
+    "testimony": {
+      "type": "object",
+      "properties": {
+        "document": {
+          "type": "object",
+          "properties": {
+            "documentId": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "schemaId": {
+              "type": "string",
+              "const": "urn:disclosureos:experimental:research-entities:0.1.0"
+            },
+            "sha256": {
+              "$ref": "#/$defs/__schema7"
+            }
+          },
+          "required": [
+            "documentId",
+            "schemaId",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "context": {
+          "type": "object",
+          "properties": {
+            "documentId": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "schemaId": {
+              "type": "string",
+              "const": "urn:disclosureos:experimental:observation-context:0.1.0"
+            },
+            "sha256": {
+              "$ref": "#/$defs/__schema7"
+            }
+          },
+          "required": [
+            "documentId",
+            "schemaId",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "history": {
+          "type": "object",
+          "properties": {
+            "documentId": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "schemaId": {
+              "type": "string",
+              "const": "urn:disclosureos:experimental:claim-history:0.3.0"
+            },
+            "sha256": {
+              "$ref": "#/$defs/__schema7"
+            }
+          },
+          "required": [
+            "documentId",
+            "schemaId",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "event": {
+          "type": "object",
+          "properties": {
+            "entityId": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "assertionId": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "citationIds": {
+              "$ref": "#/$defs/__schema8"
+            }
+          },
+          "required": [
+            "entityId",
+            "assertionId",
+            "citationIds"
+          ],
+          "additionalProperties": false
+        },
+        "witness": {
+          "type": "object",
+          "properties": {
+            "entityId": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "identityAssertionId": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "experienceAssertionId": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "citationIds": {
+              "$ref": "#/$defs/__schema8"
+            }
+          },
+          "required": [
+            "entityId",
+            "identityAssertionId",
+            "experienceAssertionId",
+            "citationIds"
+          ],
+          "additionalProperties": false
+        },
+        "accounts": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema9"
+          }
+        },
+        "review": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "claimId": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "title": {
+              "$ref": "#/$defs/__schema10"
+            },
+            "summary": {
+              "$ref": "#/$defs/__schema10"
+            },
+            "reviewerLabel": {
+              "$ref": "#/$defs/__schema10"
+            },
+            "methodLabel": {
+              "$ref": "#/$defs/__schema10"
+            },
+            "citationIds": {
+              "$ref": "#/$defs/__schema8"
+            }
+          },
+          "required": [
+            "id",
+            "claimId",
+            "title",
+            "summary",
+            "reviewerLabel",
+            "methodLabel",
+            "citationIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "document",
+        "context",
+        "history",
+        "event",
+        "witness",
+        "accounts",
+        "review"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "presentation",
+    "testimony"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "__schema1": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}(?![\\s\\S])"
+    },
+    "__schema2": {
+      "maxLength": 500,
+      "$ref": "#/$defs/__schema3"
+    },
+    "__schema3": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20000,
+      "pattern": "\\S"
+    },
+    "__schema4": {
+      "type": "string",
+      "pattern": "^(source|product):[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "__schema5": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/__schema0"
+      }
+    },
+    "__schema6": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "__schema7": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}(?![\\s\\S])"
+    },
+    "__schema8": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/__schema6"
+      }
+    },
+    "__schema9": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/__schema6"
+        },
+        "label": {
+          "$ref": "#/$defs/__schema10"
+        },
+        "entityId": {
+          "$ref": "#/$defs/__schema6"
+        },
+        "speakerAssertionId": {
+          "$ref": "#/$defs/__schema6"
+        },
+        "recordedAssertionId": {
+          "$ref": "#/$defs/__schema6"
+        },
+        "sourceAssertionId": {
+          "$ref": "#/$defs/__schema6"
+        },
+        "contentAssertionId": {
+          "$ref": "#/$defs/__schema6"
+        },
+        "eventAssertionId": {
+          "$ref": "#/$defs/__schema6"
+        },
+        "oathAssertionId": {
+          "$ref": "#/$defs/__schema6"
+        },
+        "citationIds": {
+          "$ref": "#/$defs/__schema8"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "entityId",
+        "speakerAssertionId",
+        "recordedAssertionId",
+        "sourceAssertionId",
+        "citationIds"
+      ],
+      "additionalProperties": false
+    },
+    "__schema10": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20000,
+      "pattern": "\\S"
+    }
+  },
+  "$id": "urn:disclosureos:experimental:testimony-case-presentation:0.1.0"
+}
