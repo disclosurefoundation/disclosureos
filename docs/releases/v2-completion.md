@@ -28,10 +28,14 @@ Source checkpoints completed (unreleased):
   entity and intake snapshots, exact observation scope and optional inventory
   digest matching, with full research and raw-artifact validation kept separate.
 
+- [C3d public presentation](../c3/presentation.md): approved narrative, citations,
+  case findings and media selections with one public projection for rendering,
+  downloads, search and metadata. Application routes and enforcement remain pending.
+
 Remaining implementation areas:
 
-- C3 presentation and application
-  access/output enforcement, followed by integration acceptance across V2.
+- C3 portal integration and server access/output enforcement, followed by
+  integration acceptance across V2.
 
 At closeout, review the accumulated changesets, choose the coordinated package
 version, run the full release/consumer/portal checks, and publish that exact set.
