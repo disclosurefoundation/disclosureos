@@ -34,6 +34,11 @@ Source checkpoints completed (unreleased):
 
 Remaining implementation areas:
 
+- Product source selection: an additive source-candidate contract for array
+  layouts, CSV partitions and declared video frame intervals, with exact-byte
+  evaluation and a shared reader. See the [contract](../experimental/product-source-selection.md).
+  Meridian portal integration and coordinated-release inclusion must be verified.
+
 - C3 portal integration and server access/output enforcement, followed by
   integration acceptance across V2.
 

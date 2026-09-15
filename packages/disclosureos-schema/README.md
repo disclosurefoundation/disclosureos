@@ -210,3 +210,11 @@ entries. A successful supplied-document check does not authenticate source
 artifacts, complete custody or certify a scientific profile.
 See the [contract guide](../../docs/c2/archival.md) and
 [worked example](../../examples/v2/archival-editions-demo/README.md).
+# Product source selections (source candidate)
+
+The experimental V2 entry point exports `ProductSourceSelectionSchema`,
+`evaluateProductSourceSelection` and the dependency-free
+`readProductSourceSelection` reader. This additive contract binds array elements,
+CSV rows and declared video frame intervals to exact observation-product bytes.
+See [the contract and limitations](../../docs/experimental/product-source-selection.md).
+This addition has not been published to npm.

@@ -66,3 +66,5 @@ export * from './testimony-case-presentation';
 export * from './archival-case-presentation';
 
 export * from './material-case-presentation';
+export * from './product-source-selection';
+export * from './product-source-reader';
