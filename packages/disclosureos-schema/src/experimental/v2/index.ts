@@ -80,3 +80,6 @@ export * from './sonar-profile';
 export * from './passive-sonar-profile-schema';
 export * from './passive-sonar-profile-reader';
 export * from './passive-sonar-profile';
+export * from './lidar-profile-schema';
+export * from './lidar-profile-reader';
+export * from './lidar-profile';

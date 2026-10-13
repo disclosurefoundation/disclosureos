@@ -238,3 +238,7 @@ The optional [sonar profile](docs/sonar-profile.md) binds retained monostatic no
 ### Passive sonar pressure and spectra
 
 The optional [passive sonar profile](docs/passive-sonar-profile.md) binds a single pressure channel and its retention mask to a reproducible, one-sided spectral-density product. Public readers expose the exact input window and selected output cell; the evaluator checks acquisition lineage, hashes, missing-window behavior and numerical reproduction. The [passive sonar example](../../examples/sonar-passive) includes its waveform, spectra, masks and executable methods. It supplies no bearing, range or identity and does not certify physical calibration. These additions are source candidates; publication is separate.
+
+### Static lidar returns and pulse availability
+
+The optional [lidar point-cloud profile](docs/lidar-profile.md) binds a local discrete-return cloud to a complete raster pulse ledger, with exact row selection, complete return groups, normalized amplitude and declared class annotations. The [lidar example](../../examples/lidar-point-cloud) retains authored terrain, roof and vegetation returns alongside no-return and unavailable cells. The evaluator verifies source integrity and declared local geometry; it does not certify calibration, classification accuracy, geographic registration or empty space. This is a source candidate, with publication held separately.

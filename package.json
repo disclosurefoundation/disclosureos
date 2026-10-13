@@ -122,7 +122,10 @@
     "verify:sonar-active": "node examples/sonar-active/verify.mjs",
     "emit:v2-passive-sonar-profile": "node conformance/emit-passive-sonar-profile.mjs",
     "test:v2-passive-sonar-profile": "node --test conformance/passive-sonar-profile.test.mjs examples/sonar-passive/model.test.mjs",
-    "verify:sonar-passive": "node examples/sonar-passive/verify.mjs"
+    "verify:sonar-passive": "node examples/sonar-passive/verify.mjs",
+    "emit:v2-lidar-profile": "node conformance/emit-lidar-profile.mjs",
+    "test:v2-lidar-profile": "node --test conformance/lidar-profile.test.mjs examples/lidar-point-cloud/model.test.mjs",
+    "verify:lidar-point-cloud": "node examples/lidar-point-cloud/verify.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

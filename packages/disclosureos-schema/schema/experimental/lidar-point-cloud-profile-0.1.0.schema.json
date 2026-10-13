@@ -1,0 +1,416 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "lidar_point_cloud_profile"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "observationId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "contextId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "sourceSelectionId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "acquisitionRef": {
+      "type": "string",
+      "pattern": "^acquisition:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "channelId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "acquisitionProducts": {
+      "type": "object",
+      "properties": {
+        "pulses": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "points": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "pulses",
+        "points"
+      ],
+      "additionalProperties": false
+    },
+    "dataOrigin": {
+      "type": "string",
+      "enum": [
+        "synthetic",
+        "instrument"
+      ]
+    },
+    "mode": {
+      "type": "string",
+      "const": "static_discrete_return_raster"
+    },
+    "coordinateFrame": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "local_cartesian"
+        },
+        "axes": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "string",
+              "const": "east"
+            },
+            {
+              "type": "string",
+              "const": "north"
+            },
+            {
+              "type": "string",
+              "const": "up"
+            }
+          ],
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "unit": {
+          "type": "string",
+          "const": "m"
+        },
+        "handedness": {
+          "type": "string",
+          "const": "right_handed"
+        },
+        "originDescription": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "sensorOrigin": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number",
+              "minimum": -10000000,
+              "maximum": 10000000
+            },
+            {
+              "type": "number",
+              "minimum": -10000000,
+              "maximum": 10000000
+            },
+            {
+              "type": "number",
+              "minimum": -10000000,
+              "maximum": 10000000
+            }
+          ],
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "georeferencing": {
+          "type": "string",
+          "const": "not_provided"
+        }
+      },
+      "required": [
+        "kind",
+        "axes",
+        "unit",
+        "handedness",
+        "originDescription",
+        "sensorOrigin",
+        "georeferencing"
+      ],
+      "additionalProperties": false
+    },
+    "scan": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 4096
+        },
+        "columns": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 4096
+        },
+        "pulses": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 65536
+        },
+        "points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 983040
+        },
+        "order": {
+          "type": "string",
+          "const": "row_major_index_not_time"
+        },
+        "aim": {
+          "type": "string",
+          "const": "direction_reference_not_surface_hit"
+        }
+      },
+      "required": [
+        "rows",
+        "columns",
+        "pulses",
+        "points",
+        "order",
+        "aim"
+      ],
+      "additionalProperties": false
+    },
+    "geometry": {
+      "type": "object",
+      "properties": {
+        "nearRangeM": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 10000000
+        },
+        "farRangeM": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 10000000
+        },
+        "rayToleranceM": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 0.1
+        },
+        "toleranceMeaning": {
+          "type": "string",
+          "const": "encoding_consistency_not_measurement_uncertainty"
+        },
+        "bounds": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number",
+                  "minimum": -10000000,
+                  "maximum": 10000000
+                },
+                {
+                  "type": "number",
+                  "minimum": -10000000,
+                  "maximum": 10000000
+                },
+                {
+                  "type": "number",
+                  "minimum": -10000000,
+                  "maximum": 10000000
+                }
+              ],
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "max": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number",
+                  "minimum": -10000000,
+                  "maximum": 10000000
+                },
+                {
+                  "type": "number",
+                  "minimum": -10000000,
+                  "maximum": 10000000
+                },
+                {
+                  "type": "number",
+                  "minimum": -10000000,
+                  "maximum": 10000000
+                }
+              ],
+              "minItems": 3,
+              "maxItems": 3
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "nearRangeM",
+        "farRangeM",
+        "rayToleranceM",
+        "toleranceMeaning",
+        "bounds"
+      ],
+      "additionalProperties": false
+    },
+    "intensity": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "normalized_return_amplitude"
+        },
+        "min": {
+          "type": "number",
+          "const": 0
+        },
+        "max": {
+          "type": "number",
+          "const": 1
+        },
+        "calibration": {
+          "type": "string",
+          "const": "not_calibrated_to_reflectance"
+        }
+      },
+      "required": [
+        "kind",
+        "min",
+        "max",
+        "calibration"
+      ],
+      "additionalProperties": false
+    },
+    "classifications": {
+      "type": "object",
+      "properties": {
+        "authority": {
+          "type": "string",
+          "enum": [
+            "authored_annotations",
+            "source_annotations"
+          ]
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "classes": {
+          "minItems": 1,
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 255
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              }
+            },
+            "required": [
+              "code",
+              "label"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "authority",
+        "method",
+        "classes"
+      ],
+      "additionalProperties": false
+    },
+    "availability": {
+      "type": "object",
+      "properties": {
+        "retained": {
+          "type": "string",
+          "const": "complete_return_group"
+        },
+        "noReturn": {
+          "type": "string",
+          "const": "zero_detected_returns_not_clear_space"
+        },
+        "unavailable": {
+          "type": "string",
+          "const": "unknown_return_count_empty_cell"
+        },
+        "noTiming": {
+          "type": "string",
+          "const": "no_per_pulse_timestamps"
+        }
+      },
+      "required": [
+        "retained",
+        "noReturn",
+        "unavailable",
+        "noTiming"
+      ],
+      "additionalProperties": false
+    },
+    "products": {
+      "type": "object",
+      "properties": {
+        "pulses": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "points": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "pulses",
+        "points"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "id",
+    "observationId",
+    "contextId",
+    "sourceSelectionId",
+    "acquisitionRef",
+    "channelId",
+    "acquisitionProducts",
+    "dataOrigin",
+    "mode",
+    "coordinateFrame",
+    "scan",
+    "geometry",
+    "intensity",
+    "classifications",
+    "availability",
+    "products"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:disclosureos:experimental:lidar-point-cloud-profile:0.1.0"
+}

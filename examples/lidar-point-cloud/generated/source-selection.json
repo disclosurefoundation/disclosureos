@@ -1,0 +1,76 @@
+{
+  "kind": "product_source_selection",
+  "schemaVersion": "0.1.0",
+  "id": "lidar-point-cloud-selection-v1",
+  "observationId": "lidar-point-cloud-v1",
+  "layouts": [
+    {
+      "id": "pulses",
+      "productRef": "product:pulses",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "486fb131799f15ef66a62633ad5aec4a406abb7b3bf1d9c93c761176f02004d1"
+      },
+      "byteLength": 59660,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 1353,
+      "columns": [
+        "pulse_id",
+        "scan_row",
+        "scan_column",
+        "aim_x_m",
+        "aim_y_m",
+        "aim_z_m",
+        "status",
+        "return_count"
+      ]
+    },
+    {
+      "id": "points",
+      "productRef": "product:points",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "c6a2a814ea0fcc3befbbf4e8c4c01d552c2530dd213da0ce25e8b8a74ed73182"
+      },
+      "byteLength": 67943,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 1546,
+      "columns": [
+        "pulse_id",
+        "return_number",
+        "return_count",
+        "x_m",
+        "y_m",
+        "z_m",
+        "intensity",
+        "class_code"
+      ]
+    }
+  ],
+  "selections": [
+    {
+      "id": "pulses-example",
+      "layoutRef": "layout:pulses",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "points-example",
+      "layoutRef": "layout:points",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    }
+  ]
+}
