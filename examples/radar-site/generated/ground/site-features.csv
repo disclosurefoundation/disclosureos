@@ -1,0 +1,18 @@
+feature_id,kind,label,vertex_index,east_m,north_m,closed
+building-west,structure,West structure,0,-1050,600,1
+building-west,structure,West structure,1,-750,600,1
+building-west,structure,West structure,2,-750,850,1
+building-west,structure,West structure,3,-1050,850,1
+building-west,structure,West structure,4,-1050,600,1
+building-east,structure,East structure,0,650,-750,1
+building-east,structure,East structure,1,950,-750,1
+building-east,structure,East structure,2,950,-450,1
+building-east,structure,East structure,3,650,-450,1
+building-east,structure,East structure,4,650,-750,1
+service-road,reference,Authored service road,0,-2100,1200,0
+service-road,reference,Authored service road,1,1700,1200,0
+excluded,reference,Detector exclusion,0,-170,1000,1
+excluded,reference,Detector exclusion,1,170,1000,1
+excluded,reference,Detector exclusion,2,170,1500,1
+excluded,reference,Detector exclusion,3,-170,1500,1
+excluded,reference,Detector exclusion,4,-170,1000,1

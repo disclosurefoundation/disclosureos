@@ -91,6 +91,9 @@
         "platform": {
           "not": {}
         },
+        "preprocessing": {
+          "not": {}
+        },
         "projection": {
           "not": {}
         },
@@ -182,6 +185,10 @@
             },
             "platformPose": {
               "not": {}
+            },
+            "siteFeatures": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
             }
           },
           "required": [
@@ -348,39 +355,46 @@
         },
         "beamReference": {
           "type": "string",
-          "enum": [
-            "north",
-            "platform_heading"
-          ]
+          "const": "north"
         },
         "platform": {
+          "not": {}
+        },
+        "preprocessing": {
           "type": "object",
           "properties": {
             "kind": {
               "type": "string",
-              "const": "moving"
+              "const": "reference_mean_subtraction"
             },
-            "environment": {
+            "referenceAcquisitionRef": {
               "type": "string",
-              "enum": [
-                "airborne",
-                "shipborne"
-              ]
+              "pattern": "^acquisition:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
             },
-            "poseSampling": {
+            "referenceAcquisitionProductRef": {
               "type": "string",
-              "const": "dwell_midpoint"
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
             },
-            "attitudeModel": {
+            "referenceChannelId": {
               "type": "string",
-              "const": "level_yaw_only"
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "arithmetic": {
+              "type": "string",
+              "const": "float32_outputs"
+            },
+            "exclusionMeaning": {
+              "type": "string",
+              "const": "detector_policy"
             }
           },
           "required": [
             "kind",
-            "environment",
-            "poseSampling",
-            "attitudeModel"
+            "referenceAcquisitionRef",
+            "referenceAcquisitionProductRef",
+            "referenceChannelId",
+            "arithmetic",
+            "exclusionMeaning"
           ],
           "additionalProperties": false
         },
@@ -474,6 +488,331 @@
               "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
             },
             "platformPose": {
+              "not": {}
+            },
+            "siteFeatures": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "referenceCapture": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "backgroundPower": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "eligibility": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "processedReturns": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "scanSchedule",
+            "returns",
+            "thresholds",
+            "detections",
+            "tracks",
+            "associations",
+            "referenceCapture",
+            "backgroundPower",
+            "eligibility",
+            "processedReturns"
+          ],
+          "additionalProperties": false
+        },
+        "uncertainty": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "gaussian_position_covariance"
+            },
+            "axes": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "string",
+                  "const": "east"
+                },
+                {
+                  "type": "string",
+                  "const": "north"
+                }
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "unit": {
+              "type": "string",
+              "const": "m2"
+            },
+            "confidenceProbability": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1
+            },
+            "conditioning": {
+              "not": {}
+            }
+          },
+          "required": [
+            "kind",
+            "axes",
+            "unit",
+            "confidenceProbability"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "kind",
+        "schemaVersion",
+        "id",
+        "observationId",
+        "contextId",
+        "sourceSelectionId",
+        "acquisitionRef",
+        "acquisitionProductRef",
+        "channelId",
+        "frameRef",
+        "origin",
+        "timeOrigin",
+        "mode",
+        "dataOrigin",
+        "bearingConvention",
+        "rangeConvention",
+        "preprocessing",
+        "beamWidthConvention",
+        "processingAvailability",
+        "detectionPosition",
+        "products",
+        "uncertainty"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "radar_profile"
+        },
+        "schemaVersion": {
+          "type": "string",
+          "const": "0.1.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "observationId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "contextId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "sourceSelectionId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "acquisitionRef": {
+          "type": "string",
+          "pattern": "^acquisition:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "acquisitionProductRef": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "channelId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "frameRef": {
+          "type": "string",
+          "pattern": "^frame:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "origin": {
+          "type": "object",
+          "properties": {
+            "eastM": {
+              "type": "number"
+            },
+            "northM": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "eastM",
+            "northM"
+          ],
+          "additionalProperties": false
+        },
+        "timeOrigin": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+        },
+        "mode": {
+          "type": "string",
+          "const": "rotating_scan"
+        },
+        "dataOrigin": {
+          "type": "string",
+          "enum": [
+            "synthetic",
+            "instrument"
+          ]
+        },
+        "bearingConvention": {
+          "type": "string",
+          "const": "clockwise_from_north"
+        },
+        "rangeConvention": {
+          "type": "string",
+          "const": "horizontal_range"
+        },
+        "beamReference": {
+          "type": "string",
+          "enum": [
+            "north",
+            "platform_heading"
+          ]
+        },
+        "platform": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "moving"
+            },
+            "environment": {
+              "type": "string",
+              "enum": [
+                "airborne",
+                "shipborne"
+              ]
+            },
+            "poseSampling": {
+              "type": "string",
+              "const": "dwell_midpoint"
+            },
+            "attitudeModel": {
+              "type": "string",
+              "const": "level_yaw_only"
+            }
+          },
+          "required": [
+            "kind",
+            "environment",
+            "poseSampling",
+            "attitudeModel"
+          ],
+          "additionalProperties": false
+        },
+        "preprocessing": {
+          "not": {}
+        },
+        "projection": {
+          "not": {}
+        },
+        "beamWidthConvention": {
+          "type": "string",
+          "const": "full_width_half_maximum_power"
+        },
+        "processingAvailability": {
+          "type": "string",
+          "const": "scan_end"
+        },
+        "detectionPosition": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "cell_center"
+                }
+              },
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "power_weighted_neighborhood"
+                },
+                "azimuthRadius": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 32
+                },
+                "rangeRadius": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 32
+                },
+                "backgroundPower": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "kind",
+                "azimuthRadius",
+                "rangeRadius",
+                "backgroundPower"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "products": {
+          "type": "object",
+          "properties": {
+            "scanSchedule": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "returns": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "thresholds": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "detections": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "tracks": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "associations": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "truth": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "platformPose": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "siteFeatures": {
               "type": "string",
               "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
             }
@@ -683,6 +1022,9 @@
           ],
           "additionalProperties": false
         },
+        "preprocessing": {
+          "not": {}
+        },
         "projection": {
           "type": "object",
           "properties": {
@@ -792,6 +1134,10 @@
               "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
             },
             "platformPose": {
+              "type": "string",
+              "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "siteFeatures": {
               "type": "string",
               "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
             }

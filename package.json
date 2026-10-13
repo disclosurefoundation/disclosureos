@@ -112,10 +112,11 @@
     "emit:v2-product-source-selection": "node conformance/emit-product-source-selection.mjs",
     "test:v2-product-source-selection": "node --test conformance/product-source-selection.test.mjs",
     "emit:v2-radar-profile": "node conformance/emit-radar-profile.mjs",
-    "test:v2-radar-profile": "node --test conformance/radar-profile.test.mjs conformance/advanced-radar-profile.test.mjs examples/radar-scanning/model.test.mjs examples/radar-moving/model.test.mjs examples/radar-advanced/model.test.mjs",
+    "test:v2-radar-profile": "node --test conformance/radar-profile.test.mjs conformance/advanced-radar-profile.test.mjs examples/radar-scanning/model.test.mjs examples/radar-moving/model.test.mjs examples/radar-advanced/model.test.mjs examples/radar-site/model.test.mjs",
     "verify:radar-scanning": "node examples/radar-scanning/verify.mjs",
     "verify:radar-moving": "node examples/radar-moving/verify.mjs",
-    "verify:radar-advanced": "node examples/radar-advanced/verify.mjs"
+    "verify:radar-advanced": "node examples/radar-advanced/verify.mjs",
+    "verify:radar-site": "node examples/radar-site/verify.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

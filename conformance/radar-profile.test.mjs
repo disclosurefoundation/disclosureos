@@ -177,3 +177,66 @@ test("public moving-cell helper distinguishes slant distance from plane distance
   assert.ok(Math.abs(projected.northM - 20) < 1e-10);
   assert.equal(radarCellPosition(profile, pose, 0, 299), null);
 });
+
+test("portable schema accepts complete fixed-site preprocessing and rejects incomplete or incompatible declarations", async () => {
+  const { createPacket: createSitePacket } = await import(
+    "../examples/radar-site/build.mjs"
+  );
+  for (const scenario of ["ground", "civilian"]) {
+    const packet = await createSitePacket(scenario);
+    assert.equal(
+      validate(packet.profile),
+      true,
+      JSON.stringify(validate.errors)
+    );
+    assert.equal(RadarProfileSchema.safeParse(packet.profile).success, true);
+    const result = await evaluateRadarProfile(
+      packet.observation,
+      packet.context,
+      packet.selection,
+      packet.profile,
+      { assets: packet.assets }
+    );
+    assert.equal(result.success, true, JSON.stringify(result.issues));
+    assert.equal(result.data.products.referenceCapture.length, 8 * 180 * 64);
+    for (const change of [
+      (p) => {
+        delete p.preprocessing;
+      },
+      (p) => {
+        delete p.products.referenceCapture;
+      },
+      (p) => {
+        delete p.products.backgroundPower;
+      },
+      (p) => {
+        delete p.products.eligibility;
+      },
+      (p) => {
+        delete p.products.processedReturns;
+      },
+      (p) => {
+        p.preprocessing.arithmetic = "float64_outputs";
+      },
+      (p) => {
+        p.preprocessing.exclusionMeaning = "physical_coverage";
+      },
+      (p) => {
+        p.platform = {
+          kind: "moving",
+          environment: "shipborne",
+          poseSampling: "dwell_midpoint",
+          attitudeModel: "level_yaw_only",
+        };
+        p.beamReference = "platform_heading";
+        p.products.platformPose = "product:pose";
+        p.uncertainty.conditioning = "declared_pose_and_projection";
+      },
+    ]) {
+      const candidate = structuredClone(packet.profile);
+      change(candidate);
+      assert.equal(validate(candidate), false);
+      assert.equal(RadarProfileSchema.safeParse(candidate).success, false);
+    }
+  }
+});

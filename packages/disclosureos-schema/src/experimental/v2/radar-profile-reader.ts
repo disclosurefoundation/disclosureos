@@ -46,6 +46,15 @@ export const RADAR_TABLE_COLUMNS = Object.freeze({
   ],
   associations: ["track_id", "scan_index", "detection_id"],
   truth: ["target_id", "scan_index", "time_s", "east_m", "north_m"],
+  siteFeatures: [
+    "feature_id",
+    "kind",
+    "label",
+    "vertex_index",
+    "east_m",
+    "north_m",
+    "closed",
+  ],
 } as const);
 export interface RadarDwell {
   scan_index: number;
@@ -174,6 +183,15 @@ export interface RadarTruth {
   east_m: number;
   north_m: number;
 }
+export interface RadarSiteFeatureVertex {
+  feature_id: string;
+  kind: "runway" | "taxiway" | "apron" | "structure" | "reference";
+  label: string;
+  vertex_index: number;
+  east_m: number;
+  north_m: number;
+  closed: 0 | 1;
+}
 export interface RadarDecodedProducts {
   scanSchedule: RadarDwell[];
   platformPose: RadarPlatformPose[];
@@ -183,6 +201,11 @@ export interface RadarDecodedProducts {
   truth: RadarTruth[];
   returns: number[];
   thresholds: number[];
+  referenceCapture: number[];
+  backgroundPower: number[];
+  eligibility: number[];
+  processedReturns: number[];
+  siteFeatures: RadarSiteFeatureVertex[];
 }
 export type RadarProductRoles = Record<
   | "scanSchedule"
@@ -192,7 +215,15 @@ export type RadarProductRoles = Record<
   | "tracks"
   | "associations",
   string
-> & { truth?: string | undefined; platformPose?: string | undefined };
+> & {
+  truth?: string | undefined;
+  platformPose?: string | undefined;
+  referenceCapture?: string | undefined;
+  backgroundPower?: string | undefined;
+  eligibility?: string | undefined;
+  processedReturns?: string | undefined;
+  siteFeatures?: string | undefined;
+};
 
 const finite = (cell: string): number => {
   if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(cell))
@@ -249,6 +280,26 @@ export function readRadarProducts(
               throw new Error(`Invalid ${role} identifier.`);
             return [column, cell];
           }
+          if (column === "kind") {
+            if (
+              ![
+                "runway",
+                "taxiway",
+                "apron",
+                "structure",
+                "reference",
+              ].includes(cell)
+            )
+              throw new Error("Invalid site feature kind.");
+            return [column, cell];
+          }
+          if (column === "label") {
+            if (!/\S/.test(cell))
+              throw new Error("Site feature labels must be nonblank.");
+            return [column, cell];
+          }
+          if (column === "closed" && cell !== "0" && cell !== "1")
+            throw new Error("Site feature closed flag must be 0 or 1.");
           if (column === "state") {
             if (!["tentative", "confirmed", "coasting"].includes(cell))
               throw new Error("Invalid track state.");
@@ -259,13 +310,24 @@ export function readRadarProducts(
       );
     });
   };
-  const array = (role: "returns" | "thresholds") => {
-    const layout = layoutMap.get(products[role]),
-      bytes = assets.get(products[role]);
+  const array = (
+    role:
+      | "returns"
+      | "thresholds"
+      | "referenceCapture"
+      | "backgroundPower"
+      | "eligibility"
+      | "processedReturns"
+  ) => {
+    const ref = products[role];
+    if (!ref) return [];
+    const layout = layoutMap.get(ref),
+      bytes = assets.get(ref),
+      elementBytes = role === "eligibility" ? 1 : 4;
     if (
       !layout ||
       layout.kind !== "binary_array" ||
-      layout.elementType !== "float32" ||
+      layout.elementType !== (role === "eligibility" ? "uint8" : "float32") ||
       layout.byteOrder !== "little" ||
       !bytes ||
       bytes.byteLength !== layout.byteLength ||
@@ -276,13 +338,16 @@ export function readRadarProducts(
     const count = layout.axes.reduce((n, axis) => n * axis.length, 1);
     if (
       !Number.isSafeInteger(count) ||
-      layout.byteOffset + count * 4 !== bytes.byteLength
+      layout.byteOffset + count * elementBytes !== bytes.byteLength
     )
       throw new Error(`Invalid ${role} extent.`);
     const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength),
       values: number[] = [];
     for (let i = 0; i < count; i++) {
-      const n = view.getFloat32(layout.byteOffset + i * 4, true);
+      const n =
+        elementBytes === 1
+          ? view.getUint8(layout.byteOffset + i)
+          : view.getFloat32(layout.byteOffset + i * 4, true);
       if (!Number.isFinite(n)) throw new Error(`Non-finite ${role} sample.`);
       values.push(n);
     }
@@ -297,6 +362,11 @@ export function readRadarProducts(
     truth: table("truth") as unknown as RadarTruth[],
     returns: array("returns"),
     thresholds: array("thresholds"),
+    referenceCapture: array("referenceCapture"),
+    backgroundPower: array("backgroundPower"),
+    eligibility: array("eligibility"),
+    processedReturns: array("processedReturns"),
+    siteFeatures: table("siteFeatures") as unknown as RadarSiteFeatureVertex[],
   };
 }
 

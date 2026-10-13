@@ -1,0 +1,29 @@
+feature_id,kind,label,vertex_index,east_m,north_m,closed
+runway,runway,Runway,0,650,-1400,1
+runway,runway,Runway,1,750,-1400,1
+runway,runway,Runway,2,750,1600,1
+runway,runway,Runway,3,650,1600,1
+runway,runway,Runway,4,650,-1400,1
+taxiway-west,taxiway,West taxiway,0,-900,-700,0
+taxiway-west,taxiway,West taxiway,1,-900,300,0
+taxiway-west,taxiway,West taxiway,2,650,300,0
+apron,apron,Apron,0,-1550,-550,1
+apron,apron,Apron,1,-1050,-550,1
+apron,apron,Apron,2,-1050,650,1
+apron,apron,Apron,3,-1550,650,1
+apron,apron,Apron,4,-1550,-550,1
+hangar,structure,Hangar,0,-1450,750,1
+hangar,structure,Hangar,1,-1100,750,1
+hangar,structure,Hangar,2,-1100,1050,1
+hangar,structure,Hangar,3,-1450,1050,1
+hangar,structure,Hangar,4,-1450,750,1
+terminal,structure,Terminal,0,-200,-800,1
+terminal,structure,Terminal,1,350,-800,1
+terminal,structure,Terminal,2,350,-500,1
+terminal,structure,Terminal,3,-200,-500,1
+terminal,structure,Terminal,4,-200,-800,1
+excluded,reference,Detector exclusion,0,-1600,-600,1
+excluded,reference,Detector exclusion,1,-1000,-600,1
+excluded,reference,Detector exclusion,2,-1000,700,1
+excluded,reference,Detector exclusion,3,-1600,700,1
+excluded,reference,Detector exclusion,4,-1600,-600,1

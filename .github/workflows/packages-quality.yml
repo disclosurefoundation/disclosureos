@@ -347,6 +347,7 @@ jobs:
       - run: pnpm verify:radar-scanning
       - run: pnpm verify:radar-moving
       - run: pnpm verify:radar-advanced
+      - run: pnpm verify:radar-site
       - run: pnpm emit:v2-radar-profile
       - run: pnpm emit:v2-product-source-selection
       - run: pnpm test:v2-product-source-selection

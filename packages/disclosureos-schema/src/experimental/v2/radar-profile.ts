@@ -291,6 +291,137 @@ export async function evaluateRadarProfile(
       "/acquisitionProductRef",
       "Acquisition artifact and retained return layout must identify the same bytes."
     );
+  if (profile.preprocessing) {
+    const prep = profile.preprocessing;
+    const reference = layouts.get(profile.products.referenceCapture),
+      background = layouts.get(profile.products.backgroundPower),
+      processed = layouts.get(profile.products.processedReturns),
+      eligibility = layouts.get(profile.products.eligibility);
+    const spatialAxes = returns.axes.slice(1);
+    for (const [role, layout] of [
+      ["referenceCapture", reference],
+      ["backgroundPower", background],
+      ["processedReturns", processed],
+    ] as const) {
+      if (
+        !layout ||
+        layout.kind !== "binary_array" ||
+        layout.elementType !== "float32" ||
+        layout.byteOrder !== "little" ||
+        layout.quantity !== "normalized_return_power" ||
+        layout.unit !== "1"
+      )
+        issue(
+          "RADAR.PREPROCESS_LAYOUT",
+          `/products/${role}`,
+          "Preprocessing powers require retained little-endian float32 normalized return power, unit 1."
+        );
+    }
+    if (
+      !reference ||
+      reference.kind !== "binary_array" ||
+      reference.axes.length !== 3 ||
+      reference.axes[0]?.kind !== "index" ||
+      reference.axes[0].name !== "reference_scan" ||
+      reference.axes[0].firstIndex !== 0 ||
+      JSON.stringify(reference.axes.slice(1)) !== JSON.stringify(spatialAxes)
+    )
+      issue(
+        "RADAR.REFERENCE_AXES",
+        "/products/referenceCapture",
+        "Reference scans must share the capture's exact angular and range cells, with a zero-based reference_scan axis."
+      );
+    if (
+      !background ||
+      background.kind !== "binary_array" ||
+      JSON.stringify(background.axes) !== JSON.stringify(spatialAxes)
+    )
+      issue(
+        "RADAR.BACKGROUND_AXES",
+        "/products/backgroundPower",
+        "Background coordinates must equal the capture's azimuth and range axes."
+      );
+    if (
+      !processed ||
+      processed.kind !== "binary_array" ||
+      JSON.stringify(processed.axes) !== JSON.stringify(returns.axes)
+    )
+      issue(
+        "RADAR.PROCESSED_AXES",
+        "/products/processedReturns",
+        "Processed power must retain every raw capture coordinate."
+      );
+    if (
+      !eligibility ||
+      eligibility.kind !== "binary_array" ||
+      eligibility.elementType !== "uint8" ||
+      eligibility.byteOrder !== "little" ||
+      eligibility.quantity !== "detection_eligibility" ||
+      eligibility.unit !== "1" ||
+      JSON.stringify(eligibility.axes) !== JSON.stringify(spatialAxes)
+    )
+      issue(
+        "RADAR.ELIGIBILITY_LAYOUT",
+        "/products/eligibility",
+        "Detector policy is a uint8 azimuth/range array, unit 1, with 1 eligible and 0 excluded."
+      );
+    const referenceAcquisition = ctx.acquisitions.find(
+        (a) => `acquisition:${a.id}` === prep.referenceAcquisitionRef
+      ),
+      referenceCapture = ctx.products.find(
+        (p) => `product:${p.id}` === prep.referenceAcquisitionProductRef
+      );
+    if (
+      !referenceAcquisition ||
+      !referenceCapture ||
+      referenceCapture.acquisitionRef !== prep.referenceAcquisitionRef ||
+      referenceCapture.kind !== "raw" ||
+      prep.referenceAcquisitionRef === profile.acquisitionRef ||
+      referenceAcquisition.instrumentRef !== acquisition?.instrumentRef ||
+      referenceAcquisition.manifest.state !== "pinned" ||
+      referenceAcquisition.manifest.ref !== manifestRef ||
+      !referenceAcquisition.channels.some(
+        (c) => c.channelId === prep.referenceChannelId
+      ) ||
+      prep.referenceChannelId !== profile.channelId
+    )
+      issue(
+        "RADAR.REFERENCE_ACQUISITION",
+        "/preprocessing",
+        "An independent reference acquisition must bind the same instrument, pinned manifest and channel."
+      );
+    if (
+      reference &&
+      referenceCapture &&
+      (referenceCapture.artifact.digest.value !== reference.digest.value ||
+        referenceCapture.artifact.byteLength !== reference.byteLength ||
+        referenceCapture.artifact.mediaType !== reference.mediaType)
+    )
+      issue(
+        "RADAR.REFERENCE_BINDING",
+        "/preprocessing/referenceAcquisitionProductRef",
+        "Reference acquisition artifact and reference layout must identify the same bytes."
+      );
+    if (
+      referenceAcquisition?.time.state !== "known" ||
+      referenceAcquisition.time.kind !== "interval" ||
+      acquisition?.time.state !== "known" ||
+      acquisition.time.kind !== "interval" ||
+      (compareUtcInstants(
+        referenceAcquisition.time.end,
+        acquisition.time.start
+      ) !== -1 &&
+        compareUtcInstants(
+          referenceAcquisition.time.end,
+          acquisition.time.start
+        ) !== 0)
+    )
+      issue(
+        "RADAR.REFERENCE_TIME",
+        "/preprocessing/referenceAcquisitionRef",
+        "The retained reference interval must finish no later than the main capture starts."
+      );
+  }
   const products = new Map(
       obs.products.map((product) => [`product:${product.id}`, product])
     ),
@@ -330,6 +461,41 @@ export async function evaluateRadarProfile(
         `/products/${role}`,
         "Calculated radar products must have explicit processing lineage."
       );
+  if (profile.preprocessing) {
+    if (products.get(profile.products.referenceCapture)?.kind !== "raw")
+      issue(
+        "RADAR.REFERENCE_ORIGIN",
+        "/products/referenceCapture",
+        "Reference power must be its own retained raw capture."
+      );
+    for (const role of ["backgroundPower", "processedReturns"] as const)
+      if (products.get(profile.products[role])?.kind !== "derived")
+        issue(
+          "RADAR.PROCESSING",
+          `/products/${role}`,
+          "Calculated preprocessing products require explicit processing lineage."
+        );
+    if (
+      !ancestors(profile.products.backgroundPower).has(
+        profile.products.referenceCapture
+      )
+    )
+      issue(
+        "RADAR.BACKGROUND_LINEAGE",
+        "/products/backgroundPower",
+        "Background reduction must depend on the retained independent reference capture."
+      );
+    const processedInputs = ancestors(profile.products.processedReturns);
+    if (
+      !processedInputs.has(profile.products.returns) ||
+      !processedInputs.has(profile.products.backgroundPower)
+    )
+      issue(
+        "RADAR.PROCESSED_LINEAGE",
+        "/products/processedReturns",
+        "Residual power must depend on raw capture and retained reference background."
+      );
+  }
   const detectionInputs = ancestors(profile.products.detections),
     trackInputs = ancestors(profile.products.tracks),
     thresholdInputs = ancestors(profile.products.thresholds),
@@ -348,6 +514,17 @@ export async function evaluateRadarProfile(
       "RADAR.DETECTION_LINEAGE",
       "/products/detections",
       "Detection processing must depend on returns and thresholds."
+    );
+  if (
+    profile.preprocessing &&
+    (!thresholdInputs.has(profile.products.processedReturns) ||
+      !detectionInputs.has(profile.products.processedReturns) ||
+      !detectionInputs.has(profile.products.eligibility))
+  )
+    issue(
+      "RADAR.PREPROCESS_LINEAGE",
+      "/products/detections",
+      "Thresholds and detection processing must depend on processed power; detection also needs the retained eligibility policy."
     );
   if (
     !trackInputs.has(profile.products.detections) ||
@@ -375,18 +552,29 @@ export async function evaluateRadarProfile(
       ...ancestors(profile.products.returns),
       ...ancestors(profile.products.scanSchedule),
     ]);
-    const forbidden = [
-      profile.products.truth,
-      ...[...ancestors(profile.products.truth)].filter(
-        (ref) => !sharedSynthesis.has(ref)
-      ),
-    ];
+    const sourceKinds = new Map(
+      obs.sources.map((source) => [`source:${source.id}`, source.kind])
+    );
+    const forbidden = [...ancestors(profile.products.truth)].filter(
+      (ref) => !sharedSynthesis.has(ref) || sourceKinds.get(ref) !== "document"
+    );
     if (
       [
         thresholdInputs,
         detectionInputs,
         trackInputs,
         associationInputs,
+        ...(profile.preprocessing
+          ? [
+              ancestors(profile.products.referenceCapture),
+              ancestors(profile.products.backgroundPower),
+              ancestors(profile.products.processedReturns),
+              ancestors(profile.products.eligibility),
+            ]
+          : []),
+        ...(profile.products.siteFeatures
+          ? [ancestors(profile.products.siteFeatures)]
+          : []),
         ...(profile.products.platformPose
           ? [ancestors(profile.products.platformPose)]
           : []),
@@ -395,7 +583,7 @@ export async function evaluateRadarProfile(
       issue(
         "RADAR.TRUTH_LEAK",
         "/products/truth",
-        "Detection, threshold, tracking, association and platform-pose lineage must not consume the synthetic truth oracle."
+        "Preprocessing, site context, detection, threshold, tracking, association and platform-pose lineage must not consume the synthetic truth oracle."
       );
   }
   if (
@@ -576,6 +764,106 @@ export async function evaluateRadarProfile(
         `/products/${role}`,
         "Relative power and threshold cells must be nonnegative; unit 1 does not imply a 0–1 interval."
       );
+  const inputPower = profile.preprocessing
+    ? data.processedReturns
+    : data.returns;
+  if (profile.preprocessing) {
+    const cells = azimuths * ranges,
+      referenceScans = data.referenceCapture.length / cells;
+    for (const role of [
+      "referenceCapture",
+      "backgroundPower",
+      "processedReturns",
+    ] as const)
+      if (data[role].some((value) => value < 0))
+        issue(
+          "RADAR.POWER_RANGE",
+          `/products/${role}`,
+          "Power values must be nonnegative."
+        );
+    if (data.eligibility.some((value) => value !== 0 && value !== 1))
+      issue(
+        "RADAR.ELIGIBILITY_VALUE",
+        "/products/eligibility",
+        "Detector policy accepts only 0 excluded or 1 eligible; it does not encode physical coverage."
+      );
+    let wrongBackground = false,
+      wrongResidual = false;
+    for (let cell = 0; cell < cells; cell++) {
+      let sum = 0;
+      for (let scan = 0; scan < referenceScans; scan++)
+        sum += data.referenceCapture[scan * cells + cell]!;
+      if (data.backgroundPower[cell] !== Math.fround(sum / referenceScans))
+        wrongBackground = true;
+    }
+    for (let cell = 0; cell < data.returns.length; cell++)
+      if (
+        data.processedReturns[cell] !==
+        Math.fround(
+          Math.max(0, data.returns[cell]! - data.backgroundPower[cell % cells]!)
+        )
+      )
+        wrongResidual = true;
+    if (wrongBackground)
+      issue(
+        "RADAR.BACKGROUND_REDUCTION",
+        "/products/backgroundPower",
+        "Each background cell must equal the float32 arithmetic mean of its retained reference scans."
+      );
+    if (wrongResidual)
+      issue(
+        "RADAR.RESIDUAL",
+        "/products/processedReturns",
+        "Residual cells must equal float32 max(0, raw minus reference background), including excluded cells."
+      );
+  }
+  const siteGroups = new Map<string, typeof data.siteFeatures>();
+  let previousFeature: string | undefined;
+  for (const [i, vertex] of data.siteFeatures.entries()) {
+    const pointer = `/products/siteFeatures/rows/${i}`;
+    const group = siteGroups.get(vertex.feature_id) ?? [];
+    if (
+      (group.length && previousFeature !== vertex.feature_id) ||
+      vertex.vertex_index !== group.length
+    )
+      issue(
+        "RADAR.SITE_ORDER",
+        pointer,
+        "Feature vertices must be contiguous and ordered from vertex zero."
+      );
+    if (
+      group.length &&
+      (vertex.kind !== group[0]!.kind ||
+        vertex.label !== group[0]!.label ||
+        vertex.closed !== group[0]!.closed)
+    )
+      issue(
+        "RADAR.SITE_IDENTITY",
+        pointer,
+        "Kind, label and closure must stay consistent within a site feature."
+      );
+    group.push(vertex);
+    siteGroups.set(vertex.feature_id, group);
+    previousFeature = vertex.feature_id;
+  }
+  for (const [id, vertices] of siteGroups) {
+    const first = vertices[0]!,
+      last = vertices.at(-1)!,
+      distinct = new Set(vertices.map((v) => `${v.east_m}/${v.north_m}`));
+    if (
+      first.closed
+        ? vertices.length < 4 ||
+          distinct.size < 3 ||
+          first.east_m !== last.east_m ||
+          first.north_m !== last.north_m
+        : vertices.length < 2 || distinct.size < 2
+    )
+      issue(
+        "RADAR.SITE_GEOMETRY",
+        `/products/siteFeatures/${id}`,
+        "Closed features need at least three distinct vertices and repeated endpoint; open features need at least two distinct vertices."
+      );
+  }
   const detections = new Map<string, (typeof data.detections)[number]>(),
     selectedCells = new Set<string>();
   for (const [i, detection] of data.detections.entries()) {
@@ -609,6 +897,17 @@ export async function evaluateRadarProfile(
         "A retained cell cannot create duplicate detections."
       );
     selectedCells.add(String(cell));
+    if (
+      profile.preprocessing &&
+      data.eligibility[
+        detection.azimuth_index * ranges + detection.range_index
+      ] !== 1
+    )
+      issue(
+        "RADAR.DETECTION_EXCLUDED",
+        pointer,
+        "A detector-policy excluded cell cannot create a detection, even when raw or residual power is high."
+      );
     const dwell =
       data.scanSchedule[
         detection.scan_index * azimuths + detection.azimuth_index
@@ -675,9 +974,13 @@ export async function evaluateRadarProfile(
               projected = position(az, r);
             // An impossible slant/plane cell has no Cartesian location. Do not
             // clamp it to the platform or permit its power to bias the centroid.
-            if (!projected) continue;
+            if (
+              !projected ||
+              (profile.preprocessing && data.eligibility[az * ranges + r] !== 1)
+            )
+              continue;
             const power =
-                data.returns[
+                inputPower[
                   (detection.scan_index * azimuths + az) * ranges + r
                 ]!,
               weight = Math.max(0, power - rule.backgroundPower);
@@ -707,8 +1010,8 @@ export async function evaluateRadarProfile(
         "Detection position must match the declared localization rule applied to retained cells and their own dwell poses."
       );
     if (
-      !close(detection.power, data.returns[cell]!, 1e-6) ||
-      data.returns[cell]! < data.thresholds[cell]!
+      !close(detection.power, inputPower[cell]!, 1e-6) ||
+      inputPower[cell]! < data.thresholds[cell]!
     )
       issue(
         "RADAR.DETECTION_THRESHOLD",

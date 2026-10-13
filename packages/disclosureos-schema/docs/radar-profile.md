@@ -54,7 +54,7 @@ Column names and order are fixed. Role tables declare the whole retained table: 
 - **Associations:** `track_id,scan_index,detection_id`
 - **Synthetic truth:** `target_id,scan_index,time_s,east_m,north_m`
 
-A detection names one exact return cell. Its power must equal the retained value and meet the corresponding threshold. A cell cannot create duplicate detections. A declaration does not assert that all threshold crossings became detections; the detector may apply further filtering described by its versioned method.
+A detection names one exact return cell. Its power must equal the declared detector input (raw power, or the residual when preprocessing is declared) and meet the corresponding threshold. A cell cannot create duplicate detections. A declaration does not assert that all threshold crossings became detections; the detector may apply further filtering described by its versioned method.
 
 Positions use one of two explicit rules:
 
@@ -64,6 +64,60 @@ Positions use one of two explicit rules:
 A track has one estimate per `track_id` and `scan_index`, with strictly increasing times and scan indices for that track. An association references an earlier detection in the same scan. Each detection may update at most one estimate. `tentative` and `confirmed` estimates need at least one association; `coasting` estimates need none. These are processing states, not confirmation of target identity, observation validity or a physical explanation. Track velocities are declared estimator outputs, not direct Doppler measurements. The evaluator does not reconstruct or approve an arbitrary tracking algorithm.
 
 Truth may contain several rows per target and scan at distinct times. It is only allowed when `dataOrigin` is `synthetic`. Truth products are source material for a separately labeled model overlay or evaluation, never evidence that a radar detected that object.
+
+## Optional fixed-site reference subtraction
+
+A fixed horizontal capture may add this declaration and four product roles:
+
+```json
+{
+  "preprocessing": {
+    "kind": "reference_mean_subtraction",
+    "referenceAcquisitionRef": "acquisition:reference",
+    "referenceAcquisitionProductRef": "product:reference-capture",
+    "referenceChannelId": "return-power",
+    "arithmetic": "float32_outputs",
+    "exclusionMeaning": "detector_policy"
+  },
+  "products": {
+    "referenceCapture": "product:reference-capture",
+    "backgroundPower": "product:background",
+    "eligibility": "product:eligibility",
+    "processedReturns": "product:residual"
+  }
+}
+```
+
+This fragment augments the other required declarations and roles. All four preprocessing roles are required together. Moving profiles cannot use this branch: reusing a fixed angular background at changing positions would require a separately declared registration model.
+
+| Role               | Retained array                             | Meaning                                                       |
+| ------------------ | ------------------------------------------ | ------------------------------------------------------------- |
+| `referenceCapture` | Float32 `[reference_scan, azimuth, range]` | Independent raw reference acquisition                         |
+| `backgroundPower`  | Float32 `[azimuth, range]`                 | Arithmetic mean of each reference cell across reference scans |
+| `eligibility`      | Uint8 `[azimuth, range]`                   | Explicit detector policy: 1 eligible, 0 excluded              |
+| `processedReturns` | Float32 `[scan, azimuth, range]`           | Positive residual for every main capture cell                 |
+
+The zero-based `reference_scan` index can have a different count from the main capture. All angular and range axes exactly match the raw capture; processed returns also preserve its scan axis. Powers retain `normalized_return_power`, unit `1`; eligibility has quantity `detection_eligibility`, unit `1`. All arrays are little-endian and row-major. The reader returns the complete arrays in the corresponding named fields; omitted roles return empty arrays.
+
+The selected reference acquisition is distinct from the main acquisition and binds the same instrument, pinned manifest and channel. Both intervals are known. The reference interval ends no later than the main interval starts, preserving sub-millisecond timestamp precision. Its acquisition product must be raw and identify the exact reference array bytes by digest, length and media type. These checks establish the declared relationship; they do not certify station stability, calibration or whether the reference is free of moving objects.
+
+For each angular/range cell, sum the retained reference float32 values in reference-scan order using IEEE 754 binary64 arithmetic, divide by the reference-scan count, then round once to float32. The retained background must equal that value. For every main cell, residual power is `float32(max(0, raw - background))`, using the rounded retained background. The evaluator reproduces these operations exactly. Negative residuals are clamped to zero; zero is a numerical result, not a missing value.
+
+An excluded cell still has retained raw and residual power. The exclusion is a processing policy, **not blocked reception, terrain visibility, absent sampling or proof that no object is present**. No detection may name an excluded cell. Detections and thresholds use residual power. A power-weighted localization uses residual values, excludes policy-masked cells, and applies its separately declared scalar `detectionPosition.backgroundPower` before weighting. That scalar weight floor is distinct from the retained spatial background product.
+
+Reference capture remains a raw observation product. Background and residual products must be derived; background ancestry includes the reference capture, residual ancestry includes both raw capture and background, thresholds depend on residuals, and detections depend on residuals and eligibility. The evaluator checks the selected detection's retained power, threshold and policy, not the completeness or optimality of arbitrary detector output. All preprocessing and context products remain subject to synthetic-truth separation.
+
+The [ground and civilian airport surface examples](../../../examples/radar-site) retain both acquisitions, reproducible numerical processing and separate context. Surface surveillance provides an appropriate horizontal setting; the civilian example makes no airborne approach, geometric altitude, cooperative identity or operational airport claim. Published [MIT Lincoln Laboratory surface-radar research](https://www.ll.mit.edu/r-d/publications/connected-components-and-temporal-association-airport-surface-radar-tracking) describes background processing and temporal association as relevant research concerns. These simplified examples do not reproduce that system or its performance.
+
+## Optional local site context
+
+`products.siteFeatures` selects a standard CSV with these exact columns:
+
+`feature_id,kind,label,vertex_index,east_m,north_m,closed`
+
+Vertices use the profile's local Cartesian meter frame; they do not imply an Earth coordinate transform. A feature has a nonblank label and kind `runway`, `taxiway`, `apron`, `structure` or `reference`. Vertices for each feature are contiguous and indexed from zero. Kind, label and closure are constant within that feature. `closed` is the literal numeric code `0` or `1`: an open line needs at least two distinct vertices; a closed boundary needs at least three distinct vertices and a repeated endpoint. The dependency-free reader exposes these rows as `RadarSiteFeatureVertex`, retaining `closed` as `0 | 1`. A header-only table is valid if no selector claims a nonexistent row.
+
+These are source-backed reference geometries, not automatic classifications of returns, measured radar contours or an exclusion boundary by themselves. Display an exclusion only from the eligibility array. The evaluator checks table structure and closure, not polygon simplicity, site accuracy, navigability or airport certification. Site context is independent of synthetic truth and has no detector or tracking dependency unless the authored processing method declares one.
 
 ## Moving airborne and shipborne platforms
 
@@ -109,7 +163,7 @@ The position covariance is the symmetric matrix `[[cov_ee_m2,cov_en_m2],[cov_en_
 
 The optional display contour is a two-dimensional Gaussian probability contour under the **declared model**. Its squared scale is `-2 * ln(1 - confidenceProbability)`. At 95% this is approximately 5.99146, not the squared 1.96 multiplier for a one-dimensional marginal interval. Cross-covariance controls the ellipse orientation. This contour does not claim calibrated confidence, target extent or an independent measurement uncertainty. `radarCovarianceScaleSquared` provides this calculation.
 
-Thresholds, detections, associations and tracks must be derived products with processing lineage. Thresholds depend on returns, detections on returns and thresholds, and tracks and associations on detections. Moving localization additionally depends on its retained pose product and scan schedule. The existing observation validator checks producer/output consistency and dependency cycles. The radar evaluator checks that neither synthetic truth nor a raw oracle payload appears in detector, threshold, association, tracker or platform-pose ancestry. Shared generator configuration or method descriptions are permitted. These checks validate the declared dependency graph; review and reproducibility tests must still establish that executable code follows it.
+Thresholds, detections, associations and tracks must be derived products with processing lineage. Thresholds depend on returns, detections on returns and thresholds, and tracks and associations on detections. Moving localization additionally depends on its retained pose product and scan schedule. The existing observation validator checks producer/output consistency and dependency cycles. The radar evaluator checks that neither synthetic truth nor a raw oracle payload appears in preprocessing, site-context, detector, threshold, association, tracker or platform-pose ancestry. Shared source-level documents describing generator configuration or methods are permitted. Shared raw payloads and processing products are not exempt from truth separation. These checks validate the declared dependency graph; review and reproducibility tests must still establish that executable code follows it.
 
 The acquisition context continues to own channel calibration, exact manifest revision, clock uncertainty, calibration validity and reports. An example can provide fictional calibration documentation when clearly marked simulated. The radar profile does not replace these contracts or turn unknown calibration into a passed scientific finding.
 

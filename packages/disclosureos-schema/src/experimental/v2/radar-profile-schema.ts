@@ -26,6 +26,7 @@ const base = z.strictObject({
   rangeConvention: z.literal("horizontal_range"),
   beamReference: z.literal("north").optional(),
   platform: z.never().optional(),
+  preprocessing: z.never().optional(),
   projection: z.never().optional(),
   beamWidthConvention: z.literal("full_width_half_maximum_power"),
   processingAvailability: z.literal("scan_end"),
@@ -47,6 +48,7 @@ const base = z.strictObject({
     associations: ref("product"),
     truth: ref("product").optional(),
     platformPose: z.never().optional(),
+    siteFeatures: ref("product").optional(),
   }),
   uncertainty: z.strictObject({
     kind: z.literal("gaussian_position_covariance"),
@@ -71,10 +73,28 @@ const moving = base.extend({
   }),
 });
 
+const referenceMean = base.extend({
+  preprocessing: z.strictObject({
+    kind: z.literal("reference_mean_subtraction"),
+    referenceAcquisitionRef: ref("acquisition"),
+    referenceAcquisitionProductRef: ref("product"),
+    referenceChannelId: id,
+    arithmetic: z.literal("float32_outputs"),
+    exclusionMeaning: z.literal("detector_policy"),
+  }),
+  products: base.shape.products.extend({
+    referenceCapture: ref("product"),
+    backgroundPower: ref("product"),
+    eligibility: ref("product"),
+    processedReturns: ref("product"),
+  }),
+});
+
 // Explicit branches retain parity between the runtime and portable JSON Schema.
 // Fixed observations remain valid without platform-specific declarations.
 export const RadarProfileSchema = z.union([
   base,
+  referenceMean,
   moving,
   moving.extend({
     rangeConvention: z.literal("slant_range"),
