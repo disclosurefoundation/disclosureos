@@ -1,0 +1,175 @@
+{
+  "kind": "product_source_selection",
+  "schemaVersion": "0.1.0",
+  "id": "sonar-passive-selection-v1",
+  "observationId": "sonar-passive-v1",
+  "layouts": [
+    {
+      "id": "pressure",
+      "productRef": "product:pressure",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "5e649fa320612b56cbb98f631effc8c3aedefbf632f77b30cfd552a35a64abf6"
+      },
+      "byteLength": 131072,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "float32",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "sound_pressure",
+      "unit": "Pa",
+      "axes": [
+        {
+          "kind": "time",
+          "name": "sample",
+          "length": 32768,
+          "start": "2026-07-28T22:15:00Z",
+          "stepSeconds": {
+            "numerator": 1,
+            "denominator": 4096
+          }
+        }
+      ]
+    },
+    {
+      "id": "sampleMask",
+      "productRef": "product:sampleMask",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "d0b7119dfb8fa1a6334317a09e40e173f8a6200200dd287eac7f2af339f07cb0"
+      },
+      "byteLength": 32768,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "uint8",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "sample_availability",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "time",
+          "name": "sample",
+          "length": 32768,
+          "start": "2026-07-28T22:15:00Z",
+          "stepSeconds": {
+            "numerator": 1,
+            "denominator": 4096
+          }
+        }
+      ]
+    },
+    {
+      "id": "powerSpectralDensity",
+      "productRef": "product:powerSpectralDensity",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "82b5f60a3319ed594cae0e50f208ccb42bbb2c77726b66b989a1010aeaaffb77"
+      },
+      "byteLength": 260084,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "float32",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "sound_pressure_power_spectral_density",
+      "unit": "Pa^2/Hz",
+      "axes": [
+        {
+          "kind": "time",
+          "name": "window_start",
+          "length": 253,
+          "start": "2026-07-28T22:15:00Z",
+          "stepSeconds": {
+            "numerator": 128,
+            "denominator": 4096
+          }
+        },
+        {
+          "kind": "regular",
+          "name": "frequency",
+          "length": 257,
+          "origin": 0,
+          "step": 8,
+          "unit": "Hz"
+        }
+      ]
+    },
+    {
+      "id": "frameMask",
+      "productRef": "product:frameMask",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "b0447e6948f5cfc2ac59a63cce97b4ca16a87e8b2535bf69cb71a19b50bb7ae1"
+      },
+      "byteLength": 253,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "uint8",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "window_availability",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "time",
+          "name": "window_start",
+          "length": 253,
+          "start": "2026-07-28T22:15:00Z",
+          "stepSeconds": {
+            "numerator": 128,
+            "denominator": 4096
+          }
+        }
+      ]
+    }
+  ],
+  "selections": [
+    {
+      "id": "pressure-example",
+      "layoutRef": "layout:pressure",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          4352
+        ]
+      }
+    },
+    {
+      "id": "sampleMask-example",
+      "layoutRef": "layout:sampleMask",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          4352
+        ]
+      }
+    },
+    {
+      "id": "powerSpectralDensity-example",
+      "layoutRef": "layout:powerSpectralDensity",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          32,
+          28
+        ]
+      }
+    },
+    {
+      "id": "frameMask-example",
+      "layoutRef": "layout:frameMask",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          32
+        ]
+      }
+    }
+  ]
+}

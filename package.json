@@ -119,7 +119,10 @@
     "verify:radar-site": "node examples/radar-site/verify.mjs",
     "emit:v2-sonar-profile": "node conformance/emit-sonar-profile.mjs",
     "test:v2-sonar-profile": "node --test conformance/sonar-profile.test.mjs examples/sonar-active/model.test.mjs",
-    "verify:sonar-active": "node examples/sonar-active/verify.mjs"
+    "verify:sonar-active": "node examples/sonar-active/verify.mjs",
+    "emit:v2-passive-sonar-profile": "node conformance/emit-passive-sonar-profile.mjs",
+    "test:v2-passive-sonar-profile": "node --test conformance/passive-sonar-profile.test.mjs examples/sonar-passive/model.test.mjs",
+    "verify:sonar-passive": "node examples/sonar-passive/verify.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

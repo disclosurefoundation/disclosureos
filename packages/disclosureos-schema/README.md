@@ -234,3 +234,7 @@ This addition has not been published to npm.
 ### Active sonar echo envelopes
 
 The optional [sonar profile](docs/sonar-profile.md) binds retained monostatic normalized envelopes and receive masks to an acquisition, the source delay/time axes, and a declared constant assumed sound speed. Public readers preserve unavailable samples separately from measured zero; the evaluator checks source integrity and declared meaning. A passed check does not certify physical calibration, propagation accuracy, depth or object identity. The [active sonar example](../../examples/sonar-active) includes a reproducible source packet. These additions are on the V2 development branch; package publication is separate.
+
+### Passive sonar pressure and spectra
+
+The optional [passive sonar profile](docs/passive-sonar-profile.md) binds a single pressure channel and its retention mask to a reproducible, one-sided spectral-density product. Public readers expose the exact input window and selected output cell; the evaluator checks acquisition lineage, hashes, missing-window behavior and numerical reproduction. The [passive sonar example](../../examples/sonar-passive) includes its waveform, spectra, masks and executable methods. It supplies no bearing, range or identity and does not certify physical calibration. These additions are source candidates; publication is separate.

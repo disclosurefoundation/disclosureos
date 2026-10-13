@@ -1,0 +1,47 @@
+{
+  "kind": "passive_sonar_profile",
+  "schemaVersion": "0.1.0",
+  "id": "sonar-passive-profile-v1",
+  "observationId": "sonar-passive-v1",
+  "contextId": "sonar-passive-context-v1",
+  "sourceSelectionId": "sonar-passive-selection-v1",
+  "acquisitionRef": "acquisition:passive-capture",
+  "acquisitionProductRef": "product:pressure",
+  "sampleMaskAcquisitionProductRef": "product:sampleMask",
+  "channelId": "pressure",
+  "processingRef": "process:windowed-psd",
+  "timeOrigin": "2026-07-28T22:15:00Z",
+  "mode": "single_hydrophone_pressure",
+  "dataOrigin": "synthetic",
+  "sampling": {
+    "samples": 32768,
+    "sampleRateHz": 4096
+  },
+  "transform": {
+    "kind": "one_sided_power_spectral_density",
+    "windowSamples": 512,
+    "hopSamples": 128,
+    "window": "periodic_hann",
+    "detrend": "remove_arithmetic_mean_before_window",
+    "padding": "none_full_windows_only",
+    "scaling": "sum_squared_window_times_sample_rate",
+    "oneSided": "double_interior_bins_only",
+    "missingWindow": "unavailable_if_any_input_missing"
+  },
+  "display": {
+    "densityReferencePa2PerHz": 1e-12,
+    "logarithm": "10_log10_density_over_reference",
+    "zeroDensity": "negative_infinity_no_floor"
+  },
+  "availability": {
+    "unavailable": 0,
+    "available": 1,
+    "missingValue": "zero_storage_placeholder"
+  },
+  "products": {
+    "pressure": "product:pressure",
+    "sampleMask": "product:sampleMask",
+    "powerSpectralDensity": "product:powerSpectralDensity",
+    "frameMask": "product:frameMask"
+  }
+}

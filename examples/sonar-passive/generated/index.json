@@ -1,0 +1,128 @@
+{
+  "id": "sonar-passive-v1",
+  "config": {
+    "sampleRateHz": 4096,
+    "samples": 32768,
+    "windowSamples": 512,
+    "hopSamples": 128,
+    "frames": 253,
+    "frequencyBins": 257,
+    "timeOrigin": "2026-07-28T22:15:00Z"
+  },
+  "files": {
+    "pressure": {
+      "file": "pressure.f32",
+      "sha256": "5e649fa320612b56cbb98f631effc8c3aedefbf632f77b30cfd552a35a64abf6",
+      "byteLength": 131072,
+      "mediaType": "application/octet-stream"
+    },
+    "sampleMask": {
+      "file": "sample-mask.u8",
+      "sha256": "d0b7119dfb8fa1a6334317a09e40e173f8a6200200dd287eac7f2af339f07cb0",
+      "byteLength": 32768,
+      "mediaType": "application/octet-stream"
+    },
+    "powerSpectralDensity": {
+      "file": "power-spectral-density.f32",
+      "sha256": "82b5f60a3319ed594cae0e50f208ccb42bbb2c77726b66b989a1010aeaaffb77",
+      "byteLength": 260084,
+      "mediaType": "application/octet-stream"
+    },
+    "frameMask": {
+      "file": "frame-mask.u8",
+      "sha256": "b0447e6948f5cfc2ac59a63cce97b4ca16a87e8b2535bf69cb71a19b50bb7ae1",
+      "byteLength": 253,
+      "mediaType": "application/octet-stream"
+    }
+  },
+  "methods": {
+    "id": "sonar-passive-methods-v1",
+    "version": "1.0.0",
+    "fictional": true,
+    "config": {
+      "sampleRateHz": 4096,
+      "samples": 32768,
+      "windowSamples": 512,
+      "hopSamples": 128,
+      "frames": 253,
+      "frequencyBins": 257,
+      "timeOrigin": "2026-07-28T22:15:00Z"
+    },
+    "description": "Authored single-channel pressure waveform with reproducible windowed spectral density. No physical hydrophone, measured acoustic field or propagation model.",
+    "waveform": "t=sample/4096. Tone=0.002*(0.85+0.15*cos(2π*0.4*t))*sin(2π*224*t); harmonic=0.0007*sin(2π*448*t+0.4). For u=t−1 in[0,6], chirp=0.0015*sin(π*u/6)^2*sin(2π*(480*u+(640/12)*u²)), otherwise 0. Transient=0.003*exp(−0.5*((t−5.7)/0.07)^2)*sin(2π*1450*t). Background is deterministic 32-bit integer-hash noise scaled to±0.00012 Pa; executable formula in model.mjs. Pressure=float32(sum).",
+    "transform": "For each complete 512-sample window, remove arithmetic mean before applying periodic Hann w[n]=0.5−0.5cos(2πn/N). PSD=|DFT(w*(x−mean))|²/(fs*sum(w²)), doubling bins1..N/2−1 only. Retain float32 Pa²/Hz. No zero padding. Window starts advance 128 samples; no partial final window.",
+    "availability": "Pressure indices 12800..13823 and 25600..25855 are not retained. Sample mask 0 means unavailable and uses a zero pressure storage placeholder. Frame mask 1 only if all 512 inputs are retained, including zero-weight Hann endpoints. Missing frames store zero PSD placeholders. No interpolation, filling or physical-cause inference.",
+    "timing": "UTC origin is authored, not clock-traceable. Sample index i maps to i/4096 s. Window index f starts at f*128/4096 s; full-window center is(startSample+256)/4096 s. Last contributing sample=(startSample+511)/4096 s. Last recording sample 7.999755859375 s; nominal capture span 8 s.",
+    "display": "10log10(PSD/1e−12) dB re 1 µPa²/Hz. Retained zero density is negative infinity, not unavailable. Viewer color clipping must not change the retained value. Density is not broadband SPL.",
+    "limits": [
+      "Pressure values are authored, not a measured physical calibration",
+      "One channel; no bearing, range, beamforming or localization",
+      "No source identity inference or detector",
+      "No empirical hydrophone response, anti-alias filter, acoustic propagation or ambient-noise characterization",
+      "8 Hz bin spacing is not an independent physical frequency-resolution claim",
+      "Successful reproduction verifies numerical and source consistency only"
+    ],
+    "references": [
+      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.periodogram.html",
+      "https://oceanexplorer.noaa.gov/technology/sonar/",
+      "https://oceanservice.noaa.gov/facts/hydrophone.html"
+    ]
+  },
+  "sources": {
+    "pressure.f32": {
+      "sha256": "5e649fa320612b56cbb98f631effc8c3aedefbf632f77b30cfd552a35a64abf6",
+      "byteLength": 131072,
+      "mediaType": "application/octet-stream"
+    },
+    "sample-mask.u8": {
+      "sha256": "d0b7119dfb8fa1a6334317a09e40e173f8a6200200dd287eac7f2af339f07cb0",
+      "byteLength": 32768,
+      "mediaType": "application/octet-stream"
+    },
+    "power-spectral-density.f32": {
+      "sha256": "82b5f60a3319ed594cae0e50f208ccb42bbb2c77726b66b989a1010aeaaffb77",
+      "byteLength": 260084,
+      "mediaType": "application/octet-stream"
+    },
+    "frame-mask.u8": {
+      "sha256": "b0447e6948f5cfc2ac59a63cce97b4ca16a87e8b2535bf69cb71a19b50bb7ae1",
+      "byteLength": 253,
+      "mediaType": "application/octet-stream"
+    },
+    "methods.json": {
+      "sha256": "dfaba86764bdb2264f0dcc3a8129ce6471a839ce48600ee1341fa69a338b41e7",
+      "byteLength": 2739,
+      "mediaType": "application/json"
+    },
+    "model.mjs": {
+      "sha256": "4cef0a746b639740116949f77b74c8eb70232982be755344e45ecc109b9713ef",
+      "byteLength": 3498,
+      "mediaType": "text/javascript"
+    },
+    "README.md": {
+      "sha256": "28cac48fde1a60daa8ed0f60e22686e8056074e03df6c767e04470ff95a24636",
+      "byteLength": 2539,
+      "mediaType": "text/markdown"
+    },
+    "observation.json": {
+      "sha256": "d6defc3d9bb56f3199fdc2296f4de85a7220efb856073a7072fd6f307e2c0e2d",
+      "byteLength": 4103,
+      "mediaType": "application/json"
+    },
+    "acquisition.json": {
+      "sha256": "b942159cd645e555aa3c90efa4d1088e59466ad355e5be419b4f0ff27d0cdb81",
+      "byteLength": 3588,
+      "mediaType": "application/json"
+    },
+    "source-selection.json": {
+      "sha256": "a0ec85e12afbcceacf19567d3522573c40068ac12d209b9d572ee397303d16b8",
+      "byteLength": 4266,
+      "mediaType": "application/json"
+    },
+    "passive-sonar-profile.json": {
+      "sha256": "29bf7fd51503d4f25d268f3e69e0e6c223093be28e6e9be4690cee5a3181f654",
+      "byteLength": 1510,
+      "mediaType": "application/json"
+    }
+  }
+}
