@@ -1,0 +1,125 @@
+{
+  "kind": "acquisition_context",
+  "schemaVersion": "0.1.0",
+  "id": "radar-airborne-context-v1",
+  "instruments": [
+    {
+      "id": "radar-simulator",
+      "identity": {
+        "state": "known",
+        "manufacturer": "DisclosureOS synthetic example",
+        "model": "Reduced airborne rotating radar numerical source"
+      }
+    }
+  ],
+  "manifests": [
+    {
+      "id": "radar-manifest",
+      "instrumentRef": "instrument:radar-simulator",
+      "version": "1.0.0",
+      "publishedAt": "2026-07-28T22:00:00Z",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "96d89c864bf3788c909ea3d551b302497e9c0591606f3e80ff6265618151b255"
+        },
+        "byteLength": 6502,
+        "mediaType": "application/json"
+      },
+      "configuration": {
+        "hardware": {
+          "state": "known",
+          "value": "No physical hardware"
+        },
+        "firmware": {
+          "state": "known",
+          "value": "model.mjs version 1.0.0"
+        }
+      },
+      "channels": [
+        {
+          "id": "return-power",
+          "quantity": "normalized_return_power",
+          "unit": "1",
+          "sampling": {
+            "state": "unknown",
+            "reason": "Sequential angle/range cells; see retained dwell schedule rather than a single physical sample rate"
+          }
+        }
+      ]
+    }
+  ],
+  "deployments": [],
+  "calibrations": [],
+  "acquisitions": [
+    {
+      "id": "radar-capture",
+      "instrumentRef": "instrument:radar-simulator",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:radar-manifest"
+      },
+      "deployment": {
+        "state": "unresolved",
+        "reason": "Synthetic local frame, no physical deployment"
+      },
+      "classification": "known_control",
+      "time": {
+        "state": "known",
+        "kind": "interval",
+        "start": "2026-07-28T22:00:00Z",
+        "end": "2026-07-28T22:01:04Z",
+        "timeScale": "UTC"
+      },
+      "clock": {
+        "source": {
+          "state": "known",
+          "value": "Authored simulation timeline"
+        },
+        "synchronization": {
+          "state": "unknown",
+          "reason": "No physical synchronization"
+        },
+        "resolution": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        },
+        "uncertainty": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "return-power",
+          "calibration": {
+            "state": "unresolved",
+            "reason": "Numerical relative power has no physical calibration"
+          }
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "returns",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:radar-capture",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "89673fe1d2cb0f1660efb193c994c6fd1d1c8b78c2d539d8b2eef764fdb23457"
+        },
+        "byteLength": 294912,
+        "mediaType": "application/octet-stream"
+      }
+    }
+  ],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "model": "reduced_airborne_rotating_radar",
+      "physicalCalibration": "not_performed"
+    }
+  }
+}

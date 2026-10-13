@@ -332,7 +332,7 @@ jobs:
       - run: node examples/v2/case-links-demo/run.mjs
 
   radar-profile:
-    name: Radar profile and reproducible scanning example
+    name: Radar profile and reproducible scanning examples
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -345,6 +345,7 @@ jobs:
       - run: pnpm --filter "@disclosureos/schema..." build
       - run: pnpm test:v2-radar-profile
       - run: pnpm verify:radar-scanning
+      - run: pnpm verify:radar-moving
       - run: pnpm emit:v2-radar-profile
       - run: git diff --exit-code -- packages/disclosureos-schema/schema/experimental/radar-profile-0.1.0.schema.json
 

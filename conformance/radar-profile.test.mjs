@@ -9,6 +9,7 @@ import {
   RadarProfileSchema,
   radarProfileJsonSchema,
   radarCovarianceScaleSquared,
+  radarCellPosition,
 } from "../packages/disclosureos-schema/dist/experimental/v2/index.js";
 
 const artifact = JSON.parse(
@@ -93,4 +94,86 @@ test("public Gaussian contour helper is two dimensional", () => {
   assert.ok(
     Math.abs(radarCovarianceScaleSquared(0.95) - 5.99146454710798) < 1e-12
   );
+});
+
+test("portable schema and runtime agree on optional moving-platform declarations", async () => {
+  const { profile } = await createPacket();
+  profile.platform = {
+    kind: "moving",
+    environment: "airborne",
+    poseSampling: "dwell_midpoint",
+    attitudeModel: "level_yaw_only",
+  };
+  profile.beamReference = "platform_heading";
+  profile.products.platformPose = "product:platform-pose";
+  profile.rangeConvention = "slant_range";
+  profile.projection = {
+    kind: "declared_horizontal_plane",
+    upM: 0,
+    assumption: "all_returns_on_plane",
+  };
+  profile.uncertainty.conditioning = "declared_pose_and_projection";
+  assert.equal(validate(profile), true, JSON.stringify(validate.errors));
+  assert.equal(RadarProfileSchema.safeParse(profile).success, true);
+  for (const change of [
+    (p) => {
+      delete p.platform;
+    },
+    (p) => {
+      delete p.products.platformPose;
+    },
+    (p) => {
+      delete p.projection;
+    },
+    (p) => {
+      delete p.beamReference;
+    },
+    (p) => {
+      delete p.uncertainty.conditioning;
+    },
+    (p) => {
+      p.platform.poseSampling = "interpolate";
+    },
+    (p) => {
+      p.platform.attitudeModel = "six_dof";
+    },
+    (p) => {
+      p.rangeConvention = "horizontal_range";
+    },
+  ]) {
+    const candidate = structuredClone(profile);
+    change(candidate);
+    assert.equal(validate(candidate), false);
+    assert.equal(RadarProfileSchema.safeParse(candidate).success, false);
+  }
+  const horizontal = structuredClone(profile);
+  horizontal.platform.environment = "shipborne";
+  horizontal.rangeConvention = "horizontal_range";
+  delete horizontal.projection;
+  assert.equal(validate(horizontal), true, JSON.stringify(validate.errors));
+  assert.equal(RadarProfileSchema.safeParse(horizontal).success, true);
+});
+
+test("public moving-cell helper distinguishes slant distance from plane distance", () => {
+  const profile = {
+    origin: { eastM: 0, northM: 0 },
+    platform: { kind: "moving" },
+    beamReference: "platform_heading",
+    rangeConvention: "slant_range",
+    projection: { kind: "declared_horizontal_plane", upM: 100 },
+  };
+  const pose = {
+    scan_index: 0,
+    azimuth_index: 0,
+    time_s: 0.5,
+    east_m: 10,
+    north_m: 20,
+    up_m: 400,
+    heading_deg: 90,
+  };
+  const projected = radarCellPosition(profile, pose, 0, 500);
+  assert.equal(projected.horizontalRangeM, 400);
+  assert.equal(projected.eastM, 410);
+  assert.ok(Math.abs(projected.northM - 20) < 1e-10);
+  assert.equal(radarCellPosition(profile, pose, 0, 299), null);
 });

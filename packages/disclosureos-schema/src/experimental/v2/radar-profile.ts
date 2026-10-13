@@ -14,6 +14,7 @@ import {
 } from "./radar-profile-schema";
 import {
   readRadarProducts,
+  radarCellPosition,
   type RadarDecodedProducts,
 } from "./radar-profile-reader";
 import type { ProductSourceLayout } from "./product-source-reader";
@@ -44,6 +45,10 @@ export interface RadarProfileResult {
 
 const close = (a: number, b: number, tolerance = 1e-6) =>
   Math.abs(a - b) <= tolerance * Math.max(1, Math.abs(a), Math.abs(b));
+// Translation of a coordinate frame must not relax localization accuracy.
+const positionClose = (a: number, b: number) =>
+  Math.abs(a - b) <=
+  1e-6 + 32 * Number.EPSILON * Math.max(1, Math.abs(a), Math.abs(b));
 const index = (n: number, length: number) =>
   Number.isSafeInteger(n) && n >= 0 && n < length;
 const key = (id: string, scan: number) => `${id}/${scan}`;
@@ -72,7 +77,7 @@ const compareOffset = (origin: string, seconds: number, boundary: string) => {
   return delta < 0n ? -1 : delta > 0n ? 1 : 0;
 };
 
-/** Validates one fixed-station, full-rotation, horizontal-range data product profile.
+/** Validates a fixed or declared moving-platform full-rotation product profile.
  * It checks declared lineage and retained numerical consistency, not detector performance,
  * target identity, physical calibration, antenna adequacy or Gaussian error coverage. */
 export async function evaluateRadarProfile(
@@ -251,7 +256,7 @@ export async function evaluateRadarProfile(
     issue(
       "RADAR.AXES",
       "/products/returns",
-      "Required axes are zero-based scan, full clockwise azimuth rotation (degrees, bin centers), and nonnegative horizontal range centers (meters)."
+      "Required axes are zero-based scan, full clockwise azimuth rotation (degrees, bin centers), and nonnegative range centers (meters) in the declared range convention."
     );
   for (const [role, layout] of [
     ["returns", returns],
@@ -353,6 +358,16 @@ export async function evaluateRadarProfile(
       "/products/tracks",
       "Track estimates and associations must depend on detections."
     );
+  if (
+    profile.platform &&
+    (!detectionInputs.has(profile.products.platformPose!) ||
+      !detectionInputs.has(profile.products.scanSchedule))
+  )
+    issue(
+      "RADAR.PLATFORM_LINEAGE",
+      "/products/detections",
+      "Moving-platform localization must depend on the retained pose and scan schedule."
+    );
   if (profile.products.truth) {
     // Block both the oracle product and its exclusive source payload. Shared methods/configuration
     // can describe a generator; they do not make the oracle an allowed tracker input.
@@ -367,14 +382,20 @@ export async function evaluateRadarProfile(
       ),
     ];
     if (
-      [thresholdInputs, detectionInputs, trackInputs, associationInputs].some(
-        (inputs) => forbidden.some((ref) => inputs.has(ref))
-      )
+      [
+        thresholdInputs,
+        detectionInputs,
+        trackInputs,
+        associationInputs,
+        ...(profile.products.platformPose
+          ? [ancestors(profile.products.platformPose)]
+          : []),
+      ].some((inputs) => forbidden.some((ref) => inputs.has(ref)))
     )
       issue(
         "RADAR.TRUTH_LEAK",
         "/products/truth",
-        "Detection, threshold, tracking and association lineage must not consume the synthetic truth oracle."
+        "Detection, threshold, tracking, association and platform-pose lineage must not consume the synthetic truth oracle."
       );
   }
   if (
@@ -469,6 +490,54 @@ export async function evaluateRadarProfile(
         "Declared beam centers must match azimuth cells, with positive full angular width at most 360 degrees."
       );
   }
+  if (profile.platform) {
+    if (data.platformPose.length !== data.scanSchedule.length)
+      issue(
+        "RADAR.POSE_COUNT",
+        "/products/platformPose",
+        "Moving radar needs exactly one retained pose for every dwell."
+      );
+    for (const [i, pose] of data.platformPose.entries()) {
+      const dwell = data.scanSchedule[i],
+        pointer = `/products/platformPose/rows/${i}`;
+      if (
+        !dwell ||
+        pose.scan_index !== dwell.scan_index ||
+        pose.azimuth_index !== dwell.azimuth_index
+      )
+        issue(
+          "RADAR.POSE_ORDER",
+          pointer,
+          "Pose rows must select their exact dwell in schedule order without duplicates or gaps."
+        );
+      if (
+        !dwell ||
+        Math.abs(pose.time_s - (dwell.start_s + dwell.end_s) / 2) > 1e-7
+      )
+        issue(
+          "RADAR.POSE_TIME",
+          pointer,
+          "Each retained pose is sampled at its dwell midpoint; no interpolation is implicit."
+        );
+      if (pose.heading_deg < 0 || pose.heading_deg >= 360)
+        issue(
+          "RADAR.POSE_HEADING",
+          pointer,
+          "Platform heading is clockwise from frame north in [0, 360) degrees."
+        );
+    }
+    const initial = data.platformPose[0];
+    if (
+      !initial ||
+      Math.abs(initial.east_m - profile.origin.eastM) > 1e-6 ||
+      Math.abs(initial.north_m - profile.origin.northM) > 1e-6
+    )
+      issue(
+        "RADAR.POSE_ORIGIN",
+        "/origin",
+        "A moving profile origin is the first retained pose, not a fixed sensor position."
+      );
+  }
   const first = data.scanSchedule[0],
     last = data.scanSchedule.at(-1);
   // ISO calendar validation uses the existing exact UTC contract rather than Date normalization.
@@ -554,13 +623,35 @@ export async function evaluateRadarProfile(
         pointer,
         "Detection time must lie within its own source dwell [start, end)."
       );
-    const bearing =
-        ((azimuthAxis.origin + detection.azimuth_index * azimuthAxis.step) *
-          Math.PI) /
-        180,
-      range = rangeAxis.origin + detection.range_index * rangeAxis.step;
-    let east = range * Math.sin(bearing),
-      north = range * Math.cos(bearing);
+    if (
+      profile.platform &&
+      dwell &&
+      Math.abs(detection.time_s - (dwell.start_s + dwell.end_s) / 2) > 1e-7
+    )
+      issue(
+        "RADAR.DETECTION_POSE_TIME",
+        pointer,
+        "Moving-platform detections use their retained dwell-midpoint pose and time."
+      );
+    const position = (az: number, r: number) => {
+      const pose = data.platformPose[detection.scan_index * azimuths + az];
+      if (profile.platform && !pose) return null;
+      return radarCellPosition(
+        profile,
+        pose,
+        azimuthAxis.origin + az * azimuthAxis.step,
+        rangeAxis.origin + r * rangeAxis.step
+      );
+    };
+    const center = position(detection.azimuth_index, detection.range_index);
+    if (!center)
+      issue(
+        "RADAR.PROJECTION_GEOMETRY",
+        pointer,
+        "A detection source cell must reach the declared horizontal plane with a retained pose."
+      );
+    let east = center?.eastM ?? NaN,
+      north = center?.northM ?? NaN;
     const rule = profile.detectionPosition;
     if (rule.kind === "power_weighted_neighborhood") {
       if (
@@ -580,24 +671,25 @@ export async function evaluateRadarProfile(
         for (let da = -rule.azimuthRadius; da <= rule.azimuthRadius; da++)
           for (let dr = -rule.rangeRadius; dr <= rule.rangeRadius; dr++) {
             const az = (detection.azimuth_index + da + azimuths) % azimuths,
-              r = detection.range_index + dr;
+              r = detection.range_index + dr,
+              projected = position(az, r);
+            // An impossible slant/plane cell has no Cartesian location. Do not
+            // clamp it to the platform or permit its power to bias the centroid.
+            if (!projected) continue;
             const power =
                 data.returns[
                   (detection.scan_index * azimuths + az) * ranges + r
                 ]!,
               weight = Math.max(0, power - rule.backgroundPower);
-            const theta =
-                ((azimuthAxis.origin + az * azimuthAxis.step) * Math.PI) / 180,
-              distance = rangeAxis.origin + r * rangeAxis.step;
             weightSum += weight;
-            east += weight * distance * Math.sin(theta);
-            north += weight * distance * Math.cos(theta);
+            east += weight * projected.eastM;
+            north += weight * projected.northM;
           }
         if (!(weightSum > 0))
           issue(
             "RADAR.CENTROID_WEIGHT",
             pointer,
-            "The centroid requires positive retained weight."
+            "The centroid requires positive retained weight in projectable cells."
           );
         else {
           east /= weightSum;
@@ -606,13 +698,13 @@ export async function evaluateRadarProfile(
       }
     }
     if (
-      !close(detection.east_m, profile.origin.eastM + east) ||
-      !close(detection.north_m, profile.origin.northM + north)
+      !positionClose(detection.east_m, east) ||
+      !positionClose(detection.north_m, north)
     )
       issue(
         "RADAR.DETECTION_GEOMETRY",
         pointer,
-        "Detection position must match the declared localization rule applied to retained cells."
+        "Detection position must match the declared localization rule applied to retained cells and their own dwell poses."
       );
     if (
       !close(detection.power, data.returns[cell]!, 1e-6) ||

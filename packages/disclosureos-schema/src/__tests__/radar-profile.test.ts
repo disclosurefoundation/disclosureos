@@ -8,6 +8,8 @@ import {
 } from "../experimental/v2/radar-profile-schema";
 import {
   radarCovarianceScaleSquared,
+  radarCellPosition,
+  RADAR_TABLE_COLUMNS,
   readRadarProducts,
 } from "../experimental/v2/radar-profile-reader";
 import { readSourceCsv } from "../experimental/v2/product-source-reader";
@@ -70,6 +72,71 @@ const failure = async (p: Packet, code: string) => {
   expect(result.success).toBe(false);
   expect(result.data).toBeUndefined();
   expect(result.issues.map((issue) => issue.code)).toContain(code);
+};
+
+const createPosePacket = async () => {
+  const p = await createPacket();
+  p.profile.platform = {
+    kind: "moving",
+    environment: "shipborne",
+    poseSampling: "dwell_midpoint",
+    attitudeModel: "level_yaw_only",
+  };
+  p.profile.beamReference = "platform_heading";
+  p.profile.products.platformPose = "product:platform-pose";
+  p.profile.uncertainty.conditioning = "declared_pose_and_projection";
+  const dwells = readRadarProducts(
+    p.selection.layouts,
+    { ...p.profile.products, platformPose: undefined },
+    p.assets
+  ).scanSchedule;
+  const columns = [...RADAR_TABLE_COLUMNS.platformPose];
+  const bytes = new TextEncoder().encode(
+    [
+      columns.join(","),
+      ...dwells.map((dwell) =>
+        [
+          dwell.scan_index,
+          dwell.azimuth_index,
+          (dwell.start_s + dwell.end_s) / 2,
+          0,
+          0,
+          0,
+          0,
+        ].join(",")
+      ),
+    ].join("\n") + "\n"
+  );
+  const digest = {
+    algorithm: "sha256",
+    value: createHash("sha256").update(bytes).digest("hex"),
+  };
+  p.observation.products.push({
+    id: "platform-pose",
+    kind: "raw",
+    format: "text/csv",
+    access: "public",
+    digest,
+    sourceRefs: ["source:simulation", "source:methods"],
+  });
+  p.selection.layouts.push({
+    id: "platform-pose",
+    productRef: "product:platform-pose",
+    kind: "csv_table",
+    digest,
+    byteLength: bytes.byteLength,
+    mediaType: "text/csv",
+    encoding: "utf-8",
+    delimiter: ",",
+    header: true,
+    rowCount: dwells.length,
+    columns,
+  });
+  p.assets.set("product:platform-pose", bytes);
+  p.observation.processing
+    .find((v: { id: string }) => v.id === "detect")
+    .inputRefs.push("product:platform-pose");
+  return p;
 };
 
 describe("optional rotating radar profile", () => {
@@ -311,5 +378,209 @@ describe("optional rotating radar profile", () => {
     expect(
       readRadarProducts(p.selection.layouts, p.profile.products, p.assets)
     ).toEqual(evaluated.data!.products);
+  });
+});
+
+describe("moving-platform radar contract", () => {
+  it("keeps localization accuracy independent of a large frame translation", async () => {
+    const { createPacket: movingPacket } = await import(
+      new URL("../../../../examples/radar-moving/build.mjs", import.meta.url)
+        .href
+    );
+    const p = await movingPacket("shipborne"),
+      translation = 1e9;
+    p.profile.origin.eastM += translation;
+    p.profile.origin.northM += translation;
+    for (const role of ["platformPose", "detections", "tracks", "truth"])
+      table(p, role, (rows, columns) => {
+        for (const row of rows)
+          for (const column of ["east_m", "north_m"])
+            row[columns.indexOf(column)] = String(
+              Number(row[columns.indexOf(column)]) + translation
+            );
+      });
+    expect((await evaluate(p)).issues).toEqual([]);
+    table(p, "detections", (rows, columns) => {
+      rows[0]![columns.indexOf("east_m")] = String(
+        Number(rows[0]![columns.indexOf("east_m")]) + 500
+      );
+    });
+    await failure(p, "RADAR.DETECTION_GEOMETRY");
+  });
+
+  it("accepts the full airborne and shipborne packets with motion compensation and conditional covariance", async () => {
+    const { createPacket: movingPacket } = await import(
+      new URL("../../../../examples/radar-moving/build.mjs", import.meta.url)
+        .href
+    );
+    for (const scenario of ["airborne", "shipborne"]) {
+      const p = await movingPacket(scenario),
+        result = await evaluate(p);
+      expect(result.issues).toEqual([]);
+      expect(result.success).toBe(true);
+      expect(result.data!.products.platformPose).toHaveLength(1152);
+      expect(result.scientific).toBe("not_checked");
+      expect(result.physicalCalibration).toBe("not_checked");
+      expect(result.trackingPerformance).toBe("not_checked");
+    }
+  });
+  it("rejects physically impossible slant-to-plane detection centers instead of clamping them", async () => {
+    const { createPacket: movingPacket } = await import(
+      new URL("../../../../examples/radar-moving/build.mjs", import.meta.url)
+        .href
+    );
+    const p = await movingPacket("airborne");
+    table(p, "platformPose", (rows, columns) => {
+      for (const row of rows) row[columns.indexOf("up_m")] = "100000";
+    });
+    await failure(p, "RADAR.PROJECTION_GEOMETRY");
+  });
+  it("rechecks declared target-plane geometry rather than trusting stored detection positions", async () => {
+    const { createPacket: movingPacket } = await import(
+      new URL("../../../../examples/radar-moving/build.mjs", import.meta.url)
+        .href
+    );
+    const p = await movingPacket("airborne");
+    p.profile.projection.upM = 100;
+    await failure(p, "RADAR.DETECTION_GEOMETRY");
+  });
+
+  it("accepts explicit horizontal moving-platform geometry with retained midpoint poses", async () => {
+    const result = await evaluate(await createPosePacket());
+    expect(result.issues).toEqual([]);
+    expect(result.success).toBe(true);
+    expect(result.data!.products.platformPose).toHaveLength(1152);
+    expect(result.data!.declaration.uncertainty.conditioning).toBe(
+      "declared_pose_and_projection"
+    );
+  });
+  it("rejects incomplete moving declarations and undeclared pose products structurally", async () => {
+    for (const change of [
+      (p: Packet) => {
+        delete p.profile.products.platformPose;
+      },
+      (p: Packet) => {
+        delete p.profile.platform;
+      },
+      (p: Packet) => {
+        delete p.profile.beamReference;
+      },
+      (p: Packet) => {
+        delete p.profile.uncertainty.conditioning;
+      },
+      (p: Packet) => {
+        p.profile.rangeConvention = "slant_range";
+      },
+      (p: Packet) => {
+        p.profile.platform.attitudeModel = "implicit_six_dof";
+      },
+    ]) {
+      const p = await createPosePacket();
+      change(p);
+      expect(RadarProfileSchema.safeParse(p.profile).success).toBe(false);
+    }
+  });
+  it("rejects an omitted pose and a reordered pose even with matching source digests", async () => {
+    const missing = await createPosePacket();
+    table(missing, "platformPose", (rows) => {
+      rows.pop();
+    });
+    await failure(missing, "RADAR.POSE_COUNT");
+    const reordered = await createPosePacket();
+    table(reordered, "platformPose", (rows) => {
+      [rows[0], rows[1]] = [rows[1]!, rows[0]!];
+    });
+    await failure(reordered, "RADAR.POSE_ORDER");
+  });
+  it("does not silently interpolate pose samples or accept headings outside their convention", async () => {
+    const timing = await createPosePacket();
+    table(timing, "platformPose", (rows, columns) => {
+      rows[12]![columns.indexOf("time_s")] = "0.7";
+    });
+    await failure(timing, "RADAR.POSE_TIME");
+    const heading = await createPosePacket();
+    table(heading, "platformPose", (rows, columns) => {
+      rows[12]![columns.indexOf("heading_deg")] = "360";
+    });
+    await failure(heading, "RADAR.POSE_HEADING");
+  });
+  it("requires the declared anchor to match the first pose", async () => {
+    const p = await createPosePacket();
+    p.profile.origin.eastM = 42;
+    await failure(p, "RADAR.POSE_ORIGIN");
+  });
+  it("recomputes source-cell localization using each retained pose", async () => {
+    const p = await createPosePacket();
+    table(p, "platformPose", (rows, columns) => {
+      for (const row of rows) row[columns.indexOf("heading_deg")] = "90";
+    });
+    await failure(p, "RADAR.DETECTION_GEOMETRY");
+  });
+  it("requires detections to use pose sampling time", async () => {
+    const p = await createPosePacket();
+    table(p, "detections", (rows, columns) => {
+      rows[0]![columns.indexOf("time_s")] = String(
+        Number(rows[0]![columns.indexOf("time_s")]) + 0.001
+      );
+    });
+    await failure(p, "RADAR.DETECTION_POSE_TIME");
+  });
+  it("requires retained pose and schedule in detector ancestry", async () => {
+    for (const ref of ["product:platform-pose", "product:schedule"]) {
+      const p = await createPosePacket(),
+        detect = p.observation.processing.find(
+          (v: { id: string }) => v.id === "detect"
+        );
+      detect.inputRefs = detect.inputRefs.filter(
+        (input: string) => input !== ref
+      );
+      await failure(p, "RADAR.PLATFORM_LINEAGE");
+    }
+  });
+  it("rejects a pose derived from the target truth oracle", async () => {
+    const p = await createPosePacket(),
+      pose = p.observation.products.find(
+        (v: { id: string }) => v.id === "platform-pose"
+      );
+    delete pose.sourceRefs;
+    pose.kind = "derived";
+    pose.generatedBy = "process:oracle-pose";
+    p.observation.methods.push({ id: "oracle-pose", version: "1" });
+    p.observation.processing.push({
+      id: "oracle-pose",
+      methodRef: "method:oracle-pose",
+      methodVersion: "1",
+      performedBy: "adversarial test",
+      performedAt: "2026-07-28T22:01:04Z",
+      inputRefs: [p.profile.products.truth],
+      outputRefs: [p.profile.products.platformPose],
+    });
+    await failure(p, "RADAR.TRUTH_LEAK");
+  });
+  it("projects slant range onto only the declared plane and refuses impossible geometry", () => {
+    const profile = {
+      origin: { eastM: 0, northM: 0 },
+      platform: { kind: "moving" as const },
+      beamReference: "platform_heading" as const,
+      rangeConvention: "slant_range" as const,
+      projection: { kind: "declared_horizontal_plane" as const, upM: 0 },
+    };
+    const pose = {
+      scan_index: 0,
+      azimuth_index: 0,
+      time_s: 0.5,
+      east_m: 100,
+      north_m: 200,
+      up_m: 300,
+      heading_deg: 90,
+    };
+    const position = radarCellPosition(profile, pose, 0, 500)!;
+    expect(position.horizontalRangeM).toBe(400);
+    expect(position.eastM).toBe(500);
+    expect(position.northM).toBeCloseTo(200, 10);
+    expect(position.bearingDeg).toBe(90);
+    expect(radarCellPosition(profile, pose, 0, 299)).toBeNull();
+    expect(radarCellPosition(profile, pose, 0, 300)!.horizontalRangeM).toBe(0);
+    expect(() => radarCellPosition(profile, undefined, 0, 500)).toThrow(/pose/);
   });
 });

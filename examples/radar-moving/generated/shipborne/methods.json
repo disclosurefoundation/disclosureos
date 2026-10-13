@@ -1,0 +1,96 @@
+{
+  "id": "radar-shipborne-methods-v1",
+  "version": "1.0.0",
+  "fictional": true,
+  "config": {
+    "seed": 20261015,
+    "scans": 16,
+    "azimuthBins": 72,
+    "rangeBins": 64,
+    "scanSeconds": 4,
+    "rangeOriginM": 25,
+    "rangeStepM": 50,
+    "azimuthOriginDeg": 0,
+    "azimuthStepDeg": 5,
+    "beamWidthDeg": 4.945122,
+    "timeOrigin": "2026-07-28T22:00:00Z",
+    "measurementSigmaM": 45,
+    "accelerationSigmaMPerS2": 1.5,
+    "initialVelocitySigmaMPerS": 30,
+    "associationGateSquared": 9.21034,
+    "scenario": "shipborne",
+    "platformSpeedMPerS": 8,
+    "platformHeadingDeg": 20,
+    "platformTurnRateDegPerS": 0.8,
+    "platformEastM": -600,
+    "platformNorthM": -500,
+    "platformUpM": 0,
+    "rangeResponseSigmaM": 36
+  },
+  "description": "A seeded shipborne rotating radar example with retained platform telemetry, per-cell coordinate compensation and detection-only tracking. Relative power is not calibrated watts.",
+  "synthesis": {
+    "seedGenerator": "mulberry32",
+    "targetModel": "Vessel A:E=500+7t,N=1250-2t; vessel B:E=-1100+4t,N=800+3t; stationary buoy:E=1300,N=-100. Metres and seconds.",
+    "beam": "Gaussian power response sigma=2.1 degrees, FWHM=4.945122 degrees; range response sigma=36 m. Antenna azimuth is clockwise from platform heading. Geometry evaluated at dwell midpoint.",
+    "noise": "Exponential power mean0.055 + floor0.025. World-anchored broad clutter peak0.48, angular sigma16 degrees and range sigma280m, uniform[0.8,1.2] texture. Clutter center E1350,N1300. Short-range directional sea-return teaching component:0.18*exp(-range/700)*(0.45+0.55*cos(worldBearing-110degrees)^2)*texture.",
+    "attenuation": "Target A gain4.2 becomes0.015 in scans6–8; target B gain3.6(airborne)/3.4(shipborne) becomes0.015 in scans11–12. Stationary landmark gain2.8/2.7. Prescribed fading, no physical obstruction solution.",
+    "transient": "One additional gain2.4 point component during scan4, at E-1800,N-1000, treated as any other return by the detector/tracker.",
+    "truth": "Separate scenario-truth.csv gives positions at every dwell end. Generator truth labels are not supplied to detection or tracking."
+  },
+  "detector": {
+    "version": "range-neighbor-peaks-1",
+    "threshold": "max(0.6,4*mean(training range cells))",
+    "training": "Same azimuth; range offsets -10..-3 and 3..10, clipped at array boundaries. No angular training. This empirical threshold is not a calibrated constant-false-alarm-rate claim.",
+    "peaks": "Power >= retained float32 threshold and greatest power in a 3 × 3 azimuth/range neighborhood; azimuth wraps. Equal-valued ties choose lower storage index. First/last range bins are excluded.",
+    "localization": "Center of positive power over the retained 3x3 neighborhood after subtracting0.08. Project each cell using its own dwell-midpoint position and heading; omit impossible slant-to-plane cells. Then average in common east/north coordinates. Peak-cell timestamp remains the detection epoch. Ownship motion is compensated; moving targets are not deskewed to a common epoch.",
+    "timing": "time_s is selected dwell midpoint. Outputs become available only at the end of the complete scan, because peak/centroid calculations use neighboring azimuth dwells."
+  },
+  "tracker": {
+    "version": "nearest-neighbor-cv-kalman-1",
+    "stateOrder": [
+      "east_m",
+      "north_m",
+      "velocity_east_m_s",
+      "velocity_north_m_s"
+    ],
+    "measurement": "Common east/north detections only. Independent assumed sigma=45m errors. Navigation and projection parameters are treated as exact, not propagated.",
+    "transition": "Constant velocity. F=[[1,0,dt,0],[0,1,0,dt],[0,0,1,0],[0,0,0,1]]. Q=sigma_a² G Gᵀ, G=[[dt²/2,0],[0,dt²/2],[dt,0],[0,dt]], sigma_a = 1.5 m/s²; each propagation interval has independent assumed acceleration.",
+    "association": "Detections processed by measurement time within a completed scan. Greedy minimum squared innovation Mahalanobis distance <= 9.21034. At most one detection per track per scan. Unassigned detections start new tracks; no scene identities or truth labels supplied.",
+    "initialization": "Position from detection; zero initial velocity; covariance diag(2025,2025,900,900).",
+    "update": "Linear Kalman update with Joseph covariance form. Export all active states at scan end. Confirmed after 3 total updates; any missed update gives coasting; retire after 4 consecutive misses. Confirmed is a filter bookkeeping state, not identification or verification.",
+    "uncertainty": "95% Gaussian position ellipse conditional on the declared exact platform pose and projection plane. Assumed filter errors are not empirically calibrated.",
+    "fullCovariance": "track-state.csv stores all 4 × 4 entries p00..p33 and hit/miss counters. Position-only covariance is in tracks.csv."
+  },
+  "timing": {
+    "meaning": "Authored UTC origin plus retained relative seconds; no physical clock, synchronization or cross-capture alignment is claimed.",
+    "scanSeconds": 4,
+    "dwellSeconds": 0.05555555555555555,
+    "batchAvailability": "Detections and tracks appear after the completed scan; returns become available after each dwell."
+  },
+  "exclusions": [
+    "No physical radar calibration",
+    "No RF waveform/pulse simulation",
+    "No terrain masking, multipath or atmosphere",
+    "No target identity or real-world capability claim",
+    "No calibrated false-alarm probability",
+    "No validated tracking confidence",
+    "No navigation, heading, altitude or projection-plane uncertainty propagation",
+    "No pitch, roll, heave or antenna lever-arm solution",
+    "No three-dimensional target-height measurement",
+    "No compensation for target motion within the detection neighborhood"
+  ],
+  "platform": {
+    "model": "Constant-speed, constant-turn level yaw path; see retained platform-pose.csv and executable model.",
+    "parameters": {
+      "speedMPerS": 8,
+      "initialHeadingDeg": 20,
+      "turnRateDegPerS": 0.8,
+      "initialEastM": -600,
+      "initialNorthM": -500,
+      "upM": 0
+    },
+    "sampling": "One exact authored pose at every dwell midpoint, keyed by scan and azimuth indices.",
+    "attitude": "Level yaw only. Pitch, roll, heave, antenna mounting offsets and navigation errors are not modeled.",
+    "projection": "Horizontal range reported directly on a declared surface plane; platform up=0 is the coordinate convention, not an antenna-height claim."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "kind": "radar_profile",
+  "schemaVersion": "0.1.0",
+  "id": "radar-shipborne-profile-v1",
+  "observationId": "radar-shipborne-v1",
+  "contextId": "radar-shipborne-context-v1",
+  "sourceSelectionId": "radar-shipborne-selection-v1",
+  "acquisitionRef": "acquisition:radar-capture",
+  "acquisitionProductRef": "product:returns",
+  "channelId": "return-power",
+  "frameRef": "frame:radar-local",
+  "origin": {
+    "eastM": -599.92395503,
+    "northM": -499.791194162
+  },
+  "timeOrigin": "2026-07-28T22:00:00Z",
+  "mode": "rotating_scan",
+  "dataOrigin": "synthetic",
+  "beamWidthConvention": "full_width_half_maximum_power",
+  "processingAvailability": "scan_end",
+  "products": {
+    "scanSchedule": "product:schedule",
+    "returns": "product:returns",
+    "thresholds": "product:thresholds",
+    "detections": "product:detections",
+    "tracks": "product:tracks",
+    "associations": "product:associations",
+    "truth": "product:truth",
+    "platformPose": "product:platformPose"
+  },
+  "uncertainty": {
+    "kind": "gaussian_position_covariance",
+    "axes": [
+      "east",
+      "north"
+    ],
+    "unit": "m2",
+    "confidenceProbability": 0.95,
+    "conditioning": "declared_pose_and_projection"
+  },
+  "detectionPosition": {
+    "kind": "power_weighted_neighborhood",
+    "azimuthRadius": 1,
+    "rangeRadius": 1,
+    "backgroundPower": 0.08
+  },
+  "bearingConvention": "clockwise_from_north",
+  "rangeConvention": "horizontal_range",
+  "platform": {
+    "kind": "moving",
+    "environment": "shipborne",
+    "poseSampling": "dwell_midpoint",
+    "attitudeModel": "level_yaw_only"
+  },
+  "beamReference": "platform_heading"
+}

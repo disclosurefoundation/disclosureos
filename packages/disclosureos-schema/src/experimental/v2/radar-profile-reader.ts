@@ -12,6 +12,15 @@ export const RADAR_TABLE_COLUMNS = Object.freeze({
     "beam_azimuth_deg",
     "beam_width_deg",
   ],
+  platformPose: [
+    "scan_index",
+    "azimuth_index",
+    "time_s",
+    "east_m",
+    "north_m",
+    "up_m",
+    "heading_deg",
+  ],
   detections: [
     "detection_id",
     "scan_index",
@@ -46,6 +55,90 @@ export interface RadarDwell {
   beam_azimuth_deg: number;
   beam_width_deg: number;
 }
+export interface RadarPlatformPose {
+  scan_index: number;
+  azimuth_index: number;
+  time_s: number;
+  east_m: number;
+  north_m: number;
+  up_m: number;
+  heading_deg: number;
+}
+
+/** Minimal geometry declaration, usable without a schema runtime in a browser. */
+export interface RadarGeometry {
+  origin: { eastM: number; northM: number };
+  platform?: { kind: "moving" } | undefined;
+  beamReference?: "north" | "platform_heading" | undefined;
+  rangeConvention: "horizontal_range" | "slant_range";
+  projection?: { kind: "declared_horizontal_plane"; upM: number } | undefined;
+}
+
+/** Project a cell using its own retained dwell pose. A null means that the
+ * declared slant range cannot reach the plane; it must never become a zero-range hit.
+ * This is a conditional geometric calculation, not measured target height. */
+export function radarCellPosition(
+  profile: RadarGeometry,
+  pose: RadarPlatformPose | undefined,
+  beamAzimuthDeg: number,
+  rangeM: number
+): {
+  eastM: number;
+  northM: number;
+  horizontalRangeM: number;
+  bearingDeg: number;
+} | null {
+  if (
+    !Number.isFinite(rangeM) ||
+    rangeM < 0 ||
+    !Number.isFinite(beamAzimuthDeg)
+  )
+    throw new Error(
+      "Radar cell coordinates must be finite with nonnegative range."
+    );
+  if (
+    (profile.platform || profile.beamReference === "platform_heading") &&
+    !pose
+  )
+    throw new Error("Moving radar cells require a retained dwell pose.");
+  if (
+    pose &&
+    ![pose.east_m, pose.north_m, pose.up_m, pose.heading_deg].every(
+      Number.isFinite
+    )
+  )
+    throw new Error("Radar pose coordinates must be finite.");
+  const bearingDeg =
+    (((beamAzimuthDeg +
+      (profile.beamReference === "platform_heading"
+        ? pose?.heading_deg ?? 0
+        : 0)) %
+      360) +
+      360) %
+    360;
+  let horizontalRangeM = rangeM;
+  if (profile.rangeConvention === "slant_range") {
+    if (!pose || !profile.projection)
+      throw new Error("Slant range requires a pose and declared target plane.");
+    const height = pose.up_m - profile.projection.upM;
+    if (rangeM < Math.abs(height)) return null;
+    horizontalRangeM = Math.sqrt(
+      Math.max(0, (rangeM - Math.abs(height)) * (rangeM + Math.abs(height)))
+    );
+  }
+  const angle = (bearingDeg * Math.PI) / 180;
+  return {
+    eastM:
+      (profile.platform ? pose!.east_m : profile.origin.eastM) +
+      horizontalRangeM * Math.sin(angle),
+    northM:
+      (profile.platform ? pose!.north_m : profile.origin.northM) +
+      horizontalRangeM * Math.cos(angle),
+    horizontalRangeM,
+    bearingDeg,
+  };
+}
+
 export interface RadarDetection {
   detection_id: string;
   scan_index: number;
@@ -83,6 +176,7 @@ export interface RadarTruth {
 }
 export interface RadarDecodedProducts {
   scanSchedule: RadarDwell[];
+  platformPose: RadarPlatformPose[];
   detections: RadarDetection[];
   tracks: RadarTrack[];
   associations: RadarAssociation[];
@@ -98,7 +192,7 @@ export type RadarProductRoles = Record<
   | "tracks"
   | "associations",
   string
-> & { truth?: string | undefined };
+> & { truth?: string | undefined; platformPose?: string | undefined };
 
 const finite = (cell: string): number => {
   if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(cell))
@@ -196,6 +290,7 @@ export function readRadarProducts(
   };
   return {
     scanSchedule: table("scanSchedule") as unknown as RadarDwell[],
+    platformPose: table("platformPose") as unknown as RadarPlatformPose[],
     detections: table("detections") as unknown as RadarDetection[],
     tracks: table("tracks") as unknown as RadarTrack[],
     associations: table("associations") as unknown as RadarAssociation[],
