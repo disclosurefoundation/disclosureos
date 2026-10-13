@@ -1,0 +1,266 @@
+{
+  "kind": "observation",
+  "schemaVersion": "0.1.0",
+  "id": "radar-scanning-v1",
+  "status": "published",
+  "createdAt": "2026-07-28T22:00:00Z",
+  "updatedAt": "2026-07-28T22:00:00Z",
+  "summary": "Fictional rotating radar capture with reproducible returns, threshold detections and estimated tracks. Model truth is separate from the measurements and estimator.",
+  "eventTime": {
+    "state": "known",
+    "value": {
+      "kind": "interval",
+      "start": {
+        "kind": "instant",
+        "value": "2026-07-28T22:00:00Z",
+        "timeScale": "UTC"
+      },
+      "end": {
+        "kind": "instant",
+        "value": "2026-07-28T22:01:04Z",
+        "timeScale": "UTC"
+      }
+    },
+    "sourceRefs": [
+      "source:methods"
+    ]
+  },
+  "position": {
+    "state": "unknown",
+    "reason": "not_collected"
+  },
+  "sources": [
+    {
+      "id": "simulation",
+      "kind": "instrument_data",
+      "access": "public",
+      "title": "Deterministic reduced radar simulation"
+    },
+    {
+      "id": "methods",
+      "kind": "document",
+      "access": "public",
+      "title": "Declared simulation and processing methods",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "9acff6175a502a253a8eccdefc685327a0916d8a6d4181c58e4d990afdc5f9bb"
+      }
+    },
+    {
+      "id": "model-code",
+      "kind": "document",
+      "access": "public",
+      "title": "Executable simulation and processing code",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "909f53a9548ae4ea4ccaa5440a990b87a4cc32b32876ab018a19ad2b6e9d1710"
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "schedule",
+      "kind": "raw",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "7e6e67d8d73930a4ce316ce05054c13bd45b3e22ea5769ecc26bee24ea6d58e8"
+      },
+      "sourceRefs": [
+        "source:simulation",
+        "source:methods",
+        "source:model-code"
+      ]
+    },
+    {
+      "id": "returns",
+      "kind": "raw",
+      "format": "application/octet-stream",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "fc7879a680c050392fef021ec42f9a133e7f7070b0ef6fdb3bbfaa5c30496222"
+      },
+      "sourceRefs": [
+        "source:simulation",
+        "source:methods",
+        "source:model-code"
+      ]
+    },
+    {
+      "id": "thresholds",
+      "kind": "derived",
+      "format": "application/octet-stream",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "de017e5a3c15188e4281161e01dbf1cb9b318f2d91010baafa8173ecee88f0e5"
+      },
+      "generatedBy": "process:threshold"
+    },
+    {
+      "id": "detections",
+      "kind": "derived",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "6c178c44a2ee548e537e2c9ca79d40e21c4a2b7e9176f81299a256cff5406b58"
+      },
+      "generatedBy": "process:detect"
+    },
+    {
+      "id": "tracks",
+      "kind": "derived",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "d608eca0505f495a6a064b188aa8658f0b7a515453d458b4cc277be57a98c49e"
+      },
+      "generatedBy": "process:track"
+    },
+    {
+      "id": "associations",
+      "kind": "derived",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "9a3053549743ef0367cbd34ce2d77436d9e2fcc7825a3b41e4e31cdbadddb0e8"
+      },
+      "generatedBy": "process:track"
+    },
+    {
+      "id": "truth",
+      "kind": "derived",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "dded5e09cdd81dd0c065652ce9c956927b186c47c49e5c54505b33bb6aeb346d"
+      },
+      "generatedBy": "process:truth"
+    },
+    {
+      "id": "track-state",
+      "kind": "derived",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "06798148aaa2fd5af015b5a61660422ef505f95f1333aea5102b72db2d1fd04f"
+      },
+      "generatedBy": "process:track"
+    }
+  ],
+  "methods": [
+    {
+      "id": "threshold",
+      "version": "1.0.0",
+      "description": "Range-neighborhood threshold; no calibrated false-alarm claim."
+    },
+    {
+      "id": "detect",
+      "version": "1.0.0",
+      "description": "Completed-scan peak selection and weighted center-of-power localization."
+    },
+    {
+      "id": "track",
+      "version": "1.0.0",
+      "description": "Detection-only nearest-neighbor constant-velocity Kalman estimator."
+    },
+    {
+      "id": "truth",
+      "version": "1.0.0",
+      "description": "Separate scenario-state oracle for evaluating the fictional capture."
+    }
+  ],
+  "processing": [
+    {
+      "id": "threshold",
+      "methodRef": "method:threshold",
+      "methodVersion": "1.0.0",
+      "performedBy": "DisclosureOS deterministic numerical example",
+      "performedAt": "2026-07-28T22:01:04Z",
+      "inputRefs": [
+        "product:returns",
+        "source:methods",
+        "source:model-code"
+      ],
+      "outputRefs": [
+        "product:thresholds"
+      ]
+    },
+    {
+      "id": "detect",
+      "methodRef": "method:detect",
+      "methodVersion": "1.0.0",
+      "performedBy": "DisclosureOS deterministic numerical example",
+      "performedAt": "2026-07-28T22:01:04Z",
+      "inputRefs": [
+        "product:returns",
+        "product:thresholds",
+        "product:schedule",
+        "source:methods",
+        "source:model-code"
+      ],
+      "outputRefs": [
+        "product:detections"
+      ]
+    },
+    {
+      "id": "track",
+      "methodRef": "method:track",
+      "methodVersion": "1.0.0",
+      "performedBy": "DisclosureOS deterministic numerical example",
+      "performedAt": "2026-07-28T22:01:04Z",
+      "inputRefs": [
+        "product:detections",
+        "source:methods",
+        "source:model-code"
+      ],
+      "outputRefs": [
+        "product:tracks",
+        "product:associations",
+        "product:track-state"
+      ]
+    },
+    {
+      "id": "truth",
+      "methodRef": "method:truth",
+      "methodVersion": "1.0.0",
+      "performedBy": "DisclosureOS deterministic numerical example",
+      "performedAt": "2026-07-28T22:01:04Z",
+      "inputRefs": [
+        "source:methods",
+        "source:model-code"
+      ],
+      "outputRefs": [
+        "product:truth"
+      ]
+    }
+  ],
+  "assertions": [],
+  "measurements": [],
+  "frames": [
+    {
+      "id": "radar-local",
+      "kind": "cartesian",
+      "definition": {
+        "state": "described",
+        "description": "Local east/north in metres, fixed radar at (0, 0), zero elevation plane. No terrestrial transform."
+      },
+      "unit": "m"
+    }
+  ],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "partnerData": false,
+      "model": "reduced_rotating_radar",
+      "physicalValidation": "not_performed"
+    }
+  }
+}

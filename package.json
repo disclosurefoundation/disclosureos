@@ -110,7 +110,10 @@
     "emit:v2-case-presentation": "node conformance/emit-case-presentation.mjs",
     "test:v2-case-presentation": "node --test conformance/case-presentation.test.mjs conformance/context-case-presentation.test.mjs conformance/testimony-case-presentation.test.mjs conformance/archival-case-presentation.test.mjs conformance/material-case-presentation.test.mjs",
     "emit:v2-product-source-selection": "node conformance/emit-product-source-selection.mjs",
-    "test:v2-product-source-selection": "node --test conformance/product-source-selection.test.mjs"
+    "test:v2-product-source-selection": "node --test conformance/product-source-selection.test.mjs",
+    "emit:v2-radar-profile": "node conformance/emit-radar-profile.mjs",
+    "test:v2-radar-profile": "node --test conformance/radar-profile.test.mjs examples/radar-scanning/model.test.mjs",
+    "verify:radar-scanning": "node examples/radar-scanning/verify.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

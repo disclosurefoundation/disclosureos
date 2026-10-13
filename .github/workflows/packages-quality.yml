@@ -331,6 +331,23 @@ jobs:
       - run: python3 scripts/check-c3-link-mapping.py
       - run: node examples/v2/case-links-demo/run.mjs
 
+  radar-profile:
+    name: Radar profile and reproducible scanning example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter "@disclosureos/schema..." build
+      - run: pnpm test:v2-radar-profile
+      - run: pnpm verify:radar-scanning
+      - run: pnpm emit:v2-radar-profile
+      - run: git diff --exit-code -- packages/disclosureos-schema/schema/experimental/radar-profile-0.1.0.schema.json
+
   case-presentation:
     name: C3 public case presentation
     runs-on: ubuntu-latest

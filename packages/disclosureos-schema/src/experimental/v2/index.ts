@@ -68,3 +68,6 @@ export * from './archival-case-presentation';
 export * from './material-case-presentation';
 export * from './product-source-selection';
 export * from './product-source-reader';
+export * from './radar-profile-schema';
+export * from './radar-profile-reader';
+export * from './radar-profile';

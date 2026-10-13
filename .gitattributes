@@ -1,0 +1,2 @@
+# Retained numerical arrays must never undergo text conversion or line merging.
+*.f32 binary

@@ -98,6 +98,18 @@ MIT © [Disclosure Foundation](https://disclosure.org)
 
 ## Experimental v2 documentary support
 
+### Rotating radar products
+
+The optional [rotating radar profile](docs/radar-profile.md) gives retained scans,
+detections and estimated tracks shared semantics over the existing observation,
+acquisition-context and product-source-selection contracts. It verifies source
+bytes, dwell timing, detection localization, associations, covariance and declared
+processing lineage. The [scanning example](../../examples/radar-scanning) supplies
+reproducible synthetic data with a separate truth oracle. Passing the profile does
+not certify scientific performance or physical calibration.
+
+### Documentary and acquisition profiles
+
 `@disclosureos/schema/experimental/v2` exports `evaluateAssessmentDocumentation` for records-owned claim histories. See the [profile contract and runnable synthetic example](../../docs/experimental/assessment-documentation.md). It checks declared support and supplied byte hashes, not scientific adequacy; existing v1 APIs and artifacts remain unchanged.
 
 `evaluateAcquisitionBindings` additionally checks explicit raw-product/source mappings to instrument acquisition context and verifies supplied artifact hashes and lengths. See the [binding contract and local example](../../docs/experimental/acquisition-bindings.md). This is independent of assessment-documentation eligibility and does not authenticate physical instruments.

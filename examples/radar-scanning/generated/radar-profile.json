@@ -1,0 +1,47 @@
+{
+  "kind": "radar_profile",
+  "schemaVersion": "0.1.0",
+  "id": "radar-scanning-profile-v1",
+  "observationId": "radar-scanning-v1",
+  "contextId": "radar-scanning-context-v1",
+  "sourceSelectionId": "radar-scanning-selection-v1",
+  "acquisitionRef": "acquisition:radar-capture",
+  "acquisitionProductRef": "product:returns",
+  "channelId": "return-power",
+  "frameRef": "frame:radar-local",
+  "origin": {
+    "eastM": 0,
+    "northM": 0
+  },
+  "timeOrigin": "2026-07-28T22:00:00Z",
+  "mode": "rotating_scan",
+  "dataOrigin": "synthetic",
+  "beamWidthConvention": "full_width_half_maximum_power",
+  "processingAvailability": "scan_end",
+  "products": {
+    "scanSchedule": "product:schedule",
+    "returns": "product:returns",
+    "thresholds": "product:thresholds",
+    "detections": "product:detections",
+    "tracks": "product:tracks",
+    "associations": "product:associations",
+    "truth": "product:truth"
+  },
+  "uncertainty": {
+    "kind": "gaussian_position_covariance",
+    "axes": [
+      "east",
+      "north"
+    ],
+    "unit": "m2",
+    "confidenceProbability": 0.95
+  },
+  "detectionPosition": {
+    "kind": "power_weighted_neighborhood",
+    "azimuthRadius": 1,
+    "rangeRadius": 1,
+    "backgroundPower": 0.08
+  },
+  "bearingConvention": "clockwise_from_north",
+  "rangeConvention": "horizontal_range"
+}
