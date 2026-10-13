@@ -83,3 +83,7 @@ export * from './passive-sonar-profile';
 export * from './lidar-profile-schema';
 export * from './lidar-profile-reader';
 export * from './lidar-profile';
+
+export * from './satellite-raster-profile-schema';
+export * from './satellite-raster-profile-reader';
+export * from './satellite-raster-profile';

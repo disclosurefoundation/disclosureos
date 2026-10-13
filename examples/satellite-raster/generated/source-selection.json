@@ -1,0 +1,101 @@
+{
+  "kind": "product_source_selection",
+  "schemaVersion": "0.1.0",
+  "id": "satellite-raster-selection-v1",
+  "observationId": "satellite-raster-v1",
+  "layouts": [
+    {
+      "id": "reflectance",
+      "productRef": "product:reflectance",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "197829a45d29321d2abf767d3c1938e22c2568e4eb87097ea0d0e2e0ab042272"
+      },
+      "byteLength": 82944,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "uint16",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "axes": [
+        {
+          "kind": "index",
+          "name": "band",
+          "length": 6,
+          "firstIndex": 0
+        },
+        {
+          "kind": "index",
+          "name": "row",
+          "length": 72,
+          "firstIndex": 0
+        },
+        {
+          "kind": "index",
+          "name": "column",
+          "length": 96,
+          "firstIndex": 0
+        }
+      ],
+      "quantity": "surface_reflectance_dn",
+      "unit": "DN"
+    },
+    {
+      "id": "quality",
+      "productRef": "product:quality",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "b653cc582b3d858b994d9cd9607e48a3ca08e37cf64bd8cacc6ba736c871d60a"
+      },
+      "byteLength": 6912,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "uint8",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "axes": [
+        {
+          "kind": "index",
+          "name": "row",
+          "length": 72,
+          "firstIndex": 0
+        },
+        {
+          "kind": "index",
+          "name": "column",
+          "length": 96,
+          "firstIndex": 0
+        }
+      ],
+      "quantity": "pixel_quality_code",
+      "unit": "code"
+    }
+  ],
+  "selections": [
+    {
+      "id": "reflectance-example",
+      "layoutRef": "layout:reflectance",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          2,
+          50,
+          45
+        ]
+      }
+    },
+    {
+      "id": "quality-example",
+      "layoutRef": "layout:quality",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          50,
+          45
+        ]
+      }
+    }
+  ]
+}

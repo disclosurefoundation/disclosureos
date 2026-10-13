@@ -1,0 +1,134 @@
+{
+  "kind": "acquisition_context",
+  "schemaVersion": "0.1.0",
+  "id": "satellite-raster-context-v1",
+  "instruments": [
+    {
+      "id": "satellite-example",
+      "identity": {
+        "state": "known",
+        "manufacturer": "DisclosureOS synthetic example",
+        "model": "Authored multispectral raster"
+      }
+    }
+  ],
+  "manifests": [
+    {
+      "id": "satellite-manifest",
+      "instrumentRef": "instrument:satellite-example",
+      "version": "1.0.0",
+      "publishedAt": "2026-07-28T22:30:00Z",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "8d66b37bb86ff1c1095c63630649f92569899ff37a154f18bb62502e66b983a9"
+        },
+        "byteLength": 5031,
+        "mediaType": "application/json"
+      },
+      "configuration": {
+        "hardware": {
+          "state": "known",
+          "value": "No physical satellite"
+        },
+        "firmware": {
+          "state": "known",
+          "value": "model.mjs version1.0.0"
+        }
+      },
+      "channels": [
+        {
+          "id": "reflectance",
+          "quantity": "surface_reflectance",
+          "unit": "1",
+          "sampling": {
+            "state": "unknown",
+            "reason": "Authored raster; acquisition time and physical sensor characteristics are not provided"
+          }
+        }
+      ]
+    }
+  ],
+  "deployments": [],
+  "calibrations": [],
+  "acquisitions": [
+    {
+      "id": "satellite-capture",
+      "instrumentRef": "instrument:satellite-example",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:satellite-manifest"
+      },
+      "deployment": {
+        "state": "unresolved",
+        "reason": "Synthetic source without physical deployment"
+      },
+      "classification": "known_control",
+      "time": {
+        "state": "unknown",
+        "reason": "Authored pixels have no acquisition timestamp"
+      },
+      "clock": {
+        "source": {
+          "state": "unknown",
+          "reason": "No acquisition timestamp"
+        },
+        "synchronization": {
+          "state": "unknown",
+          "reason": "No physical synchronization"
+        },
+        "resolution": {
+          "state": "unknown",
+          "reason": "No physical clock"
+        },
+        "uncertainty": {
+          "state": "unknown",
+          "reason": "No physical clock"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "reflectance",
+          "calibration": {
+            "state": "unresolved",
+            "reason": "Grid coordinates and reflectance are authored; physical calibration is not performed"
+          }
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "reflectance",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:satellite-capture",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "197829a45d29321d2abf767d3c1938e22c2568e4eb87097ea0d0e2e0ab042272"
+        },
+        "byteLength": 82944,
+        "mediaType": "application/octet-stream"
+      }
+    },
+    {
+      "id": "quality",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:satellite-capture",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "b653cc582b3d858b994d9cd9607e48a3ca08e37cf64bd8cacc6ba736c871d60a"
+        },
+        "byteLength": 6912,
+        "mediaType": "application/octet-stream"
+      }
+    }
+  ],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "physicalCalibration": "not_performed"
+    }
+  }
+}

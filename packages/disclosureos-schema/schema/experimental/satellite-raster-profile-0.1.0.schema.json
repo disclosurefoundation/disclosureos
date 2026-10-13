@@ -1,0 +1,406 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "satellite_raster_profile"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "observationId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "contextId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "sourceSelectionId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "acquisitionRef": {
+      "type": "string",
+      "pattern": "^acquisition:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "channelId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "acquisitionProducts": {
+      "type": "object",
+      "properties": {
+        "reflectance": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "quality": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "reflectance",
+        "quality"
+      ],
+      "additionalProperties": false
+    },
+    "dataOrigin": {
+      "type": "string",
+      "enum": [
+        "synthetic",
+        "instrument"
+      ]
+    },
+    "mode": {
+      "type": "string",
+      "const": "north_up_multispectral_reflectance"
+    },
+    "grid": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 4096
+        },
+        "columns": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 4096
+        },
+        "crs": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "wgs84_utm"
+            },
+            "epsg": {
+              "type": "string",
+              "pattern": "^EPSG:32[67][0-6][0-9](?![\\s\\S])"
+            },
+            "zone": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 60
+            },
+            "hemisphere": {
+              "type": "string",
+              "enum": [
+                "north",
+                "south"
+              ]
+            },
+            "unit": {
+              "type": "string",
+              "const": "m"
+            }
+          },
+          "required": [
+            "kind",
+            "epsg",
+            "zone",
+            "hemisphere",
+            "unit"
+          ],
+          "additionalProperties": false
+        },
+        "transform": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 100000
+            },
+            {
+              "type": "number",
+              "const": 0
+            },
+            {
+              "type": "number",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            {
+              "type": "number",
+              "const": 0
+            },
+            {
+              "type": "number",
+              "minimum": -100000,
+              "exclusiveMaximum": 0
+            }
+          ],
+          "minItems": 6,
+          "maxItems": 6
+        },
+        "pixelInterpretation": {
+          "type": "string",
+          "const": "area"
+        },
+        "registration": {
+          "type": "string",
+          "enum": [
+            "authored_grid_not_surveyed",
+            "source_declared_not_verified"
+          ]
+        }
+      },
+      "required": [
+        "rows",
+        "columns",
+        "crs",
+        "transform",
+        "pixelInterpretation",
+        "registration"
+      ],
+      "additionalProperties": false
+    },
+    "bands": {
+      "minItems": 2,
+      "maxItems": 16,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "centerWavelengthNm": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1000000
+          },
+          "wavelengthMeaning": {
+            "type": "string",
+            "const": "nominal_center_not_response_function"
+          },
+          "scale": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 100
+          },
+          "offset": {
+            "type": "number",
+            "minimum": -100,
+            "maximum": 100
+          },
+          "nodata": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 65535
+          },
+          "validRange": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "minimum": -100,
+                "maximum": 100
+              },
+              {
+                "type": "number",
+                "minimum": -100,
+                "maximum": 100
+              }
+            ],
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "centerWavelengthNm",
+          "wavelengthMeaning",
+          "scale",
+          "offset",
+          "nodata",
+          "validRange"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "radiometry": {
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "type": "string",
+          "const": "surface_reflectance"
+        },
+        "unit": {
+          "type": "string",
+          "const": "1"
+        },
+        "formula": {
+          "type": "string",
+          "const": "dn_times_scale_plus_offset"
+        },
+        "calibration": {
+          "type": "string",
+          "const": "not_verified"
+        }
+      },
+      "required": [
+        "quantity",
+        "unit",
+        "formula",
+        "calibration"
+      ],
+      "additionalProperties": false
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "authority": {
+          "type": "string",
+          "enum": [
+            "authored_annotations",
+            "source_annotations"
+          ]
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "codes": {
+          "type": "object",
+          "properties": {
+            "clear": {
+              "type": "number",
+              "const": 0
+            },
+            "cloud": {
+              "type": "number",
+              "const": 1
+            },
+            "shadow": {
+              "type": "number",
+              "const": 2
+            },
+            "nodata": {
+              "type": "number",
+              "const": 3
+            }
+          },
+          "required": [
+            "clear",
+            "cloud",
+            "shadow",
+            "nodata"
+          ],
+          "additionalProperties": false
+        },
+        "scope": {
+          "type": "string",
+          "const": "whole_pixel"
+        },
+        "interpretation": {
+          "type": "string",
+          "const": "source_annotation_not_accuracy_certification"
+        }
+      },
+      "required": [
+        "authority",
+        "method",
+        "codes",
+        "scope",
+        "interpretation"
+      ],
+      "additionalProperties": false
+    },
+    "vegetationIndex": {
+      "type": "object",
+      "properties": {
+        "redBandId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "nearInfraredBandId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "method": {
+          "type": "string",
+          "const": "scaled_nir_minus_red_over_sum"
+        },
+        "qualityPolicy": {
+          "type": "string",
+          "const": "clear_nonnegative_nonzero_sum_only"
+        },
+        "interpretation": {
+          "type": "string",
+          "const": "spectral_index_not_land_cover_classification"
+        }
+      },
+      "required": [
+        "redBandId",
+        "nearInfraredBandId",
+        "method",
+        "qualityPolicy",
+        "interpretation"
+      ],
+      "additionalProperties": false
+    },
+    "products": {
+      "type": "object",
+      "properties": {
+        "reflectance": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "quality": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "reflectance",
+        "quality"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "id",
+    "observationId",
+    "contextId",
+    "sourceSelectionId",
+    "acquisitionRef",
+    "channelId",
+    "acquisitionProducts",
+    "dataOrigin",
+    "mode",
+    "grid",
+    "bands",
+    "radiometry",
+    "quality",
+    "vegetationIndex",
+    "products"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:disclosureos:experimental:satellite-raster-profile:0.1.0"
+}

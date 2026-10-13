@@ -1,0 +1,90 @@
+{
+  "kind": "observation",
+  "schemaVersion": "0.1.0",
+  "id": "satellite-raster-v1",
+  "status": "published",
+  "createdAt": "2026-07-28T22:30:00Z",
+  "updatedAt": "2026-07-28T22:30:00Z",
+  "summary": "Fictional six-band satellite raster with exact projected cell selection, retained DN values, decoded reflectance and explicit quality annotations.",
+  "eventTime": {
+    "state": "unknown",
+    "reason": "not_collected"
+  },
+  "position": {
+    "state": "unknown",
+    "reason": "not_collected"
+  },
+  "sources": [
+    {
+      "id": "synthetic-satellite",
+      "kind": "instrument_data",
+      "access": "public",
+      "title": "Authored multispectral raster arrays"
+    },
+    {
+      "id": "methods",
+      "kind": "document",
+      "access": "public",
+      "title": "Authored projected grid and reflectance method",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "8d66b37bb86ff1c1095c63630649f92569899ff37a154f18bb62502e66b983a9"
+      }
+    },
+    {
+      "id": "model-code",
+      "kind": "document",
+      "access": "public",
+      "title": "Executable synthetic raster model",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "be0f07ff0fe792696bdf0b989729e29b85571f7247041e49d1b2b255a7842be8"
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "reflectance",
+      "kind": "raw",
+      "format": "application/octet-stream",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "197829a45d29321d2abf767d3c1938e22c2568e4eb87097ea0d0e2e0ab042272"
+      },
+      "sourceRefs": [
+        "source:synthetic-satellite",
+        "source:methods",
+        "source:model-code"
+      ]
+    },
+    {
+      "id": "quality",
+      "kind": "raw",
+      "format": "application/octet-stream",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "b653cc582b3d858b994d9cd9607e48a3ca08e37cf64bd8cacc6ba736c871d60a"
+      },
+      "sourceRefs": [
+        "source:synthetic-satellite",
+        "source:methods",
+        "source:model-code"
+      ]
+    }
+  ],
+  "methods": [],
+  "processing": [],
+  "assertions": [],
+  "measurements": [],
+  "frames": [],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "partnerData": false,
+      "model": "north_up_multispectral_reflectance",
+      "physicalValidation": "not_performed"
+    }
+  }
+}

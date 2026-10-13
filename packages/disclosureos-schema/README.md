@@ -242,3 +242,7 @@ The optional [passive sonar profile](docs/passive-sonar-profile.md) binds a sing
 ### Static lidar returns and pulse availability
 
 The optional [lidar point-cloud profile](docs/lidar-profile.md) binds a local discrete-return cloud to a complete raster pulse ledger, with exact row selection, complete return groups, normalized amplitude and declared class annotations. The [lidar example](../../examples/lidar-point-cloud) retains authored terrain, roof and vegetation returns alongside no-return and unavailable cells. The evaluator verifies source integrity and declared local geometry; it does not certify calibration, classification accuracy, geographic registration or empty space. This is a source candidate, with publication held separately.
+
+### Multispectral satellite raster
+
+The optional [satellite raster profile](docs/satellite-raster-profile.md) binds a projected grid, retained optical band values and attributed pixel quality to exact source and acquisition artifacts. The reusable reader exposes scaled reflectance, pixel footprints, source byte offsets and quality-gated NDVI. The [fictional raster example](../../examples/satellite-raster) retains six bands, cloud and shadow annotations, missing pixels and numerical edge cases. Passing checks do not certify calibration, atmospheric correction, quality accuracy or geographic registration. No satellite-format decoder is implied; publication remains held separately.
