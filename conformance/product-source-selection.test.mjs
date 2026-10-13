@@ -267,3 +267,107 @@ test("JSON Schema parity and checked-in artifact match exported contract", () =>
     );
   assert.equal(validate(f.selection), true);
 });
+
+function emptyTableFixture() {
+  const f = fixture(),
+    layout = f.selection.layouts[1],
+    bytes = Buffer.from(layout.columns.join(",") + "\n");
+  delete layout.sample;
+  delete layout.partition;
+  Object.assign(layout, {
+    rowCount: 0,
+    byteLength: bytes.length,
+    digest: digest(bytes),
+  });
+  f.observation.products[1].digest = layout.digest;
+  f.assets.set(layout.productRef, bytes);
+  f.selection.selections = f.selection.selections.filter(
+    (s) => s.layoutRef !== `layout:${layout.id}`
+  );
+  return f;
+}
+test("a pinned header-only CSV is retained empty content, not a missing artifact", async () => {
+  const f = emptyTableFixture(),
+    result = await run(f);
+  assert.equal(result.success, true, JSON.stringify(result.issues));
+  assert.equal(result.checks.content, "passed");
+  assert.throws(
+    () =>
+      readProductSourceSelection(f.selection.layouts[1], {
+        kind: "table_row",
+        row: 0,
+      }),
+    /outside extent/
+  );
+});
+test("empty CSV cannot declare a partition, scalar sample mapping or row selector", async () => {
+  const schema = productSourceSelectionJsonSchema(),
+    ajv = new Ajv2020({ strict: true }),
+    validate = ajv.compile(schema);
+  for (const mutate of [
+    (l) => {
+      l.partition = { column: "instrument", equals: "meter-a" };
+    },
+    (l) => {
+      l.sample = {
+        valueColumn: "value",
+        unitColumn: "unit",
+        quantityColumn: "quantity",
+        timeColumn: "time",
+      };
+    },
+  ]) {
+    const f = emptyTableFixture();
+    mutate(f.selection.layouts[1]);
+    assert.equal(validate(f.selection), false);
+    assert.equal(
+      ProductSourceSelectionSchema.safeParse(f.selection).success,
+      false
+    );
+    assert.equal((await run(f)).success, false);
+  }
+  const f = emptyTableFixture();
+  f.selection.selections.push({
+    id: "nonexistent-row",
+    layoutRef: "layout:weather-a",
+    selector: { kind: "table_row", row: 0 },
+  });
+  const r = await run(f);
+  assert.equal(r.success, false);
+  assert.ok(r.issues.some((i) => i.code === "SELECTION.LOCATOR"));
+});
+test("empty CSV bytes must still match the declared header even without a row selection", async () => {
+  for (const content of [
+    "wrong,header\n",
+    "instrument,quantity,value,unit,time\nmeter-a,humidity,0,%,2026-08-14T21:00:00Z\n",
+    "\n",
+  ]) {
+    const f = emptyTableFixture(),
+      layout = f.selection.layouts[1],
+      bytes = Buffer.from(content);
+    Object.assign(layout, { byteLength: bytes.length, digest: digest(bytes) });
+    f.observation.products[1].digest = layout.digest;
+    f.assets.set(layout.productRef, bytes);
+    const r = await run(f);
+    assert.equal(r.success, false);
+    assert.equal(r.checks.external, "passed");
+    assert.equal(r.checks.content, "failed");
+    assert.ok(r.issues.some((i) => i.code === "SELECTION.CONTENT"));
+  }
+});
+test("portable CSV contract accepts zero rows only in the header-only branch", () => {
+  const f = emptyTableFixture(),
+    ajv = new Ajv2020({ strict: true }),
+    validate = ajv.compile(productSourceSelectionJsonSchema());
+  assert.equal(validate(f.selection), true);
+  assert.equal(
+    ProductSourceSelectionSchema.safeParse(f.selection).success,
+    true
+  );
+  f.selection.layouts[1].rowCount = -1;
+  assert.equal(validate(f.selection), false);
+  assert.equal(
+    ProductSourceSelectionSchema.safeParse(f.selection).success,
+    false
+  );
+});

@@ -1,0 +1,302 @@
+{
+  "kind": "product_source_selection",
+  "schemaVersion": "0.1.0",
+  "id": "radar-military-selection-v1",
+  "observationId": "radar-military-v1",
+  "layouts": [
+    {
+      "id": "schedule",
+      "productRef": "product:schedule",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "84169bffce35a4a570f70795b5f8b376ac002b55ce60934df92e7266303cd7d9"
+      },
+      "byteLength": 9508,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 256,
+      "columns": [
+        "dwell_index",
+        "cycle_index",
+        "start_s",
+        "end_s",
+        "beam_azimuth_deg",
+        "beam_width_deg",
+        "purpose"
+      ]
+    },
+    {
+      "id": "returns",
+      "productRef": "product:returns",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "5ef4d38e267f4b16bf7473e525f6c2be7697a7e828b6acc1033d4a5c87a9ed26"
+      },
+      "byteLength": 65536,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "float32",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "normalized_return_power",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "index",
+          "name": "dwell",
+          "length": 256,
+          "firstIndex": 0
+        },
+        {
+          "kind": "regular",
+          "name": "range",
+          "length": 64,
+          "origin": 25,
+          "step": 50,
+          "unit": "m"
+        }
+      ]
+    },
+    {
+      "id": "thresholds",
+      "productRef": "product:thresholds",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "2da188bfe9bdd278301f279033cf9b41d0f16d21eaf347013bbfbdb1504914d6"
+      },
+      "byteLength": 65536,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "float32",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "normalized_return_power",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "index",
+          "name": "dwell",
+          "length": 256,
+          "firstIndex": 0
+        },
+        {
+          "kind": "regular",
+          "name": "range",
+          "length": 64,
+          "origin": 25,
+          "step": 50,
+          "unit": "m"
+        }
+      ]
+    },
+    {
+      "id": "detections",
+      "productRef": "product:detections",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "e96b476883c45ab9946876a1a637eadfd981033852e575fc22572e94b66c3cec"
+      },
+      "byteLength": 6067,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 81,
+      "columns": [
+        "detection_id",
+        "dwell_index",
+        "range_index",
+        "time_s",
+        "east_m",
+        "north_m",
+        "power"
+      ]
+    },
+    {
+      "id": "tracks",
+      "productRef": "product:tracks",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "36876ca3e9f123e0d7ba602620175c228d4fc6e15a18d219db24b6f71487cb67"
+      },
+      "byteLength": 69827,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 639,
+      "columns": [
+        "track_id",
+        "dwell_index",
+        "time_s",
+        "state",
+        "east_m",
+        "north_m",
+        "velocity_east_m_s",
+        "velocity_north_m_s",
+        "cov_ee_m2",
+        "cov_en_m2",
+        "cov_nn_m2"
+      ]
+    },
+    {
+      "id": "associations",
+      "productRef": "product:associations",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "c8fe71a11baeba0377872d7e8005a241452eb4b81658f6f90a21f0840350a4cd"
+      },
+      "byteLength": 2262,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 81,
+      "columns": [
+        "track_id",
+        "dwell_index",
+        "detection_id"
+      ]
+    },
+    {
+      "id": "truth",
+      "productRef": "product:truth",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "ff616e0d323258b58eb8510271fa12e81909505a699641931943c96a5722edf9"
+      },
+      "byteLength": 16594,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 512,
+      "columns": [
+        "target_id",
+        "dwell_index",
+        "time_s",
+        "east_m",
+        "north_m"
+      ]
+    },
+    {
+      "id": "track-state",
+      "productRef": "product:track-state",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "f336a1863d02382e166c448ecf7739191c460a92f752a4637d14118ed8c83628"
+      },
+      "byteLength": 97292,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 639,
+      "columns": [
+        "track_id",
+        "dwell_index",
+        "time_s",
+        "hits",
+        "last_detection_s",
+        "p00",
+        "p01",
+        "p02",
+        "p03",
+        "p10",
+        "p11",
+        "p12",
+        "p13",
+        "p20",
+        "p21",
+        "p22",
+        "p23",
+        "p30",
+        "p31",
+        "p32",
+        "p33"
+      ]
+    }
+  ],
+  "selections": [
+    {
+      "id": "schedule-first",
+      "layoutRef": "layout:schedule",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "returns-first",
+      "layoutRef": "layout:returns",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "thresholds-first",
+      "layoutRef": "layout:thresholds",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "detections-first",
+      "layoutRef": "layout:detections",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "tracks-first",
+      "layoutRef": "layout:tracks",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "associations-first",
+      "layoutRef": "layout:associations",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "truth-first",
+      "layoutRef": "layout:truth",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "track-state-first",
+      "layoutRef": "layout:track-state",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    }
+  ]
+}

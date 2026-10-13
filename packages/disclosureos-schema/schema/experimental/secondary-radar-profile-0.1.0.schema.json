@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "observationId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "contextId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "sourceSelectionId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "acquisitionRef": {
+      "type": "string",
+      "pattern": "^acquisition:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "acquisitionProductRef": {
+      "type": "string",
+      "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "channelId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "frameRef": {
+      "type": "string",
+      "pattern": "^frame:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "origin": {
+      "type": "object",
+      "properties": {
+        "eastM": {
+          "type": "number"
+        },
+        "northM": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "eastM",
+        "northM"
+      ],
+      "additionalProperties": false
+    },
+    "timeOrigin": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    },
+    "dataOrigin": {
+      "type": "string",
+      "enum": [
+        "synthetic",
+        "instrument"
+      ]
+    },
+    "bearingConvention": {
+      "type": "string",
+      "const": "clockwise_from_north"
+    },
+    "kind": {
+      "type": "string",
+      "const": "secondary_radar_profile"
+    },
+    "mode": {
+      "type": "string",
+      "const": "mode_a_mode_c"
+    },
+    "rangeConvention": {
+      "type": "string",
+      "const": "slant_range"
+    },
+    "positionRepresentation": {
+      "type": "string",
+      "const": "polar_only"
+    },
+    "altitudeConvention": {
+      "type": "string",
+      "const": "pressure_altitude_1013_25_hpa"
+    },
+    "identitySemantics": {
+      "type": "string",
+      "const": "reported_code_not_verified_identity"
+    },
+    "processingAvailability": {
+      "type": "string",
+      "const": "explicit_available_time"
+    },
+    "products": {
+      "type": "object",
+      "properties": {
+        "interrogations": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "decodedReplies": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "reports": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "truth": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "interrogations",
+        "decodedReplies",
+        "reports"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "observationId",
+    "contextId",
+    "sourceSelectionId",
+    "acquisitionRef",
+    "acquisitionProductRef",
+    "channelId",
+    "frameRef",
+    "origin",
+    "timeOrigin",
+    "dataOrigin",
+    "bearingConvention",
+    "kind",
+    "mode",
+    "rangeConvention",
+    "positionRepresentation",
+    "altitudeConvention",
+    "identitySemantics",
+    "processingAvailability",
+    "products"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:disclosureos:experimental:secondary-radar-profile:0.1.0"
+}

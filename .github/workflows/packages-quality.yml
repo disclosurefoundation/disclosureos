@@ -346,8 +346,11 @@ jobs:
       - run: pnpm test:v2-radar-profile
       - run: pnpm verify:radar-scanning
       - run: pnpm verify:radar-moving
+      - run: pnpm verify:radar-advanced
       - run: pnpm emit:v2-radar-profile
-      - run: git diff --exit-code -- packages/disclosureos-schema/schema/experimental/radar-profile-0.1.0.schema.json
+      - run: pnpm emit:v2-product-source-selection
+      - run: pnpm test:v2-product-source-selection
+      - run: git diff --exit-code -- packages/disclosureos-schema/schema/experimental/radar-profile-0.1.0.schema.json packages/disclosureos-schema/schema/experimental/steered-radar-profile-0.1.0.schema.json packages/disclosureos-schema/schema/experimental/secondary-radar-profile-0.1.0.schema.json packages/disclosureos-schema/schema/experimental/product-source-selection-0.1.0.schema.json
 
   case-presentation:
     name: C3 public case presentation

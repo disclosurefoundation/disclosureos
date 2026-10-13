@@ -71,3 +71,6 @@ export * from './product-source-reader';
 export * from './radar-profile-schema';
 export * from './radar-profile-reader';
 export * from './radar-profile';
+export * from './advanced-radar-profile-schema';
+export * from './advanced-radar-profile-reader';
+export * from './advanced-radar-profile';

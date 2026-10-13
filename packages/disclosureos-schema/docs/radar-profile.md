@@ -120,3 +120,10 @@ Passing checks establish declared structure, source bytes, layout consistency, t
 The deterministic [fixed scanning example](../../../examples/radar-scanning) and [moving-platform examples](../../../examples/radar-moving) include separate algorithm verifiers. Its return synthesis, threshold procedure, localizer and detector-only tracker demonstrate the contract. They are not an electromagnetic propagation model, a certified constant-false-alarm detector or a benchmark of real radar capability.
 
 `readRadarProducts` is a dependency-free numerical decoder for browser/standalone implementations after profile evaluation or equivalent verification of the exact pinned artifacts. It does not independently verify hashes, lineage, covariance or scientific adequacy. Do not treat successful decoding as profile validation.
+
+## Other radar acquisition modes
+
+Electronically steered beams and cooperative Mode A/Mode C replies use separate
+optional standard contracts. See [Steered and secondary radar profiles](./advanced-radar-profiles.md)
+for their public APIs, exact retained tables, portable schemas and reproducible
+examples. They do not change the fixed or moving rotating-scan profile above.

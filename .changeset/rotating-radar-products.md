@@ -11,3 +11,13 @@ Moving platforms retain one pose per dwell, declare beam reference and optional
 slant-to-plane projection, and validate motion compensation and conditional uncertainty. Passing validation does
 not establish physical calibration or tracking performance. Publication remains
 deferred to the coordinated V2 release.
+
+Add separate optional steered-radar and cooperative secondary-radar profiles,
+public dependency-free readers, package-exported portable schemas and complete
+reproducible examples. Steered arrays retain arbitrary beam schedules and
+per-dwell processing availability. Secondary reports preserve Mode A codes,
+nullable Mode C pressure altitude, invalid receptions and exact reply lineage
+without inventing reflected power, geometric height or verified identity.
+
+Allow retained header-only CSV layouts for legitimate empty outcomes while
+rejecting row selection, partition and sample mappings into empty tables.

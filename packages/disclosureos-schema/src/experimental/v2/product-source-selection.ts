@@ -5,6 +5,7 @@ import {
 } from "@disclosureos/records/experimental/v2";
 import {
   readProductSourceSelection,
+  readSourceCsv,
   sourceElementBytes,
 } from "./product-source-reader";
 import type { ProductSourceRead } from "./product-source-reader";
@@ -51,7 +52,25 @@ const common = {
   byteLength: positive,
   mediaType: text,
 };
-export const ProductSourceLayoutSchema = z.discriminatedUnion("kind", [
+const csvLayout = z.strictObject({
+  ...common,
+  kind: z.literal("csv_table"),
+  encoding: z.literal("utf-8"),
+  delimiter: z.literal(","),
+  header: z.literal(true),
+  rowCount: positive,
+  columns: z.array(text).min(1),
+  partition: z.strictObject({ column: text, equals: text }).optional(),
+  sample: z
+    .strictObject({
+      valueColumn: text,
+      unitColumn: text,
+      quantityColumn: text,
+      timeColumn: text,
+    })
+    .optional(),
+});
+export const ProductSourceLayoutSchema = z.union([
   z.strictObject({
     ...common,
     kind: z.literal("binary_array"),
@@ -63,23 +82,11 @@ export const ProductSourceLayoutSchema = z.discriminatedUnion("kind", [
     quantity: text,
     unit: text,
   }),
-  z.strictObject({
-    ...common,
-    kind: z.literal("csv_table"),
-    encoding: z.literal("utf-8"),
-    delimiter: z.literal(","),
-    header: z.literal(true),
-    rowCount: positive,
-    columns: z.array(text).min(1),
-    partition: z.strictObject({ column: text, equals: text }).optional(),
-    sample: z
-      .strictObject({
-        valueColumn: text,
-        unitColumn: text,
-        quantityColumn: text,
-        timeColumn: text,
-      })
-      .optional(),
+  csvLayout,
+  csvLayout.extend({
+    rowCount: z.literal(0),
+    partition: z.never().optional(),
+    sample: z.never().optional(),
   }),
   z.strictObject({
     ...common,
@@ -454,6 +461,30 @@ export async function evaluateProductSourceSelection(
     : verified.size === data.layouts.length
     ? "passed"
     : "not_checked";
+  const invalidEmptyLayouts = new Set<string>();
+  // An empty table has no selectable row, so validate its retained header even
+  // when no selection can point into it. Empty content is not missing content.
+  for (const layout of data.layouts) {
+    if (
+      layout.kind !== "csv_table" ||
+      layout.rowCount !== 0 ||
+      !verified.has(layout.productRef)
+    )
+      continue;
+    try {
+      const rows = readSourceCsv(assets.get(layout.productRef)!);
+      if (
+        rows.length !== 1 ||
+        JSON.stringify(rows[0]) !== JSON.stringify(layout.columns)
+      )
+        throw new Error(
+          "Empty CSV must contain exactly its declared header and no rows."
+        );
+    } catch (error) {
+      invalidEmptyLayouts.add(layout.productRef);
+      issue("SELECTION.CONTENT", "external", layout.productRef, String(error));
+    }
+  }
   for (const [i, item] of data.selections.entries()) {
     const layout = layouts.get(item.layoutRef)!;
     if (!verified.has(layout.productRef)) {
@@ -503,11 +534,13 @@ export async function evaluateProductSourceSelection(
       });
     }
   }
-  result.checks.content = result.selections.some((s) => s.status === "failed")
-    ? "failed"
-    : result.selections.every((s) => s.status === "passed")
-    ? "passed"
-    : "not_checked";
+  result.checks.content =
+    invalidEmptyLayouts.size ||
+    result.selections.some((s) => s.status === "failed")
+      ? "failed"
+      : result.selections.every((s) => s.status === "passed")
+      ? "passed"
+      : "not_checked";
   result.success =
     result.checks.external === "passed" && result.checks.content === "passed";
   return result;

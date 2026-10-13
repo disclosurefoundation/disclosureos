@@ -1,0 +1,193 @@
+{
+  "kind": "observation",
+  "schemaVersion": "0.1.0",
+  "id": "radar-secondary-v1",
+  "status": "published",
+  "createdAt": "2026-07-28T22:00:00Z",
+  "updatedAt": "2026-07-28T22:00:00Z",
+  "summary": "Fictional Mode A and Mode C decoded reply records with explicit valid, invalid and missing information. Usable reports retain exact reply lineage; separate scenario truth is not a sensor observation.",
+  "eventTime": {
+    "state": "known",
+    "value": {
+      "kind": "interval",
+      "start": {
+        "kind": "instant",
+        "value": "2026-07-28T22:00:00Z",
+        "timeScale": "UTC"
+      },
+      "end": {
+        "kind": "instant",
+        "value": "2026-07-28T22:01:04.000Z",
+        "timeScale": "UTC"
+      }
+    },
+    "sourceRefs": [
+      "source:methods"
+    ]
+  },
+  "position": {
+    "state": "unknown",
+    "reason": "not_collected"
+  },
+  "sources": [
+    {
+      "id": "simulation",
+      "kind": "instrument_data",
+      "access": "public",
+      "title": "Deterministic reduced radar simulation"
+    },
+    {
+      "id": "methods",
+      "kind": "document",
+      "access": "public",
+      "title": "Declared simulation and processing methods",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "fdfe42c6a681be737230fb51d0db51910b194fa10f4afbb3534370c364c5a181"
+      }
+    },
+    {
+      "id": "model-code",
+      "kind": "document",
+      "access": "public",
+      "title": "Executable simulation and processing code",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "165b4317140b1ddfb9b42d3278fb6d9ac54933d74c555da270fd4915a64cf963"
+      }
+    },
+    {
+      "id": "model-base",
+      "kind": "document",
+      "access": "public",
+      "title": "Retained random generator and numerical tracking primitives",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "909f53a9548ae4ea4ccaa5440a990b87a4cc32b32876ab018a19ad2b6e9d1710"
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "interrogations",
+      "kind": "raw",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "1666708562ee7bd1f7fe0081adb8f251efc94b6192ff610cf9701cf8f2fd7ea6"
+      },
+      "sourceRefs": [
+        "source:simulation",
+        "source:methods",
+        "source:model-code",
+        "source:model-base"
+      ]
+    },
+    {
+      "id": "decodedReplies",
+      "kind": "raw",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "22e4694994ab32b23c9689ee7dad3da9f742e4c6a59d914b3693b0d7a263c0b6"
+      },
+      "sourceRefs": [
+        "source:simulation",
+        "source:methods",
+        "source:model-code",
+        "source:model-base"
+      ]
+    },
+    {
+      "id": "reports",
+      "kind": "derived",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "397dd145295c7fa331ee5d3e48e5cee916278c5fae71b708c4c81e1b194d79d3"
+      },
+      "generatedBy": "process:report"
+    },
+    {
+      "id": "truth",
+      "kind": "derived",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "06eb6f3f4148851d0d71374c3ce1a40f2620838acc0c24e684d744b69d731c75"
+      },
+      "generatedBy": "process:truth"
+    }
+  ],
+  "methods": [
+    {
+      "id": "report",
+      "version": "1.0.0",
+      "description": "Preserve valid decoded reply fields without identity fusion or altitude conversion."
+    },
+    {
+      "id": "truth",
+      "version": "1.0.0",
+      "description": "Independent authored source scene for example evaluation."
+    }
+  ],
+  "processing": [
+    {
+      "id": "report",
+      "methodRef": "method:report",
+      "methodVersion": "1.0.0",
+      "performedBy": "DisclosureOS deterministic numerical example",
+      "performedAt": "2026-07-28T22:01:04.000Z",
+      "inputRefs": [
+        "product:decodedReplies",
+        "product:interrogations",
+        "source:methods",
+        "source:model-code",
+        "source:model-base"
+      ],
+      "outputRefs": [
+        "product:reports"
+      ]
+    },
+    {
+      "id": "truth",
+      "methodRef": "method:truth",
+      "methodVersion": "1.0.0",
+      "performedBy": "DisclosureOS deterministic numerical example",
+      "performedAt": "2026-07-28T22:01:04.000Z",
+      "inputRefs": [
+        "source:methods",
+        "source:model-code",
+        "source:model-base"
+      ],
+      "outputRefs": [
+        "product:truth"
+      ]
+    }
+  ],
+  "assertions": [],
+  "measurements": [],
+  "frames": [
+    {
+      "id": "radar-local",
+      "kind": "cartesian",
+      "definition": {
+        "state": "described",
+        "description": "Local east/north/up frame for independent generator truth only. Secondary reports remain polar slant range and bearing; no horizontal ground projection."
+      },
+      "unit": "m"
+    }
+  ],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "partnerData": false,
+      "model": "reduced_mode_a_mode_c_reply_source",
+      "physicalValidation": "not_performed"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "0.1.0",
+  "id": "radar-secondary-profile-v1",
+  "observationId": "radar-secondary-v1",
+  "contextId": "radar-secondary-context-v1",
+  "sourceSelectionId": "radar-secondary-selection-v1",
+  "acquisitionRef": "acquisition:radar-capture",
+  "acquisitionProductRef": "product:decodedReplies",
+  "channelId": "decoded-reply",
+  "frameRef": "frame:radar-local",
+  "origin": {
+    "eastM": 0,
+    "northM": 0
+  },
+  "timeOrigin": "2026-07-28T22:00:00Z",
+  "dataOrigin": "synthetic",
+  "bearingConvention": "clockwise_from_north",
+  "kind": "secondary_radar_profile",
+  "mode": "mode_a_mode_c",
+  "rangeConvention": "slant_range",
+  "positionRepresentation": "polar_only",
+  "altitudeConvention": "pressure_altitude_1013_25_hpa",
+  "identitySemantics": "reported_code_not_verified_identity",
+  "processingAvailability": "explicit_available_time",
+  "products": {
+    "interrogations": "product:interrogations",
+    "decodedReplies": "product:decodedReplies",
+    "reports": "product:reports",
+    "truth": "product:truth"
+  }
+}
