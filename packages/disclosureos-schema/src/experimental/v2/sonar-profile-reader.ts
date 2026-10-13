@@ -39,8 +39,8 @@ const decimal = (value: number) => {
   const exponent = Number(m[3] ?? 0) - (m[2]?.length ?? 0),
     n = BigInt(`${m[1]}${m[2] ?? ""}`);
   return exponent >= 0
-    ? { n: n * 10n ** BigInt(exponent), d: 1n }
-    : { n, d: 10n ** BigInt(-exponent) };
+    ? { n: n * BigInt(10) ** BigInt(exponent), d: BigInt(1) }
+    : { n, d: BigInt(10) ** BigInt(-exponent) };
 };
 const add = (a: { n: bigint; d: bigint }, b: { n: bigint; d: bigint }) => ({
   n: a.n * b.d + b.n * a.d,
