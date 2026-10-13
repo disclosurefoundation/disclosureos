@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "catalogId": {
+      "type": "string",
+      "pattern": "^(?:urn:[A-Za-z0-9][A-Za-z0-9-]*:[^\\s]+|https:\\/\\/[^\\s/?#]+(?:\\/[^\\s]*)?)(?![\\s\\S])"
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1,
+      "allOf": [
+        {
+          "pattern": "\\S"
+        },
+        {
+          "pattern": "^(?![ \\t\\r\\n]*[Ll][Aa][Tt][Ee][Ss][Tt][ \\t\\r\\n]*$)[\\s\\S]+$"
+        }
+      ]
+    },
+    "document": {
+      "type": "object",
+      "properties": {
+        "documentId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])",
+          "description": "ID inside the supplied document; not a URL."
+        },
+        "schemaId": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "description": "Exact document contract identity."
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}(?![\\s\\S])",
+          "description": "SHA-256 of exact supplied document bytes."
+        }
+      },
+      "required": [
+        "documentId",
+        "schemaId",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "termId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    }
+  },
+  "required": [
+    "catalogId",
+    "revision",
+    "document",
+    "termId"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:disclosureos:experimental:vocabulary-term-reference:0.1.0"
+}

@@ -88,7 +88,13 @@
     "./experimental/v2/lidar-profile/schema": "./schema/experimental/lidar-point-cloud-profile-0.1.0.schema.json",
     "./experimental/v2/lidar-profile/schema/0.1.0": "./schema/experimental/lidar-point-cloud-profile-0.1.0.schema.json",
     "./experimental/v2/satellite-raster-profile/schema": "./schema/experimental/satellite-raster-profile-0.1.0.schema.json",
-    "./experimental/v2/satellite-raster-profile/schema/0.1.0": "./schema/experimental/satellite-raster-profile-0.1.0.schema.json"
+    "./experimental/v2/satellite-raster-profile/schema/0.1.0": "./schema/experimental/satellite-raster-profile-0.1.0.schema.json",
+    "./experimental/v2/vocabulary-catalog/schema": "./schema/experimental/vocabulary-catalog-0.1.0.schema.json",
+    "./experimental/v2/vocabulary-catalog/schema/0.1.0": "./schema/experimental/vocabulary-catalog-0.1.0.schema.json",
+    "./experimental/v2/vocabulary-term-reference/schema": "./schema/experimental/vocabulary-term-reference-0.1.0.schema.json",
+    "./experimental/v2/vocabulary-term-reference/schema/0.1.0": "./schema/experimental/vocabulary-term-reference-0.1.0.schema.json",
+    "./experimental/v2/vocabulary-bindings/schema": "./schema/experimental/vocabulary-bindings-0.1.0.schema.json",
+    "./experimental/v2/vocabulary-bindings/schema/0.1.0": "./schema/experimental/vocabulary-bindings-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

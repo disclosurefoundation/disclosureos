@@ -1,156 +1,137 @@
 import type { TechnologyObservable, TechnologyObservableId } from './types';
 
 export const TECHNOLOGY_OBSERVABLES: Record<TechnologyObservableId, TechnologyObservable> = {
-  antigravity_lift: {
-    id: 'antigravity_lift',
-    code: 'TO-1',
-    label: 'Anti-Gravity Lift',
-    description: 'Object appears to overcome gravitational force without conventional propulsion — no wings, rotors, exhaust, or visible means of lift.',
-    scientificBasis: 'Violation of Newtonian mechanics and known aerodynamic principles. No known human technology achieves sustained hover without downwash, exhaust, or electromagnetic support at observed scales.',
-    detectionSignals: [
-      'Sustained hover with no visible propulsion',
-      'No downwash or ground effect disturbance',
-      'No exhaust or thermal signature from propulsion',
-      'Object mass inconsistent with buoyant lift',
-      'Silent operation during hover',
+  "apparent_hover": {
+    "id": "apparent_hover",
+    "code": "OC-T01",
+    "label": "Apparent Hover",
+    "description": "An object appears to remain within a limited region above a surface for a stated interval, while the available observations do not identify its means of support. This term records the support question; it does not identify a propulsion mechanism.",
+    "scientificBasis": "Assess support using position relative to a declared reference frame, duration, environmental conditions and the available observations of possible lift or suspension. Failure to resolve a support mechanism is an observation limit, not a violation of mechanics.",
+    "detectionSignals": [
+      "An account describes an object remaining above a surface without an identified means of support.",
+      "A timed sequence indicates limited displacement in a stated reference frame.",
+      "Recorded views or sensor channels do not resolve particular support features within stated limits."
     ],
-    methods: [
-      'FLIR/IR imaging for thermal signatures',
-      'Doppler radar for relative velocity confirmation',
-      'Ground-level pressure sensors for downwash detection',
-      'Acoustic monitoring for propulsion noise',
-      'Witness triangulation for altitude confirmation',
+    "methods": [
+      "Retain the original account, time interval and observer position.",
+      "Estimate position and motion with calibrated geometry; distinguish station keeping from apparent stillness caused by viewing geometry.",
+      "Compare visible, thermal, acoustic or other available observations with the specific support mechanisms being tested, recording coverage and sensitivity."
     ],
-    references: [
-      'Elizondo, "The Five Observables" framework, AATIP (anti-gravity lift)',
-      'Knuth et al., "Estimating Flight Characteristics of Anomalous Unidentified Aerial Vehicles," Entropy, 2019',
-    ],
+    "caveat": "Not seeing wings, exhaust or downwash does not show that they were absent. Distance, resolution, wind, buoyancy, tethering, viewing geometry and platform motion require consideration. A Doppler radial-velocity measurement alone does not establish three-dimensional station keeping.",
+    "caveatLabel": "Unidentified support is not anti-gravity",
+    "references": [
+      "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf"
+    ]
   },
-  instantaneous_acceleration: {
-    id: 'instantaneous_acceleration',
-    code: 'TO-2',
-    label: 'Instantaneous Acceleration',
-    description: 'Object accelerates at rates far beyond known aerospace capabilities — estimated hundreds or thousands of g-forces with no apparent inertial effects.',
-    scientificBasis: 'Exceeds structural limits of known materials and biological tolerance. F/A-18 max sustained: ~9g. In the 2004 Nimitz encounter, SCU forensic analysis estimated UAP accelerations from 40g to hundreds of g, with some maneuver estimates reaching thousands of g (Knuth et al., 2019).',
-    detectionSignals: [
-      'Radar track showing extreme velocity change over minimal time',
-      'Object transitions from hover to hypersonic in < 1 second',
-      'Right-angle or acute-angle turns at high speed',
-      'Immediate reversal of travel direction',
-      'No observed structural deformation during maneuver',
+  "abrupt_motion": {
+    "id": "abrupt_motion",
+    "code": "OC-T02",
+    "label": "Abrupt Motion",
+    "description": "An apparent or measured rapid change in motion, including a change in direction, speed or angular position. Any claim about physical acceleration must identify the quantity estimated and the observations used.",
+    "scientificBasis": "Angular motion, radial velocity and three-dimensional motion are different quantities. Physical acceleration estimates depend on geometry, timing, reference-frame motion and the analysis method; uncertainty and a stated comparison are needed to assess whether a result is unusual.",
+    "detectionSignals": [
+      "An account describes sudden departure, stopping, reversal or a sharp turn.",
+      "A recorded angular position or other measured motion quantity changes over a short interval.",
+      "An analysis estimates a physical acceleration with declared assumptions and uncertainty."
     ],
-    methods: [
-      'Multi-radar track correlation for velocity profiles',
-      'Frame-by-frame video analysis for acceleration curves',
-      'Radar Doppler shift measurements',
-      'Satellite track data for independent velocity confirmation',
-      'Accelerometer data from nearby sensor platforms',
+    "methods": [
+      "Preserve timestamps, exposure duration, frame cadence and any missing intervals.",
+      "Estimate angular motion separately from physical motion and document range information or constraints.",
+      "Account for sensor/platform motion, tracking changes and processing before comparing derived accelerations with a stated reference."
     ],
-    references: [
-      'Powell et al., "A Forensic Analysis of Navy Carrier Strike Group Eleven\'s Encounter with an Anomalous Aerial Vehicle," SCU, 2019',
-      'Knuth et al., "Estimating Flight Characteristics of Anomalous Unidentified Aerial Vehicles," Entropy, 2019',
-    ],
+    "caveat": "A discontinuity in a track is not an instantaneous physical maneuver. A nearby platform accelerometer measures that platform, not the distant object. No universal acceleration threshold or biological tolerance is implied by this term.",
+    "caveatLabel": "Apparent motion is not physical acceleration",
+    "references": [
+      "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf"
+    ]
   },
-  hypersonic_no_signatures: {
-    id: 'hypersonic_no_signatures',
-    code: 'TO-3',
-    label: 'Hypersonic Velocities Without Signatures',
-    description: 'Object achieves hypersonic speeds (Mach 5+) without producing sonic boom, heat signature, or plasma sheath — violating known atmospheric physics.',
-    scientificBasis: 'Objects exceeding Mach 1 in atmosphere must produce shock waves (sonic boom). Hypersonic flight generates extreme adiabatic heating and plasma formation. Absence of these signatures implies either non-atmospheric medium interaction or unknown physics.',
-    detectionSignals: [
-      'Radar-confirmed velocity exceeding Mach 5',
-      'No sonic boom detected at ground level',
-      'No IR bloom or thermal wake',
-      'No plasma sheath visible in optical/UV spectrum',
-      'No atmospheric disturbance trail',
+  "hypersonic_signature_discrepancy": {
+    "id": "hypersonic_signature_discrepancy",
+    "code": "OC-T03",
+    "label": "Hypersonic Motion and Signature Discrepancy",
+    "description": "A proposed atmospheric trajectory at approximately Mach 5 or higher relative to the surrounding air, for which one or more specified signatures are reported or measured below an expected level. Retain the declared speed threshold and uncertainty; evaluate the speed estimate and each signature comparison separately.",
+    "scientificBasis": "Mach number depends on speed relative to the surrounding air and the local speed of sound. An expected acoustic, thermal, optical or other signature requires a stated model, environment, geometry and observation opportunity. A discrepancy is conditional on those assumptions.",
+    "detectionSignals": [
+      "A reported or derived speed is described as hypersonic under stated atmospheric conditions.",
+      "An observed signature is below a model prediction or detection threshold for a specified interval and channel.",
+      "A source reports the absence of a named signature, with observation conditions retained where available."
     ],
-    methods: [
-      'Phased-array radar for precise speed measurement',
-      'Infrasound sensors for sonic boom detection',
-      'Multi-spectral imaging for plasma detection',
-      'Seismographic stations for shock wave detection',
-      'FLIR for thermal signature analysis',
+    "methods": [
+      "Record speed, reference frame, uncertainty, the declared hypersonic threshold, atmospheric conditions and the sound-speed model.",
+      "Record the predicted signature at the observing sensor, including propagation and geometric assumptions.",
+      "Compare calibrated observations, background levels and sensitivity with the prediction; retain separate results for each signature."
     ],
-    references: [
-      'Anderson, "Fundamentals of Aerodynamics," McGraw-Hill (hypersonic regime physics)',
-      'Elizondo, "The Five Observables" framework, AATIP (hypersonic velocities without signatures)',
-    ],
+    "caveat": "No recording, no sensor coverage and a measured non-detection are different states. A ground observer need not detect every atmospheric shock. The term does not require a visible plasma sheath and does not imply unknown physics.",
+    "caveatLabel": "Non-detection needs a defined observation opportunity",
+    "references": [
+      "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf",
+      "https://www.grc.nasa.gov/www/BGH/mach.html"
+    ]
   },
-  low_observability: {
-    id: 'low_observability',
-    code: 'TO-4',
-    label: 'Low Observability',
-    description: 'Object evades or confounds multiple sensor modalities simultaneously — radar, infrared, visual, or electromagnetic detection systems fail to maintain consistent track.',
-    scientificBasis: 'Known stealth technology reduces radar cross-section through geometry and materials but cannot simultaneously defeat all sensor modalities. UAP cases show simultaneous radar evasion, IR suppression, and visual cloaking beyond current technology.',
-    detectionSignals: [
-      'Intermittent radar returns despite visual confirmation',
-      'Radar track acquisition followed by unexplained loss',
-      'Sensor malfunction coinciding with proximity',
-      'Object visible to one modality but not others',
-      'Electronic warfare effects without identifiable source',
+  "sensor_detection_discrepancy": {
+    "id": "sensor_detection_discrepancy",
+    "code": "OC-T04",
+    "label": "Sensor Detection Discrepancy",
+    "description": "A difference or interruption in detections of a candidate object across times, sensors or observing modes that calls for comparison of the observations and their limits.",
+    "scientificBasis": "Detection depends on the signal at the sensor, background, coverage, configuration and processing. Comparing observations requires time alignment and a justified association between candidate detections. A discrepancy alone does not specify its cause.",
+    "detectionSignals": [
+      "A candidate appears in one channel but has no associated detection in another.",
+      "A retained track contains acquisition, interruption or reacquisition intervals.",
+      "Detection strength or track behavior differs between instruments or processing settings."
     ],
-    methods: [
-      'Multi-sensor correlation (radar + IR + EO)',
-      'Radar cross-section estimation',
-      'EM spectrum analysis for jamming signatures',
-      'Sensor diagnostic logs for malfunction patterns',
-      'Signal-to-noise analysis across detection systems',
+    "methods": [
+      "Compare synchronized source data with fields of view, sensitivity, background and sensor settings.",
+      "Retain detection thresholds and raw/processed distinctions, including rejected returns where available.",
+      "Review diagnostics and association methods before interpreting an interruption as loss of the same physical object."
     ],
-    references: [
-      'USS Princeton (AN/SPY-1 Aegis radar) operator testimony, 2004 Nimitz encounter',
-      'Elizondo, "The Five Observables" framework, AATIP (low observability)',
-    ],
+    "caveat": "An instrument fault, missing file, occlusion or untested association must not become a finding of stealth, jamming or intentional evasion. Do not infer low radar cross-section from missing track data alone.",
+    "caveatLabel": "Detection differences do not establish evasion",
+    "references": [
+      "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf"
+    ]
   },
-  transmedium_travel: {
-    id: 'transmedium_travel',
-    code: 'TO-5',
-    label: 'Transmedium Travel',
-    description: 'Object transitions between air, water, and/or space without apparent structural reconfiguration, speed loss, or medium-transition effects.',
-    scientificBasis: 'Air-to-water transition requires extreme structural adaptation (different pressure regimes, Reynolds numbers, propulsion requirements). No known vehicle operates effectively across multiple media without reconfiguration.',
-    detectionSignals: [
-      'Object observed entering water from air without splash proportional to size/speed',
-      'Object observed exiting water into air with continued controlled flight',
-      'Sonar track correlating with aerial radar track',
-      'No deceleration during medium transition',
-      'Consistent shape/size across media transitions',
+  "apparent_medium_transition": {
+    "id": "apparent_medium_transition",
+    "code": "OC-T05",
+    "label": "Apparent Medium Transition",
+    "description": "An apparent or measured passage of a candidate object between media or across a declared environmental regime boundary, such as an air-water interface or a specified atmospheric-to-space boundary. Identify the conditions on each side, the boundary used and the continuity of the candidate.",
+    "scientificBasis": "A transition claim depends on positions relative to the boundary and on whether observations before and after it refer to the same object. Motion, shape and interface effects are separate quantities to compare; their absence is not built into this term.",
+    "detectionSignals": [
+      "An account describes entry into or exit from a named medium.",
+      "A continuous sequence appears to cross a located interface.",
+      "Separate observing systems report candidates on opposite sides of a boundary within a specified time interval."
     ],
-    methods: [
-      'Coordinated air/maritime sensor monitoring',
-      'Sonar-to-radar track handoff correlation',
-      'High-speed camera for transition dynamics',
-      'Underwater hydrophone arrays',
-      'Satellite IR for ocean surface thermal anomalies',
+    "methods": [
+      "Record the boundary location, observation geometry and any refraction or obscuration model.",
+      "Retain observations through the transition where available; mark gaps and ambiguous associations.",
+      "Compare before/after motion and any disturbance against separate stated expectations and detection limits."
     ],
-    references: [
-      'Scientific Coalition for UAP Studies, "2013 Aguadilla Puerto Rico: The Detailed Analysis of an Unidentified Anomalous Phenomenon Captured by the Department of Homeland Security," 2015',
-      'Gallaudet, "Beneath the Surface," The Sol Foundation, 2023',
-    ],
+    "caveat": "Appearance behind a horizon, into glare or below a resolved waterline is not sufficient to establish entry into water. Atmospheric-to-space travel has no single material surface: name the altitude or regime criterion when using that context. This term does not assert unchanged speed or absence of a splash.",
+    "caveatLabel": "A transition requires continuity and a located boundary",
+    "references": [
+      "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf"
+    ]
   },
-  biological_effects: {
-    id: 'biological_effects',
-    code: 'TO-6',
-    label: 'Biological Effects',
-    description: 'Proximity to the object causes measurable radiological, energetic, or physiological effects on biological organisms — burns, nausea, cellular damage, or other medical sequelae.',
-    scientificBasis: 'Consistent with high-energy electromagnetic radiation exposure. AAWSAP/BAASS documented cases with radiation-like injuries. Colares, Brazil (1977) documented beam-related injuries on dozens of witnesses.',
-    detectionSignals: [
-      'Radiation-type burns without identifiable source',
-      'Nausea, headaches, or disorientation in proximity',
-      'Skin lesions or erythema post-encounter',
-      'Cellular or DNA damage documented in medical records',
-      'Multiple witnesses reporting similar physiological effects',
-      'Vegetation damage patterns around landing sites',
+  "event_associated_biological_changes": {
+    "id": "event_associated_biological_changes",
+    "code": "OC-T06",
+    "label": "Biological Changes Around an Event",
+    "description": "Reported symptoms or measured biological changes in a person, animal, plant or other organism in the context of an investigated event. Timing and any proposed exposure are recorded separately from a claim that the event caused the change.",
+    "scientificBasis": "Description of a symptom, clinical finding or environmental change is distinct from diagnosis and causal attribution. Assessments of an association require timelines, relevant baselines, potential exposures and consideration of alternative causes.",
+    "detectionSignals": [
+      "An account reports symptoms during or after an event.",
+      "A clinical or laboratory record documents a finding and its examination time.",
+      "A survey describes a change in vegetation or other organisms with a stated comparison."
     ],
-    methods: [
-      'Medical examination and documentation',
-      'Dosimetry and radiation survey at site',
-      'Blood panel and cellular analysis',
-      'Vegetation and soil sample analysis',
-      'Geiger counter readings at encounter locations',
-      'Long-term medical follow-up of exposed individuals',
+    "methods": [
+      "Retain the original account and distinguish event time, symptom onset, examination time and reporting time.",
+      "Link authorized clinical or laboratory findings to their methods, reference ranges and uncertainty where applicable.",
+      "Record exposure measurements and comparison observations separately; evaluate causal explanations in attributed claims."
     ],
-    references: [
-      'Lacatski, Kelleher & Knapp, "Skinwalkers at the Pentagon," 2021 (AAWSAP medical cases)',
-      'Operação Prato (Operation Saucer) medical documentation, Brazilian Air Force, Colares, 1977',
-    ],
-  },
+    "caveat": "An injury description does not identify radiation or another exposure mechanism. A later site reading does not reconstruct a past dose by itself. This category is not a clinical diagnosis or a basis for treatment advice.",
+    "caveatLabel": "Timing does not establish causation",
+    "references": [
+      "https://www.cdc.gov/field-epi-manual/php/chapters/analyze-interpret-data.html"
+    ]
+  }
 };

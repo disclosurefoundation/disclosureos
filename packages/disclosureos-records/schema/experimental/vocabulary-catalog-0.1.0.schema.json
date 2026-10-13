@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "vocabulary_catalog"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "id": {
+      "$ref": "#/$defs/__schema0"
+    },
+    "catalogId": {
+      "type": "string",
+      "pattern": "^(?:urn:[A-Za-z0-9][A-Za-z0-9-]*:[^\\s]+|https:\\/\\/[^\\s/?#]+(?:\\/[^\\s]*)?)(?![\\s\\S])"
+    },
+    "revision": {
+      "allOf": [
+        {
+          "pattern": "\\S"
+        },
+        {
+          "pattern": "^(?![ \\t\\r\\n]*[Ll][Aa][Tt][Ee][Ss][Tt][ \\t\\r\\n]*$)[\\s\\S]+$"
+        }
+      ],
+      "$ref": "#/$defs/__schema1"
+    },
+    "publishedBy": {
+      "$ref": "#/$defs/__schema1"
+    },
+    "publishedAt": {
+      "type": "string",
+      "allOf": [
+        {
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+        },
+        {
+          "pattern": "^(?!0000)"
+        },
+        {
+          "pattern": "T[0-9]{2}:[0-9]{2}:[0-9]{2}"
+        },
+        {
+          "pattern": "(?:Z|[+-][0-9]{2}:[0-9]{2})(?![\\s\\S])"
+        }
+      ]
+    },
+    "terms": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/__schema2"
+      }
+    },
+    "extensions": {
+      "$ref": "#/$defs/__schema3"
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "id",
+    "catalogId",
+    "revision",
+    "publishedBy",
+    "publishedAt",
+    "terms"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "__schema1": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "__schema2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/__schema0"
+        },
+        "label": {
+          "$ref": "#/$defs/__schema1"
+        },
+        "description": {
+          "$ref": "#/$defs/__schema1"
+        },
+        "code": {
+          "$ref": "#/$defs/__schema1"
+        },
+        "category": {
+          "$ref": "#/$defs/__schema1"
+        },
+        "extensions": {
+          "$ref": "#/$defs/__schema3"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "__schema3": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z0-9_-]+)+(?![\\s\\S])"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/__schema4"
+      }
+    },
+    "__schema4": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema4"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema4"
+          }
+        }
+      ]
+    }
+  },
+  "$id": "urn:disclosureos:experimental:vocabulary-catalog:0.1.0"
+}

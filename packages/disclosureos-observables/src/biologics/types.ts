@@ -3,12 +3,12 @@ import { ObservableBaseSchema, ObservableAssessmentSchema } from '../assessment/
 
 export const BiologicsObservableIdSchema = z
   .enum([
-    'molecular_complexity',
-    'isotopic_provenance',
-    'non_standard_biochemistry',
-    'non_phylogenetic_genetics',
-    'anomalous_morphology',
-    'anomalous_bio_interaction',
+    'molecular_complexity_pattern',
+    'isotope_ratio_departure',
+    'molecular_composition_difference',
+    'unresolved_sequence_relationship',
+    'unresolved_morphological_characteristics',
+    'reported_biological_interaction',
   ])
   .describe('Identifier of a Biologics observable.');
 

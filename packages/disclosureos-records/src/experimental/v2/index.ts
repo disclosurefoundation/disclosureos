@@ -60,3 +60,6 @@ export * from './case-claim-history-schema';
 export * from './case-claim-history';
 export * from './case-links-schema';
 export * from './case-links';
+
+export * from './vocabulary-schema';
+export * from './vocabulary';

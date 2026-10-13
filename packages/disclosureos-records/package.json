@@ -129,7 +129,13 @@
     "./experimental/v2/claims/schema/0.5.0": "./schema/experimental/claim-history-0.5.0.schema.json",
     "./experimental/v2/case/schema/0.1.0": "./schema/experimental/case-record-0.1.0.schema.json",
     "./experimental/v2/case-claims/schema/0.1.0": "./schema/experimental/case-claim-history-0.1.0.schema.json",
-    "./experimental/v2/case-links/schema/0.1.0": "./schema/experimental/case-links-0.1.0.schema.json"
+    "./experimental/v2/case-links/schema/0.1.0": "./schema/experimental/case-links-0.1.0.schema.json",
+    "./experimental/v2/vocabulary-catalog/schema": "./schema/experimental/vocabulary-catalog-0.1.0.schema.json",
+    "./experimental/v2/vocabulary-catalog/schema/0.1.0": "./schema/experimental/vocabulary-catalog-0.1.0.schema.json",
+    "./experimental/v2/vocabulary-term-reference/schema": "./schema/experimental/vocabulary-term-reference-0.1.0.schema.json",
+    "./experimental/v2/vocabulary-term-reference/schema/0.1.0": "./schema/experimental/vocabulary-term-reference-0.1.0.schema.json",
+    "./experimental/v2/vocabulary-bindings/schema": "./schema/experimental/vocabulary-bindings-0.1.0.schema.json",
+    "./experimental/v2/vocabulary-bindings/schema/0.1.0": "./schema/experimental/vocabulary-bindings-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

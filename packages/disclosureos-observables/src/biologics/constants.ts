@@ -1,166 +1,142 @@
 import type { BiologicsObservable, BiologicsObservableId } from './types';
 
 export const BIOLOGICS_OBSERVABLES: Record<BiologicsObservableId, BiologicsObservable> = {
-  molecular_complexity: {
-    id: 'molecular_complexity',
-    code: 'BO-1',
-    label: 'Molecular Complexity Anomaly',
-    description: 'Material exhibits molecular assembly complexity requiring a guided process (life or technology) to produce — molecules with high assembly indices found in abundances impossible through abiotic chemistry.',
-    scientificBasis: 'Assembly Theory (Cronin & Walker, Nature 2023). Molecules with molecular assembly index (MA) ≥ 15 in high copy number are statistically impossible without selection or engineering. Provides agnostic biosignature independent of terrestrial biochemistry assumptions.',
-    caveat: 'Assembly Theory is an active area of research and remains contested. Critics argue that its assembly index overlaps with established complexity and information measures and that it has not been independently validated as a definitive biosignature. Treat a high assembly index as suggestive rather than conclusive.',
-    detectionSignals: [
-      'High molecular assembly index (MA ≥ 15) in abundant molecules',
-      'Complex molecular structures without known abiotic synthesis pathway',
-      'Ordered molecular arrangements exceeding thermodynamic equilibrium expectations',
-      'Functional molecular machines or self-assembling structures',
-      'Polymeric molecules with non-random sequence information',
+  "molecular_complexity_pattern": {
+    "id": "molecular_complexity_pattern",
+    "code": "OC-B01",
+    "label": "Molecular Complexity Pattern",
+    "description": "A measured or estimated molecular complexity and abundance pattern evaluated against a stated chemical comparison. The metric, estimation method and comparison conditions form part of the result.",
+    "scientificBasis": "Molecular assembly is one research approach to complexity and potential biosignatures. Its calculated index and experimentally estimated values depend on declared methods and assumptions. Interpretation as life, selection or engineering is a separate claim.",
+    "detectionSignals": [
+      "A molecular structure receives a complexity value under a named algorithm.",
+      "Spectral data support a method-specific estimate of molecular complexity.",
+      "The distribution or abundance of identified molecules differs from a stated control or model."
     ],
-    methods: [
-      'Tandem mass spectrometry (MS/MS) for assembly index measurement',
-      'Nuclear magnetic resonance (NMR) spectroscopy',
-      'Infrared (IR) spectroscopy for functional group identification',
-      'High-resolution mass spectrometry for molecular formula determination',
-      'Computational assembly pathway analysis',
+    "methods": [
+      "Retain raw spectra, preprocessing, molecule/ion selection and calibration data.",
+      "Identify the complexity algorithm, software revision, uncertainty or bounds, and whether the value is calculated or inferred from spectra.",
+      "Use blanks, reference compounds and relevant abiotic, biological or synthetic comparisons; report abundance and detection limits separately."
     ],
-    references: [
-      'Marshall et al., "Identifying molecules as biosignatures with assembly theory and mass spectrometry," Nature Communications, 2021',
-      'Sharma et al., "Assembly Theory Explains and Quantifies Selection and Evolution," Nature, 2023',
-    ],
+    "caveat": "Assembly-theory biosignature interpretations are contested. A fixed assembly-index threshold is not a universal proof of life or technology. An index does not measure the actual historical synthesis pathway, and a proposed biosignature does not establish non-terrestrial origin.",
+    "caveatLabel": "Research metric; origin and life not established",
+    "references": [
+      "https://www.nature.com/articles/s41467-021-23258-x",
+      "https://www.nature.com/articles/s41540-024-00403-y",
+      "https://science.nasa.gov/astrobiology/researchers/life-detection-resources/ladder-of-life-detection/"
+    ]
   },
-  isotopic_provenance: {
-    id: 'isotopic_provenance',
-    code: 'BO-2',
-    label: 'Non-Terrestrial Isotopic Provenance',
-    description: 'Material isotope ratios inconsistent with terrestrial, solar system, or known astrophysical formation processes — indicating extraterrestrial or exotic origin.',
-    scientificBasis: 'Isotope ratios serve as fingerprints for nucleosynthetic origin. Terrestrial materials fall within well-characterized ranges. Deviations beyond measurement uncertainty indicate non-terrestrial formation (as demonstrated in meteorite classification).',
-    detectionSignals: [
-      'Isotope ratios outside terrestrial standard ranges (e.g., δ¹³C, ⁸⁷Sr/⁸⁶Sr)',
-      'Non-mass-dependent fractionation patterns',
-      'Extinct radionuclide signatures (e.g., ²⁶Al, ⁶⁰Fe) inconsistent with solar system age',
-      'Noble gas isotope compositions outside solar wind or planetary ranges',
-      'Multi-element isotopic anomalies correlating across sample',
+  "isotope_ratio_departure": {
+    "id": "isotope_ratio_departure",
+    "code": "OC-B02",
+    "label": "Isotope Ratio Departure",
+    "description": "An isotope ratio or pattern that differs from an explicitly identified reference material, population or model under a stated measurement and comparison method.",
+    "scientificBasis": "Isotope comparisons require a defined ratio or delta scale, calibration, sample preparation, uncertainty and relevant reference values. A departure from a selected reference is a result to explain, not an origin assignment.",
+    "detectionSignals": [
+      "A measured isotope ratio differs from a named reference beyond a declared comparison criterion.",
+      "An isotopic pattern varies across portions or phases of a sample.",
+      "Independent measurements reproduce a stated departure within their uncertainty."
     ],
-    methods: [
-      'Thermal ionization mass spectrometry (TIMS)',
-      'Secondary ion mass spectrometry (SIMS/NanoSIMS)',
-      'Multicollector inductively coupled plasma mass spectrometry (MC-ICP-MS)',
-      'Noble gas mass spectrometry',
-      'Accelerator mass spectrometry (AMS) for rare isotopes',
+    "methods": [
+      "Identify the specimen and preparation history, isotope ratios, units or delta scales, and reference materials.",
+      "Report blanks, correction methods, interference checks, mass-bias treatment and uncertainty.",
+      "Compare replicated results and relevant natural, industrial or laboratory alternatives before evaluating provenance claims."
     ],
-    references: [
-      'Nittler, "Presolar stardust in meteorites: recent advances and scientific frontiers," Earth and Planetary Science Letters, 2003',
-      'McSween & Huss, "Cosmochemistry," Cambridge University Press, 2010',
-    ],
+    "caveat": "An unusual ratio is not by itself a non-terrestrial, biological or technological signature. Reference selection, fractionation, mixing, contamination and processing can change an interpretation. This material-analysis term does not establish that the sample is biological.",
+    "caveatLabel": "A reference departure is not an origin",
+    "references": [
+      "https://www.nist.gov/publications/value-assignment-and-uncertainty-estimation-selected-light-stable-isotope-reference",
+      "https://science.nasa.gov/astrobiology/researchers/life-detection-resources/ladder-of-life-detection/"
+    ]
   },
-  non_standard_biochemistry: {
-    id: 'non_standard_biochemistry',
-    code: 'BO-3',
-    label: 'Non-Standard Biochemistry',
-    description: 'Biology uses fundamentally different building blocks than terrestrial life — alternative nucleic acids, non-standard amino acids as backbone, non-carbon scaffolding, or alternative solvent systems.',
-    scientificBasis: 'All known terrestrial life shares LUCA biochemistry: DNA/RNA with 4 nucleobases, 20 canonical amino acids, phospholipid membranes, water solvent. Alternative biochemistries have been theorized (XNA, silicon-based, ammonia solvent) but never found naturally on Earth.',
-    detectionSignals: [
-      'Nucleic acid analogs with non-standard backbone (XNA, TNA, PNA)',
-      'Proteins built from non-canonical amino acid sets',
-      'Non-phospholipid membrane structures',
-      'Silicon-carbon hybrid molecular scaffolds',
-      'Metabolic products inconsistent with known biochemical pathways',
-      'Information-carrying polymers with non-ACGT/U encoding',
+  "molecular_composition_difference": {
+    "id": "molecular_composition_difference",
+    "code": "OC-B03",
+    "label": "Molecular Composition Difference",
+    "description": "A molecular structure, composition or chemical behavior that differs from a specified biochemical reference. The observation can concern a material whose biological status is unresolved.",
+    "scientificBasis": "Structural and chemical measurements can support comparisons without establishing that a material is living. Alternative molecular systems can also be synthesized, so unfamiliar chemistry alone does not identify a biological or non-terrestrial source.",
+    "detectionSignals": [
+      "Structural analysis identifies a polymer backbone, building block or molecular arrangement outside the stated comparison.",
+      "Measured chirality or composition differs from a specified reference sample or range.",
+      "A reproducible chemical behavior is not explained by the declared reference model."
     ],
-    methods: [
-      'Liquid chromatography-mass spectrometry (LC-MS) for molecular identification',
-      'X-ray crystallography for structural determination',
-      'Amino acid analysis (chiral and compositional)',
-      'Nucleotide sequencing attempts with universal and degenerate primers',
-      'Elemental analysis (CHNS/O) for bulk composition',
-      'Raman spectroscopy for molecular bond identification',
+    "methods": [
+      "Use complementary structural or compositional measurements appropriate to the material and retain identification confidence.",
+      "Record preparation, blanks, reference compounds and contamination controls.",
+      "Test claims of biological function separately from chemical identity; document assay scope and failures without turning them into absence findings."
     ],
-    references: [
-      'Benner et al., "Alternative Watson-Crick Synthetic Genetic Systems," Cold Spring Harbor Perspectives in Biology, 2016',
-      'National Academies, "The Limits of Organic Life in Planetary Systems," 2007',
-    ],
+    "caveat": "Failure of a DNA amplification or sequencing protocol does not establish alternative genetics. Bulk elemental composition does not establish a molecular scaffold. The comparison must allow known biochemical diversity and synthetic chemistry; no four-base or twenty-amino-acid rule is universal proof of origin.",
+    "caveatLabel": "Unfamiliar chemistry does not establish biology",
+    "references": [
+      "https://pubmed.ncbi.nlm.nih.gov/30792304/",
+      "https://science.nasa.gov/astrobiology/researchers/life-detection-resources/ladder-of-life-detection/"
+    ]
   },
-  non_phylogenetic_genetics: {
-    id: 'non_phylogenetic_genetics',
-    code: 'BO-4',
-    label: 'Non-Phylogenetic Genetic Signatures',
-    description: 'Genetic material falls outside Earth\'s tree of life — sequences with no homology to any known organism, novel genetic codes, or information storage systems incompatible with LUCA-derived biology.',
-    scientificBasis: 'All terrestrial organisms share a common ancestor (LUCA) and show phylogenetic relationships via conserved genes (16S/18S rRNA, cytochrome c, etc.). Genetic material that cannot be placed on any branch of the tree of life would indicate independent abiogenesis or non-terrestrial origin.',
-    detectionSignals: [
-      'DNA/RNA sequences with zero BLAST homology to any known organism',
-      'Novel codon usage tables inconsistent with all known genetic codes',
-      'Information-encoding molecules that are not DNA or RNA',
-      'Genetic regulatory systems without terrestrial analogs',
-      'Absence of conserved genes universal to all terrestrial life (e.g., ribosomal RNA)',
+  "unresolved_sequence_relationship": {
+    "id": "unresolved_sequence_relationship",
+    "code": "OC-B04",
+    "label": "Unresolved Sequence Relationship",
+    "description": "A retained nucleic-acid or protein sequence for which a specified search or phylogenetic analysis does not establish a relationship within its declared reference set and acceptance criteria.",
+    "scientificBasis": "Sequence matching is conditional on data quality, database contents and analysis settings. An unresolved relationship is a bounded search result. It does not establish that a sequence is outside terrestrial biology or has an independent evolutionary origin.",
+    "detectionSignals": [
+      "A quality-reviewed sequence has no reported match meeting a declared threshold.",
+      "Alternative analyses yield conflicting placements for the same retained sequence.",
+      "Available marker coverage is insufficient for a stated taxonomic or phylogenetic assignment."
     ],
-    methods: [
-      'Whole genome sequencing (shotgun metagenomics)',
-      'BLAST and phylogenetic analysis against NCBI/EBI databases',
-      'Codon usage analysis',
-      'Ribosomal RNA gene surveys (16S/18S/ITS)',
-      'Comparative genomics for conserved gene detection',
-      'De novo assembly and annotation',
+    "methods": [
+      "Retain reads, quality measures, assembly provenance, extraction blanks and contamination checks.",
+      "Name the database snapshot, software revision, filters, masking, scoring and acceptance thresholds.",
+      "Report alignment coverage and alternative results; distinguish database similarity searches from phylogenetic inference and repeat against suitable comparison sets."
     ],
-    references: [
-      'Woese, "The universal ancestor," PNAS, 1998',
-      'Cleland & Copley, "The possibility of alternative microbial life on Earth," International Journal of Astrobiology, 2005',
-    ],
+    "caveat": "No BLAST match is not zero homology to all life. Short, damaged, contaminated or misassembled sequences and limited database coverage can leave a result unresolved. Non-DNA/RNA chemistry belongs in a separate molecular-characterization entry unless an applicable sequence representation is defined.",
+    "caveatLabel": "A limited search is not exclusion from the tree of life",
+    "references": [
+      "https://blast.ncbi.nlm.nih.gov/doc/blast-help/FAQ.html",
+      "https://blast.ncbi.nlm.nih.gov/doc/blast-topics/blastsearchparams.html",
+      "https://link.springer.com/article/10.1186/s12915-014-0087-z"
+    ]
   },
-  anomalous_morphology: {
-    id: 'anomalous_morphology',
-    code: 'BO-5',
-    label: 'Anomalous Morphology',
-    description: 'Biological structures exhibit body plans, organ systems, or cellular architectures outside all known phylogenetic trees — morphological features that cannot be derived from any known evolutionary lineage.',
-    scientificBasis: 'Terrestrial biology produces morphological diversity within phylogenetic constraints (body plan conservation within phyla, developmental gene toolkit sharing). A biological entity with morphology outside all known phyla would indicate independent evolutionary origin.',
-    detectionSignals: [
-      'Body plan outside all 33 known animal phyla',
-      'Cellular architecture without homology to known cell types',
-      'Organ systems with no developmental analog in terrestrial biology',
-      'Symmetry patterns not observed in terrestrial organisms',
-      'Tissue organization incompatible with known developmental pathways',
-      'Biomechanical properties outside known biological material ranges',
+  "unresolved_morphological_characteristics": {
+    "id": "unresolved_morphological_characteristics",
+    "code": "OC-B05",
+    "label": "Unresolved Morphological Characteristics",
+    "description": "Observed form or internal structure that has not been assigned within a stated anatomical, cellular or other morphological comparison. Record the features and comparison separately from any identification of the specimen.",
+    "scientificBasis": "Morphological examination characterizes structures at a stated scale and resolution. Classification also depends on specimen condition, preparation, comparison coverage and independent observations. Unfamiliar form alone does not establish biological status or evolutionary origin.",
+    "detectionSignals": [
+      "An examination describes a feature absent from the declared comparison material.",
+      "Imaging methods or examiners produce unresolved differences in structural identification.",
+      "Available specimen condition or image resolution prevents a proposed identification."
     ],
-    methods: [
-      'Comparative morphological analysis',
-      'Histological examination and electron microscopy (SEM/TEM)',
-      'Micro-CT scanning for internal structure',
-      'Developmental biology analysis (if living specimen)',
-      'Biomechanical testing of tissue properties',
-      'Phylogenetic morphological matrix analysis',
+    "methods": [
+      "Retain specimen provenance, scale, orientation, preparation and original images.",
+      "Describe visible features before assigning taxonomic or functional labels.",
+      "Compare appropriate reference specimens and complementary imaging or composition analyses; document preservation artifacts and alternative reconstructions."
     ],
-    references: [
-      'Valentine, "On the Origin of Phyla," University of Chicago Press, 2004',
-      'Carroll, "Evo-Devo and an Expanding Evolutionary Synthesis," Cell, 2008',
-    ],
+    "caveat": "Appearance alone can be affected by preservation, preparation, deformation, assembly or imaging artifacts. A resemblance to cells, organs or a body plan does not by itself establish those structures or an independent lineage.",
+    "caveatLabel": "An unresolved form is not a new lineage",
+    "references": [
+      "https://science.nasa.gov/astrobiology/researchers/life-detection-resources/ladder-of-life-detection/"
+    ]
   },
-  anomalous_bio_interaction: {
-    id: 'anomalous_bio_interaction',
-    code: 'BO-6',
-    label: 'Anomalous Biological Interaction',
-    description: 'Agent-level biological interaction that goes beyond simple energetic exposure — demonstrating directed, purposeful, or communicative engagement with biological organisms that implies intelligence or agency.',
-    scientificBasis: 'Distinct from Technology Observable TO-6 (Biological Effects), which covers passive radiological/energetic injury from proximity. BO-6 addresses cases where interaction patterns suggest directed agency: selective targeting, behavioral manipulation, tissue sampling, or communication attempts that imply biological intelligence behind the interaction. This is the home for the abduction/experiencer phenomenon and precision animal-tissue removal ("cattle mutilation").',
-    caveat: 'Unlike the sensor- and laboratory-grounded observables, this one rests largely on witness and experiencer testimony, and the inference of directed intelligence behind an interaction is not established. Investigations of related phenomena — including the federally funded 1980 Operation Animal Mutilation report — have attributed many cases to mundane causes such as predation. Treat a reported interaction as a prompt for physical corroboration, not as confirmation of agency.',
-    caveatLabel: 'Testimony-based — agency not established',
-    detectionSignals: [
-      'Selective targeting of specific individuals or biological features',
-      'Evidence of tissue sampling or biological material collection',
-      'Behavioral effects suggesting directed influence (paralysis, compulsion)',
-      'Communication attempts through biological channels',
-      'Surgical-precision physical interactions with biological tissue',
-      'Interaction patterns demonstrating knowledge of target biology',
+  "reported_biological_interaction": {
+    "id": "reported_biological_interaction",
+    "code": "OC-B06",
+    "label": "Reported Biological Interaction",
+    "description": "An attributed account or documented observation of apparent contact, communication or directed action involving a person, animal or other organism during an investigated event. Retain the reported action separately from findings about an agent, intent or cause.",
+    "scientificBasis": "Testimony can establish what a source reported. Recordings, physical traces and clinical or veterinary findings can address specific parts of that account through their own methods. Similarity between reports or temporal association alone does not establish a shared agent or mechanism.",
+    "detectionSignals": [
+      "A source describes apparent contact, communication, restraint or directed behavior.",
+      "A recording documents a specified interaction for later interpretation.",
+      "An examination records a physical finding alleged to be related to an interaction, with the attribution preserved."
     ],
-    methods: [
-      'Forensic medical examination for interaction evidence',
-      'Psychological evaluation for behavioral influence markers',
-      'Dermatological analysis for precision markings',
-      'Toxicological screening for unknown compounds',
-      'Neurological assessment for anomalous effects',
-      'Comparative analysis across multiple experiencer reports',
+    "methods": [
+      "Retain original wording, interview context, chronology and account revisions, including how the account was elicited.",
+      "Link independently collected recordings or physical findings to precise source passages without treating all parts of the account as corroborated.",
+      "Evaluate physical traces with appropriate forensic, clinical or veterinary methods and record alternative explanations; keep any agency assessment separate."
     ],
-    references: [
-      'Mack, "Abduction: Human Encounters with Aliens," Scribner, 1994',
-      'Jacobs, "Secret Life: Firsthand Accounts of UFO Abductions," Simon & Schuster, 1992',
-      'Rommel, "Operation Animal Mutilation," Report of the District Attorney, First Judicial District, State of New Mexico, 1980',
-      'Kelleher & Knapp, "Hunt for the Skinwalker," Paraview Pocket Books, 2005',
-    ],
-  },
+    "caveat": "This category includes testimony whose external circumstances are unresolved. It does not confirm an abduction, communication, intervention, intelligence or intent. A medical or psychological assessment is not a truth detector; an unexplained injury or animal tissue change does not by itself identify a responsible agent.",
+    "caveatLabel": "Reported interaction; agency not established",
+    "references": [
+      "https://www.cdc.gov/field-epi-manual/php/chapters/analyze-interpret-data.html"
+    ]
+  }
 };

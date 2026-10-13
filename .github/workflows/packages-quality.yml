@@ -441,3 +441,20 @@ jobs:
       - run: node examples/v2/testimony-case-demo/run.mjs
       - run: node examples/v2/archival-case-demo/run.mjs
       - run: node examples/v2/material-case-demo/run.mjs
+
+  vocabulary-references:
+    name: V2 shared vocabulary references
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter "@disclosureos/schema..." build
+      - run: pnpm emit:v2-vocabulary
+      - run: git diff --exit-code -- packages/disclosureos-records/schema/experimental/vocabulary-*.json packages/disclosureos-schema/schema/experimental/vocabulary-*.json
+      - run: pnpm test:v2-vocabulary
+      - run: pnpm example:vocabulary

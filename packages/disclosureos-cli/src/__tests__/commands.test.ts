@@ -75,12 +75,12 @@ describe('scaffold templates', () => {
 
   it('emits claim-list templates for observable assessments', () => {
     const template = JSON.parse(getTemplate('assessment')) as {
-      technology: { instantaneous_acceleration: unknown[] };
-      biologics: { molecular_complexity: unknown[] };
+      technology: { abrupt_motion: unknown[] };
+      biologics: { molecular_complexity_pattern: unknown[] };
     };
 
-    expect(Array.isArray(template.technology.instantaneous_acceleration)).toBe(true);
-    expect(Array.isArray(template.biologics.molecular_complexity)).toBe(true);
+    expect(Array.isArray(template.technology.abrupt_motion)).toBe(true);
+    expect(Array.isArray(template.biologics.molecular_complexity_pattern)).toBe(true);
   });
 });
 
@@ -101,7 +101,7 @@ describe('validate command', () => {
     const observation = JSON.parse(getTemplate('observation')) as Record<string, unknown>;
     observation['observableAssessments'] = {
       technology: {
-        instantaneous_acceleration: [
+        abrupt_motion: [
           {
             level: 'reported',
             confidence: 0.5,
@@ -198,7 +198,7 @@ describe('validate command', () => {
     const observation = JSON.parse(getTemplate('observation')) as Record<string, unknown>;
     observation['observableAssessments'] = {
       technology: {
-        instantaneous_acceleration: [
+        abrupt_motion: [
           {
             level: 'reported',
             confidence: 0.5,
@@ -369,7 +369,7 @@ describe('registry command', () => {
 
     expect(output).toContain('Observable Registry');
     expect(output).toContain('Technology Observables');
-    expect(output).toContain('TO-2');
+    expect(output).toContain('OC-T02');
     expect(output).not.toContain('Biologics Observables');
   });
 
@@ -410,10 +410,10 @@ describe('info command', () => {
   });
 
   it('prints observable details by code', () => {
-    const output = captureLog(() => info(commandArgs('info', 'observable', ['TO-2'])));
+    const output = captureLog(() => info(commandArgs('info', 'observable', ['OC-T02'])));
 
-    expect(output).toContain('Observable: Instantaneous Acceleration');
-    expect(output).toContain('TO-2');
+    expect(output).toContain('Observable: Abrupt Motion');
+    expect(output).toContain('OC-T02');
     expect(output).toContain('Assessment Levels');
   });
 

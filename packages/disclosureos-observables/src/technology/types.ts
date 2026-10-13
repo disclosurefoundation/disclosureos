@@ -3,14 +3,14 @@ import { ObservableBaseSchema, ObservableAssessmentSchema } from '../assessment/
 
 export const TechnologyObservableIdSchema = z
   .enum([
-    'antigravity_lift',
-    'instantaneous_acceleration',
-    'hypersonic_no_signatures',
-    'low_observability',
-    'transmedium_travel',
-    'biological_effects',
+    'apparent_hover',
+    'abrupt_motion',
+    'hypersonic_signature_discrepancy',
+    'sensor_detection_discrepancy',
+    'apparent_medium_transition',
+    'event_associated_biological_changes',
   ])
-  .describe('Identifier of a Technology observable (the six AATIP-derived characteristics).');
+  .describe('Identifier of a technology-related characteristic in the DisclosureOS vocabulary. No mechanism or origin is established by the category.');
 
 export type TechnologyObservableId = z.infer<typeof TechnologyObservableIdSchema>;
 

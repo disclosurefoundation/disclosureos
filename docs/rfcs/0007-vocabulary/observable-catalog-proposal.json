@@ -1,27 +1,15 @@
 {
-  "status": "NON-NORMATIVE REVIEW CANDIDATE; not a published catalog or valid reference target",
-  "preparedAt": "2026-10-13",
-  "proposedCatalogId": "https://os.disclosure.org/vocabularies/observable-characteristics",
-  "proposedRevision": "2026-10-13-draft.1",
-  "catalogIdentityStatus": "Proposed name only; do not resolve or publish references to this draft until the canonical contract and release are approved.",
-  "legacySnapshot": {
-    "path": "apps/disclosureos/public/examples/meridian/vocabulary-v1/catalog.json",
-    "sha256": "b8da7e64c8162bd7f3f2691e0100b3b667dfc837abdb4f9b654ad2ad5192396b",
-    "canonicalCommit": "88bcbfcc8b17af30837313aff596cec8e1bde43a",
-    "scope": "Whole retained catalog.json, including origins. These twelve proposals cover observables only.",
-    "repository": "https://github.com/disclosurefoundation/dashboard",
-    "repositoryCommit": "6ecfd34f4e3b526fbc4f305107cb2ddc609e35fc",
-    "url": "https://github.com/disclosurefoundation/dashboard/blob/6ecfd34f4e3b526fbc4f305107cb2ddc609e35fc/apps/disclosureos/public/examples/meridian/vocabulary-v1/catalog.json"
-  },
+  "status": "V2 definition review record; implementation is exported by @disclosureos/observables. This file is not a vocabulary_catalog envelope.",
+  "reviewedAt": "2026-10-13",
+  "catalogId": "https://os.disclosure.org/vocabularies/observable-characteristics",
+  "revision": "2026-10-13.1",
   "conventions": [
-    "Every proposed term has a new ID because the review changes scope. Legacy IDs and codes remain unchanged in the retained historical catalog.",
-    "OC-T and OC-B codes are provisional and identify editorial groups, not findings that technology or biology is present.",
-    "The technology and biologics category values are retained for compatibility with the current definition shape; category names and grouping are themselves subject to editorial review.",
-    "The existing scientificBasis key here holds measurement rationale, not proof of an extraordinary phenomenon.",
-    "The existing detectionSignals key here lists observations relevant to investigation, not necessary/sufficient confirmation criteria.",
-    "Catalog membership, a source association, an assessed outcome, and a proposed origin are separate declarations.",
-    "A reference must identify catalog identity, exact immutable revision/snapshot and term ID. A display label, search alias or historical code is not a reference.",
-    "No automatic mapping of historical claim outcomes, confidence or support levels is permitted by these review crosswalks."
+    "Direct V2 baseline revision with no compatibility aliases or migration crosswalks.",
+    "OC-T and OC-B codes identify editorial groups, not findings that technology or biology is present.",
+    "The scientificBasis field records measurement rationale, not proof of an extraordinary phenomenon.",
+    "The detectionSignals field lists observations relevant to investigation, not necessary or sufficient confirmation criteria.",
+    "Catalog membership, descriptive association, assessment outcome and proposed origin are separate declarations.",
+    "This is a terminology and methodological review, not completed scientific validation or domain-expert approval."
   ],
   "sources": {
     "nasa_uap": {
@@ -80,877 +68,289 @@
       "supports": "Observed association is distinct from causation; bias, confounding, temporality and alternative explanations need evaluation. No diagnosis or claim about UAP-associated illness."
     }
   },
-  "proposals": [
+  "terms": [
     {
-      "legacyTerm": {
-        "id": "antigravity_lift",
-        "code": "TO-1",
-        "label": "Anti-Gravity Lift",
-        "category": "technology"
-      },
-      "legacyReferences": [
-        "Elizondo, \"The Five Observables\" framework, AATIP (anti-gravity lift)",
-        "Knuth et al., \"Estimating Flight Characteristics of Anomalous Unidentified Aerial Vehicles,\" Entropy, 2019"
+      "id": "apparent_hover",
+      "code": "OC-T01",
+      "category": "technology",
+      "label": "Apparent Hover",
+      "description": "An object appears to remain within a limited region above a surface for a stated interval, while the available observations do not identify its means of support. This term records the support question; it does not identify a propulsion mechanism.",
+      "scientificBasis": "Assess support using position relative to a declared reference frame, duration, environmental conditions and the available observations of possible lift or suspension. Failure to resolve a support mechanism is an observation limit, not a violation of mechanics.",
+      "detectionSignals": [
+        "An account describes an object remaining above a surface without an identified means of support.",
+        "A timed sequence indicates limited displacement in a stated reference frame.",
+        "Recorded views or sensor channels do not resolve particular support features within stated limits."
       ],
-      "legacyReferencesStatus": "Retained as historical bibliography only; not newly verified or automatically endorsed by this proposal.",
-      "mapping": {
-        "relation": "related-not-equivalent",
-        "automaticRebinding": false,
-        "rationale": "Removes anti-gravity, universal capability and law-violation implications. Broadens the term to an unresolved support question; it cannot inherit an anti-gravity finding."
-      },
-      "proposedTerm": {
-        "id": "apparent_hover",
-        "code": "OC-T01",
-        "category": "technology",
-        "label": "Apparent Hover",
-        "description": "An object appears to remain within a limited region above a surface for a stated interval, while the available observations do not identify its means of support. This term records the support question; it does not identify a propulsion mechanism.",
-        "scientificBasis": "Assess support using position relative to a declared reference frame, duration, environmental conditions and the available observations of possible lift or suspension. Failure to resolve a support mechanism is an observation limit, not a violation of mechanics.",
-        "detectionSignals": [
-          "An account describes an object remaining above a surface without an identified means of support.",
-          "A timed sequence indicates limited displacement in a stated reference frame.",
-          "Recorded views or sensor channels do not resolve particular support features within stated limits."
-        ],
-        "methods": [
-          "Retain the original account, time interval and observer position.",
-          "Estimate position and motion with calibrated geometry; distinguish station keeping from apparent stillness caused by viewing geometry.",
-          "Compare visible, thermal, acoustic or other available observations with the specific support mechanisms being tested, recording coverage and sensitivity."
-        ],
-        "caveat": "Not seeing wings, exhaust or downwash does not show that they were absent. Distance, resolution, wind, buoyancy, tethering, viewing geometry and platform motion require consideration. A Doppler radial-velocity measurement alone does not establish three-dimensional station keeping.",
-        "caveatLabel": "Unidentified support is not anti-gravity",
-        "references": [
-          "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf"
-        ]
-      },
-      "sourceKeys": [
-        "nasa_uap"
+      "methods": [
+        "Retain the original account, time interval and observer position.",
+        "Estimate position and motion with calibrated geometry; distinguish station keeping from apparent stillness caused by viewing geometry.",
+        "Compare visible, thermal, acoustic or other available observations with the specific support mechanisms being tested, recording coverage and sensitivity."
       ],
-      "legacyDefinition": {
-        "id": "antigravity_lift",
-        "code": "TO-1",
-        "label": "Anti-Gravity Lift",
-        "description": "Object appears to overcome gravitational force without conventional propulsion — no wings, rotors, exhaust, or visible means of lift.",
-        "scientificBasis": "Violation of Newtonian mechanics and known aerodynamic principles. No known human technology achieves sustained hover without downwash, exhaust, or electromagnetic support at observed scales.",
-        "detectionSignals": [
-          "Sustained hover with no visible propulsion",
-          "No downwash or ground effect disturbance",
-          "No exhaust or thermal signature from propulsion",
-          "Object mass inconsistent with buoyant lift",
-          "Silent operation during hover"
-        ],
-        "methods": [
-          "FLIR/IR imaging for thermal signatures",
-          "Doppler radar for relative velocity confirmation",
-          "Ground-level pressure sensors for downwash detection",
-          "Acoustic monitoring for propulsion noise",
-          "Witness triangulation for altitude confirmation"
-        ],
-        "references": [
-          "Elizondo, \"The Five Observables\" framework, AATIP (anti-gravity lift)",
-          "Knuth et al., \"Estimating Flight Characteristics of Anomalous Unidentified Aerial Vehicles,\" Entropy, 2019"
-        ],
-        "category": "technology"
-      }
+      "caveat": "Not seeing wings, exhaust or downwash does not show that they were absent. Distance, resolution, wind, buoyancy, tethering, viewing geometry and platform motion require consideration. A Doppler radial-velocity measurement alone does not establish three-dimensional station keeping.",
+      "caveatLabel": "Unidentified support is not anti-gravity",
+      "references": [
+        "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf"
+      ]
     },
     {
-      "legacyTerm": {
-        "id": "instantaneous_acceleration",
-        "code": "TO-2",
-        "label": "Instantaneous Acceleration",
-        "category": "technology"
-      },
-      "legacyReferences": [
-        "Powell et al., \"A Forensic Analysis of Navy Carrier Strike Group Eleven's Encounter with an Anomalous Aerial Vehicle,\" SCU, 2019",
-        "Knuth et al., \"Estimating Flight Characteristics of Anomalous Unidentified Aerial Vehicles,\" Entropy, 2019"
+      "id": "abrupt_motion",
+      "code": "OC-T02",
+      "category": "technology",
+      "label": "Abrupt Motion",
+      "description": "An apparent or measured rapid change in motion, including a change in direction, speed or angular position. Any claim about physical acceleration must identify the quantity estimated and the observations used.",
+      "scientificBasis": "Angular motion, radial velocity and three-dimensional motion are different quantities. Physical acceleration estimates depend on geometry, timing, reference-frame motion and the analysis method; uncertainty and a stated comparison are needed to assess whether a result is unusual.",
+      "detectionSignals": [
+        "An account describes sudden departure, stopping, reversal or a sharp turn.",
+        "A recorded angular position or other measured motion quantity changes over a short interval.",
+        "An analysis estimates a physical acceleration with declared assumptions and uncertainty."
       ],
-      "legacyReferencesStatus": "Retained as historical bibliography only; not newly verified or automatically endorsed by this proposal.",
-      "mapping": {
-        "relation": "related-not-equivalent",
-        "automaticRebinding": false,
-        "rationale": "Replaces an asserted extreme physical acceleration with the broader source characteristic. Estimated acceleration remains an explicit assessment, not an automatic consequence of the label."
-      },
-      "proposedTerm": {
-        "id": "abrupt_motion",
-        "code": "OC-T02",
-        "category": "technology",
-        "label": "Abrupt Motion",
-        "description": "An apparent or measured rapid change in motion, including a change in direction, speed or angular position. Any claim about physical acceleration must identify the quantity estimated and the observations used.",
-        "scientificBasis": "Angular motion, radial velocity and three-dimensional motion are different quantities. Physical acceleration estimates depend on geometry, timing, reference-frame motion and the analysis method; uncertainty and a stated comparison are needed to assess whether a result is unusual.",
-        "detectionSignals": [
-          "An account describes sudden departure, stopping, reversal or a sharp turn.",
-          "A recorded angular position or other measured motion quantity changes over a short interval.",
-          "An analysis estimates a physical acceleration with declared assumptions and uncertainty."
-        ],
-        "methods": [
-          "Preserve timestamps, exposure duration, frame cadence and any missing intervals.",
-          "Estimate angular motion separately from physical motion and document range information or constraints.",
-          "Account for sensor/platform motion, tracking changes and processing before comparing derived accelerations with a stated reference."
-        ],
-        "caveat": "A discontinuity in a track is not an instantaneous physical maneuver. A nearby platform accelerometer measures that platform, not the distant object. No universal acceleration threshold or biological tolerance is implied by this term.",
-        "caveatLabel": "Apparent motion is not physical acceleration",
-        "references": [
-          "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf"
-        ]
-      },
-      "sourceKeys": [
-        "nasa_uap"
+      "methods": [
+        "Preserve timestamps, exposure duration, frame cadence and any missing intervals.",
+        "Estimate angular motion separately from physical motion and document range information or constraints.",
+        "Account for sensor/platform motion, tracking changes and processing before comparing derived accelerations with a stated reference."
       ],
-      "legacyDefinition": {
-        "id": "instantaneous_acceleration",
-        "code": "TO-2",
-        "label": "Instantaneous Acceleration",
-        "description": "Object accelerates at rates far beyond known aerospace capabilities — estimated hundreds or thousands of g-forces with no apparent inertial effects.",
-        "scientificBasis": "Exceeds structural limits of known materials and biological tolerance. F/A-18 max sustained: ~9g. In the 2004 Nimitz encounter, SCU forensic analysis estimated UAP accelerations from 40g to hundreds of g, with some maneuver estimates reaching thousands of g (Knuth et al., 2019).",
-        "detectionSignals": [
-          "Radar track showing extreme velocity change over minimal time",
-          "Object transitions from hover to hypersonic in < 1 second",
-          "Right-angle or acute-angle turns at high speed",
-          "Immediate reversal of travel direction",
-          "No observed structural deformation during maneuver"
-        ],
-        "methods": [
-          "Multi-radar track correlation for velocity profiles",
-          "Frame-by-frame video analysis for acceleration curves",
-          "Radar Doppler shift measurements",
-          "Satellite track data for independent velocity confirmation",
-          "Accelerometer data from nearby sensor platforms"
-        ],
-        "references": [
-          "Powell et al., \"A Forensic Analysis of Navy Carrier Strike Group Eleven's Encounter with an Anomalous Aerial Vehicle,\" SCU, 2019",
-          "Knuth et al., \"Estimating Flight Characteristics of Anomalous Unidentified Aerial Vehicles,\" Entropy, 2019"
-        ],
-        "category": "technology"
-      }
+      "caveat": "A discontinuity in a track is not an instantaneous physical maneuver. A nearby platform accelerometer measures that platform, not the distant object. No universal acceleration threshold or biological tolerance is implied by this term.",
+      "caveatLabel": "Apparent motion is not physical acceleration",
+      "references": [
+        "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf"
+      ]
     },
     {
-      "legacyTerm": {
-        "id": "hypersonic_no_signatures",
-        "code": "TO-3",
-        "label": "Hypersonic Velocities Without Signatures",
-        "category": "technology"
-      },
-      "legacyReferences": [
-        "Anderson, \"Fundamentals of Aerodynamics,\" McGraw-Hill (hypersonic regime physics)",
-        "Elizondo, \"The Five Observables\" framework, AATIP (hypersonic velocities without signatures)"
+      "id": "hypersonic_signature_discrepancy",
+      "code": "OC-T03",
+      "category": "technology",
+      "label": "Hypersonic Motion and Signature Discrepancy",
+      "description": "A proposed atmospheric trajectory at approximately Mach 5 or higher relative to the surrounding air, for which one or more specified signatures are reported or measured below an expected level. Retain the declared speed threshold and uncertainty; evaluate the speed estimate and each signature comparison separately.",
+      "scientificBasis": "Mach number depends on speed relative to the surrounding air and the local speed of sound. An expected acoustic, thermal, optical or other signature requires a stated model, environment, geometry and observation opportunity. A discrepancy is conditional on those assumptions.",
+      "detectionSignals": [
+        "A reported or derived speed is described as hypersonic under stated atmospheric conditions.",
+        "An observed signature is below a model prediction or detection threshold for a specified interval and channel.",
+        "A source reports the absence of a named signature, with observation conditions retained where available."
       ],
-      "legacyReferencesStatus": "Retained as historical bibliography only; not newly verified or automatically endorsed by this proposal.",
-      "mapping": {
-        "relation": "related-not-equivalent",
-        "automaticRebinding": false,
-        "rationale": "Retains the coupled motion/signature investigation but removes categorical claims about absent effects and violated physics. Conditional, channel-specific scope is broader than the old conjunctive claim."
-      },
-      "proposedTerm": {
-        "id": "hypersonic_signature_discrepancy",
-        "code": "OC-T03",
-        "category": "technology",
-        "label": "Hypersonic Motion and Signature Discrepancy",
-        "description": "A proposed atmospheric trajectory at approximately Mach 5 or higher relative to the surrounding air, for which one or more specified signatures are reported or measured below an expected level. Retain the declared speed threshold and uncertainty; evaluate the speed estimate and each signature comparison separately.",
-        "scientificBasis": "Mach number depends on speed relative to the surrounding air and the local speed of sound. An expected acoustic, thermal, optical or other signature requires a stated model, environment, geometry and observation opportunity. A discrepancy is conditional on those assumptions.",
-        "detectionSignals": [
-          "A reported or derived speed is described as hypersonic under stated atmospheric conditions.",
-          "An observed signature is below a model prediction or detection threshold for a specified interval and channel.",
-          "A source reports the absence of a named signature, with observation conditions retained where available."
-        ],
-        "methods": [
-          "Record speed, reference frame, uncertainty, the declared hypersonic threshold, atmospheric conditions and the sound-speed model.",
-          "Record the predicted signature at the observing sensor, including propagation and geometric assumptions.",
-          "Compare calibrated observations, background levels and sensitivity with the prediction; retain separate results for each signature."
-        ],
-        "caveat": "No recording, no sensor coverage and a measured non-detection are different states. A ground observer need not detect every atmospheric shock. The term does not require a visible plasma sheath and does not imply unknown physics.",
-        "caveatLabel": "Non-detection needs a defined observation opportunity",
-        "references": [
-          "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf",
-          "https://www.grc.nasa.gov/www/BGH/mach.html"
-        ]
-      },
-      "sourceKeys": [
-        "nasa_uap",
-        "nasa_mach"
+      "methods": [
+        "Record speed, reference frame, uncertainty, the declared hypersonic threshold, atmospheric conditions and the sound-speed model.",
+        "Record the predicted signature at the observing sensor, including propagation and geometric assumptions.",
+        "Compare calibrated observations, background levels and sensitivity with the prediction; retain separate results for each signature."
       ],
-      "legacyDefinition": {
-        "id": "hypersonic_no_signatures",
-        "code": "TO-3",
-        "label": "Hypersonic Velocities Without Signatures",
-        "description": "Object achieves hypersonic speeds (Mach 5+) without producing sonic boom, heat signature, or plasma sheath — violating known atmospheric physics.",
-        "scientificBasis": "Objects exceeding Mach 1 in atmosphere must produce shock waves (sonic boom). Hypersonic flight generates extreme adiabatic heating and plasma formation. Absence of these signatures implies either non-atmospheric medium interaction or unknown physics.",
-        "detectionSignals": [
-          "Radar-confirmed velocity exceeding Mach 5",
-          "No sonic boom detected at ground level",
-          "No IR bloom or thermal wake",
-          "No plasma sheath visible in optical/UV spectrum",
-          "No atmospheric disturbance trail"
-        ],
-        "methods": [
-          "Phased-array radar for precise speed measurement",
-          "Infrasound sensors for sonic boom detection",
-          "Multi-spectral imaging for plasma detection",
-          "Seismographic stations for shock wave detection",
-          "FLIR for thermal signature analysis"
-        ],
-        "references": [
-          "Anderson, \"Fundamentals of Aerodynamics,\" McGraw-Hill (hypersonic regime physics)",
-          "Elizondo, \"The Five Observables\" framework, AATIP (hypersonic velocities without signatures)"
-        ],
-        "category": "technology"
-      }
+      "caveat": "No recording, no sensor coverage and a measured non-detection are different states. A ground observer need not detect every atmospheric shock. The term does not require a visible plasma sheath and does not imply unknown physics.",
+      "caveatLabel": "Non-detection needs a defined observation opportunity",
+      "references": [
+        "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf",
+        "https://www.grc.nasa.gov/www/BGH/mach.html"
+      ]
     },
     {
-      "legacyTerm": {
-        "id": "low_observability",
-        "code": "TO-4",
-        "label": "Low Observability",
-        "category": "technology"
-      },
-      "legacyReferences": [
-        "USS Princeton (AN/SPY-1 Aegis radar) operator testimony, 2004 Nimitz encounter",
-        "Elizondo, \"The Five Observables\" framework, AATIP (low observability)"
+      "id": "sensor_detection_discrepancy",
+      "code": "OC-T04",
+      "category": "technology",
+      "label": "Sensor Detection Discrepancy",
+      "description": "A difference or interruption in detections of a candidate object across times, sensors or observing modes that calls for comparison of the observations and their limits.",
+      "scientificBasis": "Detection depends on the signal at the sensor, background, coverage, configuration and processing. Comparing observations requires time alignment and a justified association between candidate detections. A discrepancy alone does not specify its cause.",
+      "detectionSignals": [
+        "A candidate appears in one channel but has no associated detection in another.",
+        "A retained track contains acquisition, interruption or reacquisition intervals.",
+        "Detection strength or track behavior differs between instruments or processing settings."
       ],
-      "legacyReferencesStatus": "Retained as historical bibliography only; not newly verified or automatically endorsed by this proposal.",
-      "mapping": {
-        "relation": "related-not-equivalent",
-        "automaticRebinding": false,
-        "rationale": "Replaces a capability and intent-laden category with an observational discrepancy. New ID is necessary because ordinary sensor limitations now fall inside the investigative scope."
-      },
-      "proposedTerm": {
-        "id": "sensor_detection_discrepancy",
-        "code": "OC-T04",
-        "category": "technology",
-        "label": "Sensor Detection Discrepancy",
-        "description": "A difference or interruption in detections of a candidate object across times, sensors or observing modes that calls for comparison of the observations and their limits.",
-        "scientificBasis": "Detection depends on the signal at the sensor, background, coverage, configuration and processing. Comparing observations requires time alignment and a justified association between candidate detections. A discrepancy alone does not specify its cause.",
-        "detectionSignals": [
-          "A candidate appears in one channel but has no associated detection in another.",
-          "A retained track contains acquisition, interruption or reacquisition intervals.",
-          "Detection strength or track behavior differs between instruments or processing settings."
-        ],
-        "methods": [
-          "Compare synchronized source data with fields of view, sensitivity, background and sensor settings.",
-          "Retain detection thresholds and raw/processed distinctions, including rejected returns where available.",
-          "Review diagnostics and association methods before interpreting an interruption as loss of the same physical object."
-        ],
-        "caveat": "An instrument fault, missing file, occlusion or untested association must not become a finding of stealth, jamming or intentional evasion. Do not infer low radar cross-section from missing track data alone.",
-        "caveatLabel": "Detection differences do not establish evasion",
-        "references": [
-          "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf"
-        ]
-      },
-      "sourceKeys": [
-        "nasa_uap"
+      "methods": [
+        "Compare synchronized source data with fields of view, sensitivity, background and sensor settings.",
+        "Retain detection thresholds and raw/processed distinctions, including rejected returns where available.",
+        "Review diagnostics and association methods before interpreting an interruption as loss of the same physical object."
       ],
-      "legacyDefinition": {
-        "id": "low_observability",
-        "code": "TO-4",
-        "label": "Low Observability",
-        "description": "Object evades or confounds multiple sensor modalities simultaneously — radar, infrared, visual, or electromagnetic detection systems fail to maintain consistent track.",
-        "scientificBasis": "Known stealth technology reduces radar cross-section through geometry and materials but cannot simultaneously defeat all sensor modalities. UAP cases show simultaneous radar evasion, IR suppression, and visual cloaking beyond current technology.",
-        "detectionSignals": [
-          "Intermittent radar returns despite visual confirmation",
-          "Radar track acquisition followed by unexplained loss",
-          "Sensor malfunction coinciding with proximity",
-          "Object visible to one modality but not others",
-          "Electronic warfare effects without identifiable source"
-        ],
-        "methods": [
-          "Multi-sensor correlation (radar + IR + EO)",
-          "Radar cross-section estimation",
-          "EM spectrum analysis for jamming signatures",
-          "Sensor diagnostic logs for malfunction patterns",
-          "Signal-to-noise analysis across detection systems"
-        ],
-        "references": [
-          "USS Princeton (AN/SPY-1 Aegis radar) operator testimony, 2004 Nimitz encounter",
-          "Elizondo, \"The Five Observables\" framework, AATIP (low observability)"
-        ],
-        "category": "technology"
-      }
+      "caveat": "An instrument fault, missing file, occlusion or untested association must not become a finding of stealth, jamming or intentional evasion. Do not infer low radar cross-section from missing track data alone.",
+      "caveatLabel": "Detection differences do not establish evasion",
+      "references": [
+        "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf"
+      ]
     },
     {
-      "legacyTerm": {
-        "id": "transmedium_travel",
-        "code": "TO-5",
-        "label": "Transmedium Travel",
-        "category": "technology"
-      },
-      "legacyReferences": [
-        "Scientific Coalition for UAP Studies, \"2013 Aguadilla Puerto Rico: The Detailed Analysis of an Unidentified Anomalous Phenomenon Captured by the Department of Homeland Security,\" 2015",
-        "Gallaudet, \"Beneath the Surface,\" The Sol Foundation, 2023"
+      "id": "apparent_medium_transition",
+      "code": "OC-T05",
+      "category": "technology",
+      "label": "Apparent Medium Transition",
+      "description": "An apparent or measured passage of a candidate object between media or across a declared environmental regime boundary, such as an air-water interface or a specified atmospheric-to-space boundary. Identify the conditions on each side, the boundary used and the continuity of the candidate.",
+      "scientificBasis": "A transition claim depends on positions relative to the boundary and on whether observations before and after it refer to the same object. Motion, shape and interface effects are separate quantities to compare; their absence is not built into this term.",
+      "detectionSignals": [
+        "An account describes entry into or exit from a named medium.",
+        "A continuous sequence appears to cross a located interface.",
+        "Separate observing systems report candidates on opposite sides of a boundary within a specified time interval."
       ],
-      "legacyReferencesStatus": "Retained as historical bibliography only; not newly verified or automatically endorsed by this proposal.",
-      "mapping": {
-        "relation": "related-not-equivalent",
-        "automaticRebinding": false,
-        "rationale": "Removes requirements of no speed loss, no reconfiguration and no transition effects. Broader than the old capability claim; record the historical TO-5 correspondence without equivalence."
-      },
-      "proposedTerm": {
-        "id": "apparent_medium_transition",
-        "code": "OC-T05",
-        "category": "technology",
-        "label": "Apparent Medium Transition",
-        "description": "An apparent or measured passage of a candidate object between media or across a declared environmental regime boundary, such as an air-water interface or a specified atmospheric-to-space boundary. Identify the conditions on each side, the boundary used and the continuity of the candidate.",
-        "scientificBasis": "A transition claim depends on positions relative to the boundary and on whether observations before and after it refer to the same object. Motion, shape and interface effects are separate quantities to compare; their absence is not built into this term.",
-        "detectionSignals": [
-          "An account describes entry into or exit from a named medium.",
-          "A continuous sequence appears to cross a located interface.",
-          "Separate observing systems report candidates on opposite sides of a boundary within a specified time interval."
-        ],
-        "methods": [
-          "Record the boundary location, observation geometry and any refraction or obscuration model.",
-          "Retain observations through the transition where available; mark gaps and ambiguous associations.",
-          "Compare before/after motion and any disturbance against separate stated expectations and detection limits."
-        ],
-        "caveat": "Appearance behind a horizon, into glare or below a resolved waterline is not sufficient to establish entry into water. Atmospheric-to-space travel has no single material surface: name the altitude or regime criterion when using that context. This term does not assert unchanged speed or absence of a splash.",
-        "caveatLabel": "A transition requires continuity and a located boundary",
-        "references": [
-          "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf"
-        ]
-      },
-      "sourceKeys": [
-        "nasa_uap"
+      "methods": [
+        "Record the boundary location, observation geometry and any refraction or obscuration model.",
+        "Retain observations through the transition where available; mark gaps and ambiguous associations.",
+        "Compare before/after motion and any disturbance against separate stated expectations and detection limits."
       ],
-      "legacyDefinition": {
-        "id": "transmedium_travel",
-        "code": "TO-5",
-        "label": "Transmedium Travel",
-        "description": "Object transitions between air, water, and/or space without apparent structural reconfiguration, speed loss, or medium-transition effects.",
-        "scientificBasis": "Air-to-water transition requires extreme structural adaptation (different pressure regimes, Reynolds numbers, propulsion requirements). No known vehicle operates effectively across multiple media without reconfiguration.",
-        "detectionSignals": [
-          "Object observed entering water from air without splash proportional to size/speed",
-          "Object observed exiting water into air with continued controlled flight",
-          "Sonar track correlating with aerial radar track",
-          "No deceleration during medium transition",
-          "Consistent shape/size across media transitions"
-        ],
-        "methods": [
-          "Coordinated air/maritime sensor monitoring",
-          "Sonar-to-radar track handoff correlation",
-          "High-speed camera for transition dynamics",
-          "Underwater hydrophone arrays",
-          "Satellite IR for ocean surface thermal anomalies"
-        ],
-        "references": [
-          "Scientific Coalition for UAP Studies, \"2013 Aguadilla Puerto Rico: The Detailed Analysis of an Unidentified Anomalous Phenomenon Captured by the Department of Homeland Security,\" 2015",
-          "Gallaudet, \"Beneath the Surface,\" The Sol Foundation, 2023"
-        ],
-        "category": "technology"
-      }
+      "caveat": "Appearance behind a horizon, into glare or below a resolved waterline is not sufficient to establish entry into water. Atmospheric-to-space travel has no single material surface: name the altitude or regime criterion when using that context. This term does not assert unchanged speed or absence of a splash.",
+      "caveatLabel": "A transition requires continuity and a located boundary",
+      "references": [
+        "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf"
+      ]
     },
     {
-      "legacyTerm": {
-        "id": "biological_effects",
-        "code": "TO-6",
-        "label": "Biological Effects",
-        "category": "technology"
-      },
-      "legacyReferences": [
-        "Lacatski, Kelleher & Knapp, \"Skinwalkers at the Pentagon,\" 2021 (AAWSAP medical cases)",
-        "Operação Prato (Operation Saucer) medical documentation, Brazilian Air Force, Colares, 1977"
+      "id": "event_associated_biological_changes",
+      "code": "OC-T06",
+      "category": "technology",
+      "label": "Biological Changes Around an Event",
+      "description": "Reported symptoms or measured biological changes in a person, animal, plant or other organism in the context of an investigated event. Timing and any proposed exposure are recorded separately from a claim that the event caused the change.",
+      "scientificBasis": "Description of a symptom, clinical finding or environmental change is distinct from diagnosis and causal attribution. Assessments of an association require timelines, relevant baselines, potential exposures and consideration of alternative causes.",
+      "detectionSignals": [
+        "An account reports symptoms during or after an event.",
+        "A clinical or laboratory record documents a finding and its examination time.",
+        "A survey describes a change in vegetation or other organisms with a stated comparison."
       ],
-      "legacyReferencesStatus": "Retained as historical bibliography only; not newly verified or automatically endorsed by this proposal.",
-      "mapping": {
-        "relation": "related-not-equivalent",
-        "automaticRebinding": false,
-        "rationale": "Drops the asserted causal link to object proximity and presumed high-energy mechanism. Broadens to event-context biological observations and requires a new ID."
-      },
-      "proposedTerm": {
-        "id": "event_associated_biological_changes",
-        "code": "OC-T06",
-        "category": "technology",
-        "label": "Biological Changes Around an Event",
-        "description": "Reported symptoms or measured biological changes in a person, animal, plant or other organism in the context of an investigated event. Timing and any proposed exposure are recorded separately from a claim that the event caused the change.",
-        "scientificBasis": "Description of a symptom, clinical finding or environmental change is distinct from diagnosis and causal attribution. Assessments of an association require timelines, relevant baselines, potential exposures and consideration of alternative causes.",
-        "detectionSignals": [
-          "An account reports symptoms during or after an event.",
-          "A clinical or laboratory record documents a finding and its examination time.",
-          "A survey describes a change in vegetation or other organisms with a stated comparison."
-        ],
-        "methods": [
-          "Retain the original account and distinguish event time, symptom onset, examination time and reporting time.",
-          "Link authorized clinical or laboratory findings to their methods, reference ranges and uncertainty where applicable.",
-          "Record exposure measurements and comparison observations separately; evaluate causal explanations in attributed claims."
-        ],
-        "caveat": "An injury description does not identify radiation or another exposure mechanism. A later site reading does not reconstruct a past dose by itself. This category is not a clinical diagnosis or a basis for treatment advice.",
-        "caveatLabel": "Timing does not establish causation",
-        "references": [
-          "https://www.cdc.gov/field-epi-manual/php/chapters/analyze-interpret-data.html"
-        ]
-      },
-      "sourceKeys": [
-        "causation"
+      "methods": [
+        "Retain the original account and distinguish event time, symptom onset, examination time and reporting time.",
+        "Link authorized clinical or laboratory findings to their methods, reference ranges and uncertainty where applicable.",
+        "Record exposure measurements and comparison observations separately; evaluate causal explanations in attributed claims."
       ],
-      "legacyDefinition": {
-        "id": "biological_effects",
-        "code": "TO-6",
-        "label": "Biological Effects",
-        "description": "Proximity to the object causes measurable radiological, energetic, or physiological effects on biological organisms — burns, nausea, cellular damage, or other medical sequelae.",
-        "scientificBasis": "Consistent with high-energy electromagnetic radiation exposure. AAWSAP/BAASS documented cases with radiation-like injuries. Colares, Brazil (1977) documented beam-related injuries on dozens of witnesses.",
-        "detectionSignals": [
-          "Radiation-type burns without identifiable source",
-          "Nausea, headaches, or disorientation in proximity",
-          "Skin lesions or erythema post-encounter",
-          "Cellular or DNA damage documented in medical records",
-          "Multiple witnesses reporting similar physiological effects",
-          "Vegetation damage patterns around landing sites"
-        ],
-        "methods": [
-          "Medical examination and documentation",
-          "Dosimetry and radiation survey at site",
-          "Blood panel and cellular analysis",
-          "Vegetation and soil sample analysis",
-          "Geiger counter readings at encounter locations",
-          "Long-term medical follow-up of exposed individuals"
-        ],
-        "references": [
-          "Lacatski, Kelleher & Knapp, \"Skinwalkers at the Pentagon,\" 2021 (AAWSAP medical cases)",
-          "Operação Prato (Operation Saucer) medical documentation, Brazilian Air Force, Colares, 1977"
-        ],
-        "category": "technology"
-      }
+      "caveat": "An injury description does not identify radiation or another exposure mechanism. A later site reading does not reconstruct a past dose by itself. This category is not a clinical diagnosis or a basis for treatment advice.",
+      "caveatLabel": "Timing does not establish causation",
+      "references": [
+        "https://www.cdc.gov/field-epi-manual/php/chapters/analyze-interpret-data.html"
+      ]
     },
     {
-      "legacyTerm": {
-        "id": "molecular_complexity",
-        "code": "BO-1",
-        "label": "Molecular Complexity Anomaly",
-        "category": "biologics"
-      },
-      "legacyReferences": [
-        "Marshall et al., \"Identifying molecules as biosignatures with assembly theory and mass spectrometry,\" Nature Communications, 2021",
-        "Sharma et al., \"Assembly Theory Explains and Quantifies Selection and Evolution,\" Nature, 2023"
+      "id": "molecular_complexity_pattern",
+      "code": "OC-B01",
+      "category": "biologics",
+      "label": "Molecular Complexity Pattern",
+      "description": "A measured or estimated molecular complexity and abundance pattern evaluated against a stated chemical comparison. The metric, estimation method and comparison conditions form part of the result.",
+      "scientificBasis": "Molecular assembly is one research approach to complexity and potential biosignatures. Its calculated index and experimentally estimated values depend on declared methods and assumptions. Interpretation as life, selection or engineering is a separate claim.",
+      "detectionSignals": [
+        "A molecular structure receives a complexity value under a named algorithm.",
+        "Spectral data support a method-specific estimate of molecular complexity.",
+        "The distribution or abundance of identified molecules differs from a stated control or model."
       ],
-      "legacyReferencesStatus": "Retained as historical bibliography only; not newly verified or automatically endorsed by this proposal.",
-      "mapping": {
-        "relation": "related-not-equivalent",
-        "automaticRebinding": false,
-        "rationale": "Removes impossible-abiotic and guided-process requirements, and makes the metric explicitly method-dependent. Broadens to a measured complexity pattern instead of a confirmed biosignature."
-      },
-      "proposedTerm": {
-        "id": "molecular_complexity_pattern",
-        "code": "OC-B01",
-        "category": "biologics",
-        "label": "Molecular Complexity Pattern",
-        "description": "A measured or estimated molecular complexity and abundance pattern evaluated against a stated chemical comparison. The metric, estimation method and comparison conditions form part of the result.",
-        "scientificBasis": "Molecular assembly is one research approach to complexity and potential biosignatures. Its calculated index and experimentally estimated values depend on declared methods and assumptions. Interpretation as life, selection or engineering is a separate claim.",
-        "detectionSignals": [
-          "A molecular structure receives a complexity value under a named algorithm.",
-          "Spectral data support a method-specific estimate of molecular complexity.",
-          "The distribution or abundance of identified molecules differs from a stated control or model."
-        ],
-        "methods": [
-          "Retain raw spectra, preprocessing, molecule/ion selection and calibration data.",
-          "Identify the complexity algorithm, software revision, uncertainty or bounds, and whether the value is calculated or inferred from spectra.",
-          "Use blanks, reference compounds and relevant abiotic, biological or synthetic comparisons; report abundance and detection limits separately."
-        ],
-        "caveat": "Assembly-theory biosignature interpretations are contested. A fixed assembly-index threshold is not a universal proof of life or technology. An index does not measure the actual historical synthesis pathway, and a proposed biosignature does not establish non-terrestrial origin.",
-        "caveatLabel": "Research metric; origin and life not established",
-        "references": [
-          "https://www.nature.com/articles/s41467-021-23258-x",
-          "https://www.nature.com/articles/s41540-024-00403-y",
-          "https://science.nasa.gov/astrobiology/researchers/life-detection-resources/ladder-of-life-detection/"
-        ]
-      },
-      "sourceKeys": [
-        "assembly_proposal",
-        "assembly_critique",
-        "life_detection"
+      "methods": [
+        "Retain raw spectra, preprocessing, molecule/ion selection and calibration data.",
+        "Identify the complexity algorithm, software revision, uncertainty or bounds, and whether the value is calculated or inferred from spectra.",
+        "Use blanks, reference compounds and relevant abiotic, biological or synthetic comparisons; report abundance and detection limits separately."
       ],
-      "legacyDefinition": {
-        "id": "molecular_complexity",
-        "code": "BO-1",
-        "label": "Molecular Complexity Anomaly",
-        "description": "Material exhibits molecular assembly complexity requiring a guided process (life or technology) to produce — molecules with high assembly indices found in abundances impossible through abiotic chemistry.",
-        "scientificBasis": "Assembly Theory (Cronin & Walker, Nature 2023). Molecules with molecular assembly index (MA) ≥ 15 in high copy number are statistically impossible without selection or engineering. Provides agnostic biosignature independent of terrestrial biochemistry assumptions.",
-        "caveat": "Assembly Theory is an active area of research and remains contested. Critics argue that its assembly index overlaps with established complexity and information measures and that it has not been independently validated as a definitive biosignature. Treat a high assembly index as suggestive rather than conclusive.",
-        "detectionSignals": [
-          "High molecular assembly index (MA ≥ 15) in abundant molecules",
-          "Complex molecular structures without known abiotic synthesis pathway",
-          "Ordered molecular arrangements exceeding thermodynamic equilibrium expectations",
-          "Functional molecular machines or self-assembling structures",
-          "Polymeric molecules with non-random sequence information"
-        ],
-        "methods": [
-          "Tandem mass spectrometry (MS/MS) for assembly index measurement",
-          "Nuclear magnetic resonance (NMR) spectroscopy",
-          "Infrared (IR) spectroscopy for functional group identification",
-          "High-resolution mass spectrometry for molecular formula determination",
-          "Computational assembly pathway analysis"
-        ],
-        "references": [
-          "Marshall et al., \"Identifying molecules as biosignatures with assembly theory and mass spectrometry,\" Nature Communications, 2021",
-          "Sharma et al., \"Assembly Theory Explains and Quantifies Selection and Evolution,\" Nature, 2023"
-        ],
-        "category": "biologics"
-      }
+      "caveat": "Assembly-theory biosignature interpretations are contested. A fixed assembly-index threshold is not a universal proof of life or technology. An index does not measure the actual historical synthesis pathway, and a proposed biosignature does not establish non-terrestrial origin.",
+      "caveatLabel": "Research metric; origin and life not established",
+      "references": [
+        "https://www.nature.com/articles/s41467-021-23258-x",
+        "https://www.nature.com/articles/s41540-024-00403-y",
+        "https://science.nasa.gov/astrobiology/researchers/life-detection-resources/ladder-of-life-detection/"
+      ]
     },
     {
-      "legacyTerm": {
-        "id": "isotopic_provenance",
-        "code": "BO-2",
-        "label": "Non-Terrestrial Isotopic Provenance",
-        "category": "biologics"
-      },
-      "legacyReferences": [
-        "Nittler, \"Presolar stardust in meteorites: recent advances and scientific frontiers,\" Earth and Planetary Science Letters, 2003",
-        "McSween & Huss, \"Cosmochemistry,\" Cambridge University Press, 2010"
+      "id": "isotope_ratio_departure",
+      "code": "OC-B02",
+      "category": "biologics",
+      "label": "Isotope Ratio Departure",
+      "description": "An isotope ratio or pattern that differs from an explicitly identified reference material, population or model under a stated measurement and comparison method.",
+      "scientificBasis": "Isotope comparisons require a defined ratio or delta scale, calibration, sample preparation, uncertainty and relevant reference values. A departure from a selected reference is a result to explain, not an origin assignment.",
+      "detectionSignals": [
+        "A measured isotope ratio differs from a named reference beyond a declared comparison criterion.",
+        "An isotopic pattern varies across portions or phases of a sample.",
+        "Independent measurements reproduce a stated departure within their uncertainty."
       ],
-      "legacyReferencesStatus": "Retained as historical bibliography only; not newly verified or automatically endorsed by this proposal.",
-      "mapping": {
-        "relation": "related-not-equivalent",
-        "automaticRebinding": false,
-        "rationale": "Removes the defining non-terrestrial conclusion and requires an explicit comparison. New ID, with no automatic transfer of old provenance assessments."
-      },
-      "proposedTerm": {
-        "id": "isotope_ratio_departure",
-        "code": "OC-B02",
-        "category": "biologics",
-        "label": "Isotope Ratio Departure",
-        "description": "An isotope ratio or pattern that differs from an explicitly identified reference material, population or model under a stated measurement and comparison method.",
-        "scientificBasis": "Isotope comparisons require a defined ratio or delta scale, calibration, sample preparation, uncertainty and relevant reference values. A departure from a selected reference is a result to explain, not an origin assignment.",
-        "detectionSignals": [
-          "A measured isotope ratio differs from a named reference beyond a declared comparison criterion.",
-          "An isotopic pattern varies across portions or phases of a sample.",
-          "Independent measurements reproduce a stated departure within their uncertainty."
-        ],
-        "methods": [
-          "Identify the specimen and preparation history, isotope ratios, units or delta scales, and reference materials.",
-          "Report blanks, correction methods, interference checks, mass-bias treatment and uncertainty.",
-          "Compare replicated results and relevant natural, industrial or laboratory alternatives before evaluating provenance claims."
-        ],
-        "caveat": "An unusual ratio is not by itself a non-terrestrial, biological or technological signature. Reference selection, fractionation, mixing, contamination and processing can change an interpretation. This material-analysis term does not establish that the sample is biological.",
-        "caveatLabel": "A reference departure is not an origin",
-        "references": [
-          "https://www.nist.gov/publications/value-assignment-and-uncertainty-estimation-selected-light-stable-isotope-reference",
-          "https://science.nasa.gov/astrobiology/researchers/life-detection-resources/ladder-of-life-detection/"
-        ]
-      },
-      "sourceKeys": [
-        "nist_isotopes",
-        "life_detection"
+      "methods": [
+        "Identify the specimen and preparation history, isotope ratios, units or delta scales, and reference materials.",
+        "Report blanks, correction methods, interference checks, mass-bias treatment and uncertainty.",
+        "Compare replicated results and relevant natural, industrial or laboratory alternatives before evaluating provenance claims."
       ],
-      "legacyDefinition": {
-        "id": "isotopic_provenance",
-        "code": "BO-2",
-        "label": "Non-Terrestrial Isotopic Provenance",
-        "description": "Material isotope ratios inconsistent with terrestrial, solar system, or known astrophysical formation processes — indicating extraterrestrial or exotic origin.",
-        "scientificBasis": "Isotope ratios serve as fingerprints for nucleosynthetic origin. Terrestrial materials fall within well-characterized ranges. Deviations beyond measurement uncertainty indicate non-terrestrial formation (as demonstrated in meteorite classification).",
-        "detectionSignals": [
-          "Isotope ratios outside terrestrial standard ranges (e.g., δ¹³C, ⁸⁷Sr/⁸⁶Sr)",
-          "Non-mass-dependent fractionation patterns",
-          "Extinct radionuclide signatures (e.g., ²⁶Al, ⁶⁰Fe) inconsistent with solar system age",
-          "Noble gas isotope compositions outside solar wind or planetary ranges",
-          "Multi-element isotopic anomalies correlating across sample"
-        ],
-        "methods": [
-          "Thermal ionization mass spectrometry (TIMS)",
-          "Secondary ion mass spectrometry (SIMS/NanoSIMS)",
-          "Multicollector inductively coupled plasma mass spectrometry (MC-ICP-MS)",
-          "Noble gas mass spectrometry",
-          "Accelerator mass spectrometry (AMS) for rare isotopes"
-        ],
-        "references": [
-          "Nittler, \"Presolar stardust in meteorites: recent advances and scientific frontiers,\" Earth and Planetary Science Letters, 2003",
-          "McSween & Huss, \"Cosmochemistry,\" Cambridge University Press, 2010"
-        ],
-        "category": "biologics"
-      }
+      "caveat": "An unusual ratio is not by itself a non-terrestrial, biological or technological signature. Reference selection, fractionation, mixing, contamination and processing can change an interpretation. This material-analysis term does not establish that the sample is biological.",
+      "caveatLabel": "A reference departure is not an origin",
+      "references": [
+        "https://www.nist.gov/publications/value-assignment-and-uncertainty-estimation-selected-light-stable-isotope-reference",
+        "https://science.nasa.gov/astrobiology/researchers/life-detection-resources/ladder-of-life-detection/"
+      ]
     },
     {
-      "legacyTerm": {
-        "id": "non_standard_biochemistry",
-        "code": "BO-3",
-        "label": "Non-Standard Biochemistry",
-        "category": "biologics"
-      },
-      "legacyReferences": [
-        "Benner et al., \"Alternative Watson-Crick Synthetic Genetic Systems,\" Cold Spring Harbor Perspectives in Biology, 2016",
-        "National Academies, \"The Limits of Organic Life in Planetary Systems,\" 2007"
+      "id": "molecular_composition_difference",
+      "code": "OC-B03",
+      "category": "biologics",
+      "label": "Molecular Composition Difference",
+      "description": "A molecular structure, composition or chemical behavior that differs from a specified biochemical reference. The observation can concern a material whose biological status is unresolved.",
+      "scientificBasis": "Structural and chemical measurements can support comparisons without establishing that a material is living. Alternative molecular systems can also be synthesized, so unfamiliar chemistry alone does not identify a biological or non-terrestrial source.",
+      "detectionSignals": [
+        "Structural analysis identifies a polymer backbone, building block or molecular arrangement outside the stated comparison.",
+        "Measured chirality or composition differs from a specified reference sample or range.",
+        "A reproducible chemical behavior is not explained by the declared reference model."
       ],
-      "legacyReferencesStatus": "Retained as historical bibliography only; not newly verified or automatically endorsed by this proposal.",
-      "mapping": {
-        "relation": "related-not-equivalent",
-        "automaticRebinding": false,
-        "rationale": "Removes assumed biological status and universal terrestrial exclusion. Broadens to comparison-defined chemistry, with new ID."
-      },
-      "proposedTerm": {
-        "id": "molecular_composition_difference",
-        "code": "OC-B03",
-        "category": "biologics",
-        "label": "Molecular Composition Difference",
-        "description": "A molecular structure, composition or chemical behavior that differs from a specified biochemical reference. The observation can concern a material whose biological status is unresolved.",
-        "scientificBasis": "Structural and chemical measurements can support comparisons without establishing that a material is living. Alternative molecular systems can also be synthesized, so unfamiliar chemistry alone does not identify a biological or non-terrestrial source.",
-        "detectionSignals": [
-          "Structural analysis identifies a polymer backbone, building block or molecular arrangement outside the stated comparison.",
-          "Measured chirality or composition differs from a specified reference sample or range.",
-          "A reproducible chemical behavior is not explained by the declared reference model."
-        ],
-        "methods": [
-          "Use complementary structural or compositional measurements appropriate to the material and retain identification confidence.",
-          "Record preparation, blanks, reference compounds and contamination controls.",
-          "Test claims of biological function separately from chemical identity; document assay scope and failures without turning them into absence findings."
-        ],
-        "caveat": "Failure of a DNA amplification or sequencing protocol does not establish alternative genetics. Bulk elemental composition does not establish a molecular scaffold. The comparison must allow known biochemical diversity and synthetic chemistry; no four-base or twenty-amino-acid rule is universal proof of origin.",
-        "caveatLabel": "Unfamiliar chemistry does not establish biology",
-        "references": [
-          "https://pubmed.ncbi.nlm.nih.gov/30792304/",
-          "https://science.nasa.gov/astrobiology/researchers/life-detection-resources/ladder-of-life-detection/"
-        ]
-      },
-      "sourceKeys": [
-        "hachimoji",
-        "life_detection"
+      "methods": [
+        "Use complementary structural or compositional measurements appropriate to the material and retain identification confidence.",
+        "Record preparation, blanks, reference compounds and contamination controls.",
+        "Test claims of biological function separately from chemical identity; document assay scope and failures without turning them into absence findings."
       ],
-      "legacyDefinition": {
-        "id": "non_standard_biochemistry",
-        "code": "BO-3",
-        "label": "Non-Standard Biochemistry",
-        "description": "Biology uses fundamentally different building blocks than terrestrial life — alternative nucleic acids, non-standard amino acids as backbone, non-carbon scaffolding, or alternative solvent systems.",
-        "scientificBasis": "All known terrestrial life shares LUCA biochemistry: DNA/RNA with 4 nucleobases, 20 canonical amino acids, phospholipid membranes, water solvent. Alternative biochemistries have been theorized (XNA, silicon-based, ammonia solvent) but never found naturally on Earth.",
-        "detectionSignals": [
-          "Nucleic acid analogs with non-standard backbone (XNA, TNA, PNA)",
-          "Proteins built from non-canonical amino acid sets",
-          "Non-phospholipid membrane structures",
-          "Silicon-carbon hybrid molecular scaffolds",
-          "Metabolic products inconsistent with known biochemical pathways",
-          "Information-carrying polymers with non-ACGT/U encoding"
-        ],
-        "methods": [
-          "Liquid chromatography-mass spectrometry (LC-MS) for molecular identification",
-          "X-ray crystallography for structural determination",
-          "Amino acid analysis (chiral and compositional)",
-          "Nucleotide sequencing attempts with universal and degenerate primers",
-          "Elemental analysis (CHNS/O) for bulk composition",
-          "Raman spectroscopy for molecular bond identification"
-        ],
-        "references": [
-          "Benner et al., \"Alternative Watson-Crick Synthetic Genetic Systems,\" Cold Spring Harbor Perspectives in Biology, 2016",
-          "National Academies, \"The Limits of Organic Life in Planetary Systems,\" 2007"
-        ],
-        "category": "biologics"
-      }
+      "caveat": "Failure of a DNA amplification or sequencing protocol does not establish alternative genetics. Bulk elemental composition does not establish a molecular scaffold. The comparison must allow known biochemical diversity and synthetic chemistry; no four-base or twenty-amino-acid rule is universal proof of origin.",
+      "caveatLabel": "Unfamiliar chemistry does not establish biology",
+      "references": [
+        "https://pubmed.ncbi.nlm.nih.gov/30792304/",
+        "https://science.nasa.gov/astrobiology/researchers/life-detection-resources/ladder-of-life-detection/"
+      ]
     },
     {
-      "legacyTerm": {
-        "id": "non_phylogenetic_genetics",
-        "code": "BO-4",
-        "label": "Non-Phylogenetic Genetic Signatures",
-        "category": "biologics"
-      },
-      "legacyReferences": [
-        "Woese, \"The universal ancestor,\" PNAS, 1998",
-        "Cleland & Copley, \"The possibility of alternative microbial life on Earth,\" International Journal of Astrobiology, 2005"
+      "id": "unresolved_sequence_relationship",
+      "code": "OC-B04",
+      "category": "biologics",
+      "label": "Unresolved Sequence Relationship",
+      "description": "A retained nucleic-acid or protein sequence for which a specified search or phylogenetic analysis does not establish a relationship within its declared reference set and acceptance criteria.",
+      "scientificBasis": "Sequence matching is conditional on data quality, database contents and analysis settings. An unresolved relationship is a bounded search result. It does not establish that a sequence is outside terrestrial biology or has an independent evolutionary origin.",
+      "detectionSignals": [
+        "A quality-reviewed sequence has no reported match meeting a declared threshold.",
+        "Alternative analyses yield conflicting placements for the same retained sequence.",
+        "Available marker coverage is insufficient for a stated taxonomic or phylogenetic assignment."
       ],
-      "legacyReferencesStatus": "Retained as historical bibliography only; not newly verified or automatically endorsed by this proposal.",
-      "mapping": {
-        "relation": "related-not-equivalent",
-        "automaticRebinding": false,
-        "rationale": "Drops claimed universal phylogenetic exclusion and moves alternative polymer chemistry to a separate entry. This both broadens ordinary unresolved searches and narrows the molecular scope, so the crosswalk is related only, not broader/narrower equivalence."
-      },
-      "proposedTerm": {
-        "id": "unresolved_sequence_relationship",
-        "code": "OC-B04",
-        "category": "biologics",
-        "label": "Unresolved Sequence Relationship",
-        "description": "A retained nucleic-acid or protein sequence for which a specified search or phylogenetic analysis does not establish a relationship within its declared reference set and acceptance criteria.",
-        "scientificBasis": "Sequence matching is conditional on data quality, database contents and analysis settings. An unresolved relationship is a bounded search result. It does not establish that a sequence is outside terrestrial biology or has an independent evolutionary origin.",
-        "detectionSignals": [
-          "A quality-reviewed sequence has no reported match meeting a declared threshold.",
-          "Alternative analyses yield conflicting placements for the same retained sequence.",
-          "Available marker coverage is insufficient for a stated taxonomic or phylogenetic assignment."
-        ],
-        "methods": [
-          "Retain reads, quality measures, assembly provenance, extraction blanks and contamination checks.",
-          "Name the database snapshot, software revision, filters, masking, scoring and acceptance thresholds.",
-          "Report alignment coverage and alternative results; distinguish database similarity searches from phylogenetic inference and repeat against suitable comparison sets."
-        ],
-        "caveat": "No BLAST match is not zero homology to all life. Short, damaged, contaminated or misassembled sequences and limited database coverage can leave a result unresolved. Non-DNA/RNA chemistry belongs in a separate molecular-characterization entry unless an applicable sequence representation is defined.",
-        "caveatLabel": "A limited search is not exclusion from the tree of life",
-        "references": [
-          "https://blast.ncbi.nlm.nih.gov/doc/blast-help/FAQ.html",
-          "https://blast.ncbi.nlm.nih.gov/doc/blast-topics/blastsearchparams.html",
-          "https://link.springer.com/article/10.1186/s12915-014-0087-z"
-        ]
-      },
-      "sourceKeys": [
-        "blast_faq",
-        "blast_parameters",
-        "contamination"
+      "methods": [
+        "Retain reads, quality measures, assembly provenance, extraction blanks and contamination checks.",
+        "Name the database snapshot, software revision, filters, masking, scoring and acceptance thresholds.",
+        "Report alignment coverage and alternative results; distinguish database similarity searches from phylogenetic inference and repeat against suitable comparison sets."
       ],
-      "legacyDefinition": {
-        "id": "non_phylogenetic_genetics",
-        "code": "BO-4",
-        "label": "Non-Phylogenetic Genetic Signatures",
-        "description": "Genetic material falls outside Earth's tree of life — sequences with no homology to any known organism, novel genetic codes, or information storage systems incompatible with LUCA-derived biology.",
-        "scientificBasis": "All terrestrial organisms share a common ancestor (LUCA) and show phylogenetic relationships via conserved genes (16S/18S rRNA, cytochrome c, etc.). Genetic material that cannot be placed on any branch of the tree of life would indicate independent abiogenesis or non-terrestrial origin.",
-        "detectionSignals": [
-          "DNA/RNA sequences with zero BLAST homology to any known organism",
-          "Novel codon usage tables inconsistent with all known genetic codes",
-          "Information-encoding molecules that are not DNA or RNA",
-          "Genetic regulatory systems without terrestrial analogs",
-          "Absence of conserved genes universal to all terrestrial life (e.g., ribosomal RNA)"
-        ],
-        "methods": [
-          "Whole genome sequencing (shotgun metagenomics)",
-          "BLAST and phylogenetic analysis against NCBI/EBI databases",
-          "Codon usage analysis",
-          "Ribosomal RNA gene surveys (16S/18S/ITS)",
-          "Comparative genomics for conserved gene detection",
-          "De novo assembly and annotation"
-        ],
-        "references": [
-          "Woese, \"The universal ancestor,\" PNAS, 1998",
-          "Cleland & Copley, \"The possibility of alternative microbial life on Earth,\" International Journal of Astrobiology, 2005"
-        ],
-        "category": "biologics"
-      }
+      "caveat": "No BLAST match is not zero homology to all life. Short, damaged, contaminated or misassembled sequences and limited database coverage can leave a result unresolved. Non-DNA/RNA chemistry belongs in a separate molecular-characterization entry unless an applicable sequence representation is defined.",
+      "caveatLabel": "A limited search is not exclusion from the tree of life",
+      "references": [
+        "https://blast.ncbi.nlm.nih.gov/doc/blast-help/FAQ.html",
+        "https://blast.ncbi.nlm.nih.gov/doc/blast-topics/blastsearchparams.html",
+        "https://link.springer.com/article/10.1186/s12915-014-0087-z"
+      ]
     },
     {
-      "legacyTerm": {
-        "id": "anomalous_morphology",
-        "code": "BO-5",
-        "label": "Anomalous Morphology",
-        "category": "biologics"
-      },
-      "legacyReferences": [
-        "Valentine, \"On the Origin of Phyla,\" University of Chicago Press, 2004",
-        "Carroll, \"Evo-Devo and an Expanding Evolutionary Synthesis,\" Cell, 2008"
+      "id": "unresolved_morphological_characteristics",
+      "code": "OC-B05",
+      "category": "biologics",
+      "label": "Unresolved Morphological Characteristics",
+      "description": "Observed form or internal structure that has not been assigned within a stated anatomical, cellular or other morphological comparison. Record the features and comparison separately from any identification of the specimen.",
+      "scientificBasis": "Morphological examination characterizes structures at a stated scale and resolution. Classification also depends on specimen condition, preparation, comparison coverage and independent observations. Unfamiliar form alone does not establish biological status or evolutionary origin.",
+      "detectionSignals": [
+        "An examination describes a feature absent from the declared comparison material.",
+        "Imaging methods or examiners produce unresolved differences in structural identification.",
+        "Available specimen condition or image resolution prevents a proposed identification."
       ],
-      "legacyReferencesStatus": "Retained as historical bibliography only; not newly verified or automatically endorsed by this proposal.",
-      "mapping": {
-        "relation": "related-not-equivalent",
-        "automaticRebinding": false,
-        "rationale": "Removes outside-all-phyla and independent-origin assertions, and permits unresolved biological status. Broader investigative scope, new ID."
-      },
-      "proposedTerm": {
-        "id": "unresolved_morphological_characteristics",
-        "code": "OC-B05",
-        "category": "biologics",
-        "label": "Unresolved Morphological Characteristics",
-        "description": "Observed form or internal structure that has not been assigned within a stated anatomical, cellular or other morphological comparison. Record the features and comparison separately from any identification of the specimen.",
-        "scientificBasis": "Morphological examination characterizes structures at a stated scale and resolution. Classification also depends on specimen condition, preparation, comparison coverage and independent observations. Unfamiliar form alone does not establish biological status or evolutionary origin.",
-        "detectionSignals": [
-          "An examination describes a feature absent from the declared comparison material.",
-          "Imaging methods or examiners produce unresolved differences in structural identification.",
-          "Available specimen condition or image resolution prevents a proposed identification."
-        ],
-        "methods": [
-          "Retain specimen provenance, scale, orientation, preparation and original images.",
-          "Describe visible features before assigning taxonomic or functional labels.",
-          "Compare appropriate reference specimens and complementary imaging or composition analyses; document preservation artifacts and alternative reconstructions."
-        ],
-        "caveat": "Appearance alone can be affected by preservation, preparation, deformation, assembly or imaging artifacts. A resemblance to cells, organs or a body plan does not by itself establish those structures or an independent lineage.",
-        "caveatLabel": "An unresolved form is not a new lineage",
-        "references": [
-          "https://science.nasa.gov/astrobiology/researchers/life-detection-resources/ladder-of-life-detection/"
-        ]
-      },
-      "sourceKeys": [
-        "life_detection"
+      "methods": [
+        "Retain specimen provenance, scale, orientation, preparation and original images.",
+        "Describe visible features before assigning taxonomic or functional labels.",
+        "Compare appropriate reference specimens and complementary imaging or composition analyses; document preservation artifacts and alternative reconstructions."
       ],
-      "legacyDefinition": {
-        "id": "anomalous_morphology",
-        "code": "BO-5",
-        "label": "Anomalous Morphology",
-        "description": "Biological structures exhibit body plans, organ systems, or cellular architectures outside all known phylogenetic trees — morphological features that cannot be derived from any known evolutionary lineage.",
-        "scientificBasis": "Terrestrial biology produces morphological diversity within phylogenetic constraints (body plan conservation within phyla, developmental gene toolkit sharing). A biological entity with morphology outside all known phyla would indicate independent evolutionary origin.",
-        "detectionSignals": [
-          "Body plan outside all 33 known animal phyla",
-          "Cellular architecture without homology to known cell types",
-          "Organ systems with no developmental analog in terrestrial biology",
-          "Symmetry patterns not observed in terrestrial organisms",
-          "Tissue organization incompatible with known developmental pathways",
-          "Biomechanical properties outside known biological material ranges"
-        ],
-        "methods": [
-          "Comparative morphological analysis",
-          "Histological examination and electron microscopy (SEM/TEM)",
-          "Micro-CT scanning for internal structure",
-          "Developmental biology analysis (if living specimen)",
-          "Biomechanical testing of tissue properties",
-          "Phylogenetic morphological matrix analysis"
-        ],
-        "references": [
-          "Valentine, \"On the Origin of Phyla,\" University of Chicago Press, 2004",
-          "Carroll, \"Evo-Devo and an Expanding Evolutionary Synthesis,\" Cell, 2008"
-        ],
-        "category": "biologics"
-      }
+      "caveat": "Appearance alone can be affected by preservation, preparation, deformation, assembly or imaging artifacts. A resemblance to cells, organs or a body plan does not by itself establish those structures or an independent lineage.",
+      "caveatLabel": "An unresolved form is not a new lineage",
+      "references": [
+        "https://science.nasa.gov/astrobiology/researchers/life-detection-resources/ladder-of-life-detection/"
+      ]
     },
     {
-      "legacyTerm": {
-        "id": "anomalous_bio_interaction",
-        "code": "BO-6",
-        "label": "Anomalous Biological Interaction",
-        "category": "biologics"
-      },
-      "legacyReferences": [
-        "Mack, \"Abduction: Human Encounters with Aliens,\" Scribner, 1994",
-        "Jacobs, \"Secret Life: Firsthand Accounts of UFO Abductions,\" Simon & Schuster, 1992",
-        "Rommel, \"Operation Animal Mutilation,\" Report of the District Attorney, First Judicial District, State of New Mexico, 1980",
-        "Kelleher & Knapp, \"Hunt for the Skinwalker,\" Paraview Pocket Books, 2005"
+      "id": "reported_biological_interaction",
+      "code": "OC-B06",
+      "category": "biologics",
+      "label": "Reported Biological Interaction",
+      "description": "An attributed account or documented observation of apparent contact, communication or directed action involving a person, animal or other organism during an investigated event. Retain the reported action separately from findings about an agent, intent or cause.",
+      "scientificBasis": "Testimony can establish what a source reported. Recordings, physical traces and clinical or veterinary findings can address specific parts of that account through their own methods. Similarity between reports or temporal association alone does not establish a shared agent or mechanism.",
+      "detectionSignals": [
+        "A source describes apparent contact, communication, restraint or directed behavior.",
+        "A recording documents a specified interaction for later interpretation.",
+        "An examination records a physical finding alleged to be related to an interaction, with the attribution preserved."
       ],
-      "legacyReferencesStatus": "Retained as historical bibliography only; not newly verified or automatically endorsed by this proposal.",
-      "mapping": {
-        "relation": "related-not-equivalent",
-        "automaticRebinding": false,
-        "rationale": "Removes established directed intelligence and purposeful biological manipulation. Broadens to attributed reports and bounded corroboration, requiring a new ID."
-      },
-      "proposedTerm": {
-        "id": "reported_biological_interaction",
-        "code": "OC-B06",
-        "category": "biologics",
-        "label": "Reported Biological Interaction",
-        "description": "An attributed account or documented observation of apparent contact, communication or directed action involving a person, animal or other organism during an investigated event. Retain the reported action separately from findings about an agent, intent or cause.",
-        "scientificBasis": "Testimony can establish what a source reported. Recordings, physical traces and clinical or veterinary findings can address specific parts of that account through their own methods. Similarity between reports or temporal association alone does not establish a shared agent or mechanism.",
-        "detectionSignals": [
-          "A source describes apparent contact, communication, restraint or directed behavior.",
-          "A recording documents a specified interaction for later interpretation.",
-          "An examination records a physical finding alleged to be related to an interaction, with the attribution preserved."
-        ],
-        "methods": [
-          "Retain original wording, interview context, chronology and account revisions, including how the account was elicited.",
-          "Link independently collected recordings or physical findings to precise source passages without treating all parts of the account as corroborated.",
-          "Evaluate physical traces with appropriate forensic, clinical or veterinary methods and record alternative explanations; keep any agency assessment separate."
-        ],
-        "caveat": "This category includes testimony whose external circumstances are unresolved. It does not confirm an abduction, communication, intervention, intelligence or intent. A medical or psychological assessment is not a truth detector; an unexplained injury or animal tissue change does not by itself identify a responsible agent.",
-        "caveatLabel": "Reported interaction; agency not established",
-        "references": [
-          "https://www.cdc.gov/field-epi-manual/php/chapters/analyze-interpret-data.html"
-        ]
-      },
-      "sourceKeys": [
-        "causation"
+      "methods": [
+        "Retain original wording, interview context, chronology and account revisions, including how the account was elicited.",
+        "Link independently collected recordings or physical findings to precise source passages without treating all parts of the account as corroborated.",
+        "Evaluate physical traces with appropriate forensic, clinical or veterinary methods and record alternative explanations; keep any agency assessment separate."
       ],
-      "legacyDefinition": {
-        "id": "anomalous_bio_interaction",
-        "code": "BO-6",
-        "label": "Anomalous Biological Interaction",
-        "description": "Agent-level biological interaction that goes beyond simple energetic exposure — demonstrating directed, purposeful, or communicative engagement with biological organisms that implies intelligence or agency.",
-        "scientificBasis": "Distinct from Technology Observable TO-6 (Biological Effects), which covers passive radiological/energetic injury from proximity. BO-6 addresses cases where interaction patterns suggest directed agency: selective targeting, behavioral manipulation, tissue sampling, or communication attempts that imply biological intelligence behind the interaction. This is the home for the abduction/experiencer phenomenon and precision animal-tissue removal (\"cattle mutilation\").",
-        "caveat": "Unlike the sensor- and laboratory-grounded observables, this one rests largely on witness and experiencer testimony, and the inference of directed intelligence behind an interaction is not established. Investigations of related phenomena — including the federally funded 1980 Operation Animal Mutilation report — have attributed many cases to mundane causes such as predation. Treat a reported interaction as a prompt for physical corroboration, not as confirmation of agency.",
-        "caveatLabel": "Testimony-based — agency not established",
-        "detectionSignals": [
-          "Selective targeting of specific individuals or biological features",
-          "Evidence of tissue sampling or biological material collection",
-          "Behavioral effects suggesting directed influence (paralysis, compulsion)",
-          "Communication attempts through biological channels",
-          "Surgical-precision physical interactions with biological tissue",
-          "Interaction patterns demonstrating knowledge of target biology"
-        ],
-        "methods": [
-          "Forensic medical examination for interaction evidence",
-          "Psychological evaluation for behavioral influence markers",
-          "Dermatological analysis for precision markings",
-          "Toxicological screening for unknown compounds",
-          "Neurological assessment for anomalous effects",
-          "Comparative analysis across multiple experiencer reports"
-        ],
-        "references": [
-          "Mack, \"Abduction: Human Encounters with Aliens,\" Scribner, 1994",
-          "Jacobs, \"Secret Life: Firsthand Accounts of UFO Abductions,\" Simon & Schuster, 1992",
-          "Rommel, \"Operation Animal Mutilation,\" Report of the District Attorney, First Judicial District, State of New Mexico, 1980",
-          "Kelleher & Knapp, \"Hunt for the Skinwalker,\" Paraview Pocket Books, 2005"
-        ],
-        "category": "biologics"
-      }
+      "caveat": "This category includes testimony whose external circumstances are unresolved. It does not confirm an abduction, communication, intervention, intelligence or intent. A medical or psychological assessment is not a truth detector; an unexplained injury or animal tissue change does not by itself identify a responsible agent.",
+      "caveatLabel": "Reported interaction; agency not established",
+      "references": [
+        "https://www.cdc.gov/field-epi-manual/php/chapters/analyze-interpret-data.html"
+      ]
     }
-  ],
-  "reviewBoundary": "Editorial terminology and methodological review only. This is not completed scientific validation, domain-expert approval, verification of legacy research references, or evidence that any characteristic has occurred."
+  ]
 }

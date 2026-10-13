@@ -164,7 +164,7 @@ function printUsage(): void {
   console.log(`${dim('Topics:')}`);
   console.log(`  (none)               Ecosystem overview`);
   console.log(`  observation          Observation type summary`);
-  console.log(`  observable <code>    Observable detail (e.g. TO-3, BO-1)`);
+  console.log(`  observable <code>    Observable detail (e.g. OC-T03, OC-B01)`);
   console.log(`  origin <nodeId>      OCS node detail (e.g. 1.1.3)\n`);
   console.log(`${dim('Options:')}`);
   console.log(`  --help, -h           Show this help message\n`);

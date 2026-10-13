@@ -1,37 +1,33 @@
-# Observable definitions: exact revision candidate
+# Observable definitions: V2 baseline
 
-Prepared 13 October 2026. **Design review only.** No runtime definition, historical packet or published package has been changed. This is a terminology and methodological review, not completed scientific validation or domain-expert approval. The companion JSON preserves all twelve historical definitions verbatim in each `legacyDefinition`, including IDs, codes, wording, methods, qualifications and references. It also contains twelve complete replacement candidates with description, measurement rationale, relevant observations, methods, qualification, references and a non-equivalent historical crosswalk. It is not a catalog document accepted by a published parser.
+Reviewed 13 October 2026. This is a terminology and methodological review, not completed scientific validation or domain-expert approval. The twelve definitions are implemented directly in `@disclosureos/observables`. The structured review record is [`observable-catalog-proposal.json`](observable-catalog-proposal.json); the package exports are the runtime source of truth.
 
-## Recommendation
+## Scope
 
-Keep the original catalog byte-for-byte, and issue a new immutable catalog revision only after review. Prefer new neutral IDs for these candidates rather than reusing legacy IDs whose meaning included a mechanism, extraordinary capability, cause or origin. The shared reference contract makes both definitions addressable without silently reinterpreting old claims. The proposed new catalog URI and OC-T/OC-B codes are provisional design names, not live endpoints or released identifiers.
+These are descriptive terms for an investigation, not sufficient conditions for an anomaly. Ordinary observations may fit a term. Anomaly status requires a stated comparison and an attributed assessment, independent of the label. The revised definitions separate apparent motion from physical acceleration, detection differences from intent, event timing from causation, and material characteristics from biological or non-terrestrial origin.
 
-A less disruptive alternative is to reuse an ID in a new pinned revision and declare a semantic change. That is technically distinguishable when every client always carries the revision, but existing bare-ID maps make accidental conflation likely. Recommend reserving same-ID revisions for editorial clarification that preserves the proposition; this candidate deliberately changes propositions, so new IDs are safer. The crosswalk means “historically related”, never “same finding”. No assessment, confidence or support tier transfers automatically.
+The `technology` and `biologics` categories remain editorial groups. They do not establish that technology or biology is present. Isotope analysis can describe non-biological material; a reported interaction is not a biosignature.
 
-The neutral entries are indexing terms for an investigation, not a list of sufficient conditions for an anomaly. Ordinary examples may meet a descriptive term. Anomaly status requires a stated comparison and an attributed assessment, independent of the label.
+This directly replaces the V2 baseline. There are no historical aliases, migration rules or assessment crosswalks. New references identify the catalog, its exact revision, its retained bytes and a selected term. Publication fixes those bytes for reproducible future use; the catalog is never resolved through an unversioned latest lookup.
 
-Keep the current two editorial groups during this review, but explain that “technology” and “biologics” do not establish either origin. BO-2 is material characterization, not specifically biology; BO-6 is interaction, not a biosignature. A future group/label review can correct this without deleting their source-supported subject matter. A flat, filterable characteristics catalog may ultimately be clearer than forcing all twelve into two scientific categories.
+## Current terms
 
-## Exact scope crosswalk
+| Code | Identifier | Label |
+| --- | --- | --- |
+| OC-T01 | `apparent_hover` | Apparent Hover |
+| OC-T02 | `abrupt_motion` | Abrupt Motion |
+| OC-T03 | `hypersonic_signature_discrepancy` | Hypersonic Motion and Signature Discrepancy |
+| OC-T04 | `sensor_detection_discrepancy` | Sensor Detection Discrepancy |
+| OC-T05 | `apparent_medium_transition` | Apparent Medium Transition |
+| OC-T06 | `event_associated_biological_changes` | Biological Changes Around an Event |
+| OC-B01 | `molecular_complexity_pattern` | Molecular Complexity Pattern |
+| OC-B02 | `isotope_ratio_departure` | Isotope Ratio Departure |
+| OC-B03 | `molecular_composition_difference` | Molecular Composition Difference |
+| OC-B04 | `unresolved_sequence_relationship` | Unresolved Sequence Relationship |
+| OC-B05 | `unresolved_morphological_characteristics` | Unresolved Morphological Characteristics |
+| OC-B06 | `reported_biological_interaction` | Reported Biological Interaction |
 
-| Historical ID / code | Historical label | Candidate ID / code / label | Semantic change |
-| --- | --- | --- | --- |
-| `antigravity_lift` / TO-1 | Anti-Gravity Lift | `apparent_hover` / OC-T01 / **Apparent Hover** | Removes anti-gravity, universal capability and law-violation implications. Broadens the term to an unresolved support question; it cannot inherit an anti-gravity finding. |
-| `instantaneous_acceleration` / TO-2 | Instantaneous Acceleration | `abrupt_motion` / OC-T02 / **Abrupt Motion** | Replaces an asserted extreme physical acceleration with the broader source characteristic. Estimated acceleration remains an explicit assessment, not an automatic consequence of the label. |
-| `hypersonic_no_signatures` / TO-3 | Hypersonic Velocities Without Signatures | `hypersonic_signature_discrepancy` / OC-T03 / **Hypersonic Motion and Signature Discrepancy** | Retains the coupled motion/signature investigation but removes categorical claims about absent effects and violated physics. Conditional, channel-specific scope is broader than the old conjunctive claim. |
-| `low_observability` / TO-4 | Low Observability | `sensor_detection_discrepancy` / OC-T04 / **Sensor Detection Discrepancy** | Replaces a capability and intent-laden category with an observational discrepancy. New ID is necessary because ordinary sensor limitations now fall inside the investigative scope. |
-| `transmedium_travel` / TO-5 | Transmedium Travel | `apparent_medium_transition` / OC-T05 / **Apparent Medium Transition** | Removes requirements of no speed loss, no reconfiguration and no transition effects. Broader than the old capability claim; record the historical TO-5 correspondence without equivalence. |
-| `biological_effects` / TO-6 | Biological Effects | `event_associated_biological_changes` / OC-T06 / **Biological Changes Around an Event** | Drops the asserted causal link to object proximity and presumed high-energy mechanism. Broadens to event-context biological observations and requires a new ID. |
-| `molecular_complexity` / BO-1 | Molecular Complexity Anomaly | `molecular_complexity_pattern` / OC-B01 / **Molecular Complexity Pattern** | Removes impossible-abiotic and guided-process requirements, and makes the metric explicitly method-dependent. Broadens to a measured complexity pattern instead of a confirmed biosignature. |
-| `isotopic_provenance` / BO-2 | Non-Terrestrial Isotopic Provenance | `isotope_ratio_departure` / OC-B02 / **Isotope Ratio Departure** | Removes the defining non-terrestrial conclusion and requires an explicit comparison. New ID, with no automatic transfer of old provenance assessments. |
-| `non_standard_biochemistry` / BO-3 | Non-Standard Biochemistry | `molecular_composition_difference` / OC-B03 / **Molecular Composition Difference** | Removes assumed biological status and universal terrestrial exclusion. Broadens to comparison-defined chemistry, with new ID. |
-| `non_phylogenetic_genetics` / BO-4 | Non-Phylogenetic Genetic Signatures | `unresolved_sequence_relationship` / OC-B04 / **Unresolved Sequence Relationship** | Drops claimed universal phylogenetic exclusion and moves alternative polymer chemistry to a separate entry. This both broadens ordinary unresolved searches and narrows the molecular scope, so the crosswalk is related only, not broader/narrower equivalence. |
-| `anomalous_morphology` / BO-5 | Anomalous Morphology | `unresolved_morphological_characteristics` / OC-B05 / **Unresolved Morphological Characteristics** | Removes outside-all-phyla and independent-origin assertions, and permits unresolved biological status. Broader investigative scope, new ID. |
-| `anomalous_bio_interaction` / BO-6 | Anomalous Biological Interaction | `reported_biological_interaction` / OC-B06 / **Reported Biological Interaction** | Removes established directed intelligence and purposeful biological manipulation. Broadens to attributed reports and bounded corroboration, requiring a new ID. |
-
-## Full proposed wording
-
-The wording below is the proposal itself. It is intentionally more conservative than several historical claims. Methods are examples appropriate to the stated investigation; their presence does not prove the characteristic. The complete structured fields are in `observable-catalog-proposal.json`.
+## Definition and method boundaries
 
 ### OC-T01 — Apparent Hover
 
@@ -297,15 +293,13 @@ An attributed account or documented observation of apparent contact, communicati
 
 **Methodological grounding:** [CDC Field Epidemiology Manual: Analyzing and Interpreting Data](https://www.cdc.gov/field-epi-manual/php/chapters/analyze-interpret-data.html) supports the association-versus-causation boundary only. The interview and forensic practices proposed above need domain review; this source does not validate an interaction taxonomy.
 
-## Reference handling and publication gates
+## Source and review boundaries
 
-1. Preserve legacy reference strings in the historical snapshot. Do not carry them into the new catalog as if each source had been revalidated. Their role is historical provenance until individually checked.
-2. The primary sources below support methodological cautions, not the twelve-category taxonomy or any specific UAP claim. Several proposed boundaries are editorial recommendations inferred from those methods, not quotations or findings by those institutions.
-3. The Assembly Theory proposal and critique are both retained as research context. Neither a universal assembly threshold nor a claim that the theory has been disproven becomes normative.
-4. Obtain domain review of the candidate terms, especially biological interactions and specimen characterization. Verify the final bibliography and attribution before marking a catalog revision released.
-5. Freeze exact approved catalog bytes and their digest. A mutable draft label or a package version alone must not resolve a historical claim to changed content.
-6. Exercise old and new catalog references together in fixtures. Unknown terms in a supplied catalog fail membership checks; an unavailable catalog stays unresolved. Old outcomes are not reinterpreted, and old-to-new reassessment is explicit.
-7. Do not describe the revised collection as the original ATIP framework. The historical mapping records that connection; the neutral candidate is a DisclosureOS editorial vocabulary that changes scope. Attribute any framework-derived concepts specifically.
+1. The sources below support methodological cautions, not this twelve-term taxonomy or any specific UAP claim. Some boundaries are DisclosureOS editorial judgments informed by those methods, rather than findings made by those institutions.
+2. The Assembly Theory proposal and critique are retained as research context. Neither a universal assembly threshold nor a claim that the theory has been disproven becomes normative.
+3. Biological interactions and specimen characterization still warrant independent domain review. This implementation does not claim that such review has been completed.
+4. Freeze exact released catalog bytes and their digest. A package version or a mutable draft label alone is insufficient to identify a definition.
+5. This is the DisclosureOS characteristics vocabulary. It is not a reproduction of the original ATIP framework; its terms intentionally describe observations without adopting mechanism or origin claims.
 
 ## Sources and support boundaries
 
