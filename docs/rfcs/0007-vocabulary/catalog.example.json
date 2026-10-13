@@ -1,0 +1,16 @@
+{
+  "kind": "vocabulary_catalog",
+  "schemaVersion": "0.1.0",
+  "id": "synthetic-motion-catalog",
+  "catalogId": "urn:example:disclosureos:review:vocabulary:motion",
+  "revision": "illustration-1",
+  "publishedBy": "person:synthetic-editor",
+  "publishedAt": "2026-09-06T00:00:00Z",
+  "terms": [
+    {
+      "id": "radial_motion",
+      "label": "Radial motion",
+      "description": "Motion along the line of sight between an observer and a subject. This term describes a quantity to investigate and defines no anomaly threshold."
+    }
+  ]
+}

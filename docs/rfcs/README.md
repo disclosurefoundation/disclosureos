@@ -1,6 +1,6 @@
 # DisclosureOS v2 contract proposals
 
-These six proposals implement the design phase of WP02. They define intended requirements for v2 development, not a released contract or completed scientific review. Review serialization choices before implementing new schemas; substantive changes require updating the proposals and their fixtures together.
+The first six proposals document the design phase of WP02. Follow-on proposals address gaps identified during V2 implementation. They define intended requirements, not a released contract or completed scientific review. Review serialization choices before implementing new schemas; substantive changes require updating the proposals and their fixtures together.
 
 | RFC | Decision | Next implementation |
 | --- | --- | --- |
@@ -10,6 +10,9 @@ These six proposals implement the design phase of WP02. They define intended req
 | [0004: Scientific neutrality](0004-scientific-neutrality.md) | Measurements, operational assessments, and hypotheses remain separate | Attributed vocabulary review and conventional controls |
 | [0005: Instrument exchange](0005-instrument-exchange.md) | Pin acquisition context and product lineage | Revision/session/product contracts and partner adapter |
 | [0006: Evaluation](0006-evaluation.md) | Profile completion and diagnostics replace default aggregate ranking | Versioned profiles and legacy reproduction path |
+| [0007: Vocabulary references](0007-vocabulary-references.md) | Pin catalog identity, immutable revision and term separately from claim subjects and sources | Shared companion bindings, exact-byte resolution and twelve-definition review |
+
+RFC 0007 is a new design checkpoint. Its [definition review](0007-vocabulary/definition-review.md) proposes wording and non-equivalent historical crosswalks for all twelve observables. Its examples illustrate proposed serialization only; no vocabulary contract or replacement catalog is exported by this PR. The implementation notes below describe the original WP02 baseline, not the current completion state of every later contract.
 
 ## Current executable scope
 
