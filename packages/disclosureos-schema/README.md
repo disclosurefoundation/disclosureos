@@ -230,3 +230,7 @@ The experimental V2 entry point exports `ProductSourceSelectionSchema`,
 CSV rows and declared video frame intervals to exact observation-product bytes.
 See [the contract and limitations](../../docs/experimental/product-source-selection.md).
 This addition has not been published to npm.
+
+### Active sonar echo envelopes
+
+The optional [sonar profile](docs/sonar-profile.md) binds retained monostatic normalized envelopes and receive masks to an acquisition, the source delay/time axes, and a declared constant assumed sound speed. Public readers preserve unavailable samples separately from measured zero; the evaluator checks source integrity and declared meaning. A passed check does not certify physical calibration, propagation accuracy, depth or object identity. The [active sonar example](../../examples/sonar-active) includes a reproducible source packet. These additions are on the V2 development branch; package publication is separate.

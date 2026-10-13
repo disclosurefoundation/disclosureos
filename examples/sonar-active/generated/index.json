@@ -1,0 +1,100 @@
+{
+  "id": "sonar-active-v1",
+  "config": {
+    "pings": 64,
+    "delayBins": 256,
+    "delayStartSeconds": 0,
+    "delayStepSeconds": 0.001,
+    "pingStepSeconds": 1,
+    "timeOrigin": "2026-07-28T22:10:00Z",
+    "soundSpeedMps": 1500
+  },
+  "files": {
+    "amplitudes": {
+      "file": "echo-envelope.f32",
+      "sha256": "a924715c394385da6fc721040765e161141a790592c2526d4ac777adeb8034bd",
+      "byteLength": 65536,
+      "mediaType": "application/octet-stream"
+    },
+    "receiveMask": {
+      "file": "receive-mask.u8",
+      "sha256": "4defb8e287e521a406243b4b626ecb1d10549b0d377b79168a31a0fb58c6982a",
+      "byteLength": 16384,
+      "mediaType": "application/octet-stream"
+    }
+  },
+  "methods": {
+    "id": "sonar-active-methods-v1",
+    "version": "1.0.0",
+    "fictional": true,
+    "config": {
+      "pings": 64,
+      "delayBins": 256,
+      "delayStartSeconds": 0,
+      "delayStepSeconds": 0.001,
+      "pingStepSeconds": 1,
+      "timeOrigin": "2026-07-28T22:10:00Z",
+      "soundSpeedMps": 1500
+    },
+    "description": "Authored normalized echo envelope with a separate receive-retention mask. No physical receiver or acoustic propagation simulation.",
+    "formula": "G(x,w)=exp(-0.5*(x/w)^2). First=0.46*(0.85+0.15*cos(0.15*p))*G(b-(42+1.6*p),3.5). Second=0.34*(0.85+0.15*sin(0.22*p))*G(b-(189-1.25*p),5). Transient=0.28*G(p-15,1.7)*G(b-222,3). Background=0.018+0.007*sin(1.3*b+0.33*p)+0.005*cos(0.18*b-0.4*p). Available amplitude=float32(clamp(sum,0,1)). p is ping index; b is delay bin. Component names are authored terms, not recovered objects.",
+    "timing": "Ping p originates at timeOrigin+p seconds. Delay b is b*0.001 seconds after transmission, not the ping interval. Receive offset is p+b*0.001 seconds. UTC is authored, with no physical clock traceability.",
+    "distance": "Conditional one-way path length=1500*two-way delay/2 metres. Constant sound speed is assumed, not measured. No direction, depth or straight-line position is established. Bin spacing is not physical range resolution.",
+    "availability": "Mask0 for pings28..30, and for pings44..49 with bins120..151; otherwise1. Mask0 means amplitude not retained. Its float32 slot is a zero placeholder, not a measured value. Gaps are authored omissions without an inferred physical cause.",
+    "limits": [
+      "No physical calibration or sound-pressure units",
+      "No waveform, Doppler or carrier-frequency model",
+      "No beam geometry, localization or bathymetry",
+      "No detector, tracking or object identities",
+      "No pulse bandwidth, propagation, multipath or measured sound-speed profile",
+      "No empirical uncertainty or physical sample-resolution claim"
+    ]
+  },
+  "sources": {
+    "echo-envelope.f32": {
+      "sha256": "a924715c394385da6fc721040765e161141a790592c2526d4ac777adeb8034bd",
+      "byteLength": 65536,
+      "mediaType": "application/octet-stream"
+    },
+    "receive-mask.u8": {
+      "sha256": "4defb8e287e521a406243b4b626ecb1d10549b0d377b79168a31a0fb58c6982a",
+      "byteLength": 16384,
+      "mediaType": "application/octet-stream"
+    },
+    "methods.json": {
+      "sha256": "a0fe7aabe4d4b169de787dc89ea5491d81b575b408dd77d22cf44346c2e8e66c",
+      "byteLength": 1929,
+      "mediaType": "application/json"
+    },
+    "model.mjs": {
+      "sha256": "f40693f4aa36ead2d57e4c054f22d41d71dcbec5ec34758f91b3de379e4ffcea",
+      "byteLength": 1760,
+      "mediaType": "text/javascript"
+    },
+    "README.md": {
+      "sha256": "ca8f89cfbdc7f95c0e1ecf5ab0e3b9593d9c2d1cd798289975c46351c7adf4cf",
+      "byteLength": 2259,
+      "mediaType": "text/markdown"
+    },
+    "observation.json": {
+      "sha256": "00503f5050be50c2776b10bed2d46e8a1571dd6dfaca33d5febb41b26eba2a1c",
+      "byteLength": 2641,
+      "mediaType": "application/json"
+    },
+    "acquisition.json": {
+      "sha256": "5d3f9e75fba63c1fb182793f1891f2d73eacad22bca7b72dab9d327453a52500",
+      "byteLength": 3551,
+      "mediaType": "application/json"
+    },
+    "source-selection.json": {
+      "sha256": "2e38bb5f3c5cf09d8f868f43978ced2df31c07b6b15a47c7d5161df344068e82",
+      "byteLength": 3274,
+      "mediaType": "application/json"
+    },
+    "sonar-profile.json": {
+      "sha256": "31b23f8a2e6fc4b9625b59401b2876692ffb8c87a717c68a380319cf2be05be8",
+      "byteLength": 1154,
+      "mediaType": "application/json"
+    }
+  }
+}

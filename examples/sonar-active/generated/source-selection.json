@@ -1,0 +1,150 @@
+{
+  "kind": "product_source_selection",
+  "schemaVersion": "0.1.0",
+  "id": "sonar-active-selection-v1",
+  "observationId": "sonar-active-v1",
+  "layouts": [
+    {
+      "id": "amplitudes",
+      "productRef": "product:amplitudes",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "a924715c394385da6fc721040765e161141a790592c2526d4ac777adeb8034bd"
+      },
+      "byteLength": 65536,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "float32",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "normalized_echo_amplitude",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "time",
+          "name": "ping",
+          "length": 64,
+          "start": "2026-07-28T22:10:00Z",
+          "stepSeconds": {
+            "numerator": 1,
+            "denominator": 1
+          }
+        },
+        {
+          "kind": "regular",
+          "name": "two_way_delay",
+          "length": 256,
+          "origin": 0,
+          "step": 0.001,
+          "unit": "s"
+        }
+      ]
+    },
+    {
+      "id": "receiveMask",
+      "productRef": "product:receiveMask",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "4defb8e287e521a406243b4b626ecb1d10549b0d377b79168a31a0fb58c6982a"
+      },
+      "byteLength": 16384,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "uint8",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "receive_availability",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "time",
+          "name": "ping",
+          "length": 64,
+          "start": "2026-07-28T22:10:00Z",
+          "stepSeconds": {
+            "numerator": 1,
+            "denominator": 1
+          }
+        },
+        {
+          "kind": "regular",
+          "name": "two_way_delay",
+          "length": 256,
+          "origin": 0,
+          "step": 0.001,
+          "unit": "s"
+        }
+      ]
+    }
+  ],
+  "selections": [
+    {
+      "id": "amplitudes-0",
+      "layoutRef": "layout:amplitudes",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "amplitudes-1",
+      "layoutRef": "layout:amplitudes",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          28,
+          130
+        ]
+      }
+    },
+    {
+      "id": "amplitudes-2",
+      "layoutRef": "layout:amplitudes",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          63,
+          255
+        ]
+      }
+    },
+    {
+      "id": "receiveMask-0",
+      "layoutRef": "layout:receiveMask",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "receiveMask-1",
+      "layoutRef": "layout:receiveMask",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          28,
+          130
+        ]
+      }
+    },
+    {
+      "id": "receiveMask-2",
+      "layoutRef": "layout:receiveMask",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          63,
+          255
+        ]
+      }
+    }
+  ]
+}

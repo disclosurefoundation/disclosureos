@@ -1,0 +1,105 @@
+{
+  "kind": "observation",
+  "schemaVersion": "0.1.0",
+  "id": "sonar-active-v1",
+  "status": "published",
+  "createdAt": "2026-07-28T22:10:00Z",
+  "updatedAt": "2026-07-28T22:11:04Z",
+  "summary": "Fictional active sonar echo-envelope capture with explicit sample retention and an assumed two-way distance conversion.",
+  "eventTime": {
+    "state": "known",
+    "value": {
+      "kind": "interval",
+      "start": {
+        "kind": "instant",
+        "value": "2026-07-28T22:10:00Z",
+        "timeScale": "UTC"
+      },
+      "end": {
+        "kind": "instant",
+        "value": "2026-07-28T22:11:04Z",
+        "timeScale": "UTC"
+      }
+    },
+    "sourceRefs": [
+      "source:methods"
+    ]
+  },
+  "position": {
+    "state": "unknown",
+    "reason": "not_collected"
+  },
+  "sources": [
+    {
+      "id": "synthetic-envelope",
+      "kind": "instrument_data",
+      "access": "public",
+      "title": "Authored monostatic echo-envelope source"
+    },
+    {
+      "id": "methods",
+      "kind": "document",
+      "access": "public",
+      "title": "Authored envelope methods and assumptions",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "a0fe7aabe4d4b169de787dc89ea5491d81b575b408dd77d22cf44346c2e8e66c"
+      }
+    },
+    {
+      "id": "model-code",
+      "kind": "document",
+      "access": "public",
+      "title": "Executable numerical envelope model",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "f40693f4aa36ead2d57e4c054f22d41d71dcbec5ec34758f91b3de379e4ffcea"
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "amplitudes",
+      "kind": "raw",
+      "format": "application/octet-stream",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "a924715c394385da6fc721040765e161141a790592c2526d4ac777adeb8034bd"
+      },
+      "sourceRefs": [
+        "source:synthetic-envelope",
+        "source:methods",
+        "source:model-code"
+      ]
+    },
+    {
+      "id": "receiveMask",
+      "kind": "raw",
+      "format": "application/octet-stream",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "4defb8e287e521a406243b4b626ecb1d10549b0d377b79168a31a0fb58c6982a"
+      },
+      "sourceRefs": [
+        "source:synthetic-envelope",
+        "source:methods",
+        "source:model-code"
+      ]
+    }
+  ],
+  "methods": [],
+  "processing": [],
+  "assertions": [],
+  "measurements": [],
+  "frames": [],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "partnerData": false,
+      "model": "monostatic_echo_envelope",
+      "physicalValidation": "not_performed"
+    }
+  }
+}

@@ -80,7 +80,9 @@
     "./experimental/v2/steered-radar-profile/schema": "./schema/experimental/steered-radar-profile-0.1.0.schema.json",
     "./experimental/v2/steered-radar-profile/schema/0.1.0": "./schema/experimental/steered-radar-profile-0.1.0.schema.json",
     "./experimental/v2/secondary-radar-profile/schema": "./schema/experimental/secondary-radar-profile-0.1.0.schema.json",
-    "./experimental/v2/secondary-radar-profile/schema/0.1.0": "./schema/experimental/secondary-radar-profile-0.1.0.schema.json"
+    "./experimental/v2/secondary-radar-profile/schema/0.1.0": "./schema/experimental/secondary-radar-profile-0.1.0.schema.json",
+    "./experimental/v2/sonar-profile/schema": "./schema/experimental/sonar-profile-0.1.0.schema.json",
+    "./experimental/v2/sonar-profile/schema/0.1.0": "./schema/experimental/sonar-profile-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

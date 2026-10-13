@@ -1,0 +1,137 @@
+{
+  "kind": "acquisition_context",
+  "schemaVersion": "0.1.0",
+  "id": "sonar-active-context-v1",
+  "instruments": [
+    {
+      "id": "sonar-example",
+      "identity": {
+        "state": "known",
+        "manufacturer": "DisclosureOS synthetic example",
+        "model": "Monostatic numerical echo envelope"
+      }
+    }
+  ],
+  "manifests": [
+    {
+      "id": "sonar-manifest",
+      "instrumentRef": "instrument:sonar-example",
+      "version": "1.0.0",
+      "publishedAt": "2026-07-28T22:10:00Z",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "a0fe7aabe4d4b169de787dc89ea5491d81b575b408dd77d22cf44346c2e8e66c"
+        },
+        "byteLength": 1929,
+        "mediaType": "application/json"
+      },
+      "configuration": {
+        "hardware": {
+          "state": "known",
+          "value": "No physical hardware"
+        },
+        "firmware": {
+          "state": "known",
+          "value": "model.mjs version 1.0.0"
+        }
+      },
+      "channels": [
+        {
+          "id": "echo-envelope",
+          "quantity": "normalized_echo_amplitude",
+          "unit": "1",
+          "sampling": {
+            "state": "unknown",
+            "reason": "Authored ping/delay grid, no physical receiver sample rate characterized"
+          }
+        }
+      ]
+    }
+  ],
+  "deployments": [],
+  "calibrations": [],
+  "acquisitions": [
+    {
+      "id": "sonar-capture",
+      "instrumentRef": "instrument:sonar-example",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:sonar-manifest"
+      },
+      "deployment": {
+        "state": "unresolved",
+        "reason": "Synthetic source without physical deployment"
+      },
+      "classification": "known_control",
+      "time": {
+        "state": "known",
+        "kind": "interval",
+        "start": "2026-07-28T22:10:00Z",
+        "end": "2026-07-28T22:11:04Z",
+        "timeScale": "UTC"
+      },
+      "clock": {
+        "source": {
+          "state": "known",
+          "value": "Authored source timeline"
+        },
+        "synchronization": {
+          "state": "unknown",
+          "reason": "No physical synchronization"
+        },
+        "resolution": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        },
+        "uncertainty": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "echo-envelope",
+          "calibration": {
+            "state": "unresolved",
+            "reason": "Normalized amplitude has no physical calibration"
+          }
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "amplitudes",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:sonar-capture",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "a924715c394385da6fc721040765e161141a790592c2526d4ac777adeb8034bd"
+        },
+        "byteLength": 65536,
+        "mediaType": "application/octet-stream"
+      }
+    },
+    {
+      "id": "receiveMask",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:sonar-capture",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "4defb8e287e521a406243b4b626ecb1d10549b0d377b79168a31a0fb58c6982a"
+        },
+        "byteLength": 16384,
+        "mediaType": "application/octet-stream"
+      }
+    }
+  ],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "physicalCalibration": "not_performed"
+    }
+  }
+}

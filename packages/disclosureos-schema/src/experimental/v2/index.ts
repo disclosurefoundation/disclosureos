@@ -74,3 +74,6 @@ export * from './radar-profile';
 export * from './advanced-radar-profile-schema';
 export * from './advanced-radar-profile-reader';
 export * from './advanced-radar-profile';
+export * from './sonar-profile-schema';
+export * from './sonar-profile-reader';
+export * from './sonar-profile';

@@ -1,0 +1,39 @@
+{
+  "kind": "sonar_profile",
+  "schemaVersion": "0.1.0",
+  "id": "sonar-active-profile-v1",
+  "observationId": "sonar-active-v1",
+  "contextId": "sonar-active-context-v1",
+  "sourceSelectionId": "sonar-active-selection-v1",
+  "acquisitionRef": "acquisition:sonar-capture",
+  "acquisitionProductRef": "product:amplitudes",
+  "receiveMaskAcquisitionProductRef": "product:receiveMask",
+  "channelId": "echo-envelope",
+  "timeOrigin": "2026-07-28T22:10:00Z",
+  "mode": "monostatic_echo_envelope",
+  "dataOrigin": "synthetic",
+  "amplitudeRepresentation": "normalized_envelope",
+  "sampling": {
+    "pings": 64,
+    "delayBins": 256,
+    "delayStartSeconds": 0,
+    "delayStepSeconds": 0.001,
+    "pingStepSeconds": 1
+  },
+  "propagation": {
+    "kind": "constant_assumed_sound_speed",
+    "soundSpeedMps": 1500,
+    "travelPath": "two_way",
+    "distanceMeaning": "modeled_one_way_path_length"
+  },
+  "availability": {
+    "kind": "receive_retention_mask",
+    "unavailable": 0,
+    "available": 1,
+    "missingAmplitude": "zero_storage_placeholder"
+  },
+  "products": {
+    "amplitudes": "product:amplitudes",
+    "receiveMask": "product:receiveMask"
+  }
+}

@@ -116,7 +116,10 @@
     "verify:radar-scanning": "node examples/radar-scanning/verify.mjs",
     "verify:radar-moving": "node examples/radar-moving/verify.mjs",
     "verify:radar-advanced": "node examples/radar-advanced/verify.mjs",
-    "verify:radar-site": "node examples/radar-site/verify.mjs"
+    "verify:radar-site": "node examples/radar-site/verify.mjs",
+    "emit:v2-sonar-profile": "node conformance/emit-sonar-profile.mjs",
+    "test:v2-sonar-profile": "node --test conformance/sonar-profile.test.mjs examples/sonar-active/model.test.mjs",
+    "verify:sonar-active": "node examples/sonar-active/verify.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
