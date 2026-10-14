@@ -1,0 +1,80 @@
+{
+  "kind": "provider_score_policy",
+  "schemaVersion": "0.1.0",
+  "id": "example-documentation-review",
+  "version": "1.0.0",
+  "title": "Example documentation review",
+  "metric": {
+    "id": "documentation-review",
+    "label": "Documentation for independent review",
+    "question": "How well is this sample record documented for independent review?"
+  },
+  "subjectKinds": [
+    "record"
+  ],
+  "method": {
+    "description": "Sum each criterion weight multiplied by its reviewer-assigned rating. Ratings are 0 (insufficient), 0.5 (partial), or 1 (adequate for this review). A missing rating withholds the whole score. No weights are redistributed.",
+    "artifacts": [
+      {
+        "ref": "methods-review.json",
+        "mediaType": "application/json",
+        "sha256": "8be4dba751a4b181ab7e67881d7d11254eb45a097fe5fd57fd91071913ef3396",
+        "byteLength": 1756,
+        "id": "example-documentation-review",
+        "version": "1.0.0"
+      },
+      {
+        "ref": "methods-compute.mjs",
+        "mediaType": "text/javascript",
+        "sha256": "dc62a714b139b70c308a299f891b6a082e6107906a005712cd7d7b1cc4c1dae0",
+        "byteLength": 2338,
+        "id": "example-weighted-criteria-calculation",
+        "version": "1.0.0"
+      }
+    ]
+  },
+  "applicability": "Applies to the named material observation and the exact seven-file review scope retained in this fictional example.",
+  "missingData": {
+    "handling": "withhold",
+    "description": "Withhold the whole score when any required criterion judgment is missing. Do not substitute zero or redistribute its weight."
+  },
+  "limitations": [
+    "The providers, judgments and source material are fictional. No physical collection or laboratory work occurred.",
+    "The score describes this selected documentation review; it does not establish source authenticity, laboratory validity or anomalous behavior.",
+    "The method uses authored reviewer judgments. Recomputing the arithmetic does not independently justify those judgments.",
+    "Only the seven retained files form this scoring input scope. Other files referenced by the wider record have not been reviewed here."
+  ],
+  "scale": {
+    "kind": "numeric",
+    "min": 0,
+    "max": 100,
+    "direction": "higher",
+    "unit": "points",
+    "grades": [
+      {
+        "id": "d",
+        "label": "D · Substantial gaps",
+        "min": 0,
+        "max": 50
+      },
+      {
+        "id": "c",
+        "label": "C · Partial documentation",
+        "min": 50,
+        "max": 75
+      },
+      {
+        "id": "b",
+        "label": "B · Substantial documentation",
+        "min": 75,
+        "max": 90
+      },
+      {
+        "id": "a",
+        "label": "A · Extensive documentation",
+        "min": 90,
+        "max": 100
+      }
+    ]
+  }
+}

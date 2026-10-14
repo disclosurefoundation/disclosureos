@@ -1,0 +1,101 @@
+{
+  "kind": "provider_score_result",
+  "schemaVersion": "0.1.0",
+  "id": "example-provider-score-team-b",
+  "provider": {
+    "id": "fictional-review-team-b",
+    "name": "Review team B (fictional)"
+  },
+  "producedAt": "2026-10-13T12:00:00Z",
+  "policy": {
+    "id": "example-documentation-review",
+    "version": "1.0.0",
+    "sha256": "c890e49754a8cffac181a059e0d9935b234d7fb73b876723605d1299766a574a",
+    "byteLength": 2776
+  },
+  "subject": {
+    "kind": "record",
+    "id": "meridian-reviewed-specimens-v1"
+  },
+  "inputScope": {
+    "id": "meridian-material-review-seven-files-v1",
+    "description": "The retained material observation, case membership record, collection sheet, handling log, preparation protocol, laboratory report and three copper readings."
+  },
+  "inputs": [
+    {
+      "ref": "inputs-case.json",
+      "title": "Retained fictional case record",
+      "mediaType": "application/json",
+      "sha256": "e83c46d1982518bd7be9e1de3b8945c409e50f5563506457857b82184b66ffda",
+      "byteLength": 2821
+    },
+    {
+      "ref": "inputs-observation.json",
+      "title": "Retained material observation",
+      "mediaType": "application/json",
+      "sha256": "c4ab464be3c22b21b655b780538e4a51c182a05e6e2df3e5967fe89b0abdbac4",
+      "byteLength": 14105
+    },
+    {
+      "ref": "inputs-collection-sheet.md",
+      "title": "Collection sheet",
+      "mediaType": "text/markdown",
+      "sha256": "9e53aa48f31dac623a6cb4960b5047d77dda543aa33f44efd4bf95ea19b958f6",
+      "byteLength": 4153
+    },
+    {
+      "ref": "inputs-handling-log.md",
+      "title": "Handling and storage record",
+      "mediaType": "text/markdown",
+      "sha256": "0217824a7b0d6cf4fcf3af5be2996c65f8c99be18934cd2a5a9c0c8e99a61fcd",
+      "byteLength": 2885
+    },
+    {
+      "ref": "inputs-preparation-protocol.md",
+      "title": "Preparation protocol",
+      "mediaType": "text/markdown",
+      "sha256": "0ff2f4fd1e75839e6f038f519132d8b0aab24fa957af215ca3a4c38f984641a0",
+      "byteLength": 3041
+    },
+    {
+      "ref": "inputs-laboratory-report.md",
+      "title": "Laboratory report",
+      "mediaType": "text/markdown",
+      "sha256": "bf232ff95b6dc1cd1a91da0974fe82cf5daa1435c569fa0339ef6c245d1c9d6d",
+      "byteLength": 4388
+    },
+    {
+      "ref": "inputs-laboratory-replicates.csv",
+      "title": "Three retained copper readings",
+      "mediaType": "text/csv",
+      "sha256": "a1f6a6f91a8c583c0ab590322fdf3cdb923bd380e5519c95d46258456bf8572d",
+      "byteLength": 180
+    }
+  ],
+  "derivation": [
+    {
+      "ref": "worksheets-team-b.json",
+      "title": "Provider review worksheet",
+      "mediaType": "application/json",
+      "sha256": "824a2005a78ee81d461a9a84191f99a5ede1a95ffdcf4d144c1fba115907ea71",
+      "byteLength": 1315
+    }
+  ],
+  "applicability": {
+    "status": "applicable",
+    "reason": "The declared material record and selected documentation fall within this example method's scope."
+  },
+  "missingInputs": [],
+  "limitations": [
+    "The providers, judgments and source material are fictional. No physical collection or laboratory work occurred.",
+    "The score describes this selected documentation review; it does not establish source authenticity, laboratory validity or anomalous behavior.",
+    "The method uses authored reviewer judgments. Recomputing the arithmetic does not independently justify those judgments.",
+    "Only the seven retained files form this scoring input scope. Other files referenced by the wider record have not been reviewed here."
+  ],
+  "outcome": {
+    "status": "scored",
+    "value": 70,
+    "gradeId": "c",
+    "explanation": "Weighted sum of this provider's documented criterion judgments about the selected sources."
+  }
+}

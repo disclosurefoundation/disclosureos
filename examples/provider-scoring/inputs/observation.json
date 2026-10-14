@@ -1,0 +1,474 @@
+{
+  "kind": "observation",
+  "schemaVersion": "0.1.0",
+  "id": "meridian-reviewed-specimens-v1",
+  "status": "published",
+  "createdAt": "2026-08-16T12:00:00Z",
+  "updatedAt": "2026-08-18T12:30:00Z",
+  "summary": "Fictional Meridian specimen snapshot with a declared qualitative review method. Retained specimen identities and results are unchanged.",
+  "eventTime": {
+    "state": "known",
+    "value": {
+      "kind": "date",
+      "value": "2026-08-15"
+    },
+    "sourceRefs": [
+      "source:specimen-collection-sheet"
+    ]
+  },
+  "position": {
+    "state": "unknown",
+    "reason": "not_collected"
+  },
+  "sources": [
+    {
+      "id": "specimen-collection-sheet",
+      "kind": "document",
+      "access": "public",
+      "title": "sources/collection-sheet.md",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "9e53aa48f31dac623a6cb4960b5047d77dda543aa33f44efd4bf95ea19b958f6"
+      }
+    },
+    {
+      "id": "specimen-handling-log",
+      "kind": "document",
+      "access": "public",
+      "title": "sources/handling-log.md",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "0217824a7b0d6cf4fcf3af5be2996c65f8c99be18934cd2a5a9c0c8e99a61fcd"
+      }
+    },
+    {
+      "id": "specimen-preparation-protocol",
+      "kind": "document",
+      "access": "public",
+      "title": "sources/preparation-protocol.md",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "0ff2f4fd1e75839e6f038f519132d8b0aab24fa957af215ca3a4c38f984641a0"
+      }
+    },
+    {
+      "id": "specimen-laboratory-report",
+      "kind": "document",
+      "access": "public",
+      "title": "sources/laboratory-report.md",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "bf232ff95b6dc1cd1a91da0974fe82cf5daa1435c569fa0339ef6c245d1c9d6d"
+      }
+    },
+    {
+      "id": "specimen-materials",
+      "kind": "document",
+      "access": "public",
+      "title": "sources/materials.csv",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "08241c765cf811bd926f85aa4d09608eeea99abb642766458c2724ef6f47b281"
+      }
+    },
+    {
+      "id": "specimen-custody",
+      "kind": "document",
+      "access": "public",
+      "title": "sources/custody.csv",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "7194599988cb67b9f0c977e17a728bb2c633fbb7b2051a4c276e4389b13d464d"
+      }
+    },
+    {
+      "id": "specimen-laboratory-results",
+      "kind": "document",
+      "access": "public",
+      "title": "sources/laboratory-results.csv",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "7a020ed45bb3c165de83e4a6151ae366dfd6ad8cad328340488e0c0d28afa250"
+      }
+    },
+    {
+      "id": "specimen-laboratory-replicates",
+      "kind": "document",
+      "access": "public",
+      "title": "sources/laboratory-replicates.csv",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "a1f6a6f91a8c583c0ab590322fdf3cdb923bd380e5519c95d46258456bf8572d"
+      }
+    },
+    {
+      "id": "specimen-site-plan",
+      "kind": "document",
+      "access": "public",
+      "title": "sources/site-plan.svg",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "fd4b5b5cab3b8d84e6cfebd72d02bce59bef2194b320d7b87c2ab8f054210b5b"
+      }
+    },
+    {
+      "id": "specimen-site-positions",
+      "kind": "document",
+      "access": "public",
+      "title": "sources/site-positions.csv",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "d33c811a137e47a649c308491b0baf6eb6ace9d81fb5fd0d4b9076748ce33fe4"
+      }
+    },
+    {
+      "id": "specimen-image-briefs",
+      "kind": "document",
+      "access": "public",
+      "title": "sources/image-briefs.md",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "e4976a725552d0a52ace4e0508703c33b8715c6e2459f3ce090d6fc015ebbfba"
+      }
+    },
+    {
+      "id": "specimen-input",
+      "kind": "document",
+      "access": "public",
+      "title": "input.json",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "327f1e521fead6bc64894abda5c4649eebe4c778453cdcf285618690a8476a37"
+      }
+    },
+    {
+      "id": "specimen-artwork",
+      "kind": "document",
+      "access": "public",
+      "title": "artwork.json",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "d9deaa09e4d137f31051dc02c8f22161426c2f7028a256608734b1008ac39d37"
+      }
+    },
+    {
+      "id": "specimen-build",
+      "kind": "document",
+      "access": "public",
+      "title": "build.mjs",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "5431ea5c5b09b82320fd6c410805dc26b1e7fbe482c256858ed2d17113ecfd14"
+      }
+    },
+    {
+      "id": "specimen-soil-illustration",
+      "kind": "document",
+      "access": "public",
+      "title": "assets/soil-illustration.png",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "57cb5f80d2cad67bd68f8c8a7027c0fb7f6b85089452cd81e5672e2cac0fcbde"
+      }
+    },
+    {
+      "id": "specimen-jar-illustration",
+      "kind": "document",
+      "access": "public",
+      "title": "assets/jar-illustration.png",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "10debfb541fe10dba2847f2fc875731f5a0f5db2122b1d3a1f4410d29d574739"
+      }
+    },
+    {
+      "id": "specimen-label-seal",
+      "kind": "document",
+      "access": "public",
+      "title": "assets/label-seal.svg",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "667bf5af40adb9a3afcf4a30881efc0e822d4a26d55d29c5a3ff6abbcd35b636"
+      }
+    },
+    {
+      "id": "subject-review-reviews.json",
+      "kind": "document",
+      "access": "public",
+      "title": "reviews.json",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "283b8b4ffecbf9762a891b917ed6301d6d036ce6191cb0e4443590584494fe95"
+      }
+    },
+    {
+      "id": "subject-review-method.md",
+      "kind": "document",
+      "access": "public",
+      "title": "method.md",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "8cdd33fef0e8a9619276905c5d88e3283ecdd5af6d400076bf58b0bb9064aed7"
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "soil-illustration",
+      "kind": "derived",
+      "format": "image/png",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "57cb5f80d2cad67bd68f8c8a7027c0fb7f6b85089452cd81e5672e2cac0fcbde"
+      },
+      "generatedBy": "process:soil-illustration"
+    },
+    {
+      "id": "jar-illustration",
+      "kind": "derived",
+      "format": "image/png",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "10debfb541fe10dba2847f2fc875731f5a0f5db2122b1d3a1f4410d29d574739"
+      },
+      "generatedBy": "process:jar-illustration"
+    },
+    {
+      "id": "label-seal",
+      "kind": "derived",
+      "format": "image/svg+xml",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "667bf5af40adb9a3afcf4a30881efc0e822d4a26d55d29c5a3ff6abbcd35b636"
+      },
+      "generatedBy": "process:label-seal"
+    }
+  ],
+  "methods": [
+    {
+      "id": "meridian-extractable-metals",
+      "version": "2",
+      "description": "Authored partial extraction and concentration readout; as-received soil basis. No physical laboratory work or analytical recovery measured."
+    },
+    {
+      "id": "specimen-artwork",
+      "version": "1",
+      "description": "Retained AI-generated editorial illustrations and a deterministic label drawing; no analytical measurements, scale or inferred composition. Exact prompts and retained hashes are in artwork.json."
+    },
+    {
+      "id": "precise-subject-review",
+      "version": "1",
+      "description": "# Meridian precise-subject review method\n\nEntirely fictional qualitative reviews, version 1, 18 August 2026. No physical work or automated scientific inference is performed.\n\n1. Identify the exact subject: a named specimen, one populated result field, or a directed relation between two pinned observation snapshots.\n2. List the sources actually considered and the precise entity assertions used. Preserve the source result type, unit, uncertainty and missingness. Do not propagate results to parents or siblings.\n3. Separate document consistency from physical verification. Evaluate the stated question qualitatively, record the reasoning and limits, and identify what could resolve it.\n4. A revision retains its predecessor and the same subject, topic and evaluator. Additional sources do not by themselves establish a stronger outcome.\n5. A case relation is an attributed assessment with explicit direction. An inconclusive corroboration review does not assert a corroborating fact, reverse the relation, merge observations or change their publication status.\n\nThe two A1 reviews share one retained observation/entity snapshot. Their declared input sets differ; the first review does not claim that the other sources did not yet exist. Later microscopy and spectral examples are outside these reviews’ input sets.\n\nThe builder verifies pinned source bytes and invokes the standard’s laboratory and case claim-history evaluators. These checks cover structure, reference resolution and revision semantics. Authenticity, laboratory performance, scientific validity and physical association remain not checked. No confidence score or probability is assigned.\n"
+    }
+  ],
+  "processing": [
+    {
+      "id": "soil-illustration",
+      "methodRef": "method:specimen-artwork",
+      "methodVersion": "1",
+      "performedBy": "DisclosureOS fictional example authoring",
+      "performedAt": "2026-09-24T01:14:53Z",
+      "inputRefs": [
+        "source:specimen-image-briefs",
+        "source:specimen-collection-sheet",
+        "source:specimen-artwork",
+        "source:specimen-build"
+      ],
+      "outputRefs": [
+        "product:soil-illustration"
+      ]
+    },
+    {
+      "id": "jar-illustration",
+      "methodRef": "method:specimen-artwork",
+      "methodVersion": "1",
+      "performedBy": "DisclosureOS fictional example authoring",
+      "performedAt": "2026-09-24T01:14:53Z",
+      "inputRefs": [
+        "source:specimen-image-briefs",
+        "source:specimen-collection-sheet",
+        "source:specimen-artwork",
+        "source:specimen-build"
+      ],
+      "outputRefs": [
+        "product:jar-illustration"
+      ]
+    },
+    {
+      "id": "label-seal",
+      "methodRef": "method:specimen-artwork",
+      "methodVersion": "1",
+      "performedBy": "DisclosureOS fictional example authoring",
+      "performedAt": "2026-09-24T01:14:53Z",
+      "inputRefs": [
+        "source:specimen-image-briefs",
+        "source:specimen-collection-sheet",
+        "source:specimen-artwork",
+        "source:specimen-build"
+      ],
+      "outputRefs": [
+        "product:label-seal"
+      ]
+    }
+  ],
+  "measurements": [
+    {
+      "id": "amount-parent",
+      "quantity": "mass",
+      "value": {
+        "value": 120,
+        "unit": "g",
+        "uncertainty": {
+          "kind": "unknown",
+          "reason": "not_characterized"
+        }
+      },
+      "sourceRefs": [
+        "source:specimen-materials"
+      ]
+    },
+    {
+      "id": "amount-aliquot-a",
+      "quantity": "mass",
+      "value": {
+        "value": 60,
+        "unit": "g",
+        "uncertainty": {
+          "kind": "unknown",
+          "reason": "not_characterized"
+        }
+      },
+      "sourceRefs": [
+        "source:specimen-materials"
+      ]
+    },
+    {
+      "id": "amount-aliquot-b",
+      "quantity": "mass",
+      "value": {
+        "value": 60,
+        "unit": "g",
+        "uncertainty": {
+          "kind": "unknown",
+          "reason": "not_characterized"
+        }
+      },
+      "sourceRefs": [
+        "source:specimen-materials"
+      ]
+    },
+    {
+      "id": "amount-analytical-a1",
+      "quantity": "mass",
+      "value": {
+        "value": 5,
+        "unit": "g",
+        "uncertainty": {
+          "kind": "unknown",
+          "reason": "not_characterized"
+        }
+      },
+      "sourceRefs": [
+        "source:specimen-materials"
+      ]
+    },
+    {
+      "id": "amount-retained-a",
+      "quantity": "mass",
+      "value": {
+        "value": 55,
+        "unit": "g",
+        "uncertainty": {
+          "kind": "unknown",
+          "reason": "not_characterized"
+        }
+      },
+      "sourceRefs": [
+        "source:specimen-materials"
+      ]
+    },
+    {
+      "id": "amount-field-control",
+      "quantity": "mass",
+      "value": {
+        "value": 100,
+        "unit": "g",
+        "uncertainty": {
+          "kind": "unknown",
+          "reason": "not_characterized"
+        }
+      },
+      "sourceRefs": [
+        "source:specimen-materials"
+      ]
+    },
+    {
+      "id": "amount-blank",
+      "quantity": "volume",
+      "value": {
+        "value": 50,
+        "unit": "mL",
+        "uncertainty": {
+          "kind": "unknown",
+          "reason": "not_characterized"
+        }
+      },
+      "sourceRefs": [
+        "source:specimen-materials"
+      ]
+    },
+    {
+      "id": "copper-a1",
+      "quantity": "mass_fraction",
+      "value": {
+        "value": 1.25,
+        "unit": "mg/kg",
+        "uncertainty": {
+          "kind": "standard",
+          "magnitude": 0.08,
+          "unit": "mg/kg",
+          "sourceRefs": [
+            "source:specimen-laboratory-report"
+          ]
+        }
+      },
+      "sourceRefs": [
+        "source:specimen-laboratory-report",
+        "source:specimen-laboratory-results"
+      ]
+    },
+    {
+      "id": "copper-control",
+      "quantity": "mass_fraction",
+      "value": {
+        "value": 1.18,
+        "unit": "mg/kg",
+        "uncertainty": {
+          "kind": "standard",
+          "magnitude": 0.09,
+          "unit": "mg/kg",
+          "sourceRefs": [
+            "source:specimen-laboratory-report"
+          ]
+        }
+      },
+      "sourceRefs": [
+        "source:specimen-laboratory-report",
+        "source:specimen-laboratory-results"
+      ]
+    }
+  ],
+  "assertions": [],
+  "frames": [],
+  "extensions": {
+    "org.disclosure.showcase": {
+      "fictional": true,
+      "collection": "meridian",
+      "revision": "r2",
+      "nominalAmounts": true
+    }
+  }
+}

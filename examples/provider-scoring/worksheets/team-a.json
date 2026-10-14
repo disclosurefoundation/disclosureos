@@ -1,0 +1,29 @@
+{
+  "id": "team-a-review",
+  "fictional": true,
+  "methodId": "example-documentation-review",
+  "methodVersion": "1.0.0",
+  "scope": "Review of the seven retained files in this example, not every source linked by the wider case record.",
+  "criteria": [
+    {
+      "id": "source-traceability",
+      "rating": 1,
+      "rationale": "The reviewed observation identifies these source digests, and this example retains the selected source bytes. This does not authenticate the original sources."
+    },
+    {
+      "id": "specimen-identity",
+      "rating": 1,
+      "rationale": "The collection sheet and preparation protocol distinguish M-014, portions A and B, and analytical portion A1. The laboratory report assigns the copper result to A1."
+    },
+    {
+      "id": "method-detail",
+      "rating": 0.5,
+      "rationale": "The source explains collection, splitting, subsampling and partial extraction, and retains three readings. I count this as partial documentation even though the full analytical procedure and uncertainty budget are missing."
+    },
+    {
+      "id": "stated-limits",
+      "rating": 1,
+      "rationale": "The sources identify the unrecorded collection time, nominal masses, separate blank matrix, missing uncertainty budget and lack of a demonstrated link to the light."
+    }
+  ]
+}

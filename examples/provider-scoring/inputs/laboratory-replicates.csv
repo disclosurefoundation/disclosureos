@@ -1,0 +1,4 @@
+material_id,replicate,quantity,value,unit
+analytical-a1,1,extractable_copper,1.21,mg/kg
+analytical-a1,2,extractable_copper,1.25,mg/kg
+analytical-a1,3,extractable_copper,1.29,mg/kg

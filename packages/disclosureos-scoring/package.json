@@ -1,7 +1,7 @@
 {
   "name": "@disclosureos/scoring",
   "version": "2.0.0-beta.3",
-  "description": "Reference scoring for the DisclosureOS ecosystem — record completeness and case compellingness across the Observables and Origin layers",
+  "description": "Provider scoring contracts, attributed assessment summaries and reference scoring utilities for DisclosureOS",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -48,7 +48,11 @@
     "./experimental/v2": {
       "types": "./dist/experimental/v2/index.d.ts",
       "import": "./dist/experimental/v2/index.js"
-    }
+    },
+    "./experimental/v2/provider-score-policy/schema": "./schema/experimental/provider-score-policy-0.1.0.schema.json",
+    "./experimental/v2/provider-score-policy/schema/0.1.0": "./schema/experimental/provider-score-policy-0.1.0.schema.json",
+    "./experimental/v2/provider-score-result/schema": "./schema/experimental/provider-score-result-0.1.0.schema.json",
+    "./experimental/v2/provider-score-result/schema/0.1.0": "./schema/experimental/provider-score-result-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

@@ -1,0 +1,343 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "provider_score_result"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "provider": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https?:\\/\\/"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "producedAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}(?![\\s\\S])"
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "sha256",
+        "byteLength"
+      ],
+      "additionalProperties": false
+    },
+    "subject": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "case",
+            "record",
+            "claim",
+            "measurement",
+            "product",
+            "source",
+            "collection"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "kind",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "inputScope": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "id",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "inputs": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "mediaType": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}(?![\\s\\S])"
+          },
+          "byteLength": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "ref",
+          "title",
+          "mediaType",
+          "sha256",
+          "byteLength"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "derivation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "mediaType": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}(?![\\s\\S])"
+          },
+          "byteLength": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "ref",
+          "title",
+          "mediaType",
+          "sha256",
+          "byteLength"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "applicability": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "applicable",
+            "not_applicable",
+            "undetermined"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "status",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "missingInputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "ref",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      }
+    },
+    "outcome": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "const": "scored"
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+                }
+              ]
+            },
+            "gradeId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+            },
+            "explanation": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          },
+          "required": [
+            "status",
+            "value",
+            "explanation"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "const": "unavailable"
+            },
+            "reasonCode": {
+              "type": "string",
+              "enum": [
+                "missing_inputs",
+                "not_applicable",
+                "undetermined",
+                "not_calculated"
+              ]
+            },
+            "explanation": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          },
+          "required": [
+            "status",
+            "reasonCode",
+            "explanation"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "id",
+    "provider",
+    "producedAt",
+    "policy",
+    "subject",
+    "inputScope",
+    "inputs",
+    "derivation",
+    "applicability",
+    "missingInputs",
+    "limitations",
+    "outcome"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:disclosureos:experimental:provider-score-result:0.1.0"
+}

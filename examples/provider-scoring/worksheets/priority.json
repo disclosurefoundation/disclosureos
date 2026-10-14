@@ -1,0 +1,24 @@
+{
+  "id": "team-b-priority-review",
+  "fictional": true,
+  "methodId": "example-follow-up-priority",
+  "methodVersion": "1.0.0",
+  "scope": "Review of the seven retained files in this example, not every source linked by the wider case record.",
+  "criteria": [
+    {
+      "id": "documentation-gaps",
+      "rating": 0.5,
+      "rationale": "The sources document specimen identity and broad preparation steps, but omit a complete analytical procedure and uncertainty budget. The team assigns medium priority to filling these gaps."
+    },
+    {
+      "id": "follow-up-value",
+      "rating": 1,
+      "rationale": "A detailed procedure and uncertainty account would let a future reviewer examine the reported concentration more closely."
+    },
+    {
+      "id": "version-preservation",
+      "rating": 1,
+      "rationale": "The team assigns high priority to retaining exact revisions while requesting additional documentation. This is a review priority, not a claim that files are at risk."
+    }
+  ]
+}

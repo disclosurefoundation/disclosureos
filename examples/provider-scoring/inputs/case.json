@@ -1,0 +1,90 @@
+{
+  "kind": "case_record",
+  "schemaVersion": "0.1.0",
+  "id": "meridian-material-field-review-case-v1",
+  "recordedAt": "2026-08-18T12:30:00Z",
+  "recordedBy": "DisclosureOS fictional example",
+  "observationRefs": [
+    {
+      "documentId": "meridian-014",
+      "schemaId": "urn:disclosureos:experimental:observation:0.1.0",
+      "sha256": "c12db7af347ae57cf29849f131fcba5e0713cc895ab2d9906a282119e7d37799"
+    },
+    {
+      "documentId": "meridian-reviewed-specimens-v1",
+      "schemaId": "urn:disclosureos:experimental:observation:0.1.0",
+      "sha256": "c4ab464be3c22b21b655b780538e4a51c182a05e6e2df3e5967fe89b0abdbac4"
+    }
+  ],
+  "entities": [
+    {
+      "kind": "event_group",
+      "id": "field-study",
+      "fields": {
+        "label": [
+          {
+            "id": "label",
+            "content": {
+              "state": "known",
+              "value": "Meridian field study",
+              "provenance": {
+                "observationId": "meridian-014",
+                "sourceRef": "source:station-log",
+                "attributedTo": "Meridian simulation team",
+                "extractedBy": "DisclosureOS fictional example",
+                "locator": {
+                  "kind": "page",
+                  "page": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "membership",
+      "id": "member",
+      "member": {
+        "kind": "observation",
+        "id": "meridian-014"
+      },
+      "groupId": "field-study",
+      "basis": {
+        "text": "This authored example groups the fictional field-study records; it makes no same-object or causal claim.",
+        "provenance": {
+          "observationId": "meridian-014",
+          "sourceRef": "source:station-log",
+          "attributedTo": "Meridian simulation team",
+          "extractedBy": "DisclosureOS fictional example",
+          "locator": {
+            "kind": "page",
+            "page": 1
+          }
+        }
+      }
+    },
+    {
+      "kind": "membership",
+      "id": "material-record",
+      "member": {
+        "kind": "observation",
+        "id": "meridian-reviewed-specimens-v1"
+      },
+      "groupId": "field-study",
+      "basis": {
+        "text": "The authored collection is documented within the Meridian investigation. Membership does not assert corroboration or a common cause.",
+        "provenance": {
+          "observationId": "meridian-reviewed-specimens-v1",
+          "sourceRef": "source:specimen-collection-sheet",
+          "sourceDigest": {
+            "algorithm": "sha256",
+            "value": "9e53aa48f31dac623a6cb4960b5047d77dda543aa33f44efd4bf95ea19b958f6"
+          },
+          "attributedTo": "Meridian simulation team (fictional)",
+          "extractedBy": "DisclosureOS precise-subject adapter"
+        }
+      }
+    }
+  ]
+}

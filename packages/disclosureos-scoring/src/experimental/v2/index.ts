@@ -1,4 +1,5 @@
 export * from "./assessment-summary";
+export * from "./provider-scoring";
 export {
   AssessmentSummaryEvaluationSchema,
   ASSESSMENT_SUMMARY_EVALUATION_SCHEMA_ID,

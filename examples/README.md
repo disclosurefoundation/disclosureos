@@ -70,3 +70,9 @@ All examples are type-checked in CI:
 ```bash
 pnpm --filter @disclosureos/examples type-check
 ```
+
+## Provider-authored scoring
+
+The [provider scoring example](provider-scoring/README.md) retains two fictional
+teams' assessments of the same source files, with replayable weighted criteria,
+provider-specific grades, a different-method comparison and an unavailable score.

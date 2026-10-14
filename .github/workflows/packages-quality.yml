@@ -165,6 +165,7 @@ jobs:
       - run: pnpm test:v2-evaluation
       - run: pnpm test:v2-replay
       - run: pnpm test:v2-summary-evaluation
+      - run: pnpm test:v2-provider-scoring
       - run: pnpm test:v2-released-documents
       - run: pnpm test:v2-testimony
       - run: pnpm test:v2-physical-samples

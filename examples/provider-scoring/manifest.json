@@ -1,0 +1,230 @@
+{
+  "kind": "fictional_provider_scoring_example",
+  "version": "1.0.0",
+  "fictional": true,
+  "title": "DisclosureOS example case: provider scoring",
+  "subjectLabel": "Material record in the DisclosureOS example case",
+  "results": [
+    {
+      "id": "team-a",
+      "result": "generated/team-a.json",
+      "policy": "generated/policy-review.json",
+      "method": "methods/review.json",
+      "worksheet": "worksheets/team-a.json"
+    },
+    {
+      "id": "team-b",
+      "result": "generated/team-b.json",
+      "policy": "generated/policy-review.json",
+      "method": "methods/review.json",
+      "worksheet": "worksheets/team-b.json"
+    },
+    {
+      "id": "priority",
+      "result": "generated/priority.json",
+      "policy": "generated/policy-priority.json",
+      "method": "methods/priority.json",
+      "worksheet": "worksheets/priority.json"
+    },
+    {
+      "id": "incomplete",
+      "result": "generated/incomplete.json",
+      "policy": "generated/policy-review.json",
+      "method": "methods/review.json",
+      "worksheet": "worksheets/incomplete.json"
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "shared",
+      "left": "team-a",
+      "right": "team-b",
+      "title": "Same method, different judgments",
+      "description": "Both teams reviewed the same seven files under the same method. Their judgment about method detail differs."
+    },
+    {
+      "id": "different",
+      "left": "team-a",
+      "right": "priority",
+      "title": "Different methods",
+      "description": "One result describes documentation; the other sets a follow-up priority. A shared 0–100 scale does not make the scores interchangeable."
+    },
+    {
+      "id": "incomplete",
+      "left": "team-a",
+      "right": "incomplete",
+      "title": "An unfinished review",
+      "description": "A required judgment has not been recorded. The score remains unavailable rather than being treated as zero."
+    }
+  ],
+  "files": [
+    {
+      "file": "inputs/case.json",
+      "ref": "inputs-case.json",
+      "title": "inputs/case.json",
+      "mediaType": "application/json",
+      "sha256": "e83c46d1982518bd7be9e1de3b8945c409e50f5563506457857b82184b66ffda",
+      "byteLength": 2821
+    },
+    {
+      "file": "inputs/observation.json",
+      "ref": "inputs-observation.json",
+      "title": "inputs/observation.json",
+      "mediaType": "application/json",
+      "sha256": "c4ab464be3c22b21b655b780538e4a51c182a05e6e2df3e5967fe89b0abdbac4",
+      "byteLength": 14105
+    },
+    {
+      "file": "inputs/collection-sheet.md",
+      "ref": "inputs-collection-sheet.md",
+      "title": "inputs/collection-sheet.md",
+      "mediaType": "text/markdown",
+      "sha256": "9e53aa48f31dac623a6cb4960b5047d77dda543aa33f44efd4bf95ea19b958f6",
+      "byteLength": 4153
+    },
+    {
+      "file": "inputs/handling-log.md",
+      "ref": "inputs-handling-log.md",
+      "title": "inputs/handling-log.md",
+      "mediaType": "text/markdown",
+      "sha256": "0217824a7b0d6cf4fcf3af5be2996c65f8c99be18934cd2a5a9c0c8e99a61fcd",
+      "byteLength": 2885
+    },
+    {
+      "file": "inputs/preparation-protocol.md",
+      "ref": "inputs-preparation-protocol.md",
+      "title": "inputs/preparation-protocol.md",
+      "mediaType": "text/markdown",
+      "sha256": "0ff2f4fd1e75839e6f038f519132d8b0aab24fa957af215ca3a4c38f984641a0",
+      "byteLength": 3041
+    },
+    {
+      "file": "inputs/laboratory-report.md",
+      "ref": "inputs-laboratory-report.md",
+      "title": "inputs/laboratory-report.md",
+      "mediaType": "text/markdown",
+      "sha256": "bf232ff95b6dc1cd1a91da0974fe82cf5daa1435c569fa0339ef6c245d1c9d6d",
+      "byteLength": 4388
+    },
+    {
+      "file": "inputs/laboratory-replicates.csv",
+      "ref": "inputs-laboratory-replicates.csv",
+      "title": "inputs/laboratory-replicates.csv",
+      "mediaType": "text/csv",
+      "sha256": "a1f6a6f91a8c583c0ab590322fdf3cdb923bd380e5519c95d46258456bf8572d",
+      "byteLength": 180
+    },
+    {
+      "file": "methods/compute.mjs",
+      "ref": "methods-compute.mjs",
+      "title": "methods/compute.mjs",
+      "mediaType": "text/javascript",
+      "sha256": "dc62a714b139b70c308a299f891b6a082e6107906a005712cd7d7b1cc4c1dae0",
+      "byteLength": 2338
+    },
+    {
+      "file": "methods/review.json",
+      "ref": "methods-review.json",
+      "title": "methods/review.json",
+      "mediaType": "application/json",
+      "sha256": "8be4dba751a4b181ab7e67881d7d11254eb45a097fe5fd57fd91071913ef3396",
+      "byteLength": 1756
+    },
+    {
+      "file": "methods/priority.json",
+      "ref": "methods-priority.json",
+      "title": "methods/priority.json",
+      "mediaType": "application/json",
+      "sha256": "642159867a9154f0a555a661f98dcefcdb67e6128e2acc22519b1f309b40aaab",
+      "byteLength": 1351
+    },
+    {
+      "file": "provenance.json",
+      "ref": "provenance.json",
+      "title": "provenance.json",
+      "mediaType": "application/json",
+      "sha256": "c98cc2443a1c1463f5be220e085046c95b2266cc5c1696f5b1160894327414d3",
+      "byteLength": 977
+    },
+    {
+      "file": "generated/team-a.json",
+      "ref": "generated-team-a.json",
+      "title": "generated/team-a.json",
+      "mediaType": "application/json",
+      "sha256": "1a2bb52e9ee1c243de82aeb501b3620e26efe1cb4bb3a7b5c5025dbad5cb64a1",
+      "byteLength": 3704
+    },
+    {
+      "file": "generated/policy-review.json",
+      "ref": "generated-policy-review.json",
+      "title": "generated/policy-review.json",
+      "mediaType": "application/json",
+      "sha256": "c890e49754a8cffac181a059e0d9935b234d7fb73b876723605d1299766a574a",
+      "byteLength": 2776
+    },
+    {
+      "file": "worksheets/team-a.json",
+      "ref": "worksheets-team-a.json",
+      "title": "worksheets/team-a.json",
+      "mediaType": "application/json",
+      "sha256": "ad7b4a83ef00fac101f450257c3e9cceaeb495d43d261af65eef07a867efce51",
+      "byteLength": 1311
+    },
+    {
+      "file": "generated/team-b.json",
+      "ref": "generated-team-b.json",
+      "title": "generated/team-b.json",
+      "mediaType": "application/json",
+      "sha256": "291c96b2783549633bd0f2d312441cb6b447be73189ba8e1874f3586b47929e0",
+      "byteLength": 3704
+    },
+    {
+      "file": "worksheets/team-b.json",
+      "ref": "worksheets-team-b.json",
+      "title": "worksheets/team-b.json",
+      "mediaType": "application/json",
+      "sha256": "824a2005a78ee81d461a9a84191f99a5ede1a95ffdcf4d144c1fba115907ea71",
+      "byteLength": 1315
+    },
+    {
+      "file": "generated/priority.json",
+      "ref": "generated-priority.json",
+      "title": "generated/priority.json",
+      "mediaType": "application/json",
+      "sha256": "d145474191ca83579127c8cc0e8d6cff0530318cac5093e0ba0eeba05faf1236",
+      "byteLength": 3734
+    },
+    {
+      "file": "generated/policy-priority.json",
+      "ref": "generated-policy-priority.json",
+      "title": "generated/policy-priority.json",
+      "mediaType": "application/json",
+      "sha256": "fa3feefa7af32d6c02073b04ae0fdd570bc300762255e2b8177b35976fd58efb",
+      "byteLength": 2595
+    },
+    {
+      "file": "worksheets/priority.json",
+      "ref": "worksheets-priority.json",
+      "title": "worksheets/priority.json",
+      "mediaType": "application/json",
+      "sha256": "d040260d09ebde73423041d9a1b2d4462a9fe5d7168fcbd7db6dec1bd849ceb8",
+      "byteLength": 1005
+    },
+    {
+      "file": "generated/incomplete.json",
+      "ref": "generated-incomplete.json",
+      "title": "generated/incomplete.json",
+      "mediaType": "application/json",
+      "sha256": "dce2b8c6f63faaad94c490f0db33d80812396888f4fa2048e932c726093cfb76",
+      "byteLength": 3881
+    },
+    {
+      "file": "worksheets/incomplete.json",
+      "ref": "worksheets-incomplete.json",
+      "title": "worksheets/incomplete.json",
+      "mediaType": "application/json",
+      "sha256": "db4846c86406ed772ba78f78d1ab8f31352b93e2fead0b28814d22ae13e3fbe9",
+      "byteLength": 1227
+    }
+  ]
+}

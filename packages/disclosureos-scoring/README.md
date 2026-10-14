@@ -124,3 +124,16 @@ confidence interval and does not certify scientific eligibility. See the
 The additive population-coverage names are unreleased. See the [coverage guide](../../docs/experimental/population-coverage.md) for retained counting rules, denominator limits and compatibility. Origin-only reference scoring is separate from experimental V2 assessment summaries and profile completion. Descriptive observable claims are never converted into anomaly strength.
 
 [Assessment-summary provenance and replay](../../docs/experimental/summary-provenance.md) now pin the declared history and computed summary without verifying referenced source artifacts.
+
+## Experimental v2 provider-authored scores (unreleased)
+
+`ProviderScorePolicySchema` and `ProviderScoreResultSchema` retain a provider's
+question, exact method revision, scale, source basis and separate derivation.
+`evaluateProviderScore` validates declarations and supplied bytes without running
+the method. `compareProviderScores` conservatively identifies results with the
+same exact policy and source basis; it does not compute consensus or endorse a
+provider. Numeric grades and ordinal levels are declared by each policy, not
+universal DisclosureOS case grades.
+
+See the [provider scoring guide](../../docs/experimental/provider-scoring.md)
+and [reproducible fictional example](../../examples/provider-scoring/README.md).
