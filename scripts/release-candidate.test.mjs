@@ -37,6 +37,8 @@ test('published identities require identical bytes even when the file moves', ()
   assert.throws(() => verifyPublishedSchemaIdentities(published, [{ path: 'moved.json', bytes: changed }]), /Published schema identity reused/);
   const revised = Buffer.from(JSON.stringify({ $id: 'urn:example:2', enum: ['new'] }));
   verifyPublishedSchemaIdentities(published, [{ path: 'new.json', bytes: revised }]);
-  assert.throws(() => verifyPublishedSchemaIdentities(published, [{ path: 'a.json', bytes }, { path: 'b.json', bytes }]), /Duplicate schema identity/);
+  verifyPublishedSchemaIdentities(published, [{ path: 'a.json', bytes }, { path: 'b.json', bytes }]);
+  const conflict = Buffer.from(JSON.stringify({ $id: 'urn:example:2', enum: ['different'] }));
+  assert.throws(() => verifyPublishedSchemaIdentities(published, [{ path: 'a.json', bytes: revised }, { path: 'b.json', bytes: conflict }]), /Conflicting schema identity/);
   assert.throws(() => verifyPublishedSchemaIdentities({ packages: [] }, []), /Missing published/);
 });

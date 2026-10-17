@@ -46,12 +46,14 @@ export function verifyPublishedSchemaIdentities(published, current) {
     known.set(schema.id, schema.sha256);
   }
   assert.ok(known.size > 0, 'Empty published schema baseline');
-  const seen = new Set();
+  const seen = new Map();
   for (const { path, bytes } of current) {
     const { $id: id } = JSON.parse(bytes);
     assert.ok(typeof id === 'string' && id.length > 0, `Missing schema identity: ${path}`);
-    assert.ok(!seen.has(id), `Duplicate schema identity: ${id}`);
-    seen.add(id);
+    const digest = sha256(bytes);
+    // Shared schemas may be exported by multiple packages, but must be identical.
+    assert.ok(!seen.has(id) || seen.get(id) === digest, `Conflicting schema identity: ${id}`);
+    seen.set(id, digest);
     if (known.has(id)) assert.equal(sha256(bytes), known.get(id), `Published schema identity reused with changed content: ${id} (${path})`);
   }
 }
