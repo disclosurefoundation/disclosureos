@@ -2,10 +2,13 @@
 
 Run local validation, intake and reproducibility workflows using explicit commands. No command publishes a dataset or verifies an extraordinary claim merely by accepting its structure.
 
-This branch prepares **2.0.0-beta.4**. It is a release candidate, not a publication
-announcement. The current published beta is **2.0.0-beta.3**; unversioned installs
-select v1 through `latest`. See the [candidate release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
-for scope and verification. Use one exact package version throughout an application.
+This README describes the **2.0.0-beta.4** API. Use one exact package version
+throughout an application. Check [availability](https://os.disclosure.org/v2/docs/installation)
+before installing; a source branch or packed candidate is not proof of npm
+publication. For a candidate that is not yet published, use the verified local
+tarballs. See the [release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
+for scope and verification. Avoid unversioned installs, which can select a different
+API generation through `latest`.
 
 ## V2 entry point
 
@@ -15,17 +18,15 @@ Start with the [Installation and command availability](https://os.disclosure.org
 
 ## Choose a package version
 
-For the published beta.3 surfaces, install explicitly:
+Once this version is available in the registry, install it explicitly:
 
 ```sh
-npm install --save-exact @disclosureos/cli@2.0.0-beta.3
+npm install --save-exact @disclosureos/cli@2.0.0-beta.4
 ```
 
-The additional beta.4 candidate surfaces above require a verified source checkout
-or its locally packed artifacts until publication. Do not combine beta.3 and
-beta.4 packages. After registry verification, install the coordinated exact beta.4
-set described in the release notes. Packages are ESM; Node.js 22 is the documented
-getting-started runtime.
+Use the same exact release for all DisclosureOS packages. Before publication,
+review a verified source checkout or its locally packed artifacts. Packages are
+ESM; Node.js 22 is the documented getting-started runtime.
 
 ## Additional API reference
 

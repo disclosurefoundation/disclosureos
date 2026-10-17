@@ -2,10 +2,13 @@
 
 Describe observations and retain their source relationships, missing information, accounts, documents, specimens and connected cases. Keep attributed assessments separate from the observation.
 
-This branch prepares **2.0.0-beta.4**. It is a release candidate, not a publication
-announcement. The current published beta is **2.0.0-beta.3**; unversioned installs
-select v1 through `latest`. See the [candidate release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
-for scope and verification. Use one exact package version throughout an application.
+This README describes the **2.0.0-beta.4** API. Use one exact package version
+throughout an application. Check [availability](https://os.disclosure.org/v2/docs/installation)
+before installing; a source branch or packed candidate is not proof of npm
+publication. For a candidate that is not yet published, use the verified local
+tarballs. See the [release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
+for scope and verification. Avoid unversioned installs, which can select a different
+API generation through `latest`.
 
 ## V2 entry point
 
@@ -15,10 +18,10 @@ Start with `parseExperimentalObservation` from `@disclosureos/records/experiment
 
 ## Install and try it
 
-For the currently published first-record tutorial:
+Once this version is available in the registry:
 
 ```sh
-npm install --save-exact @disclosureos/records@2.0.0-beta.3
+npm install --save-exact @disclosureos/records@2.0.0-beta.4
 ```
 
 Save this as `first-record.mjs`, then run `node first-record.mjs` with Node.js 22:
