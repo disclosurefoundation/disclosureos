@@ -1,5 +1,34 @@
 # Changelog
 
+## 2.0.0-beta.4
+
+### Patch Changes
+
+- Updated dependencies [ebec21d]
+- Updated dependencies [0b00be3]
+- Updated dependencies [9580e62]
+- Updated dependencies [0b30518]
+- Updated dependencies [559eac9]
+- Updated dependencies [0370447]
+- Updated dependencies [5a686c1]
+- Updated dependencies [3b75904]
+- Updated dependencies [c894a08]
+- Updated dependencies [813ee2c]
+- Updated dependencies [11bf318]
+- Updated dependencies
+- Updated dependencies [0319e40]
+- Updated dependencies [4ace4ea]
+- Updated dependencies [e19a897]
+- Updated dependencies
+- Updated dependencies [6f74e57]
+- Updated dependencies [e7c3d0f]
+  - @disclosureos/schema@2.0.0-beta.4
+  - @disclosureos/records@2.0.0-beta.4
+  - @disclosureos/scoring@2.0.0-beta.4
+  - @disclosureos/observables@2.0.0-beta.4
+  - @disclosureos/origins@2.0.0-beta.4
+  - @disclosureos/instruments@2.0.0-beta.4
+
 ## 2.0.0-beta.3
 
 ### Patch Changes

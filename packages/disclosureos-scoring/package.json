@@ -1,6 +1,6 @@
 {
   "name": "@disclosureos/scoring",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "description": "Provider scoring contracts, attributed assessment summaries and reference scoring utilities for DisclosureOS",
   "license": "MIT",
   "repository": {

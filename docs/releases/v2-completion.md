@@ -5,7 +5,10 @@ V2 implementation is complete, so the next package publication is coordinated.
 The last published beta remains `2.0.0-beta.3`. Source review checkpoints continue;
 merging a checkpoint does not authorize an incremental npm publish.
 
-Accumulate changesets without applying package version bumps at each checkpoint.
+At implementation checkpoints, accumulate changesets without incremental version bumps.
+The coordinated beta.4 candidate is now prepared for release-mode verification;
+see [its scope and gates](2.0.0-beta.4.md). This supersedes version preparation
+being on hold, but preserves the holds on merges and npm publication.
 Continue builds, conformance, artifact inspection and source-based previews. Keep
 public portal dependencies on the published beta until the coordinated release is
 verified. Never serve an unreleased contract as though it is in that beta.

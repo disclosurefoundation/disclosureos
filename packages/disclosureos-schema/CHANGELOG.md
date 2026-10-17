@@ -1,5 +1,92 @@
 # Changelog
 
+## 2.0.0-beta.4
+
+### Major Changes
+
+- Revise the V2 observable definitions and support vocabulary directly, and add shared catalog, immutable revision and term references with supplied-byte validation. Keep the chosen term separate from the subject under review and its supporting sources. Export full observable and attributed OCS origin catalogs with retained methodological context. Update enriched-observation and scoring consumers to the revised definitions. This breaks earlier beta definition and support assumptions; it does not establish an anomalous origin or turn a reported characteristic into a confirmed assessment.
+
+### Minor Changes
+
+- ebec21d: Add a versioned archival-case presentation and approved public projection preserving edition-specific pages, release/declassification declarations, selected custody links and gaps, legacy hash scope, and attributed edition review. Reuse internal snapshot capture without changing the testimony contract. No source authenticity or publication authorization is inferred from hashes.
+- 0b00be3: Add an unreleased case-claim-history contract with exact case/entity/field and
+  directed relationship subjects, scoped assertion and observation inputs, and
+  attributable revision history. Resolve supplied case and observation snapshots
+  without inferring scientific truth, a preferred reviewer or lifecycle changes.
+  Hold npm publication and version bumps for coordinated V2 completion.
+- 9580e62: Add an unreleased case-links contract for attributable context, research-entity
+  and source-intake associations. Resolve exact case/observation/document snapshots
+  and optional entity/field or inventory targets without inferring full supplement
+  conformance, raw-artifact authenticity or publication authorization.
+  Hold npm publication and version bumps for coordinated V2 completion.
+- 0b30518: Add the experimental product source selection contract, JSON Schema, byte-verified
+  evaluator and dependency-free reference reader for contiguous numerical arrays,
+  CSV row partitions and declared constant-rate video frame intervals. Preserve
+  separate calibration, scientific and media-decoding status. Publication remains
+  deferred to the coordinated V2 release.
+- 559eac9: Add an unreleased case-record contract for pinned observation scope, sourced
+  chronology and grouping, investigation reports and response declarations.
+  Check local graph cycles and supplied observation references without inferring
+  object identity, scientific corroboration, source authenticity or publication
+  permission. Hold npm publication and version bumps for coordinated V2 completion.
+- 0370447: Add a versioned context-case presentation envelope and approved public projection linking selected context fields, ambient measurements, separate products and contextual assessments. Preserve the existing case-presentation contract. The new public payload is version 0.2.0. Publication and real-data activation remain application responsibilities.
+- 5a686c1: Add unreleased laboratory analysis and result entities with explicit specimen,
+  measurement and report references, and attributable material-review claims.
+  Validate supplied entity and specimen-selection snapshots without inferring
+  scientific validity, source-report authenticity or physical custody completeness.
+  Hold npm publication and version bumps for the coordinated V2 completion release.
+- 3b75904: Add an optional static lidar point-cloud profile with reusable source reader, strict acquisition bindings, complete pulse availability and return groups, declared local coordinates, normalized intensity and attributed classifications. Include a deterministic fictional source packet, portable JSON Schema, conformance tests and documentation. No LAS decoder or physical-accuracy certification is implied.
+- c894a08: Add an explicitly approved public material and laboratory case presentation with specimen-scoped results, declared lineage and custody, attributed review inputs, and consistent public outputs. Capture referenced specimen-selection snapshots before asynchronous validation.
+- 11bf318: Add an optional single-hydrophone pressure and reproducible spectral-density profile. Public schemas, source readers and evaluation bind pressure and retention masks to exact acquisition products and derived Hann-windowed spectra, preserving unavailable samples separately from zero. The synthetic source packet demonstrates source-window selection, spectral units, complete processing lineage and numerical reproduction without claiming physical calibration or localization.
+- 0319e40: Add an unreleased case presentation contract and an explicitly approved public
+  projection for narrative, citations, selected case assessments and attachments.
+  Generate renderer data, JSON, Markdown, search and metadata from the same allowlist.
+  Application authorization, asset delivery and revocation remain integration requirements.
+  Hold package version bumps and npm publication for coordinated V2 completion.
+- 4ace4ea: Add an optional V2 rotating-radar profile over existing observation, acquisition
+  and source-selection contracts. Validate source bytes, scan/dwell semantics,
+  threshold detections, declared localization, track associations, position
+  covariance and separation from synthetic truth. Include a dependency-free reader,
+  portable JSON Schema and deterministic fixed, airborne and shipborne scanning examples.
+  Moving platforms retain one pose per dwell, declare beam reference and optional
+  slant-to-plane projection, and validate motion compensation and conditional uncertainty. Passing validation does
+  not establish physical calibration or tracking performance. Publication remains
+  deferred to the coordinated V2 release.
+
+  Add separate optional steered-radar and cooperative secondary-radar profiles,
+  public dependency-free readers, package-exported portable schemas and complete
+  reproducible examples. Steered arrays retain arbitrary beam schedules and
+  per-dwell processing availability. Secondary reports preserve Mode A codes,
+  nullable Mode C pressure altitude, invalid receptions and exact reply lineage
+  without inventing reflected power, geometric height or verified identity.
+
+  Allow retained header-only CSV layouts for legitimate empty outcomes while
+  rejecting row selection, partition and sample mappings into empty tables.
+
+  Add optional fixed-site preprocessing with independently retained reference power,
+  reproducible background means and residual arrays, and explicit detector-policy
+  exclusions that preserve the raw capture. Add source-backed local site geometry
+  and complete ground and civilian airport surface examples. Validate acquisition
+  identity, time, axes, arithmetic, detector inputs and synthetic-truth separation.
+  These declarations do not imply physical coverage or identify detected objects.
+
+- e19a897: Add an optional multispectral satellite raster profile with explicit projected pixel geometry, per-band scaling and missing values, attributed pixel quality, exact retained source selections and quality-gated NDVI. Include a dependency-free reader, strict acquisition and byte-integrity evaluation, portable schema, deterministic fictional packet and conformance tests. This does not certify physical calibration or decode GeoTIFF/COG products.
+- 6f74e57: Add an optional monostatic active-sonar envelope profile with a portable schema, dependency-free source reader, exact cell selection and a validator over existing observation, acquisition and source-layout contracts. The profile declares assumed sound speed and two-way distance conversion, preserves receive availability separately from zero amplitude, and includes a reproducible synthetic example. Validation does not certify propagation accuracy, physical calibration, bathymetry or object identity.
+- e7c3d0f: Add an explicitly approved testimony-case public projection for selected pseudonym, event quarter, recorded accounts and attributed qualification review. Keep recording dates, missing wording and unknown independence distinct. No raw research entities, private identities, source URIs or review notes enter public outputs. Existing presentation contracts remain unchanged.
+
+### Patch Changes
+
+- Updated dependencies [0b00be3]
+- Updated dependencies [9580e62]
+- Updated dependencies [559eac9]
+- Updated dependencies [5a686c1]
+- Updated dependencies [813ee2c]
+- Updated dependencies
+  - @disclosureos/records@2.0.0-beta.4
+  - @disclosureos/observables@2.0.0-beta.4
+  - @disclosureos/origins@2.0.0-beta.4
+  - @disclosureos/instruments@2.0.0-beta.4
+
 ## 2.0.0-beta.3
 
 ### Minor Changes

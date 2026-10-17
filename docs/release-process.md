@@ -3,9 +3,9 @@
 ## Current publication hold
 
 Further npm publication is paused until the remaining V2 implementation is complete.
-See [the consolidated release policy](releases/v2-completion.md). Accumulate reviewed
-source changes and changesets; do not version or publish each checkpoint. The last
-published set is 2.0.0-beta.3.
+See [the consolidated release policy](releases/v2-completion.md). The coordinated `2.0.0-beta.4` candidate is now versioned for verification,
+not publication. The last published set remains `2.0.0-beta.3`.
+Merging and npm publication require separate authorization.
 
 ## Canonical ownership and current track
 
@@ -31,9 +31,9 @@ according to Semantic Versioning; breaking experimental changes must be explicit
 described. During prerelease mode, `pnpm version-packages` advances prerelease
 versions and updates changelogs and dependency metadata. Review the result, update
 `docs/releases/beta-plan.json`, refresh the lockfile, and commit it together.
-The checked-in package versions still describe the last published beta.3. The
-accumulated source changes need a new coordinated version before publication;
-do not republish the current version fields.
+The checked-in package versions describe the unpublished `2.0.0-beta.4`
+candidate. Its [release notes](releases/2.0.0-beta.4.md) identify the reviewed
+implementation baseline. Do not advance versions again for verification fixes.
 
 Do not run `changeset pre exit` as routine cleanup. Stable release requires its
 own reviewed transition, removal of beta-only publish tags/checks, and completion
@@ -48,14 +48,14 @@ While publication is held, run `pnpm test:release`, `pnpm verify:source` and
 This builds and packs all seven packages, checks their exports, dependencies and
 committed schema bytes, and exercises a fresh npm consumer. The manifest is
 explicitly a `disclosureos-unpublished-source-candidate` with publication
-`not-prepared`. Existing beta.3 version fields identify source metadata only;
-these tarballs are not the published beta.3 and must not be published.
+`not-prepared`. A source-mode manifest is verification-only even when its version matches the
+current candidate. Use the release-mode artifacts for any later authorized publication.
 
 The source mode uses the exact committed HEAD as its schema baseline. It does
 not alter the historical beta plan or weaken the separate `release:check` /
 `release:pack` baseline. Before a publishable candidate can pass those release
 commands, version the coordinated set and update the release plan as described
-above. CI verifies source snapshots while that preparation remains on hold.
+above. CI now runs release-mode packing against the frozen beta.4 baseline.
 
 ## Candidate preflight
 
@@ -89,7 +89,7 @@ For each exact, verified tarball in dependency order (records; observables and
 origins; instruments; scoring and schema; CLI):
 
 ```sh
-npm publish /absolute/candidate/artifacts/disclosureos-records-2.0.0-beta.3.tgz --tag beta --access public --ignore-scripts
+npm publish /absolute/candidate/artifacts/disclosureos-records-2.0.0-beta.4.tgz --tag beta --access public --ignore-scripts
 ```
 
 Here `--ignore-scripts` applies to an already built, publish-checked and installed

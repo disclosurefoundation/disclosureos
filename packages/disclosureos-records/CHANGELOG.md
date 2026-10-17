@@ -1,5 +1,38 @@
 # Changelog
 
+## 2.0.0-beta.4
+
+### Major Changes
+
+- Revise the V2 observable definitions and support vocabulary directly, and add shared catalog, immutable revision and term references with supplied-byte validation. Keep the chosen term separate from the subject under review and its supporting sources. Export full observable and attributed OCS origin catalogs with retained methodological context. Update enriched-observation and scoring consumers to the revised definitions. This breaks earlier beta definition and support assumptions; it does not establish an anomalous origin or turn a reported characteristic into a confirmed assessment.
+
+### Minor Changes
+
+- 0b00be3: Add an unreleased case-claim-history contract with exact case/entity/field and
+  directed relationship subjects, scoped assertion and observation inputs, and
+  attributable revision history. Resolve supplied case and observation snapshots
+  without inferring scientific truth, a preferred reviewer or lifecycle changes.
+  Hold npm publication and version bumps for coordinated V2 completion.
+- 9580e62: Add an unreleased case-links contract for attributable context, research-entity
+  and source-intake associations. Resolve exact case/observation/document snapshots
+  and optional entity/field or inventory targets without inferring full supplement
+  conformance, raw-artifact authenticity or publication authorization.
+  Hold npm publication and version bumps for coordinated V2 completion.
+- 559eac9: Add an unreleased case-record contract for pinned observation scope, sourced
+  chronology and grouping, investigation reports and response declarations.
+  Check local graph cycles and supplied observation references without inferring
+  object identity, scientific corroboration, source authenticity or publication
+  permission. Hold npm publication and version bumps for coordinated V2 completion.
+- 5a686c1: Add unreleased laboratory analysis and result entities with explicit specimen,
+  measurement and report references, and attributable material-review claims.
+  Validate supplied entity and specimen-selection snapshots without inferring
+  scientific validity, source-report authenticity or physical custody completeness.
+  Hold npm publication and version bumps for the coordinated V2 completion release.
+- 813ee2c: Add an unreleased research-entities 0.3.0 material foundation with physical specimens,
+  uncollected traces, preparation lineage and specimen custody. Keep declared quality
+  and analysis wording distinct from laboratory results or independent review. Reuse
+  archival local-link validation without changing published schema contracts.
+
 ## 2.0.0-beta.3
 
 ### Minor Changes
