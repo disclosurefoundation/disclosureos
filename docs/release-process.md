@@ -31,14 +31,31 @@ according to Semantic Versioning; breaking experimental changes must be explicit
 described. During prerelease mode, `pnpm version-packages` advances prerelease
 versions and updates changelogs and dependency metadata. Review the result, update
 `docs/releases/beta-plan.json`, refresh the lockfile, and commit it together.
-The current candidate has already been versioned: do not version it again merely
-to publish it.
+The checked-in package versions still describe the last published beta.3. The
+accumulated source changes need a new coordinated version before publication;
+do not republish the current version fields.
 
 Do not run `changeset pre exit` as routine cleanup. Stable release requires its
 own reviewed transition, removal of beta-only publish tags/checks, and completion
 of scientific, governance and consumer acceptance gates. If v1 needs a maintenance
 release, prepare it from the relevant published package tags in a separate branch;
 current main already contains experimental work and is not the v1 release source.
+
+## Unpublished source verification
+
+While publication is held, run `pnpm test:release`, `pnpm verify:source` and
+`pnpm verify:source-pack /absolute/new/output-directory` from a clean checkout.
+This builds and packs all seven packages, checks their exports, dependencies and
+committed schema bytes, and exercises a fresh npm consumer. The manifest is
+explicitly a `disclosureos-unpublished-source-candidate` with publication
+`not-prepared`. Existing beta.3 version fields identify source metadata only;
+these tarballs are not the published beta.3 and must not be published.
+
+The source mode uses the exact committed HEAD as its schema baseline. It does
+not alter the historical beta plan or weaken the separate `release:check` /
+`release:pack` baseline. Before a publishable candidate can pass those release
+commands, version the coordinated set and update the release plan as described
+above. CI verifies source snapshots while that preparation remains on hold.
 
 ## Candidate preflight
 

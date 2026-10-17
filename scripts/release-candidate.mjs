@@ -29,17 +29,24 @@ export function validatePackage(pkg, plan, packed = false) {
   if (packed && pkg.dependencies?.zod) assert.equal(pkg.dependencies.zod, plan.zod);
 }
 
-export function checkPlan() {
+export function verifySchemaBaseline(revision, paths, readCommitted, readCurrent) {
+  for (const path of paths) {
+    assert.ok(readCommitted(revision, path).equals(readCurrent(path)), `Schema changed during packaging: ${path}`);
+  }
+}
+
+export function checkPlan({ sourceOnly = false } = {}) {
   const plan = read(join(root, 'docs/releases/beta-plan.json'));
   assert.match(plan.version, /^2\.0\.0-beta\.\d+$/);
   assert.equal(plan.tag, 'beta');
   assert.match(plan.implementationRevision, /^[a-f0-9]{40}$/);
-  const baselineSchemas = git('ls-tree', '-r', '--name-only', plan.implementationRevision, '--', 'packages')
+  // Source verification checks committed bytes at HEAD; release preparation retains its frozen baseline.
+  const implementationRevision = sourceOnly ? git('rev-parse', 'HEAD') : plan.implementationRevision;
+  const baselineSchemas = git('ls-tree', '-r', '--name-only', implementationRevision, '--', 'packages')
     .split('\n').filter(path => /\/schema\/.+\.json$/.test(path));
-  for (const path of baselineSchemas) {
-    const original = execFileSync('git', ['-C', root, 'show', `${plan.implementationRevision}:${path}`]);
-    assert.ok(original.equals(readFileSync(join(root, path))), `Schema changed during packaging: ${path}`);
-  }
+  verifySchemaBaseline(implementationRevision, baselineSchemas,
+    (revision, path) => execFileSync('git', ['-C', root, 'show', `${revision}:${path}`]),
+    path => readFileSync(join(root, path)));
   const pre = read(join(root, '.changeset/pre.json'));
   assert.equal(pre.mode, 'pre'); assert.equal(pre.tag, plan.tag);
   const actual = readdirSync(join(root, 'packages')).filter(p => p.startsWith('disclosureos-')).map(p => p.slice(13)).sort();
@@ -52,14 +59,15 @@ export function checkPlan() {
     assert.ok(readFileSync(join(dir, 'CHANGELOG.md'), 'utf8').includes(`## ${plan.version}`));
     return { name, dir, pkg };
   });
-  return { plan, packages };
+  return { plan: { ...plan, implementationRevision }, packages };
 }
 
 async function main() {
   const mode = process.argv[2] ?? '--check';
-  assert.ok(['--check', '--pack'].includes(mode), 'Usage: release-candidate.mjs --check | --pack [new-output-directory]');
-  const { plan, packages } = checkPlan();
-  if (mode === '--check') { console.log(`Beta plan verified: ${packages.length} packages at ${plan.version}, tag ${plan.tag}`); return; }
+  assert.ok(['--check', '--pack', '--check-source', '--pack-source'].includes(mode), 'Usage: release-candidate.mjs --check | --pack | --check-source | --pack-source [new-output-directory]');
+  const sourceOnly = mode.endsWith('-source');
+  const { plan, packages } = checkPlan({ sourceOnly });
+  if (mode.startsWith('--check')) { console.log(`${sourceOnly ? 'Unpublished source snapshot' : 'Beta plan'} verified: ${packages.length} packages at ${plan.version}, tag ${plan.tag}`); return; }
   // A receipt must name a committed source, not an unrecorded working tree.
   assert.equal(git('status', '--porcelain', '--untracked-files=normal'), '', 'Commit candidate changes before packing.');
   const output = process.argv[3] ? resolve(process.argv[3]) : mkdtempSync(join(tmpdir(), 'disclosureos-beta-'));
@@ -67,7 +75,8 @@ async function main() {
   run('pnpm', ['--filter', '@disclosureos/*', 'build']);
   assert.equal(git('status', '--porcelain', '--untracked-files=normal'), '', 'Build changed committed inputs');
   const artifacts = join(output, 'artifacts'); mkdirSync(artifacts);
-  const manifest = { kind: 'disclosureos-beta-candidate', status: 'verification-in-progress', version: plan.version, tag: plan.tag,
+  const manifest = { kind: sourceOnly ? 'disclosureos-unpublished-source-candidate' : 'disclosureos-beta-candidate', status: 'verification-in-progress',
+    publication: sourceOnly ? 'not-prepared' : 'requires-separate-registry-verification', version: plan.version, tag: plan.tag,
     repository: 'https://github.com/disclosurefoundation/disclosureos', sourceCommit: git('rev-parse', 'HEAD'),
     implementationRevision: plan.implementationRevision, lockSha256: sha256(readFileSync(join(root, 'pnpm-lock.yaml'))),
     runtime: { node: process.version, pnpm: execFileSync('pnpm', ['--version']).toString().trim() }, packages: [] };
