@@ -1,5 +1,41 @@
 # @disclosureos/instruments
 
+Describe the equipment and capture context behind a measurement, including exact manifest revisions, instrument instances, deployments, timing and calibration context.
+
+This branch prepares **2.0.0-beta.4**. It is a release candidate, not a publication
+announcement. The current published beta is **2.0.0-beta.3**; unversioned installs
+select v1 through `latest`. See the [candidate release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
+for scope and verification. Use one exact package version throughout an application.
+
+## V2 entry point
+
+Use `parseAcquisitionContext` from `@disclosureos/instruments/experimental/v2` for V2 captures. Sensor manifests remain available from the package root. Radar, sonar, lidar and satellite product profiles and readers live in `@disclosureos/schema/experimental/v2`. The Sensor Manifest originated with a contribution from ELDÆON.
+
+[Implementation guide](https://os.disclosure.org/v2/docs/instruments) · [Availability](https://os.disclosure.org/v2/docs/installation) · [Example viewer](https://os.disclosure.org/showcase)
+
+## Choose a package version
+
+For the published beta.3 surfaces, install explicitly:
+
+```sh
+npm install --save-exact @disclosureos/instruments@2.0.0-beta.3
+```
+
+The additional beta.4 candidate surfaces above require a verified source checkout
+or its locally packed artifacts until publication. Do not combine beta.3 and
+beta.4 packages. After registry verification, install the coordinated exact beta.4
+set described in the release notes. Packages are ESM; Node.js 22 is the documented
+getting-started runtime.
+
+## Additional API reference
+
+<details>
+<summary>Earlier composition APIs and detailed source-workflow reference</summary>
+
+The following reference retains earlier APIs and source checkpoints. It is not the
+V2 first-record tutorial. Installation commands here describe the candidate API
+set; use the availability guidance above until that version is published.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 The **UAP Sensor Manifest** — a per-sensor specification standard for detection
@@ -11,22 +47,6 @@ different organizations are comparable, replicable, and verifiable.
 Proposed by [ELDÆON](https://github.com/disclosurefoundation/disclosureos/pull/5)
 and promoted into the framework as a foundation package.
 
-DisclosureOS is a **six-part standard**. Each part answers one question about an
-observation; `@disclosureos/schema` binds the package-owned pieces into one portable
-contract (a single TS type + JSON Schema + non-stripping parse).
-
-| Part | Package surface | Question it answers |
-|---|---|---|
-| **Records** | `@disclosureos/records` | *What was observed?* |
-| **Observables** | `@disclosureos/observables` | *What anomalous characteristics did it show?* |
-| **Origins** | `@disclosureos/origins` | *What might explain it?* |
-| **Claims** | `@disclosureos/records/shared` | *Who assessed it, why, and on what evidence?* |
-| **Scoring** | `@disclosureos/scoring` | *How complete / compelling is the case?* |
-| **Instruments** | `@disclosureos/instruments` | *What hardware produced the data?* |
-
-Supporting packages: **`@disclosureos/schema`** (the portable contract that composes the
-package-owned pieces), **`@disclosureos/cli`** (tooling), and
-**`@disclosureos/examples`** (the runnable golden path). *(You are here: **Instruments**.)*
 
 > **See it end to end.** [`examples/golden-path.ts`](../../examples/golden-path.ts)
 > takes one observation through every part — including a sensor manifest cited via
@@ -79,7 +99,7 @@ The functional hardware context `SensorReading` deliberately does not carry:
 ## Install
 
 ```bash
-pnpm add @disclosureos/instruments zod
+pnpm add @disclosureos/instruments@2.0.0-beta.4 zod
 ```
 
 ## Usage
@@ -112,7 +132,7 @@ formatSensorManifest(manifest);   // "ELDÆON — 1 sensor across 1 modality"
 Validate manifest files from the command line:
 
 ```bash
-pnpm dlx @disclosureos/cli manifest validate ./manifests/eldaeon-sensors.json
+pnpm dlx @disclosureos/cli@2.0.0-beta.4 manifest validate ./manifests/eldaeon-sensors.json
 ```
 
 ## JSON Schema
@@ -133,3 +153,5 @@ MIT © Disclosure Foundation
 ## Experimental acquisition context
 
 `@disclosureos/instruments/experimental/v2` adds pinned manifest, deployment, and channel-calibration history with explicit unresolved states. See the [contract and synthetic example](../../docs/experimental/acquisition-context.md). This additive metadata contract does not change the v1 manifest or certify scientific validity.
+
+</details>

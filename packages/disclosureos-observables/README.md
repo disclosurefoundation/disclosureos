@@ -1,5 +1,41 @@
 # @disclosureos/observables
 
+Name a characteristic that someone reports or investigates. A vocabulary term does not establish that the characteristic occurred, that it is anomalous, or what caused it.
+
+This branch prepares **2.0.0-beta.4**. It is a release candidate, not a publication
+announcement. The current published beta is **2.0.0-beta.3**; unversioned installs
+select v1 through `latest`. See the [candidate release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
+for scope and verification. Use one exact package version throughout an application.
+
+## V2 entry point
+
+Use `createObservableCatalog` and `readObservableTermDefinition` from the package root. Pin the catalog, immutable revision, digest and selected term with the shared vocabulary-reference contract in `@disclosureos/records/experimental/v2`. Keep the subject under review and supporting sources separate. The twelve terms cover technology-related and biological/material characteristics, with methods and limits; they are not a reproduction of the original ATIP framework.
+
+[Implementation guide](https://os.disclosure.org/v2/docs/observables) · [Availability](https://os.disclosure.org/v2/docs/installation) · [Example viewer](https://os.disclosure.org/showcase)
+
+## Choose a package version
+
+For the published beta.3 surfaces, install explicitly:
+
+```sh
+npm install --save-exact @disclosureos/observables@2.0.0-beta.3
+```
+
+The additional beta.4 candidate surfaces above require a verified source checkout
+or its locally packed artifacts until publication. Do not combine beta.3 and
+beta.4 packages. After registry verification, install the coordinated exact beta.4
+set described in the release notes. Packages are ESM; Node.js 22 is the documented
+getting-started runtime.
+
+## Additional API reference
+
+<details>
+<summary>Earlier composition APIs and detailed source-workflow reference</summary>
+
+The following reference retains earlier APIs and source checkpoints. It is not the
+V2 first-record tutorial. Installation commands here describe the candidate API
+set; use the availability guidance above until that version is published.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Descriptive characteristics for the [DisclosureOS](https://github.com/disclosurefoundation) ecosystem. An observable names something reported or investigated. The term does not establish that the characteristic occurred, that it is anomalous, or what caused it. Sources and measurements document the observation; attributed claims evaluate it.
@@ -13,22 +49,6 @@ The category names do not establish a technological or biological origin. Each d
 
 ## The DisclosureOS model
 
-DisclosureOS is a **six-part standard**. Each part answers one question about an
-observation; `@disclosureos/schema` binds the package-owned pieces into one portable
-contract (a single TS type + JSON Schema + non-stripping parse).
-
-| Part | Package surface | Question it answers |
-|---|---|---|
-| **Records** | `@disclosureos/records` | *What was observed?* |
-| **Instruments** | `@disclosureos/instruments` | *What hardware produced the data?* |
-| **Observables** | `@disclosureos/observables` | *Which reported or investigated characteristics are being described?* |
-| **Claims** | `@disclosureos/records/shared` | *Who assessed it, why, and on what information?* |
-| **Origins** | `@disclosureos/origins` | *What might explain it?* |
-| **Scoring** | `@disclosureos/scoring` | *How complete / compelling is the case?* |
-
-Supporting packages: **`@disclosureos/schema`** (the portable contract that composes the
-package-owned pieces), **`@disclosureos/cli`** (tooling), and **`@disclosureos/examples`**
-(the runnable golden path). *(You are here: **Observables**.)*
 
 ## Built on records
 
@@ -50,7 +70,7 @@ import '@disclosureos/observables'; // `observation.observableAssessments` is no
 ## Install
 
 ```bash
-pnpm add @disclosureos/observables @disclosureos/records zod
+pnpm add @disclosureos/observables@2.0.0-beta.4 @disclosureos/records@2.0.0-beta.4 zod
 ```
 
 ## Assessments in an enriched observation
@@ -117,3 +137,5 @@ validator or framework can consume them directly, with no DisclosureOS-specific 
 ## License
 
 MIT © [Disclosure Foundation](https://disclosure.org)
+
+</details>

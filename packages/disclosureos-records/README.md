@@ -1,27 +1,67 @@
 # @disclosureos/records
 
+Describe observations and retain their source relationships, missing information, accounts, documents, specimens and connected cases. Keep attributed assessments separate from the observation.
+
+This branch prepares **2.0.0-beta.4**. It is a release candidate, not a publication
+announcement. The current published beta is **2.0.0-beta.3**; unversioned installs
+select v1 through `latest`. See the [candidate release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
+for scope and verification. Use one exact package version throughout an application.
+
+## V2 entry point
+
+Start with `parseExperimentalObservation` from `@disclosureos/records/experimental/v2`. Additional parsers cover context, research entities, claim histories and cases. The ordinary package root retains the earlier Observation API.
+
+[Implementation guide](https://os.disclosure.org/v2/docs/records) · [Availability](https://os.disclosure.org/v2/docs/installation) · [Example viewer](https://os.disclosure.org/showcase)
+
+## Install and try it
+
+For the currently published first-record tutorial:
+
+```sh
+npm install --save-exact @disclosureos/records@2.0.0-beta.3
+```
+
+Save this as `first-record.mjs`, then run `node first-record.mjs` with Node.js 22:
+
+```js
+import { parseExperimentalObservation } from '@disclosureos/records/experimental/v2';
+
+const observation = {
+  kind: 'observation', schemaVersion: '0.1.0', id: 'first-observation',
+  status: 'draft', createdAt: '2026-10-17T00:00:00Z', updatedAt: '2026-10-17T00:00:00Z',
+  eventTime: { state: 'unknown', reason: 'not_recorded' },
+  position: { state: 'unknown', reason: 'not_collected' },
+  sources: [], products: [], methods: [], frames: [], assertions: [],
+  measurements: [], processing: [],
+};
+
+const result = parseExperimentalObservation(observation);
+console.log(JSON.stringify({ success: result.success, checks: result.checks }, null, 2));
+```
+
+The result has `success: true`, structural and semantic checks `passed`, and
+profile and external checks `not_checked`. An empty draft is structurally valid;
+it is not a complete research record or a verified observation. Change the status
+to `finished` to see a failed structural check, then inspect `result.issues`.
+
+The document's `schemaVersion` and each schema identifier are independent of the
+npm package version. The `/experimental/v2` import path is intentional in this beta.
+
+## Additional API reference
+
+<details>
+<summary>Earlier composition APIs and detailed source-workflow reference</summary>
+
+The following reference retains earlier APIs and source checkpoints. It is not the
+V2 first-record tutorial. Installation commands here describe the candidate API
+set; use the availability guidance above until that version is published.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Structured vocabulary for describing UAP observations — the **data dictionary** of
 the [DisclosureOS](https://github.com/disclosurefoundation) ecosystem. Its primary
 type, `Observation`, is the core unit every other package builds on.
 
-DisclosureOS is a **six-part standard**. Each part answers one question about an
-observation; `@disclosureos/schema` binds the package-owned pieces into one portable
-contract (a single TS type + JSON Schema + non-stripping parse).
-
-| Part | Package surface | Question it answers |
-|---|---|---|
-| **Records** | `@disclosureos/records` | *What was observed?* |
-| **Observables** | `@disclosureos/observables` | *What anomalous characteristics did it show?* |
-| **Origins** | `@disclosureos/origins` | *What might explain it?* |
-| **Claims** | `@disclosureos/records/shared` | *Who assessed it, why, and on what evidence?* |
-| **Scoring** | `@disclosureos/scoring` | *How complete / compelling is the case?* |
-| **Instruments** | `@disclosureos/instruments` | *What hardware produced the data?* |
-
-Supporting packages: **`@disclosureos/schema`** (the portable contract that composes the
-package-owned pieces), **`@disclosureos/cli`** (tooling), and
-**`@disclosureos/examples`** (the runnable golden path). *(You are here: **Records**.)*
 
 ## records is the shared vocabulary
 
@@ -41,12 +81,12 @@ terms that are easy to conflate — Attribution vs Claim vs Assessment, `confide
 > with `pnpm --filter @disclosureos/examples golden-path`.
 >
 > **Migrating an existing dataset?** See [`examples/migration-path.ts`](../../examples/migration-path.ts)
-> and the [onboarding workspace](https://os.disclosure.org/onboard).
+> and the [onboarding workspace](https://os.disclosure.org/v2/inspect).
 
 ## Install
 
 ```bash
-pnpm add @disclosureos/records zod
+pnpm add @disclosureos/records@2.0.0-beta.4 zod
 ```
 
 ## Quick start
@@ -152,3 +192,5 @@ entries. A successful supplied-document check does not authenticate source
 artifacts, complete custody or certify a scientific profile.
 See the [contract guide](../../docs/c2/archival.md) and
 [worked example](../../examples/v2/archival-editions-demo/README.md).
+
+</details>

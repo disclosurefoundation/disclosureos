@@ -3,7 +3,7 @@ import { jsonSchemaEnvelope, schemaId, validateWith } from '@disclosureos/record
 import type { ValidationIssue } from '@disclosureos/records/shared';
 import { ObservableAssessmentMapSchema } from './constants';
 
-export const OBSERVABLES_SCHEMA_VERSION = '2.0.0';
+export const OBSERVABLES_SCHEMA_VERSION = '3.0.0';
 
 export const OBSERVABLES_SCHEMA_ID = schemaId(
   'observables',

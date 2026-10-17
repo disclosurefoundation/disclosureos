@@ -1,148 +1,100 @@
 # DisclosureOS
 
-> **V2 beta preparation:** this source branch prepares `2.0.0-beta.1` for the seven
-> foundation packages. It is not a publication announcement. Published npm
-> `latest` remains v1; new contracts use explicit `/experimental/v2` imports. See
-> the [beta notes](docs/releases/2.0.0-beta.1.md) and [release process](docs/release-process.md).
+Open schemas and tools for research records about unidentified anomalous phenomena.
+Describe an observation, connect its source material and retain attributed reviews
+without replacing the original information.
 
+This branch prepares **2.0.0-beta.4**. It is a release candidate, not a publication
+announcement. The current published beta is **2.0.0-beta.3**; unversioned installs
+select v1 through `latest`. See the [candidate release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
+for scope and verification. Use one exact package version throughout an application.
 
-[![Packages Quality](https://github.com/disclosurefoundation/disclosureos/actions/workflows/packages-quality.yml/badge.svg)](https://github.com/disclosurefoundation/disclosureos/actions/workflows/packages-quality.yml)
-[![NPM](https://img.shields.io/npm/v/@disclosureos/schema?label=npm)](https://www.npmjs.com/package/@disclosureos/schema)
-[![GitHub Release](https://img.shields.io/github/v/release/disclosurefoundation/disclosureos?label=release)](https://github.com/disclosurefoundation/disclosureos/releases)
-[![License](https://img.shields.io/github/license/disclosurefoundation/disclosureos)](LICENSE)
+[Understand the standard](https://os.disclosure.org/v2/standard) ·
+[See the working showcase](https://os.disclosure.org/showcase) ·
+[Build with the documentation](https://os.disclosure.org/v2/docs)
 
-DisclosureOS is an open standard for documenting, classifying, and evaluating UAP
-observations from the public record. It provides a shared vocabulary, portable
-schemas, and reference tooling for researchers, journalists, archivists, and civic
-technology teams working with anomalous observation records.
+## How the standard fits together
 
-This repository is the package-only monorepo for the standard. The public
-documentation and schema host live at [os.disclosure.org](https://os.disclosure.org).
+| Area | What it describes | Implementation entrance |
+| --- | --- | --- |
+| Records | Observations, sources, accounts, documents, specimens and cases | `@disclosureos/records/experimental/v2` |
+| Instruments | Equipment revisions, captures, timing and calibration context | `@disclosureos/instruments/experimental/v2` |
+| Observables | Characteristics reported or investigated | `@disclosureos/observables` catalog exports |
+| Claims | Attributed assessments with separate subjects and supporting inputs | `@disclosureos/records/experimental/v2` |
+| Origins | Named hypotheses, their definitions and qualifications | `@disclosureos/origins` catalog exports |
+| Scoring | Provider policies, results, comparisons and bounded checks | `@disclosureos/scoring/experimental/v2` |
 
-## What Is Included
+These are related capabilities, not six required steps. Start with one observation
+and add only the documents your application needs. `@disclosureos/schema/experimental/v2`
+provides cross-document evaluators, source readers and instrument profiles;
+`@disclosureos/cli` provides explicit local commands. A successful structural check
+does not establish authenticity, calibration, scientific validity or an origin.
 
-| Package | Role |
-|---|---|
-| [`@disclosureos/records`](https://www.npmjs.com/package/@disclosureos/records) | The shared observation vocabulary: what was observed, when, where, and with what supporting record. |
-| [`@disclosureos/observables`](https://www.npmjs.com/package/@disclosureos/observables) | Technology and biologics observable assessments: what anomalous characteristics were reported or confirmed. |
-| [`@disclosureos/origins`](https://www.npmjs.com/package/@disclosureos/origins) | Origin Classification System taxonomy and reference mappings. |
-| [`@disclosureos/instruments`](https://www.npmjs.com/package/@disclosureos/instruments) | The UAP Sensor Manifest: per-sensor hardware specs, timing, and calibration provenance published by operating organizations. |
-| [`@disclosureos/schema`](https://www.npmjs.com/package/@disclosureos/schema) | The portable enriched Observation contract for TypeScript and JSON Schema. |
-| [`@disclosureos/scoring`](https://www.npmjs.com/package/@disclosureos/scoring) | Legacy population coverage and compellingness; experimental assessment summaries. |
-| [`@disclosureos/cli`](https://www.npmjs.com/package/@disclosureos/cli) | Developer tools for scaffolding, validating, scoring, and inspecting observations. |
+## Install and try it
 
-Supporting workspaces:
+For the currently published first-record tutorial:
 
-- `@disclosureos/examples` provides runnable examples for the full records to scoring path.
-- `@repo/typescript-config` is private workspace support for package builds.
-
-Unreleased V2 source checkpoints are documented in [C2 research entities](docs/c2/README.md)
-and [C3 connected cases](docs/c3/README.md). They accumulate under the
-[coordinated completion policy](docs/releases/v2-completion.md); published npm
-packages do not yet include these later source additions.
-
-## Repository Scope
-
-This repo contains only the open standard packages, examples, release
-infrastructure, and package CI. It does not include the `os.disclosure.org` website
-or any Disclosure Foundation dashboard applications.
-
-## Local Development
-
-```bash
-pnpm install
-pnpm --filter "@disclosureos/*" build
-pnpm --filter "@disclosureos/*" test run
-pnpm --filter "@disclosureos/*" run lint:publish
-pnpm --filter @disclosureos/examples golden-path
+```sh
+npm install --save-exact @disclosureos/records@2.0.0-beta.3
 ```
 
-The canonical end-to-end example is [examples/golden-path.ts](examples/golden-path.ts).
+Save this as `first-record.mjs`, then run `node first-record.mjs` with Node.js 22:
 
-## Package Usage
+```js
+import { parseExperimentalObservation } from '@disclosureos/records/experimental/v2';
 
-Install only the surfaces you need:
+const observation = {
+  kind: 'observation', schemaVersion: '0.1.0', id: 'first-observation',
+  status: 'draft', createdAt: '2026-10-17T00:00:00Z', updatedAt: '2026-10-17T00:00:00Z',
+  eventTime: { state: 'unknown', reason: 'not_recorded' },
+  position: { state: 'unknown', reason: 'not_collected' },
+  sources: [], products: [], methods: [], frames: [], assertions: [],
+  measurements: [], processing: [],
+};
 
-```bash
-pnpm add @disclosureos/records @disclosureos/schema
+const result = parseExperimentalObservation(observation);
+console.log(JSON.stringify({ success: result.success, checks: result.checks }, null, 2));
 ```
 
-Run the CLI without installing it globally:
+The result has `success: true`, structural and semantic checks `passed`, and
+profile and external checks `not_checked`. An empty draft is structurally valid;
+it is not a complete research record or a verified observation. Change the status
+to `finished` to see a failed structural check, then inspect `result.issues`.
 
-```bash
-pnpm dlx @disclosureos/cli --help
+The document's `schemaVersion` and each schema identifier are independent of the
+npm package version. The `/experimental/v2` import path is intentional in this beta.
+
+## Continue from a working example
+
+- [Add sources and measurements](https://os.disclosure.org/v2/docs/records).
+- [Run the complete viewer](https://os.disclosure.org/v2/docs/showcase).
+- [Check equipment and captures](https://os.disclosure.org/v2/docs/instruments).
+- [Review availability](https://os.disclosure.org/v2/docs/installation). Advanced examples identify their exact source revision until that code is published.
+
+The showcase is fictional reference data. It demonstrates the data structures and
+interactions, not a real anomalous event or independent validation of the standard.
+The public ELDÆON preview is separate from the partner's pending native archive.
+
+## Work on the candidate
+
+Use Node.js 22 and pnpm 9.15.0 from a checkout of the reviewed branch:
+
+```sh
+pnpm install --frozen-lockfile
+pnpm --filter '@disclosureos/*' build
+pnpm --filter '@disclosureos/*' test run
+pnpm test:release
+pnpm release:check
+pnpm release:pack /absolute/new/candidate-directory
 ```
 
-Unassessed local files can enter through the experimental [source intake workflow](docs/experimental/source-intake.md), preserving bytes and explicit metadata gaps before measurement or review.
+Packing verifies a fresh consumer and writes an artifact manifest; it does not
+publish. Source examples live under `examples/v2` and the instrument-profile
+example directories. `examples/golden-path.ts` exercises the earlier enriched
+Observation API, not the recommended V2 starting path.
 
-The experimental [ELDÆON mapping workflow](docs/experimental/eldaeon-field-mapping.md) inventories verified source exports and prepares acquisition metadata requirements.
+[Contribute](CONTRIBUTING.md) · [Report a security issue](SECURITY.md) ·
+[Release process](docs/release-process.md) · [MIT license](LICENSE)
 
-The opt-in [assessment summary](docs/experimental/assessment-summary.md) separates current declarations, duplicate copies, differing outcomes and shared support without an aggregate score.
-
-The optional [provider scoring format](docs/experimental/provider-scoring.md)
-retains separate providers' results with exact method revisions, source inputs,
-scales and missing-data rules. The [fictional scoring example](examples/provider-scoring/README.md)
-replays declared calculations and demonstrates when scores can be compared.
-
-The [documentation completion checklist](docs/experimental/documentation-completion.md) adds applicable requirement statuses and source-based next actions to the shared documentary validator.
-
-## Schema Host
-
-DisclosureOS packages emit JSON Schema with stable `$id` URLs under
-`https://os.disclosure.org/schema/...`. See
-[docs/release-process.md](docs/release-process.md) for the schema hosting and
-release checklist.
-
-## Release
-
-Package releases are managed with Changesets from the workspace root:
-
-```bash
-pnpm changeset
-pnpm version-packages
-pnpm release
-```
-
-Every published package is gated by build, type-check, unit/schema drift tests,
-`publint`, `attw`, and `npm pack --dry-run` through the package quality workflow.
-
-DisclosureOS packages version independently under Semantic Versioning. Routine
-patches can ship as package-level releases and tags (for example,
-`@disclosureos/cli@1.0.1`) without a new aggregate GitHub Release. Repository
-releases such as `v1.0.0`, `v1.1.0`, or `v2.0.0` mark standard-level milestones
-across the framework.
-
-## License
-
-MIT © Disclosure Foundation
-
-The [instrument research completion guide](docs/experimental/research-completion.md) covers calibration, timing and report prerequisites for the selected research profile.
-
-[Population coverage](docs/experimental/population-coverage.md) names the legacy field counter explicitly and preserves the existing completeness API and CLI results.
-
-The experimental [research evaluation receipt](docs/experimental/evaluation-provenance.md) binds computed prerequisite results to local input bytes and versioned rules.
-
-The [independent integrity checker and local replay tools](docs/experimental/receipt-replay.md) verify saved receipt bytes and compare them with the current fixed evaluator.
-
-[Assessment-summary provenance and replay](docs/experimental/summary-provenance.md) now pin the declared history and computed summary without verifying referenced source artifacts.
-
-The experimental [released-document provenance profile](docs/experimental/released-documents.md) checks selected documentary sources and direct extractions with required and recommended groups, without imposing sensor requirements.
-
-Experimental [historical-testimony provenance](docs/experimental/historical-testimony.md) checks selected account bytes, recording citations and direct extraction attribution without assigning credibility or requiring sensor data.
-
-Experimental [physical-sample provenance](docs/experimental/physical-samples.md) checks collected-specimen declarations, custody continuity and cited record bytes without certifying material identity, composition or origin.
-
-Experimental [provenance-profile receipts and replay](docs/experimental/profile-evaluation.md) pin inputs and reproduce the full released-document, testimony or collected-specimen result, including failed and unchecked outcomes.
-
-The experimental [profile CLI](docs/experimental/profile-cli.md) lists domain paths and inspects or checks explicitly selected provenance workflows with readable requirements and next actions.
-
-Experimental [profile preparation](docs/experimental/profile-preparation.md) assembles exact existing inputs into a new private evaluation bundle, calculates byte pins and preserves failing or unchecked profile outcomes.
-
-## Experimental v2 migration and compatibility
-
-Start with the [developer compatibility guide](docs/experimental/migration-guide.md)
-for breaking changes, parser/version boundaries, supported migration workflows,
-exit handling, profile differences and non-destructive local rollback. This is an
-experimental checkout workflow; merging package changes does not deploy the Index.
-
-The bounded local migration scope is covered by the [WP09 acceptance record](docs/experimental/migration-closeout.md). Run `pnpm verify:wp09-closeout` to exercise the synthetic migration, application, read and rollback workflow. This does not certify production integration or scientific validity.
+This repository contains the standard packages. The public portal and reference
+viewer are maintained in the separate disclosurefoundation/dashboard repository.

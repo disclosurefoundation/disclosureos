@@ -1,5 +1,41 @@
 # @disclosureos/schema
 
+Connect supplied documents, inspect exact source selections and validate specialized instrument products. Use portable JSON Schemas and evaluators with explicit limits.
+
+This branch prepares **2.0.0-beta.4**. It is a release candidate, not a publication
+announcement. The current published beta is **2.0.0-beta.3**; unversioned installs
+select v1 through `latest`. See the [candidate release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
+for scope and verification. Use one exact package version throughout an application.
+
+## V2 entry point
+
+Start with `@disclosureos/schema/experimental/v2`. It includes acquisition and measurement bindings, research evaluation, case projections, product-source selection, vocabulary bindings and radar, sonar, lidar and satellite profiles. JSON Schema exports identify their own document versions. The root `parseEnrichedObservation` API is the earlier composition format.
+
+[Implementation guide](https://os.disclosure.org/v2/docs/worked-example) · [Availability](https://os.disclosure.org/v2/docs/installation) · [Example viewer](https://os.disclosure.org/showcase)
+
+## Choose a package version
+
+For the published beta.3 surfaces, install explicitly:
+
+```sh
+npm install --save-exact @disclosureos/schema@2.0.0-beta.3
+```
+
+The additional beta.4 candidate surfaces above require a verified source checkout
+or its locally packed artifacts until publication. Do not combine beta.3 and
+beta.4 packages. After registry verification, install the coordinated exact beta.4
+set described in the release notes. Packages are ESM; Node.js 22 is the documented
+getting-started runtime.
+
+## Additional API reference
+
+<details>
+<summary>Earlier composition APIs and detailed source-workflow reference</summary>
+
+The following reference retains earlier APIs and source checkpoints. It is not the
+V2 first-record tutorial. Installation commands here describe the candidate API
+set; use the availability guidance above until that version is published.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 The **portable contract** for DisclosureOS. It composes the slot-bearing packages —
@@ -9,10 +45,6 @@ The **portable contract** for DisclosureOS. It composes the slot-bearing package
 (the `origin` slot) — into one **enriched `Observation`** that means the same thing
 in TypeScript, JSON Schema, and any other language.
 
-DisclosureOS is a **six-part standard** (records → observables → origins → claims → scoring → instruments).
-`schema` is the contract that *binds* records and the package-owned slots into one
-portable artifact. It is a supporting package, not another part of the standard. (Scoring
-consumes the enriched record, so it is not part of the composed schema.)
 
 > ESM-only. CommonJS consumers can load it with a dynamic `import()`.
 
@@ -41,12 +73,12 @@ that gap with three things:
 > with `pnpm --filter @disclosureos/examples golden-path`.
 >
 > **Migrating an existing dataset?** See [`examples/migration-path.ts`](../../examples/migration-path.ts)
-> and the [onboarding workspace](https://os.disclosure.org/onboard).
+> and the [onboarding workspace](https://os.disclosure.org/v2/inspect).
 
 ## Install
 
 ```bash
-pnpm add @disclosureos/schema @disclosureos/records @disclosureos/observables @disclosureos/origins zod
+pnpm add @disclosureos/schema@2.0.0-beta.4 @disclosureos/records@2.0.0-beta.4 @disclosureos/observables@2.0.0-beta.4 @disclosureos/origins@2.0.0-beta.4 zod
 ```
 
 ## Quickstart
@@ -246,3 +278,5 @@ The optional [lidar point-cloud profile](docs/lidar-profile.md) binds a local di
 ### Multispectral satellite raster
 
 The optional [satellite raster profile](docs/satellite-raster-profile.md) binds a projected grid, retained optical band values and attributed pixel quality to exact source and acquisition artifacts. The reusable reader exposes scaled reflectance, pixel footprints, source byte offsets and quality-gated NDVI. The [fictional raster example](../../examples/satellite-raster) retains six bands, cloud and shadow annotations, missing pixels and numerical edge cases. Passing checks do not certify calibration, atmospheric correction, quality accuracy or geographic registration. No satellite-format decoder is implied; publication remains held separately.
+
+</details>

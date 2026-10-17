@@ -35,6 +35,27 @@ export function verifySchemaBaseline(revision, paths, readCommitted, readCurrent
   }
 }
 
+// A frozen candidate only detects packaging drift. Also compare every current
+// identity with published bytes, including identities reused at a different path.
+export function verifyPublishedSchemaIdentities(published, current) {
+  assert.ok(published.packages?.length > 0, 'Missing published schema baseline');
+  const known = new Map();
+  for (const pkg of published.packages) for (const schema of pkg.schemas) {
+    assert.ok(schema.id && /^[a-f0-9]{64}$/.test(schema.sha256), 'Invalid published schema identity');
+    assert.ok(!known.has(schema.id) || known.get(schema.id) === schema.sha256, `Conflicting published schema: ${schema.id}`);
+    known.set(schema.id, schema.sha256);
+  }
+  assert.ok(known.size > 0, 'Empty published schema baseline');
+  const seen = new Set();
+  for (const { path, bytes } of current) {
+    const { $id: id } = JSON.parse(bytes);
+    assert.ok(typeof id === 'string' && id.length > 0, `Missing schema identity: ${path}`);
+    assert.ok(!seen.has(id), `Duplicate schema identity: ${id}`);
+    seen.add(id);
+    if (known.has(id)) assert.equal(sha256(bytes), known.get(id), `Published schema identity reused with changed content: ${id} (${path})`);
+  }
+}
+
 export function checkPlan({ sourceOnly = false } = {}) {
   const plan = read(join(root, 'docs/releases/beta-plan.json'));
   assert.match(plan.version, /^2\.0\.0-beta\.\d+$/);
@@ -59,6 +80,9 @@ export function checkPlan({ sourceOnly = false } = {}) {
     assert.ok(readFileSync(join(dir, 'CHANGELOG.md'), 'utf8').includes(`## ${plan.version}`));
     return { name, dir, pkg };
   });
+  verifyPublishedSchemaIdentities(read(join(root, 'docs/releases/published-schema-identities.json')),
+    packages.flatMap(({ dir }) => existsSync(join(dir, 'schema')) ? walk(join(dir, 'schema'))
+      .filter(path => path.endsWith('.json')).map(path => ({ path, bytes: readFileSync(path) })) : []));
   return { plan: { ...plan, implementationRevision }, packages };
 }
 
@@ -105,6 +129,14 @@ async function main() {
   const consumer = join(output, 'consumer'); mkdirSync(consumer);
   writeFileSync(join(consumer, 'package.json'), json({ name: 'disclosureos-beta-consumer', private: true, type: 'module' }));
   run('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', ...manifest.packages.map(p => join(artifacts, p.tarball))], consumer);
+  // Exercise the actual newcomer snippets, including their deliberate failure,
+  // against installed tarballs rather than workspace dependencies.
+  for (const file of ['README.md', 'packages/disclosureos-records/README.md']) {
+    const snippet = readFileSync(join(root, file), 'utf8').match(/```js\n([\s\S]*?)\n```/);
+    assert.ok(snippet, `Missing first-record example: ${file}`);
+    const verify = `\nif (!result.success || result.checks.structural !== 'passed' || result.checks.external !== 'not_checked') throw new Error('Invalid first-record result');\nif (parseExperimentalObservation({ ...observation, status: 'finished' }).success) throw new Error('Invalid status accepted');`;
+    run(process.execPath, ['--input-type=module', '--eval', snippet[1] + verify], consumer);
+  }
   // Module resolution and type checks run inside the independent install.
   cpSync(join(root, 'scripts/release-consumer.mjs'), join(consumer, 'verify.mjs'));
   writeFileSync(join(consumer, 'candidate.json'), json(manifest));
@@ -122,7 +154,7 @@ async function main() {
     '--moduleResolution', module === 'NodeNext' ? 'NodeNext' : 'Bundler', 'consumer.ts'], consumer);
   run(process.execPath, [join(root, 'conformance/migration-closeout.mjs'), '--cli', join(consumer, 'node_modules/@disclosureos/cli/dist/index.js')]);
   manifest.status = 'passed';
-  manifest.checks = { exportResolution: 'passed', types: ['NodeNext', 'Bundler'], observationAndClaimCorpus: 'passed', contextSnapshotConsumer: 'passed', witnessAccountsConsumer: 'passed', archivalEditionsConsumer: 'passed', migrationCloseout: 'passed', scientificValidity: 'not_checked', partnerData: 'not_used' };
+  manifest.checks = { publishedSchemaIdentities: 'passed', readmeExamples: 'passed', exportResolution: 'passed', types: ['NodeNext', 'Bundler'], observationAndClaimCorpus: 'passed', contextSnapshotConsumer: 'passed', witnessAccountsConsumer: 'passed', archivalEditionsConsumer: 'passed', migrationCloseout: 'passed', scientificValidity: 'not_checked', partnerData: 'not_used' };
   writeFileSync(join(output, 'release-manifest.json'), json(manifest));
   console.log(`Verified candidate artifacts and manifest: ${output}`);
 }

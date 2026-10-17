@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://os.disclosure.org/schema/observables/2.0.0/observable-assessments.json",
-  "x-schema-version": "2.0.0",
+  "$id": "https://os.disclosure.org/schema/observables/3.0.0/observable-assessments.json",
+  "x-schema-version": "3.0.0",
   "description": "Per-observable claim lists (Technology + Biologics) for an observation.",
   "$ref": "#/$defs/ObservableAssessmentMap",
   "$defs": {

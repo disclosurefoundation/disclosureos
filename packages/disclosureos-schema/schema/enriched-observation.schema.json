@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://os.disclosure.org/schema/schema/1.1.0/enriched-observation.json",
-  "x-schema-version": "1.1.0",
+  "$id": "https://os.disclosure.org/schema/schema/2.0.0/enriched-observation.json",
+  "x-schema-version": "2.0.0",
   "description": "A complete DisclosureOS observation: the records core enriched with observable assessments and origin classification. The portable contract across TypeScript, JSON Schema, and other languages.",
   "$ref": "#/$defs/Observation",
   "$defs": {

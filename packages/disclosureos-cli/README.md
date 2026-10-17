@@ -1,5 +1,41 @@
 # @disclosureos/cli
 
+Run local validation, intake and reproducibility workflows using explicit commands. No command publishes a dataset or verifies an extraordinary claim merely by accepting its structure.
+
+This branch prepares **2.0.0-beta.4**. It is a release candidate, not a publication
+announcement. The current published beta is **2.0.0-beta.3**; unversioned installs
+select v1 through `latest`. See the [candidate release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
+for scope and verification. Use one exact package version throughout an application.
+
+## V2 entry point
+
+Start with the [Installation and command availability](https://os.disclosure.org/v2/docs/installation). V2 commands select the relevant document/workflow explicitly. The unqualified `validate` command checks the earlier enriched Observation format; use the V2 records parser for a first V2 observation. Inspect `--help` before choosing a workflow.
+
+[Implementation guide](https://os.disclosure.org/v2/docs/installation) · [Availability](https://os.disclosure.org/v2/docs/installation) · [Example viewer](https://os.disclosure.org/showcase)
+
+## Choose a package version
+
+For the published beta.3 surfaces, install explicitly:
+
+```sh
+npm install --save-exact @disclosureos/cli@2.0.0-beta.3
+```
+
+The additional beta.4 candidate surfaces above require a verified source checkout
+or its locally packed artifacts until publication. Do not combine beta.3 and
+beta.4 packages. After registry verification, install the coordinated exact beta.4
+set described in the release notes. Packages are ESM; Node.js 22 is the documented
+getting-started runtime.
+
+## Additional API reference
+
+<details>
+<summary>Earlier composition APIs and detailed source-workflow reference</summary>
+
+The following reference retains earlier APIs and source checkpoints. It is not the
+V2 first-record tutorial. Installation commands here describe the candidate API
+set; use the availability guidance above until that version is published.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Developer tools for the [DisclosureOS](https://github.com/disclosurefoundation)
@@ -16,16 +52,16 @@ foundation's checks.
 > validated as a whole by `@disclosureos/schema` — in a single type-checked file. Run it
 > with `pnpm --filter @disclosureos/examples golden-path`.
 >
-> **Migrating an existing dataset?** The [onboarding workspace](https://os.disclosure.org/onboard)
+> **Migrating an existing dataset?** The [onboarding workspace](https://os.disclosure.org/v2/inspect)
 > provides a guided workflow. See also [`examples/migration-path.ts`](../../examples/migration-path.ts)
 > and [`examples/migration-csv-path.ts`](../../examples/migration-csv-path.ts).
 
 ## Install
 
 ```bash
-pnpm add -D @disclosureos/cli
+pnpm add -D @disclosureos/cli@2.0.0-beta.4
 # or run ad hoc
-pnpm dlx @disclosureos/cli --help
+pnpm dlx @disclosureos/cli@2.0.0-beta.4 --help
 ```
 
 ## Commands
@@ -177,3 +213,5 @@ Start with the [developer compatibility guide](../../docs/experimental/migration
 for breaking changes, parser/version boundaries, supported migration workflows,
 exit handling, profile differences and non-destructive local rollback. This is an
 experimental checkout workflow; merging package changes does not deploy the Index.
+
+</details>
