@@ -94,3 +94,9 @@ validator or framework can consume them directly, with no DisclosureOS-specific 
 ## License
 
 MIT © [Disclosure Foundation](https://disclosure.org)
+
+## Shared V2 vocabulary references
+
+`createOriginCatalog({ id, revision, publishedBy, publishedAt })` exports the full OCS taxonomy in the records-owned `VocabularyCatalog` envelope. It retains node hierarchy, aliases and qualifications in `extensions["org.disclosureos.origins"]`, and records OCS attribution on the catalog. `readOriginTermDefinition(term)` validates and returns the complete node, or `undefined` for an unrelated or malformed term.
+
+Retain and hash the serialized catalog before creating a reference. Catalog membership identifies a hypothesis; it does not select that hypothesis or establish an origin. The vocabulary reference remains separate from the reviewed subject and supporting sources. See [RFC 0007](../../docs/rfcs/0007-vocabulary-references.md) for the shared binding contract.

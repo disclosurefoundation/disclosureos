@@ -132,20 +132,20 @@ import { createObservableClaim } from '@disclosureos/observables';
 // Pass evidenceRefs (e.g. ['sensor:<id>']) to link a claim to in-record evidence.
 export const assessment: ObservableAssessmentMap = {
   technology: {
-    antigravity_lift: [createObservableClaim('not_indicated')],
-    instantaneous_acceleration: [createObservableClaim('not_indicated')],
-    hypersonic_no_signatures: [createObservableClaim('not_indicated')],
-    low_observability: [createObservableClaim('not_indicated')],
-    transmedium_travel: [createObservableClaim('not_indicated')],
-    biological_effects: [createObservableClaim('not_indicated')],
+    apparent_hover: [createObservableClaim('not_indicated')],
+    abrupt_motion: [createObservableClaim('not_indicated')],
+    hypersonic_signature_discrepancy: [createObservableClaim('not_indicated')],
+    sensor_detection_discrepancy: [createObservableClaim('not_indicated')],
+    apparent_medium_transition: [createObservableClaim('not_indicated')],
+    event_associated_biological_changes: [createObservableClaim('not_indicated')],
   },
   biologics: {
-    molecular_complexity: [createObservableClaim('not_indicated')],
-    isotopic_provenance: [createObservableClaim('not_indicated')],
-    non_standard_biochemistry: [createObservableClaim('not_indicated')],
-    non_phylogenetic_genetics: [createObservableClaim('not_indicated')],
-    anomalous_morphology: [createObservableClaim('not_indicated')],
-    anomalous_bio_interaction: [createObservableClaim('not_indicated')],
+    molecular_complexity_pattern: [createObservableClaim('not_indicated')],
+    isotope_ratio_departure: [createObservableClaim('not_indicated')],
+    molecular_composition_difference: [createObservableClaim('not_indicated')],
+    unresolved_sequence_relationship: [createObservableClaim('not_indicated')],
+    unresolved_morphological_characteristics: [createObservableClaim('not_indicated')],
+    reported_biological_interaction: [createObservableClaim('not_indicated')],
   },
 };
 `;

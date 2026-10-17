@@ -159,7 +159,7 @@
       "updatedAt": "2026-09-07T00:00:00Z",
       "observableAssessments": {
         "technology": {
-          "antigravity_lift": [
+          "apparent_hover": [
             {
               "level": "confirmed"
             }
@@ -195,7 +195,7 @@
       "updatedAt": "2026-09-07T00:00:00Z",
       "observableAssessments": {
         "technology": {
-          "antigravity_lift": [
+          "apparent_hover": [
             {
               "level": "confirmed",
               "evidenceRefs": [
@@ -347,7 +347,7 @@
       "updatedAt": "2026-09-07T00:00:00Z",
       "observableAssessments": {
         "technology": {
-          "antigravity_lift": [
+          "apparent_hover": [
             {
               "level": "reported",
               "evaluatedBy": "synthetic-curator",
@@ -384,7 +384,7 @@
       "updatedAt": "2026-09-07T00:00:00Z",
       "observableAssessments": {
         "technology": {
-          "antigravity_lift": [
+          "apparent_hover": [
             {
               "level": "reported",
               "confidence": 1.1
@@ -483,7 +483,7 @@
       "updatedAt": "2026-09-07T00:00:00Z",
       "observableAssessments": {
         "technology": {
-          "antigravity_lift": [
+          "apparent_hover": [
             {
               "level": "reported",
               "evidenceRefs": [

@@ -7,8 +7,9 @@ ecosystem — the **Scoring** layer. Its legacy `Observation` APIs provide:
 
 - **Population coverage** — the fraction of legacy schema field paths carrying a value.
   Presence does not establish documentation quality or analytical readiness.
-- **Compellingness** — *is it anomalous / non-mundane?* Derived from the observable
-  assessments and origin classification.
+- **Origin-only reference scoring** — a declared weighting of origin hypotheses. It is separate from V2 research summaries and does not establish scientific validity.
+
+**Descriptive observable support does not measure anomaly strength.** `score()` and `rankByCompellingness()` reject an observation containing any nonempty observable claim list, including `not_indicated`. They do not substitute zero, infer absence, or allow a weighting override to bypass this boundary. Use V2 attributed assessments and profile evaluation for research results.
 
 ## The DisclosureOS model
 
@@ -19,7 +20,7 @@ contract (a single TS type + JSON Schema + non-stripping parse).
 | Part | Package surface | Question it answers |
 |---|---|---|
 | **Records** | `@disclosureos/records` | *What was observed?* |
-| **Observables** | `@disclosureos/observables` | *What anomalous characteristics did it show?* |
+| **Observables** | `@disclosureos/observables` | *Which characteristics were described or investigated?* |
 | **Origins** | `@disclosureos/origins` | *What might explain it?* |
 | **Claims** | `@disclosureos/records/shared` | *Who assessed it, why, and on what evidence?* |
 | **Scoring** | `@disclosureos/scoring` | *How complete / compelling is the case?* |
@@ -51,26 +52,22 @@ you those slots typed automatically.
 pnpm add @disclosureos/scoring @disclosureos/records @disclosureos/observables @disclosureos/origins zod
 ```
 
-## Quick start
-
-The `getPopulationCoverage` name below requires this unreleased checkout or a future
-authorized release containing it. Published consumers can continue using `getCompleteness`.
+## Population coverage
 
 ```typescript
-import { score, getPopulationCoverage, rankByCompellingness } from '@disclosureos/scoring';
-
-const result = score(observation);
-// { score, range: { low, high }, contested, ... }
+import { getPopulationCoverage } from '@disclosureos/scoring';
 
 const coverage = getPopulationCoverage(observation);
 // { percentage, requiredPercentage, missing, ... }
-
-const ranked = rankByCompellingness([obsA, obsB, obsC]); // most-compelling first
 ```
 
-Because evaluative slots hold **arrays of competing claims**, `score()` reports a
-`range` (the spread across claims) and a `contested` flag when evaluators disagree —
-not just a single point estimate.
+Coverage counts populated fields. It does not certify documentation quality, anomalous behavior or readiness for an analysis. The `getPopulationCoverage` name requires this checkout or a release containing it; `getCompleteness` is the older name for the same counter.
+
+## Origin-only reference scorer
+
+`score()` remains available for observations without descriptive observable claims. It evaluates declared origin hypotheses under explicit weights and reports the spread across competing classifications. `rankByCompellingness()` applies the same restriction to every input and fails the batch if a descriptive claim would be interpreted as anomaly strength.
+
+Do not remove descriptive claims merely to obtain a score. A characteristic such as apparent hover can describe an ordinary observation; its support tier cannot answer whether the event is anomalous. This implementation retires that automatic inference. It does not introduce a replacement anomaly-scoring methodology.
 
 ## Instrument trust (calibration provenance)
 
@@ -84,8 +81,9 @@ real calibration provenance (`in_practice` / `documented` earn the most; see
 ```typescript
 import { score, calibrationTrust } from '@disclosureos/scoring';
 
-const result = score(observation, {
-  evaluatorWeight: calibrationTrust(observation, [navyManifest]),
+// This observation must contain no descriptive observable claim lists.
+const result = score(originOnlyObservation, {
+  evaluatorWeight: calibrationTrust(originOnlyObservation, [sensorManifest]),
 });
 ```
 
@@ -123,6 +121,19 @@ shared inputs and differing outcome labels. It computes no aggregate score or
 confidence interval and does not certify scientific eligibility. See the
 [assessment summary guide](../../docs/experimental/assessment-summary.md).
 
-The additive population-coverage names are unreleased. See the [coverage guide](../../docs/experimental/population-coverage.md) for retained counting rules, denominator limits and compatibility. The existing compellingness methodology is separate from experimental v2 assessment summaries and profile completion.
+The additive population-coverage names are unreleased. See the [coverage guide](../../docs/experimental/population-coverage.md) for retained counting rules, denominator limits and compatibility. Origin-only reference scoring is separate from experimental V2 assessment summaries and profile completion. Descriptive observable claims are never converted into anomaly strength.
 
 [Assessment-summary provenance and replay](../../docs/experimental/summary-provenance.md) now pin the declared history and computed summary without verifying referenced source artifacts.
+
+## Experimental v2 provider-authored scores (unreleased)
+
+`ProviderScorePolicySchema` and `ProviderScoreResultSchema` retain a provider's
+question, exact method revision, scale, source basis and separate derivation.
+`evaluateProviderScore` validates declarations and supplied bytes without running
+the method. `compareProviderScores` conservatively identifies results with the
+same exact policy and source basis; it does not compute consensus or endorse a
+provider. Numeric grades and ordinal levels are declared by each policy, not
+universal DisclosureOS case grades.
+
+See the [provider scoring guide](../../docs/experimental/provider-scoring.md)
+and [reproducible fictional example](../../examples/provider-scoring/README.md).

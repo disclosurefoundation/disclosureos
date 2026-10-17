@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { Observation } from '@disclosureos/records';
-import type { AssessmentLevel, ObservableClaim } from '@disclosureos/observables';
+import type { AssessmentLevel } from '@disclosureos/observables';
 import type { OriginClaim } from '@disclosureos/origins';
 // Side-effect imports register the `observableAssessments` and `origin` slots on
 // `Observation` via module augmentation, so they are typed below.
@@ -14,10 +14,9 @@ export type { CalibrationTrustWeights, CalibrationTrustOptions } from './calibra
 export const SCORING_VERSION = '2.0.0' as const;
 
 /**
- * Ordinal anomaly strength per evidentiary tier. A `confirmed` signal counts
- * fully; `not_indicated` contributes nothing. Multiplied by the assessment's
- * confidence (default 1 when unstated). Exported so consumers can render the
- * methodology; override semantics may come in a future minor release.
+ * Ordinal support-tier values retained as transparent methodology data.
+ * These values do not establish anomaly strength. The scorer rejects descriptive
+ * observable assessments rather than applying this table to the V2 vocabulary.
  */
 export const ASSESSMENT_LEVEL_WEIGHTS: Record<AssessmentLevel, number> = {
   not_indicated: 0,
@@ -164,41 +163,6 @@ function reduceClaims(weighted: Weighted[]): ClaimStats {
   };
 }
 
-/** Asserted anomaly magnitude of one observable claim, in [0,1]. */
-function observableMagnitude(claim: ObservableClaim): number {
-  return ASSESSMENT_LEVEL_WEIGHTS[claim.level] * (claim.confidence ?? 1);
-}
-
-/**
- * Strongest established anomaly within a domain — the "is there *any* anomaly?" reduction.
- * `point`/`low`/`high` are each a **max across observables** of that observable's claim-list
- * stat. So `low` is "the most-skeptical reading of the strongest-anomaly observable," not a
- * global floor across all observables — consistent with the point estimate's max reduction.
- */
-function domainStats(
-  group: Partial<Record<string, ObservableClaim[]>> | undefined,
-  evaluatorWeight: (claim: EvaluatorWeightInput) => number,
-): ClaimStats {
-  if (!group) return EMPTY_STATS;
-  let point = 0;
-  let low = 0;
-  let high = 0;
-  let contested = false;
-  for (const claims of Object.values(group)) {
-    if (!claims || claims.length === 0) continue;
-    const weighted = claims.map<Weighted>((c) => ({
-      magnitude: observableMagnitude(c),
-      weight: (c.confidence ?? 1) * evaluatorWeight(c),
-    }));
-    const stats = reduceClaims(weighted);
-    if (stats.point > point) point = stats.point;
-    if (stats.low > low) low = stats.low;
-    if (stats.high > high) high = stats.high;
-    if (stats.contested) contested = true;
-  }
-  return { point, low, high, contested };
-}
-
 /** Confidence in a *non-prosaic* origin, reduced across competing classifications. */
 function originStats(
   origin: OriginClaim[] | undefined,
@@ -214,23 +178,24 @@ function originStats(
 }
 
 /**
- * Reference compellingness scorer. Combines the strongest technology- and
- * biologics-anomaly signals (from `observableAssessments`) with the confidence in
- * a *non-prosaic* origin classification (from `origin`), under transparent,
- * overridable weights. Each slot is a *list* of competing claims, so the scorer
- * reports a consensus `score`, the `range` of readings across claims, and whether
- * the case is `contested` (evaluators disagree on direction). This answers "how
- * strongly does this case bear on the two public questions — anomalous
- * tech/biologics, and a non-mundane origin?" — distinct from completeness.
+ * Reference scorer for origin-only inputs. Descriptive observable support tiers
+ * cannot supply anomaly strength, so any nonempty observable claim list is rejected.
+ * Use attributed V2 assessments and profile evaluation for research results.
+ * Rejection is not a zero score or a finding that a characteristic is absent.
  */
 export function score(observation: Observation, options?: ScoreOptions): ScoreResult {
+  const assessments = observation.observableAssessments;
+  const hasDescriptiveClaims = [assessments?.technology, assessments?.biologics]
+    .some((group) => Object.values(group ?? {}).some((claims) => claims && claims.length > 0));
+  if (hasDescriptiveClaims) {
+    throw new Error('Descriptive observable assessments cannot produce anomaly strength. Use V2 attributed assessments and profile evaluation; this is not a zero or absent result.');
+  }
   const weights = options?.weights ?? DEFAULT_WEIGHTS;
   const prosaicPrefixes = options?.prosaicPrefixes ?? DEFAULT_PROSAIC_OCS_PREFIXES;
   const evaluatorWeight = options?.evaluatorWeight ?? UNIFORM_TRUST;
 
-  const assessments = observation.observableAssessments;
-  const technology = domainStats(assessments?.technology, evaluatorWeight);
-  const biologics = domainStats(assessments?.biologics, evaluatorWeight);
+  const technology = EMPTY_STATS;
+  const biologics = EMPTY_STATS;
   const origin = originStats(observation.origin, prosaicPrefixes, evaluatorWeight);
 
   const totalWeight = weights.technology + weights.biologics + weights.origin;

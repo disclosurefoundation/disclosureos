@@ -3,7 +3,7 @@ import { ClaimSchema, ConfidenceSchema } from '@disclosureos/records/shared';
 
 export const AssessmentLevelSchema = z
   .enum(['not_indicated', 'reported', 'documented', 'measured', 'confirmed'])
-  .describe('Evidentiary tier of an observable assessment — how strongly the signal is established.');
+  .describe('Support tier describing the available information about a characteristic. It is separate from a V2 claim outcome and does not establish anomalous behavior.');
 
 export type AssessmentLevel = z.infer<typeof AssessmentLevelSchema>;
 
@@ -19,28 +19,28 @@ export type ObservableCategory = z.infer<typeof ObservableCategorySchema>;
  */
 export const ObservableBaseSchema = z
   .object({
-    id: z.string().describe('Stable observable identifier used in data (e.g., "instantaneous_acceleration").'),
-    code: z.string().describe('Short display code for the observable (e.g., "TO-2" or "BO-1").'),
+    id: z.string().describe('Stable observable identifier used in data (e.g., "abrupt_motion").'),
+    code: z.string().describe('Short display code for the observable (e.g., "OC-T02" or "OC-B01").'),
     label: z.string().describe('Human-readable observable name.'),
     description: z.string().describe('Plain-language description of what the observable captures.'),
     scientificBasis: z
       .string()
-      .describe('Why this observable may be scientifically meaningful, including the evidentiary basis and limitations.'),
+      .describe('Measurement rationale and limits for investigating this characteristic; not proof of a mechanism or origin.'),
     caveat: z
       .string()
       .optional()
       .describe(
-        'Qualifier shown when the basis rests on a contested framework or a weaker class of evidence (e.g. testimony rather than sensor data). Present only when the observable warrants extra caution.',
+        'Interpretation limits for the characteristic, including contested methods, observation limits and distinctions from causal or origin claims.',
       ),
     caveatLabel: z
       .string()
       .optional()
       .describe(
-        'Short heading for the caveat banner. Defaults to "Contested basis" when omitted; set explicitly when the caution is about evidence type or interpretation rather than disputed science.',
+        'Short heading for the caveat banner. The heading describes the specific interpretation limit.',
       ),
     detectionSignals: z
       .array(z.string())
-      .describe('Observable signs or measurements that would indicate this signal may be present.'),
+      .describe('Reports or measurements relevant to investigating the characteristic; not sufficient confirmation criteria.'),
     methods: z.array(z.string()).describe('Methods or instruments used to detect or evaluate the observable.'),
     references: z.array(z.string()).optional().describe('Published or public references supporting the definition.'),
   })

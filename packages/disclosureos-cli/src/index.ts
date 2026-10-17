@@ -98,7 +98,7 @@ function printHelp(): void {
   console.log(`  disclosureos validate ./data/ --recursive`);
   console.log(`  disclosureos population-coverage ./out/ --recursive`);
   console.log(`  disclosureos registry origins --id 1.1.3`);
-  console.log(`  disclosureos info observable TO-3\n`);
+  console.log(`  disclosureos info observable OC-T03\n`);
 }
 
 function printVersion(): void {

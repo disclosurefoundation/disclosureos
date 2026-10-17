@@ -1,0 +1,14 @@
+{
+  "fictional": true,
+  "origin": "Exact retained source bytes copied from disclosurefoundation/dashboard apps/disclosureos/public/examples/meridian on the codex/v2-scoring-standard branch at commit 50fd17e.",
+  "sourcePaths": {
+    "inputs/case.json": "verification-v1/retained/case.json",
+    "inputs/observation.json": "verification-v1/retained/observation.json",
+    "inputs/collection-sheet.md": "specimens-r2/sources/collection-sheet.md",
+    "inputs/handling-log.md": "specimens-r2/sources/handling-log.md",
+    "inputs/preparation-protocol.md": "specimens-r2/sources/preparation-protocol.md",
+    "inputs/laboratory-report.md": "specimens-r2/sources/laboratory-report.md",
+    "inputs/laboratory-replicates.csv": "specimens-r2/sources/laboratory-replicates.csv"
+  },
+  "newMaterial": "Review methods, provider worksheets and score results are authored for this provider-scoring example. They do not alter the retained source files or earlier verification receipts."
+}

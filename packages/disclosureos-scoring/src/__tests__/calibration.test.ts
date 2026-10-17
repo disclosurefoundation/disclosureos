@@ -41,13 +41,12 @@ function obs(extra: Record<string, unknown>): Observation & Record<string, unkno
   } as unknown as Observation & Record<string, unknown>;
 }
 
-// Two competing claims on the same observable: a sensor-backed anomaly
-// assertion and an unbacked null assertion. Calibration credit should pull
-// the consensus point toward the instrument-backed claim.
+// Two competing descriptions share an observation. Calibration can qualify a
+// source, but cannot convert descriptive support into anomaly strength.
 const contestedCase = obs({
   observableAssessments: {
     technology: {
-      antigravity_lift: [
+      apparent_hover: [
         { level: 'measured', confidence: 0.8, evidenceRefs: ['sensor:radar-1'] },
         { level: 'not_indicated', confidence: 0.8 },
       ],
@@ -105,14 +104,10 @@ describe('calibrationTrust', () => {
     expect(hook({ evidenceRefs: ['sensor:radar-1'] })).toBe(0.5 * CALIBRATION_TRUST_WEIGHTS.documented);
   });
 
-  it('shifts the consensus point toward instrument-backed claims but leaves the range honest', () => {
-    const baseline = score(contestedCase);
-    const credited = score(contestedCase, {
+  it('does not allow calibration provenance to bypass the descriptive-scoring guard', () => {
+    expect(() => score(contestedCase, {
       evaluatorWeight: calibrationTrust(contestedCase, [manifest('documented')]),
-    });
-    expect(credited.score).toBeGreaterThan(baseline.score);
-    expect(credited.range).toEqual(baseline.range);
-    expect(credited.contested).toBe(true);
+    })).toThrow('Descriptive observable assessments cannot produce anomaly strength');
   });
 
   it('honors overridden trust weights', () => {

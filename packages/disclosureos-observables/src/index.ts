@@ -96,3 +96,7 @@ export {
   formatObservableCode,
   formatObservable,
 } from './formatters';
+
+// === Revision-pinned vocabulary catalog ===
+export { createObservableCatalog, readObservableTermDefinition, OBSERVABLE_CATALOG_ID, OBSERVABLE_TERM_EXTENSION } from './catalog';
+export type { ObservableCatalogOptions } from './catalog';

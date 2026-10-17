@@ -79,6 +79,11 @@ The experimental [ELDÆON mapping workflow](docs/experimental/eldaeon-field-mapp
 
 The opt-in [assessment summary](docs/experimental/assessment-summary.md) separates current declarations, duplicate copies, differing outcomes and shared support without an aggregate score.
 
+The optional [provider scoring format](docs/experimental/provider-scoring.md)
+retains separate providers' results with exact method revisions, source inputs,
+scales and missing-data rules. The [fictional scoring example](examples/provider-scoring/README.md)
+replays declared calculations and demonstrates when scores can be compared.
+
 The [documentation completion checklist](docs/experimental/documentation-completion.md) adds applicable requirement statuses and source-based next actions to the shared documentary validator.
 
 ## Schema Host

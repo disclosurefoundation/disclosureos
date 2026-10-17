@@ -58,99 +58,70 @@ describe('getCompleteness', () => {
 });
 
 describe('score', () => {
-  const anomalous = obs({
-    observableAssessments: {
-      technology: { antigravity_lift: [{ level: 'measured', confidence: 0.8 }] },
-      biologics: {},
-    },
-    origin: [{ primaryHypothesis: '1.1.3', confidence: 0.6 }],
+  const unexplainedOrigin = obs({ origin: [{ primaryHypothesis: '1.1.3', confidence: 0.6 }] });
+  const prosaicOrigin = obs({ origin: [{ primaryHypothesis: '1.1.1.2.1', confidence: 0.9 }] });
+
+  it.each(['not_indicated', 'reported', 'documented', 'measured', 'confirmed'])('rejects %s descriptive support rather than inventing anomaly strength', (level) => {
+    const descriptive = obs({ observableAssessments: { technology: { apparent_hover: [{ level, confidence: 1 }] } } });
+    expect(() => score(descriptive)).toThrow('Descriptive observable assessments cannot produce anomaly strength');
+    expect(() => score(descriptive, { weights: { technology: 0, biologics: 0, origin: 1 } })).toThrow('not a zero or absent result');
   });
 
-  const prosaic = obs({
-    observableAssessments: { technology: { antigravity_lift: [{ level: 'not_indicated' }] }, biologics: {} },
-    origin: [{ primaryHypothesis: '1.1.1.2.1', confidence: 0.9 }],
+  it('rejects biologics descriptions even when competing claims disagree', () => {
+    const descriptive = obs({ observableAssessments: { biologics: { molecular_complexity_pattern: [{ level: 'measured' }, { level: 'not_indicated' }] } } });
+    expect(() => score(descriptive)).toThrow('Use V2 attributed assessments and profile evaluation');
   });
 
-  it('scores an anomalous case higher than a prosaic one', () => {
-    expect(score(anomalous).score).toBeGreaterThan(score(prosaic).score);
-  });
-
-  it('treats a confident prosaic origin as no origin signal', () => {
-    expect(score(prosaic).components.origin).toBe(0);
+  it('preserves origin-only evaluation without interpreting descriptive terms', () => {
+    expect(score(unexplainedOrigin).score).toBeGreaterThan(score(prosaicOrigin).score);
+    expect(score(prosaicOrigin).components.origin).toBe(0);
+    expect(score(unexplainedOrigin).components.technology).toBe(0);
+    expect(score(unexplainedOrigin).components.biologics).toBe(0);
   });
 
   it('stamps the methodology version and default weights', () => {
-    const result = score(anomalous);
+    const result = score(unexplainedOrigin);
     expect(result.scoringVersion).toBe('2.0.0');
     expect(result.weights).toEqual(DEFAULT_WEIGHTS);
   });
 
-  it('honors overridden weights', () => {
-    const onlyOrigin = score(anomalous, { weights: { technology: 0, biologics: 0, origin: 1 } });
-    expect(onlyOrigin.score).toBe(0.6);
+  it('honors overridden origin weights', () => {
+    expect(score(unexplainedOrigin, { weights: { technology: 0, biologics: 0, origin: 1 } }).score).toBe(0.6);
   });
 
-  it('returns 0 for an empty case, not contested, with a zero range', () => {
-    const result = score(obs({}));
-    expect(result.score).toBe(0);
-    expect(result.contested).toBe(false);
-    expect(result.range).toEqual({ low: 0, high: 0 });
+  it('accepts missing or empty descriptive claim lists', () => {
+    for (const observation of [obs({}), obs({ observableAssessments: { technology: { apparent_hover: [] }, biologics: {} } })]) {
+      const result = score(observation);
+      expect(result.score).toBe(0);
+      expect(result.contested).toBe(false);
+      expect(result.range).toEqual({ low: 0, high: 0 });
+    }
   });
 
-  it('is not contested when a single evaluator asserts an anomaly', () => {
-    const result = score(anomalous);
-    expect(result.contested).toBe(false);
-    expect(result.range.low).toBe(result.range.high);
-  });
-
-  it('flags contestedness when claims disagree on direction (low < high)', () => {
-    const contested = obs({
-      observableAssessments: {
-        technology: {
-          antigravity_lift: [
-            { level: 'measured', confidence: 0.9, evaluatedBy: 'academic' },
-            { level: 'not_indicated', confidence: 0.1, evaluatedBy: 'AARO' },
-          ],
-        },
-      },
-    });
-    const result = score(contested);
-    expect(result.contested).toBe(true);
-    expect(result.range.low).toBeLessThan(result.range.high);
-  });
-
-  it('applies evaluatorWeight to the consensus point but not the range', () => {
-    const contested = obs({
-      observableAssessments: {
-        technology: {
-          antigravity_lift: [
-            { level: 'confirmed', confidence: 1, evaluatedBy: 'academic' },
-            { level: 'not_indicated', confidence: 1, evaluatedBy: 'AARO' },
-          ],
-        },
-      },
-    });
-    const trustAcademic = score(contested, {
-      evaluatorWeight: (c) => (c.evaluatedBy === 'academic' ? 10 : 1),
-    });
+  it('reports competing origin claims and applies evaluator trust without concealing their spread', () => {
+    const contested = obs({ origin: [
+      { primaryHypothesis: '1.1.3', confidence: 1, evaluatedBy: 'reviewer-a' },
+      { primaryHypothesis: '1.1.1.2.1', confidence: 1, evaluatedBy: 'reviewer-b' },
+    ] });
     const uniform = score(contested);
-    // Trusting the academic pulls the consensus toward the anomaly...
-    expect(trustAcademic.components.technology).toBeGreaterThan(uniform.components.technology);
-    // ...but the honest spread (range) is identical.
-    expect(trustAcademic.range).toEqual(uniform.range);
+    const trusted = score(contested, { evaluatorWeight: (c) => c.evaluatedBy === 'reviewer-a' ? 10 : 1 });
+    expect(uniform.contested).toBe(true);
+    expect(uniform.range.low).toBeLessThan(uniform.range.high);
+    expect(trusted.components.origin).toBeGreaterThan(uniform.components.origin);
+    expect(trusted.range).toEqual(uniform.range);
   });
 });
 
 describe('rankByCompellingness', () => {
-  it('sorts most-compelling first', () => {
+  it('orders origin-only results', () => {
     const weak = obs({ origin: [{ primaryHypothesis: '1.1.3', confidence: 0.1 }] });
-    const strong = obs({
-      observableAssessments: { technology: { antigravity_lift: [{ level: 'confirmed', confidence: 1 }] } },
-      origin: [{ primaryHypothesis: '1.1.3', confidence: 0.9 }],
-    });
+    const strong = obs({ origin: [{ primaryHypothesis: '1.1.3', confidence: 0.9 }] });
     const ranked = rankByCompellingness([weak, strong]);
     expect(ranked[0]?.observation).toBe(strong);
-    expect(ranked[0]!.result.score).toBeGreaterThan(ranked[1]!.result.score);
+  });
+
+  it('rejects a batch containing descriptive claims instead of silently ranking it', () => {
+    expect(() => rankByCompellingness([obs({}), obs({ observableAssessments: { technology: { apparent_hover: [{ level: 'confirmed' }] } } })])).toThrow('cannot produce anomaly strength');
   });
 });
 

@@ -83,22 +83,22 @@ function buildObservation(full: boolean): Record<string, unknown> {
 // `evidenceRefs` point at in-record evidence ("media:<id>", "sensor:<id>", …).
 const ASSESSMENT_TEMPLATE = {
   technology: {
-    antigravity_lift: [
+    apparent_hover: [
       { level: 'not_indicated', rationale: '', evidenceRefs: [] },
     ],
-    instantaneous_acceleration: [{ level: 'not_indicated', rationale: '' }],
-    hypersonic_no_signatures: [{ level: 'not_indicated', rationale: '' }],
-    low_observability: [{ level: 'not_indicated', rationale: '' }],
-    transmedium_travel: [{ level: 'not_indicated', rationale: '' }],
-    biological_effects: [{ level: 'not_indicated', rationale: '' }],
+    abrupt_motion: [{ level: 'not_indicated', rationale: '' }],
+    hypersonic_signature_discrepancy: [{ level: 'not_indicated', rationale: '' }],
+    sensor_detection_discrepancy: [{ level: 'not_indicated', rationale: '' }],
+    apparent_medium_transition: [{ level: 'not_indicated', rationale: '' }],
+    event_associated_biological_changes: [{ level: 'not_indicated', rationale: '' }],
   },
   biologics: {
-    molecular_complexity: [{ level: 'not_indicated', rationale: '' }],
-    isotopic_provenance: [{ level: 'not_indicated', rationale: '' }],
-    non_standard_biochemistry: [{ level: 'not_indicated', rationale: '' }],
-    non_phylogenetic_genetics: [{ level: 'not_indicated', rationale: '' }],
-    anomalous_morphology: [{ level: 'not_indicated', rationale: '' }],
-    anomalous_bio_interaction: [{ level: 'not_indicated', rationale: '' }],
+    molecular_complexity_pattern: [{ level: 'not_indicated', rationale: '' }],
+    isotope_ratio_departure: [{ level: 'not_indicated', rationale: '' }],
+    molecular_composition_difference: [{ level: 'not_indicated', rationale: '' }],
+    unresolved_sequence_relationship: [{ level: 'not_indicated', rationale: '' }],
+    unresolved_morphological_characteristics: [{ level: 'not_indicated', rationale: '' }],
+    reported_biological_interaction: [{ level: 'not_indicated', rationale: '' }],
   },
 };
 

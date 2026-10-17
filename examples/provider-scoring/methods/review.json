@@ -1,0 +1,59 @@
+{
+  "id": "example-documentation-review",
+  "version": "1.0.0",
+  "title": "Example documentation review",
+  "question": "How well is this sample record documented for independent review?",
+  "rule": "Sum each criterion weight multiplied by its reviewer-assigned rating. Ratings are 0 (insufficient), 0.5 (partial), or 1 (adequate for this review). A missing rating withholds the whole score. No weights are redistributed.",
+  "criteria": [
+    {
+      "id": "source-traceability",
+      "label": "Source traceability",
+      "weight": 25,
+      "description": "Can the reviewer locate the exact source versions used by this review?"
+    },
+    {
+      "id": "specimen-identity",
+      "label": "Specimen identity",
+      "weight": 25,
+      "description": "Does the supplied record distinguish the parent, prepared portions and tested specimen?"
+    },
+    {
+      "id": "method-detail",
+      "label": "Method detail",
+      "weight": 30,
+      "description": "Do the source descriptions explain the collection, preparation and analytical steps in enough detail for the intended independent review?"
+    },
+    {
+      "id": "stated-limits",
+      "label": "Stated limits",
+      "weight": 20,
+      "description": "Do the sources identify missing information and limits on interpretation?"
+    }
+  ],
+  "grades": [
+    {
+      "id": "d",
+      "label": "D · Substantial gaps",
+      "min": 0,
+      "max": 50
+    },
+    {
+      "id": "c",
+      "label": "C · Partial documentation",
+      "min": 50,
+      "max": 75
+    },
+    {
+      "id": "b",
+      "label": "B · Substantial documentation",
+      "min": 75,
+      "max": 90
+    },
+    {
+      "id": "a",
+      "label": "A · Extensive documentation",
+      "min": 90,
+      "max": 100
+    }
+  ]
+}

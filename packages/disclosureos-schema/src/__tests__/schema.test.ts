@@ -21,7 +21,7 @@ function enriched(extra: Record<string, unknown> = {}): EnrichedObservation & Re
     status: 'published',
     createdAt: '2020-01-01T00:00:00Z',
     updatedAt: '2020-01-01T00:00:00Z',
-    observableAssessments: { technology: { antigravity_lift: [{ level: 'confirmed', confidence: 1 }] } },
+    observableAssessments: { technology: { apparent_hover: [{ level: 'confirmed', confidence: 1 }] } },
     origin: [{ primaryHypothesis: '1.1.3', confidence: 0.9 }],
     ...extra,
   } as unknown as EnrichedObservation & Record<string, unknown>;

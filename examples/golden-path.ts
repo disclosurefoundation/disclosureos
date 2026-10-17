@@ -1,12 +1,13 @@
 /**
- * DisclosureOS golden path — one observation through every layer.
+ * DisclosureOS golden path — one fictional observation through every layer.
+ * This is synthetic teaching data, not a historical case or a retained sensor recording.
  *
  *   Records      → "what was observed"        (createObservation, createSensorReading)
  *   Instruments  → "what hardware produced it" (createSensorManifest → sensorRef)
- *   Observables  → "what anomalies it showed" (createObservableClaim → observableAssessments)
+ *   Observables  → "which characteristics were described" (createObservableClaim → observableAssessments)
  *   Origins      → "what might explain it"    (createOriginClaim → origin)
  *   Schema       → "is the enriched whole valid, slots intact?" (parseEnrichedObservation)
- *   Scoring      → "how complete / compelling is it?"           (getCompleteness, score)
+ *   Scoring      → "how complete / compelling is it?"           (getCompleteness)
  *
  * Run it:  pnpm --filter @disclosureos/examples golden-path
  *
@@ -19,18 +20,18 @@ import { createSensorEntry, createSensorManifest, validateSensorManifest, format
 import { createObservableClaim } from '@disclosureos/observables';
 import { createOriginClaim } from '@disclosureos/origins';
 import { parseEnrichedObservation, type EnrichedObservation } from '@disclosureos/schema';
-import { getCompleteness, score, calibrationTrust } from '@disclosureos/scoring';
+import { getCompleteness } from '@disclosureos/scoring';
 
 // 0. Instruments — a published sensor manifest describing the hardware. The
 // manifest is a standalone document (published by the operating organization,
 // not embedded in a record); readings point at its entries via `sensorRef`.
-const spy1Entry = createSensorEntry('princeton-spy1', 'AN/SPY-1B Passive Phased Array Radar', 'radio_frequency', {
+const radarEntry = createSensorEntry('training-radar', 'Fictional shipborne training radar', 'radio_frequency', {
   recordsMapping: { sensorType: 'shipborne_radar', detectionMethod: 'radar_phased_array' },
   timing: { timeSource: 'gps_disciplined' },
-  calibration: { status: 'documented', currentMethod: 'Navy maintenance and alignment program', referenceInUse: true },
+  calibration: { status: 'documented', currentMethod: 'Synthetic alignment procedure; no operational calibration asserted', referenceInUse: true },
 });
-const navyManifest = createSensorManifest('US Navy', 'us-navy', [spy1Entry]);
-const manifestIssues = validateSensorManifest(navyManifest);
+const exampleManifest = createSensorManifest('DisclosureOS example operator', 'example-operator', [radarEntry]);
+const manifestIssues = validateSensorManifest(exampleManifest);
 if (manifestIssues.length > 0) {
   console.error('❌ invalid manifest:', manifestIssues);
   process.exit(1);
@@ -41,43 +42,44 @@ if (manifestIssues.length > 0) {
 // ref resolves (no dangling-evidence warning from `disclosureos validate`).
 // `sensorRef` points the reading at the manifest entry above ("<org-slug>:<sensor-id>").
 const radar = createSensorReading('shipborne_radar', 'radar_phased_array', {
-  id: 'princeton-spy1-radar',
-  platform: 'USS Princeton (CG-59), AN/SPY-1 phased array',
-  operator: 'US Navy',
-  sensorRef: sensorRef(navyManifest.orgSlug, spy1Entry.id),
+  id: 'training-radar-reading',
+  platform: 'Fictional coastal survey vessel',
+  operator: 'DisclosureOS example operator',
+  sensorRef: sensorRef(exampleManifest.orgSlug, radarEntry.id),
 });
 const RADAR = evidenceRef('sensor', radar.id);
 
-// 1. Records — the core observation (USS Nimitz "Tic Tac", 2004-11-14).
+// 1. Records — a fictional teaching observation. Coordinates and timings are illustrative.
 const base = createObservation(
   {
-    temporal: { date: '2004-11-14', dateCertainty: 'exact', durationSeconds: 300 },
-    location: { name: 'Pacific Ocean, ~100mi SW of San Diego', country: 'United States', latitude: 31.5, longitude: -117.5, siteType: 'ocean' },
-    summary: 'Tic-Tac-shaped craft tracked on radar and intercepted by F/A-18 pilots; instantaneous acceleration observed.',
-    objectCharacteristics: { shape: 'tic_tac', sizeMeters: 12, color: 'white', numberObserved: 1 },
-    witnesses: { count: 4, categories: ['military_pilot', 'radar_operator'], militaryWitnesses: true, multipleIndependent: true },
+    temporal: { date: '2026-10-13', dateCertainty: 'exact', durationSeconds: 300 },
+    location: { name: 'Fictional offshore training area', country: 'United States', latitude: 31.5, longitude: -117.5, siteType: 'ocean' },
+    summary: 'Synthetic operators report an apparent change in a radar track. Physical acceleration and object identity are unresolved.',
+    objectCharacteristics: { numberObserved: 1 },
+    witnesses: { count: 2, categories: ['radar_operator'], multipleIndependent: false },
     sensorEvidence: { sensors: [radar] },
   },
-  { id: 'nimitz-tic-tac-2004', status: 'published' },
+  { id: 'fictional-radar-example', status: 'published' },
 );
 
-// 2. Observables — anomalous characteristics, as evidence-backed claims.
+// 2. Observables — attributed descriptions. A sensor reference identifies a source;
+// it does not by itself establish a measured acceleration or anomaly.
 const observableAssessments: EnrichedObservation['observableAssessments'] = {
   technology: {
-    instantaneous_acceleration: [
-      createObservableClaim('confirmed', { confidence: 0.85, rationale: 'Radar tracked descent from ~80,000 ft to sea level in seconds.', evidenceRefs: [RADAR] }),
+    abrupt_motion: [
+      createObservableClaim('reported', { evaluatedBy: 'Example reviewer', rationale: 'The synthetic operator report describes a sudden change in a track; range geometry and association are unresolved.', evidenceRefs: [RADAR] }),
     ],
-    transmedium_travel: [
-      createObservableClaim('documented', { confidence: 0.6, rationale: 'Subsurface radar returns reported on departure.', evidenceRefs: [RADAR] }),
+    sensor_detection_discrepancy: [
+      createObservableClaim('reported', { evaluatedBy: 'Example reviewer', rationale: 'The synthetic report describes an interruption in tracking. No cause or target behavior is established.', evidenceRefs: [RADAR] }),
     ],
   },
 };
 
-// 3. Origins — competing explanations (ETH-leaning + prosaic) as a flat list.
+// 3. Origins — an attributed hypothesis, separate from the described characteristics.
 const origin: EnrichedObservation['origin'] = [
-  createOriginClaim('1.1.3', 0.4, {
-    rationale: 'Performance exceeds known aerospace capability; cannot exclude advanced terrestrial program.',
-    alternativeHypotheses: [{ nodeId: '1.1.1.2.1', confidence: 0.25, label: 'Classified U.S. program' }],
+  createOriginClaim('1.1.1.2.1', 0.4, {
+    evaluatedBy: 'Example reviewer',
+    rationale: 'A conventional aircraft is one synthetic hypothesis; the limited report does not establish an identification.',
     evidenceRefs: [RADAR],
   }),
 ];
@@ -91,20 +93,13 @@ if (!parsed.success) {
   process.exit(1);
 }
 
-// 5. Scoring — how complete is the record, and how compelling is the case?
-// `calibrationTrust` closes the instruments loop: claims backed by sensor
-// readings that resolve to manifest entries with real calibration provenance
-// earn extra weight in the consensus point (the SPY-1 is `documented`).
-// With a single evaluator per observable the consensus is unchanged — the
-// credit matters when instrument-backed and unbacked claims compete.
+// 5. Population coverage counts retained fields. It does not certify quality.
+// Do not call score(observation): descriptive observable support cannot be
+// converted into anomaly strength. V2 research results use attributed assessments
+// and profile evaluation rather than an automatic anomaly score.
 const completeness = getCompleteness(observation);
-const compellingness = score(observation);
-const instrumentAware = score(observation, {
-  evaluatorWeight: calibrationTrust(observation, [navyManifest]),
-});
 
 console.log(`✅ ${observation.id} is valid (slots intact).`);
-console.log(`   instruments   : ${formatSensorManifest(navyManifest)} — cited via ${radar.sensorRef}`);
-console.log(`   completeness  : ${completeness.percentage}% (${completeness.requiredPercentage}% of required fields)`);
-console.log(`   compellingness: ${compellingness.score.toFixed(2)} (range ${compellingness.range.low.toFixed(2)}–${compellingness.range.high.toFixed(2)}, contested: ${compellingness.contested})`);
-console.log(`   with instrument trust: ${instrumentAware.score.toFixed(2)} (radar claims resolve to documented calibration; credit applies when claims compete)`);
+console.log(`   instruments   : ${formatSensorManifest(exampleManifest)} — cited via ${radar.sensorRef}`);
+console.log(`   field coverage: ${completeness.percentage}% (${completeness.requiredPercentage}% of required fields)`);
+console.log('   anomaly score : not computed from descriptive characteristics');

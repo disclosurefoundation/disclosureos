@@ -1,0 +1,47 @@
+{
+  "id": "example-follow-up-priority",
+  "version": "1.0.0",
+  "title": "Example follow-up priority",
+  "question": "How urgent is follow-up documentation for this sample record?",
+  "rule": "Sum each criterion weight multiplied by its reviewer-assigned rating. Ratings are 0 (low priority), 0.5 (medium priority), or 1 (high priority). A missing rating withholds the whole score. No weights are redistributed.",
+  "criteria": [
+    {
+      "id": "documentation-gaps",
+      "label": "Documentation gaps",
+      "weight": 50,
+      "description": "How much do gaps in the available method record limit further review?"
+    },
+    {
+      "id": "follow-up-value",
+      "label": "Value of follow-up",
+      "weight": 30,
+      "description": "How useful would a more complete procedure and uncertainty account be?"
+    },
+    {
+      "id": "version-preservation",
+      "label": "Version preservation",
+      "weight": 20,
+      "description": "How important is it to preserve exact source versions while follow-up proceeds?"
+    }
+  ],
+  "grades": [
+    {
+      "id": "routine",
+      "label": "Routine",
+      "min": 0,
+      "max": 50
+    },
+    {
+      "id": "soon",
+      "label": "Review soon",
+      "min": 50,
+      "max": 80
+    },
+    {
+      "id": "priority",
+      "label": "Priority review",
+      "min": 80,
+      "max": 100
+    }
+  ]
+}

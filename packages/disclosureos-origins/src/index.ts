@@ -100,3 +100,7 @@ export {
   ORIGINS_SCHEMA_VERSION,
   ORIGINS_SCHEMA_ID,
 } from './schema';
+
+// === Revision-pinned vocabulary catalog ===
+export { createOriginCatalog, readOriginTermDefinition, ORIGIN_CATALOG_ID, ORIGIN_TERM_EXTENSION } from './catalog';
+export type { OriginCatalogOptions } from './catalog';

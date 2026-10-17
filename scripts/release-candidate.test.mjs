@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { checkPlan, validatePackage } from './release-candidate.mjs';
+import { checkPlan, validatePackage, verifySchemaBaseline } from './release-candidate.mjs';
 const plan = { version: '2.0.0-beta.0', tag: 'beta', packages: ['records', 'schema'], zod: '4.4.3' };
 const pkg = { name: '@disclosureos/schema', version: plan.version, publishConfig: { tag: 'beta', access: 'public' }, dependencies: { '@disclosureos/records': plan.version, zod: '4.4.3' } };
 test('accepts packed dependencies only at the exact beta versions', () => {
@@ -14,6 +14,14 @@ test('rejects latest-tag publication and incomplete versioning', () => {
   assert.throws(() => validatePackage({ ...pkg, publishConfig: { tag: 'latest', access: 'public' } }, plan, true));
   assert.throws(() => validatePackage({ ...pkg, version: '1.1.0' }, plan, true));
 });
-test('the checked-in changesets state, versions and changelogs agree', () => {
-  assert.equal(checkPlan().packages.length, 7);
+test('the unpublished source state, package versions and changelogs agree', () => {
+  assert.equal(checkPlan({ sourceOnly: true }).packages.length, 7);
+});
+
+test('source verification does not waive the frozen release schema baseline', () => {
+  const readCommitted = revision => Buffer.from(revision === 'frozen-release' ? 'old schema' : 'current schema');
+  const readCurrent = () => Buffer.from('current schema');
+  assert.throws(() => verifySchemaBaseline('frozen-release', ['schema.json'], readCommitted, readCurrent), /Schema changed during packaging/);
+  verifySchemaBaseline('source-head', ['schema.json'], readCommitted, readCurrent);
+  assert.throws(() => verifySchemaBaseline('source-head', ['schema.json'], readCommitted, () => Buffer.from('uncommitted schema')), /Schema changed during packaging/);
 });

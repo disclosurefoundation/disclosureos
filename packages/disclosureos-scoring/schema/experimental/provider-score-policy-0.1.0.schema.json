@@ -1,0 +1,307 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "provider_score_policy"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "metric": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "question"
+      ],
+      "additionalProperties": false
+    },
+    "subjectKinds": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "case",
+          "record",
+          "claim",
+          "measurement",
+          "product",
+          "source",
+          "collection"
+        ]
+      }
+    },
+    "method": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "artifacts": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+              },
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "mediaType": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}(?![\\s\\S])"
+              },
+              "byteLength": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "ref",
+              "id",
+              "version",
+              "mediaType",
+              "sha256",
+              "byteLength"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "description",
+        "artifacts"
+      ],
+      "additionalProperties": false
+    },
+    "applicability": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "missingData": {
+      "type": "object",
+      "properties": {
+        "handling": {
+          "type": "string",
+          "enum": [
+            "withhold",
+            "allow_partial"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "handling",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "limitations": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      }
+    },
+    "scale": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "numeric"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "direction": {
+              "type": "string",
+              "enum": [
+                "higher",
+                "lower",
+                "none"
+              ]
+            },
+            "unit": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "grades": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "min": {
+                    "type": "number"
+                  },
+                  "max": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "id",
+                  "label",
+                  "min",
+                  "max"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "min",
+            "max",
+            "direction",
+            "unit",
+            "grades"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "ordinal"
+            },
+            "direction": {
+              "type": "string",
+              "enum": [
+                "higher",
+                "lower",
+                "none"
+              ]
+            },
+            "levels": {
+              "minItems": 2,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  }
+                },
+                "required": [
+                  "id",
+                  "label",
+                  "description"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "direction",
+            "levels"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "id",
+    "version",
+    "title",
+    "metric",
+    "subjectKinds",
+    "method",
+    "applicability",
+    "missingData",
+    "limitations",
+    "scale"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:disclosureos:experimental:provider-score-policy:0.1.0"
+}

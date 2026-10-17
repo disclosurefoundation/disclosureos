@@ -50,7 +50,7 @@ disclosureos validate ./data/ --recursive --json
 disclosureos population-coverage ./out/ --recursive
 disclosureos population-coverage ./out/ --recursive --json
 disclosureos registry origins --id 1.1.3
-disclosureos info observable TO-3
+disclosureos info observable OC-T03
 ```
 
 `validate` also warns on **dangling evidence references** — `evidenceRefs` on a claim

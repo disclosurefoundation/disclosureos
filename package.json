@@ -90,6 +90,8 @@
     "verify:wp09-closeout": "node conformance/migration-closeout.mjs",
     "release:check": "node scripts/release-candidate.mjs --check",
     "release:pack": "node scripts/release-candidate.mjs --pack",
+    "verify:source": "node scripts/release-candidate.mjs --check-source",
+    "verify:source-pack": "node scripts/release-candidate.mjs --pack-source",
     "test:release": "node --test scripts/release-candidate.test.mjs",
     "emit:v2-context": "node conformance/emit-context.mjs",
     "test:v2-context": "node --test conformance/context.test.mjs",
@@ -128,7 +130,13 @@
     "verify:lidar-point-cloud": "node examples/lidar-point-cloud/verify.mjs",
     "emit:v2-satellite-raster-profile": "node conformance/emit-satellite-raster-profile.mjs",
     "test:v2-satellite-raster-profile": "node --test conformance/satellite-raster-profile.test.mjs examples/satellite-raster/model.test.mjs",
-    "verify:satellite-raster": "node examples/satellite-raster/verify.mjs"
+    "verify:satellite-raster": "node examples/satellite-raster/verify.mjs",
+    "emit:v2-vocabulary": "node conformance/emit-vocabulary.mjs",
+    "test:v2-vocabulary": "node --test conformance/vocabulary.test.mjs",
+    "example:vocabulary": "node examples/v2/vocabulary-demo/run.mjs",
+    "emit:v2-provider-scoring": "node conformance/emit-provider-scoring.mjs",
+    "test:v2-provider-scoring": "node --test conformance/provider-scoring.test.mjs examples/provider-scoring/model.test.mjs",
+    "verify:provider-scoring": "node examples/provider-scoring/verify.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

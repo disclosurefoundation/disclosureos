@@ -28,7 +28,7 @@ describe('validateObservableAssessments', () => {
   it('accepts a valid assessment map (claim lists)', () => {
     const value = {
       technology: {
-        antigravity_lift: [
+        apparent_hover: [
           { level: 'documented', confidence: 0.7, evaluatedAt: '2020-01-01T00:00:00Z' },
         ],
       },
@@ -40,7 +40,7 @@ describe('validateObservableAssessments', () => {
   it('accepts multiple competing claims for one observable', () => {
     const value = {
       technology: {
-        antigravity_lift: [
+        apparent_hover: [
           { level: 'measured', confidence: 0.8, evaluatedBy: 'academic' },
           { level: 'not_indicated', confidence: 0.1, evaluatedBy: 'AARO' },
         ],
@@ -52,14 +52,14 @@ describe('validateObservableAssessments', () => {
   it('accepts claims carrying evidence refs', () => {
     const value = {
       technology: {
-        antigravity_lift: [{ level: 'documented', evidenceRefs: ['sensor:r1', 'media:m1'] }],
+        apparent_hover: [{ level: 'documented', evidenceRefs: ['sensor:r1', 'media:m1'] }],
       },
     };
     expect(validateObservableAssessments(value)).toEqual([]);
   });
 
   it('rejects a non-array claim value', () => {
-    const value = { technology: { antigravity_lift: { level: 'documented' } } };
+    const value = { technology: { apparent_hover: { level: 'documented' } } };
     expect(validateObservableAssessments(value).length).toBeGreaterThan(0);
   });
 
@@ -70,13 +70,13 @@ describe('validateObservableAssessments', () => {
 
   it('rejects an out-of-range confidence', () => {
     const value = {
-      technology: { antigravity_lift: [{ level: 'documented', confidence: 5 }] },
+      technology: { apparent_hover: [{ level: 'documented', confidence: 5 }] },
     };
     expect(validateObservableAssessments(value).length).toBeGreaterThan(0);
   });
 
   it('rejects an invalid level', () => {
-    const value = { biologics: { molecular_complexity: [{ level: 'super_confirmed' }] } };
+    const value = { biologics: { molecular_complexity_pattern: [{ level: 'super_confirmed' }] } };
     expect(validateObservableAssessments(value).length).toBeGreaterThan(0);
   });
 });
