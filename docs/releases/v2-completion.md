@@ -21,7 +21,7 @@ Source checkpoints completed (unreleased):
   resolution. The existing collected-specimen profile retains its separate scope.
 - C2c full material portal preview, field accounting and worked examples, merged
   in [dashboard #222](https://github.com/disclosurefoundation/dashboard/pull/222).
-  The viewer remains unlisted and blocked in production.
+  The public showcase now includes fictional material and laboratory examples.
 - [C3a connected cases](../c3/README.md): sourced chronology, groups, investigations
   and responses with pinned observation scope and supplied-reference checks.
 - [C3b case assessments](../c3/assessments.md): exact case/entity/field and directed
@@ -33,17 +33,21 @@ Source checkpoints completed (unreleased):
 
 - [C3d public presentation](../c3/presentation.md): approved narrative, citations,
   case findings and media selections with one public projection for rendering,
-  downloads, search and metadata. Application routes and enforcement remain pending.
+  downloads, search and metadata. Public portal integration is implemented and
+  covered by the coordinated package/guide and browser verification.
 
-Remaining implementation areas:
+Implemented source areas awaiting coordinated publication:
 
-- Product source selection: an additive source-candidate contract for array
-  layouts, CSV partitions and declared video frame intervals, with exact-byte
-  evaluation and a shared reader. See the [contract](../experimental/product-source-selection.md).
-  Meridian portal integration and coordinated-release inclusion must be verified.
+- Product source selection for array layouts, CSV partitions and declared video
+  frame intervals, with exact-byte evaluation and a shared reader.
+- Connected-case portal integration, server access/output enforcement, instrument
+  profiles, vocabulary references and provider scoring. See the beta.4 scope.
 
-- C3 portal integration and server access/output enforcement, followed by
-  integration acceptance across V2.
+The remaining release gates are schema identity preservation, dependency review,
+GitHub/npm entry-point clarity and refreshed candidate/guide receipts. After npm
+publication and registry verification, make a separate production update to package
+pins, inspector support, installation examples and public availability language.
+Preserve historical release notes and source receipts rather than rewriting them.
 
 At closeout, review the accumulated changesets, choose the coordinated package
 version, run the full release/consumer/portal checks, and publish that exact set.

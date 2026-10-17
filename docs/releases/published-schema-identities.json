@@ -1,0 +1,223 @@
+{
+  "source": "npm registry tarballs verified against dist.integrity",
+  "packages": [
+    {
+      "name": "@disclosureos/records",
+      "version": "2.0.0-beta.3",
+      "integrity": "sha512-6OpQIloAi3Qcsg57m+oEWeDHalzydTaTugB6jx6uTF6dhYHxlVsYERdWL7GUDHtBSpqrITpa6lopuyX1Zx8vkA==",
+      "schemas": [
+        {
+          "path": "schema/experimental/claim-history-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:claim-history:0.1.0",
+          "sha256": "6bf70fe9f70e964dfdc28e1da246f6f514287cdddb86c944103c119320cda278"
+        },
+        {
+          "path": "schema/experimental/claim-history-0.2.0.schema.json",
+          "id": "urn:disclosureos:experimental:claim-history:0.2.0",
+          "sha256": "2f55c87b5f788b78909e80066cbb410524188abe2cad5df859b11417f412fb42"
+        },
+        {
+          "path": "schema/experimental/claim-history-0.3.0.schema.json",
+          "id": "urn:disclosureos:experimental:claim-history:0.3.0",
+          "sha256": "b11c5b4cf1086d2a55a3f196de3d46fc01f1e52dbdae633e9c928d049c114d5a"
+        },
+        {
+          "path": "schema/experimental/claim-history-0.4.0.schema.json",
+          "id": "urn:disclosureos:experimental:claim-history:0.4.0",
+          "sha256": "f5721e25182ac354280ef0843650f8ce30d7ee7b5ad0407d1e3729e157e402b1"
+        },
+        {
+          "path": "schema/experimental/observation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:observation:0.1.0",
+          "sha256": "5902ea8cacad11bce1751e3beedf9429061189c295c3c121cb737893b1c38cd5"
+        },
+        {
+          "path": "schema/experimental/observation-context-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:observation-context:0.1.0",
+          "sha256": "154bcc1621450380064498579322b52e86d0593af545afe75a3476c841bb4045"
+        },
+        {
+          "path": "schema/experimental/research-entities-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:research-entities:0.1.0",
+          "sha256": "45b27c0754cc7b3a11d8351170b7e3a78ed9ae2ae6cf14e851ff5b0bf75c2309"
+        },
+        {
+          "path": "schema/experimental/research-entities-0.2.0.schema.json",
+          "id": "urn:disclosureos:experimental:research-entities:0.2.0",
+          "sha256": "0c63d00e5feffb2ec2659cc04fb5010266195fad6b4e9e73c933b3bc7b657d69"
+        },
+        {
+          "path": "schema/experimental/v2-primitives-0.2.0.schema.json",
+          "id": "urn:disclosureos:experimental:records-v2-primitives:0.2.0",
+          "sha256": "b5ae911fb3d2b908f690e4d0b42bf78c20f571664b8e0fc23f6bd58bc70fffe4"
+        },
+        {
+          "path": "schema/experimental/v2-primitives.schema.json",
+          "id": "urn:disclosureos:experimental:records-v2-primitives:0.1.0",
+          "sha256": "ac8495258b7d8f9e394b40d5819a1b59b8a4d5544402d674de86e81bf19f2ee3"
+        },
+        {
+          "path": "schema/records.schema.json",
+          "id": "https://os.disclosure.org/schema/records/1.1.0/observation.json",
+          "sha256": "4d4819d4336c5702ad20758e1c8886caf4fb36f633d3dfeb97fad5e879998679"
+        }
+      ]
+    },
+    {
+      "name": "@disclosureos/observables",
+      "version": "2.0.0-beta.3",
+      "integrity": "sha512-sPAdIk/KQW2LN/hc992IDYkcO0RmHCtqAKn/IcDPzYWpA/RgtuWh2UsZQUYvfg1CZsW78Q6hSuoSGzWoXZ2mhA==",
+      "schemas": [
+        {
+          "path": "schema/observables.schema.json",
+          "id": "https://os.disclosure.org/schema/observables/2.0.0/observable-assessments.json",
+          "sha256": "6007be59345172d72b9636ca5687b0808a8a8124f8dc391522a64183cf70b570"
+        }
+      ]
+    },
+    {
+      "name": "@disclosureos/origins",
+      "version": "2.0.0-beta.3",
+      "integrity": "sha512-5QrQeupYdtwRFOU+zxoZEQuzVcEc9+ES8GRwDRFh1G3gI1PhuMZtuHrpejcJhilGmG2D82jFhE7Li0c+SZsowg==",
+      "schemas": [
+        {
+          "path": "schema/origins.schema.json",
+          "id": "https://os.disclosure.org/schema/origins/2.0.0/origin-classification.json",
+          "sha256": "9a543602fc5f2d9911e466dac2b63cba74ebbffe2be2c8f8cd158493c52ba8bd"
+        }
+      ]
+    },
+    {
+      "name": "@disclosureos/instruments",
+      "version": "2.0.0-beta.3",
+      "integrity": "sha512-CgS/+kNcvXxrBM9FiuGVmoRZj2Id79K4/71+zLlY8oMXTNnD0VS0sei4oqpMCfpzXURb+FjAZ+QkGrHvdyqiGg==",
+      "schemas": [
+        {
+          "path": "schema/experimental/acquisition-context-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:acquisition-context:0.1.0",
+          "sha256": "7a69552a6f4208dd96a5dda8261f73bde1fdc2b1f585ecc9ca0711fa08df73f8"
+        },
+        {
+          "path": "schema/sensor-manifest.schema.json",
+          "id": "https://os.disclosure.org/schema/instruments/1.0.0/sensor-manifest.json",
+          "sha256": "e9f86e4ddcf963de208de4031b12576b29369852480c23945f8d2a909620b3ee"
+        }
+      ]
+    },
+    {
+      "name": "@disclosureos/scoring",
+      "version": "2.0.0-beta.3",
+      "integrity": "sha512-B8bY21FO4Ml5m7T+5Bi691Sxny7rSsrvPSEQI2tHJwXQa6mzEwC2dF5xmbs45UiG9yOqmgjhkrLQFtxRmDxCiA==",
+      "schemas": [
+        {
+          "path": "schema/experimental/assessment-summary-evaluation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:assessment-summary-evaluation:0.1.0",
+          "sha256": "2081d87d05b00b98ea46cbfa464cecc09885ecd984a079b2d2fb01ecef6bc502"
+        },
+        {
+          "path": "schema/scoring.schema.json",
+          "id": "https://os.disclosure.org/schema/scoring/2.0.0/scoring.json",
+          "sha256": "20c63c1545d78ee3dfb2500928a126ffa6358da5b9c2bd3128e4815492681864"
+        }
+      ]
+    },
+    {
+      "name": "@disclosureos/schema",
+      "version": "2.0.0-beta.3",
+      "integrity": "sha512-Godg8NLGSPbfEdz0+BG4ocwhHJHwFeU2ZMrQ3dKs1Hrr1xZWXf6RMSffoIMSBYIRKKuf5NOqi5eqCRtqN+lUxQ==",
+      "schemas": [
+        {
+          "path": "schema/enriched-observation.schema.json",
+          "id": "https://os.disclosure.org/schema/schema/1.1.0/enriched-observation.json",
+          "sha256": "483175b5924f78d947582b199d0fce7e7cb6200f4fab5d6483c3465101cd72a2"
+        },
+        {
+          "path": "schema/experimental/acquisition-bindings-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:acquisition-bindings:0.1.0",
+          "sha256": "f1245e7e8824e3a7cd0c82a4b74601b291afda1e0a90d5716e3d5630a069699a"
+        },
+        {
+          "path": "schema/experimental/dataset-release-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:dataset-release:0.1.0",
+          "sha256": "c36471af4be23571ff1588efafb2968555e0a28bc0d6c8b59d28558d57a5dce5"
+        },
+        {
+          "path": "schema/experimental/historical-testimony-selection-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:historical-testimony-selection:0.1.0",
+          "sha256": "c6f6ebef6751229b9921025af8f07ecfe15d05d670b54418d259eb55add2a923"
+        },
+        {
+          "path": "schema/experimental/instrument-research-review-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:instrument-research-review:0.1.0",
+          "sha256": "4215b932b28c290bff692867947518230b822171f26bf8339b97be455db0c417"
+        },
+        {
+          "path": "schema/experimental/measurement-bindings-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:measurement-bindings:0.1.0",
+          "sha256": "816c6e5b3480b91b0b893fc5227ebfe82c7b1471ffc81098565cf1e9c60ed33f"
+        },
+        {
+          "path": "schema/experimental/migration-compatibility-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:migration-compatibility:0.1.0",
+          "sha256": "fb7dd05537a80fc272a4f01263a0f986125f3c0099f9e02c2fa38d5d13aa3f2e"
+        },
+        {
+          "path": "schema/experimental/migration-legacy-scores-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:migration-legacy-scores:0.1.0",
+          "sha256": "46371db7699e795d29ddc70bc8d31ffcb74b23b1ea383bfb00b28f0a202ae57c"
+        },
+        {
+          "path": "schema/experimental/migration-resolution-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:migration-resolution:0.1.0",
+          "sha256": "9c63c87de746c04371ef0e84f959f0af242bfe7b4e67d3e7638cb2bb4804f9e3"
+        },
+        {
+          "path": "schema/experimental/migration-review-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:migration-review:0.1.0",
+          "sha256": "bad09e64c75ab8afbeb0bf96b473f24aafbbb5179c35374a239c06db472f6e12"
+        },
+        {
+          "path": "schema/experimental/physical-sample-selection-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:physical-sample-selection:0.1.0",
+          "sha256": "536fc0c8fe1ab2d575274abaa4823f8324a8abcf938b5993225fd1e8af1ab1fc"
+        },
+        {
+          "path": "schema/experimental/profile-evaluation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:profile-evaluation:0.1.0",
+          "sha256": "29b0af4a047ba13ba9ba33a6ad5b206def1cfb494ca969bf609f89d73c82bf70"
+        },
+        {
+          "path": "schema/experimental/profile-preparation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:profile-preparation:0.1.0",
+          "sha256": "1a3d627e0b4516c5f30391cf80db088a994f94efe1ebe05ed5727c8c445ddcc0"
+        },
+        {
+          "path": "schema/experimental/released-document-selection-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:released-document-selection:0.1.0",
+          "sha256": "0aa7c0c2db417c6567b9841a63a6ab6ecf2995577dab90599e6c94e9a5d4c829"
+        },
+        {
+          "path": "schema/experimental/reproduction-packet-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:reproduction-packet:0.1.0",
+          "sha256": "5efb176248917441e559b116ab8ed215504202a317c22b9afde4bfefcfe40c23"
+        },
+        {
+          "path": "schema/experimental/research-evaluation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:research-evaluation:0.1.0",
+          "sha256": "b6a4b15f638f5d865009a682dae4f858222b2e30227513cb90a248a4ca2b207f"
+        },
+        {
+          "path": "schema/experimental/source-intake-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:source-intake:0.1.0",
+          "sha256": "a03125261aa0af0e6e883730bafc63412ea7740ed8a8b249009b4b506916ff13"
+        }
+      ]
+    },
+    {
+      "name": "@disclosureos/cli",
+      "version": "2.0.0-beta.3",
+      "integrity": "sha512-2et0tz5/M0RKNweDED9MmGwLQLNt98Asw0S+lyhyEohA2nEx8HObpEVFihaf4C3/UwdHHk/bdZ+6sleSkx6lvA==",
+      "schemas": []
+    }
+  ]
+}

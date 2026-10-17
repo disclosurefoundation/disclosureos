@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { checkPlan, validatePackage, verifySchemaBaseline } from './release-candidate.mjs';
+import { checkPlan, validatePackage, verifySchemaBaseline, verifyPublishedSchemaIdentities } from './release-candidate.mjs';
+import { createHash } from 'node:crypto';
 const plan = { version: '2.0.0-beta.0', tag: 'beta', packages: ['records', 'schema'], zod: '4.4.3' };
 const pkg = { name: '@disclosureos/schema', version: plan.version, publishConfig: { tag: 'beta', access: 'public' }, dependencies: { '@disclosureos/records': plan.version, zod: '4.4.3' } };
 test('accepts packed dependencies only at the exact beta versions', () => {
@@ -26,4 +27,18 @@ test('source verification does not waive the frozen release schema baseline', ()
   assert.throws(() => verifySchemaBaseline('frozen-release', ['schema.json'], readCommitted, readCurrent), /Schema changed during packaging/);
   verifySchemaBaseline('source-head', ['schema.json'], readCommitted, readCurrent);
   assert.throws(() => verifySchemaBaseline('source-head', ['schema.json'], readCommitted, () => Buffer.from('uncommitted schema')), /Schema changed during packaging/);
+});
+
+test('published identities require identical bytes even when the file moves', () => {
+  const bytes = Buffer.from(JSON.stringify({ $id: 'urn:example:1', enum: ['old'] }));
+  const published = { packages: [{ schemas: [{ id: 'urn:example:1', sha256: createHash('sha256').update(bytes).digest('hex') }] }] };
+  verifyPublishedSchemaIdentities(published, [{ path: 'moved.json', bytes }]);
+  const changed = Buffer.from(JSON.stringify({ $id: 'urn:example:1', enum: ['new'] }));
+  assert.throws(() => verifyPublishedSchemaIdentities(published, [{ path: 'moved.json', bytes: changed }]), /Published schema identity reused/);
+  const revised = Buffer.from(JSON.stringify({ $id: 'urn:example:2', enum: ['new'] }));
+  verifyPublishedSchemaIdentities(published, [{ path: 'new.json', bytes: revised }]);
+  verifyPublishedSchemaIdentities(published, [{ path: 'a.json', bytes }, { path: 'b.json', bytes }]);
+  const conflict = Buffer.from(JSON.stringify({ $id: 'urn:example:2', enum: ['different'] }));
+  assert.throws(() => verifyPublishedSchemaIdentities(published, [{ path: 'a.json', bytes: revised }, { path: 'b.json', bytes: conflict }]), /Conflicting schema identity/);
+  assert.throws(() => verifyPublishedSchemaIdentities({ packages: [] }, []), /Missing published/);
 });

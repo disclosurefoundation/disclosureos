@@ -1,5 +1,42 @@
 # @disclosureos/scoring
 
+Retain provider-defined scoring policies and results, then compare only what the declared scales, criteria and inputs permit. Competing provider results remain independent.
+
+This README describes the **2.0.0-beta.4** API. Use one exact package version
+throughout an application. Check [availability](https://os.disclosure.org/v2/docs/installation)
+before installing; a source branch or packed candidate is not proof of npm
+publication. For a candidate that is not yet published, use the verified local
+tarballs. See the [release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
+for scope and verification. Avoid unversioned installs, which can select a different
+API generation through `latest`.
+
+## V2 entry point
+
+Start with `@disclosureos/scoring/experimental/v2` for provider scoring and assessment summaries. Numeric grades, ordinal levels, exact inputs and policy revisions are explicit. Structural checks and bounded comparison do not execute an arbitrary provider policy, authenticate the provider or establish scientific validity. There is no universal anomaly or truth score.
+
+[Implementation guide](https://os.disclosure.org/v2/docs/assessment) · [Availability](https://os.disclosure.org/v2/docs/installation) · [Example viewer](https://os.disclosure.org/showcase)
+
+## Choose a package version
+
+Once this version is available in the registry, install it explicitly:
+
+```sh
+npm install --save-exact @disclosureos/scoring@2.0.0-beta.4
+```
+
+Use the same exact release for all DisclosureOS packages. Before publication,
+review a verified source checkout or its locally packed artifacts. Packages are
+ESM; Node.js 22 is the documented getting-started runtime.
+
+## Additional API reference
+
+<details>
+<summary>Earlier composition APIs and detailed source-workflow reference</summary>
+
+The following reference retains earlier APIs and source checkpoints. It is not the
+V2 first-record tutorial. Installation commands here describe the candidate API
+set; use the availability guidance above until that version is published.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Reference scoring for the [DisclosureOS](https://github.com/disclosurefoundation)
@@ -13,22 +50,6 @@ ecosystem — the **Scoring** layer. Its legacy `Observation` APIs provide:
 
 ## The DisclosureOS model
 
-DisclosureOS is a **six-part standard**. Each part answers one question about an
-observation; `@disclosureos/schema` binds the package-owned pieces into one portable
-contract (a single TS type + JSON Schema + non-stripping parse).
-
-| Part | Package surface | Question it answers |
-|---|---|---|
-| **Records** | `@disclosureos/records` | *What was observed?* |
-| **Observables** | `@disclosureos/observables` | *Which characteristics were described or investigated?* |
-| **Origins** | `@disclosureos/origins` | *What might explain it?* |
-| **Claims** | `@disclosureos/records/shared` | *Who assessed it, why, and on what evidence?* |
-| **Scoring** | `@disclosureos/scoring` | *How complete / compelling is the case?* |
-| **Instruments** | `@disclosureos/instruments` | *What hardware produced the data?* |
-
-Supporting packages: **`@disclosureos/schema`** (the portable contract that composes the
-package-owned pieces), **`@disclosureos/cli`** (tooling), and **`@disclosureos/examples`**
-(the runnable golden path). *(You are here: **Scoring**.)*
 
 ## Consumes the foundation (does not augment it)
 
@@ -44,12 +65,12 @@ you those slots typed automatically.
 > with `pnpm --filter @disclosureos/examples golden-path`.
 >
 > **Migrating an existing dataset?** See [`examples/migration-path.ts`](../../examples/migration-path.ts)
-> and the [onboarding workspace](https://os.disclosure.org/onboard).
+> and the [onboarding workspace](https://os.disclosure.org/v2/inspect).
 
 ## Install
 
 ```bash
-pnpm add @disclosureos/scoring @disclosureos/records @disclosureos/observables @disclosureos/origins zod
+pnpm add @disclosureos/scoring@2.0.0-beta.4 @disclosureos/records@2.0.0-beta.4 @disclosureos/observables@2.0.0-beta.4 @disclosureos/origins@2.0.0-beta.4 zod
 ```
 
 ## Population coverage
@@ -137,3 +158,5 @@ universal DisclosureOS case grades.
 
 See the [provider scoring guide](../../docs/experimental/provider-scoring.md)
 and [reproducible fictional example](../../examples/provider-scoring/README.md).
+
+</details>

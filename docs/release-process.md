@@ -113,7 +113,10 @@ are separate outcomes.
 
 The stable schema artifacts retain their existing `https://os.disclosure.org/schema/...`
 IDs. Their individual version numbers need not match package versions. Existing
-versioned URLs are immutable. New content requires a new identity/path; do not
+versioned URLs are immutable. `release:check` and both packing modes compare
+current identities against `docs/releases/published-schema-identities.json`, whose
+beta.3 hashes come from integrity-verified npm tarballs. After each publication,
+append the new identities to that ledger; do not replace earlier entries. New content requires a new identity/path; do not
 replace historical files during a package version bump.
 
 Experimental schemas currently use `urn:disclosureos:experimental:...` IDs. They
