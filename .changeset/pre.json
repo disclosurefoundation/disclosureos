@@ -13,9 +13,27 @@
     "@repo/typescript-config": "0.0.0"
   },
   "changesets": [
+    "archival-case-reader",
     "c1-observation-context",
     "c2-archival-editions",
     "c2-witness-accounts",
+    "case-assessment-history",
+    "case-supplement-links",
+    "clear-source-selections",
+    "connected-case-foundation",
+    "context-case-reader",
+    "laboratory-results-review",
+    "lidar-retained-point-cloud",
+    "material-case-reader",
+    "material-lineage-foundation",
+    "passive-sonar-pressure-profile",
+    "provider-scoring",
+    "public-case-presentation",
+    "rotating-radar-products",
+    "satellite-multispectral-raster",
+    "shared-vocabulary-definitions",
+    "sonar-envelope-profile",
+    "testimony-case-reader",
     "v2-first-beta"
   ]
 }

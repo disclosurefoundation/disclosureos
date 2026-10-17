@@ -14,7 +14,9 @@ test('rejects latest-tag publication and incomplete versioning', () => {
   assert.throws(() => validatePackage({ ...pkg, publishConfig: { tag: 'latest', access: 'public' } }, plan, true));
   assert.throws(() => validatePackage({ ...pkg, version: '1.1.0' }, plan, true));
 });
-test('the unpublished source state, package versions and changelogs agree', () => {
+test('the frozen beta candidate, package versions and changelogs agree', () => {
+  assert.equal(checkPlan().packages.length, 7);
+  assert.equal(checkPlan().plan.version, '2.0.0-beta.4');
   assert.equal(checkPlan({ sourceOnly: true }).packages.length, 7);
 });
 

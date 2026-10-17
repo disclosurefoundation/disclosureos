@@ -186,7 +186,7 @@ jobs:
       - run: pnpm test:partner-mapping
 
   beta-consumer:
-    name: Unpublished source tarballs and isolated consumer
+    name: Versioned beta tarballs and isolated consumer
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -199,10 +199,10 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm test:release
-      - run: pnpm verify:source-pack "${{ runner.temp }}/disclosureos-beta"
+      - run: pnpm release:pack "${{ runner.temp }}/disclosureos-beta"
       - uses: actions/upload-artifact@v4
         with:
-          name: disclosureos-unpublished-source-candidate
+          name: disclosureos-beta-candidate
           path: |
             ${{ runner.temp }}/disclosureos-beta/release-manifest.json
             ${{ runner.temp }}/disclosureos-beta/artifacts/*.tgz

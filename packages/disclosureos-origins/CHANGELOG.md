@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.0.0-beta.4
+
+### Minor Changes
+
+- Revise the V2 observable definitions and support vocabulary directly, and add shared catalog, immutable revision and term references with supplied-byte validation. Keep the chosen term separate from the subject under review and its supporting sources. Export full observable and attributed OCS origin catalogs with retained methodological context. Update enriched-observation and scoring consumers to the revised definitions. This breaks earlier beta definition and support assumptions; it does not establish an anomalous origin or turn a reported characteristic into a confirmed assessment.
+
+### Patch Changes
+
+- Updated dependencies [0b00be3]
+- Updated dependencies [9580e62]
+- Updated dependencies [559eac9]
+- Updated dependencies [5a686c1]
+- Updated dependencies [813ee2c]
+- Updated dependencies
+  - @disclosureos/records@2.0.0-beta.4
+
 ## 2.0.0-beta.3
 
 ### Patch Changes
