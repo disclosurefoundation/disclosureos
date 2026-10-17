@@ -1,0 +1,299 @@
+{
+  "kind": "observation",
+  "schemaVersion": "0.1.0",
+  "id": "radar-airborne-v1",
+  "status": "published",
+  "createdAt": "2026-07-28T22:00:00Z",
+  "updatedAt": "2026-07-28T22:00:00Z",
+  "summary": "Fictional airborne scanning radar with retained platform states, return arrays, motion-compensated detections and estimated tracks. Separate truth does not enter the estimator.",
+  "eventTime": {
+    "state": "known",
+    "value": {
+      "kind": "interval",
+      "start": {
+        "kind": "instant",
+        "value": "2026-07-28T22:00:00Z",
+        "timeScale": "UTC"
+      },
+      "end": {
+        "kind": "instant",
+        "value": "2026-07-28T22:01:04Z",
+        "timeScale": "UTC"
+      }
+    },
+    "sourceRefs": [
+      "source:methods"
+    ]
+  },
+  "position": {
+    "state": "unknown",
+    "reason": "not_collected"
+  },
+  "sources": [
+    {
+      "id": "simulation",
+      "kind": "instrument_data",
+      "access": "public",
+      "title": "Deterministic reduced radar simulation"
+    },
+    {
+      "id": "methods",
+      "kind": "document",
+      "access": "public",
+      "title": "Declared simulation and processing methods",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "96d89c864bf3788c909ea3d551b302497e9c0591606f3e80ff6265618151b255"
+      }
+    },
+    {
+      "id": "model-code",
+      "kind": "document",
+      "access": "public",
+      "title": "Executable simulation and processing code",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "a856b72783f4a52829100dcd9d48b2a8cb498dac85ea6633bd3c5520855fb518"
+      }
+    },
+    {
+      "id": "model-base",
+      "kind": "document",
+      "access": "public",
+      "title": "Retained detector and tracker implementation",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "909f53a9548ae4ea4ccaa5440a990b87a4cc32b32876ab018a19ad2b6e9d1710"
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "schedule",
+      "kind": "raw",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "7e6e67d8d73930a4ce316ce05054c13bd45b3e22ea5769ecc26bee24ea6d58e8"
+      },
+      "sourceRefs": [
+        "source:simulation",
+        "source:methods",
+        "source:model-code",
+        "source:model-base"
+      ]
+    },
+    {
+      "id": "platformPose",
+      "kind": "raw",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "d0006c68470cd0a482c831f852d24e968f91b915e128128e6888a9f54450a9bf"
+      },
+      "sourceRefs": [
+        "source:simulation",
+        "source:methods",
+        "source:model-code",
+        "source:model-base"
+      ]
+    },
+    {
+      "id": "returns",
+      "kind": "raw",
+      "format": "application/octet-stream",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "89673fe1d2cb0f1660efb193c994c6fd1d1c8b78c2d539d8b2eef764fdb23457"
+      },
+      "sourceRefs": [
+        "source:simulation",
+        "source:methods",
+        "source:model-code",
+        "source:model-base"
+      ]
+    },
+    {
+      "id": "thresholds",
+      "kind": "derived",
+      "format": "application/octet-stream",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "981a196997dcd7d4c219c29300e473330b46b4cdb573d2234b011ac450d6d97a"
+      },
+      "generatedBy": "process:threshold"
+    },
+    {
+      "id": "detections",
+      "kind": "derived",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "b725be42299a42ea7af2ba60fcc15dad5878656b1eb6b2a84a4f0a67edcb9d13"
+      },
+      "generatedBy": "process:detect"
+    },
+    {
+      "id": "tracks",
+      "kind": "derived",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "b1e61786640a95fb68660d7636ed5a8a2af92d132e5730e1240732fa3032c9a9"
+      },
+      "generatedBy": "process:track"
+    },
+    {
+      "id": "associations",
+      "kind": "derived",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "4602206ae07e4a12415587a56fe6650704249304370a1fc153a03c653301f1d2"
+      },
+      "generatedBy": "process:track"
+    },
+    {
+      "id": "truth",
+      "kind": "derived",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "9e2b5516ee70950ef1700bbf7d7e64a828e965d942fa9c3224178610deb6ee70"
+      },
+      "generatedBy": "process:truth"
+    },
+    {
+      "id": "track-state",
+      "kind": "derived",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "b6814092f1eed2492ab63934bdf1301ae374577bd86f4a6aeaf2b54b52142a61"
+      },
+      "generatedBy": "process:track"
+    }
+  ],
+  "methods": [
+    {
+      "id": "threshold",
+      "version": "1.0.0",
+      "description": "Range-neighborhood threshold; no calibrated false-alarm claim."
+    },
+    {
+      "id": "detect",
+      "version": "1.0.0",
+      "description": "Completed-scan peak selection, per-cell platform/plane coordinate compensation and weighted common-frame centroid."
+    },
+    {
+      "id": "track",
+      "version": "1.0.0",
+      "description": "Detection-only nearest-neighbor constant-velocity Kalman estimator."
+    },
+    {
+      "id": "truth",
+      "version": "1.0.0",
+      "description": "Separate scenario-state oracle for evaluating the fictional capture."
+    }
+  ],
+  "processing": [
+    {
+      "id": "threshold",
+      "methodRef": "method:threshold",
+      "methodVersion": "1.0.0",
+      "performedBy": "DisclosureOS deterministic numerical example",
+      "performedAt": "2026-07-28T22:01:04Z",
+      "inputRefs": [
+        "product:returns",
+        "source:methods",
+        "source:model-code",
+        "source:model-base"
+      ],
+      "outputRefs": [
+        "product:thresholds"
+      ]
+    },
+    {
+      "id": "detect",
+      "methodRef": "method:detect",
+      "methodVersion": "1.0.0",
+      "performedBy": "DisclosureOS deterministic numerical example",
+      "performedAt": "2026-07-28T22:01:04Z",
+      "inputRefs": [
+        "product:returns",
+        "product:thresholds",
+        "product:schedule",
+        "source:methods",
+        "source:model-code",
+        "source:model-base",
+        "product:platformPose"
+      ],
+      "outputRefs": [
+        "product:detections"
+      ]
+    },
+    {
+      "id": "track",
+      "methodRef": "method:track",
+      "methodVersion": "1.0.0",
+      "performedBy": "DisclosureOS deterministic numerical example",
+      "performedAt": "2026-07-28T22:01:04Z",
+      "inputRefs": [
+        "product:detections",
+        "source:methods",
+        "source:model-code",
+        "source:model-base"
+      ],
+      "outputRefs": [
+        "product:tracks",
+        "product:associations",
+        "product:track-state"
+      ]
+    },
+    {
+      "id": "truth",
+      "methodRef": "method:truth",
+      "methodVersion": "1.0.0",
+      "performedBy": "DisclosureOS deterministic numerical example",
+      "performedAt": "2026-07-28T22:01:04Z",
+      "inputRefs": [
+        "source:methods",
+        "source:model-code",
+        "source:model-base"
+      ],
+      "outputRefs": [
+        "product:truth"
+      ]
+    }
+  ],
+  "assertions": [],
+  "measurements": [],
+  "frames": [
+    {
+      "id": "radar-local",
+      "kind": "cartesian",
+      "definition": {
+        "state": "described",
+        "description": "Common local east/north coordinates in metres, with a declared up=0 ground plane. Moving platform poses use the same frame. No terrestrial transform."
+      },
+      "unit": "m"
+    }
+  ],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "partnerData": false,
+      "model": "reduced_airborne_rotating_radar",
+      "physicalValidation": "not_performed"
+    }
+  }
+}

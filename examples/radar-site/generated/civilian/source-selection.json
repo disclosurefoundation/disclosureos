@@ -1,0 +1,550 @@
+{
+  "kind": "product_source_selection",
+  "schemaVersion": "0.1.0",
+  "id": "radar-civilian-selection-v1",
+  "observationId": "radar-civilian-v1",
+  "layouts": [
+    {
+      "id": "schedule",
+      "productRef": "product:schedule",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "57c350068f85cd32bc6a3bac5fa6ecb227ebee0b65eb75c5ab3e4e125677a9d9"
+      },
+      "byteLength": 197028,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 4320,
+      "columns": [
+        "scan_index",
+        "azimuth_index",
+        "start_s",
+        "end_s",
+        "beam_azimuth_deg",
+        "beam_width_deg"
+      ]
+    },
+    {
+      "id": "returns",
+      "productRef": "product:returns",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "2767461c8bc1511742a97e0d81d9ed19e6e271ab664a2ee1f8ccc34e5785e70d"
+      },
+      "byteLength": 1105920,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "float32",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "normalized_return_power",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "index",
+          "name": "scan",
+          "length": 24,
+          "firstIndex": 0
+        },
+        {
+          "kind": "regular",
+          "name": "azimuth",
+          "length": 180,
+          "origin": 0,
+          "step": 2,
+          "unit": "deg"
+        },
+        {
+          "kind": "regular",
+          "name": "range",
+          "length": 64,
+          "origin": 25,
+          "step": 50,
+          "unit": "m"
+        }
+      ]
+    },
+    {
+      "id": "referenceCapture",
+      "productRef": "product:referenceCapture",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "ac9520a6f4f06d2122fdb95db4877a7c6596635bf655a6ff343b5724731d4d92"
+      },
+      "byteLength": 368640,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "float32",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "normalized_return_power",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "index",
+          "name": "reference_scan",
+          "length": 8,
+          "firstIndex": 0
+        },
+        {
+          "kind": "regular",
+          "name": "azimuth",
+          "length": 180,
+          "origin": 0,
+          "step": 2,
+          "unit": "deg"
+        },
+        {
+          "kind": "regular",
+          "name": "range",
+          "length": 64,
+          "origin": 25,
+          "step": 50,
+          "unit": "m"
+        }
+      ]
+    },
+    {
+      "id": "backgroundPower",
+      "productRef": "product:backgroundPower",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "f27f3259e98fd0d159a7b4ba1fa100a5975a95044d09ba9261cdf3be62ab34c7"
+      },
+      "byteLength": 46080,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "float32",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "normalized_return_power",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "regular",
+          "name": "azimuth",
+          "length": 180,
+          "origin": 0,
+          "step": 2,
+          "unit": "deg"
+        },
+        {
+          "kind": "regular",
+          "name": "range",
+          "length": 64,
+          "origin": 25,
+          "step": 50,
+          "unit": "m"
+        }
+      ]
+    },
+    {
+      "id": "eligibility",
+      "productRef": "product:eligibility",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "2e16983c75bd881328180632a930a8ae022e2c9fb0c5330606987f3b0968f661"
+      },
+      "byteLength": 11520,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "uint8",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "detection_eligibility",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "regular",
+          "name": "azimuth",
+          "length": 180,
+          "origin": 0,
+          "step": 2,
+          "unit": "deg"
+        },
+        {
+          "kind": "regular",
+          "name": "range",
+          "length": 64,
+          "origin": 25,
+          "step": 50,
+          "unit": "m"
+        }
+      ]
+    },
+    {
+      "id": "processedReturns",
+      "productRef": "product:processedReturns",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "044a1457d71e8b312426e8e6abdf08a656b74206fee8f45de41cbe7c9c57bc8d"
+      },
+      "byteLength": 1105920,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "float32",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "normalized_return_power",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "index",
+          "name": "scan",
+          "length": 24,
+          "firstIndex": 0
+        },
+        {
+          "kind": "regular",
+          "name": "azimuth",
+          "length": 180,
+          "origin": 0,
+          "step": 2,
+          "unit": "deg"
+        },
+        {
+          "kind": "regular",
+          "name": "range",
+          "length": 64,
+          "origin": 25,
+          "step": 50,
+          "unit": "m"
+        }
+      ]
+    },
+    {
+      "id": "thresholds",
+      "productRef": "product:thresholds",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "4e9b0f726848ad9a43192977970ee6faea75cf76d7463cb0d57c857bbf75ed81"
+      },
+      "byteLength": 1105920,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "float32",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "normalized_return_power",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "index",
+          "name": "scan",
+          "length": 24,
+          "firstIndex": 0
+        },
+        {
+          "kind": "regular",
+          "name": "azimuth",
+          "length": 180,
+          "origin": 0,
+          "step": 2,
+          "unit": "deg"
+        },
+        {
+          "kind": "regular",
+          "name": "range",
+          "length": 64,
+          "origin": 25,
+          "step": 50,
+          "unit": "m"
+        }
+      ]
+    },
+    {
+      "id": "detections",
+      "productRef": "product:detections",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "098da9163ac758a926740bdab06abf1aa3145d626c453a152fe18c3cc305740a"
+      },
+      "byteLength": 5715,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 69,
+      "columns": [
+        "detection_id",
+        "scan_index",
+        "azimuth_index",
+        "range_index",
+        "time_s",
+        "east_m",
+        "north_m",
+        "power"
+      ]
+    },
+    {
+      "id": "tracks",
+      "productRef": "product:tracks",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "3065fe7bc432819dd648a749f716c18d81ead62f97f240c89fe3c9752a6c2c17"
+      },
+      "byteLength": 8325,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 76,
+      "columns": [
+        "track_id",
+        "scan_index",
+        "time_s",
+        "state",
+        "east_m",
+        "north_m",
+        "velocity_east_m_s",
+        "velocity_north_m_s",
+        "cov_ee_m2",
+        "cov_en_m2",
+        "cov_nn_m2"
+      ]
+    },
+    {
+      "id": "associations",
+      "productRef": "product:associations",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "456bf9418b1bdef3c994ee03a588829fc9441065b6eefa766b1d82c4e78bbbec"
+      },
+      "byteLength": 1866,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 69,
+      "columns": [
+        "track_id",
+        "scan_index",
+        "detection_id"
+      ]
+    },
+    {
+      "id": "truth",
+      "productRef": "product:truth",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "df36a56adbcc693e7c1e485d596075f3ecfca2f704e5b0a3eb096a0b0c0477a4"
+      },
+      "byteLength": 518027,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 12960,
+      "columns": [
+        "target_id",
+        "scan_index",
+        "time_s",
+        "east_m",
+        "north_m"
+      ]
+    },
+    {
+      "id": "track-state",
+      "productRef": "product:track-state",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "5e9438061bf9ebe7b2d5761885ac6088ca5fd4166bf91fe793ab52a1f6b6baf2"
+      },
+      "byteLength": 11343,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 76,
+      "columns": [
+        "track_id",
+        "scan_index",
+        "time_s",
+        "misses",
+        "hits",
+        "p00",
+        "p01",
+        "p02",
+        "p03",
+        "p10",
+        "p11",
+        "p12",
+        "p13",
+        "p20",
+        "p21",
+        "p22",
+        "p23",
+        "p30",
+        "p31",
+        "p32",
+        "p33"
+      ]
+    },
+    {
+      "id": "siteFeatures",
+      "productRef": "product:siteFeatures",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "0a1033195e88b5c9100d20b9296cbf734937888c279201964fdf70ff1e6aefd2"
+      },
+      "byteLength": 1197,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 28,
+      "columns": [
+        "feature_id",
+        "kind",
+        "label",
+        "vertex_index",
+        "east_m",
+        "north_m",
+        "closed"
+      ]
+    }
+  ],
+  "selections": [
+    {
+      "id": "schedule-first",
+      "layoutRef": "layout:schedule",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "returns-first",
+      "layoutRef": "layout:returns",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "referenceCapture-first",
+      "layoutRef": "layout:referenceCapture",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "backgroundPower-first",
+      "layoutRef": "layout:backgroundPower",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "eligibility-first",
+      "layoutRef": "layout:eligibility",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "processedReturns-first",
+      "layoutRef": "layout:processedReturns",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "thresholds-first",
+      "layoutRef": "layout:thresholds",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "detections-first",
+      "layoutRef": "layout:detections",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "tracks-first",
+      "layoutRef": "layout:tracks",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "associations-first",
+      "layoutRef": "layout:associations",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "truth-first",
+      "layoutRef": "layout:truth",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "track-state-first",
+      "layoutRef": "layout:track-state",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "siteFeatures-first",
+      "layoutRef": "layout:siteFeatures",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    }
+  ]
+}

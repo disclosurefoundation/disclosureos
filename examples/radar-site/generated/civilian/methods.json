@@ -1,0 +1,78 @@
+{
+  "id": "radar-civilian-methods-v1",
+  "version": "1.0.0",
+  "fictional": true,
+  "config": {
+    "seed": 20261019,
+    "scans": 24,
+    "azimuthBins": 180,
+    "rangeBins": 64,
+    "scanSeconds": 4,
+    "rangeOriginM": 25,
+    "rangeStepM": 50,
+    "azimuthOriginDeg": 0,
+    "azimuthStepDeg": 2,
+    "beamWidthDeg": 2.354820045,
+    "timeOrigin": "2026-07-28T22:00:00Z",
+    "measurementSigmaM": 60,
+    "accelerationSigmaMPerS2": 1.5,
+    "initialVelocitySigmaMPerS": 30,
+    "associationGateSquared": 9.21034,
+    "scenario": "civilian",
+    "referenceSeed": 20262019,
+    "referenceScans": 8,
+    "rangeResponseSigmaM": 36
+  },
+  "description": "A fictional primary airport surface-surveillance capture. Runway, taxiway and apron geometry are authored context; moving returns are not automatically classified or identified.",
+  "synthesis": {
+    "seedGenerator": "mulberry32",
+    "timeline": "Twenty-four 4-second rotating scans, 180 azimuth centers at 2-degree intervals and 64 horizontal range centers at 25+50r metres. Main samples evaluated at dwell midpoint. Eight target-free reference scans precede the main capture.",
+    "targetModel": "Surface A:E=700,N=-1100+22t; surface B:E=-850+9t,N=300; surface C:E=-900,N=-400+8t through 87.5 seconds, then E=-900+8(t-87.5),N=300. All positions in a horizontal surface plane; no climb, landing guidance or aircraft-identity claim.",
+    "beam": "Gaussian power response sigma 1 degree, FWHM 2.354820045 degrees; range response sigma 36 m. Physical range, angular resolution and RF performance are not calibrated.",
+    "reference": "Independent reference seed and target-free source acquisition. The same static authored background appears in reference and main captures, with independent uniform [0.96,1.04] multiplicative texture and independent exponential noise mean 0.055 plus floor 0.025.",
+    "background": "Gaussian static components: E-1250,N900,gain 7,angular sigma 5 degrees,range sigma100 m; E100,N-650,gain 5,sigma 12 degrees/110 m; E-1320,N100,gain 3.6,sigma 14 degrees/160 m.",
+    "attenuation": "Surface A gain 4.3; surface B gain 3.3 falls to 0.008 in scans 9–11; surface C gain 2.9. Prescribed source fading, not an operational coverage claim.",
+    "transient": "A gain 1.9 transient at bearing 240 degrees/range 2100 m during scan 5 is absent from the reference capture. It therefore survives static subtraction and is treated like any other return.",
+    "truth": "Separate scenario coordinates at every dwell end. Background estimation, detector policy, detection and tracking never consume these rows or target labels."
+  },
+  "preprocessing": {
+    "background": "At each azimuth/range cell, arithmetic mean of the eight retained float32 reference samples, rounded to float32 once. No truth or target position is used.",
+    "residual": "For every main source cell, float32(max(0,rawPower-backgroundPower)). The raw capture remains retained. Negative residuals are clamped, not interpreted as missing measurements.",
+    "eligibility": "Zero at cell centers within E[-1600,-1000],N[-600,700], an authored apron processing exclusion; one elsewhere. Raw apron reception is retained. This policy is a demonstration, not a recommendation for airport operations."
+  },
+  "detector": {
+    "version": "eligible-residual-range-peaks-1",
+    "threshold": "max(0.6,4*mean(eligible training cells at range offsets -10..-3 and 3..10)). Boundaries clipped; if no eligible training cells exist, use 0.6. Not a calibrated CFAR false-alarm claim.",
+    "peaks": "Eligible centers only; retained residual power must meet threshold and be the maximum over eligible 3x3 azimuth/range neighbors. Azimuth wraps. Equal-power ties choose the lower storage index; first/last range bins excluded.",
+    "localization": "Exact retained horizontal range/azimuth cell center. No subcell interpolation or elevation inference.",
+    "timing": "Detection epoch is peak dwell midpoint. Neighboring azimuth processing requires the full scan; detections and tracks appear only at scan end."
+  },
+  "tracker": {
+    "version": "nearest-neighbor-cv-kalman-1",
+    "stateOrder": [
+      "east_m",
+      "north_m",
+      "velocity_east_m_s",
+      "velocity_north_m_s"
+    ],
+    "measurement": "Common horizontal detections only. Assumed independent sigma 60 m Cartesian errors; model confidence is not calibrated.",
+    "transition": "Constant velocity. F=[[1,0,dt,0],[0,1,0,dt],[0,0,1,0],[0,0,0,1]]. Q=sigma_a² G Gᵀ, G=[[dt²/2,0],[0,dt²/2],[dt,0],[0,dt]], sigma_a = 1.5 m/s²; each propagation interval has independent assumed acceleration.",
+    "association": "Detections processed by measurement time within a completed scan. Greedy minimum squared innovation Mahalanobis distance <= 9.21034. At most one detection per track per scan. Unassigned detections start new tracks; no scene identities or truth labels supplied.",
+    "initialization": "Position from detection, zero velocity, covariance diag(3600,3600,900,900).",
+    "update": "Linear Kalman update with Joseph covariance form. Export all active states at scan end. Confirmed after 3 total updates; any missed update gives coasting; retire after 4 consecutive misses. Confirmed is a filter bookkeeping state, not identification or verification.",
+    "uncertainty": "95% Gaussian region conditional on the declared filter and fixed horizontal frame. No physical location accuracy is certified.",
+    "fullCovariance": "track-state.csv stores all 4 × 4 entries p00..p33 and hit/miss counters. Position-only covariance is in tracks.csv."
+  },
+  "siteContext": "site-features.csv contains authored static context in the same local horizontal frame. Structures, routes and exclusions are reference geometry, not measured radar contours. Labels do not classify detected objects.",
+  "exclusions": [
+    "No physical radar calibration",
+    "No RF waveform/pulse simulation",
+    "No terrain masking, multipath or atmosphere",
+    "No target identity or real-world capability claim",
+    "No calibrated false-alarm probability",
+    "No validated tracking confidence",
+    "No blockage, terrain visibility, horizon, coverage-probability or detectability solution",
+    "No airborne approach, target height, secondary transponder report, multi-sensor fusion or airport certification",
+    "No real location, real airport layout or operational procedure"
+  ]
+}

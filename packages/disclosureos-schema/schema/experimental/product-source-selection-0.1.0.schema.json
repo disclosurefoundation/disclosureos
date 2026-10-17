@@ -22,7 +22,7 @@
       "minItems": 1,
       "type": "array",
       "items": {
-        "oneOf": [
+        "anyOf": [
           {
             "type": "object",
             "properties": {
@@ -369,6 +369,96 @@
                   "timeColumn"
                 ],
                 "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "productRef",
+              "digest",
+              "byteLength",
+              "mediaType",
+              "kind",
+              "encoding",
+              "delimiter",
+              "header",
+              "rowCount",
+              "columns"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+              },
+              "productRef": {
+                "type": "string",
+                "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+              },
+              "digest": {
+                "type": "object",
+                "properties": {
+                  "algorithm": {
+                    "type": "string",
+                    "const": "sha256"
+                  },
+                  "value": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}(?![\\s\\S])"
+                  }
+                },
+                "required": [
+                  "algorithm",
+                  "value"
+                ],
+                "additionalProperties": false
+              },
+              "byteLength": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              "mediaType": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "kind": {
+                "type": "string",
+                "const": "csv_table"
+              },
+              "encoding": {
+                "type": "string",
+                "const": "utf-8"
+              },
+              "delimiter": {
+                "type": "string",
+                "const": ","
+              },
+              "header": {
+                "type": "boolean",
+                "const": true
+              },
+              "rowCount": {
+                "type": "number",
+                "const": 0
+              },
+              "columns": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                }
+              },
+              "partition": {
+                "not": {}
+              },
+              "sample": {
+                "not": {}
               }
             },
             "required": [

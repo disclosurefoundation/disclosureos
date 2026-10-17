@@ -1,0 +1,299 @@
+{
+  "id": "satellite-raster-v1",
+  "config": {
+    "rows": 72,
+    "columns": 96,
+    "crs": {
+      "kind": "wgs84_utm",
+      "epsg": "EPSG:32611",
+      "zone": 11,
+      "hemisphere": "north",
+      "unit": "m"
+    },
+    "transform": [
+      500000,
+      30,
+      0,
+      4102160,
+      0,
+      -30
+    ],
+    "bands": [
+      {
+        "id": "blue",
+        "label": "Blue",
+        "centerWavelengthNm": 482,
+        "wavelengthMeaning": "nominal_center_not_response_function",
+        "scale": 0.0001,
+        "offset": 0,
+        "nodata": 65535,
+        "validRange": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "green",
+        "label": "Green",
+        "centerWavelengthNm": 561,
+        "wavelengthMeaning": "nominal_center_not_response_function",
+        "scale": 0.0001,
+        "offset": 0,
+        "nodata": 65535,
+        "validRange": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "red",
+        "label": "Red",
+        "centerWavelengthNm": 655,
+        "wavelengthMeaning": "nominal_center_not_response_function",
+        "scale": 0.0001,
+        "offset": 0,
+        "nodata": 65535,
+        "validRange": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "nir",
+        "label": "Near infrared",
+        "centerWavelengthNm": 865,
+        "wavelengthMeaning": "nominal_center_not_response_function",
+        "scale": 0.0001,
+        "offset": 0,
+        "nodata": 65535,
+        "validRange": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "swir1",
+        "label": "Shortwave infrared 1",
+        "centerWavelengthNm": 1610,
+        "wavelengthMeaning": "nominal_center_not_response_function",
+        "scale": 0.0001,
+        "offset": 0,
+        "nodata": 65535,
+        "validRange": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "swir2",
+        "label": "Shortwave infrared 2",
+        "centerWavelengthNm": 2200,
+        "wavelengthMeaning": "nominal_center_not_response_function",
+        "scale": 0.0001,
+        "offset": 0,
+        "nodata": 65535,
+        "validRange": [
+          0,
+          1
+        ]
+      }
+    ],
+    "defaultPixel": 4845
+  },
+  "counts": {
+    "pixels": 6912,
+    "bands": 6,
+    "clear": 5834,
+    "cloud": 399,
+    "shadow": 283,
+    "nodata": 396
+  },
+  "files": {
+    "reflectance": {
+      "file": "reflectance.u16",
+      "sha256": "197829a45d29321d2abf767d3c1938e22c2568e4eb87097ea0d0e2e0ab042272",
+      "byteLength": 82944,
+      "mediaType": "application/octet-stream"
+    },
+    "quality": {
+      "file": "quality.u8",
+      "sha256": "b653cc582b3d858b994d9cd9607e48a3ca08e37cf64bd8cacc6ba736c871d60a",
+      "byteLength": 6912,
+      "mediaType": "application/octet-stream"
+    }
+  },
+  "methods": {
+    "id": "satellite-raster-methods-v1",
+    "version": "1.0.0",
+    "fictional": true,
+    "config": {
+      "rows": 72,
+      "columns": 96,
+      "crs": {
+        "kind": "wgs84_utm",
+        "epsg": "EPSG:32611",
+        "zone": 11,
+        "hemisphere": "north",
+        "unit": "m"
+      },
+      "transform": [
+        500000,
+        30,
+        0,
+        4102160,
+        0,
+        -30
+      ],
+      "bands": [
+        {
+          "id": "blue",
+          "label": "Blue",
+          "centerWavelengthNm": 482,
+          "wavelengthMeaning": "nominal_center_not_response_function",
+          "scale": 0.0001,
+          "offset": 0,
+          "nodata": 65535,
+          "validRange": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "green",
+          "label": "Green",
+          "centerWavelengthNm": 561,
+          "wavelengthMeaning": "nominal_center_not_response_function",
+          "scale": 0.0001,
+          "offset": 0,
+          "nodata": 65535,
+          "validRange": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "red",
+          "label": "Red",
+          "centerWavelengthNm": 655,
+          "wavelengthMeaning": "nominal_center_not_response_function",
+          "scale": 0.0001,
+          "offset": 0,
+          "nodata": 65535,
+          "validRange": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "nir",
+          "label": "Near infrared",
+          "centerWavelengthNm": 865,
+          "wavelengthMeaning": "nominal_center_not_response_function",
+          "scale": 0.0001,
+          "offset": 0,
+          "nodata": 65535,
+          "validRange": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "swir1",
+          "label": "Shortwave infrared 1",
+          "centerWavelengthNm": 1610,
+          "wavelengthMeaning": "nominal_center_not_response_function",
+          "scale": 0.0001,
+          "offset": 0,
+          "nodata": 65535,
+          "validRange": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "swir2",
+          "label": "Shortwave infrared 2",
+          "centerWavelengthNm": 2200,
+          "wavelengthMeaning": "nominal_center_not_response_function",
+          "scale": 0.0001,
+          "offset": 0,
+          "nodata": 65535,
+          "validRange": [
+            0,
+            1
+          ]
+        }
+      ],
+      "defaultPixel": 4845
+    },
+    "description": "Authored multispectral reflectance scene on an arbitrary projected grid. No real satellite image, orbital simulation, atmospheric correction or physical calibration is supplied.",
+    "geometry": "72 rows x96 columns. WGS84 UTM11N. GDAL affine [500000,30,0,4102160,0,-30] defines upper-left cell corners; centers add 0.5 to row and column. Grid spacing30m is not sensor resolution or accuracy. Nominal location does not depict that real site.",
+    "scene": "Authored river and lake, vegetated patch, soil, developed patch and road. Class names define generation only and are not classifications inferred from spectra. See retained model.mjs for every pixel's deterministic decision and spectrum.",
+    "radiometry": "Each band stores round(authored_reflectance*10000) as uint16; decode DN*0.0001. Six nominal centers482,561,655,865,1610,2200nm do not define spectral response functions or assert any named satellite sensor. Broad spectra and sinusoidal texture are pedagogical, not physical material signatures.",
+    "quality": "Whole-pixel annotations: clear0, cloud1, shadow2, nodata3. Cloud ellipse center(70,51),radii(13,10); shadow ellipse center(59,43),radii(13,10), lower priority than cloud. Nodata columns>90 and rows<3 with40<column<53. Cloud spectra replace underlying authored surface; shadow scales reflectance0.22. These are numerical illustrations, not atmospheric transfer or shadow geometry predictions.",
+    "index": "NDVI=(scaled_NIR-scaled_red)/(scaled_NIR+scaled_red). Compute only when source quality is clear, both bands are present and nonnegative, and the sum is positive. It is not a landcover classifier or proof of vegetation. Band absence and quality remain separate.",
+    "edgeCases": "Row6,column6 has retained zero in every band: valid source values, undefined NDVI. Row6,column7 has missing NIR65535 but other bands retained and clear source annotation.",
+    "timing": "No acquisition timestamp, orbit, platform ephemeris or synchronized event time is supplied. Publication time dates documents only.",
+    "references": [
+      "https://gdal.org/en/stable/tutorials/geotransforms_tut.html",
+      "https://www.usgs.gov/faqs/how-do-i-use-a-scale-factor-landsat-level-2-science-products",
+      "https://www.usgs.gov/landsat-missions/landsat-normalized-difference-vegetation-index",
+      "https://www.usgs.gov/landsat-missions/landsat-collection-2-quality-assessment-bands"
+    ],
+    "limits": [
+      "No physical radiometry, atmospheric correction or positional verification",
+      "Quality annotations do not certify scientific usability",
+      "Pixel spacing is not resolving power",
+      "Nominal band centers are not spectral response functions",
+      "No GeoTIFF or COG decoder",
+      "No actual acquisition time or field-session synchronization"
+    ]
+  },
+  "sources": {
+    "reflectance.u16": {
+      "sha256": "197829a45d29321d2abf767d3c1938e22c2568e4eb87097ea0d0e2e0ab042272",
+      "byteLength": 82944,
+      "mediaType": "application/octet-stream"
+    },
+    "quality.u8": {
+      "sha256": "b653cc582b3d858b994d9cd9607e48a3ca08e37cf64bd8cacc6ba736c871d60a",
+      "byteLength": 6912,
+      "mediaType": "application/octet-stream"
+    },
+    "methods.json": {
+      "sha256": "8d66b37bb86ff1c1095c63630649f92569899ff37a154f18bb62502e66b983a9",
+      "byteLength": 5031,
+      "mediaType": "application/json"
+    },
+    "model.mjs": {
+      "sha256": "be0f07ff0fe792696bdf0b989729e29b85571f7247041e49d1b2b255a7842be8",
+      "byteLength": 3004,
+      "mediaType": "text/javascript"
+    },
+    "README.md": {
+      "sha256": "d155ab90fd07f36f52513a6667bd3924a921cfc2d26ee68773cd7693b7f2944d",
+      "byteLength": 2010,
+      "mediaType": "text/markdown"
+    },
+    "observation.json": {
+      "sha256": "934b6417813ecf41b27d20bca3e17ee8ab2c827f9c4ffbe1f67a0a13cba68be8",
+      "byteLength": 2377,
+      "mediaType": "application/json"
+    },
+    "acquisition.json": {
+      "sha256": "bcd767998230f119ea2b22b19a53989d0a104e7197966403825a846be0c26a41",
+      "byteLength": 3526,
+      "mediaType": "application/json"
+    },
+    "source-selection.json": {
+      "sha256": "5142541e39a923bc430c2c9d981f7074ff4d53793c5703583ef81b705531a343",
+      "byteLength": 2277,
+      "mediaType": "application/json"
+    },
+    "satellite-profile.json": {
+      "sha256": "7a485334514768d5dc083800b98077e4f33f06ae8c9c7f454d84aeb504a343f4",
+      "byteLength": 3757,
+      "mediaType": "application/json"
+    }
+  }
+}

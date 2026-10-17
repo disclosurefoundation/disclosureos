@@ -1,0 +1,146 @@
+{
+  "kind": "satellite_raster_profile",
+  "schemaVersion": "0.1.0",
+  "id": "satellite-raster-profile-v1",
+  "observationId": "satellite-raster-v1",
+  "contextId": "satellite-raster-context-v1",
+  "sourceSelectionId": "satellite-raster-selection-v1",
+  "acquisitionRef": "acquisition:satellite-capture",
+  "channelId": "reflectance",
+  "acquisitionProducts": {
+    "reflectance": "product:reflectance",
+    "quality": "product:quality"
+  },
+  "dataOrigin": "synthetic",
+  "mode": "north_up_multispectral_reflectance",
+  "grid": {
+    "rows": 72,
+    "columns": 96,
+    "crs": {
+      "kind": "wgs84_utm",
+      "epsg": "EPSG:32611",
+      "zone": 11,
+      "hemisphere": "north",
+      "unit": "m"
+    },
+    "transform": [
+      500000,
+      30,
+      0,
+      4102160,
+      0,
+      -30
+    ],
+    "pixelInterpretation": "area",
+    "registration": "authored_grid_not_surveyed"
+  },
+  "bands": [
+    {
+      "id": "blue",
+      "label": "Blue",
+      "centerWavelengthNm": 482,
+      "wavelengthMeaning": "nominal_center_not_response_function",
+      "scale": 0.0001,
+      "offset": 0,
+      "nodata": 65535,
+      "validRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "green",
+      "label": "Green",
+      "centerWavelengthNm": 561,
+      "wavelengthMeaning": "nominal_center_not_response_function",
+      "scale": 0.0001,
+      "offset": 0,
+      "nodata": 65535,
+      "validRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "red",
+      "label": "Red",
+      "centerWavelengthNm": 655,
+      "wavelengthMeaning": "nominal_center_not_response_function",
+      "scale": 0.0001,
+      "offset": 0,
+      "nodata": 65535,
+      "validRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nir",
+      "label": "Near infrared",
+      "centerWavelengthNm": 865,
+      "wavelengthMeaning": "nominal_center_not_response_function",
+      "scale": 0.0001,
+      "offset": 0,
+      "nodata": 65535,
+      "validRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "swir1",
+      "label": "Shortwave infrared 1",
+      "centerWavelengthNm": 1610,
+      "wavelengthMeaning": "nominal_center_not_response_function",
+      "scale": 0.0001,
+      "offset": 0,
+      "nodata": 65535,
+      "validRange": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "swir2",
+      "label": "Shortwave infrared 2",
+      "centerWavelengthNm": 2200,
+      "wavelengthMeaning": "nominal_center_not_response_function",
+      "scale": 0.0001,
+      "offset": 0,
+      "nodata": 65535,
+      "validRange": [
+        0,
+        1
+      ]
+    }
+  ],
+  "radiometry": {
+    "quantity": "surface_reflectance",
+    "unit": "1",
+    "formula": "dn_times_scale_plus_offset",
+    "calibration": "not_verified"
+  },
+  "quality": {
+    "authority": "authored_annotations",
+    "method": "Whole-pixel annotations: clear0, cloud1, shadow2, nodata3. Cloud ellipse center(70,51),radii(13,10); shadow ellipse center(59,43),radii(13,10), lower priority than cloud. Nodata columns>90 and rows<3 with40<column<53. Cloud spectra replace underlying authored surface; shadow scales reflectance0.22. These are numerical illustrations, not atmospheric transfer or shadow geometry predictions.",
+    "codes": {
+      "clear": 0,
+      "cloud": 1,
+      "shadow": 2,
+      "nodata": 3
+    },
+    "scope": "whole_pixel",
+    "interpretation": "source_annotation_not_accuracy_certification"
+  },
+  "vegetationIndex": {
+    "redBandId": "red",
+    "nearInfraredBandId": "nir",
+    "method": "scaled_nir_minus_red_over_sum",
+    "qualityPolicy": "clear_nonnegative_nonzero_sum_only",
+    "interpretation": "spectral_index_not_land_cover_classification"
+  },
+  "products": {
+    "reflectance": "product:reflectance",
+    "quality": "product:quality"
+  }
+}

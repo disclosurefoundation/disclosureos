@@ -1,0 +1,142 @@
+{
+  "kind": "product_source_selection",
+  "schemaVersion": "0.1.0",
+  "id": "radar-secondary-selection-v1",
+  "observationId": "radar-secondary-v1",
+  "layouts": [
+    {
+      "id": "interrogations",
+      "productRef": "product:interrogations",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "1666708562ee7bd1f7fe0081adb8f251efc94b6192ff610cf9701cf8f2fd7ea6"
+      },
+      "byteLength": 2671,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 64,
+      "columns": [
+        "interrogation_id",
+        "start_s",
+        "end_s",
+        "beam_azimuth_deg",
+        "beam_width_deg",
+        "mode"
+      ]
+    },
+    {
+      "id": "decodedReplies",
+      "productRef": "product:decodedReplies",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "22e4694994ab32b23c9689ee7dad3da9f742e4c6a59d914b3693b0d7a263c0b6"
+      },
+      "byteLength": 4466,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 56,
+      "columns": [
+        "reply_id",
+        "interrogation_id",
+        "time_s",
+        "available_s",
+        "slant_range_m",
+        "bearing_deg",
+        "validity",
+        "mode_a_code",
+        "pressure_altitude_ft"
+      ]
+    },
+    {
+      "id": "reports",
+      "productRef": "product:reports",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "397dd145295c7fa331ee5d3e48e5cee916278c5fae71b708c4c81e1b194d79d3"
+      },
+      "byteLength": 4968,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 54,
+      "columns": [
+        "report_id",
+        "reply_id",
+        "interrogation_id",
+        "time_s",
+        "available_s",
+        "slant_range_m",
+        "bearing_deg",
+        "validity",
+        "mode_a_code",
+        "pressure_altitude_ft"
+      ]
+    },
+    {
+      "id": "truth",
+      "productRef": "product:truth",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "06eb6f3f4148851d0d71374c3ce1a40f2620838acc0c24e684d744b69d731c75"
+      },
+      "byteLength": 12367,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 192,
+      "columns": [
+        "target_id",
+        "interrogation_id",
+        "time_s",
+        "east_m",
+        "north_m",
+        "up_m",
+        "transponder"
+      ]
+    }
+  ],
+  "selections": [
+    {
+      "id": "interrogations-first",
+      "layoutRef": "layout:interrogations",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "decodedReplies-first",
+      "layoutRef": "layout:decodedReplies",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "reports-first",
+      "layoutRef": "layout:reports",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "truth-first",
+      "layoutRef": "layout:truth",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    }
+  ]
+}

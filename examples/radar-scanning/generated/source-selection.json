@@ -1,0 +1,320 @@
+{
+  "kind": "product_source_selection",
+  "schemaVersion": "0.1.0",
+  "id": "radar-scanning-selection-v1",
+  "observationId": "radar-scanning-v1",
+  "layouts": [
+    {
+      "id": "schedule",
+      "productRef": "product:schedule",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "7e6e67d8d73930a4ce316ce05054c13bd45b3e22ea5769ecc26bee24ea6d58e8"
+      },
+      "byteLength": 48016,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 1152,
+      "columns": [
+        "scan_index",
+        "azimuth_index",
+        "start_s",
+        "end_s",
+        "beam_azimuth_deg",
+        "beam_width_deg"
+      ]
+    },
+    {
+      "id": "returns",
+      "productRef": "product:returns",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "fc7879a680c050392fef021ec42f9a133e7f7070b0ef6fdb3bbfaa5c30496222"
+      },
+      "byteLength": 294912,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "float32",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "normalized_return_power",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "index",
+          "name": "scan",
+          "length": 16,
+          "firstIndex": 0
+        },
+        {
+          "kind": "regular",
+          "name": "azimuth",
+          "length": 72,
+          "origin": 0,
+          "step": 5,
+          "unit": "deg"
+        },
+        {
+          "kind": "regular",
+          "name": "range",
+          "length": 64,
+          "origin": 25,
+          "step": 50,
+          "unit": "m"
+        }
+      ]
+    },
+    {
+      "id": "thresholds",
+      "productRef": "product:thresholds",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "de017e5a3c15188e4281161e01dbf1cb9b318f2d91010baafa8173ecee88f0e5"
+      },
+      "byteLength": 294912,
+      "mediaType": "application/octet-stream",
+      "kind": "binary_array",
+      "elementType": "float32",
+      "byteOrder": "little",
+      "order": "row_major",
+      "byteOffset": 0,
+      "quantity": "normalized_return_power",
+      "unit": "1",
+      "axes": [
+        {
+          "kind": "index",
+          "name": "scan",
+          "length": 16,
+          "firstIndex": 0
+        },
+        {
+          "kind": "regular",
+          "name": "azimuth",
+          "length": 72,
+          "origin": 0,
+          "step": 5,
+          "unit": "deg"
+        },
+        {
+          "kind": "regular",
+          "name": "range",
+          "length": 64,
+          "origin": 25,
+          "step": 50,
+          "unit": "m"
+        }
+      ]
+    },
+    {
+      "id": "detections",
+      "productRef": "product:detections",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "6c178c44a2ee548e537e2c9ca79d40e21c4a2b7e9176f81299a256cff5406b58"
+      },
+      "byteLength": 2481,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 29,
+      "columns": [
+        "detection_id",
+        "scan_index",
+        "azimuth_index",
+        "range_index",
+        "time_s",
+        "east_m",
+        "north_m",
+        "power"
+      ]
+    },
+    {
+      "id": "tracks",
+      "productRef": "product:tracks",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "d608eca0505f495a6a064b188aa8658f0b7a515453d458b4cc277be57a98c49e"
+      },
+      "byteLength": 4126,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 37,
+      "columns": [
+        "track_id",
+        "scan_index",
+        "time_s",
+        "state",
+        "east_m",
+        "north_m",
+        "velocity_east_m_s",
+        "velocity_north_m_s",
+        "cov_ee_m2",
+        "cov_en_m2",
+        "cov_nn_m2"
+      ]
+    },
+    {
+      "id": "associations",
+      "productRef": "product:associations",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "9a3053549743ef0367cbd34ce2d77436d9e2fcc7825a3b41e4e31cdbadddb0e8"
+      },
+      "byteLength": 798,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 29,
+      "columns": [
+        "track_id",
+        "scan_index",
+        "detection_id"
+      ]
+    },
+    {
+      "id": "truth",
+      "productRef": "product:truth",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "dded5e09cdd81dd0c065652ce9c956927b186c47c49e5c54505b33bb6aeb346d"
+      },
+      "byteLength": 102808,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 2304,
+      "columns": [
+        "target_id",
+        "scan_index",
+        "time_s",
+        "east_m",
+        "north_m"
+      ]
+    },
+    {
+      "id": "track-state",
+      "productRef": "product:track-state",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "06798148aaa2fd5af015b5a61660422ef505f95f1333aea5102b72db2d1fd04f"
+      },
+      "byteLength": 5598,
+      "mediaType": "text/csv",
+      "kind": "csv_table",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header": true,
+      "rowCount": 37,
+      "columns": [
+        "track_id",
+        "scan_index",
+        "time_s",
+        "misses",
+        "hits",
+        "p00",
+        "p01",
+        "p02",
+        "p03",
+        "p10",
+        "p11",
+        "p12",
+        "p13",
+        "p20",
+        "p21",
+        "p22",
+        "p23",
+        "p30",
+        "p31",
+        "p32",
+        "p33"
+      ]
+    }
+  ],
+  "selections": [
+    {
+      "id": "schedule-first",
+      "layoutRef": "layout:schedule",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "returns-first",
+      "layoutRef": "layout:returns",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "thresholds-first",
+      "layoutRef": "layout:thresholds",
+      "selector": {
+        "kind": "array_element",
+        "indices": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "detections-first",
+      "layoutRef": "layout:detections",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "tracks-first",
+      "layoutRef": "layout:tracks",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "associations-first",
+      "layoutRef": "layout:associations",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "truth-first",
+      "layoutRef": "layout:truth",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    },
+    {
+      "id": "track-state-first",
+      "layoutRef": "layout:track-state",
+      "selector": {
+        "kind": "table_row",
+        "row": 0
+      }
+    }
+  ]
+}

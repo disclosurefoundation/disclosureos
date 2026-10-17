@@ -1,0 +1,185 @@
+{
+  "kind": "acquisition_context",
+  "schemaVersion": "0.1.0",
+  "id": "radar-ground-context-v1",
+  "instruments": [
+    {
+      "id": "radar-simulator",
+      "identity": {
+        "state": "known",
+        "manufacturer": "DisclosureOS synthetic example",
+        "model": "Reduced fixed-site primary radar source"
+      }
+    }
+  ],
+  "manifests": [
+    {
+      "id": "radar-manifest",
+      "instrumentRef": "instrument:radar-simulator",
+      "version": "1.0.0",
+      "publishedAt": "2026-07-28T21:59:28.000Z",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "456ce8f21ab43ca6760e016032a30182ffdea326bd39537b60887499e3d09b9d"
+        },
+        "byteLength": 6126,
+        "mediaType": "application/json"
+      },
+      "configuration": {
+        "hardware": {
+          "state": "known",
+          "value": "No physical hardware"
+        },
+        "firmware": {
+          "state": "known",
+          "value": "model.mjs version 1.0.0"
+        }
+      },
+      "channels": [
+        {
+          "id": "return-power",
+          "quantity": "normalized_return_power",
+          "unit": "1",
+          "sampling": {
+            "state": "unknown",
+            "reason": "Sequential angle/range cells; see retained dwell schedule rather than a single physical sample rate"
+          }
+        }
+      ]
+    }
+  ],
+  "deployments": [],
+  "calibrations": [],
+  "acquisitions": [
+    {
+      "id": "radar-capture",
+      "instrumentRef": "instrument:radar-simulator",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:radar-manifest"
+      },
+      "deployment": {
+        "state": "unresolved",
+        "reason": "Synthetic local frame, no physical deployment"
+      },
+      "classification": "known_control",
+      "time": {
+        "state": "known",
+        "kind": "interval",
+        "start": "2026-07-28T22:00:00Z",
+        "end": "2026-07-28T22:01:36.000Z",
+        "timeScale": "UTC"
+      },
+      "clock": {
+        "source": {
+          "state": "known",
+          "value": "Authored simulation timeline"
+        },
+        "synchronization": {
+          "state": "unknown",
+          "reason": "No physical synchronization"
+        },
+        "resolution": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        },
+        "uncertainty": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "return-power",
+          "calibration": {
+            "state": "unresolved",
+            "reason": "Numerical relative power has no physical calibration"
+          }
+        }
+      ]
+    },
+    {
+      "id": "radar-reference",
+      "instrumentRef": "instrument:radar-simulator",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:radar-manifest"
+      },
+      "deployment": {
+        "state": "unresolved",
+        "reason": "Synthetic local frame, no physical deployment"
+      },
+      "classification": "known_control",
+      "time": {
+        "state": "known",
+        "kind": "interval",
+        "start": "2026-07-28T21:59:28.000Z",
+        "end": "2026-07-28T22:00:00Z",
+        "timeScale": "UTC"
+      },
+      "clock": {
+        "source": {
+          "state": "known",
+          "value": "Authored simulation timeline"
+        },
+        "synchronization": {
+          "state": "unknown",
+          "reason": "No physical synchronization"
+        },
+        "resolution": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        },
+        "uncertainty": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "return-power",
+          "calibration": {
+            "state": "unresolved",
+            "reason": "Numerical relative power has no physical calibration"
+          }
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "returns",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:radar-capture",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "e0ae5ee6ba31f01a1506306e8ffa3684be415c99e7a594827935a662a34017fa"
+        },
+        "byteLength": 1105920,
+        "mediaType": "application/octet-stream"
+      }
+    },
+    {
+      "id": "referenceCapture",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:radar-reference",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "138c01d67541695dd6fe3eb3483527a916494d377ccb8b0e543d7cca250e6cdd"
+        },
+        "byteLength": 368640,
+        "mediaType": "application/octet-stream"
+      }
+    }
+  ],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "model": "reduced_ground_site_surveillance",
+      "physicalCalibration": "not_performed"
+    }
+  }
+}

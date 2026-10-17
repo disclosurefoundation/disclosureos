@@ -1,0 +1,33 @@
+{
+  "id": "sonar-passive-methods-v1",
+  "version": "1.0.0",
+  "fictional": true,
+  "config": {
+    "sampleRateHz": 4096,
+    "samples": 32768,
+    "windowSamples": 512,
+    "hopSamples": 128,
+    "frames": 253,
+    "frequencyBins": 257,
+    "timeOrigin": "2026-07-28T22:15:00Z"
+  },
+  "description": "Authored single-channel pressure waveform with reproducible windowed spectral density. No physical hydrophone, measured acoustic field or propagation model.",
+  "waveform": "t=sample/4096. Tone=0.002*(0.85+0.15*cos(2π*0.4*t))*sin(2π*224*t); harmonic=0.0007*sin(2π*448*t+0.4). For u=t−1 in[0,6], chirp=0.0015*sin(π*u/6)^2*sin(2π*(480*u+(640/12)*u²)), otherwise 0. Transient=0.003*exp(−0.5*((t−5.7)/0.07)^2)*sin(2π*1450*t). Background is deterministic 32-bit integer-hash noise scaled to±0.00012 Pa; executable formula in model.mjs. Pressure=float32(sum).",
+  "transform": "For each complete 512-sample window, remove arithmetic mean before applying periodic Hann w[n]=0.5−0.5cos(2πn/N). PSD=|DFT(w*(x−mean))|²/(fs*sum(w²)), doubling bins1..N/2−1 only. Retain float32 Pa²/Hz. No zero padding. Window starts advance 128 samples; no partial final window.",
+  "availability": "Pressure indices 12800..13823 and 25600..25855 are not retained. Sample mask 0 means unavailable and uses a zero pressure storage placeholder. Frame mask 1 only if all 512 inputs are retained, including zero-weight Hann endpoints. Missing frames store zero PSD placeholders. No interpolation, filling or physical-cause inference.",
+  "timing": "UTC origin is authored, not clock-traceable. Sample index i maps to i/4096 s. Window index f starts at f*128/4096 s; full-window center is(startSample+256)/4096 s. Last contributing sample=(startSample+511)/4096 s. Last recording sample 7.999755859375 s; nominal capture span 8 s.",
+  "display": "10log10(PSD/1e−12) dB re 1 µPa²/Hz. Retained zero density is negative infinity, not unavailable. Viewer color clipping must not change the retained value. Density is not broadband SPL.",
+  "limits": [
+    "Pressure values are authored, not a measured physical calibration",
+    "One channel; no bearing, range, beamforming or localization",
+    "No source identity inference or detector",
+    "No empirical hydrophone response, anti-alias filter, acoustic propagation or ambient-noise characterization",
+    "8 Hz bin spacing is not an independent physical frequency-resolution claim",
+    "Successful reproduction verifies numerical and source consistency only"
+  ],
+  "references": [
+    "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.periodogram.html",
+    "https://oceanexplorer.noaa.gov/technology/sonar/",
+    "https://oceanservice.noaa.gov/facts/hydrophone.html"
+  ]
+}

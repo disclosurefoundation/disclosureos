@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "passive_sonar_profile"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "observationId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "contextId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "sourceSelectionId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "acquisitionRef": {
+      "type": "string",
+      "pattern": "^acquisition:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "acquisitionProductRef": {
+      "type": "string",
+      "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "sampleMaskAcquisitionProductRef": {
+      "type": "string",
+      "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "channelId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "processingRef": {
+      "type": "string",
+      "pattern": "^process:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "timeOrigin": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    },
+    "mode": {
+      "type": "string",
+      "const": "single_hydrophone_pressure"
+    },
+    "dataOrigin": {
+      "type": "string",
+      "enum": [
+        "synthetic",
+        "instrument"
+      ]
+    },
+    "sampling": {
+      "type": "object",
+      "properties": {
+        "samples": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16777216
+        },
+        "sampleRateHz": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 1000000000
+        }
+      },
+      "required": [
+        "samples",
+        "sampleRateHz"
+      ],
+      "additionalProperties": false
+    },
+    "transform": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "one_sided_power_spectral_density"
+        },
+        "windowSamples": {
+          "type": "integer",
+          "minimum": 4,
+          "maximum": 65536
+        },
+        "hopSamples": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 65536
+        },
+        "window": {
+          "type": "string",
+          "const": "periodic_hann"
+        },
+        "detrend": {
+          "type": "string",
+          "const": "remove_arithmetic_mean_before_window"
+        },
+        "padding": {
+          "type": "string",
+          "const": "none_full_windows_only"
+        },
+        "scaling": {
+          "type": "string",
+          "const": "sum_squared_window_times_sample_rate"
+        },
+        "oneSided": {
+          "type": "string",
+          "const": "double_interior_bins_only"
+        },
+        "missingWindow": {
+          "type": "string",
+          "const": "unavailable_if_any_input_missing"
+        }
+      },
+      "required": [
+        "kind",
+        "windowSamples",
+        "hopSamples",
+        "window",
+        "detrend",
+        "padding",
+        "scaling",
+        "oneSided",
+        "missingWindow"
+      ],
+      "additionalProperties": false
+    },
+    "display": {
+      "type": "object",
+      "properties": {
+        "densityReferencePa2PerHz": {
+          "type": "number",
+          "const": 1e-12
+        },
+        "logarithm": {
+          "type": "string",
+          "const": "10_log10_density_over_reference"
+        },
+        "zeroDensity": {
+          "type": "string",
+          "const": "negative_infinity_no_floor"
+        }
+      },
+      "required": [
+        "densityReferencePa2PerHz",
+        "logarithm",
+        "zeroDensity"
+      ],
+      "additionalProperties": false
+    },
+    "availability": {
+      "type": "object",
+      "properties": {
+        "unavailable": {
+          "type": "number",
+          "const": 0
+        },
+        "available": {
+          "type": "number",
+          "const": 1
+        },
+        "missingValue": {
+          "type": "string",
+          "const": "zero_storage_placeholder"
+        }
+      },
+      "required": [
+        "unavailable",
+        "available",
+        "missingValue"
+      ],
+      "additionalProperties": false
+    },
+    "products": {
+      "type": "object",
+      "properties": {
+        "pressure": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "sampleMask": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "powerSpectralDensity": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "frameMask": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "pressure",
+        "sampleMask",
+        "powerSpectralDensity",
+        "frameMask"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "id",
+    "observationId",
+    "contextId",
+    "sourceSelectionId",
+    "acquisitionRef",
+    "acquisitionProductRef",
+    "sampleMaskAcquisitionProductRef",
+    "channelId",
+    "processingRef",
+    "timeOrigin",
+    "mode",
+    "dataOrigin",
+    "sampling",
+    "transform",
+    "display",
+    "availability",
+    "products"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:disclosureos:experimental:passive-sonar-profile:0.1.0"
+}

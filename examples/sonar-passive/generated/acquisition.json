@@ -1,0 +1,137 @@
+{
+  "kind": "acquisition_context",
+  "schemaVersion": "0.1.0",
+  "id": "sonar-passive-context-v1",
+  "instruments": [
+    {
+      "id": "hydrophone-example",
+      "identity": {
+        "state": "known",
+        "manufacturer": "DisclosureOS synthetic example",
+        "model": "Single-channel numerical pressure"
+      }
+    }
+  ],
+  "manifests": [
+    {
+      "id": "hydrophone-manifest",
+      "instrumentRef": "instrument:hydrophone-example",
+      "version": "1.0.0",
+      "publishedAt": "2026-07-28T22:15:00Z",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "dfaba86764bdb2264f0dcc3a8129ce6471a839ce48600ee1341fa69a338b41e7"
+        },
+        "byteLength": 2739,
+        "mediaType": "application/json"
+      },
+      "configuration": {
+        "hardware": {
+          "state": "known",
+          "value": "No physical hydrophone"
+        },
+        "firmware": {
+          "state": "known",
+          "value": "model.mjs version 1.0.0"
+        }
+      },
+      "channels": [
+        {
+          "id": "pressure",
+          "quantity": "sound_pressure",
+          "unit": "Pa",
+          "sampling": {
+            "state": "unknown",
+            "reason": "Authored 4096 Hz pressure samples; no physical sampling system characterized"
+          }
+        }
+      ]
+    }
+  ],
+  "deployments": [],
+  "calibrations": [],
+  "acquisitions": [
+    {
+      "id": "passive-capture",
+      "instrumentRef": "instrument:hydrophone-example",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:hydrophone-manifest"
+      },
+      "deployment": {
+        "state": "unresolved",
+        "reason": "Synthetic source without physical deployment"
+      },
+      "classification": "known_control",
+      "time": {
+        "state": "known",
+        "kind": "interval",
+        "start": "2026-07-28T22:15:00Z",
+        "end": "2026-07-28T22:15:08Z",
+        "timeScale": "UTC"
+      },
+      "clock": {
+        "source": {
+          "state": "known",
+          "value": "Authored source timeline"
+        },
+        "synchronization": {
+          "state": "unknown",
+          "reason": "No physical synchronization"
+        },
+        "resolution": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        },
+        "uncertainty": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "pressure",
+          "calibration": {
+            "state": "unresolved",
+            "reason": "Pascals are authored; physical hydrophone calibration is not performed"
+          }
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "pressure",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:passive-capture",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "5e649fa320612b56cbb98f631effc8c3aedefbf632f77b30cfd552a35a64abf6"
+        },
+        "byteLength": 131072,
+        "mediaType": "application/octet-stream"
+      }
+    },
+    {
+      "id": "sampleMask",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:passive-capture",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "d0b7119dfb8fa1a6334317a09e40e173f8a6200200dd287eac7f2af339f07cb0"
+        },
+        "byteLength": 32768,
+        "mediaType": "application/octet-stream"
+      }
+    }
+  ],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "physicalCalibration": "not_performed"
+    }
+  }
+}

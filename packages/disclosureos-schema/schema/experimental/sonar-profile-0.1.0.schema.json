@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "sonar_profile"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "observationId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "contextId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "sourceSelectionId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "acquisitionRef": {
+      "type": "string",
+      "pattern": "^acquisition:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "acquisitionProductRef": {
+      "type": "string",
+      "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "receiveMaskAcquisitionProductRef": {
+      "type": "string",
+      "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "channelId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "timeOrigin": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    },
+    "mode": {
+      "type": "string",
+      "const": "monostatic_echo_envelope"
+    },
+    "dataOrigin": {
+      "type": "string",
+      "enum": [
+        "synthetic",
+        "instrument"
+      ]
+    },
+    "amplitudeRepresentation": {
+      "type": "string",
+      "const": "normalized_envelope"
+    },
+    "sampling": {
+      "type": "object",
+      "properties": {
+        "pings": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000000
+        },
+        "delayBins": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000000
+        },
+        "delayStartSeconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "delayStepSeconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "pingStepSeconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "pings",
+        "delayBins",
+        "delayStartSeconds",
+        "delayStepSeconds",
+        "pingStepSeconds"
+      ],
+      "additionalProperties": false
+    },
+    "propagation": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "constant_assumed_sound_speed"
+        },
+        "soundSpeedMps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "travelPath": {
+          "type": "string",
+          "const": "two_way"
+        },
+        "distanceMeaning": {
+          "type": "string",
+          "const": "modeled_one_way_path_length"
+        }
+      },
+      "required": [
+        "kind",
+        "soundSpeedMps",
+        "travelPath",
+        "distanceMeaning"
+      ],
+      "additionalProperties": false
+    },
+    "availability": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "receive_retention_mask"
+        },
+        "unavailable": {
+          "type": "number",
+          "const": 0
+        },
+        "available": {
+          "type": "number",
+          "const": 1
+        },
+        "missingAmplitude": {
+          "type": "string",
+          "const": "zero_storage_placeholder"
+        }
+      },
+      "required": [
+        "kind",
+        "unavailable",
+        "available",
+        "missingAmplitude"
+      ],
+      "additionalProperties": false
+    },
+    "products": {
+      "type": "object",
+      "properties": {
+        "amplitudes": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "receiveMask": {
+          "type": "string",
+          "pattern": "^product:[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "amplitudes",
+        "receiveMask"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "id",
+    "observationId",
+    "contextId",
+    "sourceSelectionId",
+    "acquisitionRef",
+    "acquisitionProductRef",
+    "receiveMaskAcquisitionProductRef",
+    "channelId",
+    "timeOrigin",
+    "mode",
+    "dataOrigin",
+    "amplitudeRepresentation",
+    "sampling",
+    "propagation",
+    "availability",
+    "products"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:disclosureos:experimental:sonar-profile:0.1.0"
+}

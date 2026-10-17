@@ -1,0 +1,73 @@
+{
+  "id": "lidar-point-cloud-methods-v1",
+  "version": "1.0.0",
+  "fictional": true,
+  "config": {
+    "rows": 33,
+    "columns": 41,
+    "sensorOrigin": [
+      0,
+      0,
+      18
+    ],
+    "bounds": {
+      "min": [
+        -18,
+        0,
+        -1
+      ],
+      "max": [
+        18,
+        30,
+        20
+      ]
+    },
+    "aimBounds": {
+      "minX": -18,
+      "maxX": 18,
+      "minY": 2,
+      "maxY": 30
+    },
+    "nearRangeM": 0.1,
+    "farRangeM": 60,
+    "rayToleranceM": 0.00001,
+    "classes": [
+      {
+        "code": 0,
+        "label": "Unassigned"
+      },
+      {
+        "code": 2,
+        "label": "Terrain"
+      },
+      {
+        "code": 5,
+        "label": "Vegetation"
+      },
+      {
+        "code": 6,
+        "label": "Structure"
+      }
+    ]
+  },
+  "description": "Authored fixed-sensor lidar geometry with complete discrete-return groups and an explicit pulse ledger. This is a reference source table, not measured lidar or a radiometric simulation.",
+  "geometry": "33 rows x41 columns. Aim x=-18+36*column/40, y=2+28*row/32, z=0.5+0.025*x+0.02*y. Sensor=(0,0,18). Ray intersection at height h has t=(18-h)/(18-aim_z) and point=(aim_x*t,aim_y*t,h). Round stored coordinates to6 decimal places. Aim is a direction reference; no-return/unavailable rows do not measure it.",
+  "scene": "Roof z4.8 within x[2,9],y[6,12] yields one opaque roof-patch return; walls are not modeled. Otherwise a ray with z6.2 intersection inside ellipse centered(-7,12), radii(4.4,4.2), yields vegetation at6.2 and at3.8 except when(row+column)%3=0, followed by terrain. All other retained rays yield terrain. Ground rows at row15,column<4 are deliberately unassigned. Return ordinals increase in slant range.",
+  "amplitude": "Normalized authored return amplitudes: roof0.72+0.06*sin(column*0.5), top vegetation0.38+0.05*cos(row), lower vegetation0.29+0.04*sin(column), terrain0.48+0.08*sin(aim_x*0.31)*cos(aim_y*0.23); round to6 decimals. No calibrated radiometry or physical material inference.",
+  "availability": "Rows23..27 columns29..35 are unavailable with unknown count represented by an empty CSV cell. Rows3..8 columns3..8 are authored no_return detections with count0. No physical cause is assigned. Other rows retain every declared return. Missing/no-return cells are not surfaces or empty-volume certification.",
+  "classification": "Codes are an explicitly authored scene lookup:0 unassigned,2 terrain,5 vegetation,6 structure. They are source annotations, not inferred classifications or a claim of LAS conformance.",
+  "timing": "No per-pulse timestamps, travel times, frequency or scanning rate are supplied. Row-major pulse order is only an index. The document publication timestamp does not date the individual pulses.",
+  "tolerance": "Ray tolerance1e-5 m covers decimal serialization consistency only. It is not sensor accuracy, measurement uncertainty or a claimed survey resolution.",
+  "limits": [
+    "No geographic registration or physical instrument calibration",
+    "No beam footprint, divergence, propagation, receiver response, waveform or detection model",
+    "No time-of-flight inference from geometric coordinates",
+    "No material identity from intensity or automatic class accuracy",
+    "No interpolation, ground estimate under the roof, or empty-space inference"
+  ],
+  "references": [
+    "https://lasformat.org/latest/02.00_definition.html#point-data-record-format-6",
+    "https://www.usgs.gov/ngp-standards-and-specifications/lidar-base-specification-collection-requirements",
+    "https://pubs.usgs.gov/tm/11b4/pdf/tm11-B4.pdf"
+  ]
+}

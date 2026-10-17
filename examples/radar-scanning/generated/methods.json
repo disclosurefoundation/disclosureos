@@ -1,0 +1,70 @@
+{
+  "id": "radar-scanning-methods-v1",
+  "version": "1.0.0",
+  "fictional": true,
+  "config": {
+    "seed": 20261013,
+    "scans": 16,
+    "azimuthBins": 72,
+    "rangeBins": 64,
+    "scanSeconds": 4,
+    "rangeOriginM": 25,
+    "rangeStepM": 50,
+    "azimuthOriginDeg": 0,
+    "azimuthStepDeg": 5,
+    "beamWidthDeg": 4.945122,
+    "timeOrigin": "2026-07-28T22:00:00Z",
+    "measurementSigmaM": 45,
+    "accelerationSigmaMPerS2": 1.5,
+    "initialVelocitySigmaMPerS": 30,
+    "associationGateSquared": 9.21034
+  },
+  "description": "A seeded reduced model of rotating radar sampling, threshold detection and detection-only tracking. Relative power is an authored numerical scale, not calibrated received watts.",
+  "synthesis": {
+    "seedGenerator": "mulberry32",
+    "targetModel": "Scene A: east = 650 + 18t, north = 1650 - 10t; scene B: east = -1400 + 10t, north = 1100 + 6t (metres, seconds)",
+    "beam": "Gaussian power response sigma=2.1 degrees; FWHM=4.945122 degrees. Range response sigma=36 m. Samples evaluated at each dwell midpoint.",
+    "noise": "Independent exponential power, mean 0.055, plus 0.025 floor. Broad stationary clutter centered at bearing 145 degrees and range 1050 m, angular sigma 15 degrees and range sigma 240 m, peak 0.52 times uniform [0.8, 1.2] texture.",
+    "attenuation": "Scene A gain changes from 3.8 to 0.015 during scans 6–8. Scene B gain changes from 3.2 to 0.015 during scans 11–12. This is prescribed fading, not an inferred obstruction or electromagnetic propagation solution.",
+    "transient": "Additional transient echo during scan 4, bearing 235 degrees, range 2150 m, gain 2.4; the same detector/tracker handles it without knowing its origin.",
+    "truth": "Separate scenario-truth.csv gives positions at every dwell end. Generator truth labels are not supplied to detection or tracking."
+  },
+  "detector": {
+    "version": "range-neighbor-peaks-1",
+    "threshold": "max(0.6,4*mean(training range cells))",
+    "training": "Same azimuth; range offsets -10..-3 and 3..10, clipped at array boundaries. No angular training. This empirical threshold is not a calibrated constant-false-alarm-rate claim.",
+    "peaks": "Power >= retained float32 threshold and greatest power in a 3 × 3 azimuth/range neighborhood; azimuth wraps. Equal-valued ties choose lower storage index. First/last range bins are excluded.",
+    "localization": "Center of power over the same 3 × 3 neighborhood after subtracting a 0.08 floor and clamping weights to zero; transform each cell center into local east/north before averaging. Neighboring azimuth cells were sampled at different dwell times. The midpoint timestamp belongs to the peak cell; this estimator makes no motion compensation within the neighborhood. The assumed 45 m Cartesian filter error is a teaching assumption, not a demonstrated correction for scan skew.",
+    "timing": "time_s is selected dwell midpoint. Outputs become available only at the end of the complete scan, because peak/centroid calculations use neighboring azimuth dwells."
+  },
+  "tracker": {
+    "version": "nearest-neighbor-cv-kalman-1",
+    "stateOrder": [
+      "east_m",
+      "north_m",
+      "velocity_east_m_s",
+      "velocity_north_m_s"
+    ],
+    "measurement": "Cartesian east/north from detections.csv only. Assumed independent errors with sigma = 45 m, R = diag(2025, 2025) m². This is an illustrative filter assumption, not demonstrated measurement accuracy.",
+    "transition": "Constant velocity. F=[[1,0,dt,0],[0,1,0,dt],[0,0,1,0],[0,0,0,1]]. Q=sigma_a² G Gᵀ, G=[[dt²/2,0],[0,dt²/2],[dt,0],[0,dt]], sigma_a = 1.5 m/s²; each propagation interval has independent assumed acceleration.",
+    "association": "Detections processed by measurement time within a completed scan. Greedy minimum squared innovation Mahalanobis distance <= 9.21034. At most one detection per track per scan. Unassigned detections start new tracks; no scene identities or truth labels supplied.",
+    "initialization": "Position from detection; velocity=0; initial covariance diag(2025,2025,900,900) with mixed state units.",
+    "update": "Linear Kalman update with Joseph covariance form. Export all active states at scan end. Confirmed after 3 total updates; any missed update gives coasting; retire after 4 consecutive misses. Confirmed is a filter bookkeeping state, not identification or verification.",
+    "uncertainty": "Displayed 95% Gaussian position ellipse from east/north covariance; chi-square threshold 5.991464547 with 2 degrees of freedom. This describes the assumed filter model and has not been empirically calibrated.",
+    "fullCovariance": "track-state.csv stores all 4 × 4 entries p00..p33 and hit/miss counters. Position-only covariance is in tracks.csv."
+  },
+  "timing": {
+    "meaning": "Authored UTC origin plus retained relative seconds; no physical clock, synchronization or cross-capture alignment is claimed.",
+    "scanSeconds": 4,
+    "dwellSeconds": 0.05555555555555555,
+    "batchAvailability": "Detections and tracks appear after the completed scan; returns become available after each dwell."
+  },
+  "exclusions": [
+    "No physical radar calibration",
+    "No RF waveform/pulse simulation",
+    "No terrain masking, multipath or atmosphere",
+    "No target identity or real-world capability claim",
+    "No calibrated false-alarm probability",
+    "No validated tracking confidence"
+  ]
+}

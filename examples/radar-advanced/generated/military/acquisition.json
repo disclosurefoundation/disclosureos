@@ -1,0 +1,125 @@
+{
+  "kind": "acquisition_context",
+  "schemaVersion": "0.1.0",
+  "id": "radar-military-context-v1",
+  "instruments": [
+    {
+      "id": "radar-simulator",
+      "identity": {
+        "state": "known",
+        "manufacturer": "DisclosureOS synthetic example",
+        "model": "Reduced electronically steered sector numerical source"
+      }
+    }
+  ],
+  "manifests": [
+    {
+      "id": "radar-manifest",
+      "instrumentRef": "instrument:radar-simulator",
+      "version": "1.0.0",
+      "publishedAt": "2026-07-28T22:00:00Z",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "bbcb877fedfd53e5c8da9d8c615840e8bd41a70463486d6cdaa2ff8d99a16140"
+        },
+        "byteLength": 4991,
+        "mediaType": "application/json"
+      },
+      "configuration": {
+        "hardware": {
+          "state": "known",
+          "value": "No physical hardware"
+        },
+        "firmware": {
+          "state": "known",
+          "value": "model.mjs version 1.0.0"
+        }
+      },
+      "channels": [
+        {
+          "id": "return-power",
+          "quantity": "normalized_return_power",
+          "unit": "1",
+          "sampling": {
+            "state": "unknown",
+            "reason": "Sequential angle/range cells; see retained dwell schedule rather than a single physical sample rate"
+          }
+        }
+      ]
+    }
+  ],
+  "deployments": [],
+  "calibrations": [],
+  "acquisitions": [
+    {
+      "id": "radar-capture",
+      "instrumentRef": "instrument:radar-simulator",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:radar-manifest"
+      },
+      "deployment": {
+        "state": "unresolved",
+        "reason": "Synthetic local frame, no physical deployment"
+      },
+      "classification": "known_control",
+      "time": {
+        "state": "known",
+        "kind": "interval",
+        "start": "2026-07-28T22:00:00Z",
+        "end": "2026-07-28T22:00:30.720Z",
+        "timeScale": "UTC"
+      },
+      "clock": {
+        "source": {
+          "state": "known",
+          "value": "Authored simulation timeline"
+        },
+        "synchronization": {
+          "state": "unknown",
+          "reason": "No physical synchronization"
+        },
+        "resolution": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        },
+        "uncertainty": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "return-power",
+          "calibration": {
+            "state": "unresolved",
+            "reason": "Numerical relative power has no physical calibration"
+          }
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "returns",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:radar-capture",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "5ef4d38e267f4b16bf7473e525f6c2be7697a7e828b6acc1033d4a5c87a9ed26"
+        },
+        "byteLength": 65536,
+        "mediaType": "application/octet-stream"
+      }
+    }
+  ],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "model": "reduced_steered_sector_radar",
+      "physicalCalibration": "not_performed"
+    }
+  }
+}

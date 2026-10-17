@@ -1,0 +1,90 @@
+{
+  "kind": "observation",
+  "schemaVersion": "0.1.0",
+  "id": "lidar-point-cloud-v1",
+  "status": "published",
+  "createdAt": "2026-07-28T22:30:00Z",
+  "updatedAt": "2026-07-28T22:30:00Z",
+  "summary": "Fictional static lidar return cloud with authored terrain, vegetation and roof, complete pulse linkage and explicit unavailable/no-return cells.",
+  "eventTime": {
+    "state": "unknown",
+    "reason": "not_collected"
+  },
+  "position": {
+    "state": "unknown",
+    "reason": "not_collected"
+  },
+  "sources": [
+    {
+      "id": "synthetic-lidar",
+      "kind": "instrument_data",
+      "access": "public",
+      "title": "Authored discrete-return lidar source tables"
+    },
+    {
+      "id": "methods",
+      "kind": "document",
+      "access": "public",
+      "title": "Authored local geometry and classification method",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "62ad17ec924eff7284b79fe7f1b17ba375a24684e68992bb4b57cb89889f060c"
+      }
+    },
+    {
+      "id": "model-code",
+      "kind": "document",
+      "access": "public",
+      "title": "Executable lidar geometry model",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "5635e437bda5b9823e9fc7186c943ad6cc5f31217746434b980779031615fb04"
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "pulses",
+      "kind": "raw",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "486fb131799f15ef66a62633ad5aec4a406abb7b3bf1d9c93c761176f02004d1"
+      },
+      "sourceRefs": [
+        "source:synthetic-lidar",
+        "source:methods",
+        "source:model-code"
+      ]
+    },
+    {
+      "id": "points",
+      "kind": "raw",
+      "format": "text/csv",
+      "access": "public",
+      "digest": {
+        "algorithm": "sha256",
+        "value": "c6a2a814ea0fcc3befbbf4e8c4c01d552c2530dd213da0ce25e8b8a74ed73182"
+      },
+      "sourceRefs": [
+        "source:synthetic-lidar",
+        "source:methods",
+        "source:model-code"
+      ]
+    }
+  ],
+  "methods": [],
+  "processing": [],
+  "assertions": [],
+  "measurements": [],
+  "frames": [],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "partnerData": false,
+      "model": "static_discrete_return_raster",
+      "physicalValidation": "not_performed"
+    }
+  }
+}

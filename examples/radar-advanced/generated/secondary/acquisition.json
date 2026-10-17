@@ -1,0 +1,125 @@
+{
+  "kind": "acquisition_context",
+  "schemaVersion": "0.1.0",
+  "id": "radar-secondary-context-v1",
+  "instruments": [
+    {
+      "id": "radar-simulator",
+      "identity": {
+        "state": "known",
+        "manufacturer": "DisclosureOS synthetic example",
+        "model": "Reduced Mode A and Mode C decoded reply source"
+      }
+    }
+  ],
+  "manifests": [
+    {
+      "id": "radar-manifest",
+      "instrumentRef": "instrument:radar-simulator",
+      "version": "1.0.0",
+      "publishedAt": "2026-07-28T22:00:00Z",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "fdfe42c6a681be737230fb51d0db51910b194fa10f4afbb3534370c364c5a181"
+        },
+        "byteLength": 4071,
+        "mediaType": "application/json"
+      },
+      "configuration": {
+        "hardware": {
+          "state": "known",
+          "value": "No physical hardware"
+        },
+        "firmware": {
+          "state": "known",
+          "value": "model.mjs version 1.0.0"
+        }
+      },
+      "channels": [
+        {
+          "id": "decoded-reply",
+          "quantity": "decoded_reply",
+          "unit": "1",
+          "sampling": {
+            "state": "unknown",
+            "reason": "Event-driven decoded replies; see retained interrogation and reply timestamps"
+          }
+        }
+      ]
+    }
+  ],
+  "deployments": [],
+  "calibrations": [],
+  "acquisitions": [
+    {
+      "id": "radar-capture",
+      "instrumentRef": "instrument:radar-simulator",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:radar-manifest"
+      },
+      "deployment": {
+        "state": "unresolved",
+        "reason": "Synthetic local frame, no physical deployment"
+      },
+      "classification": "known_control",
+      "time": {
+        "state": "known",
+        "kind": "interval",
+        "start": "2026-07-28T22:00:00Z",
+        "end": "2026-07-28T22:01:04.000Z",
+        "timeScale": "UTC"
+      },
+      "clock": {
+        "source": {
+          "state": "known",
+          "value": "Authored simulation timeline"
+        },
+        "synchronization": {
+          "state": "unknown",
+          "reason": "No physical synchronization"
+        },
+        "resolution": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        },
+        "uncertainty": {
+          "state": "unknown",
+          "reason": "No physical clock characterized"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "decoded-reply",
+          "calibration": {
+            "state": "unresolved",
+            "reason": "Authored decoded source; no physical range, bearing or decoder calibration"
+          }
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "decodedReplies",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:radar-capture",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "22e4694994ab32b23c9689ee7dad3da9f742e4c6a59d914b3693b0d7a263c0b6"
+        },
+        "byteLength": 4466,
+        "mediaType": "text/csv"
+      }
+    }
+  ],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "model": "reduced_mode_a_mode_c_reply_source",
+      "physicalCalibration": "not_performed"
+    }
+  }
+}

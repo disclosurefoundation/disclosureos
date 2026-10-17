@@ -1,0 +1,134 @@
+{
+  "kind": "acquisition_context",
+  "schemaVersion": "0.1.0",
+  "id": "lidar-point-cloud-context-v1",
+  "instruments": [
+    {
+      "id": "lidar-example",
+      "identity": {
+        "state": "known",
+        "manufacturer": "DisclosureOS synthetic example",
+        "model": "Static discrete-return numerical geometry"
+      }
+    }
+  ],
+  "manifests": [
+    {
+      "id": "lidar-manifest",
+      "instrumentRef": "instrument:lidar-example",
+      "version": "1.0.0",
+      "publishedAt": "2026-07-28T22:30:00Z",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "62ad17ec924eff7284b79fe7f1b17ba375a24684e68992bb4b57cb89889f060c"
+        },
+        "byteLength": 3599,
+        "mediaType": "application/json"
+      },
+      "configuration": {
+        "hardware": {
+          "state": "known",
+          "value": "No physical lidar"
+        },
+        "firmware": {
+          "state": "known",
+          "value": "model.mjs version1.0.0"
+        }
+      },
+      "channels": [
+        {
+          "id": "returns",
+          "quantity": "lidar_return_position",
+          "unit": "m",
+          "sampling": {
+            "state": "unknown",
+            "reason": "Authored raster; pulse timing and instrument sampling characteristics are not provided"
+          }
+        }
+      ]
+    }
+  ],
+  "deployments": [],
+  "calibrations": [],
+  "acquisitions": [
+    {
+      "id": "lidar-capture",
+      "instrumentRef": "instrument:lidar-example",
+      "manifest": {
+        "state": "pinned",
+        "ref": "manifest:lidar-manifest"
+      },
+      "deployment": {
+        "state": "unresolved",
+        "reason": "Synthetic source without physical deployment"
+      },
+      "classification": "known_control",
+      "time": {
+        "state": "unknown",
+        "reason": "Authored pulse indices have no timestamps"
+      },
+      "clock": {
+        "source": {
+          "state": "unknown",
+          "reason": "No pulse timestamps"
+        },
+        "synchronization": {
+          "state": "unknown",
+          "reason": "No physical synchronization"
+        },
+        "resolution": {
+          "state": "unknown",
+          "reason": "No physical clock"
+        },
+        "uncertainty": {
+          "state": "unknown",
+          "reason": "No physical clock"
+        }
+      },
+      "channels": [
+        {
+          "channelId": "returns",
+          "calibration": {
+            "state": "unresolved",
+            "reason": "Coordinates and amplitudes are authored; physical calibration is not performed"
+          }
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "pulses",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:lidar-capture",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "486fb131799f15ef66a62633ad5aec4a406abb7b3bf1d9c93c761176f02004d1"
+        },
+        "byteLength": 59660,
+        "mediaType": "text/csv"
+      }
+    },
+    {
+      "id": "points",
+      "kind": "raw",
+      "acquisitionRef": "acquisition:lidar-capture",
+      "artifact": {
+        "digest": {
+          "algorithm": "sha256",
+          "value": "c6a2a814ea0fcc3befbbf4e8c4c01d552c2530dd213da0ce25e8b8a74ed73182"
+        },
+        "byteLength": 67943,
+        "mediaType": "text/csv"
+      }
+    }
+  ],
+  "extensions": {
+    "org.disclosure.simulation": {
+      "fictional": true,
+      "physicalCalibration": "not_performed"
+    }
+  }
+}

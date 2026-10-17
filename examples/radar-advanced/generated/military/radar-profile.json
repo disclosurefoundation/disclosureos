@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "0.1.0",
+  "id": "radar-military-profile-v1",
+  "observationId": "radar-military-v1",
+  "contextId": "radar-military-context-v1",
+  "sourceSelectionId": "radar-military-selection-v1",
+  "acquisitionRef": "acquisition:radar-capture",
+  "acquisitionProductRef": "product:returns",
+  "channelId": "return-power",
+  "frameRef": "frame:radar-local",
+  "origin": {
+    "eastM": 0,
+    "northM": 0
+  },
+  "timeOrigin": "2026-07-28T22:00:00Z",
+  "dataOrigin": "synthetic",
+  "bearingConvention": "clockwise_from_north",
+  "kind": "steered_radar_profile",
+  "mode": "electronically_steered_sector",
+  "rangeConvention": "horizontal_range",
+  "beamWidthConvention": "full_width_half_maximum_power",
+  "processingAvailability": "dwell_end",
+  "detectionPosition": {
+    "kind": "cell_center"
+  },
+  "products": {
+    "beamSchedule": "product:schedule",
+    "returns": "product:returns",
+    "thresholds": "product:thresholds",
+    "detections": "product:detections",
+    "tracks": "product:tracks",
+    "associations": "product:associations",
+    "truth": "product:truth"
+  },
+  "uncertainty": {
+    "kind": "gaussian_position_covariance",
+    "axes": [
+      "east",
+      "north"
+    ],
+    "unit": "m2",
+    "confidenceProbability": 0.95
+  }
+}

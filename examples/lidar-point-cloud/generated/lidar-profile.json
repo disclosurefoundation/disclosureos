@@ -1,0 +1,97 @@
+{
+  "kind": "lidar_point_cloud_profile",
+  "schemaVersion": "0.1.0",
+  "id": "lidar-point-cloud-profile-v1",
+  "observationId": "lidar-point-cloud-v1",
+  "contextId": "lidar-point-cloud-context-v1",
+  "sourceSelectionId": "lidar-point-cloud-selection-v1",
+  "acquisitionRef": "acquisition:lidar-capture",
+  "channelId": "returns",
+  "acquisitionProducts": {
+    "pulses": "product:pulses",
+    "points": "product:points"
+  },
+  "dataOrigin": "synthetic",
+  "mode": "static_discrete_return_raster",
+  "coordinateFrame": {
+    "kind": "local_cartesian",
+    "axes": [
+      "east",
+      "north",
+      "up"
+    ],
+    "unit": "m",
+    "handedness": "right_handed",
+    "originDescription": "Authored local origin and illustrative east/north/up axes; no surveyed geographic reference.",
+    "sensorOrigin": [
+      0,
+      0,
+      18
+    ],
+    "georeferencing": "not_provided"
+  },
+  "scan": {
+    "rows": 33,
+    "columns": 41,
+    "pulses": 1353,
+    "points": 1546,
+    "order": "row_major_index_not_time",
+    "aim": "direction_reference_not_surface_hit"
+  },
+  "geometry": {
+    "nearRangeM": 0.1,
+    "farRangeM": 60,
+    "rayToleranceM": 0.00001,
+    "toleranceMeaning": "encoding_consistency_not_measurement_uncertainty",
+    "bounds": {
+      "min": [
+        -18,
+        0,
+        -1
+      ],
+      "max": [
+        18,
+        30,
+        20
+      ]
+    }
+  },
+  "intensity": {
+    "kind": "normalized_return_amplitude",
+    "min": 0,
+    "max": 1,
+    "calibration": "not_calibrated_to_reflectance"
+  },
+  "classifications": {
+    "authority": "authored_annotations",
+    "method": "Codes are an explicitly authored scene lookup:0 unassigned,2 terrain,5 vegetation,6 structure. They are source annotations, not inferred classifications or a claim of LAS conformance.",
+    "classes": [
+      {
+        "code": 0,
+        "label": "Unassigned"
+      },
+      {
+        "code": 2,
+        "label": "Terrain"
+      },
+      {
+        "code": 5,
+        "label": "Vegetation"
+      },
+      {
+        "code": 6,
+        "label": "Structure"
+      }
+    ]
+  },
+  "availability": {
+    "retained": "complete_return_group",
+    "noReturn": "zero_detected_returns_not_clear_space",
+    "unavailable": "unknown_return_count_empty_cell",
+    "noTiming": "no_per_pulse_timestamps"
+  },
+  "products": {
+    "pulses": "product:pulses",
+    "points": "product:points"
+  }
+}

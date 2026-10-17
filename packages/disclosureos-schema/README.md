@@ -98,6 +98,18 @@ MIT © [Disclosure Foundation](https://disclosure.org)
 
 ## Experimental v2 documentary support
 
+### Rotating radar products
+
+The optional [rotating radar profile](docs/radar-profile.md) gives retained scans,
+detections and estimated tracks shared semantics over the existing observation,
+acquisition-context and product-source-selection contracts. It verifies source
+bytes, dwell timing, detection localization, associations, covariance and declared
+processing lineage. The [scanning example](../../examples/radar-scanning) supplies
+reproducible synthetic data with a separate truth oracle. Passing the profile does
+not certify scientific performance or physical calibration.
+
+### Documentary and acquisition profiles
+
 `@disclosureos/schema/experimental/v2` exports `evaluateAssessmentDocumentation` for records-owned claim histories. See the [profile contract and runnable synthetic example](../../docs/experimental/assessment-documentation.md). It checks declared support and supplied byte hashes, not scientific adequacy; existing v1 APIs and artifacts remain unchanged.
 
 `evaluateAcquisitionBindings` additionally checks explicit raw-product/source mappings to instrument acquisition context and verifies supplied artifact hashes and lengths. See the [binding contract and local example](../../docs/experimental/acquisition-bindings.md). This is independent of assessment-documentation eligibility and does not authenticate physical instruments.
@@ -218,3 +230,19 @@ The experimental V2 entry point exports `ProductSourceSelectionSchema`,
 CSV rows and declared video frame intervals to exact observation-product bytes.
 See [the contract and limitations](../../docs/experimental/product-source-selection.md).
 This addition has not been published to npm.
+
+### Active sonar echo envelopes
+
+The optional [sonar profile](docs/sonar-profile.md) binds retained monostatic normalized envelopes and receive masks to an acquisition, the source delay/time axes, and a declared constant assumed sound speed. Public readers preserve unavailable samples separately from measured zero; the evaluator checks source integrity and declared meaning. A passed check does not certify physical calibration, propagation accuracy, depth or object identity. The [active sonar example](../../examples/sonar-active) includes a reproducible source packet. These additions are on the V2 development branch; package publication is separate.
+
+### Passive sonar pressure and spectra
+
+The optional [passive sonar profile](docs/passive-sonar-profile.md) binds a single pressure channel and its retention mask to a reproducible, one-sided spectral-density product. Public readers expose the exact input window and selected output cell; the evaluator checks acquisition lineage, hashes, missing-window behavior and numerical reproduction. The [passive sonar example](../../examples/sonar-passive) includes its waveform, spectra, masks and executable methods. It supplies no bearing, range or identity and does not certify physical calibration. These additions are source candidates; publication is separate.
+
+### Static lidar returns and pulse availability
+
+The optional [lidar point-cloud profile](docs/lidar-profile.md) binds a local discrete-return cloud to a complete raster pulse ledger, with exact row selection, complete return groups, normalized amplitude and declared class annotations. The [lidar example](../../examples/lidar-point-cloud) retains authored terrain, roof and vegetation returns alongside no-return and unavailable cells. The evaluator verifies source integrity and declared local geometry; it does not certify calibration, classification accuracy, geographic registration or empty space. This is a source candidate, with publication held separately.
+
+### Multispectral satellite raster
+
+The optional [satellite raster profile](docs/satellite-raster-profile.md) binds a projected grid, retained optical band values and attributed pixel quality to exact source and acquisition artifacts. The reusable reader exposes scaled reflectance, pixel footprints, source byte offsets and quality-gated NDVI. The [fictional raster example](../../examples/satellite-raster) retains six bands, cloud and shadow annotations, missing pixels and numerical edge cases. Passing checks do not certify calibration, atmospheric correction, quality accuracy or geographic registration. No satellite-format decoder is implied; publication remains held separately.

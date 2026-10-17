@@ -1,0 +1,68 @@
+{
+  "id": "radar-military-methods-v1",
+  "version": "1.0.0",
+  "fictional": true,
+  "config": {
+    "timeOrigin": "2026-07-28T22:00:00Z",
+    "beamWidthDeg": 4.945122,
+    "accelerationSigmaMPerS2": 1.5,
+    "initialVelocitySigmaMPerS": 30,
+    "associationGateSquared": 9.21034,
+    "scenario": "military",
+    "seed": 20261016,
+    "cycles": 16,
+    "rangeBins": 64,
+    "rangeOriginM": 25,
+    "rangeStepM": 50,
+    "sectorStartDeg": -55,
+    "sectorEndDeg": 55,
+    "searchDwellSeconds": 0.1,
+    "revisitDwellSeconds": 0.18,
+    "measurementSigmaM": 70,
+    "maxCoastSeconds": 8
+  },
+  "description": "An educational electronically steered sector search and prescribed revisit schedule. This is one possible scheduling pattern, not a definition of military radar or a model of operational hardware.",
+  "synthesis": {
+    "seedGenerator": "mulberry32",
+    "schedule": "Sixteen cycles. Twelve 0.10 s search dwells cover bearings -55 to +55 degrees in 10 degree steps. After search slots2 and8, a0.18 s revisit points at26+0.5*cycle degrees. After slots5 and11, a0.18 s revisit points at-34+0.7*cycle degrees. The complete schedule is prescribed before detection and is not a tracking or adaptive resource-allocation solution.",
+    "targetModel": "Scene A:E=900+12t,N=1900-4t; Scene B:E=-1000+10t,N=1500+3t. Metres,seconds. Fixed horizontal plane, no elevation or target-height solution.",
+    "beam": "Gaussian power response sigma2.1 degrees, FWHM4.945122 degrees. Gaussian range response sigma36 m. Beam direction evaluated at retained dwell midpoint.",
+    "noise": "Exponential mean0.055 plus floor0.025. Broad stationary clutter peak0.42 at bearing-15 degrees and range900 m, angular sigma14 degrees, range sigma240 m, multiplied by uniform[0.8,1.2] texture.",
+    "attenuation": "Scene A gain4.2 becomes0.005 during cycles6–8. Scene B gain3.7 becomes0.005 during cycles11–12. Prescribed fading, not physical obstruction.",
+    "transient": "Additional gain2.4 component at bearing-5 degrees,range2200 m during cycle4. Detector and tracker see only its retained power.",
+    "truth": "Separate positions at each dwell midpoint. Scenario labels never enter the detector or tracker."
+  },
+  "detector": {
+    "version": "per-dwell-range-peaks-1",
+    "threshold": "max(0.6,4*mean(range offsets -10..-3 and3..10)), clipped at range boundaries. No calibrated CFAR probability.",
+    "peaks": "Power at least retained threshold; strictly greater than previous range bin and at least next range bin. First/last range bins excluded. No comparison across neighboring dwells because their directions and durations differ.",
+    "localization": "Exact retained range-bin center and scheduled beam direction in the fixed local horizontal plane. No subcell position, range interpolation or invented elevation.",
+    "timing": "Detection time is dwell midpoint; results become available at that dwell end. Arrays are indexed[dwell,range], with direction and duration supplied only by beam-schedule.csv."
+  },
+  "tracker": {
+    "version": "chronological-dwell-nearest-neighbor-cv-kalman-1",
+    "stateOrder": [
+      "east_m",
+      "north_m",
+      "velocity_east_m_s",
+      "velocity_north_m_s"
+    ],
+    "measurement": "Common east/north detections only. Assumed independent sigma70 m errors; no truth label or target velocity input.",
+    "transition": "Constant velocity. F=[[1,0,dt,0],[0,1,0,dt],[0,0,1,0],[0,0,0,1]]. Q=sigma_a² G Gᵀ, G=[[dt²/2,0],[0,dt²/2],[dt,0],[0,dt]], sigma_a = 1.5 m/s²; each propagation interval has independent assumed acceleration.",
+    "association": "Chronological per-dwell measurement updates; greedy squared Mahalanobis gate9.21034; at most one detection per track per dwell. No identity labels and no bearing/dwell-purpose hints.",
+    "initialization": "Position from detection, zero velocity, covariance diag(4900,4900,900,900).",
+    "update": "Joseph covariance update; predict and export active states at every dwell end. Confirmed after3 total hits. Coasting means no update during this dwell and is common when the beam looks elsewhere; it is not a missed-target claim. Retire after8 seconds without any detection update, not after a fixed number of beam visits.",
+    "uncertainty": "95% Gaussian horizontal ellipse from declared filter covariance. Fixed origin and horizontal geometry treated as exact; not a calibrated accuracy claim.",
+    "fullCovariance": "track-state.csv stores all4x4 entries plus total hits and last detection timestamp."
+  },
+  "exclusions": [
+    "No physical radar calibration",
+    "No RF waveform/pulse simulation",
+    "No terrain masking, multipath or atmosphere",
+    "No target identity or real-world capability claim",
+    "No calibrated false-alarm probability",
+    "No validated tracking confidence",
+    "No adaptive scheduling, operational military specifications, weapon guidance, threat classification or IFF",
+    "No elevation scan, propagation, antenna array or waveform simulation"
+  ]
+}

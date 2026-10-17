@@ -1,0 +1,44 @@
+{
+  "id": "radar-secondary-methods-v1",
+  "version": "1.0.0",
+  "fictional": true,
+  "config": {
+    "scenario": "secondary",
+    "seed": 20261017,
+    "cycles": 16,
+    "cycleSeconds": 4,
+    "timeOrigin": "2026-07-28T22:00:00Z",
+    "beamWidthDeg": 50,
+    "processingDelaySeconds": 0.08,
+    "maxSlantRangeM": 6000,
+    "rangeNoiseM": 12,
+    "bearingNoiseDeg": 0.12
+  },
+  "description": "Fictional Mode A/Mode C interrogation and decoded reply records. This starts at decoded receiver output, not RF waveforms or pulse decoding. The derived report is an exact qualified selection of a retained decoded reply.",
+  "synthesis": {
+    "seedGenerator": "mulberry32",
+    "schedule": "Sixteen4-second cycles. Four0.5-second interrogations start at offsets0,0.8,1.6,2.4 seconds; the first pair points30 degrees,the second330 degrees, each50 degrees wide. Each pair is Mode A then Mode C. Authored reply time=start+0.3 s,available time=reply time+0.08 s. The timing is a reduced example, not a protocol latency claim.",
+    "targetModel": "Cooperative A:E=1200+18t,N=3400-8t,up1400 m,code0421,reported pressure altitude4600 ft. Cooperative B:E=-1500+11t,N=2700+5t,up2100 m,code6312,reported pressure altitude6800 ft. Unreplied scene:E=250+5t,N=2200+4t,up900 m,transponder disabled. Geometric up and reported pressure altitude are independent authored quantities.",
+    "sampling": "A transponder replies only when inside the current authored azimuth beam. Slant range is sqrt(E²+N²+up²) plus uniform±12 m; bearing plus uniform±0.12 degrees. No elevation response, horizon, terrain, propagation, multipath, mode interlace decoding or receiver RF simulation.",
+    "dropout": "A has no retained replies during cycles6–8; B during cycle10. Absence is represented by no decoded reply for an interrogation, never a synthetic zero range or altitude.",
+    "garble": "B has invalid decoded rows during cycle4. Every measurement/code/altitude is blank in those rows; invalid data remains inspectable and is not promoted into a usable report.",
+    "unavailableAltitude": "B Mode C rows during cycles11–12 have retained range/bearing but blank pressure altitude. Blank means not recorded. It is not zero altitude, geometric height or a negative observation.",
+    "truth": "Separate scenario positions and authored transponder state. The source without replies is visible only when explicitly inspecting generator truth; it does not appear as a sensor-reported aircraft."
+  },
+  "reports": {
+    "version": "qualified-decoded-reply-selection-1",
+    "selection": "One derived report per valid decoded reply, with report_id added and all retained fields copied exactly. The referenced interrogation must exist. Invalid replies are excluded without erasing them from the raw table.",
+    "identity": "Four-digit octal Mode A code is a reported transponder code. It is not aircraft identity, verified ownership, military classification or friend-or-foe authentication. Mode A and Mode C rows are not fused or associated into an aircraft track.",
+    "altitude": "Mode C pressure altitude uses1013.25 hPa reference and100 ft increments. No conversion to geometric elevation, terrain clearance or horizontal ground range is performed.",
+    "display": "Polar slant range and bearing. Do not treat the radial distance as horizontal range or place reports on an east/north ground map.",
+    "availability": "Explicit available_s controls report visibility. A valid row with unknown altitude remains a usable range/bearing report. A no-reply interval supports only the statement that no reply was retained."
+  },
+  "exclusions": [
+    "No physical radar calibration or RF pulse decoder",
+    "No operational protocol timing or hardware sensitivity claim",
+    "No primary radar returns or inferred detection of the source with no reply",
+    "No transponder identity verification, Mode S address, IFF or aircraft authentication",
+    "No geometric-height conversion, target tracking or fusion across modes",
+    "No calibrated false-reply probability or uncertainty ellipse"
+  ]
+}
