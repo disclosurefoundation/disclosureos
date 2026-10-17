@@ -1,7 +1,7 @@
 {
   "version": "2.0.0-beta.4",
   "tag": "beta",
-  "implementationRevision": "971d5067893464facfdacc28f7c38a65e76e4b67",
+  "implementationRevision": "0d596242e1ada92e355a143c0edad821ec262df1",
   "packages": [
     "records",
     "observables",
