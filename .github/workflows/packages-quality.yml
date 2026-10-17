@@ -2,7 +2,7 @@ name: Packages Quality
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, "codex/**"]
     paths:
       - "docs/rfcs/**"
       - "docs/c1/**"
