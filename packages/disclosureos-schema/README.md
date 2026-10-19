@@ -281,3 +281,12 @@ The optional [lidar point-cloud profile](docs/lidar-profile.md) binds a local di
 The optional [satellite raster profile](docs/satellite-raster-profile.md) binds a projected grid, retained optical band values and attributed pixel quality to exact source and acquisition artifacts. The reusable reader exposes scaled reflectance, pixel footprints, source byte offsets and quality-gated NDVI. The [fictional raster example](../../examples/satellite-raster) retains six bands, cloud and shadow annotations, missing pixels and numerical edge cases. Passing checks do not certify calibration, atmospheric correction, quality accuracy or geographic registration. No satellite-format decoder is implied; publication remains held separately.
 
 </details>
+
+### Proposed MCAP source mapping
+
+The optional [MCAP source mapping](../../docs/experimental/mcap-source-mapping.md)
+pins a measurement to a field in an original MCAP message, using exact recording,
+channel, schema and message identities. The source revision exports
+`McapSourceMappingSchema` and `evaluateMcapSourceMapping`; a trusted MCAP reader
+and payload decoder provide content verification. This addition is not part of
+the published Beta 4 package. No viewer or source re-encoding is required.

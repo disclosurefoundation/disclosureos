@@ -136,7 +136,9 @@
     "example:vocabulary": "node examples/v2/vocabulary-demo/run.mjs",
     "emit:v2-provider-scoring": "node conformance/emit-provider-scoring.mjs",
     "test:v2-provider-scoring": "node --test conformance/provider-scoring.test.mjs examples/provider-scoring/model.test.mjs",
-    "verify:provider-scoring": "node examples/provider-scoring/verify.mjs"
+    "verify:provider-scoring": "node examples/provider-scoring/verify.mjs",
+    "emit:v2-mcap-source-mapping": "node conformance/emit-mcap-source-mapping.mjs",
+    "test:v2-mcap-source-mapping": "node --test conformance/mcap-source-mapping.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
