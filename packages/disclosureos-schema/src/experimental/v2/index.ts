@@ -91,3 +91,5 @@ export * from './satellite-raster-profile';
 export { VocabularyCatalogSchema, VocabularyCatalogTermSchema, VocabularyTermReferenceSchema, VocabularyBindingSchema, VocabularyBindingsSchema, VOCABULARY_CATALOG_SCHEMA_ID, VOCABULARY_TERM_REFERENCE_SCHEMA_ID, VOCABULARY_BINDINGS_SCHEMA_ID, vocabularyCatalogJsonSchema, vocabularyTermReferenceJsonSchema, vocabularyBindingsJsonSchema, parseVocabularyCatalog, parseVocabularyBindings } from '@disclosureos/records/experimental/v2';
 export type { VocabularyCatalog, VocabularyCatalogTerm, VocabularyTermReference, VocabularyBinding, VocabularyBindings } from '@disclosureos/records/experimental/v2';
 export * from './vocabulary-bindings';
+
+export * from "./mcap-source-mapping";
