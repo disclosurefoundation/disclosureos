@@ -12,5 +12,5 @@
     "cli"
   ],
   "zod": "4.4.3",
-  "status": "candidate-not-published"
+  "status": "published"
 }

@@ -1,11 +1,21 @@
 # Release process
 
-## Current publication hold
+## Current release and next milestone
 
-Further npm publication is paused until the remaining V2 implementation is complete.
-See [the consolidated release policy](releases/v2-completion.md). The coordinated `2.0.0-beta.4` candidate is now versioned for verification,
-not publication. The last published set remains `2.0.0-beta.3`.
-Merging and npm publication require separate authorization.
+`2.0.0-beta.4` is published for all seven foundation packages under the `beta`
+tag. Registry versions and tags were checked on 2026-10-19. Stable v1 `latest`
+tags remain unchanged.
+
+The next planned release is **Beta 5: initial data integrations**. Accumulate
+standard changes learned from the agreed ELDÆON, Speculor and Sky360 integration
+checkpoints, then review the gaps and prepare one coordinated release. See the
+[current policy](releases/v2-completion.md) and
+[Beta 5 scope](releases/beta5-integrations.md).
+
+Reviewed PRs may merge independently of publication when authorized. Merging does
+not publish npm packages. Keep publication and version preparation on hold until
+the integration milestone and release review are complete; publication requires
+separate approval. Portal dependencies stay on published Beta 4 in the meantime.
 
 ## Canonical ownership and current track
 
@@ -14,8 +24,9 @@ canonical standard source. Website/dashboard applications consume pinned release
 The reverse application exporter and subtree release workflow are retired.
 Never replace this repository with an application snapshot.
 
-The last published set is described by the [2.0.0-beta.3 release notes](releases/2.0.0-beta.3.md).
-Source changes after its release commit are unreleased.
+The published set is described by the [2.0.0-beta.4 release notes](releases/2.0.0-beta.4.md).
+Subsequent source additions, including the proposed MCAP source mapping, are
+unreleased.
 Seven foundation packages are in Changesets prerelease mode with tag `beta`.
 Package `publishConfig.tag` also names `beta`. This is not stable publication;
 existing npm `latest` tags continue to identify v1 releases.
@@ -31,9 +42,10 @@ according to Semantic Versioning; breaking experimental changes must be explicit
 described. During prerelease mode, `pnpm version-packages` advances prerelease
 versions and updates changelogs and dependency metadata. Review the result, update
 `docs/releases/beta-plan.json`, refresh the lockfile, and commit it together.
-The checked-in package versions describe the unpublished `2.0.0-beta.4`
-candidate. Its [release notes](releases/2.0.0-beta.4.md) identify the reviewed
-implementation baseline. Do not advance versions again for verification fixes.
+Checked-in package versions still name `2.0.0-beta.4`; that does not make new
+source changes part of the published package. Keep accumulating changesets until
+Beta 5 preparation is authorized. `docs/releases/beta-plan.json` retains the
+published Beta 4 packaging baseline; do not treat it as a Beta 5 release plan.
 
 Do not run `changeset pre exit` as routine cleanup. Stable release requires its
 own reviewed transition, removal of beta-only publish tags/checks, and completion
@@ -49,13 +61,14 @@ This builds and packs all seven packages, checks their exports, dependencies and
 committed schema bytes, and exercises a fresh npm consumer. The manifest is
 explicitly a `disclosureos-unpublished-source-candidate` with publication
 `not-prepared`. A source-mode manifest is verification-only even when its version matches the
-current candidate. Use the release-mode artifacts for any later authorized publication.
+published package. Use the release-mode artifacts for any later authorized publication.
 
 The source mode uses the exact committed HEAD as its schema baseline. It does
 not alter the historical beta plan or weaken the separate `release:check` /
 `release:pack` baseline. Before a publishable candidate can pass those release
 commands, version the coordinated set and update the release plan as described
-above. CI now runs release-mode packing against the frozen beta.4 baseline.
+above. The existing release-mode CI still exercises the frozen Beta 4 plan; passing it
+does not prepare Beta 5 for publication.
 
 ## Candidate preflight
 
@@ -86,10 +99,11 @@ repository metadata, license and two-factor/provenance requirements for the actu
 publisher. Do not print credentials or place tokens in release reports.
 
 For each exact, verified tarball in dependency order (records; observables and
-origins; instruments; scoring and schema; CLI):
+origins; instruments; scoring and schema; CLI), use the newly approved version.
+For example, only after Beta 5 preparation and publication approval:
 
 ```sh
-npm publish /absolute/candidate/artifacts/disclosureos-records-2.0.0-beta.4.tgz --tag beta --access public --ignore-scripts
+npm publish /absolute/candidate/artifacts/disclosureos-records-2.0.0-beta.5.tgz --tag beta --access public --ignore-scripts
 ```
 
 Here `--ignore-scripts` applies to an already built, publish-checked and installed
@@ -115,7 +129,9 @@ The stable schema artifacts retain their existing `https://os.disclosure.org/sch
 IDs. Their individual version numbers need not match package versions. Existing
 versioned URLs are immutable. `release:check` and both packing modes compare
 current identities against `docs/releases/published-schema-identities.json`, whose
-beta.3 hashes come from integrity-verified npm tarballs. After each publication,
+beta.3 hashes come from integrity-verified npm tarballs. Before Beta 5 preflight,
+add any missing Beta 4 identities from integrity-verified published tarballs.
+After each publication,
 append the new identities to that ledger; do not replace earlier entries. New content requires a new identity/path; do not
 replace historical files during a package version bump.
 

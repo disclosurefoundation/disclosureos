@@ -1,56 +1,34 @@
-# Consolidated V2 release policy
+# Coordinated V2 beta release policy
 
-Decision: 2026-09-10. Hold all further npm publication until the remainder of the
-V2 implementation is complete, so the next package publication is coordinated.
-The last published beta remains `2.0.0-beta.3`. Source review checkpoints continue;
-merging a checkpoint does not authorize an incremental npm publish.
+Updated 2026-10-19. Beta 4 is published for all seven foundation packages, and the
+portal consumes it. The original consolidated V2 implementation milestone is
+complete. [Beta 4's release record](2.0.0-beta.4.md) retains its implementation
+scope and historical preparation checklist.
 
-At implementation checkpoints, accumulate changesets without incremental version bumps.
-The coordinated beta.4 candidate is now prepared for release-mode verification;
-see [its scope and gates](2.0.0-beta.4.md). This supersedes version preparation
-being on hold, but preserves the holds on merges and npm publication.
-Continue builds, conformance, artifact inspection and source-based previews. Keep
-public portal dependencies on the published beta until the coordinated release is
-verified. Never serve an unreleased contract as though it is in that beta.
+## Next milestone: initial data integrations
 
-Source checkpoints completed (unreleased):
+Prepare Beta 5 after the agreed ELDÆON, Speculor and Sky360 integration checkpoints
+are complete and their findings have been reviewed together. See the
+[scope and acceptance criteria](beta5-integrations.md). This is a bounded
+integration release, not a requirement to obtain every future provider file or
+finish every possible instrument format.
 
-- C2c material identity, collection, physical custody and sample lineage.
-- C2c laboratory/preparation detail, quantitative and qualitative results, explicit
-  uncertainty/detection limits, attributable quality review and supplied-document
-  resolution. The existing collected-specimen profile retains its separate scope.
-- C2c full material portal preview, field accounting and worked examples, merged
-  in [dashboard #222](https://github.com/disclosurefoundation/dashboard/pull/222).
-  The public showcase now includes fictional material and laboratory examples.
-- [C3a connected cases](../c3/README.md): sourced chronology, groups, investigations
-  and responses with pinned observation scope and supplied-reference checks.
-- [C3b case assessments](../c3/assessments.md): exact case/entity/field and directed
-  relationship subjects, explicit inputs, independent reviewers and revisions,
-  and supplied case/observation snapshot resolution.
-- [C3c supplemental links](../c3/links.md): attributable associations to context,
-  entity and intake snapshots, exact observation scope and optional inventory
-  digest matching, with full research and raw-artifact validation kept separate.
+- Continue implementation, conformance checks, source-based previews and review.
+- Accumulate changesets without advancing package versions at each checkpoint.
+- Reviewed changes may merge when authorized; merge does not publish packages.
+- Keep npm publication on hold until the integration milestone and coordinated
+  release review are complete, followed by explicit publication approval.
+- Keep public portal dependencies on published Beta 4. Label proposed additions,
+  such as MCAP source references, separately from published package capabilities.
+- Provider reuse permission and protected/public delivery are separate decisions
+  from accepting a source change or publishing the standard.
 
-- [C3d public presentation](../c3/presentation.md): approved narrative, citations,
-  case findings and media selections with one public projection for rendering,
-  downloads, search and metadata. Public portal integration is implemented and
-  covered by the coordinated package/guide and browser verification.
+At closeout, review the changesets, prepare one coordinated package version and
+run package, conformance, isolated-consumer and portal checks. Preserve published
+schema identities and verify the exact release artifacts before publication.
+Then verify the registry release and update portal dependencies and availability
+language in a separate deployment.
 
-Implemented source areas awaiting coordinated publication:
-
-- Product source selection for array layouts, CSV partitions and declared video
-  frame intervals, with exact-byte evaluation and a shared reader.
-- Connected-case portal integration, server access/output enforcement, instrument
-  profiles, vocabulary references and provider scoring. See the beta.4 scope.
-
-The remaining release gates are schema identity preservation, dependency review,
-GitHub/npm entry-point clarity and refreshed candidate/guide receipts. After npm
-publication and registry verification, make a separate production update to package
-pins, inspector support, installation examples and public availability language.
-Preserve historical release notes and source receipts rather than rewriting them.
-
-At closeout, review the accumulated changesets, choose the coordinated package
-version, run the full release/consumer/portal checks, and publish that exact set.
-This policy defers publication, not engineering review or useful previews. It does
-not turn engineering completion into qualified scientific review or partner data
-acceptance. Any stable-release decision retains its own acceptance gates.
+Stable V2 remains a separate decision with its own acceptance gates. Completing
+an integration or a beta release does not establish scientific validity,
+calibration, provider endorsement or certification.
