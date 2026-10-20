@@ -76,6 +76,10 @@ export const ObservationMeasurementSchema = z.strictObject({
   id, quantity: text, value: MeasuredQuantitySchema, sourceRefs,
   frameRef: ref(['frame']).optional(), selection: ValueSelectionSchema.optional(),
 });
+/** Existing UTC strings remain valid. Missing processing time is explicit and
+ * never substitutes the record creation time or the source acquisition time. */
+export const ProcessingTimeSchema = z.union([instantString, timeEnvelope.options[2]]);
+export type ProcessingTime = z.infer<typeof ProcessingTimeSchema>;
 export const ProcessingActivitySchema = z.strictObject({
   id, methodRef: ref(['method']), methodVersion: text, performedBy: text, performedAt: instantString,
   inputRefs: z.array(valueRef).min(1), outputRefs: z.array(ref(['product'])).min(1),
@@ -98,8 +102,24 @@ export type ReferenceFrame = z.infer<typeof ReferenceFrameSchema>;
 export type FramedPosition = z.infer<typeof FramedPositionSchema>;
 export type ObservationAssertion = z.infer<typeof ObservationAssertionSchema>;
 export type ProcessingActivity = z.infer<typeof ProcessingActivitySchema>;
-export type ExperimentalObservation = z.infer<typeof ExperimentalObservationSchema>;
+// Published 0.1.0 and its embedded claim-history schemas remain byte-stable.
+export const ProcessingActivityV02Schema = ProcessingActivitySchema.extend({ performedAt: ProcessingTimeSchema });
+export const EXPERIMENTAL_OBSERVATION_V02_SCHEMA_ID = 'urn:disclosureos:experimental:observation:0.2.0';
+export const ExperimentalObservationV02Schema = ExperimentalObservationSchema.extend({
+  schemaVersion: z.literal('0.2.0'), processing: z.array(ProcessingActivityV02Schema),
+});
+export const SupportedExperimentalObservationSchema = z.discriminatedUnion('schemaVersion', [
+  ExperimentalObservationSchema, ExperimentalObservationV02Schema,
+]);
+export type ExperimentalObservationV01 = z.infer<typeof ExperimentalObservationSchema>;
+export type ExperimentalObservationV02 = z.infer<typeof ExperimentalObservationV02Schema>;
+export type ProcessingActivityV02 = z.infer<typeof ProcessingActivityV02Schema>;
+export type ExperimentalObservation = z.infer<typeof SupportedExperimentalObservationSchema>;
 
 export function experimentalObservationJsonSchema(): Record<string, unknown> {
   return { ...z.toJSONSchema(ExperimentalObservationSchema, { target: 'draft-2020-12' }), $id: EXPERIMENTAL_OBSERVATION_SCHEMA_ID };
+}
+
+export function experimentalObservationV02JsonSchema(): Record<string, unknown> {
+  return { ...z.toJSONSchema(ExperimentalObservationV02Schema, { target: 'draft-2020-12' }), $id: EXPERIMENTAL_OBSERVATION_V02_SCHEMA_ID };
 }
