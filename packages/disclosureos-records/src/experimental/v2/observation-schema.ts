@@ -76,8 +76,12 @@ export const ObservationMeasurementSchema = z.strictObject({
   id, quantity: text, value: MeasuredQuantitySchema, sourceRefs,
   frameRef: ref(['frame']).optional(), selection: ValueSelectionSchema.optional(),
 });
+/** Existing UTC strings remain valid. Missing processing time is explicit and
+ * never substitutes the record creation time or the source acquisition time. */
+export const ProcessingTimeSchema = z.union([instantString, timeEnvelope.options[2]]);
+export type ProcessingTime = z.infer<typeof ProcessingTimeSchema>;
 export const ProcessingActivitySchema = z.strictObject({
-  id, methodRef: ref(['method']), methodVersion: text, performedBy: text, performedAt: instantString,
+  id, methodRef: ref(['method']), methodVersion: text, performedBy: text, performedAt: ProcessingTimeSchema,
   inputRefs: z.array(valueRef).min(1), outputRefs: z.array(ref(['product'])).min(1),
 });
 

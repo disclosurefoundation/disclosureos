@@ -12,12 +12,12 @@ export type {
 export {
   QuantitativeUncertaintySchema, MeasuredQuantitySchema, ReferenceFrameSchema, FramedPositionSchema,
   ObservationTimeSchema, ObservationPositionSchema, ObservationSourceSchema, ObservationProductSchema,
-  ObservationMethodSchema, ObservationAssertionSchema, ObservationMeasurementSchema, ProcessingActivitySchema,
+  ObservationMethodSchema, ObservationAssertionSchema, ObservationMeasurementSchema, ProcessingTimeSchema, ProcessingActivitySchema,
   EXPERIMENTAL_OBSERVATION_SCHEMA_ID, ExperimentalObservationSchema, experimentalObservationJsonSchema,
 } from './observation-schema';
 export type {
   QuantitativeUncertainty, MeasuredQuantity, ReferenceFrame, FramedPosition,
-  ObservationAssertion, ProcessingActivity, ExperimentalObservation,
+  ObservationAssertion, ProcessingTime, ProcessingActivity, ExperimentalObservation,
 } from './observation-schema';
 export { parseExperimentalObservation } from './observation';
 export type { ObservationIssueCode, ObservationIssue, ObservationChecks, ObservationParseResult } from './observation';

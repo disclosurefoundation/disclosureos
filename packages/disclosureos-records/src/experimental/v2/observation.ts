@@ -186,7 +186,7 @@ export function parseExperimentalObservation(input: unknown): ObservationParseRe
   for (const [i, process] of data.processing.entries()) {
     const path = `/processing/${i}`;
     const owner = `process:${process.id}`;
-    instant(process.performedAt, `${path}/performedAt`);
+    if (typeof process.performedAt === 'string') instant(process.performedAt, `${path}/performedAt`);
     method(process.methodRef, process.methodVersion, path, owner);
     references(process.inputRefs, `${path}/inputRefs`, owner);
     // Outputs are reverse edges of product.generatedBy, not input dependencies.
