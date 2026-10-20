@@ -8,7 +8,9 @@ It is independent of a screen, chart palette or playback implementation.
 Import `ProductSourceSelectionSchema`, `evaluateProductSourceSelection` and
 `readProductSourceSelection` from `@disclosureos/schema/experimental/v2`.
 The JSON Schema is exported at `experimental/v2/product-source-selection/schema/0.1.0`.
-This addition is not published to npm yet.
+This contract ships in Beta 4. Relative encoded presentation timing is addressed
+by the optional [video-frame source mapping](video-frame-source-mapping.md), a
+Beta 5 candidate with a separate schema identity.
 
 ## Input and identity
 
@@ -70,7 +72,8 @@ verified bytes; use the evaluator at a trust boundary.
 Video evaluation verifies file identity and the bounds of the declared frame
 selection. It does not decode the media or confirm the declared codec, frame count
 or frame rate. `mediaDecoding` remains `not_checked`, including on successful
-results. Variable-frame-rate media needs a future timestamp-table profile.
+results. For relative or variable-rate presentation timing, use the separate video-frame
+source mapping candidate; this published layout remains unchanged.
 
 Physical authenticity, calibration, science, complete data coverage, video
 decoding, thermal/visible registration and common-object association remain
