@@ -1,4 +1,4 @@
-import { ExperimentalObservationSchema } from './observation-schema';
+import { SupportedExperimentalObservationSchema } from './observation-schema';
 import type { ExperimentalObservation, FramedPosition, MeasuredQuantity, QuantitativeUncertainty } from './observation-schema';
 import { checkTime, comparePoints } from './primitives';
 import type { EventTimeValue, PrimitiveIssue, ValueSelection } from './primitives';
@@ -31,7 +31,7 @@ const key = (ref: string) => ref.slice(ref.indexOf(':') + 1);
 
 /** Validates declared metadata and local lineage. Never fetches URLs or certifies profiles. */
 export function parseExperimentalObservation(input: unknown): ObservationParseResult {
-  const parsed = ExperimentalObservationSchema.safeParse(input);
+  const parsed = SupportedExperimentalObservationSchema.safeParse(input);
   if (!parsed.success) return {
     success: false, checks: { structural: 'failed', semantic: 'not_checked', profile: 'not_checked', external: 'not_checked' }, uncheckedRefs: [],
     issues: parsed.error.issues.map(issue => ({ code: 'STRUCT.VALUE', stage: 'structural', severity: 'error', pointer: pointer(issue.path), message: issue.message })),

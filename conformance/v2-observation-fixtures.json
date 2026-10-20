@@ -1268,6 +1268,13 @@
         {
           "op": "replace",
           "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
             "processing",
             0,
             "performedAt"
@@ -1286,6 +1293,13 @@
       "id": "processing-time-not_collected",
       "base": "integrated",
       "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
         {
           "op": "replace",
           "path": [
@@ -1310,6 +1324,13 @@
         {
           "op": "replace",
           "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
             "processing",
             0,
             "performedAt"
@@ -1331,6 +1352,13 @@
         {
           "op": "replace",
           "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
             "processing",
             0,
             "performedAt"
@@ -1346,6 +1374,13 @@
       "id": "processing-time-reject-empty",
       "base": "integrated",
       "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
         {
           "op": "replace",
           "path": [
@@ -1367,6 +1402,13 @@
         {
           "op": "replace",
           "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
             "processing",
             0,
             "performedAt"
@@ -1385,6 +1427,13 @@
       "id": "processing-time-reject-extra-value",
       "base": "integrated",
       "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
         {
           "op": "replace",
           "path": [
@@ -1410,6 +1459,13 @@
         {
           "op": "replace",
           "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
             "processing",
             0,
             "performedAt"
@@ -1429,6 +1485,13 @@
       "base": "integrated",
       "changes": [
         {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
           "op": "remove",
           "path": [
             "processing",
@@ -1445,6 +1508,13 @@
       "id": "unknown-processing-time-still-checks-method",
       "base": "integrated",
       "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
         {
           "op": "replace",
           "path": [
@@ -1477,6 +1547,13 @@
       "id": "unknown-processing-time-still-checks-cycle",
       "base": "integrated",
       "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
         {
           "op": "replace",
           "path": [
@@ -1514,6 +1591,13 @@
         {
           "op": "replace",
           "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
             "processing",
             0,
             "performedAt"
@@ -1539,6 +1623,29 @@
       "semantic": false,
       "codes": [
         "PROCESS.OUTPUT_MISMATCH"
+      ]
+    },
+    {
+      "id": "published-observation-rejects-unknown-processing-time",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "not_recorded"
+          }
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [
+        "STRUCT.VALUE"
       ]
     }
   ]

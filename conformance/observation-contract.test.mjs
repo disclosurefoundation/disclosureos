@@ -3,13 +3,15 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
-import { parseExperimentalObservation, experimentalObservationJsonSchema } from '../packages/disclosureos-records/dist/experimental/v2/index.js';
+import { parseExperimentalObservation, experimentalObservationJsonSchema, experimentalObservationV02JsonSchema } from '../packages/disclosureos-records/dist/experimental/v2/index.js';
 
 const corpus = JSON.parse(readFileSync(new URL('./v2-observation-fixtures.json', import.meta.url)));
 const artifact = JSON.parse(readFileSync(new URL('../packages/disclosureos-records/schema/experimental/observation-0.1.0.schema.json', import.meta.url)));
 const ajv = new Ajv2020({ strict: false, allErrors: true });
 addFormats(ajv);
 const validate = ajv.compile(artifact);
+const nextArtifact = JSON.parse(readFileSync(new URL('../packages/disclosureos-records/schema/experimental/observation-0.2.0.schema.json', import.meta.url)));
+const validateNext = ajv.compile(nextArtifact);
 
 function inputFor(fixture) {
   const input = structuredClone(corpus.bases[fixture.base]);
@@ -39,6 +41,7 @@ function inputFor(fixture) {
 
 test('Observation artifact matches the emitter and fixture IDs are unique', () => {
   assert.deepEqual(artifact, experimentalObservationJsonSchema());
+  assert.deepEqual(nextArtifact, experimentalObservationV02JsonSchema());
   assert.equal(new Set(corpus.cases.map(c => c.id)).size, corpus.cases.length);
 });
 
@@ -47,7 +50,8 @@ for (const fixture of corpus.cases) {
     const input = inputFor(fixture);
     const original = structuredClone(input);
     const result = parseExperimentalObservation(input);
-    assert.equal(validate(input), fixture.structural, JSON.stringify(validate.errors));
+    const validateVersion = input.schemaVersion === "0.2.0" ? validateNext : validate;
+    assert.equal(validateVersion(input), fixture.structural, JSON.stringify(validateVersion.errors));
     assert.equal(result.checks.structural, fixture.structural ? 'passed' : 'failed');
     assert.equal(result.checks.semantic, !fixture.structural ? 'not_checked' : fixture.semantic ? 'passed' : 'failed');
     assert.equal(result.checks.profile, 'not_checked');
