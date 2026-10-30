@@ -27,11 +27,20 @@ scope, review that scope explicitly rather than silently declaring it complete.
 - Optional relative video-frame source mapping: pins the original product, stream,
   presentation-order frame and exact rational timestamp without inventing UTC.
   Includes an external decoder boundary and full-index comparison.
+- Observation revision `0.2.0`: preserves an explicit unknown processing time
+  for derived products while retaining actor, method and input/output lineage.
+  The published `0.1.0` contract is unchanged.
 - Further additions only where integration findings justify a shared standard
   capability. Provider-specific decoding remains in adapters where appropriate.
 
 The MCAP document's `0.1.0` schema revision is separate from the planned package
 version `2.0.0-beta.5`. Neither identifier establishes that publication occurred.
+
+## Compatibility checkpoint
+
+See the [2026-10-31 compatibility review](beta5-compatibility-review.md) for the
+verified source-mapping path, snapshot revision checks, and the separate
+claim/evaluation extension still to scope. This checkpoint is not release approval.
 
 ## Closeout and release
 

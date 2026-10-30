@@ -100,7 +100,11 @@ export async function evaluateCaseRecord(
       continue;
     }
     const observation = parseExperimentalObservation(raw);
-    if (!observation.success) {
+    if (
+      !observation.success ||
+      ref.schemaId !==
+        `urn:disclosureos:experimental:observation:${observation.data.schemaVersion}`
+    ) {
       problem(
         "SNAPSHOT.CONTRACT",
         p,
