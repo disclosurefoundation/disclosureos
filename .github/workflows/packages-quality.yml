@@ -146,6 +146,7 @@ jobs:
       - run: pnpm test:v2-primitives
       - run: pnpm test:v2-observation
       - run: pnpm test:beta5-compatibility
+      - run: pnpm test:beta5-scope
       - run: pnpm test:v2-review-evaluation
       - run: pnpm test:v2-claims
       - run: pnpm test:v2-documentation
