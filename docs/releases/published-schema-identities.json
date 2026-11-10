@@ -218,6 +218,359 @@
       "version": "2.0.0-beta.3",
       "integrity": "sha512-2et0tz5/M0RKNweDED9MmGwLQLNt98Asw0S+lyhyEohA2nEx8HObpEVFihaf4C3/UwdHHk/bdZ+6sleSkx6lvA==",
       "schemas": []
+    },
+    {
+      "name": "@disclosureos/records",
+      "version": "2.0.0-beta.4",
+      "integrity": "sha512-LzwEQvQbABmlgfWzZDTNWtz4jCl/QiDLXMvbyb+j//Ryq//FXxb5gcu6fOXvwHzHMXvvQmapx/vqQD6XzVDV1g==",
+      "schemas": [
+        {
+          "path": "schema/experimental/case-claim-history-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:case-claim-history:0.1.0",
+          "sha256": "d6e04eaad6afbf9bd2453dcfc439b4ce88fda3866fe645e367ae2d2c7caec52c"
+        },
+        {
+          "path": "schema/experimental/case-links-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:case-links:0.1.0",
+          "sha256": "ed10c5a4b7eda3f7375ea1ea05aaa482f5bd98bc011b45fbe30769dcb7cd6f15"
+        },
+        {
+          "path": "schema/experimental/case-record-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:case-record:0.1.0",
+          "sha256": "82decf156aef89b0575f4c588a2881e2b7d0e4850753c6fd24b640b3eff2140c"
+        },
+        {
+          "path": "schema/experimental/claim-history-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:claim-history:0.1.0",
+          "sha256": "6bf70fe9f70e964dfdc28e1da246f6f514287cdddb86c944103c119320cda278"
+        },
+        {
+          "path": "schema/experimental/claim-history-0.2.0.schema.json",
+          "id": "urn:disclosureos:experimental:claim-history:0.2.0",
+          "sha256": "2f55c87b5f788b78909e80066cbb410524188abe2cad5df859b11417f412fb42"
+        },
+        {
+          "path": "schema/experimental/claim-history-0.3.0.schema.json",
+          "id": "urn:disclosureos:experimental:claim-history:0.3.0",
+          "sha256": "b11c5b4cf1086d2a55a3f196de3d46fc01f1e52dbdae633e9c928d049c114d5a"
+        },
+        {
+          "path": "schema/experimental/claim-history-0.4.0.schema.json",
+          "id": "urn:disclosureos:experimental:claim-history:0.4.0",
+          "sha256": "f5721e25182ac354280ef0843650f8ce30d7ee7b5ad0407d1e3729e157e402b1"
+        },
+        {
+          "path": "schema/experimental/claim-history-0.5.0.schema.json",
+          "id": "urn:disclosureos:experimental:claim-history:0.5.0",
+          "sha256": "de09f6e7236de8a332ca2f7c45df18ef71f728e917c9acccece51e1064465e74"
+        },
+        {
+          "path": "schema/experimental/observation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:observation:0.1.0",
+          "sha256": "5902ea8cacad11bce1751e3beedf9429061189c295c3c121cb737893b1c38cd5"
+        },
+        {
+          "path": "schema/experimental/observation-context-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:observation-context:0.1.0",
+          "sha256": "154bcc1621450380064498579322b52e86d0593af545afe75a3476c841bb4045"
+        },
+        {
+          "path": "schema/experimental/research-entities-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:research-entities:0.1.0",
+          "sha256": "45b27c0754cc7b3a11d8351170b7e3a78ed9ae2ae6cf14e851ff5b0bf75c2309"
+        },
+        {
+          "path": "schema/experimental/research-entities-0.2.0.schema.json",
+          "id": "urn:disclosureos:experimental:research-entities:0.2.0",
+          "sha256": "0c63d00e5feffb2ec2659cc04fb5010266195fad6b4e9e73c933b3bc7b657d69"
+        },
+        {
+          "path": "schema/experimental/research-entities-0.3.0.schema.json",
+          "id": "urn:disclosureos:experimental:research-entities:0.3.0",
+          "sha256": "e6e42d4cf843a8d080cb4b3455e720978af1b19ba5c320bc0e0953052b72c93a"
+        },
+        {
+          "path": "schema/experimental/research-entities-0.4.0.schema.json",
+          "id": "urn:disclosureos:experimental:research-entities:0.4.0",
+          "sha256": "a493af6a4179cd7dadbdedf0699b3537712b3dfa005fd4418b82e4c8a7f850da"
+        },
+        {
+          "path": "schema/experimental/v2-primitives-0.2.0.schema.json",
+          "id": "urn:disclosureos:experimental:records-v2-primitives:0.2.0",
+          "sha256": "b5ae911fb3d2b908f690e4d0b42bf78c20f571664b8e0fc23f6bd58bc70fffe4"
+        },
+        {
+          "path": "schema/experimental/v2-primitives.schema.json",
+          "id": "urn:disclosureos:experimental:records-v2-primitives:0.1.0",
+          "sha256": "ac8495258b7d8f9e394b40d5819a1b59b8a4d5544402d674de86e81bf19f2ee3"
+        },
+        {
+          "path": "schema/experimental/vocabulary-bindings-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:vocabulary-bindings:0.1.0",
+          "sha256": "e0568c9311b06ca9baffaf09d08a34e67b20f13f8144789805045d5e2efaf373"
+        },
+        {
+          "path": "schema/experimental/vocabulary-catalog-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:vocabulary-catalog:0.1.0",
+          "sha256": "dc3b6f7b9d2c4580d8a718b911bfd21fd3dc883e399bf13386b19fccf018974b"
+        },
+        {
+          "path": "schema/experimental/vocabulary-term-reference-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:vocabulary-term-reference:0.1.0",
+          "sha256": "a2ddef0310d6442354cef12a60b39d83f8913017d9233820f2e51d9c7d0521c1"
+        },
+        {
+          "path": "schema/records.schema.json",
+          "id": "https://os.disclosure.org/schema/records/1.1.0/observation.json",
+          "sha256": "4d4819d4336c5702ad20758e1c8886caf4fb36f633d3dfeb97fad5e879998679"
+        }
+      ]
+    },
+    {
+      "name": "@disclosureos/observables",
+      "version": "2.0.0-beta.4",
+      "integrity": "sha512-4b6O2zPHtGdLPbuEoy8+Uxf9lNyBABdDKvpkvpYWbxm08Weco+pT2Vfl7T/RO1DZ2uWZo1riCbU2Zc6ssFOzDQ==",
+      "schemas": [
+        {
+          "path": "schema/observables.schema.json",
+          "id": "https://os.disclosure.org/schema/observables/3.0.0/observable-assessments.json",
+          "sha256": "2813e8a9d17ac8b6bcb745399b159e5f296b6c46bb7662e8e8bd4297b24a7dd9"
+        }
+      ]
+    },
+    {
+      "name": "@disclosureos/origins",
+      "version": "2.0.0-beta.4",
+      "integrity": "sha512-rSNaOoG6I0WPrZ222JbISFW07NPXdXqze1Z2Fv+qtfCrU4Mcu0vKWze8lohSxID4jZsGN65C5MhLioYiySup0Q==",
+      "schemas": [
+        {
+          "path": "schema/origins.schema.json",
+          "id": "https://os.disclosure.org/schema/origins/2.0.0/origin-classification.json",
+          "sha256": "9a543602fc5f2d9911e466dac2b63cba74ebbffe2be2c8f8cd158493c52ba8bd"
+        }
+      ]
+    },
+    {
+      "name": "@disclosureos/instruments",
+      "version": "2.0.0-beta.4",
+      "integrity": "sha512-guIzlNG3ZNBLTSJPMDtenqtTvWLHQ6SOrG8OuNcnttn6nDwmyZoUB7XVa3B8/1wFDj4wjVieAQJv3umKqwTkwg==",
+      "schemas": [
+        {
+          "path": "schema/experimental/acquisition-context-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:acquisition-context:0.1.0",
+          "sha256": "7a69552a6f4208dd96a5dda8261f73bde1fdc2b1f585ecc9ca0711fa08df73f8"
+        },
+        {
+          "path": "schema/sensor-manifest.schema.json",
+          "id": "https://os.disclosure.org/schema/instruments/1.0.0/sensor-manifest.json",
+          "sha256": "e9f86e4ddcf963de208de4031b12576b29369852480c23945f8d2a909620b3ee"
+        }
+      ]
+    },
+    {
+      "name": "@disclosureos/scoring",
+      "version": "2.0.0-beta.4",
+      "integrity": "sha512-yZCZIJJR43oXrx0KlpWhSmLj/XPXvVuD2BBxhWpXwFqGQYMWC9oqujzuR80dJM7+mmvgUetY1eWcdBThvJQhFw==",
+      "schemas": [
+        {
+          "path": "schema/experimental/assessment-summary-evaluation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:assessment-summary-evaluation:0.1.0",
+          "sha256": "2081d87d05b00b98ea46cbfa464cecc09885ecd984a079b2d2fb01ecef6bc502"
+        },
+        {
+          "path": "schema/experimental/provider-score-policy-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:provider-score-policy:0.1.0",
+          "sha256": "dd1ec942d9d98df0a65c2487f9fa64e14799adfd8b092b2b24ef7aeaf2996f39"
+        },
+        {
+          "path": "schema/experimental/provider-score-result-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:provider-score-result:0.1.0",
+          "sha256": "c7e405332c5b5a0ba8086e5b4da8408728f0d983ecd8fc68cb697d7a4309b3d6"
+        },
+        {
+          "path": "schema/scoring.schema.json",
+          "id": "https://os.disclosure.org/schema/scoring/2.0.0/scoring.json",
+          "sha256": "20c63c1545d78ee3dfb2500928a126ffa6358da5b9c2bd3128e4815492681864"
+        }
+      ]
+    },
+    {
+      "name": "@disclosureos/schema",
+      "version": "2.0.0-beta.4",
+      "integrity": "sha512-J6WSM4VvxlUhulvHjL1Sw2WbzpfxZHGYD8UHbv1l+a+gcwWH+8PcCiQ7alvLrA0bTpMDJADgrpclxPziDa+/dw==",
+      "schemas": [
+        {
+          "path": "schema/enriched-observation.schema.json",
+          "id": "https://os.disclosure.org/schema/schema/2.0.0/enriched-observation.json",
+          "sha256": "004632921c62127ff8ee72f951a21ffe17c03703ca0b06aeafd010f80ec5598d"
+        },
+        {
+          "path": "schema/experimental/acquisition-bindings-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:acquisition-bindings:0.1.0",
+          "sha256": "f1245e7e8824e3a7cd0c82a4b74601b291afda1e0a90d5716e3d5630a069699a"
+        },
+        {
+          "path": "schema/experimental/archival-case-presentation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:archival-case-presentation:0.1.0",
+          "sha256": "5a646afe60e64d5b96ccaf5a84e89256cbb686c2a987db25ccf6d2780ae2c309"
+        },
+        {
+          "path": "schema/experimental/case-presentation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:case-presentation:0.1.0",
+          "sha256": "bea1766cafa10a7464f19ff1e6bb2bac76310ed121171d4fb3b17f900125f9d2"
+        },
+        {
+          "path": "schema/experimental/context-case-presentation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:context-case-presentation:0.1.0",
+          "sha256": "21683e964a4c611377fb09a4ed7ab8f99663ecfe4c56c6a29b1382b48c0b619e"
+        },
+        {
+          "path": "schema/experimental/dataset-release-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:dataset-release:0.1.0",
+          "sha256": "c36471af4be23571ff1588efafb2968555e0a28bc0d6c8b59d28558d57a5dce5"
+        },
+        {
+          "path": "schema/experimental/historical-testimony-selection-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:historical-testimony-selection:0.1.0",
+          "sha256": "c6f6ebef6751229b9921025af8f07ecfe15d05d670b54418d259eb55add2a923"
+        },
+        {
+          "path": "schema/experimental/instrument-research-review-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:instrument-research-review:0.1.0",
+          "sha256": "4215b932b28c290bff692867947518230b822171f26bf8339b97be455db0c417"
+        },
+        {
+          "path": "schema/experimental/lidar-point-cloud-profile-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:lidar-point-cloud-profile:0.1.0",
+          "sha256": "5108326d6ccdc410ddd0dc3c2413696b4adefabe795ff35fdd739d5d99b8bf1f"
+        },
+        {
+          "path": "schema/experimental/material-case-presentation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:material-case-presentation:0.1.0",
+          "sha256": "0dc258be9d4f1bc73889aff4b192d06823e398c3bd29e1ac4d2d173e2d871fc4"
+        },
+        {
+          "path": "schema/experimental/measurement-bindings-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:measurement-bindings:0.1.0",
+          "sha256": "816c6e5b3480b91b0b893fc5227ebfe82c7b1471ffc81098565cf1e9c60ed33f"
+        },
+        {
+          "path": "schema/experimental/migration-compatibility-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:migration-compatibility:0.1.0",
+          "sha256": "fb7dd05537a80fc272a4f01263a0f986125f3c0099f9e02c2fa38d5d13aa3f2e"
+        },
+        {
+          "path": "schema/experimental/migration-legacy-scores-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:migration-legacy-scores:0.1.0",
+          "sha256": "46371db7699e795d29ddc70bc8d31ffcb74b23b1ea383bfb00b28f0a202ae57c"
+        },
+        {
+          "path": "schema/experimental/migration-resolution-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:migration-resolution:0.1.0",
+          "sha256": "9c63c87de746c04371ef0e84f959f0af242bfe7b4e67d3e7638cb2bb4804f9e3"
+        },
+        {
+          "path": "schema/experimental/migration-review-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:migration-review:0.1.0",
+          "sha256": "bad09e64c75ab8afbeb0bf96b473f24aafbbb5179c35374a239c06db472f6e12"
+        },
+        {
+          "path": "schema/experimental/passive-sonar-profile-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:passive-sonar-profile:0.1.0",
+          "sha256": "719e1e11bf9459fa556539049a7b1175dfd2f4ae7b43d1a50ae04fd7642506f9"
+        },
+        {
+          "path": "schema/experimental/physical-sample-selection-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:physical-sample-selection:0.1.0",
+          "sha256": "536fc0c8fe1ab2d575274abaa4823f8324a8abcf938b5993225fd1e8af1ab1fc"
+        },
+        {
+          "path": "schema/experimental/product-source-selection-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:product-source-selection:0.1.0",
+          "sha256": "61121d5ba97e50e95142949ab2ed1a2badee4e57c22f8c3e7d39172989383f28"
+        },
+        {
+          "path": "schema/experimental/profile-evaluation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:profile-evaluation:0.1.0",
+          "sha256": "29b0af4a047ba13ba9ba33a6ad5b206def1cfb494ca969bf609f89d73c82bf70"
+        },
+        {
+          "path": "schema/experimental/profile-preparation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:profile-preparation:0.1.0",
+          "sha256": "1a3d627e0b4516c5f30391cf80db088a994f94efe1ebe05ed5727c8c445ddcc0"
+        },
+        {
+          "path": "schema/experimental/radar-profile-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:radar-profile:0.1.0",
+          "sha256": "d5fba4cfd2da1bdbb8a323a5fcb0e1e237ee3dca845d7358e8926ff9834966bd"
+        },
+        {
+          "path": "schema/experimental/released-document-selection-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:released-document-selection:0.1.0",
+          "sha256": "0aa7c0c2db417c6567b9841a63a6ab6ecf2995577dab90599e6c94e9a5d4c829"
+        },
+        {
+          "path": "schema/experimental/reproduction-packet-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:reproduction-packet:0.1.0",
+          "sha256": "5efb176248917441e559b116ab8ed215504202a317c22b9afde4bfefcfe40c23"
+        },
+        {
+          "path": "schema/experimental/research-evaluation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:research-evaluation:0.1.0",
+          "sha256": "b6a4b15f638f5d865009a682dae4f858222b2e30227513cb90a248a4ca2b207f"
+        },
+        {
+          "path": "schema/experimental/satellite-raster-profile-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:satellite-raster-profile:0.1.0",
+          "sha256": "d9dc3432c1c61ae0dffebcf6579243657bb7ec15c0b80f5b1a95da3c01331fb5"
+        },
+        {
+          "path": "schema/experimental/secondary-radar-profile-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:secondary-radar-profile:0.1.0",
+          "sha256": "cd5743478d8bd6e3e64ae9c5c67ac3f5d61f6c3dae4b20487df22d4fcca0cc74"
+        },
+        {
+          "path": "schema/experimental/sonar-profile-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:sonar-profile:0.1.0",
+          "sha256": "c8cc8b7f43106b87df7ec3dd3dce6fdbaf1d55b51bd48772cdc189109f557789"
+        },
+        {
+          "path": "schema/experimental/source-intake-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:source-intake:0.1.0",
+          "sha256": "a03125261aa0af0e6e883730bafc63412ea7740ed8a8b249009b4b506916ff13"
+        },
+        {
+          "path": "schema/experimental/steered-radar-profile-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:steered-radar-profile:0.1.0",
+          "sha256": "2caa2195d113ac12d22c008e460e3b15df2b4031518b56939e4343b56e245bc2"
+        },
+        {
+          "path": "schema/experimental/testimony-case-presentation-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:testimony-case-presentation:0.1.0",
+          "sha256": "a437843d1748e57c46181d6669eb7eceab7e098bc59b5d8b2d7dbe548832e4da"
+        },
+        {
+          "path": "schema/experimental/vocabulary-bindings-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:vocabulary-bindings:0.1.0",
+          "sha256": "e0568c9311b06ca9baffaf09d08a34e67b20f13f8144789805045d5e2efaf373"
+        },
+        {
+          "path": "schema/experimental/vocabulary-catalog-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:vocabulary-catalog:0.1.0",
+          "sha256": "dc3b6f7b9d2c4580d8a718b911bfd21fd3dc883e399bf13386b19fccf018974b"
+        },
+        {
+          "path": "schema/experimental/vocabulary-term-reference-0.1.0.schema.json",
+          "id": "urn:disclosureos:experimental:vocabulary-term-reference:0.1.0",
+          "sha256": "a2ddef0310d6442354cef12a60b39d83f8913017d9233820f2e51d9c7d0521c1"
+        }
+      ]
+    },
+    {
+      "name": "@disclosureos/cli",
+      "version": "2.0.0-beta.4",
+      "integrity": "sha512-ujCLsngIeZ6sL+Nx5GQr7TRU6jBVgfDJModY8iiK/yQpXOqDosRrduMsMlmL7er+2fUt/MHmHWNtljja8DzWaA==",
+      "schemas": []
     }
   ]
 }

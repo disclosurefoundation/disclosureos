@@ -54,7 +54,7 @@ versioned observation/case evaluation checkpoint. This checkpoint is not release
    Review duplication, source fidelity, versioned schemas and portable consumption.
 3. When release preparation is authorized, advance the coordinated seven-package
    set, update the release plan and changelogs, and preserve existing schema IDs.
-   Include Beta 4 in the published-identity baseline using verified registry bytes.
+   The published-identity baseline already includes verified Beta 4 registry bytes.
 4. Run the full package/conformance suite, pack and install the exact artifacts in
    an isolated consumer, and verify portal examples against those artifacts.
 5. Obtain publication approval, publish the verified set under `beta`, and verify
@@ -64,3 +64,6 @@ versioned observation/case evaluation checkpoint. This checkpoint is not release
 
 Data reuse approval and public asset delivery remain independent of npm release.
 Do not bundle provider recordings into standard packages as part of this plan.
+
+The [Beta 5 scope closeout](beta5-scope.md) defines the included capabilities,
+retained specialized-review boundaries and public-display policy.

@@ -94,20 +94,18 @@ not version packages or authorize publication.
 
 ## Remaining release work
 
-1. Review the completed observation/case evaluation scope above and confirm which
-   additional evaluation or public-presentation surfaces, if any, are required
-   for this release. Existing unsupported paths remain explicit.
-2. Reconcile provider feedback and record remaining intake/context limitations.
-   ELDÆON's provider corrections include DIONYSUS base-site radar, bistatic
-   range/range-rate, corrected tube identities and stale-link interval, RF
-   placeholders, polling limits and magnetic units awaiting confirmation.
-3. Complete the agreed contract review, including the published-schema identity
-   baseline for Beta 4, before authorizing coordinated version preparation.
-4. Prepare all seven packages, then run full conformance, exact-tarball consumer
-   checks and portal example validation against the candidate artifacts.
+1. The [scope closeout](beta5-scope.md) now defines specialized-review and
+   public-display boundaries. Existing paths remain supported without implicitly
+   accepting the new revisions.
+2. Provider corrections and remaining intake limitations are retained. ELDÆON's
+   magnetic units still await confirmation; permissions remain separate gates.
+3. The published identity baseline includes verified Beta 4 registry schemas.
+   Verify the portal against the exact unpublished candidate artifacts.
+4. After coordinated version preparation is authorized, repeat full conformance,
+   exact-tarball consumer checks and portal validation on the final versioned set.
 5. Review release approval separately from provider-media access and portal
-   deployment approval. Publish only after explicit authorization; update portal
-   package pins and availability wording after registry verification.
+   deployment. Publish only after explicit authorization; update portal pins and
+   availability wording after registry verification.
 
 Broader adapters, missing mission media and current-station Sky360 acquisition
 formats require their own scoped follow-ups. They are not implied by these
