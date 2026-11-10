@@ -140,7 +140,8 @@
     "emit:v2-mcap-source-mapping": "node conformance/emit-mcap-source-mapping.mjs",
     "test:v2-mcap-source-mapping": "node --test conformance/mcap-source-mapping.test.mjs",
     "emit:v2-video-frame-source-mapping": "node conformance/emit-video-frame-source-mapping.mjs",
-    "test:v2-video-frame-source-mapping": "node --test conformance/video-frame-source-mapping.test.mjs"
+    "test:v2-video-frame-source-mapping": "node --test conformance/video-frame-source-mapping.test.mjs",
+    "test:beta5-compatibility": "node --test conformance/beta5-compatibility.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
