@@ -1,6 +1,7 @@
 # Beta 5: initial data integrations
 
-Decision: 2026-10-19. Planned, not versioned or published.
+Initial decision: 2026-10-19. Updated 2026-11-10: scope closed and coordinated
+Beta 5 versions prepared for verification. Merges and publication remain on hold.
 
 Beta 5 will consolidate standard changes learned from ELDÆON, Speculor and Sky360.
 The published baseline remains `2.0.0-beta.4`. Reviewed source changes can merge
@@ -19,7 +20,7 @@ values and timestamps, missing context, independent recovery results and any
 standard changes required. If a source or provider dependency blocks the agreed
 scope, review that scope explicitly rather than silently declaring it complete.
 
-## Standard changes under review
+## Standard changes in the candidate
 
 - Optional MCAP source-reference mapping: identifies original recording bytes,
   channels, schemas, exact messages and selected payload fields. It accompanies
@@ -35,8 +36,8 @@ scope, review that scope explicitly rather than silently declaring it complete.
   These support Observation `0.2.0` without changing existing schema identities.
   Specialized reviews and public projections retain their existing version
   boundaries; see [the evaluation checkpoint](../experimental/observation-review.md).
-- Further additions only where integration findings justify a shared standard
-  capability. Provider-specific decoding remains in adapters where appropriate.
+- Provider-specific decoding remains in adapters. Further scope additions require
+  another checkpoint; this candidate adds no provider recordings.
 
 The MCAP document's `0.1.0` schema revision is separate from the planned package
 version `2.0.0-beta.5`. Neither identifier establishes that publication occurred.

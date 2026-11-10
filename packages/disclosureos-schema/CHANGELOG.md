@@ -1,5 +1,39 @@
 # Changelog
 
+## 2.0.0-beta.5
+
+### Minor Changes
+
+- 203fc5f: Add an optional MCAP source mapping that pins original recordings, channel and
+  schema identity, exact message locations and selected payload fields. Includes
+  portable JSON Schema and an evaluator with a caller-supplied MCAP reader/decoder.
+  Existing Beta 4 document contracts remain unchanged.
+- 157de52: Add optional video-frame source mappings with exact signed presentation timestamps,
+  stream and frame identity, a portable schema and an evaluator using a caller-supplied
+  frame indexer. Capture time is not inferred. Existing published schemas stay unchanged.
+- 1076124: Add observation revision 0.2.0 with an explicit unknown processing time while
+  preserving the published 0.1.0 schema and exact UTC strings.
+  Derived products retain their method, actor and input/output relationships without
+  inventing a date. The field is still required and all lineage validation remains
+  active. Consumers should narrow the processing-time union before reading a UTC
+  instant. The published Observation 0.1.0 contract remains unchanged.
+- 7cb0cef: Add explicit observation claim-history 0.6.0 and case/case-claim-history 0.2.0 contracts for reviewing Observation 0.2.0 while preserving unknown processing times. Add offline documentary and snapshot evaluation with deterministic, replayable claim-review receipts. Existing schema identities, specialized review envelopes and public presentation contracts remain unchanged.
+
+### Patch Changes
+
+- Prepare the coordinated Beta 5 package set for the integration source references and unknown-processing-time review path. Keep existing published schema identities, specialized review envelopes and public presentation contracts unchanged. Packages without new APIs advance together so consumers can install and verify one compatible release set.
+- 403ec35: Reject a case snapshot whose Observation revision differs from its declared
+  schema reference, even when its document ID and byte digest match. This closes a
+  consumer compatibility gap introduced by support for Observation 0.2.0 without
+  changing published schema identities or upgrading existing claim envelopes.
+- Updated dependencies
+- Updated dependencies [1076124]
+- Updated dependencies [7cb0cef]
+  - @disclosureos/records@2.0.0-beta.5
+  - @disclosureos/observables@2.0.0-beta.5
+  - @disclosureos/origins@2.0.0-beta.5
+  - @disclosureos/instruments@2.0.0-beta.5
+
 ## 2.0.0-beta.4
 
 ### Major Changes

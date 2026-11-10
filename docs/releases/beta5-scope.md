@@ -1,7 +1,8 @@
 # Beta 5 scope closeout
 
-Decision checkpoint: 2026-11-10. Source candidate only. Merges, coordinated
-version preparation and npm publication remain on hold.
+Decision checkpoint: 2026-11-10. Scope is closed and coordinated Beta 5 version
+preparation is authorized. Merges and npm publication remain on hold. See the
+[versioned candidate](2.0.0-beta.5.md).
 
 Beta 5 consolidates capabilities exercised by the ELDÆON, Speculor and Sky360
 integrations. Package versioning and schema revision are separate: published
@@ -67,10 +68,9 @@ exports, inspector revision boundaries, app tests and production build. Retain
 candidate commit and artifact hashes with the results. Keep public dependency pins
 on published Beta 4 until a release is approved and verified in the registry.
 
-Source-candidate success is not final Beta 5 release approval. After explicit
-permission to prepare the coordinated seven-package version, repeat conformance,
-consumer and portal checks on those final bytes. Publication and production
-changes need their own authorization.
+Source-candidate success is not final Beta 5 release approval. Repeat conformance,
+consumer and portal checks on the coordinated seven-package candidate. Publication
+and production changes need their own authorization.
 
 ## Follow-ups outside this release
 
