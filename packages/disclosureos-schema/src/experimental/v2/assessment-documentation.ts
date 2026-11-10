@@ -1,5 +1,5 @@
-import { parseExperimentalClaimHistory } from '@disclosureos/records/experimental/v2';
-import type { ClaimHistoryIssueCode, ExperimentalClaimHistory, HistoricalClaim } from '@disclosureos/records/experimental/v2';
+import { parseExperimentalClaimHistory, parseObservationClaimHistory } from '@disclosureos/records/experimental/v2';
+import type { ClaimHistoryIssueCode, ExperimentalObservation, HistoricalClaim } from '@disclosureos/records/experimental/v2';
 
 export const ASSESSMENT_DOCUMENTATION_PROFILE = Object.freeze({
   id: 'urn:disclosureos:experimental:profile:assessment-documentation', version: '0.1.0', scope: 'documentary_only',
@@ -32,7 +32,7 @@ export interface DocumentationResult {
   assessments: AssessmentDocumentation[]; issues: DocumentationIssue[];
 }
 
-type Observation = ExperimentalClaimHistory['observation'];
+type Observation = ExperimentalObservation;
 function inventories(observation: Observation, claims: HistoricalClaim[]) {
   return {
     sources: new Map(observation.sources.map((v, i) => [`source:${v.id}`, { value: v, pointer: `/observation/sources/${i}` }])),
@@ -48,9 +48,28 @@ function inventories(observation: Observation, claims: HistoricalClaim[]) {
 
 /** Documentary preflight plus local byte integrity, not scientific or locator-content verification. */
 export async function evaluateAssessmentDocumentation(input: unknown, options: DocumentationOptions = {}): Promise<DocumentationResult> {
-  const parsed = parseExperimentalClaimHistory(input);
-  const result: DocumentationResult = {
-    success: false, profile: ASSESSMENT_DOCUMENTATION_PROFILE, contract: parsed.contract,
+  return evaluateParsedDocumentation(parseExperimentalClaimHistory(input), options, ASSESSMENT_DOCUMENTATION_PROFILE);
+}
+
+export const OBSERVATION_CLAIM_DOCUMENTATION_PROFILE = Object.freeze({
+  id: 'urn:disclosureos:experimental:profile:assessment-documentation', version: '0.2.0', scope: 'documentary_only',
+} as const);
+
+export async function evaluateObservationClaimDocumentation(input: unknown, options: DocumentationOptions = {}) {
+  const parsed = parseObservationClaimHistory(input);
+  const result = await evaluateParsedDocumentation(parsed, options, OBSERVATION_CLAIM_DOCUMENTATION_PROFILE);
+  return { ...result, processingChronology: 'not_checked' as const,
+    unknownProcessingTimes: parsed.success ? parsed.data.observation.processing
+      .filter(p => typeof p.performedAt !== 'string').map(p => ({ processRef: `process:${p.id}`, performedAt: p.performedAt })) : [],
+  };
+}
+
+async function evaluateParsedDocumentation<
+  T extends ReturnType<typeof parseExperimentalClaimHistory> | ReturnType<typeof parseObservationClaimHistory>,
+  P extends typeof ASSESSMENT_DOCUMENTATION_PROFILE | typeof OBSERVATION_CLAIM_DOCUMENTATION_PROFILE,
+>(parsed: T, options: DocumentationOptions, profile: P) {
+  const result: Omit<DocumentationResult, 'contract' | 'profile'> & { contract: T['contract']; profile: P } = {
+    success: false, profile, contract: parsed.contract,
     checks: { ...parsed.checks, profile: 'not_checked' }, scientific: 'not_checked', locatorContents: 'not_checked', methodExecution: 'not_checked',
     assessments: [], issues: [...parsed.issues],
   };

@@ -141,7 +141,9 @@
     "test:v2-mcap-source-mapping": "node --test conformance/mcap-source-mapping.test.mjs",
     "emit:v2-video-frame-source-mapping": "node conformance/emit-video-frame-source-mapping.mjs",
     "test:v2-video-frame-source-mapping": "node --test conformance/video-frame-source-mapping.test.mjs",
-    "test:beta5-compatibility": "node --test conformance/beta5-compatibility.test.mjs"
+    "test:beta5-compatibility": "node --test conformance/beta5-compatibility.test.mjs",
+    "emit:v2-review-evaluation": "node conformance/emit-review-evaluation.mjs",
+    "test:v2-review-evaluation": "node --test conformance/review-evaluation.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

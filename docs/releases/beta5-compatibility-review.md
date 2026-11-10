@@ -53,13 +53,18 @@ when its document ID and digest matched. The resolver now checks the declared
 schema revision as well. A correct hash does not authorize a different schema.
 This keeps existing snapshot identities and schema artifacts unchanged.
 
-**Open next checkpoint:** define the claim/case/evaluation path for Observation
-`0.2.0`. This needs explicit new versioned contracts and review of linked
-snapshots, evaluation receipts and public projections. It is not solved by
-loosening an existing schema under its published ID. No automatic downgrade,
-placeholder processing date or implicit scientific assessment is appropriate.
-Whether that extension enters Beta 5 remains a release-scope decision; this
-checkpoint does not silently defer it or declare the overall milestone complete.
+**Evaluation checkpoint, 2026-11-10:** the explicitly versioned
+[observation and case review path](../experimental/observation-review.md) now
+supports Observation `0.2.0`. Observation-level claim history `0.6.0`, case record
+`0.2.0` and case claim history `0.2.0` preserve unknown processing time, exact
+snapshot revisions, attribution and source relationships. New evaluation requests
+and reproducible receipts remain separate from scientific qualification and
+publication policy. This is held source work, not a published package feature.
+
+Specialized context/entity histories, research-completion envelopes, reproduction
+packets, scoring, case links and public projections keep their existing revision
+boundaries. They are not implicitly upgraded by this checkpoint. No automatic
+downgrade or placeholder processing date is introduced.
 
 ## Verification
 
@@ -67,6 +72,8 @@ Run after building the seven packages:
 
 ```sh
 pnpm test:beta5-compatibility
+pnpm test:v2-review-evaluation
+node examples/v2/unknown-processing-review/run.mjs
 pnpm test:v2-observation
 pnpm test:v2-mcap-source-mapping
 pnpm test:v2-video-frame-source-mapping
@@ -87,7 +94,9 @@ not version packages or authorize publication.
 
 ## Remaining release work
 
-1. Decide and implement the Observation `0.2.0` evaluation-contract scope above.
+1. Review the completed observation/case evaluation scope above and confirm which
+   additional evaluation or public-presentation surfaces, if any, are required
+   for this release. Existing unsupported paths remain explicit.
 2. Reconcile provider feedback and record remaining intake/context limitations.
    ELDÆON's provider corrections include DIONYSUS base-site radar, bistatic
    range/range-rate, corrected tube identities and stale-link interval, RF

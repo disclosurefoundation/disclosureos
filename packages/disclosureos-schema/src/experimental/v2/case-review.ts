@@ -1,3 +1,4 @@
+import { parseCaseRecordV02 } from "@disclosureos/records/experimental/v2";
 import {
   parseCaseRecord,
   caseProvenances,
@@ -34,7 +35,12 @@ export async function evaluateCaseRecord(
   input: unknown,
   options: CaseReviewOptions,
 ): Promise<CaseReviewResult> {
-  const parsed = parseCaseRecord(input);
+  return evaluateCaseRecordWithParser(input, options, parseCaseRecord);
+}
+
+/** Selects the contract explicitly; old entry points remain pinned. */
+async function evaluateCaseRecordWithParser(input: unknown, options: CaseReviewOptions, parse: typeof parseCaseRecord | typeof parseCaseRecordV02): Promise<CaseReviewResult> {
+  const parsed = parse(input);
   const result: CaseReviewResult = {
     success: false,
     issues: [...parsed.issues],
@@ -165,4 +171,8 @@ export async function evaluateCaseRecord(
   result.checks.external = result.success ? "passed" : "failed";
   result.declaredChronology = result.success ? "acyclic" : "incomplete";
   return result;
+}
+
+export function evaluateCaseRecordV02(input: unknown, options: CaseReviewOptions) {
+  return evaluateCaseRecordWithParser(input, options, parseCaseRecordV02);
 }

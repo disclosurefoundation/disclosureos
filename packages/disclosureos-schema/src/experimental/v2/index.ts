@@ -95,3 +95,6 @@ export * from './vocabulary-bindings';
 export * from "./mcap-source-mapping";
 
 export * from "./video-frame-source-mapping";
+
+export { evaluateObservationClaimDocumentation, OBSERVATION_CLAIM_DOCUMENTATION_PROFILE } from './assessment-documentation';
+export * from './claim-review-evaluation';

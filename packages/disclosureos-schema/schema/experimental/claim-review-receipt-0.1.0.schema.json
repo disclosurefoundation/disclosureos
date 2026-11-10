@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "claim_review_receipt"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "const": "urn:disclosureos:experimental:policy:claim-review-evaluation"
+        },
+        "version": {
+          "type": "string",
+          "const": "0.1.0"
+        },
+        "scope": {
+          "type": "string",
+          "const": "declared_claims_documentary_support_and_snapshot_identity"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "scope"
+      ],
+      "additionalProperties": false
+    },
+    "serialization": {
+      "type": "string",
+      "const": "sorted-json-utf8:0.1.0"
+    },
+    "input": {
+      "type": "object",
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}(?![\\s\\S])"
+        },
+        "byteLength": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "sha256",
+        "byteLength"
+      ],
+      "additionalProperties": false
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}(?![\\s\\S])"
+        },
+        "byteLength": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "sha256",
+        "byteLength"
+      ],
+      "additionalProperties": false
+    },
+    "inputJson": {
+      "type": "string",
+      "minLength": 1
+    },
+    "outputJson": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "policy",
+    "serialization",
+    "input",
+    "output",
+    "inputJson",
+    "outputJson"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:disclosureos:experimental:claim-review-receipt:0.1.0"
+}

@@ -1,3 +1,5 @@
+import type { z } from 'zod';
+import type { CaseRecordV02 } from './review-contracts-schema';
 import {
   CaseRecordSchema,
   CASE_RECORD_SCHEMA_ID,
@@ -13,7 +15,7 @@ import type { ContextIssue } from "./context";
 
 /** Every citation is scoped to one observation snapshot; source IDs alone are not case-wide identities. */
 export function caseProvenances(
-  data: CaseRecord,
+  data: CaseRecord | CaseRecordV02,
 ): Array<{ pointer: string; provenance: CaseProvenance }> {
   return data.entities.flatMap((e, i) => {
     if ("basis" in e)
@@ -40,11 +42,12 @@ export function caseProvenances(
 }
 /** Structural and local graph validation only. No input is mutated and no document is fetched. */
 export function parseCaseRecord(input: unknown) {
-  const parsed = CaseRecordSchema.safeParse(input);
-  const contract = {
-    schemaId: CASE_RECORD_SCHEMA_ID,
-    rulesetVersion: "0.1.0",
-  } as const;
+  return parseCaseRecordWithSchema(input, CaseRecordSchema, { schemaId: CASE_RECORD_SCHEMA_ID, rulesetVersion: "0.1.0" } as const);
+}
+
+/** Shared local rules, with immutable schema selection owned by each entry point. */
+export function parseCaseRecordWithSchema<T extends CaseRecord | CaseRecordV02, C extends { schemaId: string; rulesetVersion: string }>(input: unknown, schema: z.ZodType<T>, contract: C) {
+  const parsed = schema.safeParse(input);
   if (!parsed.success)
     return {
       success: false as const,

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "claim_review_evaluation"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "documentId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+        },
+        "schemaId": {
+          "type": "string",
+          "enum": [
+            "urn:disclosureos:experimental:claim-history:0.6.0",
+            "urn:disclosureos:experimental:case-claim-history:0.2.0"
+          ]
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "documentId",
+        "schemaId",
+        "sha256"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "id",
+    "review"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:disclosureos:experimental:claim-review-evaluation:0.1.0"
+}

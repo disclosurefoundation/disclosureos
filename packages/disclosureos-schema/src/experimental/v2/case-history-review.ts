@@ -1,3 +1,4 @@
+import { parseCaseClaimHistoryV02, parseCaseRecordV02, type CaseRecordV02 } from "@disclosureos/records/experimental/v2";
 import {
   parseCaseClaimHistory,
   parseCaseRecord,
@@ -9,7 +10,7 @@ import {
   type ExperimentalObservation,
   type ContextIssue,
 } from "@disclosureos/records/experimental/v2";
-import { evaluateCaseRecord, type CaseReviewOptions } from "./case-review";
+import { evaluateCaseRecord, evaluateCaseRecordV02, type CaseReviewOptions } from "./case-review";
 
 export interface CaseHistoryReviewResult {
   success: boolean;
@@ -35,7 +36,16 @@ export async function evaluateCaseClaimHistory(
   input: unknown,
   options: CaseReviewOptions,
 ): Promise<CaseHistoryReviewResult> {
-  const history = parseCaseClaimHistory(input);
+  return evaluateCaseHistoryWithParsers(input, options, parseCaseClaimHistory, parseCaseRecord, evaluateCaseRecord);
+}
+
+async function evaluateCaseHistoryWithParsers(
+  input: unknown, options: CaseReviewOptions,
+  parseHistory: typeof parseCaseClaimHistory | typeof parseCaseClaimHistoryV02,
+  parseCase: (input: unknown) => ReturnType<typeof parseCaseRecord> | ReturnType<typeof parseCaseRecordV02>,
+  evaluateCase: typeof evaluateCaseRecord,
+): Promise<CaseHistoryReviewResult> {
+  const history = parseHistory(input);
   const result: CaseHistoryReviewResult = {
     success: false,
     issues: [...history.issues],
@@ -64,7 +74,7 @@ export async function evaluateCaseClaimHistory(
     try {
       const bytes = copies.get(ref.sha256);
       if (!bytes) continue;
-      const peek = parseCaseRecord(
+      const peek = parseCase(
         JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes)),
       );
       if (peek.success)
@@ -116,14 +126,14 @@ export async function evaluateCaseClaimHistory(
       problem("SNAPSHOT.JSON", p, "Snapshot is not valid UTF-8 JSON.");
     }
   }
-  const cases = new Map<string, CaseRecord>(),
+  const cases = new Map<string, CaseRecord | CaseRecordV02>(),
     observations = new Map<string, ExperimentalObservation>();
   for (const [i, ref] of data.caseRefs.entries()) {
     const p = `/caseRefs/${i}`,
       raw = await load(ref, p);
     if (raw === undefined) continue;
-    const parsed = parseCaseRecord(raw);
-    if (!parsed.success) {
+    const parsed = parseCase(raw);
+    if (!parsed.success || ref.schemaId !== `urn:disclosureos:experimental:case-record:${parsed.data.schemaVersion}`) {
       problem(
         "SNAPSHOT.CONTRACT",
         p,
@@ -137,7 +147,7 @@ export async function evaluateCaseClaimHistory(
     }
     snapshots.get(caseSnapshotKey(ref))!.status = "passed";
     cases.set(caseSnapshotKey(ref), parsed.data);
-    const checked = await evaluateCaseRecord(parsed.data, {
+    const checked = await evaluateCase(parsed.data, {
       documents: copies,
     });
     result.issues.push(
@@ -318,4 +328,15 @@ export async function evaluateCaseClaimHistory(
   result.currentClaimRefs = result.success ? history.currentClaimRefs : [];
   result.snapshots = [...snapshots.values()];
   return result;
+}
+
+// A v0.2 case history can cite either exact case revision, including mixed cases.
+export function evaluateCaseClaimHistoryV02(input: unknown, options: CaseReviewOptions) {
+  const parse = (value: unknown) => {
+    const old = parseCaseRecord(value);
+    return old.success ? old : parseCaseRecordV02(value);
+  };
+  const evaluate = (value: unknown, opts: CaseReviewOptions) =>
+    parseCaseRecord(value).success ? evaluateCaseRecord(value, opts) : evaluateCaseRecordV02(value, opts);
+  return evaluateCaseHistoryWithParsers(input, options, parseCaseClaimHistoryV02, parse, evaluate);
 }
