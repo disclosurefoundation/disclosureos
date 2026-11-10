@@ -58,11 +58,14 @@ export * from './laboratory-entities';
 export * from './laboratory-claim-history-schema';
 export * from './laboratory-claim-history';
 export * from './case-schema';
-export * from './case';
+export { caseProvenances, parseCaseRecord } from './case';
 export * from './case-claim-history-schema';
-export * from './case-claim-history';
+export { caseSnapshotKey, caseClaimDocuments, parseCaseClaimHistory } from './case-claim-history';
 export * from './case-links-schema';
 export * from './case-links';
 
 export * from './vocabulary-schema';
 export * from './vocabulary';
+
+export * from './review-contracts-schema';
+export * from './review-contracts';

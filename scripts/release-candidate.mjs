@@ -149,14 +149,16 @@ async function main() {
   cpSync(join(root, 'examples/v2/archival-editions-demo'), join(consumer, 'archival-editions-demo'), { recursive: true });
   cpSync(join(root, 'examples/v2/material-lineage-demo'), join(consumer, 'material-lineage-demo'), { recursive: true });
   cpSync(join(root, 'examples/v2/laboratory-review-demo'), join(consumer, 'laboratory-review-demo'), { recursive: true });
+  cpSync(join(root, 'examples/v2/unknown-processing-review'), join(consumer, 'unknown-processing-review'), { recursive: true });
   run(process.execPath, ['verify.mjs'], consumer);
+  run(process.execPath, ['unknown-processing-review/run.mjs'], consumer);
   manifest.definitions = read(join(consumer, 'definitions.json'));
   const tsc = realpathSync(join(root, 'packages/disclosureos-records/node_modules/typescript/bin/tsc'));
   for (const module of ['NodeNext', 'ESNext']) run(process.execPath, [tsc, '--noEmit', '--strict', '--skipLibCheck', '--target', 'ES2022', '--module', module,
     '--moduleResolution', module === 'NodeNext' ? 'NodeNext' : 'Bundler', 'consumer.ts'], consumer);
   run(process.execPath, [join(root, 'conformance/migration-closeout.mjs'), '--cli', join(consumer, 'node_modules/@disclosureos/cli/dist/index.js')]);
   manifest.status = 'passed';
-  manifest.checks = { publishedSchemaIdentities: 'passed', readmeExamples: 'passed', exportResolution: 'passed', types: ['NodeNext', 'Bundler'], observationAndClaimCorpus: 'passed', contextSnapshotConsumer: 'passed', witnessAccountsConsumer: 'passed', archivalEditionsConsumer: 'passed', migrationCloseout: 'passed', scientificValidity: 'not_checked', partnerData: 'not_used' };
+  manifest.checks = { publishedSchemaIdentities: 'passed', readmeExamples: 'passed', exportResolution: 'passed', types: ['NodeNext', 'Bundler'], observationAndClaimCorpus: 'passed', contextSnapshotConsumer: 'passed', witnessAccountsConsumer: 'passed', archivalEditionsConsumer: 'passed', migrationCloseout: 'passed', claimReviewEvaluationConsumer: 'passed', scientificValidity: 'not_checked', partnerData: 'not_used' };
   writeFileSync(join(output, 'release-manifest.json'), json(manifest));
   console.log(`Verified candidate artifacts and manifest: ${output}`);
 }

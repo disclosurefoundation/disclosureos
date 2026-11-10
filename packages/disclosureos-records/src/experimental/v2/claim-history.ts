@@ -1,3 +1,5 @@
+import type { z } from 'zod';
+import type { ObservationClaimHistory } from './review-contracts-schema';
 import { ExperimentalClaimHistorySchema, EXPERIMENTAL_CLAIM_HISTORY_SCHEMA_ID, CLAIM_HISTORY_RULESET_VERSION } from './claim-history-schema';
 import type { ExperimentalClaimHistory, HistoricalClaim } from './claim-history-schema';
 import { parseExperimentalObservation } from './observation';
@@ -24,10 +26,14 @@ const pointer = (path: readonly PropertyKey[]) => path.map(p => `/${String(p).re
 
 /** Checks declared claim history only. Current means not superseded, never scientifically verified. */
 export function parseExperimentalClaimHistory(input: unknown): ClaimHistoryParseResult {
-  const contract: ClaimHistoryValidation['contract'] = { kind: 'claim_history', schemaId: EXPERIMENTAL_CLAIM_HISTORY_SCHEMA_ID, rulesetVersion: CLAIM_HISTORY_RULESET_VERSION };
-  const parsed = ExperimentalClaimHistorySchema.safeParse(input);
+  return parseObservationClaims(input, ExperimentalClaimHistorySchema, { kind: 'claim_history', schemaId: EXPERIMENTAL_CLAIM_HISTORY_SCHEMA_ID, rulesetVersion: CLAIM_HISTORY_RULESET_VERSION } as const);
+}
+
+/** Internal shared rules; callers select an explicit versioned schema. */
+export function parseObservationClaims<T extends ExperimentalClaimHistory | ObservationClaimHistory, C extends ClaimHistoryValidation['contract'] | { kind: 'claim_history'; schemaId: string; rulesetVersion: string }>(input: unknown, schema: z.ZodType<T>, contract: C): Omit<ClaimHistoryValidation, 'contract'> & { contract: C } & ({ success: true; data: T; currentClaimRefs: string[] } | { success: false }) {
+  const parsed = schema.safeParse(input);
   if (!parsed.success) return {
-    success: false, contract, checks: { structural: 'failed', semantic: 'not_checked', profile: 'not_checked', external: 'not_checked' }, uncheckedRefs: [],
+    success: false as const, contract, checks: { structural: 'failed', semantic: 'not_checked', profile: 'not_checked', external: 'not_checked' }, uncheckedRefs: [],
     issues: parsed.error.issues.map(issue => ({ code: 'STRUCT.VALUE', stage: 'structural', severity: 'error', pointer: pointer(issue.path), message: issue.message })),
   };
   const data = parsed.data;
@@ -119,12 +125,12 @@ export function parseExperimentalClaimHistory(input: unknown): ClaimHistoryParse
     if (degree === 0) queue.push(ref);
   }
   if (queue.length !== graph.size) problem('CLAIM.DEPENDENCY_CYCLE', '/claims', 'Claim inputs and supersession must form an acyclic history.');
-  const validation: ClaimHistoryValidation = {
+  const validation: Omit<ClaimHistoryValidation, 'contract'> & { contract: C } = {
     contract, issues, uncheckedRefs: observationResult.uncheckedRefs,
     checks: { structural: 'passed', semantic: issues.length ? 'failed' : 'passed', profile: 'not_checked', external: 'not_checked' },
   };
-  return issues.length ? { ...validation, success: false } : {
-    ...validation, success: true, data,
+  return issues.length ? { ...validation, success: false as const } : {
+    ...validation, success: true as const, data,
     currentClaimRefs: [...claims.keys()].filter(ref => !superseded.has(ref)),
   };
 }

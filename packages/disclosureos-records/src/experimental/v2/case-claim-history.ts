@@ -1,3 +1,6 @@
+import type { z } from 'zod';
+import type { CaseClaimHistoryV02, CaseHistoricalClaimV02 } from './review-contracts-schema';
+import type { CaseClaimHistory } from './case-claim-history-schema';
 import {
   CaseClaimHistorySchema,
   CASE_CLAIM_HISTORY_SCHEMA_ID,
@@ -12,7 +15,7 @@ export const caseSnapshotKey = (r: DocumentSnapshotRef) =>
   `${r.schemaId}|${r.documentId}|${r.sha256}`;
 /** Every case dependency in a claim, including provenance, methods and inputs. */
 export function caseClaimDocuments(
-  c: CaseHistoricalClaim,
+  c: CaseHistoricalClaim | CaseHistoricalClaimV02,
 ): DocumentSnapshotRef[] {
   const refs =
     c.subject.kind === "case"
@@ -31,11 +34,11 @@ export function caseClaimDocuments(
   return refs;
 }
 export function parseCaseClaimHistory(input: unknown) {
-  const parsed = CaseClaimHistorySchema.safeParse(input);
-  const contract = {
-    schemaId: CASE_CLAIM_HISTORY_SCHEMA_ID,
-    rulesetVersion: "0.1.0",
-  } as const;
+  return parseCaseClaimsWithSchema(input, CaseClaimHistorySchema, { schemaId: CASE_CLAIM_HISTORY_SCHEMA_ID, rulesetVersion: "0.1.0" } as const);
+}
+
+export function parseCaseClaimsWithSchema<T extends CaseClaimHistory | CaseClaimHistoryV02, C extends { schemaId: string; rulesetVersion: string }>(input: unknown, schema: z.ZodType<T>, contract: C) {
+  const parsed = schema.safeParse(input);
   if (!parsed.success)
     return {
       success: false as const,
@@ -61,7 +64,7 @@ export function parseCaseClaimHistory(input: unknown) {
   const cases = new Set(data.caseRefs.map(caseSnapshotKey));
   if (cases.size !== data.caseRefs.length)
     problem("REF.UNIQUE_ID", "/caseRefs", "Case snapshot references repeat.");
-  const claims = new Map<string, CaseHistoricalClaim>(),
+  const claims = new Map<string, CaseHistoricalClaim | CaseHistoricalClaimV02>(),
     graph = new Map<string, Set<string>>(),
     superseded = new Set<string>();
   data.claims.forEach((c, i) => {
