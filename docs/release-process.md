@@ -2,20 +2,17 @@
 
 ## Current release and next milestone
 
-`2.0.0-beta.4` is published for all seven foundation packages under the `beta`
-tag. Registry versions and tags were checked on 2026-10-19. Stable v1 `latest`
-tags remain unchanged.
+`2.0.0-beta.5` is published for all seven foundation packages under the `beta`
+tag. Registry versions, tarball bytes and tags were verified on 2026-11-13.
+Stable V1 `latest` tags remain unchanged.
 
-The next planned release is **Beta 5: initial data integrations**. Accumulate
-standard changes learned from the agreed ELDÆON, Speculor and Sky360 integration
-checkpoints, then review the gaps and prepare one coordinated release. See the
-[current policy](releases/v2-completion.md) and
-[Beta 5 scope](releases/beta5-integrations.md).
+The **initial data integrations** release includes the agreed ELDÆON, Speculor
+and Sky360 contract findings. See the [release record](releases/2.0.0-beta.5.md),
+[current policy](releases/v2-completion.md) and [scope](releases/beta5-scope.md).
 
-Reviewed PRs may merge independently of publication when authorized. Merging does
-not publish npm packages. Coordinated Beta 5 version preparation was authorized
-on 2026-11-10. Merges and npm publication remain on hold. Portal dependencies stay
-on published Beta 4 until a separately approved registry release is verified.
+Merge and publication were authorized on 2026-11-13 after candidate verification.
+The portal can now pin Beta 5 and update availability language. Provider reuse
+permissions and production access boundaries remain separate from this release.
 
 ## Canonical ownership and current track
 
@@ -24,9 +21,8 @@ canonical standard source. Website/dashboard applications consume pinned release
 The reverse application exporter and subtree release workflow are retired.
 Never replace this repository with an application snapshot.
 
-The published set is described by the [2.0.0-beta.4 release notes](releases/2.0.0-beta.4.md).
-The [Beta 5 candidate](releases/2.0.0-beta.5.md) contains the reviewed integration
-additions and remains unpublished.
+The published set is described by the [2.0.0-beta.5 release notes](releases/2.0.0-beta.5.md).
+The [Beta 4 notes](releases/2.0.0-beta.4.md) retain the previous release record.
 Seven foundation packages are in Changesets prerelease mode with tag `beta`.
 Package `publishConfig.tag` also names `beta`. This is not stable publication;
 existing npm `latest` tags continue to identify v1 releases.
@@ -43,8 +39,8 @@ described. During prerelease mode, `pnpm version-packages` advances prerelease
 versions and updates changelogs and dependency metadata. Review the result, update
 `docs/releases/beta-plan.json`, refresh the lockfile, and commit it together.
 Checked-in package versions now name `2.0.0-beta.5`. The release plan pins the
-reviewed implementation before version preparation. This is a candidate, not a
-registry release. The Beta 4 notes retain the historical packaging baseline.
+reviewed implementation before version preparation. The registry release uses the exact verified candidate artifacts. The Beta 4
+notes retain the historical packaging baseline.
 
 Do not run `changeset pre exit` as routine cleanup. Stable release requires its
 own reviewed transition, removal of beta-only publish tags/checks, and completion

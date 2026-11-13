@@ -1,5 +1,11 @@
 # Beta 5: initial data integrations
 
+**Release update, 2026-11-13:** Beta 5 is published and its registry bytes and
+tags are verified. The earlier preparation holds below are historical. See the
+[release record](2.0.0-beta.5.md) and its registry receipt. The portal update can
+now use Beta 5; provider permissions and the documented scope boundaries remain
+unchanged.
+
 Initial decision: 2026-10-19. Updated 2026-11-10: scope closed and coordinated
 Beta 5 versions prepared for verification. Merges and publication remain on hold.
 

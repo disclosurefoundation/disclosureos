@@ -1,5 +1,11 @@
 # Coordinated V2 beta release policy
 
+**Release update, 2026-11-13:** Beta 5 is published and its registry bytes and
+tags are verified. The earlier preparation holds below are historical. See the
+[release record](2.0.0-beta.5.md) and its registry receipt. The portal update can
+now use Beta 5; provider permissions and the documented scope boundaries remain
+unchanged.
+
 Updated 2026-11-10. Beta 4 is published for all seven foundation packages, and the
 portal consumes it. The original consolidated V2 implementation milestone is
 complete. [Beta 4's release record](2.0.0-beta.4.md) retains its implementation

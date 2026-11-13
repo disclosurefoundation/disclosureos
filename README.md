@@ -4,13 +4,10 @@ Open schemas and tools for research records about unidentified anomalous phenome
 Describe an observation, connect its source material and retain attributed reviews
 without replacing the original information.
 
-This README describes the **2.0.0-beta.4** API. Use one exact package version
-throughout an application. Check [availability](https://os.disclosure.org/v2/docs/installation)
-before installing; a source branch or packed candidate is not proof of npm
-publication. For a candidate that is not yet published, use the verified local
-tarballs. See the [release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
-for scope and verification. Avoid unversioned installs, which can select a different
-API generation through `latest`.
+The published beta is **2.0.0-beta.5**. Use one exact package version throughout
+an application. See [installation and availability](https://os.disclosure.org/v2/docs/installation)
+and the [release notes](docs/releases/2.0.0-beta.5.md) for scope and verification.
+The `beta` tag selects Beta 5; unversioned installs use the stable V1 `latest` tag.
 
 [Understand the standard](https://os.disclosure.org/v2/standard) ·
 [See the working showcase](https://os.disclosure.org/showcase) ·
@@ -35,11 +32,12 @@ does not establish authenticity, calibration, scientific validity or an origin.
 
 ## Install and try it
 
-Once this version is available in the registry:
-
 ```sh
-npm install --save-exact @disclosureos/records@2.0.0-beta.4
+npm pkg set overrides.zod=4.6.6
+npm install --save-exact @disclosureos/records@2.0.0-beta.5
 ```
+
+The override selects the patched validation dependency; see the [Beta 5 dependency advisory](docs/releases/2.0.0-beta.5.md#validation-dependency-advisory). If Zod is also a direct dependency, set it to `4.6.6`.
 
 Save this as `first-record.mjs`, then run `node first-record.mjs` with Node.js 22:
 

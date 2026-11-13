@@ -78,7 +78,9 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build package (+ workspace deps)
-        run: pnpm --filter "${{ matrix.package }}..." build
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: pnpm --workspace-concurrency=1 --filter "${{ matrix.package }}..." build
 
       - name: Type check
         run: pnpm --filter ${{ matrix.package }} --if-present run type-check

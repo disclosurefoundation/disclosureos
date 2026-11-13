@@ -1,0 +1,82 @@
+{
+  "status": "passed",
+  "pending": [],
+  "version": "2.0.0-beta.5",
+  "tag": "beta",
+  "sourceCommit": "f800d22bfdd8afd6b494978e4e58579a241f06a9",
+  "mergedSourceCommit": "616952ba93315dfa39bb45f115162bcca59fdfc4",
+  "candidateManifestSha256": "6dc9bfebbe09132ea4ae4185250b0c339fb76357d60b5b98bd97a531a09a6651",
+  "verifiedAt": "2026-11-13T19:21:27.564Z",
+  "packages": [
+    {
+      "name": "@disclosureos/records",
+      "latestBefore": "1.1.0",
+      "candidateVersion": "2.0.0-beta.5",
+      "integrity": "sha512-772USvsnuuLdX5iHSf8mKymYJj3cFb/TgbUorY3AA5bppE3KwBYAYG6L5SpKgJ4N5c2tWxUlZQeepmpozMHJMA==",
+      "tarball": "disclosureos-records-2.0.0-beta.5.tgz",
+      "registryTarball": "https://registry.npmjs.org/@disclosureos/records/-/records-2.0.0-beta.5.tgz",
+      "sha256": "d3824bf97f79a720d90bc3eccd216fa4d6e488e86107ef036177fbb9a5803b15",
+      "verified": true
+    },
+    {
+      "name": "@disclosureos/observables",
+      "latestBefore": "1.0.1",
+      "candidateVersion": "2.0.0-beta.5",
+      "integrity": "sha512-edJ7N84M17p0M3yJBlgpp30taPqODpYlRHFE6GCazZobpq3FquAQ7EOFo+fzvcjI8U20IQ1vE6abWlL25WBIog==",
+      "tarball": "disclosureos-observables-2.0.0-beta.5.tgz",
+      "registryTarball": "https://registry.npmjs.org/@disclosureos/observables/-/observables-2.0.0-beta.5.tgz",
+      "sha256": "28fa73ad5311f9825722b39cfeb02d73506b7ae256afbc450de0d2e815273c1f",
+      "verified": true
+    },
+    {
+      "name": "@disclosureos/origins",
+      "latestBefore": "1.0.1",
+      "candidateVersion": "2.0.0-beta.5",
+      "integrity": "sha512-crWGDJS66GzjFkU43kTsBQDBXGpu9EMWf62pVDCOB6n3N9bSkkozexEP8qWSMVhAWJ9isLhHM1iYRDF1BRaJGg==",
+      "tarball": "disclosureos-origins-2.0.0-beta.5.tgz",
+      "registryTarball": "https://registry.npmjs.org/@disclosureos/origins/-/origins-2.0.0-beta.5.tgz",
+      "sha256": "bf0fe86c318f010a95b3d61f05a5a898339e009e0cb5ab9dd9a17ff976c6efed",
+      "verified": true
+    },
+    {
+      "name": "@disclosureos/instruments",
+      "latestBefore": "1.0.0",
+      "candidateVersion": "2.0.0-beta.5",
+      "integrity": "sha512-kRt5qXeSH4GvEgt9jlrYIjFyyNuYvpf8mPyab6SHFL+KU0f2Na5firHwuvYZhlsieUjiZq2XUxJg683rHL8EDA==",
+      "tarball": "disclosureos-instruments-2.0.0-beta.5.tgz",
+      "registryTarball": "https://registry.npmjs.org/@disclosureos/instruments/-/instruments-2.0.0-beta.5.tgz",
+      "sha256": "67eea19800a25c94175249f25c5ef1e8d2513719e4bf98ae5173d5c083564b95",
+      "verified": true
+    },
+    {
+      "name": "@disclosureos/scoring",
+      "latestBefore": "1.1.0",
+      "candidateVersion": "2.0.0-beta.5",
+      "integrity": "sha512-xiM/2lRcJwO8rrxbj1eRDO8Y/y/TwS/omTABnjWRIf5p7kRR2XKvhD5W+2XAsAPkCMHBJR0ImzaSOjLNeIp63A==",
+      "tarball": "disclosureos-scoring-2.0.0-beta.5.tgz",
+      "registryTarball": "https://registry.npmjs.org/@disclosureos/scoring/-/scoring-2.0.0-beta.5.tgz",
+      "sha256": "c5bfe42cdb9507d8edddd92f73e44b49d022b38c6f2b6e340080c74b2673bfbf",
+      "verified": true
+    },
+    {
+      "name": "@disclosureos/schema",
+      "latestBefore": "1.1.0",
+      "candidateVersion": "2.0.0-beta.5",
+      "integrity": "sha512-Gbgnr0lq2C5piumkMar/Xz1s4n0M8Kzcj/M0aA6lEz399aJG8brlsthTzYUshBZMKaLvgKb0dmsCizRnrFc36w==",
+      "tarball": "disclosureos-schema-2.0.0-beta.5.tgz",
+      "registryTarball": "https://registry.npmjs.org/@disclosureos/schema/-/schema-2.0.0-beta.5.tgz",
+      "sha256": "8cf45b8c5cd2c7a6c4b510574e28008033ac5814bd648ec8008cf3207dde080c",
+      "verified": true
+    },
+    {
+      "name": "@disclosureos/cli",
+      "latestBefore": "1.1.0",
+      "candidateVersion": "2.0.0-beta.5",
+      "integrity": "sha512-7Cm8JTYxXKGws3sKQytCX7EhVdjGLodfQlNzq3ufCThMjz949jXJnFeydeLZZMEoZEIzW/UDgieplIeiGSyjEw==",
+      "tarball": "disclosureos-cli-2.0.0-beta.5.tgz",
+      "registryTarball": "https://registry.npmjs.org/@disclosureos/cli/-/cli-2.0.0-beta.5.tgz",
+      "sha256": "223cd10530dff9ab758de020b53976b886348389e0a426e08e93cb2fca9efebb",
+      "verified": true
+    }
+  ]
+}
