@@ -93,3 +93,5 @@ export type { VocabularyCatalog, VocabularyCatalogTerm, VocabularyTermReference,
 export * from './vocabulary-bindings';
 
 export * from "./mcap-source-mapping";
+
+export * from "./video-frame-source-mapping";

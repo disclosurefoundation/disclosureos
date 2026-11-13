@@ -12,7 +12,7 @@ before this release, subject to authorization. npm publication remains on hold.
 | --- | --- |
 | ELDÆON | Map the agreed available mission data, verify the portable handoff and record remaining source/context gaps. Additional inaccessible media can remain explicitly pending. |
 | Speculor | Verify complete supported readings, original-source references and recovery without the portal; review the mapping with the provider where available. |
-| Sky360 | Assess an available representative dataset and its reuse terms, implement and verify the agreed mapping, and record the resulting standard gaps. This is planned work, not a completed integration or a partnership claim. |
+| Sky360 | Six public clips are mapped in the review pilot. Verify portable relative frame references against every original frame; current-station formats and media reuse confirmation remain separate follow-ups. This is not a partnership claim. |
 
 For each checkpoint, record the selected capture scope, source formats, retained
 values and timestamps, missing context, independent recovery results and any
@@ -24,6 +24,9 @@ scope, review that scope explicitly rather than silently declaring it complete.
 - Optional MCAP source-reference mapping: identifies original recording bytes,
   channels, schemas, exact messages and selected payload fields. It accompanies
   existing observation/capture documents and uses an external reader/decoder.
+- Optional relative video-frame source mapping: pins the original product, stream,
+  presentation-order frame and exact rational timestamp without inventing UTC.
+  Includes an external decoder boundary and full-index comparison.
 - Further additions only where integration findings justify a shared standard
   capability. Provider-specific decoding remains in adapters where appropriate.
 

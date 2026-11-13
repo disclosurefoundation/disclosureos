@@ -138,7 +138,9 @@
     "test:v2-provider-scoring": "node --test conformance/provider-scoring.test.mjs examples/provider-scoring/model.test.mjs",
     "verify:provider-scoring": "node examples/provider-scoring/verify.mjs",
     "emit:v2-mcap-source-mapping": "node conformance/emit-mcap-source-mapping.mjs",
-    "test:v2-mcap-source-mapping": "node --test conformance/mcap-source-mapping.test.mjs"
+    "test:v2-mcap-source-mapping": "node --test conformance/mcap-source-mapping.test.mjs",
+    "emit:v2-video-frame-source-mapping": "node conformance/emit-video-frame-source-mapping.mjs",
+    "test:v2-video-frame-source-mapping": "node --test conformance/video-frame-source-mapping.test.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

@@ -95,7 +95,8 @@
     "./experimental/v2/vocabulary-term-reference/schema/0.1.0": "./schema/experimental/vocabulary-term-reference-0.1.0.schema.json",
     "./experimental/v2/vocabulary-bindings/schema": "./schema/experimental/vocabulary-bindings-0.1.0.schema.json",
     "./experimental/v2/vocabulary-bindings/schema/0.1.0": "./schema/experimental/vocabulary-bindings-0.1.0.schema.json",
-    "./experimental/v2/mcap-source-mapping/schema/0.1.0": "./schema/experimental/mcap-source-mapping-0.1.0.schema.json"
+    "./experimental/v2/mcap-source-mapping/schema/0.1.0": "./schema/experimental/mcap-source-mapping-0.1.0.schema.json",
+    "./experimental/v2/video-frame-source-mapping/schema/0.1.0": "./schema/experimental/video-frame-source-mapping-0.1.0.schema.json"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

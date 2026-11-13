@@ -290,3 +290,13 @@ channel, schema and message identities. The source revision exports
 `McapSourceMappingSchema` and `evaluateMcapSourceMapping`; a trusted MCAP reader
 and payload decoder provide content verification. This addition is not part of
 the published Beta 4 package. No viewer or source re-encoding is required.
+
+### Proposed relative video-frame source mapping
+
+The optional [video-frame source mapping](../../docs/experimental/video-frame-source-mapping.md)
+pins an original video product, stream and presentation-order frame to exact
+encoded timestamps without requiring UTC. `VideoFrameSourceMappingSchema`,
+`readVideoFrameReference` and `evaluateVideoFrameSourceMapping` preserve integer
+precision and separate file checks from decoder-backed timing checks. This is a
+Beta 5 source candidate, not part of the published Beta 4 package. It does not
+infer capture time, exposure duration or physical capture cadence.
