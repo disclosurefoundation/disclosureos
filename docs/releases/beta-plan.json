@@ -1,7 +1,7 @@
 {
-  "version": "2.0.0-beta.4",
+  "version": "2.0.0-beta.5",
   "tag": "beta",
-  "implementationRevision": "0d596242e1ada92e355a143c0edad821ec262df1",
+  "implementationRevision": "36cc15418317d5ee6b07cd2d2a64606b1abbc151",
   "packages": [
     "records",
     "observables",
@@ -12,5 +12,5 @@
     "cli"
   ],
   "zod": "4.4.3",
-  "status": "published"
+  "status": "prepared-unpublished"
 }

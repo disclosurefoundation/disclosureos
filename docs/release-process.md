@@ -13,9 +13,9 @@ checkpoints, then review the gaps and prepare one coordinated release. See the
 [Beta 5 scope](releases/beta5-integrations.md).
 
 Reviewed PRs may merge independently of publication when authorized. Merging does
-not publish npm packages. Keep publication and version preparation on hold until
-the integration milestone and release review are complete; publication requires
-separate approval. Portal dependencies stay on published Beta 4 in the meantime.
+not publish npm packages. Coordinated Beta 5 version preparation was authorized
+on 2026-11-10. Merges and npm publication remain on hold. Portal dependencies stay
+on published Beta 4 until a separately approved registry release is verified.
 
 ## Canonical ownership and current track
 
@@ -25,8 +25,8 @@ The reverse application exporter and subtree release workflow are retired.
 Never replace this repository with an application snapshot.
 
 The published set is described by the [2.0.0-beta.4 release notes](releases/2.0.0-beta.4.md).
-Subsequent source additions, including the proposed MCAP source mapping, are
-unreleased.
+The [Beta 5 candidate](releases/2.0.0-beta.5.md) contains the reviewed integration
+additions and remains unpublished.
 Seven foundation packages are in Changesets prerelease mode with tag `beta`.
 Package `publishConfig.tag` also names `beta`. This is not stable publication;
 existing npm `latest` tags continue to identify v1 releases.
@@ -42,10 +42,9 @@ according to Semantic Versioning; breaking experimental changes must be explicit
 described. During prerelease mode, `pnpm version-packages` advances prerelease
 versions and updates changelogs and dependency metadata. Review the result, update
 `docs/releases/beta-plan.json`, refresh the lockfile, and commit it together.
-Checked-in package versions still name `2.0.0-beta.4`; that does not make new
-source changes part of the published package. Keep accumulating changesets until
-Beta 5 preparation is authorized. `docs/releases/beta-plan.json` retains the
-published Beta 4 packaging baseline; do not treat it as a Beta 5 release plan.
+Checked-in package versions now name `2.0.0-beta.5`. The release plan pins the
+reviewed implementation before version preparation. This is a candidate, not a
+registry release. The Beta 4 notes retain the historical packaging baseline.
 
 Do not run `changeset pre exit` as routine cleanup. Stable release requires its
 own reviewed transition, removal of beta-only publish tags/checks, and completion
@@ -64,11 +63,11 @@ explicitly a `disclosureos-unpublished-source-candidate` with publication
 published package. Use the release-mode artifacts for any later authorized publication.
 
 The source mode uses the exact committed HEAD as its schema baseline. It does
-not alter the historical beta plan or weaken the separate `release:check` /
+not alter the frozen beta plan or weaken the separate `release:check` /
 `release:pack` baseline. Before a publishable candidate can pass those release
 commands, version the coordinated set and update the release plan as described
-above. The existing release-mode CI still exercises the frozen Beta 4 plan; passing it
-does not prepare Beta 5 for publication.
+above. Release-mode CI now exercises the Beta 5 plan. Passing it does not
+authorize a merge or npm publication.
 
 ## Candidate preflight
 
@@ -129,8 +128,7 @@ The stable schema artifacts retain their existing `https://os.disclosure.org/sch
 IDs. Their individual version numbers need not match package versions. Existing
 versioned URLs are immutable. `release:check` and both packing modes compare
 current identities against `docs/releases/published-schema-identities.json`, whose
-beta.3 hashes come from integrity-verified npm tarballs. Before Beta 5 preflight,
-add any missing Beta 4 identities from integrity-verified published tarballs.
+Beta 3 and Beta 4 hashes come from integrity-verified npm tarballs.
 After each publication,
 append the new identities to that ledger; do not replace earlier entries. New content requires a new identity/path; do not
 replace historical files during a package version bump.

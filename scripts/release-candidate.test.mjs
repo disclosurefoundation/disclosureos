@@ -17,7 +17,7 @@ test('rejects latest-tag publication and incomplete versioning', () => {
 });
 test('the frozen beta candidate, package versions and changelogs agree', () => {
   assert.equal(checkPlan().packages.length, 7);
-  assert.equal(checkPlan().plan.version, '2.0.0-beta.4');
+  assert.equal(checkPlan().plan.version, '2.0.0-beta.5');
   assert.equal(checkPlan({ sourceOnly: true }).packages.length, 7);
 });
 

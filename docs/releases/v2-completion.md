@@ -1,6 +1,6 @@
 # Coordinated V2 beta release policy
 
-Updated 2026-10-19. Beta 4 is published for all seven foundation packages, and the
+Updated 2026-11-10. Beta 4 is published for all seven foundation packages, and the
 portal consumes it. The original consolidated V2 implementation milestone is
 complete. [Beta 4's release record](2.0.0-beta.4.md) retains its implementation
 scope and historical preparation checklist.
@@ -14,7 +14,8 @@ integration release, not a requirement to obtain every future provider file or
 finish every possible instrument format.
 
 - Continue implementation, conformance checks, source-based previews and review.
-- Accumulate changesets without advancing package versions at each checkpoint.
+- The integration scope is closed; coordinated Beta 5 version preparation is now
+  authorized. Merges and publication remain held during final verification.
 - Reviewed changes may merge when authorized; merge does not publish packages.
 - Keep npm publication on hold until the integration milestone and coordinated
   release review are complete, followed by explicit publication approval.
