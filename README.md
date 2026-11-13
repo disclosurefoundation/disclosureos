@@ -33,8 +33,11 @@ does not establish authenticity, calibration, scientific validity or an origin.
 ## Install and try it
 
 ```sh
+npm pkg set overrides.zod=4.6.6
 npm install --save-exact @disclosureos/records@2.0.0-beta.5
 ```
+
+The override selects the patched validation dependency; see the [Beta 5 dependency advisory](docs/releases/2.0.0-beta.5.md#validation-dependency-advisory). If Zod is also a direct dependency, set it to `4.6.6`.
 
 Save this as `first-record.mjs`, then run `node first-record.mjs` with Node.js 22:
 
