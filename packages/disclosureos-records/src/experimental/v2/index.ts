@@ -12,12 +12,15 @@ export type {
 export {
   QuantitativeUncertaintySchema, MeasuredQuantitySchema, ReferenceFrameSchema, FramedPositionSchema,
   ObservationTimeSchema, ObservationPositionSchema, ObservationSourceSchema, ObservationProductSchema,
-  ObservationMethodSchema, ObservationAssertionSchema, ObservationMeasurementSchema, ProcessingActivitySchema,
+  ObservationMethodSchema, ObservationAssertionSchema, ObservationMeasurementSchema, ProcessingTimeSchema, ProcessingActivitySchema,
   EXPERIMENTAL_OBSERVATION_SCHEMA_ID, ExperimentalObservationSchema, experimentalObservationJsonSchema,
+  EXPERIMENTAL_OBSERVATION_V02_SCHEMA_ID, ExperimentalObservationV02Schema, SupportedExperimentalObservationSchema,
+  ProcessingActivityV02Schema, experimentalObservationV02JsonSchema,
 } from './observation-schema';
 export type {
   QuantitativeUncertainty, MeasuredQuantity, ReferenceFrame, FramedPosition,
-  ObservationAssertion, ProcessingActivity, ExperimentalObservation,
+  ObservationAssertion, ProcessingTime, ProcessingActivity, ExperimentalObservation,
+  ProcessingActivityV02, ExperimentalObservationV01, ExperimentalObservationV02,
 } from './observation-schema';
 export { parseExperimentalObservation } from './observation';
 export type { ObservationIssueCode, ObservationIssue, ObservationChecks, ObservationParseResult } from './observation';
@@ -55,11 +58,14 @@ export * from './laboratory-entities';
 export * from './laboratory-claim-history-schema';
 export * from './laboratory-claim-history';
 export * from './case-schema';
-export * from './case';
+export { caseProvenances, parseCaseRecord } from './case';
 export * from './case-claim-history-schema';
-export * from './case-claim-history';
+export { caseSnapshotKey, caseClaimDocuments, parseCaseClaimHistory } from './case-claim-history';
 export * from './case-links-schema';
 export * from './case-links';
 
 export * from './vocabulary-schema';
 export * from './vocabulary';
+
+export * from './review-contracts-schema';
+export * from './review-contracts';

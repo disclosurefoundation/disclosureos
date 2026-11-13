@@ -27,11 +27,25 @@ scope, review that scope explicitly rather than silently declaring it complete.
 - Optional relative video-frame source mapping: pins the original product, stream,
   presentation-order frame and exact rational timestamp without inventing UTC.
   Includes an external decoder boundary and full-index comparison.
+- Observation revision `0.2.0`: preserves an explicit unknown processing time
+  for derived products while retaining actor, method and input/output lineage.
+  The published `0.1.0` contract is unchanged.
+- Explicit observation-level claim history `0.6.0`, case record `0.2.0` and
+  case claim history `0.2.0`, with offline review requests and replayable receipts.
+  These support Observation `0.2.0` without changing existing schema identities.
+  Specialized reviews and public projections retain their existing version
+  boundaries; see [the evaluation checkpoint](../experimental/observation-review.md).
 - Further additions only where integration findings justify a shared standard
   capability. Provider-specific decoding remains in adapters where appropriate.
 
 The MCAP document's `0.1.0` schema revision is separate from the planned package
 version `2.0.0-beta.5`. Neither identifier establishes that publication occurred.
+
+## Compatibility checkpoint
+
+See the [2026-10-31 compatibility review](beta5-compatibility-review.md) for the
+verified source-mapping path, snapshot revision checks, and the subsequent
+versioned observation/case evaluation checkpoint. This checkpoint is not release approval.
 
 ## Closeout and release
 
@@ -40,7 +54,7 @@ version `2.0.0-beta.5`. Neither identifier establishes that publication occurred
    Review duplication, source fidelity, versioned schemas and portable consumption.
 3. When release preparation is authorized, advance the coordinated seven-package
    set, update the release plan and changelogs, and preserve existing schema IDs.
-   Include Beta 4 in the published-identity baseline using verified registry bytes.
+   The published-identity baseline already includes verified Beta 4 registry bytes.
 4. Run the full package/conformance suite, pack and install the exact artifacts in
    an isolated consumer, and verify portal examples against those artifacts.
 5. Obtain publication approval, publish the verified set under `beta`, and verify
@@ -50,3 +64,6 @@ version `2.0.0-beta.5`. Neither identifier establishes that publication occurred
 
 Data reuse approval and public asset delivery remain independent of npm release.
 Do not bundle provider recordings into standard packages as part of this plan.
+
+The [Beta 5 scope closeout](beta5-scope.md) defines the included capabilities,
+retained specialized-review boundaries and public-display policy.

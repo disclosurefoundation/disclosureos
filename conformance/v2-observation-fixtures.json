@@ -1260,6 +1260,393 @@
           ]
         }
       ]
+    },
+    {
+      "id": "processing-time-not_recorded",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "not_recorded"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": []
+    },
+    {
+      "id": "processing-time-not_collected",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "not_collected"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": []
+    },
+    {
+      "id": "processing-time-unavailable",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "unavailable"
+          }
+        }
+      ],
+      "structural": true,
+      "semantic": true,
+      "codes": []
+    },
+    {
+      "id": "processing-time-reject-null",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": null
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "processing-time-reject-empty",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": ""
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "processing-time-reject-bad-reason",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "estimated"
+          }
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "processing-time-reject-extra-value",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "not_recorded",
+            "value": "2026-01-01T00:00:00Z"
+          }
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "processing-time-reject-known-wrapper",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": {
+            "state": "known",
+            "value": "2026-01-01T00:00:00Z"
+          }
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "processing-time-required",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "remove",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ]
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": []
+    },
+    {
+      "id": "unknown-processing-time-still-checks-method",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "not_recorded"
+          }
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "methodRef"
+          ],
+          "value": "method:missing"
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "REF.LOCAL_RESOLUTION"
+      ]
+    },
+    {
+      "id": "unknown-processing-time-still-checks-cycle",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "not_recorded"
+          }
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "inputRefs"
+          ],
+          "value": [
+            "product:summary"
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "PROCESS.CYCLE"
+      ]
+    },
+    {
+      "id": "unknown-processing-time-still-checks-output",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": "0.2.0"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "not_recorded"
+          }
+        },
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "outputRefs"
+          ],
+          "value": [
+            "product:raw"
+          ]
+        }
+      ],
+      "structural": true,
+      "semantic": false,
+      "codes": [
+        "PROCESS.OUTPUT_MISMATCH"
+      ]
+    },
+    {
+      "id": "published-observation-rejects-unknown-processing-time",
+      "base": "integrated",
+      "changes": [
+        {
+          "op": "replace",
+          "path": [
+            "processing",
+            0,
+            "performedAt"
+          ],
+          "value": {
+            "state": "unknown",
+            "reason": "not_recorded"
+          }
+        }
+      ],
+      "structural": false,
+      "semantic": null,
+      "codes": [
+        "STRUCT.VALUE"
+      ]
     }
   ]
 }
