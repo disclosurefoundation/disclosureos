@@ -4,10 +4,10 @@ Open schemas and tools for research records about unidentified anomalous phenome
 Describe an observation, connect its source material and retain attributed reviews
 without replacing the original information.
 
-This branch prepares the **2.0.0-beta.6** security update. Use one exact package version throughout
+The published beta is **2.0.0-beta.6**. Use one exact package version throughout
 an application. See [installation and availability](https://os.disclosure.org/v2/docs/installation)
 and the [release notes](docs/releases/2.0.0-beta.6.md) for scope and verification.
-The release uses the `beta` tag; unversioned installs use the stable V1 `latest` tag.
+The `beta` tag selects Beta 6; unversioned installs use the stable V1 `latest` tag.
 
 [Understand the standard](https://os.disclosure.org/v2/standard) ·
 [See the working showcase](https://os.disclosure.org/showcase) ·
