@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from "zod";
 import { entity, values, target } from "./entity-fields";
 import {
@@ -112,10 +113,10 @@ export type LaboratoryEntityReference = z.infer<
 >;
 export function laboratoryEntitiesJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(LaboratoryEntitiesSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(LaboratoryEntitiesSchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: LABORATORY_ENTITIES_SCHEMA_ID,
   };
 }

@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 
 const id = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._-]*(?![\s\S])/);
@@ -116,9 +117,9 @@ export const RADAR_PROFILE = Object.freeze({
 export type RadarProfile = z.infer<typeof RadarProfileSchema>;
 
 export function radarProfileJsonSchema(): Record<string, unknown> {
-  const schema = z.toJSONSchema(RadarProfileSchema, {
+  const schema = preservePublishedSchema(z.toJSONSchema(RadarProfileSchema, {
     target: "draft-2020-12",
-  });
+  }));
   // Zod emits prefixItems without the fixed tuple extent. Match the runtime
   // two-axis contract in independent JSON Schema implementations as well.
   for (const branch of schema.anyOf ?? []) {

@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from "zod";
 import {
   ArchivalClaimHistorySchema,
@@ -88,10 +89,10 @@ export type LaboratoryEditionCitation = z.infer<
 >;
 export function laboratoryClaimHistoryJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(LaboratoryClaimHistorySchema, {
+    ...preservePublishedSchema(z.toJSONSchema(LaboratoryClaimHistorySchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: LABORATORY_CLAIM_HISTORY_SCHEMA_ID,
   };
 }

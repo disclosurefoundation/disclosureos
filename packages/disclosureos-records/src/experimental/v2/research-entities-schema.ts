@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from "zod";
 import { WitnessCategorySchema } from "../../extensions/testimony/category";
 import { SecurityClearanceSchema } from "../../extensions/testimony/witness";
@@ -213,10 +214,10 @@ export type ResearchEntityReference = z.infer<
 >;
 export function researchEntitiesJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ResearchEntitiesSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(ResearchEntitiesSchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: RESEARCH_ENTITIES_SCHEMA_ID,
   };
 }

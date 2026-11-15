@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from "zod";
 import { values, entity, target } from "./entity-fields";
 import {
@@ -266,10 +267,10 @@ export type ArchivalEntityReference = z.infer<
 export type ArtifactSnapshotRef = z.infer<typeof ArtifactSnapshotRefSchema>;
 export function archivalEntitiesJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ArchivalEntitiesSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(ArchivalEntitiesSchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: ARCHIVAL_ENTITIES_SCHEMA_ID,
   };
 }

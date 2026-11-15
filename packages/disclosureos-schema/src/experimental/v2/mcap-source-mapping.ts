@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 /** Optional source mapping. MCAP owns its container and message encodings;
  * this document connects retained messages to DisclosureOS measurements. */
 import { z } from "zod";
@@ -102,7 +103,7 @@ export const McapSourceMappingSchema = z.strictObject({
 export type McapSourceMapping = z.infer<typeof McapSourceMappingSchema>;
 export function mcapSourceMappingJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(McapSourceMappingSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(McapSourceMappingSchema, { target: "draft-2020-12" })),
     $id: MCAP_SOURCE_MAPPING_SCHEMA_ID,
   };
 }

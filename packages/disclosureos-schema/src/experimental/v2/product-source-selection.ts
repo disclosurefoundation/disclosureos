@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import {
   parseExperimentalObservation,
@@ -133,9 +134,9 @@ export type ProductSourceSelection = z.infer<
 >;
 export function productSourceSelectionJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ProductSourceSelectionSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(ProductSourceSelectionSchema, {
       target: "draft-2020-12",
-    }),
+    })),
     $id: PRODUCT_SOURCE_SELECTION_SCHEMA_ID,
   };
 }

@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from 'zod';
 
 const text = z.string().min(1).regex(/\S/);
@@ -65,5 +66,5 @@ export type CalibrationContext = z.infer<typeof CalibrationContextSchema>;
 export type ManifestRevision = z.infer<typeof ManifestRevisionSchema>;
 export type ContextArtifact = z.infer<typeof ContextArtifactSchema>;
 export function acquisitionContextJsonSchema(): Record<string,unknown> {
-  return {...z.toJSONSchema(AcquisitionContextSchema,{target:'draft-2020-12'}),$id:ACQUISITION_CONTEXT_SCHEMA_ID};
+  return {...preservePublishedSchema(z.toJSONSchema(AcquisitionContextSchema,{target:'draft-2020-12'})),$id:ACQUISITION_CONTEXT_SCHEMA_ID};
 }

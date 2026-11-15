@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from 'zod';
 import {
   parseCaseRecord,
@@ -101,7 +102,7 @@ export const CasePresentationSchema = z.strictObject({
 export type CasePresentation = z.infer<typeof CasePresentationSchema>;
 export function casePresentationJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(CasePresentationSchema, { target: 'draft-2020-12', reused: 'ref' }),
+    ...preservePublishedSchema(z.toJSONSchema(CasePresentationSchema, { target: 'draft-2020-12', reused: 'ref' })),
     $id: CASE_PRESENTATION_SCHEMA_ID,
   };
 }

@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import { compareUtcInstants } from "@disclosureos/records/experimental/v2";
 const text = z.string().min(1).regex(/\S/),
@@ -77,7 +78,7 @@ export const SourceIntakeSchema = z.strictObject({
 export type SourceIntake = z.infer<typeof SourceIntakeSchema>;
 export function sourceIntakeJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(SourceIntakeSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(SourceIntakeSchema, { target: "draft-2020-12" })),
     $id: SOURCE_INTAKE_SCHEMA_ID,
   };
 }

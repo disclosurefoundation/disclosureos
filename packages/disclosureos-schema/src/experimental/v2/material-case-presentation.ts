@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import {
   parseLaboratoryEntities,
@@ -107,10 +108,10 @@ export const MaterialCasePresentationSchema = z.strictObject({
 });
 export function materialCasePresentationJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(MaterialCasePresentationSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(MaterialCasePresentationSchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: MATERIAL_CASE_PRESENTATION_SCHEMA_ID,
   };
 }

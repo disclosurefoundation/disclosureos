@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 
 const text = z.string().min(1).regex(/\S/);
@@ -127,13 +128,13 @@ export type ProviderScoreResult = z.infer<typeof ProviderScoreResultSchema>;
 
 export function providerScorePolicyJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ProviderScorePolicySchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(ProviderScorePolicySchema, { target: "draft-2020-12" })),
     $id: PROVIDER_SCORE_POLICY_SCHEMA_ID,
   };
 }
 export function providerScoreResultJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ProviderScoreResultSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(ProviderScoreResultSchema, { target: "draft-2020-12" })),
     $id: PROVIDER_SCORE_RESULT_SCHEMA_ID,
   };
 }

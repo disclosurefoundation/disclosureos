@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from "zod";
 import {
   DocumentSnapshotRefSchema,
@@ -85,10 +86,10 @@ export type CaseLinks = z.infer<typeof CaseLinksSchema>;
 export type CaseSupplementLink = z.infer<typeof CaseSupplementLinkSchema>;
 export function caseLinksJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(CaseLinksSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(CaseLinksSchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: CASE_LINKS_SCHEMA_ID,
   };
 }

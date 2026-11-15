@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import { parseExperimentalClaimHistory } from "@disclosureos/records/experimental/v2";
 const text = z.string().min(1).regex(/\S/),
@@ -39,9 +40,9 @@ export type ReleasedDocumentSelection = z.infer<
 >;
 export function releasedDocumentSelectionJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ReleasedDocumentSelectionSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(ReleasedDocumentSelectionSchema, {
       target: "draft-2020-12",
-    }),
+    })),
     $id: RELEASED_DOCUMENT_SELECTION_SCHEMA_ID,
   };
 }

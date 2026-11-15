@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from "zod";
 import {
   SourceProvenanceSchema,
@@ -166,10 +167,10 @@ export type CaseEntity = z.infer<typeof CaseEntitySchema>;
 export type CaseProvenance = z.infer<typeof CaseProvenanceSchema>;
 export function caseRecordJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(CaseRecordSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(CaseRecordSchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: CASE_RECORD_SCHEMA_ID,
   };
 }

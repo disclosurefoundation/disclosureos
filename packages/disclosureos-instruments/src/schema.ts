@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from 'zod';
 import { jsonSchemaEnvelope, schemaId } from '@disclosureos/records/shared';
 import { SensorManifestSchema } from './manifest/types';
@@ -21,7 +22,7 @@ export const INSTRUMENTS_SCHEMA_ID = schemaId(
  * manifest is published on its own, not composed into `Observation`.
  */
 export function instrumentsJsonSchema(): Record<string, unknown> {
-  const schema = z.toJSONSchema(SensorManifestSchema, { target: 'draft-2020-12' }) as Record<
+  const schema = preservePublishedSchema(z.toJSONSchema(SensorManifestSchema, { target: 'draft-2020-12' })) as Record<
     string,
     unknown
   >;

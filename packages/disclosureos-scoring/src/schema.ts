@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from 'zod';
 import { jsonSchemaEnvelope, schemaId } from '@disclosureos/records/shared';
 import { CompletenessResultSchema } from './completeness';
@@ -13,13 +14,13 @@ export const SCORING_SCHEMA_ID = schemaId('scoring', 'scoring', SCORING_SCHEMA_V
  * consumers (and other languages) can validate stored scores.
  */
 export function scoringJsonSchema(): Record<string, unknown> {
-  const bundle = z.toJSONSchema(
+  const bundle = preservePublishedSchema(z.toJSONSchema(
     z.object({
       completeness: CompletenessResultSchema,
       compellingness: ScoreResultSchema,
       weights: CompellingnessWeightsSchema,
     }),
     { target: 'draft-2020-12' },
-  ) as Record<string, unknown>;
+  )) as Record<string, unknown>;
   return jsonSchemaEnvelope(bundle, { id: SCORING_SCHEMA_ID, version: SCORING_SCHEMA_VERSION });
 }

@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from 'zod';
 import { ExperimentalObservationV02Schema, EXPERIMENTAL_OBSERVATION_SCHEMA_ID, EXPERIMENTAL_OBSERVATION_V02_SCHEMA_ID } from './observation-schema';
 import { ExperimentalClaimHistorySchema } from './claim-history-schema';
@@ -52,7 +53,7 @@ export const CaseClaimHistoryV02Schema = CaseClaimHistorySchema.extend({
 });
 export type CaseClaimHistoryV02 = z.infer<typeof CaseClaimHistoryV02Schema>;
 export type CaseHistoricalClaimV02 = CaseClaimHistoryV02['claims'][number];
-const emit = (schema: z.ZodType, $id: string) => ({ ...z.toJSONSchema(schema, { target: 'draft-2020-12', reused: 'ref' }), $id });
+const emit = (schema: z.ZodType, $id: string) => ({ ...preservePublishedSchema(z.toJSONSchema(schema, { target: 'draft-2020-12', reused: 'ref' })), $id });
 export const observationClaimHistoryJsonSchema = () => emit(ObservationClaimHistorySchema, OBSERVATION_CLAIM_HISTORY_SCHEMA_ID);
 export const caseRecordV02JsonSchema = () => emit(CaseRecordV02Schema, CASE_RECORD_V02_SCHEMA_ID);
 export const caseClaimHistoryV02JsonSchema = () => emit(CaseClaimHistoryV02Schema, CASE_CLAIM_HISTORY_V02_SCHEMA_ID);

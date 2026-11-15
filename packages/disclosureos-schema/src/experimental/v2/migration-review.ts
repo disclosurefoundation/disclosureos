@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 const text = z.string().min(1).regex(/\S/);
 const common = {
@@ -45,7 +46,7 @@ export const MigrationReviewSchema = z.strictObject({
 export type MigrationReview = z.infer<typeof MigrationReviewSchema>;
 export function migrationReviewJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(MigrationReviewSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(MigrationReviewSchema, { target: "draft-2020-12" })),
     $id: MIGRATION_REVIEW_SCHEMA_ID,
   };
 }

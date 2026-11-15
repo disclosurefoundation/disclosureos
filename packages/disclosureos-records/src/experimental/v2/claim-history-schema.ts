@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from 'zod';
 import { ExperimentalObservationSchema, ObservationAssertionSchema } from './observation-schema';
 import { instantString } from './primitives';
@@ -43,5 +44,5 @@ export type AssessedClaim = z.infer<typeof AssessedClaimSchema>;
 export type HistoricalClaim = z.infer<typeof HistoricalClaimSchema>;
 export type ExperimentalClaimHistory = z.infer<typeof ExperimentalClaimHistorySchema>;
 export function experimentalClaimHistoryJsonSchema(): Record<string, unknown> {
-  return { ...z.toJSONSchema(ExperimentalClaimHistorySchema, { target: 'draft-2020-12' }), $id: EXPERIMENTAL_CLAIM_HISTORY_SCHEMA_ID };
+  return { ...preservePublishedSchema(z.toJSONSchema(ExperimentalClaimHistorySchema, { target: 'draft-2020-12' })), $id: EXPERIMENTAL_CLAIM_HISTORY_SCHEMA_ID };
 }

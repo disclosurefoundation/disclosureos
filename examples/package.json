@@ -17,7 +17,7 @@
     "@disclosureos/records": "workspace:*",
     "@disclosureos/schema": "workspace:*",
     "@disclosureos/scoring": "workspace:*",
-    "csv-parse": "^7.0.0",
+    "csv-parse": "7.0.2",
     "zod": "catalog:"
   },
   "devDependencies": {

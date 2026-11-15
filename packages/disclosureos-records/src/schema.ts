@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from './shared/published-schema';
 import { z } from 'zod';
 import { jsonSchemaEnvelope, schemaId } from './shared';
 import { ObservationSchema } from './observation/types';
@@ -18,7 +19,7 @@ export const RECORDS_SCHEMA_ID = schemaId('records', 'observation', RECORDS_SCHE
  * NOT included — they compose in at the all-packages bundling step.
  */
 export function recordsJsonSchema(): Record<string, unknown> {
-  const schema = z.toJSONSchema(ObservationSchema, { target: 'draft-2020-12' }) as Record<
+  const schema = preservePublishedSchema(z.toJSONSchema(ObservationSchema, { target: 'draft-2020-12' })) as Record<
     string,
     unknown
   >;

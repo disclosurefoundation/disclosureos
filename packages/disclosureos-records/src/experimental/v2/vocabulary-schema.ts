@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from "zod";
 import { DocumentSnapshotRefSchema } from "./context-schema";
 import { ExperimentalObservationSchema } from "./observation-schema";
@@ -72,7 +73,7 @@ export type VocabularyBinding = z.infer<typeof VocabularyBindingSchema>;
 export type VocabularyBindings = z.infer<typeof VocabularyBindingsSchema>;
 function emit(schema: z.ZodType, schemaId: string): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(schema, { target: "draft-2020-12", reused: "ref" }),
+    ...preservePublishedSchema(z.toJSONSchema(schema, { target: "draft-2020-12", reused: "ref" })),
     $id: schemaId,
   };
 }

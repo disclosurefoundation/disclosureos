@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import {
   compareUtcInstants,
@@ -97,9 +98,9 @@ export type InstrumentResearchReview = z.infer<
 >;
 export function instrumentResearchReviewJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(InstrumentResearchReviewSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(InstrumentResearchReviewSchema, {
       target: "draft-2020-12",
-    }),
+    })),
     $id: INSTRUMENT_RESEARCH_REVIEW_SCHEMA_ID,
   };
 }

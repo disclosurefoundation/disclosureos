@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from "zod";
 import { DocumentSnapshotRefSchema } from "./context-schema";
 import {
@@ -139,10 +140,10 @@ export type CaseClaimSubject = z.infer<typeof CaseClaimSubjectSchema>;
 export type CaseEntityTarget = z.infer<typeof CaseEntityTargetSchema>;
 export function caseClaimHistoryJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(CaseClaimHistorySchema, {
+    ...preservePublishedSchema(z.toJSONSchema(CaseClaimHistorySchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: CASE_CLAIM_HISTORY_SCHEMA_ID,
   };
 }

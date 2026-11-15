@@ -16,8 +16,8 @@ catalogs:
       specifier: ^5.7.2
       version: 5.9.3
     zod:
-      specifier: 4.4.3
-      version: 4.4.3
+      specifier: 4.6.6
+      version: 4.6.6
 
 overrides:
   esbuild: 0.28.1
@@ -71,11 +71,11 @@ importers:
         specifier: workspace:*
         version: link:../packages/disclosureos-scoring
       csv-parse:
-        specifier: ^7.0.0
-        version: 7.0.0
+        specifier: 7.0.2
+        version: 7.0.2
       zod:
         specifier: 'catalog:'
-        version: 4.4.3
+        version: 4.6.6
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -143,7 +143,7 @@ importers:
         version: link:../disclosureos-records
       zod:
         specifier: 'catalog:'
-        version: 4.4.3
+        version: 4.6.6
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: 'catalog:'
@@ -177,7 +177,7 @@ importers:
         version: link:../disclosureos-records
       zod:
         specifier: 'catalog:'
-        version: 4.4.3
+        version: 4.6.6
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: 'catalog:'
@@ -211,7 +211,7 @@ importers:
         version: link:../disclosureos-records
       zod:
         specifier: 'catalog:'
-        version: 4.4.3
+        version: 4.6.6
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: 'catalog:'
@@ -242,7 +242,7 @@ importers:
     dependencies:
       zod:
         specifier: 'catalog:'
-        version: 4.4.3
+        version: 4.6.6
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: 'catalog:'
@@ -285,7 +285,7 @@ importers:
         version: link:../disclosureos-records
       zod:
         specifier: 'catalog:'
-        version: 4.4.3
+        version: 4.6.6
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: 'catalog:'
@@ -328,7 +328,7 @@ importers:
         version: link:../disclosureos-records
       zod:
         specifier: 'catalog:'
-        version: 4.4.3
+        version: 4.6.6
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: 'catalog:'
@@ -981,8 +981,8 @@ packages:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
-  csv-parse@7.0.0:
-    resolution: {integrity: sha512-CSssqPAK5us09FhMI9juM0jnqXUJP+rtWeIfivTYBLNH/8rnxkQlZvoRemF6MAyfNov9XU8mN2wwF/pP68sxTA==}
+  csv-parse@7.0.2:
+    resolution: {integrity: sha512-uKZghv9UmPkMVLYy//KZ9HFAIJsl7wkhoEdIL0+rhuSY9pZQlhaeGEDPIe+/w7eh81MOql8Q/9+inAGWG6ZHYA==}
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -1653,8 +1653,8 @@ packages:
     resolution: {integrity: sha512-Nt9ZJjXTv5R8MHbqby/wXQ6Gi0Bb3TcYZkR1bzuL4yB2OxWPkXknz513gEF0GoA6tn00UpbPvERW8rzCuWCA6w==}
     engines: {node: '>=10'}
 
-  zod@4.4.3:
-    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
+  zod@4.6.6:
+    resolution: {integrity: sha512-4UmzQUF5fxvfcYHlbjBmejU+w+hbDnWFx4aS8kBx7nPBHcO2SqPbpAG8snbdg+Xse4pRefR98hgjFgIMCI/UhA==}
 
 snapshots:
 
@@ -2231,7 +2231,7 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  csv-parse@7.0.0: {}
+  csv-parse@7.0.2: {}
 
   debug@4.4.3:
     dependencies:
@@ -2833,4 +2833,4 @@ snapshots:
       y18n: 5.0.8
       yargs-parser: 20.2.9
 
-  zod@4.4.3: {}
+  zod@4.6.6: {}

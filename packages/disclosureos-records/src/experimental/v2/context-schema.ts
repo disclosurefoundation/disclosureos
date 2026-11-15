@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from "zod";
 import {
   ObjectShapeSchema,
@@ -408,10 +409,10 @@ export type ContextReference = z.infer<typeof ContextReferenceSchema>;
 export type DocumentSnapshotRef = z.infer<typeof DocumentSnapshotRefSchema>;
 export function observationContextJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ObservationContextSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(ObservationContextSchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: OBSERVATION_CONTEXT_SCHEMA_ID,
   };
 }

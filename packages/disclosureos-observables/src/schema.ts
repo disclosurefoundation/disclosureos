@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from 'zod';
 import { jsonSchemaEnvelope, schemaId, validateWith } from '@disclosureos/records/shared';
 import type { ValidationIssue } from '@disclosureos/records/shared';
@@ -16,9 +17,9 @@ export const OBSERVABLES_SCHEMA_ID = schemaId(
  * payload ({@link ObservableAssessmentMapSchema}).
  */
 export function observablesJsonSchema(): Record<string, unknown> {
-  const schema = z.toJSONSchema(ObservableAssessmentMapSchema, {
+  const schema = preservePublishedSchema(z.toJSONSchema(ObservableAssessmentMapSchema, {
     target: 'draft-2020-12',
-  }) as Record<string, unknown>;
+  })) as Record<string, unknown>;
   return jsonSchemaEnvelope(schema, {
     id: OBSERVABLES_SCHEMA_ID,
     version: OBSERVABLES_SCHEMA_VERSION,

@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 /** Optional video source mapping. Containers and codecs remain external;
  * this contract addresses decoded presentation-order frames without UTC. */
 import { z } from "zod";
@@ -50,9 +51,9 @@ export type VideoFrameSourceMapping = z.infer<
 >;
 export function videoFrameSourceMappingJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(VideoFrameSourceMappingSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(VideoFrameSourceMappingSchema, {
       target: "draft-2020-12",
-    }),
+    })),
     $id: VIDEO_FRAME_SOURCE_MAPPING_SCHEMA_ID,
   };
 }

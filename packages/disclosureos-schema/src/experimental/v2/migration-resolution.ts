@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 const hash = z.string().regex(/^[a-f0-9]{64}(?![\s\S])/);
 const text = z.string().min(1).regex(/\S/);
@@ -37,7 +38,7 @@ export const MigrationResolutionSchema = z.strictObject({
 export type MigrationResolution = z.infer<typeof MigrationResolutionSchema>;
 export function migrationResolutionJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(MigrationResolutionSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(MigrationResolutionSchema, { target: "draft-2020-12" })),
     $id: MIGRATION_RESOLUTION_SCHEMA_ID,
   };
 }
