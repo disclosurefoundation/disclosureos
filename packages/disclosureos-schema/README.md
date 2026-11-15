@@ -2,13 +2,16 @@
 
 Connect supplied documents, inspect exact source selections and validate specialized instrument products. Use portable JSON Schemas and evaluators with explicit limits.
 
-This README describes the **2.0.0-beta.4** API. Use one exact package version
-throughout an application. Check [availability](https://os.disclosure.org/v2/docs/installation)
-before installing; a source branch or packed candidate is not proof of npm
-publication. For a candidate that is not yet published, use the verified local
-tarballs. See the [release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
-for scope and verification. Avoid unversioned installs, which can select a different
-API generation through `latest`.
+This README describes the published **2.0.0-beta.6** package. Use this exact version
+for all DisclosureOS packages in an application and commit your lockfile. The npm
+`beta` tag selects V2; `latest` still selects V1. See the
+[installation guide](https://os.disclosure.org/v2/docs/installation) and
+[release notes](https://github.com/disclosurefoundation/disclosureos/blob/main/docs/releases/2.0.0-beta.6.md).
+
+Beta 6 includes Zod 4.6.6 directly. New installations do not need a separate Zod
+dependency or an override. The packages use ESM; the guides use Node.js 22.
+Published beta APIs under `/experimental/v2` remain experimental. Document schema
+versions and catalog revisions are separate from the npm package version.
 
 ## V2 entry point
 
@@ -18,24 +21,24 @@ Start with `@disclosureos/schema/experimental/v2`. It includes acquisition and m
 
 ## Choose a package version
 
-Once this version is available in the registry, install it explicitly:
+Install the published package:
 
 ```sh
-npm install --save-exact @disclosureos/schema@2.0.0-beta.4
+npm install --save-exact @disclosureos/schema@2.0.0-beta.6
 ```
 
-Use the same exact release for all DisclosureOS packages. Before publication,
-review a verified source checkout or its locally packed artifacts. Packages are
-ESM; Node.js 22 is the documented getting-started runtime.
+Add other packages only when the implementation guide calls for them, using the
+same exact release.
 
 ## Additional API reference
 
 <details>
 <summary>Earlier composition APIs and detailed source-workflow reference</summary>
 
-The following reference retains earlier APIs and source checkpoints. It is not the
-V2 first-record tutorial. Installation commands here describe the candidate API
-set; use the availability guidance above until that version is published.
+This reference includes earlier root APIs and V2 APIs at their documented import
+paths. They are available in the package version above. Repository examples that
+use `pnpm --filter` require a source checkout; start with the linked implementation
+guide for an installed-package workflow.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -74,12 +77,12 @@ that gap with three things:
 > with `pnpm --filter @disclosureos/examples golden-path`.
 >
 > **Migrating an existing dataset?** See [`examples/migration-path.ts`](../../examples/migration-path.ts)
-> and the [onboarding workspace](https://os.disclosure.org/v2/inspect).
+> and the [Document inspector](https://os.disclosure.org/v2/inspect).
 
 ## Install
 
 ```bash
-pnpm add @disclosureos/schema@2.0.0-beta.4 @disclosureos/records@2.0.0-beta.4 @disclosureos/observables@2.0.0-beta.4 @disclosureos/origins@2.0.0-beta.4 zod
+pnpm add @disclosureos/schema@2.0.0-beta.6 @disclosureos/records@2.0.0-beta.6 @disclosureos/observables@2.0.0-beta.6 @disclosureos/origins@2.0.0-beta.6
 ```
 
 ## Quickstart
@@ -242,12 +245,12 @@ See the [contract, worked example and
 verification boundaries](../../docs/c2/README.md). Qualifications and reviewer
 judgments remain separate; no credibility score is calculated.
 
-## Document editions and digital custody: C2b candidate
+## Document editions and digital custody: C2b
 
 The source tree adds research-entities 0.2.0 and claim-history 0.4.0 with exact
 edition citations, digital custody actions, scoped identifiers and attributable
-artifact reviews. These additions are not in published 2.0.0-beta.2. Existing
-contract schemas and versioned entry points remain unchanged.
+artifact reviews. These APIs are available in Beta 6. Earlier contract schemas
+and versioned entry points remain available.
 
 Use `parseArchivalEntities` / `parseArchivalClaimHistory` from records and
 `evaluateArchivalClaimHistory` from schema through their `/experimental/v2`
@@ -255,48 +258,48 @@ entries. A successful supplied-document check does not authenticate source
 artifacts, complete custody or certify a scientific profile.
 See the [contract guide](../../docs/c2/archival.md) and
 [worked example](../../examples/v2/archival-editions-demo/README.md).
-# Product source selections (source candidate)
+## Product source selections
 
 The experimental V2 entry point exports `ProductSourceSelectionSchema`,
 `evaluateProductSourceSelection` and the dependency-free
 `readProductSourceSelection` reader. This additive contract binds array elements,
 CSV rows and declared video frame intervals to exact observation-product bytes.
 See [the contract and limitations](../../docs/experimental/product-source-selection.md).
-This addition has not been published to npm.
+These APIs are included in Beta 6.
 
 ### Active sonar echo envelopes
 
-The optional [sonar profile](docs/sonar-profile.md) binds retained monostatic normalized envelopes and receive masks to an acquisition, the source delay/time axes, and a declared constant assumed sound speed. Public readers preserve unavailable samples separately from measured zero; the evaluator checks source integrity and declared meaning. A passed check does not certify physical calibration, propagation accuracy, depth or object identity. The [active sonar example](../../examples/sonar-active) includes a reproducible source packet. These additions are on the V2 development branch; package publication is separate.
+The optional [sonar profile](docs/sonar-profile.md) binds retained monostatic normalized envelopes and receive masks to an acquisition, the source delay/time axes, and a declared constant assumed sound speed. Public readers preserve unavailable samples separately from measured zero; the evaluator checks source integrity and declared meaning. A passed check does not certify physical calibration, propagation accuracy, depth or object identity. The [active sonar example](../../examples/sonar-active) includes a reproducible source packet. These APIs are included in Beta 6.
 
 ### Passive sonar pressure and spectra
 
-The optional [passive sonar profile](docs/passive-sonar-profile.md) binds a single pressure channel and its retention mask to a reproducible, one-sided spectral-density product. Public readers expose the exact input window and selected output cell; the evaluator checks acquisition lineage, hashes, missing-window behavior and numerical reproduction. The [passive sonar example](../../examples/sonar-passive) includes its waveform, spectra, masks and executable methods. It supplies no bearing, range or identity and does not certify physical calibration. These additions are source candidates; publication is separate.
+The optional [passive sonar profile](docs/passive-sonar-profile.md) binds a single pressure channel and its retention mask to a reproducible, one-sided spectral-density product. Public readers expose the exact input window and selected output cell; the evaluator checks acquisition lineage, hashes, missing-window behavior and numerical reproduction. The [passive sonar example](../../examples/sonar-passive) includes its waveform, spectra, masks and executable methods. It supplies no bearing, range or identity and does not certify physical calibration. These APIs are included in Beta 6.
 
 ### Static lidar returns and pulse availability
 
-The optional [lidar point-cloud profile](docs/lidar-profile.md) binds a local discrete-return cloud to a complete raster pulse ledger, with exact row selection, complete return groups, normalized amplitude and declared class annotations. The [lidar example](../../examples/lidar-point-cloud) retains authored terrain, roof and vegetation returns alongside no-return and unavailable cells. The evaluator verifies source integrity and declared local geometry; it does not certify calibration, classification accuracy, geographic registration or empty space. This is a source candidate, with publication held separately.
+The optional [lidar point-cloud profile](docs/lidar-profile.md) binds a local discrete-return cloud to a complete raster pulse ledger, with exact row selection, complete return groups, normalized amplitude and declared class annotations. The [lidar example](../../examples/lidar-point-cloud) retains authored terrain, roof and vegetation returns alongside no-return and unavailable cells. The evaluator verifies source integrity and declared local geometry; it does not certify calibration, classification accuracy, geographic registration or empty space. These APIs are included in Beta 6.
 
 ### Multispectral satellite raster
 
-The optional [satellite raster profile](docs/satellite-raster-profile.md) binds a projected grid, retained optical band values and attributed pixel quality to exact source and acquisition artifacts. The reusable reader exposes scaled reflectance, pixel footprints, source byte offsets and quality-gated NDVI. The [fictional raster example](../../examples/satellite-raster) retains six bands, cloud and shadow annotations, missing pixels and numerical edge cases. Passing checks do not certify calibration, atmospheric correction, quality accuracy or geographic registration. No satellite-format decoder is implied; publication remains held separately.
+The optional [satellite raster profile](docs/satellite-raster-profile.md) binds a projected grid, retained optical band values and attributed pixel quality to exact source and acquisition artifacts. The reusable reader exposes scaled reflectance, pixel footprints, source byte offsets and quality-gated NDVI. The [fictional raster example](../../examples/satellite-raster) retains six bands, cloud and shadow annotations, missing pixels and numerical edge cases. Passing checks do not certify calibration, atmospheric correction, quality accuracy or geographic registration. No satellite-format decoder is implied. These APIs are included in Beta 6.
 
 </details>
 
-### Proposed MCAP source mapping
+## MCAP source mapping
 
 The optional [MCAP source mapping](../../docs/experimental/mcap-source-mapping.md)
 pins a measurement to a field in an original MCAP message, using exact recording,
-channel, schema and message identities. The source revision exports
+channel, schema and message identities. The published package exports
 `McapSourceMappingSchema` and `evaluateMcapSourceMapping`; a trusted MCAP reader
-and payload decoder provide content verification. This addition is not part of
-the published Beta 4 package. No viewer or source re-encoding is required.
+and payload decoder provide content verification. These APIs are included in
+Beta 6. No viewer or source re-encoding is required.
 
-### Proposed relative video-frame source mapping
+## Relative video-frame source mapping
 
 The optional [video-frame source mapping](../../docs/experimental/video-frame-source-mapping.md)
 pins an original video product, stream and presentation-order frame to exact
 encoded timestamps without requiring UTC. `VideoFrameSourceMappingSchema`,
 `readVideoFrameReference` and `evaluateVideoFrameSourceMapping` preserve integer
-precision and separate file checks from decoder-backed timing checks. This is a
-Beta 5 source candidate, not part of the published Beta 4 package. It does not
+precision and separate file checks from decoder-backed timing checks. These
+APIs are included in Beta 6. The mapping does not
 infer capture time, exposure duration or physical capture cadence.

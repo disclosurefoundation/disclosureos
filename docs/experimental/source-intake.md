@@ -3,7 +3,7 @@
 A source file can arrive before its capture times, instrument history, calibration,
 license, or scientific interpretation are established. Intake preserves that file
 and records what is missing. It requires no Observation, measurement, claim, or
-review. The contract is experimental and unreleased.
+review. The contract is published in Beta 6 as an experimental API.
 
 The `local_file_receipt_identity` profile checks that supplied local bytes match
 an intake manifest. Passing does not establish research eligibility, artifact
@@ -13,14 +13,13 @@ file can have a verified identity but supplies no measurement content.
 
 ## Receive files locally
 
-Build the source CLI, then supply existing local files and a new destination:
+Install `@disclosureos/cli@2.0.0-beta.6`, then supply existing local files and a new destination:
 
 ```sh
-pnpm install --frozen-lockfile
-pnpm --filter '@disclosureos/cli...' build
-node packages/disclosureos-cli/dist/index.js intake create /path/to/source.bin /path/to/notes.txt --out /path/to/new-receipt --json
-node packages/disclosureos-cli/dist/index.js intake inspect /path/to/new-receipt/intake.json --json
-node packages/disclosureos-cli/dist/index.js intake validate /path/to/new-receipt/intake.json --json
+npm install --save-dev --save-exact @disclosureos/cli@2.0.0-beta.6
+npx --no-install disclosureos intake create /path/to/source.bin /path/to/notes.txt --out /path/to/new-receipt --json
+npx --no-install disclosureos intake inspect /path/to/new-receipt/intake.json --json
+npx --no-install disclosureos intake validate /path/to/new-receipt/intake.json --json
 ```
 
 An installed local package exposes the same `disclosureos intake` commands.

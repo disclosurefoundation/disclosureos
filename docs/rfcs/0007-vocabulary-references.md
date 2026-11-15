@@ -1,6 +1,6 @@
 # RFC 0007: Shared vocabulary references and the V2 definition baseline
 
-Status: **implemented in the V2 source candidate; not yet published to npm**. Owners: records, observables, origins and schema. Updated 13 October 2026. This implements the separation described in [RFC 0003](0003-claims.md) and [RFC 0004](0004-scientific-neutrality.md).
+Status: **implemented and published; available in Beta 6**. Owners: records, observables, origins and schema. Publication status updated 15 November 2026. This implements the separation described in [RFC 0003](0003-claims.md) and [RFC 0004](0004-scientific-neutrality.md).
 
 ## Decision
 
@@ -140,4 +140,4 @@ pnpm example:vocabulary
 
 The [conformance suite](../../conformance/vocabulary.test.mjs) covers official observable and origin catalogs, custom catalogs, all implemented history contracts, descriptive associations, assessor attribution, chronology, duplicate IDs and JSON keys, exact digests, missing inputs, criterion conflicts and continuity, caller-buffer mutation, schema drift and role-confusion prevention. CI runs that suite and the example.
 
-The portal consumes these canonical contracts and revised definitions in the current PR stack. No npm release accompanies this checkpoint. Publication remains part of the coordinated V2 release; package availability must not be inferred from an open source-candidate PR.
+The portal consumes these canonical contracts and revised definitions from the published Beta 6 packages. The [release record](../releases/2.0.0-beta.6.md) identifies the package artifacts; catalog and document revisions retain their separate identities.

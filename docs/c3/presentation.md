@@ -1,10 +1,10 @@
 # C3d: public case presentation
 
-This is an **unreleased source checkpoint**, held for the [coordinated V2 release](../releases/v2-completion.md).
-It implements the shared presentation contract and public-output projection.
-It does not activate a website, store private notes, authenticate a publisher or
-implement asset delivery. Portal integration and end-to-end access enforcement
-are the next application checkpoint.
+The shared presentation contract and public-output projection are available in
+the published Beta 6 packages. They do not activate a website, store private notes,
+authenticate a publisher or implement asset delivery. Applications must enforce
+access controls. See the [release scope](../releases/beta5-scope.md) for supported
+case revisions and presentation approval requirements.
 
 A public case is an editorial selection of narrative, citations, findings and
 attachments. It references exact research snapshots without copying their complete
@@ -23,8 +23,8 @@ All APIs belong to `@disclosureos/schema/experimental/v2`:
 
 The plain schema export is `/experimental/v2/presentation/schema/0.1.0`.
 No Zod schema crosses a package boundary. The existing records, case, link and
-assessment contracts are unchanged. Use built source until coordinated publication;
-these APIs are not available in npm beta.3.
+assessment contracts are unchanged. Install the published Beta 6 schema package
+to use these APIs.
 
 ## Editorial input
 

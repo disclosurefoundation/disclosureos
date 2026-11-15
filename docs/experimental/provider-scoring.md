@@ -1,8 +1,8 @@
 # Provider-authored scores
 
-Status: unreleased V2 source candidate. Import this optional format from
-`@disclosureos/scoring/experimental/v2` after building this checkout or a release
-that includes it. No npm publication is implied.
+Status: published experimental API in **2.0.0-beta.6**. Import this optional format
+from `@disclosureos/scoring/experimental/v2`. See the
+[installation guide](https://os.disclosure.org/v2/docs/installation).
 
 The standard can retain a score produced by a named provider without making that
 provider's method the universal DisclosureOS scoring system. A score travels with

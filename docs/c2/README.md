@@ -1,18 +1,14 @@
 # C2a: witnesses and accounts
 
-The witness/account contracts below are published in **2.0.0-beta.2**.
-[C2b: document editions and digital custody](archival.md) is published in beta.3.
-[C2c: material identity and lineage](materials.md) and
-[laboratory results and review](laboratory.md) are unreleased source checkpoints.
-No stable v2 release, testimony authentication or scientific profile certification
-is declared here.
+The witness/account, [archival](archival.md), [material](materials.md) and
+[laboratory](laboratory.md) contracts are available in the published Beta 6 packages.
+They retain their individual document revisions. These are beta APIs; package
+availability does not authenticate testimony or certify a scientific profile.
 
 The approved domain design separates witnesses, their accounts and reviewer
-interpretations. This checkpoint implements that separation. C2c material and
-analysis contracts extend that structure; their unreleased portal preview is
-merged in [dashboard #222](https://github.com/disclosurefoundation/dashboard/pull/222).
-[C3 connected cases](../c3/README.md) follows, with public/private application
-enforcement still pending.
+interpretations. The material and laboratory
+contracts extend that structure. [Connected cases](../c3/README.md) relate the
+observations. Applications remain responsible for public/private access enforcement.
 
 ## Contracts
 

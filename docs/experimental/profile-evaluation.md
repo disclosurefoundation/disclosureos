@@ -30,7 +30,7 @@ Import from `@disclosureos/schema/experimental/v2`. Public exports include
 `ProfileEvaluationResult`, `ProfileEvaluationReceipt`, `profileEvaluationJsonSchema`
 and `evaluateProfileEvaluation`. JSON Schema exports are
 `@disclosureos/schema/experimental/v2/profile-evaluation/schema` and its `/0.1.0` alias.
-These additions are unreleased; existing schemas and package versions are unchanged.
+These APIs are available in Beta 6; document schema identities remain unchanged.
 
 The strict manifest contains `kind: profile_evaluation`, `schemaVersion: 0.1.0`,
 a local `id`, one workflow above, `history` and `selection` pins, an `assets` array

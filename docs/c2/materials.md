@@ -1,15 +1,14 @@
 # C2c material foundation: identity, physical custody and lineage
 
-This is an **unreleased source checkpoint**, not an API in npm beta.3. Further npm
-publication is held until the remaining V2 implementation is complete under the
-[consolidated release policy](../releases/v2-completion.md).
+These material contracts are available in the published Beta 6 packages.
+See the [installation guide](https://os.disclosure.org/v2/docs/installation).
 
 A collected specimen, an uncollected surface trace, a file describing either, and
 a laboratory interpretation are different records. This checkpoint provides the
 material foundation. The [laboratory checkpoint](laboratory.md) adds typed results,
-measurement links, review claims and supplied-snapshot resolution. The material
-portal preview is merged in [dashboard #222](https://github.com/disclosurefoundation/dashboard/pull/222),
-with production access still blocked pending the coordinated release.
+measurement links, review claims and supplied-snapshot resolution. The public
+[showcase](https://os.disclosure.org/showcase?surface=desk&view=materials) demonstrates
+the material and laboratory structures with fictional data.
 
 ## What this checkpoint implements
 
@@ -92,7 +91,7 @@ Even on success, `checks.external` and `checks.profile` remain `not_checked`.
 Observation, context, source and selection references are listed as unchecked;
 no URLs are fetched and no snapshot or source artifact bytes are verified. Current
 claim-history 0.4.0 does not accept material entities 0.3.0. A matching new claim
-history and supplied-document evaluator are provided separately by the unreleased
+history and supplied-document evaluator are provided separately by the
 [laboratory checkpoint](laboratory.md), using entities 0.4.0 and history 0.5.0.
 
 Public fields are not a privacy sanitizer: names, storage locations, URLs and

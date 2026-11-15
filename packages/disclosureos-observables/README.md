@@ -2,13 +2,16 @@
 
 Name a characteristic that someone reports or investigates. A vocabulary term does not establish that the characteristic occurred, that it is anomalous, or what caused it.
 
-This README describes the **2.0.0-beta.4** API. Use one exact package version
-throughout an application. Check [availability](https://os.disclosure.org/v2/docs/installation)
-before installing; a source branch or packed candidate is not proof of npm
-publication. For a candidate that is not yet published, use the verified local
-tarballs. See the [release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
-for scope and verification. Avoid unversioned installs, which can select a different
-API generation through `latest`.
+This README describes the published **2.0.0-beta.6** package. Use this exact version
+for all DisclosureOS packages in an application and commit your lockfile. The npm
+`beta` tag selects V2; `latest` still selects V1. See the
+[installation guide](https://os.disclosure.org/v2/docs/installation) and
+[release notes](https://github.com/disclosurefoundation/disclosureos/blob/main/docs/releases/2.0.0-beta.6.md).
+
+Beta 6 includes Zod 4.6.6 directly. New installations do not need a separate Zod
+dependency or an override. The packages use ESM; the guides use Node.js 22.
+Published beta APIs under `/experimental/v2` remain experimental. Document schema
+versions and catalog revisions are separate from the npm package version.
 
 ## V2 entry point
 
@@ -18,24 +21,24 @@ Use `createObservableCatalog` and `readObservableTermDefinition` from the packag
 
 ## Choose a package version
 
-Once this version is available in the registry, install it explicitly:
+Install the published package:
 
 ```sh
-npm install --save-exact @disclosureos/observables@2.0.0-beta.4
+npm install --save-exact @disclosureos/observables@2.0.0-beta.6
 ```
 
-Use the same exact release for all DisclosureOS packages. Before publication,
-review a verified source checkout or its locally packed artifacts. Packages are
-ESM; Node.js 22 is the documented getting-started runtime.
+Add other packages only when the implementation guide calls for them, using the
+same exact release.
 
 ## Additional API reference
 
 <details>
 <summary>Earlier composition APIs and detailed source-workflow reference</summary>
 
-The following reference retains earlier APIs and source checkpoints. It is not the
-V2 first-record tutorial. Installation commands here describe the candidate API
-set; use the availability guidance above until that version is published.
+This reference includes earlier root APIs and V2 APIs at their documented import
+paths. They are available in the package version above. Repository examples that
+use `pnpm --filter` require a source checkout; start with the linked implementation
+guide for an installed-package workflow.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -71,7 +74,7 @@ import '@disclosureos/observables'; // `observation.observableAssessments` is no
 ## Install
 
 ```bash
-pnpm add @disclosureos/observables@2.0.0-beta.4 @disclosureos/records@2.0.0-beta.4 zod
+pnpm add @disclosureos/observables@2.0.0-beta.6 @disclosureos/records@2.0.0-beta.6
 ```
 
 ## Assessments in an enriched observation

@@ -1,11 +1,9 @@
 # C2c laboratory results and attributable material review
 
-This is an **unreleased source checkpoint**. The public npm set remains beta.3;
-publication stays on hold under the [consolidated V2 policy](../releases/v2-completion.md).
-It extends the [material foundation](materials.md). The full material portal
-preview merged in [dashboard #222](https://github.com/disclosurefoundation/dashboard/pull/222).
-It remains unlisted and blocked in production. [Connected cases](../c3/README.md)
-begin C3; application publication and access enforcement remain later checkpoints.
+These laboratory contracts are available in the published Beta 6 packages.
+They extend the [material foundation](materials.md). [Connected cases](../c3/README.md)
+provide a separate structure for relating observations. Publication permissions
+and application access controls remain separate from document validation.
 
 ## Contracts and use
 

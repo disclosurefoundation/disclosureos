@@ -5,7 +5,7 @@ This experiment composes existing reproduction packets into a versioned release 
 Contract: `urn:disclosureos:experimental:dataset-release:0.1.0`.
 Profile: `urn:disclosureos:experimental:profile:dataset-release`, version `0.1.0`, scope `pinned_packets_and_nominal_session_membership`.
 
-This first profile requires every member reproduction packet to pass its own research-prerequisite profile. It is therefore a collection of reviewed observation packets, not yet a universal intake contract for raw, unassessed datasets. Incomplete inputs can be represented and diagnosed without receiving a passing profile. Direct raw-session intake and native adapters remain future work.
+This first profile requires every member reproduction packet to pass its own research-prerequisite profile. It is therefore a collection of reviewed observation packets, not yet a universal intake contract for raw, unassessed datasets. Incomplete inputs can be represented and diagnosed without receiving a passing profile. Use [source intake](source-intake.md) to receive raw, unassessed files. Native-format decoding remains the responsibility of an adapter.
 
 ## Release and session rules
 
@@ -60,7 +60,7 @@ node packages/disclosureos-cli/dist/index.js dataset validate examples/v2/datase
 node packages/disclosureos-cli/dist/index.js packet reproduce examples/v2/dataset-demo/packets/background/packet.json
 ```
 
-The source commands are experimental and unreleased. Once installed from a local package build, use `disclosureos dataset inspect|validate <dataset.json> [--json]`.
+The commands are available in the published Beta 6 CLI as experimental APIs. Use `disclosureos dataset inspect|validate <dataset.json> [--json]`.
 
 Local layout:
 

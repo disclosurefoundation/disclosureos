@@ -1,6 +1,6 @@
 # Single-hydrophone pressure and spectral-density profile
 
-This optional experimental profile binds one retained pressure channel to an acquisition and to a reproducible spectral-density product. It is additive to Observation, AcquisitionContext and ProductSourceSelection. It is a source candidate in the current V2 PR, not an npm release. Existing active-sonar and radar declarations remain unchanged.
+This optional experimental profile binds one retained pressure channel to an acquisition and to a reproducible spectral-density product. It is additive to Observation, AcquisitionContext and ProductSourceSelection. It is available in the published Beta 6 package. Existing active-sonar and radar declarations remain unchanged.
 
 ## Public contract
 

@@ -1,13 +1,13 @@
 # Relative video-frame source mapping, experimental 0.1.0
 
-A Beta 5 source candidate, not yet published to npm. This optional companion
+Available in the published Beta 6 package. This optional companion
 connects a retained video product to exact presentation-order frames without
 requiring a UTC capture time. Existing Beta 4 `product_source_selection` schemas
 and their UTC-based constant-rate video layout remain unchanged.
 
 Import `VideoFrameSourceMappingSchema`, `evaluateVideoFrameSourceMapping` and
-`readVideoFrameReference` from `@disclosureos/schema/experimental/v2` after building
-this source revision. Portable schema export:
+`readVideoFrameReference` from `@disclosureos/schema/experimental/v2`.
+Portable schema export:
 `experimental/v2/video-frame-source-mapping/schema/0.1.0`.
 
 ## Why this exists

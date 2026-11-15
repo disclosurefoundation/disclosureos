@@ -2,13 +2,16 @@
 
 Describe observations and retain their source relationships, missing information, accounts, documents, specimens and connected cases. Keep attributed assessments separate from the observation.
 
-This README describes the **2.0.0-beta.4** API. Use one exact package version
-throughout an application. Check [availability](https://os.disclosure.org/v2/docs/installation)
-before installing; a source branch or packed candidate is not proof of npm
-publication. For a candidate that is not yet published, use the verified local
-tarballs. See the [release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
-for scope and verification. Avoid unversioned installs, which can select a different
-API generation through `latest`.
+This README describes the published **2.0.0-beta.6** package. Use this exact version
+for all DisclosureOS packages in an application and commit your lockfile. The npm
+`beta` tag selects V2; `latest` still selects V1. See the
+[installation guide](https://os.disclosure.org/v2/docs/installation) and
+[release notes](https://github.com/disclosurefoundation/disclosureos/blob/main/docs/releases/2.0.0-beta.6.md).
+
+Beta 6 includes Zod 4.6.6 directly. New installations do not need a separate Zod
+dependency or an override. The packages use ESM; the guides use Node.js 22.
+Published beta APIs under `/experimental/v2` remain experimental. Document schema
+versions and catalog revisions are separate from the npm package version.
 
 ## V2 entry point
 
@@ -18,10 +21,10 @@ Start with `parseExperimentalObservation` from `@disclosureos/records/experiment
 
 ## Install and try it
 
-Once this version is available in the registry:
+Install the published package:
 
 ```sh
-npm install --save-exact @disclosureos/records@2.0.0-beta.4
+npm install --save-exact @disclosureos/records@2.0.0-beta.6
 ```
 
 Save this as `first-record.mjs`, then run `node first-record.mjs` with Node.js 22:
@@ -55,9 +58,10 @@ npm package version. The `/experimental/v2` import path is intentional in this b
 <details>
 <summary>Earlier composition APIs and detailed source-workflow reference</summary>
 
-The following reference retains earlier APIs and source checkpoints. It is not the
-V2 first-record tutorial. Installation commands here describe the candidate API
-set; use the availability guidance above until that version is published.
+This reference includes earlier root APIs and V2 APIs at their documented import
+paths. They are available in the package version above. Repository examples that
+use `pnpm --filter` require a source checkout; start with the linked implementation
+guide for an installed-package workflow.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -84,12 +88,12 @@ terms that are easy to conflate — Attribution vs Claim vs Assessment, `confide
 > with `pnpm --filter @disclosureos/examples golden-path`.
 >
 > **Migrating an existing dataset?** See [`examples/migration-path.ts`](../../examples/migration-path.ts)
-> and the [onboarding workspace](https://os.disclosure.org/v2/inspect).
+> and the [Document inspector](https://os.disclosure.org/v2/inspect).
 
 ## Install
 
 ```bash
-pnpm add @disclosureos/records@2.0.0-beta.4 zod
+pnpm add @disclosureos/records@2.0.0-beta.6
 ```
 
 ## Quick start
@@ -141,7 +145,7 @@ Each surface is independently importable (tree-shakeable):
 | `@disclosureos/records/shared` | Shared primitives: `Confidence`, `Attribution`, `Claim`, `validateWith`, `schemaId`, … |
 | `@disclosureos/records/temporal` · `/geo` · `/media` | Temporal, geographic, and media primitives |
 | `@disclosureos/records/extensions/*` | Off-the-hot-path slots: `provenance`, `identifiers`, `testimony`, `physical`, `document` |
-| `@disclosureos/records/{labels,constants,guards,factories,formatters,validators}` | The DX quintet |
+| `@disclosureos/records/{labels,constants,guards,factories,formatters,validators}` | Labels, constants, guards, factories, formatters and validators |
 | `@disclosureos/records/schema` | The committed JSON Schema (`records.schema.json`) |
 
 ## JSON Schema
@@ -166,7 +170,7 @@ MIT © [Disclosure Foundation](https://disclosure.org)
 
 ## Experimental v2 value primitives
 
-The source tree includes an isolated `@disclosureos/records/experimental/v2` entry point for explicit missingness, typed time/position values, and source-value provenance. It is under development for v2 and is not available in the published package yet. Existing v1 entry points and schemas remain unchanged. See the [scope, examples, and limitations](https://github.com/disclosurefoundation/disclosureos/blob/main/docs/experimental/records-v2-primitives.md).
+The source tree includes an isolated `@disclosureos/records/experimental/v2` entry point for explicit missingness, typed time/position values, and source-value provenance. It is available in the published Beta 6 package as an experimental API. Existing v1 entry points and schemas remain unchanged. See the [scope, examples, and limitations](https://github.com/disclosurefoundation/disclosureos/blob/main/docs/experimental/records-v2-primitives.md).
 
 
 The same experimental entry point now exposes `ExperimentalObservationSchema` and `parseExperimentalObservation` for the integrated factual record, including uncertainty, frames, source selections, and processing lineage. See the [Observation contract and synthetic example](https://github.com/disclosurefoundation/disclosureos/blob/main/docs/experimental/observation-contract.md). External verification and research profiles remain explicitly unchecked.
@@ -182,12 +186,12 @@ See the [contract, worked example and
 verification boundaries](../../docs/c2/README.md). Qualifications and reviewer
 judgments remain separate; no credibility score is calculated.
 
-## Document editions and digital custody: C2b candidate
+## Document editions and digital custody: C2b
 
 The source tree adds research-entities 0.2.0 and claim-history 0.4.0 with exact
 edition citations, digital custody actions, scoped identifiers and attributable
-artifact reviews. These additions are not in published 2.0.0-beta.2. Existing
-contract schemas and versioned entry points remain unchanged.
+artifact reviews. These APIs are available in Beta 6. Earlier contract schemas
+and versioned entry points remain available.
 
 Use `parseArchivalEntities` / `parseArchivalClaimHistory` from records and
 `evaluateArchivalClaimHistory` from schema through their `/experimental/v2`

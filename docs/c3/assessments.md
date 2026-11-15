@@ -1,9 +1,9 @@
 # C3b: attributable case assessments
 
-This is an **unreleased source checkpoint**, accumulated for the
-[coordinated V2 release](../releases/v2-completion.md). It is not in npm beta.3.
-It follows the [connected-case foundation](README.md). No version bump, public
-portal promotion or package publication is part of this checkpoint.
+These case-assessment APIs are available in the published Beta 6 packages.
+They follow the [connected-case foundation](README.md). The separate
+[observation review guide](../experimental/observation-review.md) covers the
+newer observation and case review revisions.
 
 A case organizes the record. A case claim describes what a source says or what
 a particular reviewer concludes about it. The case itself does not reference

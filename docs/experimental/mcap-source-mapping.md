@@ -1,13 +1,13 @@
 # MCAP source mapping, experimental 0.1.0
 
-This proposed addition connects a DisclosureOS measurement to a field in an
+This optional contract connects a DisclosureOS measurement to a field in an
 original MCAP recording. It does not replace MCAP, its message schemas, or the
-existing acquisition and measurement bindings. It is **not included in published
-Beta 4**. Package publication remains a separate release decision.
+existing acquisition and measurement bindings. It is available in the published
+**2.0.0-beta.6** package.
 
 Use `McapSourceMappingSchema`, `mcapSourceMappingJsonSchema`, and
-`evaluateMcapSourceMapping` from `@disclosureos/schema/experimental/v2` in this
-source revision. The JSON Schema export is
+`evaluateMcapSourceMapping` from `@disclosureos/schema/experimental/v2`.
+The JSON Schema export is
 `experimental/v2/mcap-source-mapping/schema/0.1.0`.
 
 ## Reference structure
