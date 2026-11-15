@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import { parseExperimentalClaimHistory } from "@disclosureos/records/experimental/v2";
 const text = z.string().min(1).regex(/\S/);
@@ -69,9 +70,9 @@ export type PhysicalSampleSelection = z.infer<
 >;
 export function physicalSampleSelectionJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(PhysicalSampleSelectionSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(PhysicalSampleSelectionSchema, {
       target: "draft-2020-12",
-    }),
+    })),
     $id: PHYSICAL_SAMPLE_SELECTION_SCHEMA_ID,
   };
 }

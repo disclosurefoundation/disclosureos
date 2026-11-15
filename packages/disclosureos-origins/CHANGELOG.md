@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.0-beta.6
+
+### Patch Changes
+
+- Use patched Zod 4.6.6 for validation, resolving GHSA-mrhx-c7xc-m3w5 without requiring a consumer dependency override. Preserve published schema identities and verify existing documents and package consumers against the patched runtime.
+- Updated dependencies
+  - @disclosureos/records@2.0.0-beta.6
+
 ## 2.0.0-beta.5
 
 ### Patch Changes

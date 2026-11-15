@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from "zod";
 import { entity, values, target } from "./entity-fields";
 import {
@@ -180,10 +181,10 @@ export type MaterialEntities = z.infer<typeof MaterialEntitiesSchema>;
 export type MaterialEntity = z.infer<typeof MaterialEntitySchema>;
 export function materialEntitiesJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(MaterialEntitiesSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(MaterialEntitiesSchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: MATERIAL_ENTITIES_SCHEMA_ID,
   };
 }

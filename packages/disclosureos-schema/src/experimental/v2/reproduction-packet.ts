@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import {parseExperimentalClaimHistory} from "@disclosureos/records/experimental/v2";
 import { evaluateInstrumentResearchPrerequisites } from "./research-prerequisites";
@@ -59,7 +60,7 @@ export const ReproductionPacketSchema = z.strictObject({
 export type ReproductionPacket = z.infer<typeof ReproductionPacketSchema>;
 export function reproductionPacketJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ReproductionPacketSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(ReproductionPacketSchema, { target: "draft-2020-12" })),
     $id: REPRODUCTION_PACKET_SCHEMA_ID,
   };
 }

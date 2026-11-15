@@ -1,6 +1,7 @@
 // Copied into a fresh npm consumer by release-candidate.mjs; no workspace imports.
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { createRequire } from 'node:module';
 import { readFileSync, writeFileSync, realpathSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -24,12 +25,32 @@ for (const pkg of manifest.packages) {
   assert.ok(realpathSync(packageRoot).startsWith(root + '/'), 'Consumer resolved a workspace link');
   const installed = JSON.parse(readFileSync(join(packageRoot, 'package.json')));
   assert.equal(installed.version, manifest.version);
+  if (installed.dependencies?.zod) {
+    const require = createRequire(join(packageRoot, 'package.json'));
+    assert.equal(installed.dependencies.zod, '4.6.6', 'Patched Zod must be a direct package dependency');
+    assert.equal(require('zod/package.json').version, '4.6.6', 'Consumer resolved an unpatched validator');
+    const { z } = require('zod');
+    for (const kind of ['array', 'set', 'map']) {
+      let visited = 0;
+      const member = z.string().superRefine(() => { visited++; });
+      const schema = kind === 'array' ? z.array(member).max(1) : kind === 'set' ? z.set(member).max(1) : z.map(member, member).max(1);
+      const input = kind === 'array' ? ['a', 'b'] : kind === 'set' ? new Set(['a', 'b']) : new Map([['a', 'a'], ['b', 'b']]);
+      assert.equal(schema.safeParse(input).success, false);
+      assert.equal(visited, 0, `${pkg.name}: oversized ${kind} parsed its members`);
+    }
+  }
+  const committedSchemas = new Map(pkg.schemas.map(schema => [schema.id, JSON.parse(readFileSync(join(packageRoot, schema.path)))]));
   for (const [key, entry] of Object.entries(pkg.exports)) {
     const specifier = pkg.name + (key === '.' ? '' : key.slice(1));
     const path = realpathSync(fileURLToPath(import.meta.resolve(specifier)));
     assert.ok(path.startsWith(root + '/'), `Export escaped consumer: ${specifier}`);
     if (path.endsWith('.json')) { JSON.parse(readFileSync(path)); continue; }
     const module = await import(specifier);
+    for (const [name, fn] of Object.entries(module)) {
+      if (!/JsonSchema$/.test(name) || typeof fn !== 'function' || fn.length !== 0) continue;
+      const emitted = fn();
+      if (committedSchemas.has(emitted.$id)) assert.deepEqual(emitted, committedSchemas.get(emitted.$id), `${pkg.name}: emitted ${name} changed its published schema`);
+    }
     imports.push(`import * as Module${imports.length} from ${JSON.stringify(specifier)};`);
     if (key === './experimental/v2' || ['@disclosureos/observables', '@disclosureos/origins'].includes(pkg.name) && key === '.') {
       for (const [name, value] of Object.entries(module)) {

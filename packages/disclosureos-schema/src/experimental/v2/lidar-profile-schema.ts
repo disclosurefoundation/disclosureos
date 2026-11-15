@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 const id = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._-]*(?![\s\S])/);
 const ref = (kind: string) =>
@@ -84,9 +85,9 @@ export const LIDAR_PROFILE = Object.freeze({
 } as const);
 export type LidarProfile = z.infer<typeof LidarProfileSchema>;
 export function lidarProfileJsonSchema(): Record<string, unknown> {
-  const schema = z.toJSONSchema(LidarProfileSchema, {
+  const schema = preservePublishedSchema(z.toJSONSchema(LidarProfileSchema, {
     target: "draft-2020-12",
-  });
+  }));
   // Match runtime fixed tuple extents; Zod emits prefixItems without lengths.
   const constrainTuples = (node: unknown): void => {
     if (node === null || typeof node !== "object") return;

@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 const id = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._-]*(?![\s\S])/);
 const ref = (kind: string) =>
@@ -104,9 +105,9 @@ export type SatelliteRasterProfile = z.infer<
   typeof SatelliteRasterProfileSchema
 >;
 export function satelliteRasterProfileJsonSchema(): Record<string, unknown> {
-  const schema = z.toJSONSchema(SatelliteRasterProfileSchema, {
+  const schema = preservePublishedSchema(z.toJSONSchema(SatelliteRasterProfileSchema, {
     target: "draft-2020-12",
-  });
+  }));
   const constrain = (node: unknown): void => {
     if (node === null || typeof node !== "object") return;
     const value = node as Record<string, unknown>;

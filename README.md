@@ -4,10 +4,10 @@ Open schemas and tools for research records about unidentified anomalous phenome
 Describe an observation, connect its source material and retain attributed reviews
 without replacing the original information.
 
-The published beta is **2.0.0-beta.5**. Use one exact package version throughout
+This branch prepares the **2.0.0-beta.6** security update. Use one exact package version throughout
 an application. See [installation and availability](https://os.disclosure.org/v2/docs/installation)
-and the [release notes](docs/releases/2.0.0-beta.5.md) for scope and verification.
-The `beta` tag selects Beta 5; unversioned installs use the stable V1 `latest` tag.
+and the [release notes](docs/releases/2.0.0-beta.6.md) for scope and verification.
+The release uses the `beta` tag; unversioned installs use the stable V1 `latest` tag.
 
 [Understand the standard](https://os.disclosure.org/v2/standard) ·
 [See the working showcase](https://os.disclosure.org/showcase) ·
@@ -33,11 +33,10 @@ does not establish authenticity, calibration, scientific validity or an origin.
 ## Install and try it
 
 ```sh
-npm pkg set overrides.zod=4.6.6
-npm install --save-exact @disclosureos/records@2.0.0-beta.5
+npm install --save-exact @disclosureos/records@2.0.0-beta.6
 ```
 
-The override selects the patched validation dependency; see the [Beta 5 dependency advisory](docs/releases/2.0.0-beta.5.md#validation-dependency-advisory). If Zod is also a direct dependency, set it to `4.6.6`.
+Beta 6 includes patched Zod 4.6.6 directly. The extra dependency override required for Beta 5 is no longer needed with this package set.
 
 Save this as `first-record.mjs`, then run `node first-record.mjs` with Node.js 22:
 

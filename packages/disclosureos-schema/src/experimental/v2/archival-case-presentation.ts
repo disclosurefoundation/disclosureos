@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import {
   parseArchivalEntities,
@@ -107,10 +108,10 @@ export const ArchivalCasePresentationSchema = z.strictObject({
 });
 export function archivalCasePresentationJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ArchivalCasePresentationSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(ArchivalCasePresentationSchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: ARCHIVAL_CASE_PRESENTATION_SCHEMA_ID,
   };
 }

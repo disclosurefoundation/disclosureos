@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import {
   evaluateReleasedDocuments,
@@ -60,9 +61,9 @@ export const ProfileEvaluationSchema = z.strictObject({
 export type ProfileEvaluation = z.infer<typeof ProfileEvaluationSchema>;
 export function profileEvaluationJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ProfileEvaluationSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(ProfileEvaluationSchema, {
       target: "draft-2020-12",
-    }),
+    })),
     $id: PROFILE_EVALUATION_SCHEMA_ID,
   };
 }

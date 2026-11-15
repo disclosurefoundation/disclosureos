@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 const text = z.string().min(1).regex(/\S/);
 export const MIGRATION_LEGACY_SCORES_SCHEMA_ID =
@@ -36,7 +37,7 @@ export const MigrationLegacyScoresSchema = z.strictObject({
 export type MigrationLegacyScores = z.infer<typeof MigrationLegacyScoresSchema>;
 export function migrationLegacyScoresJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(MigrationLegacyScoresSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(MigrationLegacyScoresSchema, { target: "draft-2020-12" })),
     $id: MIGRATION_LEGACY_SCORES_SCHEMA_ID,
   };
 }

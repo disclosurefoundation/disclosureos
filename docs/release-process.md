@@ -2,6 +2,11 @@
 
 ## Current release and next milestone
 
+The next coordinated security release is `2.0.0-beta.6`, using patched Zod
+4.6.6. It is authorized for merge and publication after final verification.
+See the [Beta 6 release notes](releases/2.0.0-beta.6.md).
+
+
 `2.0.0-beta.5` is published for all seven foundation packages under the `beta`
 tag. Registry versions, tarball bytes and tags were verified on 2026-11-13.
 Stable V1 `latest` tags remain unchanged.
@@ -38,7 +43,7 @@ according to Semantic Versioning; breaking experimental changes must be explicit
 described. During prerelease mode, `pnpm version-packages` advances prerelease
 versions and updates changelogs and dependency metadata. Review the result, update
 `docs/releases/beta-plan.json`, refresh the lockfile, and commit it together.
-Checked-in package versions now name `2.0.0-beta.5`. The release plan pins the
+Checked-in package versions now name `2.0.0-beta.6`. The release plan pins the
 reviewed implementation before version preparation. The registry release uses the exact verified candidate artifacts. The Beta 4
 notes retain the historical packaging baseline.
 
@@ -62,7 +67,7 @@ The source mode uses the exact committed HEAD as its schema baseline. It does
 not alter the frozen beta plan or weaken the separate `release:check` /
 `release:pack` baseline. Before a publishable candidate can pass those release
 commands, version the coordinated set and update the release plan as described
-above. Release-mode CI now exercises the Beta 5 plan. Passing it does not
+above. Release-mode CI now exercises the Beta 6 plan. Passing it does not
 authorize a merge or npm publication.
 
 ## Candidate preflight
@@ -95,10 +100,10 @@ publisher. Do not print credentials or place tokens in release reports.
 
 For each exact, verified tarball in dependency order (records; observables and
 origins; instruments; scoring and schema; CLI), use the newly approved version.
-For example, only after Beta 5 preparation and publication approval:
+For example, only after Beta 6 preparation and publication approval:
 
 ```sh
-npm publish /absolute/candidate/artifacts/disclosureos-records-2.0.0-beta.5.tgz --tag beta --access public --ignore-scripts
+npm publish /absolute/candidate/artifacts/disclosureos-records-2.0.0-beta.6.tgz --tag beta --access public --ignore-scripts
 ```
 
 Here `--ignore-scripts` applies to an already built, publish-checked and installed

@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 /** Experimental RFC 0002/0003 building blocks. Not the v2 Observation contract. */
 import { z } from 'zod';
 
@@ -201,5 +202,5 @@ export function parsePrimitiveRecord(input: unknown): PrimitiveParseResult {
 export const PRIMITIVES_SCHEMA_ID = 'urn:disclosureos:experimental:records-v2-primitives:0.2.0';
 /** Plain JSON; Zod instances remain inside records. Semantic checks are separate. */
 export function primitivesJsonSchema(): Record<string, unknown> {
-  return { ...z.toJSONSchema(PrimitiveRecordSchema, { target: 'draft-2020-12' }), $id: PRIMITIVES_SCHEMA_ID };
+  return { ...preservePublishedSchema(z.toJSONSchema(PrimitiveRecordSchema, { target: 'draft-2020-12' })), $id: PRIMITIVES_SCHEMA_ID };
 }

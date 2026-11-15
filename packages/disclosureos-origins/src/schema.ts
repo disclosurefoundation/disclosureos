@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from 'zod';
 import { jsonSchemaEnvelope, schemaId, validateWith } from '@disclosureos/records/shared';
 import type { ValidationIssue } from '@disclosureos/records/shared';
@@ -22,9 +23,9 @@ const OriginSlotSchema = z
  * of {@link OriginClaimSchema}.
  */
 export function originsJsonSchema(): Record<string, unknown> {
-  const schema = z.toJSONSchema(OriginSlotSchema, {
+  const schema = preservePublishedSchema(z.toJSONSchema(OriginSlotSchema, {
     target: 'draft-2020-12',
-  }) as Record<string, unknown>;
+  })) as Record<string, unknown>;
   return jsonSchemaEnvelope(schema, { id: ORIGINS_SCHEMA_ID, version: ORIGINS_SCHEMA_VERSION });
 }
 

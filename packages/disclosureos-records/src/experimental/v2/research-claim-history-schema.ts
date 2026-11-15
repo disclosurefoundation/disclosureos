@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from "zod";
 import {
   ExperimentalObservationSchema,
@@ -147,10 +148,10 @@ export type ResearchHistoricalClaim = z.infer<
 export type ResearchClaimHistory = z.infer<typeof ResearchClaimHistorySchema>;
 export function researchClaimHistoryJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ResearchClaimHistorySchema, {
+    ...preservePublishedSchema(z.toJSONSchema(ResearchClaimHistorySchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: RESEARCH_CLAIM_HISTORY_SCHEMA_ID,
   };
 }

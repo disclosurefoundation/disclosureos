@@ -35,3 +35,5 @@ export { createEnumGuard, makeGuard } from './enum-guard';
 
 export { asObservationId } from './brands';
 export type { Brand, ObservationId } from './brands';
+
+export { preservePublishedSchema } from './published-schema';

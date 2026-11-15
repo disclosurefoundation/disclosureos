@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '../../shared/published-schema';
 import { z } from 'zod';
 import { EventTimeValueSchema, PositionValueSchema, SourceProvenanceSchema, ValueSelectionSchema, instantString } from './primitives';
 
@@ -117,9 +118,9 @@ export type ProcessingActivityV02 = z.infer<typeof ProcessingActivityV02Schema>;
 export type ExperimentalObservation = z.infer<typeof SupportedExperimentalObservationSchema>;
 
 export function experimentalObservationJsonSchema(): Record<string, unknown> {
-  return { ...z.toJSONSchema(ExperimentalObservationSchema, { target: 'draft-2020-12' }), $id: EXPERIMENTAL_OBSERVATION_SCHEMA_ID };
+  return { ...preservePublishedSchema(z.toJSONSchema(ExperimentalObservationSchema, { target: 'draft-2020-12' })), $id: EXPERIMENTAL_OBSERVATION_SCHEMA_ID };
 }
 
 export function experimentalObservationV02JsonSchema(): Record<string, unknown> {
-  return { ...z.toJSONSchema(ExperimentalObservationV02Schema, { target: 'draft-2020-12' }), $id: EXPERIMENTAL_OBSERVATION_V02_SCHEMA_ID };
+  return { ...preservePublishedSchema(z.toJSONSchema(ExperimentalObservationV02Schema, { target: 'draft-2020-12' })), $id: EXPERIMENTAL_OBSERVATION_V02_SCHEMA_ID };
 }

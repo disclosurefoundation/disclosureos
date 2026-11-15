@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import { ProfileEvaluationSchema } from "./profile-evaluation";
 const path = z
@@ -32,7 +33,7 @@ export const ProfilePreparationSchema = z.strictObject({
 export type ProfilePreparation = z.infer<typeof ProfilePreparationSchema>;
 export function profilePreparationJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ProfilePreparationSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(ProfilePreparationSchema, { target: "draft-2020-12" })),
     $id: PROFILE_PREPARATION_SCHEMA_ID,
   };
 }

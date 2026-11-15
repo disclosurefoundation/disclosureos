@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 const text = z.string().min(1).regex(/\S/);
 const pin = {
@@ -53,9 +54,9 @@ export type MigrationCompatibility = z.infer<
 >;
 export function migrationCompatibilityJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(MigrationCompatibilitySchema, {
+    ...preservePublishedSchema(z.toJSONSchema(MigrationCompatibilitySchema, {
       target: "draft-2020-12",
-    }),
+    })),
     $id: MIGRATION_COMPATIBILITY_SCHEMA_ID,
   };
 }

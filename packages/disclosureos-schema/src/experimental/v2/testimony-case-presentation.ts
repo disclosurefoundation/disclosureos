@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import { capturePresentationSnapshots } from "./presentation-snapshots";
 import {
@@ -81,10 +82,10 @@ export const TestimonyCasePresentationSchema = z.strictObject({
 });
 export function testimonyCasePresentationJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(TestimonyCasePresentationSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(TestimonyCasePresentationSchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: TESTIMONY_CASE_PRESENTATION_SCHEMA_ID,
   };
 }

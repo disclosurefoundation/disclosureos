@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import {
   parseObservationContext,
@@ -87,10 +88,10 @@ export type ContextCasePresentation = z.infer<
 >;
 export function contextCasePresentationJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ContextCasePresentationSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(ContextCasePresentationSchema, {
       target: "draft-2020-12",
       reused: "ref",
-    }),
+    })),
     $id: CONTEXT_CASE_PRESENTATION_SCHEMA_ID,
   };
 }

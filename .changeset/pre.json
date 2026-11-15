@@ -15,6 +15,7 @@
   "changesets": [
     "archival-case-reader",
     "beta5-coordinated-candidate",
+    "beta6-zod-security",
     "c1-observation-context",
     "c2-archival-editions",
     "c2-witness-accounts",

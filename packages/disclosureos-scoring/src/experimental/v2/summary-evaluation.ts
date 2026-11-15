@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import {
   summarizeClaimHistory,
@@ -43,9 +44,9 @@ export function assessmentSummaryEvaluationJsonSchema(): Record<
   unknown
 > {
   return {
-    ...z.toJSONSchema(AssessmentSummaryEvaluationSchema, {
+    ...preservePublishedSchema(z.toJSONSchema(AssessmentSummaryEvaluationSchema, {
       target: "draft-2020-12",
-    }),
+    })),
     $id: ASSESSMENT_SUMMARY_EVALUATION_SCHEMA_ID,
   };
 }

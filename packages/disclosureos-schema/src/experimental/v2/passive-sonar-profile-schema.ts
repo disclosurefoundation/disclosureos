@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 const id = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._-]*(?![\s\S])/);
 const ref = (kind: string) =>
@@ -62,7 +63,7 @@ export const PASSIVE_SONAR_PROFILE = Object.freeze({
 export type PassiveSonarProfile = z.infer<typeof PassiveSonarProfileSchema>;
 export function passiveSonarProfileJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(PassiveSonarProfileSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(PassiveSonarProfileSchema, { target: "draft-2020-12" })),
     $id: PASSIVE_SONAR_PROFILE_SCHEMA_ID,
   };
 }

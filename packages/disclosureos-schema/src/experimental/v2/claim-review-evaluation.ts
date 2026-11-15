@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from 'zod';
 import {
   OBSERVATION_CLAIM_HISTORY_SCHEMA_ID, CASE_CLAIM_HISTORY_V02_SCHEMA_ID,
@@ -32,10 +33,10 @@ export const ClaimReviewReceiptSchema = z.strictObject({
 });
 export type ClaimReviewReceipt = z.infer<typeof ClaimReviewReceiptSchema>;
 export function claimReviewEvaluationJsonSchema() {
-  return { ...z.toJSONSchema(ClaimReviewEvaluationSchema, { target: 'draft-2020-12' }), $id: CLAIM_REVIEW_EVALUATION_SCHEMA_ID };
+  return { ...preservePublishedSchema(z.toJSONSchema(ClaimReviewEvaluationSchema, { target: 'draft-2020-12' })), $id: CLAIM_REVIEW_EVALUATION_SCHEMA_ID };
 }
 export function claimReviewReceiptJsonSchema() {
-  return { ...z.toJSONSchema(ClaimReviewReceiptSchema, { target: 'draft-2020-12' }), $id: CLAIM_REVIEW_RECEIPT_SCHEMA_ID };
+  return { ...preservePublishedSchema(z.toJSONSchema(ClaimReviewReceiptSchema, { target: 'draft-2020-12' })), $id: CLAIM_REVIEW_RECEIPT_SCHEMA_ID };
 }
 export interface ClaimReviewEvaluationOptions {
   /** Exact review document bytes, not a parsed/re-serialized substitute. */

@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import {
   compareUtcInstants,
@@ -82,7 +83,7 @@ export const DatasetReleaseSchema = z.strictObject({
 export type DatasetRelease = z.infer<typeof DatasetReleaseSchema>;
 export function datasetReleaseJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(DatasetReleaseSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(DatasetReleaseSchema, { target: "draft-2020-12" })),
     $id: DATASET_RELEASE_SCHEMA_ID,
   };
 }

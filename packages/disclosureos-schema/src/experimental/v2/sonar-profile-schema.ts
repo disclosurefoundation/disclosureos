@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 
 const id = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._-]*(?![\s\S])/);
@@ -57,7 +58,7 @@ export const SONAR_PROFILE = Object.freeze({
 export type SonarProfile = z.infer<typeof SonarProfileSchema>;
 export function sonarProfileJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(SonarProfileSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(SonarProfileSchema, { target: "draft-2020-12" })),
     $id: SONAR_PROFILE_SCHEMA_ID,
   };
 }

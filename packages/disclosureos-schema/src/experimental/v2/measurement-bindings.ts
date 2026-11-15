@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import {
   compareUtcInstants,
@@ -67,7 +68,7 @@ export const MeasurementBindingsSchema = z.strictObject({
 export type MeasurementBindings = z.infer<typeof MeasurementBindingsSchema>;
 export function measurementBindingsJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(MeasurementBindingsSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(MeasurementBindingsSchema, { target: "draft-2020-12" })),
     $id: MEASUREMENT_BINDINGS_SCHEMA_ID,
   };
 }

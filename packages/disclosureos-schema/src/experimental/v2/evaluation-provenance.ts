@@ -1,3 +1,4 @@
+import { preservePublishedSchema } from '@disclosureos/records/shared';
 import { z } from "zod";
 import {
   ReproductionPacketSchema,
@@ -51,7 +52,7 @@ export const ResearchEvaluationSchema = z.strictObject({
 export type ResearchEvaluation = z.infer<typeof ResearchEvaluationSchema>;
 export function researchEvaluationJsonSchema(): Record<string, unknown> {
   return {
-    ...z.toJSONSchema(ResearchEvaluationSchema, { target: "draft-2020-12" }),
+    ...preservePublishedSchema(z.toJSONSchema(ResearchEvaluationSchema, { target: "draft-2020-12" })),
     $id: RESEARCH_EVALUATION_SCHEMA_ID,
   };
 }
