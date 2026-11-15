@@ -1,6 +1,6 @@
 # A complete local packet workflow
 
-The experimental CLI now provides one path from a supplied reproduction packet to inspection, validation, and a synthetic reproduction result. This is unreleased source functionality; the existing published CLI version does not yet include these commands.
+The experimental CLI now provides one path from a supplied reproduction packet to inspection, validation, and a synthetic reproduction result. These commands are available in the published Beta 6 CLI.
 
 ## Try the supplied packet
 
@@ -16,7 +16,7 @@ node packages/disclosureos-cli/dist/index.js packet reproduce examples/v2/reprod
 
 Inspection reports the declared files and method without reading assets or claiming that their hashes match. Validation verifies the exact file bytes and invokes the shared research-prerequisite profile. Reproduction first requires validation to pass, then computes the supplied synthetic mean of −3 m/s with the declared tolerance of zero.
 
-Once installed from a locally packed CLI, the equivalent command prefix is `disclosureos packet`.
+The published Beta 6 CLI exposes the same commands. After installing it in a project, use `npx --no-install disclosureos packet` as the equivalent command prefix.
 
 ## Inputs and output
 

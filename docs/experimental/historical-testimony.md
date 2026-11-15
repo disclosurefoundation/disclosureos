@@ -39,7 +39,7 @@ Installed consumers import from `@disclosureos/schema/experimental/v2`. Selectio
 schema exports are `@disclosureos/schema/experimental/v2/historical-testimony/schema`
 and its `/0.1.0` alias. Types include `HistoricalTestimonySelection`,
 `HistoricalTestimonyResult`, `HistoricalTestimonyReport`, and requirement/issue types.
-These additions are unreleased; existing package versions and schemas are unchanged.
+These APIs are available in Beta 6; document schema identities remain unchanged.
 
 ## Selection and recording citation
 

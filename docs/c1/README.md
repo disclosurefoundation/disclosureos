@@ -1,9 +1,8 @@
 # C1: event context and addressable claims
 
-Implementation candidate for the approved domain-completion design. The new APIs
-are **not in the published 2.0.0-beta.0 packages**. This document travels with the
-package PR; publication and the portal's package-pin update are separate steps.
-No stable v2 release or scientific review is declared by this checkpoint.
+These event-context and addressable-claim APIs are available in the published
+**2.0.0-beta.6** packages. This guide retains their original document revisions.
+They remain experimental APIs, not a stable V2 release or scientific certification.
 
 ## Contracts and package ownership
 

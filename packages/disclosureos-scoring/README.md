@@ -2,13 +2,16 @@
 
 Retain provider-defined scoring policies and results, then compare only what the declared scales, criteria and inputs permit. Competing provider results remain independent.
 
-This README describes the **2.0.0-beta.4** API. Use one exact package version
-throughout an application. Check [availability](https://os.disclosure.org/v2/docs/installation)
-before installing; a source branch or packed candidate is not proof of npm
-publication. For a candidate that is not yet published, use the verified local
-tarballs. See the [release notes](https://github.com/disclosurefoundation/disclosureos/blob/codex/beta4-release-closure/docs/releases/2.0.0-beta.4.md)
-for scope and verification. Avoid unversioned installs, which can select a different
-API generation through `latest`.
+This README describes the published **2.0.0-beta.6** package. Use this exact version
+for all DisclosureOS packages in an application and commit your lockfile. The npm
+`beta` tag selects V2; `latest` still selects V1. See the
+[installation guide](https://os.disclosure.org/v2/docs/installation) and
+[release notes](https://github.com/disclosurefoundation/disclosureos/blob/main/docs/releases/2.0.0-beta.6.md).
+
+Beta 6 includes Zod 4.6.6 directly. New installations do not need a separate Zod
+dependency or an override. The packages use ESM; the guides use Node.js 22.
+Published beta APIs under `/experimental/v2` remain experimental. Document schema
+versions and catalog revisions are separate from the npm package version.
 
 ## V2 entry point
 
@@ -18,24 +21,24 @@ Start with `@disclosureos/scoring/experimental/v2` for provider scoring and asse
 
 ## Choose a package version
 
-Once this version is available in the registry, install it explicitly:
+Install the published package:
 
 ```sh
-npm install --save-exact @disclosureos/scoring@2.0.0-beta.4
+npm install --save-exact @disclosureos/scoring@2.0.0-beta.6
 ```
 
-Use the same exact release for all DisclosureOS packages. Before publication,
-review a verified source checkout or its locally packed artifacts. Packages are
-ESM; Node.js 22 is the documented getting-started runtime.
+Add other packages only when the implementation guide calls for them, using the
+same exact release.
 
 ## Additional API reference
 
 <details>
 <summary>Earlier composition APIs and detailed source-workflow reference</summary>
 
-The following reference retains earlier APIs and source checkpoints. It is not the
-V2 first-record tutorial. Installation commands here describe the candidate API
-set; use the availability guidance above until that version is published.
+This reference includes earlier root APIs and V2 APIs at their documented import
+paths. They are available in the package version above. Repository examples that
+use `pnpm --filter` require a source checkout; start with the linked implementation
+guide for an installed-package workflow.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -65,12 +68,12 @@ you those slots typed automatically.
 > with `pnpm --filter @disclosureos/examples golden-path`.
 >
 > **Migrating an existing dataset?** See [`examples/migration-path.ts`](../../examples/migration-path.ts)
-> and the [onboarding workspace](https://os.disclosure.org/v2/inspect).
+> and the [Document inspector](https://os.disclosure.org/v2/inspect).
 
 ## Install
 
 ```bash
-pnpm add @disclosureos/scoring@2.0.0-beta.4 @disclosureos/records@2.0.0-beta.4 @disclosureos/observables@2.0.0-beta.4 @disclosureos/origins@2.0.0-beta.4 zod
+pnpm add @disclosureos/scoring@2.0.0-beta.6 @disclosureos/records@2.0.0-beta.6 @disclosureos/observables@2.0.0-beta.6 @disclosureos/origins@2.0.0-beta.6
 ```
 
 ## Population coverage
@@ -134,7 +137,7 @@ them directly, with no DisclosureOS-specific adapter.
 
 MIT © [Disclosure Foundation](https://disclosure.org)
 
-## Experimental v2 assessment summaries (unreleased)
+## Experimental v2 assessment summaries
 
 `summarizeClaimHistory` from `@disclosureos/scoring/experimental/v2` groups current
 attributed declarations by topic and subject, collapses exact copies, and discloses
@@ -142,11 +145,11 @@ shared inputs and differing outcome labels. It computes no aggregate score or
 confidence interval and does not certify scientific eligibility. See the
 [assessment summary guide](../../docs/experimental/assessment-summary.md).
 
-The additive population-coverage names are unreleased. See the [coverage guide](../../docs/experimental/population-coverage.md) for retained counting rules, denominator limits and compatibility. Origin-only reference scoring is separate from experimental V2 assessment summaries and profile completion. Descriptive observable claims are never converted into anomaly strength.
+The population-coverage APIs are available in Beta 6. See the [coverage guide](../../docs/experimental/population-coverage.md) for retained counting rules, denominator limits and compatibility. Origin-only reference scoring is separate from experimental V2 assessment summaries and profile completion. Descriptive observable claims are never converted into anomaly strength.
 
 [Assessment-summary provenance and replay](../../docs/experimental/summary-provenance.md) now pin the declared history and computed summary without verifying referenced source artifacts.
 
-## Experimental v2 provider-authored scores (unreleased)
+## Experimental v2 provider-authored scores
 
 `ProviderScorePolicySchema` and `ProviderScoreResultSchema` retain a provider's
 question, exact method revision, scale, source basis and separate derivation.

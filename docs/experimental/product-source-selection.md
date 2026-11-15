@@ -1,6 +1,6 @@
 # Product source selection, experimental 0.1.0
 
-This source-candidate contract connects a product's exact bytes to a selected
+This published experimental contract connects a product's exact bytes to a selected
 array element, CSV record or declared video frame interval. It addresses the
 portable source-reading layer exposed by Meridian's mixed-instrument showcase.
 It is independent of a screen, chart palette or playback implementation.
@@ -8,9 +8,9 @@ It is independent of a screen, chart palette or playback implementation.
 Import `ProductSourceSelectionSchema`, `evaluateProductSourceSelection` and
 `readProductSourceSelection` from `@disclosureos/schema/experimental/v2`.
 The JSON Schema is exported at `experimental/v2/product-source-selection/schema/0.1.0`.
-This contract ships in Beta 4. Relative encoded presentation timing is addressed
-by the optional [video-frame source mapping](video-frame-source-mapping.md), a
-Beta 5 candidate with a separate schema identity.
+This contract is available in Beta 6. Relative encoded presentation timing is
+addressed by the optional [video-frame source mapping](video-frame-source-mapping.md),
+also available in Beta 6, with a separate schema identity.
 
 ## Input and identity
 
@@ -90,4 +90,4 @@ Run `pnpm build`, `pnpm emit:v2-product-source-selection`, then
 `pnpm test:v2-product-source-selection`. Conformance covers boundaries, exact
 offsets, rational timing, both byte orders, altered and missing files, unrelated
 measurements, partitions, quoted CSV, nonfinite values, mutation isolation and
-JSON Schema parity. Npm publication remains part of the coordinated V2 release.
+JSON Schema parity. Published package verification is recorded in the [Beta 6 release notes](../releases/2.0.0-beta.6.md).

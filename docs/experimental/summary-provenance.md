@@ -5,7 +5,7 @@ its exact claim-history bytes, supplied dependency snapshots and fixed rule vers
 It invokes `summarizeClaimHistory` itself and preserves the entire summary result.
 No custom callback, cached result, origin boost or aggregate score is accepted.
 
-This unreleased WP08 increment belongs to `@disclosureos/scoring/experimental/v2`.
+This API is published in Beta 6 at `@disclosureos/scoring/experimental/v2`.
 The summary algorithm is unchanged. It still separates source assertions from
 assessments, follows revisions, groups duplicate declarations, preserves omitted
 confidence and exposes shared support without assuming statistical independence.

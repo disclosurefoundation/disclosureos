@@ -1,8 +1,8 @@
 # C3a: connected cases
 
-This is an **unreleased source checkpoint**. npm remains at beta.3 under the
-[consolidated V2 policy](../releases/v2-completion.md). No publication or version
-bump is part of this checkpoint.
+These connected-case APIs are available in the published Beta 6 packages.
+This guide describes case-record `0.1.0`; the [observation review guide](../experimental/observation-review.md)
+covers the separate `0.2.0` case revision for observations with unknown processing times.
 
 [C3b case assessments](assessments.md) adds the downstream review envelope for
 case, entity/field and directed relationship subjects. It preserves independent

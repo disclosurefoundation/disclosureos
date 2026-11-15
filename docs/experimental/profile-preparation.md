@@ -76,7 +76,7 @@ The schema and type are exported as `ProfilePreparationSchema`, `ProfilePreparat
 and `profilePreparationJsonSchema` from `@disclosureos/schema/experimental/v2`. JSON
 Schema exports are `/experimental/v2/profile-preparation/schema` and its `/0.1.0` alias
 on the schema package. Schema ID:
-`urn:disclosureos:experimental:profile-preparation:0.1.0`. These additions are unreleased.
+`urn:disclosureos:experimental:profile-preparation:0.1.0`. These APIs are available in Beta 6.
 
 ## Outputs and interpretation
 

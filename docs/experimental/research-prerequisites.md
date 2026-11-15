@@ -62,7 +62,7 @@ These fields always remain `not_checked`:
 - `timingModel`: no propagation or interpretation of the clock magnitude is inferred or executed.
 - `reviewerAuthenticity`: a name is not proof of identity, competence, or independence.
 
-There are no default tolerances, reviewer quorums, rankings, confidence scores, or anomaly promotions. A coverage interval fitting the windows is not a claim that every possible time fits. Existing experimental contracts and stable package versions are unchanged. Reviews use local document IDs; cryptographically pinned whole-packet input snapshots and independently reproduced calculations remain required future work before a stable research-eligibility claim.
+There are no default tolerances, reviewer quorums, rankings, confidence scores, or anomaly promotions. A coverage interval fitting the windows is not a claim that every possible time fits. Existing experimental contracts and stable package versions are unchanged. Reviews in this contract use local document IDs. Use the separate reproduction-packet contract below to pin whole-packet input snapshots; independent scientific eligibility is not established by these checks.
 
 ## Reproduction and remaining work
 

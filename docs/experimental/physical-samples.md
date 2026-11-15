@@ -40,7 +40,7 @@ Installed consumers import from `@disclosureos/schema/experimental/v2`. JSON Sch
 exports are `@disclosureos/schema/experimental/v2/physical-samples/schema` and its
 `/0.1.0` alias. Public types include `PhysicalSampleSelection`, `PhysicalSampleResult`,
 `PhysicalSampleReport`, `PhysicalSampleRecordCheck`, requirement and issue types.
-These APIs are unreleased; existing package versions and schemas remain unchanged.
+These APIs are available in Beta 6; document schema identities remain unchanged.
 
 ## Explicit specimen selection
 
@@ -67,7 +67,7 @@ Only declared `collected_specimen` lineage is applicable in this increment. Unkn
 lineage remains a missing applicability input. Derived samples and mixtures fail this
 selected scope and block downstream checks. This does not invalidate them in the wider
 standard. Do not relabel aliquots, processed material or mixtures to make this profile
-pass. Derivation, splitting, mixing and destructive-analysis lineage remain future work.
+pass. Derivation, splitting, mixing and destructive-analysis lineage are outside this profile. See the [material](../c2/materials.md) and [laboratory](../c2/laboratory.md) contracts for those records.
 
 Sample IDs are local declaration identifiers, not proof of distinct objects. Labels
 and external identifiers are not authenticated or checked for global uniqueness. The

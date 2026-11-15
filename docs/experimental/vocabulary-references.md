@@ -1,6 +1,6 @@
 # Shared vocabulary references, experimental 0.1.0
 
-This implemented V2 source-candidate contract identifies a term without replacing the claim's subject or supporting inputs. It supports observable characteristics, origin hypotheses and custom catalogs. It is not published to npm yet.
+This published experimental V2 contract identifies a term without replacing the claim's subject or supporting inputs. It supports observable characteristics, origin hypotheses and custom catalogs. It is available in the Beta 6 packages.
 
 ## Public APIs
 

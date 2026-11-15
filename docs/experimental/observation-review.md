@@ -1,7 +1,7 @@
 # Review observations with unknown processing times
 
-Status: unpublished Beta 5 source work. Merges and npm publication remain on hold.
-The published `2.0.0-beta.4` packages do not contain these APIs.
+Status: published experimental APIs in **2.0.0-beta.6**. These review contracts
+were first published in Beta 5; use Beta 6 for new installations.
 
 A derived recording can retain its inputs, outputs, actor and method even when
 its processing date was not recorded. Observation `0.2.0` preserves that missing
@@ -142,7 +142,7 @@ these new APIs deliberately rather than downgrade an observation or relabel an
 existing schema. Extending any of those additional surfaces requires its own
 contract review.
 
-Before Beta 5 release approval, reconcile the remaining integration and provider
-reviews, verify the published Beta 4 schema-identity baseline, prepare coordinated
-package versions only when authorized, and test the exact candidate artifacts
-with portal consumers. See the [integration release plan](../releases/beta5-integrations.md).
+The [release scope](../releases/beta5-scope.md) records the retained specialized
+review and public-display boundaries. The [Beta 6 release record](../releases/2.0.0-beta.6.md)
+identifies the verified package set. Provider permissions remain separate from
+package availability.

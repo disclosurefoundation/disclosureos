@@ -1,6 +1,6 @@
 # Experimental claim history
 
-This records-owned contract implements the first part of RFC 0003: source statements, evaluator assessments, and explicit revision history. It is an additive review envelope containing an unchanged experimental Observation 0.1.0 snapshot and a `claims` array. It does not change v1, the primitive artifacts, or the Observation artifact. It is not published or stable.
+This records-owned contract implements the first part of RFC 0003: source statements, evaluator assessments, and explicit revision history. It is an additive review envelope containing an unchanged experimental Observation 0.1.0 snapshot and a `claims` array. It does not change v1, the primitive artifacts, or the Observation artifact. It is published in Beta 6 as an experimental API, not a stable V2 release.
 
 The [synthetic example](../../examples/v2/claim-history.json) preserves a source calling motion “confirmed,” an unassessed review, and a later inconclusive assessment. All people, statements, methods, and values are illustrative. No partner data or executed scientific analysis is claimed.
 

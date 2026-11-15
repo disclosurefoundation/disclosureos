@@ -1,6 +1,6 @@
 # Experimental measurement bindings
 
-This unpublished v2 experiment connects each instrument-supported measurement to one acquisition-bound raw product, one captured channel, and an explicit measurement capture time. It builds on [acquisition bindings](acquisition-bindings.md), without changing that contract or the separate [assessment documentation](assessment-documentation.md) profile.
+This experimental V2 contract, available in Beta 6, connects each instrument-supported measurement to one acquisition-bound raw product, one captured channel, and an explicit measurement capture time. It builds on [acquisition bindings](acquisition-bindings.md), without changing that contract or the separate [assessment documentation](assessment-documentation.md) profile.
 
 The contract is `urn:disclosureos:experimental:measurement-bindings:0.1.0`. The profile is `urn:disclosureos:experimental:profile:measurement-bindings`, version `0.1.0`, scope `single_channel_declared_capture`.
 

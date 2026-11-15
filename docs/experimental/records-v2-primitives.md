@@ -1,6 +1,6 @@
 # Experimental records v2 value primitives
 
-Implementation of the first bounded portion of RFC 0002 and source-value provenance from RFC 0003. Import explicitly from `@disclosureos/records/experimental/v2`. Existing records entry points and v1 JSON Schema remain unchanged. This entry point is under development for the coordinated v2 release and is not yet available in the published npm package.
+Implementation of the first bounded portion of RFC 0002 and source-value provenance from RFC 0003. Import explicitly from `@disclosureos/records/experimental/v2`. Existing records entry points and v1 JSON Schema remain unchanged. This experimental entry point is available in the published Beta 6 package.
 
 ```ts
 import { parsePrimitiveRecord } from '@disclosureos/records/experimental/v2';
@@ -60,7 +60,7 @@ A known/approximate field may contain a `selection` object:
 
 The selected assertion must resolve locally, concern the same field, appear in both considered inputs and field source references, and have exactly the selected field value. Every considered input must resolve to a same-field assertion, without duplicates. All competing assertions remain in the record, whether considered or not; the parser never deletes them. A method reference is listed in `uncheckedRefs` and is never fetched. Different textual representations of the same instant are not a verbatim selection; normalization/derivation needs its own future processing contract.
 
-Selection is optional in this primitive container. Its absence must not be interpreted as an audited curator decision; profile requirements for curated values remain future work. Selection records are prohibited on unknown or redacted envelopes. This verifies the declared choice's internal consistency, not that the curator made a correct scientific judgment or actually performed the stated method.
+Selection is optional in this primitive container. Its absence must not be interpreted as an audited curator decision. The integrated [Observation contract](observation-contract.md) adds explicit selection requirements when a current value cites local assertions. Selection records are prohibited on unknown or redacted envelopes. This verifies the declared choice's internal consistency, not that the curator made a correct scientific judgment or actually performed the stated method.
 
 ## Verification and remaining work
 
@@ -68,7 +68,7 @@ After building records, `pnpm emit:v2-primitives` explicitly regenerates the exp
 
 `pnpm test:v2-primitives` validates synthetic fixtures with independent Ajv and the runtime, checks expected semantic results, checks emitter drift, and round-trips successful records. Records unit tests cover preservation and local-reference diagnostics. The legacy matrix remains unchanged.
 
-These fixtures exercise important migration outcomes such as preserving `0,0` and `1900-01-01`; there is no v1-to-v2 migrator yet. Derived-value processing provenance, profile-controlled not-applicable fields, full claims/supersession, versioned source inventories, migration/quarantine reporting, and policy-aware public projection remain future work. Do not equate this primitive parser with completed WP03 or full v2 conformance.
+These fixtures exercise value preservation, including `0,0` and `1900-01-01`. The [migration guide](migration-guide.md), [integrated Observation contract](observation-contract.md), [claim history](claim-history.md) and [public presentation guide](../c3/presentation.md) describe the connected workflows now available. This primitive parser checks its own format; use the relevant parser or profile for each larger document.
 
 
 ## Integrated Observation

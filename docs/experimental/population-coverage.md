@@ -1,7 +1,7 @@
 # Population coverage of legacy records
 
 `getPopulationCoverage` is the descriptive name for the existing schema field
-counter. This is an additive, unreleased compatibility change in the WP08 work.
+counter. Both names are available in the published Beta 6 package.
 It operates on legacy `Observation` fields; it is not a v2 observation profile.
 The old `getCompleteness` API and `completeness` CLI command remain available.
 

@@ -42,8 +42,8 @@ const result = await evaluateResearchEvaluation(manifest, {
 ```
 
 The input JSON Schema is exported at `/experimental/v2/evaluation/schema` and
-`/experimental/v2/evaluation/schema/0.1.0` on the schema package. These additions
-are unreleased; no hosted schema URL or package publication is implied.
+`/experimental/v2/evaluation/schema/0.1.0` on the schema package. These APIs
+are available in Beta 6. Schema URNs are identifiers, not hosted download URLs.
 
 ## Required identities and local bytes
 

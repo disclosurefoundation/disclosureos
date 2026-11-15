@@ -2,7 +2,7 @@
 
 The `SonarProfileSchema` contract interprets an existing retained monostatic echo envelope. It is additive: generic observations and acquisition records do not need a sonar profile. It does not add a sonar-specific source format or change the core observation contract.
 
-The runtime schema, `sonarProfileJsonSchema()` and portable `experimental/v2/sonar-profile/schema/0.1.0` export describe the same declaration. `evaluateSonarProfile(observation, acquisition, sourceSelection, profile, { assets })` checks the cross-document relationships and source content. `assets` is a map from observation product references to retained byte arrays. These exports are implemented on the current V2 development branch; package publishing is separate.
+The runtime schema, `sonarProfileJsonSchema()` and portable `experimental/v2/sonar-profile/schema/0.1.0` export describe the same declaration. `evaluateSonarProfile(observation, acquisition, sourceSelection, profile, { assets })` checks the cross-document relationships and source content. `assets` is a map from observation product references to retained byte arrays. These exports are available in the published Beta 6 package.
 
 ## Required meaning
 

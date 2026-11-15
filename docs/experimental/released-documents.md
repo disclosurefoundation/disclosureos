@@ -40,8 +40,8 @@ as real facts. The example URI is not fetched.
 
 Installed consumers use `@disclosureos/schema/experimental/v2`. Selection schema
 exports are `/experimental/v2/released-documents/schema` and the `/0.1.0` alias on
-the schema package. These additions are unreleased; existing schemas and package
-versions remain unchanged.
+the schema package. These APIs are available in Beta 6; document schema
+identities remain unchanged.
 
 ## Explicit selection and applicability
 

@@ -1,8 +1,7 @@
 # C3c: supplemental records connected to a case
 
-This is an **unreleased source checkpoint** under the
-[coordinated V2 publication policy](../releases/v2-completion.md). It is not in
-npm beta.3. The existing case and case-assessment contracts remain unchanged.
+These supplemental-link APIs are available in the published Beta 6 packages.
+Their existing case and case-assessment contract boundaries remain unchanged.
 
 A `case_links` document associates existing context, research-entity and intake
 snapshots with one exact case revision. It supplies a curated path from the case
