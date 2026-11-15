@@ -2,22 +2,16 @@
 
 ## Current release and next milestone
 
-The next coordinated security release is `2.0.0-beta.6`, using patched Zod
-4.6.6. It is authorized for merge and publication after final verification.
-See the [Beta 6 release notes](releases/2.0.0-beta.6.md).
+`2.0.0-beta.6` is the coordinated security maintenance release for all seven
+foundation packages. It includes Zod 4.6.6 directly, removing the Beta 5 override
+requirement for new applications using the complete package set. Stable V1
+`latest` tags remain unchanged.
 
-
-`2.0.0-beta.5` is published for all seven foundation packages under the `beta`
-tag. Registry versions, tarball bytes and tags were verified on 2026-11-13.
-Stable V1 `latest` tags remain unchanged.
-
-The **initial data integrations** release includes the agreed ELDÆON, Speculor
-and Sky360 contract findings. See the [release record](releases/2.0.0-beta.5.md),
-[current policy](releases/v2-completion.md) and [scope](releases/beta5-scope.md).
-
-Merge and publication were authorized on 2026-11-13 after candidate verification.
-The portal can now pin Beta 5 and update availability language. Provider reuse
-permissions and production access boundaries remain separate from this release.
+Registry artifact verification and the portal deployment are separate checkpoints.
+See the [Beta 6 release notes](releases/2.0.0-beta.6.md) for their recorded status.
+The [Beta 5 release record](releases/2.0.0-beta.5.md) retains the initial ELDÆON,
+Speculor and Sky360 contract scope. Provider reuse permissions and production
+access boundaries remain separate from the package release.
 
 ## Canonical ownership and current track
 
@@ -26,7 +20,7 @@ canonical standard source. Website/dashboard applications consume pinned release
 The reverse application exporter and subtree release workflow are retired.
 Never replace this repository with an application snapshot.
 
-The published set is described by the [2.0.0-beta.5 release notes](releases/2.0.0-beta.5.md).
+The published set is described by the [2.0.0-beta.6 release notes](releases/2.0.0-beta.6.md).
 The [Beta 4 notes](releases/2.0.0-beta.4.md) retain the previous release record.
 Seven foundation packages are in Changesets prerelease mode with tag `beta`.
 Package `publishConfig.tag` also names `beta`. This is not stable publication;
@@ -115,6 +109,11 @@ candidate; do not overwrite it or assume the previous attempt failed.
 Changesets' `pnpm release` is an alternative that builds/publishes from source and
 uses the active prerelease tag. If used, verify the resulting registry artifact
 hashes against the reviewed candidate before accepting the handoff.
+
+npm scans new versions before making their tarballs available. Allow for the
+[documented availability delay](https://github.blog/changelog/2026-07-28-npm-publish-time-malware-scanning-and-dual-use-metadata/)
+with bounded retries; a successful publish response alone is not installation
+verification. Do not republish an existing version to work around a pending scan.
 
 After publication, verify all seven exact versions can be retrieved and installed
 without local tarballs. Confirm each `beta` tag and unchanged v1 `latest` tags.
